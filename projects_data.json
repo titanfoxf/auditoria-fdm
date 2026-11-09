@@ -1,13 +1,13 @@
 {
-  "updated_at": "2026-11-09T08:48:00-05:00",
+  "updated_at": "2026-11-09T09:12:00-05:00",
   "kpis": {
     "total": 167,
     "obras": 69,
     "cajas": 20,
     "pendientes_archivador": 50,
-    "con_historial": 133,
-    "tomos_procesados": 2,
-    "folios_procesados": 182
+    "con_historial": 137,
+    "tomos_procesados": 3,
+    "folios_procesados": 263
   },
   "projects": [
     {
@@ -100,9 +100,41 @@
           "asunto_razon": "REFERENCIA FECHA DE MOQUEGUA 3 0 MAR 2023 RECIBIDO '3:'40 Solicito Adenda por Reducción por deductivo vinculante Proceso Mayor N0009-2021-FDM, para la",
           "fuente": "Tomo 2 PMO (Folio 63)",
           "confiabilidad": "MEDIA"
+        },
+        {
+          "fecha": "Abr-May 2023",
+          "tipo": "Hito de Seguimiento PMO",
+          "documento": "Folio 15",
+          "asunto_razon": "REFERENCIA FECHA INFORME N.Q 216 - 2023- PMO - FDM ABOG. ROSSMARY B. SILVA ACEVEDO Directora Ejecutivo —FDM ING. JAVIER E. INRA RAMOS GERENTE PMO (E) ",
+          "fuente": "Tomo 3 PMO (Folio 15)",
+          "confiabilidad": "MEDIA"
+        },
+        {
+          "fecha": "24 de abril del 2023",
+          "tipo": "Recepción de Obra",
+          "documento": "CARTA N0005-2023-CLG",
+          "asunto_razon": "REFERENCIA FECHA APROBACIÓN DE CAMBIO DE PROFESIONAL DE RESIDENTE DE OBRA a) CARTA N0005-2023-CLG OBRA: \"MEJORAMIENTO DEL SERVICIO DE ASISTENCIA ALIME",
+          "fuente": "Tomo 3 PMO (Folio 45)",
+          "confiabilidad": "ALTA"
+        },
+        {
+          "fecha": "24 de abril del 2023",
+          "tipo": "Hito de Seguimiento PMO",
+          "documento": "Folio 47",
+          "asunto_razon": "FECHA SOLICITO A ADMINISTRACIÓN REMITA LOS CONTRATOS DE EJECUCIÓN DE OBRA Y SUPERVISIÓN Moquegua, 24 de abril del 2023 Mediante eI presente me dirijo ",
+          "fuente": "Tomo 3 PMO (Folio 47)",
+          "confiabilidad": "MEDIA"
+        },
+        {
+          "fecha": "24 de abril del 2023",
+          "tipo": "Ampliación de Plazo",
+          "documento": "CARTA N0083COPX",
+          "asunto_razon": "REFERENCIA FECHA FONDO DE DESARROLLO DE MOQUEGUA 2 5 ABR 2023 RECIBID i.u...çouos:...... .3....... HORA'.. RESPUESTA A SOLICITUD DE CONTROVERSIAS a) C",
+          "fuente": "Tomo 3 PMO (Folio 50)",
+          "confiabilidad": "ALTA"
         }
       ],
-      "total_hitos": 8
+      "total_hitos": 12
     },
     {
       "id": 2,
@@ -196,6 +228,38 @@
           "confiabilidad": "MEDIA"
         },
         {
+          "fecha": "Abr-May 2023",
+          "tipo": "Hito de Seguimiento PMO",
+          "documento": "Folio 15",
+          "asunto_razon": "REFERENCIA FECHA INFORME N.Q 216 - 2023- PMO - FDM ABOG. ROSSMARY B. SILVA ACEVEDO Directora Ejecutivo —FDM ING. JAVIER E. INRA RAMOS GERENTE PMO (E) ",
+          "fuente": "Tomo 3 PMO (Folio 15)",
+          "confiabilidad": "MEDIA"
+        },
+        {
+          "fecha": "24 de abril del 2023",
+          "tipo": "Recepción de Obra",
+          "documento": "CARTA N0005-2023-CLG",
+          "asunto_razon": "REFERENCIA FECHA APROBACIÓN DE CAMBIO DE PROFESIONAL DE RESIDENTE DE OBRA a) CARTA N0005-2023-CLG OBRA: \"MEJORAMIENTO DEL SERVICIO DE ASISTENCIA ALIME",
+          "fuente": "Tomo 3 PMO (Folio 45)",
+          "confiabilidad": "ALTA"
+        },
+        {
+          "fecha": "24 de abril del 2023",
+          "tipo": "Hito de Seguimiento PMO",
+          "documento": "Folio 47",
+          "asunto_razon": "FECHA SOLICITO A ADMINISTRACIÓN REMITA LOS CONTRATOS DE EJECUCIÓN DE OBRA Y SUPERVISIÓN Moquegua, 24 de abril del 2023 Mediante eI presente me dirijo ",
+          "fuente": "Tomo 3 PMO (Folio 47)",
+          "confiabilidad": "MEDIA"
+        },
+        {
+          "fecha": "24 de abril del 2023",
+          "tipo": "Ampliación de Plazo",
+          "documento": "CARTA N0083COPX",
+          "asunto_razon": "REFERENCIA FECHA FONDO DE DESARROLLO DE MOQUEGUA 2 5 ABR 2023 RECIBID i.u...çouos:...... .3....... HORA'.. RESPUESTA A SOLICITUD DE CONTROVERSIAS a) C",
+          "fuente": "Tomo 3 PMO (Folio 50)",
+          "confiabilidad": "ALTA"
+        },
+        {
           "fecha": "20 de octubre del 2025",
           "tipo": "Valorización / Avance Mensual",
           "documento": "carta N°254-2025-INV",
@@ -204,7 +268,7 @@
           "confiabilidad": "ALTA"
         }
       ],
-      "total_hitos": 9
+      "total_hitos": 13
     },
     {
       "id": 3,
@@ -556,6 +620,54 @@
           "confiabilidad": "MEDIA"
         },
         {
+          "fecha": "Abr-May 2023",
+          "tipo": "Hito de Seguimiento PMO",
+          "documento": "Folio 15",
+          "asunto_razon": "REFERENCIA FECHA INFORME N.Q 216 - 2023- PMO - FDM ABOG. ROSSMARY B. SILVA ACEVEDO Directora Ejecutivo —FDM ING. JAVIER E. INRA RAMOS GERENTE PMO (E) ",
+          "fuente": "Tomo 3 PMO (Folio 15)",
+          "confiabilidad": "MEDIA"
+        },
+        {
+          "fecha": "19 de abril del 2023",
+          "tipo": "Recepción de Obra",
+          "documento": "Folio 33",
+          "asunto_razon": "REFERENCIA FECHA INFORME N.g 234 - 2023- PMO - FDM. ABOG. ROSSMARY B. SILVA ACEVEDO Directora Ejecutivo —FDM ING. JAVIER E. LAURA RAMOS GERENTE PMO (E",
+          "fuente": "Tomo 3 PMO (Folio 33)",
+          "confiabilidad": "MEDIA"
+        },
+        {
+          "fecha": "24 de abril del 2023",
+          "tipo": "Recepción de Obra",
+          "documento": "CARTA N0005-2023-CLG",
+          "asunto_razon": "REFERENCIA FECHA APROBACIÓN DE CAMBIO DE PROFESIONAL DE RESIDENTE DE OBRA a) CARTA N0005-2023-CLG OBRA: \"MEJORAMIENTO DEL SERVICIO DE ASISTENCIA ALIME",
+          "fuente": "Tomo 3 PMO (Folio 45)",
+          "confiabilidad": "ALTA"
+        },
+        {
+          "fecha": "24 de abril del 2023",
+          "tipo": "Hito de Seguimiento PMO",
+          "documento": "Folio 47",
+          "asunto_razon": "FECHA SOLICITO A ADMINISTRACIÓN REMITA LOS CONTRATOS DE EJECUCIÓN DE OBRA Y SUPERVISIÓN Moquegua, 24 de abril del 2023 Mediante eI presente me dirijo ",
+          "fuente": "Tomo 3 PMO (Folio 47)",
+          "confiabilidad": "MEDIA"
+        },
+        {
+          "fecha": "24 de abril del 2023",
+          "tipo": "Ampliación de Plazo",
+          "documento": "CARTA N0083COPX",
+          "asunto_razon": "REFERENCIA FECHA FONDO DE DESARROLLO DE MOQUEGUA 2 5 ABR 2023 RECIBID i.u...çouos:...... .3....... HORA'.. RESPUESTA A SOLICITUD DE CONTROVERSIAS a) C",
+          "fuente": "Tomo 3 PMO (Folio 50)",
+          "confiabilidad": "ALTA"
+        },
+        {
+          "fecha": "25 de abril del 2023",
+          "tipo": "Ampliación de Plazo",
+          "documento": "carta N0036",
+          "asunto_razon": "REFERENCIA FECHA PRONUNCIAMIENTO A SOLICITUD DE RECONSIDERACIÓN DE AMPLIACIÓN DE PLAZO a) carta N0036/EDlMARZASRL/lLO-2023 Obra \"MEJORAMIENTO DEL SERV",
+          "fuente": "Tomo 3 PMO (Folio 53)",
+          "confiabilidad": "MEDIA"
+        },
+        {
           "fecha": "20 de octubre del 2025",
           "tipo": "Valorización / Avance Mensual",
           "documento": "carta N°254-2025-INV",
@@ -564,7 +676,7 @@
           "confiabilidad": "ALTA"
         }
       ],
-      "total_hitos": 21
+      "total_hitos": 27
     },
     {
       "id": 9,
@@ -770,6 +882,70 @@
           "confiabilidad": "MEDIA"
         },
         {
+          "fecha": "05 de abril del 2023",
+          "tipo": "Suspensión / Paralización",
+          "documento": "CARTA N0039-CR-00004-2022-CH",
+          "asunto_razon": "REFERENCIA FECHA OBSERVACIÓN A LEVANTAMIENTO DE OBSERVACIONES DEL INFORME MENSUAL Y VALORIZACIÓN NO 08 DE EJECUCIÓN DE OBRA b) CARTA N0039-CR-00004-20",
+          "fuente": "Tomo 3 PMO (Folio 6)",
+          "confiabilidad": "ALTA"
+        },
+        {
+          "fecha": "05 de abril del 2023",
+          "tipo": "Suspensión / Paralización",
+          "documento": "CARTA N0044-CR-00004-2022-CH",
+          "asunto_razon": "REFERENCIA FECHA CONFORMIDAD A 2D0 LEVANTAMIENTO DE OBSERVACIONES DEL INFORME MENSUAL Y VALORIZACIÓN N' 09 DE OBRA. a) CARTA N0044-CR-00004-2022-CH/NF",
+          "fuente": "Tomo 3 PMO (Folio 7)",
+          "confiabilidad": "ALTA"
+        },
+        {
+          "fecha": "Abr-May 2023",
+          "tipo": "Hito de Seguimiento PMO",
+          "documento": "Folio 15",
+          "asunto_razon": "REFERENCIA FECHA INFORME N.Q 216 - 2023- PMO - FDM ABOG. ROSSMARY B. SILVA ACEVEDO Directora Ejecutivo —FDM ING. JAVIER E. INRA RAMOS GERENTE PMO (E) ",
+          "fuente": "Tomo 3 PMO (Folio 15)",
+          "confiabilidad": "MEDIA"
+        },
+        {
+          "fecha": "19 de abril del 2023",
+          "tipo": "Recepción de Obra",
+          "documento": "Folio 33",
+          "asunto_razon": "REFERENCIA FECHA INFORME N.g 234 - 2023- PMO - FDM. ABOG. ROSSMARY B. SILVA ACEVEDO Directora Ejecutivo —FDM ING. JAVIER E. LAURA RAMOS GERENTE PMO (E",
+          "fuente": "Tomo 3 PMO (Folio 33)",
+          "confiabilidad": "MEDIA"
+        },
+        {
+          "fecha": "24 de abril del 2023",
+          "tipo": "Recepción de Obra",
+          "documento": "CARTA N0005-2023-CLG",
+          "asunto_razon": "REFERENCIA FECHA APROBACIÓN DE CAMBIO DE PROFESIONAL DE RESIDENTE DE OBRA a) CARTA N0005-2023-CLG OBRA: \"MEJORAMIENTO DEL SERVICIO DE ASISTENCIA ALIME",
+          "fuente": "Tomo 3 PMO (Folio 45)",
+          "confiabilidad": "ALTA"
+        },
+        {
+          "fecha": "24 de abril del 2023",
+          "tipo": "Hito de Seguimiento PMO",
+          "documento": "Folio 47",
+          "asunto_razon": "FECHA SOLICITO A ADMINISTRACIÓN REMITA LOS CONTRATOS DE EJECUCIÓN DE OBRA Y SUPERVISIÓN Moquegua, 24 de abril del 2023 Mediante eI presente me dirijo ",
+          "fuente": "Tomo 3 PMO (Folio 47)",
+          "confiabilidad": "MEDIA"
+        },
+        {
+          "fecha": "25 de abril del 2023",
+          "tipo": "Ampliación de Plazo",
+          "documento": "carta N0036",
+          "asunto_razon": "REFERENCIA FECHA PRONUNCIAMIENTO A SOLICITUD DE RECONSIDERACIÓN DE AMPLIACIÓN DE PLAZO a) carta N0036/EDlMARZASRL/lLO-2023 Obra \"MEJORAMIENTO DEL SERV",
+          "fuente": "Tomo 3 PMO (Folio 53)",
+          "confiabilidad": "MEDIA"
+        },
+        {
+          "fecha": "25 de abril del 2023",
+          "tipo": "Suspensión / Paralización",
+          "documento": "CARTA N0046-CR-00004-2022-CH",
+          "asunto_razon": "REFERENCIA FECHA APROBACIÓN DEL INFORME MENSUAL Y VALORIZACIÓN NO 08 DE EJECUCIÓN DE OBRA b) CARTA N0046-CR-00004-2022-CH/NFC Obra: \"Creación del Puen",
+          "fuente": "Tomo 3 PMO (Folio 55)",
+          "confiabilidad": "ALTA"
+        },
+        {
           "fecha": "26 de agosto del 2025",
           "tipo": "Ampliación de Plazo",
           "documento": "carta N°521-2025-D",
@@ -874,7 +1050,7 @@
           "confiabilidad": "ALTA"
         }
       ],
-      "total_hitos": 35
+      "total_hitos": 43
     },
     {
       "id": 10,
@@ -1064,6 +1240,54 @@
           "confiabilidad": "MEDIA"
         },
         {
+          "fecha": "Abr-May 2023",
+          "tipo": "Hito de Seguimiento PMO",
+          "documento": "Folio 15",
+          "asunto_razon": "REFERENCIA FECHA INFORME N.Q 216 - 2023- PMO - FDM ABOG. ROSSMARY B. SILVA ACEVEDO Directora Ejecutivo —FDM ING. JAVIER E. INRA RAMOS GERENTE PMO (E) ",
+          "fuente": "Tomo 3 PMO (Folio 15)",
+          "confiabilidad": "MEDIA"
+        },
+        {
+          "fecha": "19 de abril del 2023",
+          "tipo": "Recepción de Obra",
+          "documento": "Folio 33",
+          "asunto_razon": "REFERENCIA FECHA INFORME N.g 234 - 2023- PMO - FDM. ABOG. ROSSMARY B. SILVA ACEVEDO Directora Ejecutivo —FDM ING. JAVIER E. LAURA RAMOS GERENTE PMO (E",
+          "fuente": "Tomo 3 PMO (Folio 33)",
+          "confiabilidad": "MEDIA"
+        },
+        {
+          "fecha": "24 de abril del 2023",
+          "tipo": "Recepción de Obra",
+          "documento": "CARTA N0005-2023-CLG",
+          "asunto_razon": "REFERENCIA FECHA APROBACIÓN DE CAMBIO DE PROFESIONAL DE RESIDENTE DE OBRA a) CARTA N0005-2023-CLG OBRA: \"MEJORAMIENTO DEL SERVICIO DE ASISTENCIA ALIME",
+          "fuente": "Tomo 3 PMO (Folio 45)",
+          "confiabilidad": "ALTA"
+        },
+        {
+          "fecha": "24 de abril del 2023",
+          "tipo": "Hito de Seguimiento PMO",
+          "documento": "Folio 47",
+          "asunto_razon": "FECHA SOLICITO A ADMINISTRACIÓN REMITA LOS CONTRATOS DE EJECUCIÓN DE OBRA Y SUPERVISIÓN Moquegua, 24 de abril del 2023 Mediante eI presente me dirijo ",
+          "fuente": "Tomo 3 PMO (Folio 47)",
+          "confiabilidad": "MEDIA"
+        },
+        {
+          "fecha": "24 de abril del 2023",
+          "tipo": "Ampliación de Plazo",
+          "documento": "CARTA N0083COPX",
+          "asunto_razon": "REFERENCIA FECHA FONDO DE DESARROLLO DE MOQUEGUA 2 5 ABR 2023 RECIBID i.u...çouos:...... .3....... HORA'.. RESPUESTA A SOLICITUD DE CONTROVERSIAS a) C",
+          "fuente": "Tomo 3 PMO (Folio 50)",
+          "confiabilidad": "ALTA"
+        },
+        {
+          "fecha": "25 de abril del 2023",
+          "tipo": "Ampliación de Plazo",
+          "documento": "carta N0036",
+          "asunto_razon": "REFERENCIA FECHA PRONUNCIAMIENTO A SOLICITUD DE RECONSIDERACIÓN DE AMPLIACIÓN DE PLAZO a) carta N0036/EDlMARZASRL/lLO-2023 Obra \"MEJORAMIENTO DEL SERV",
+          "fuente": "Tomo 3 PMO (Folio 53)",
+          "confiabilidad": "MEDIA"
+        },
+        {
           "fecha": "20 de octubre del 2025",
           "tipo": "Valorización / Avance Mensual",
           "documento": "carta N°254-2025-INV",
@@ -1072,7 +1296,7 @@
           "confiabilidad": "ALTA"
         }
       ],
-      "total_hitos": 21
+      "total_hitos": 27
     },
     {
       "id": 11,
@@ -1168,6 +1392,22 @@
           "documento": "carta N0078",
           "asunto_razon": "REFERENCIA FECHA DE MOQUEGUA 3 0 MAR 2023 RECIBIDO '3:'40 Solicito Adenda por Reducción por deductivo vinculante Proceso Mayor N0009-2021-FDM, para la",
           "fuente": "Tomo 2 PMO (Folio 63)",
+          "confiabilidad": "MEDIA"
+        },
+        {
+          "fecha": "20 de abril del 2023",
+          "tipo": "Recepción de Obra",
+          "documento": "carta N0039-2023-HAMR",
+          "asunto_razon": "REFERENCIA FECHA INFORME N.p 237-2023- PMO - FDM. ABOG. ROSSMARY B. SILVA ACEVEDO Directora Ejecutivo —FDM ING. JAVIER E. LAURA RAMOS GERENTE PMO (E) ",
+          "fuente": "Tomo 3 PMO (Folio 36)",
+          "confiabilidad": "MEDIA"
+        },
+        {
+          "fecha": "24.04.2023",
+          "tipo": "Inicio / Contrato",
+          "documento": "Folio 64",
+          "asunto_razon": "REFERENCIA FECHA SOBRE ENTREGA DE TERRENO PARA INICIO DE TRABAJOS CARTA 005-2023/ClC-M&J de 24.04.2023 \"MEJORAMIENTO DEL SISTEMA PLUVIAL MEDIANTE LA I",
+          "fuente": "Tomo 3 PMO (Folio 64)",
           "confiabilidad": "MEDIA"
         },
         {
@@ -1459,7 +1699,7 @@
           "confiabilidad": "ALTA"
         }
       ],
-      "total_hitos": 41
+      "total_hitos": 43
     },
     {
       "id": 13,
@@ -3267,6 +3507,46 @@
           "confiabilidad": "ALTA"
         },
         {
+          "fecha": "05 de abril del 2023",
+          "tipo": "Suspensión / Paralización",
+          "documento": "CARTA N0039-CR-00004-2022-CH",
+          "asunto_razon": "REFERENCIA FECHA OBSERVACIÓN A LEVANTAMIENTO DE OBSERVACIONES DEL INFORME MENSUAL Y VALORIZACIÓN NO 08 DE EJECUCIÓN DE OBRA b) CARTA N0039-CR-00004-20",
+          "fuente": "Tomo 3 PMO (Folio 6)",
+          "confiabilidad": "ALTA"
+        },
+        {
+          "fecha": "05 de abril del 2023",
+          "tipo": "Suspensión / Paralización",
+          "documento": "CARTA N0044-CR-00004-2022-CH",
+          "asunto_razon": "REFERENCIA FECHA CONFORMIDAD A 2D0 LEVANTAMIENTO DE OBSERVACIONES DEL INFORME MENSUAL Y VALORIZACIÓN N' 09 DE OBRA. a) CARTA N0044-CR-00004-2022-CH/NF",
+          "fuente": "Tomo 3 PMO (Folio 7)",
+          "confiabilidad": "ALTA"
+        },
+        {
+          "fecha": "Abr-May 2023",
+          "tipo": "Hito de Seguimiento PMO",
+          "documento": "Folio 15",
+          "asunto_razon": "REFERENCIA FECHA INFORME N.Q 216 - 2023- PMO - FDM ABOG. ROSSMARY B. SILVA ACEVEDO Directora Ejecutivo —FDM ING. JAVIER E. INRA RAMOS GERENTE PMO (E) ",
+          "fuente": "Tomo 3 PMO (Folio 15)",
+          "confiabilidad": "MEDIA"
+        },
+        {
+          "fecha": "13 de agosto del 2021",
+          "tipo": "Ampliación de Plazo",
+          "documento": "CARTA N0016-2023-RADA-SO-FDM",
+          "asunto_razon": "REFERENCIA FECHA INFORME N.p 239 - 2023- PMO - FDM. ABOG. ROSSMARY B. SILVA ACEVEDO Directora Ejecutiva —FDM ING. JAVIER E. LAURA RAMOS GERENTE PMO (E",
+          "fuente": "Tomo 3 PMO (Folio 37)",
+          "confiabilidad": "ALTA"
+        },
+        {
+          "fecha": "25 de abril del 2023",
+          "tipo": "Suspensión / Paralización",
+          "documento": "CARTA N0046-CR-00004-2022-CH",
+          "asunto_razon": "REFERENCIA FECHA APROBACIÓN DEL INFORME MENSUAL Y VALORIZACIÓN NO 08 DE EJECUCIÓN DE OBRA b) CARTA N0046-CR-00004-2022-CH/NFC Obra: \"Creación del Puen",
+          "fuente": "Tomo 3 PMO (Folio 55)",
+          "confiabilidad": "ALTA"
+        },
+        {
           "fecha": "03 de noviembre del 2026",
           "tipo": "Valorización / Avance Mensual",
           "documento": "CARTA N° 0 xxx-",
@@ -3291,7 +3571,7 @@
           "confiabilidad": "ALTA"
         }
       ],
-      "total_hitos": 19
+      "total_hitos": 24
     },
     {
       "id": 17,
@@ -3320,6 +3600,14 @@
       },
       "alerta": "BUSCAR EN ARCHIVADORES / FALTAN DOCUMENTOS",
       "historial": [
+        {
+          "fecha": "17 de noviembre del 2022",
+          "tipo": "Recepción de Obra",
+          "documento": "Folio 25",
+          "asunto_razon": "REFERENCIA FECHA REMITO RELACIÓN DE PROYECTOS PROGRAMADOS A EJECUTAR EN LA PROVINCIA DE MOQUEGUA a) OFICIO NO 010-2023-GM-A/MPMN Moquegua, 17 de novie",
+          "fuente": "Tomo 1 PMO (Folio 25)",
+          "confiabilidad": "MEDIA"
+        },
         {
           "fecha": "31 de enero del 2023",
           "tipo": "Recepción de Obra",
@@ -3367,9 +3655,17 @@
           "asunto_razon": "REFERENCIA FECHA Conformidad a levantamiento de Observaciones de Valorización N2 01 — Informe Mensual N2 01 de Servicios de Supervisión correspondient",
           "fuente": "Tomo 2 PMO (Folio 42)",
           "confiabilidad": "ALTA"
+        },
+        {
+          "fecha": "10.03.2023",
+          "tipo": "Recepción de Obra",
+          "documento": "Folio 4",
+          "asunto_razon": "RECEPCION PROYECTO FECHA SE SOLICITE A LA MUNICIPALIDAD DISTRITAL DE CUCHUMBAYA LA DESIGNACION DE SU REPRESENTANTE PARA LA ETAPA DE ENTREGA Y RECEPCIO",
+          "fuente": "Tomo 3 PMO (Folio 4)",
+          "confiabilidad": "MEDIA"
         }
       ],
-      "total_hitos": 6
+      "total_hitos": 8
     },
     {
       "id": 18,
@@ -3439,6 +3735,14 @@
           "confiabilidad": "ALTA"
         },
         {
+          "fecha": "13 de agosto del 2021",
+          "tipo": "Ampliación de Plazo",
+          "documento": "CARTA N0016-2023-RADA-SO-FDM",
+          "asunto_razon": "REFERENCIA FECHA INFORME N.p 239 - 2023- PMO - FDM. ABOG. ROSSMARY B. SILVA ACEVEDO Directora Ejecutiva —FDM ING. JAVIER E. LAURA RAMOS GERENTE PMO (E",
+          "fuente": "Tomo 3 PMO (Folio 37)",
+          "confiabilidad": "ALTA"
+        },
+        {
           "fecha": "29 de agosto de 2025",
           "tipo": "Adicional / Modificación",
           "documento": "Carta N° 047-2025-SUP",
@@ -3455,7 +3759,7 @@
           "confiabilidad": "ALTA"
         }
       ],
-      "total_hitos": 7
+      "total_hitos": 8
     },
     {
       "id": 19,
@@ -4013,6 +4317,126 @@
           "confiabilidad": "ALTA"
         },
         {
+          "fecha": "30.03.2023",
+          "tipo": "Hito de Seguimiento PMO",
+          "documento": "INFORME N.2202- 2023-PMO-FDM",
+          "asunto_razon": "REFERENCIA FECHA Sobre Opinión del Supervisor de Obra respecto a propuesta de Cambio de Personal Clave: \"Especialista en seguridad en obra y salud ocu",
+          "fuente": "Tomo 3 PMO (Folio 2)",
+          "confiabilidad": "ALTA"
+        },
+        {
+          "fecha": "30.03.2023",
+          "tipo": "Hito de Seguimiento PMO",
+          "documento": "INFORME N.2209- 2023-PMO-FDM",
+          "asunto_razon": "REFERENCIA PROYECTO FECHA SE REMITA OPINION DE SUPERVISOR DE OBRA SOBRE DESCARGO A INCUMPLIMIENTO DE OBLIGACIONES CONTRACTUALES AUSENCIA DE PERSONAL C",
+          "fuente": "Tomo 3 PMO (Folio 8)",
+          "confiabilidad": "ALTA"
+        },
+        {
+          "fecha": "05.04.2023",
+          "tipo": "Valorización / Avance Mensual",
+          "documento": "CARTA N2 043-2023-CENB",
+          "asunto_razon": "REFERENCIA FECHA Se Comunique al Consorcio Santa Fortunata la cuantificación de penalidades efectuado por eI Contratista CORENBU S.R.L. Supervisor de ",
+          "fuente": "Tomo 3 PMO (Folio 10)",
+          "confiabilidad": "ALTA"
+        },
+        {
+          "fecha": "10 de abril del 2023",
+          "tipo": "Hito de Seguimiento PMO",
+          "documento": "INFORME N.2213 - 2023-PMO-FDM",
+          "asunto_razon": "REFERENCIA FECHA Solicito reunión de Coordinación Técnica con ejecutor de Obra y Supervisor de Obra \"MANTENIMIENTO CORRECTIVO PARA LA ADECUADA INSTALA",
+          "fuente": "Tomo 3 PMO (Folio 11)",
+          "confiabilidad": "ALTA"
+        },
+        {
+          "fecha": "05.04.2023",
+          "tipo": "Valorización / Avance Mensual",
+          "documento": "Folio 13",
+          "asunto_razon": "REFERENCIA PROYECTO FECHA SE REMITA OBSERVACIONES EFECTUADAS POR EL ING. WILBERTH A. CHAMBILLA CCOSI SUPERVISOR DE OBRA A VALORIZACION 04- INFORME MEN",
+          "fuente": "Tomo 3 PMO (Folio 13)",
+          "confiabilidad": "MEDIA"
+        },
+        {
+          "fecha": "05.04.2023",
+          "tipo": "Valorización / Avance Mensual",
+          "documento": "INFORME N.9 215 - 2023-PMO-FDM",
+          "asunto_razon": "REFERENCIA PROYECTO FECHA SE REMITA OBSERVACIONES EFECrUADAS POR EL ING. WILBERTH A. CHAMBILLA CCOSI SUPERVISOR DE OBRA A VALORIZACION 05 - INFORME ME",
+          "fuente": "Tomo 3 PMO (Folio 14)",
+          "confiabilidad": "ALTA"
+        },
+        {
+          "fecha": "Abr-May 2023",
+          "tipo": "Hito de Seguimiento PMO",
+          "documento": "Folio 15",
+          "asunto_razon": "REFERENCIA FECHA INFORME N.Q 216 - 2023- PMO - FDM ABOG. ROSSMARY B. SILVA ACEVEDO Directora Ejecutivo —FDM ING. JAVIER E. INRA RAMOS GERENTE PMO (E) ",
+          "fuente": "Tomo 3 PMO (Folio 15)",
+          "confiabilidad": "MEDIA"
+        },
+        {
+          "fecha": "11.04.2023",
+          "tipo": "Valorización / Avance Mensual",
+          "documento": "Folio 16",
+          "asunto_razon": "REFERENCIA PROYECTO FECHA 05 SE REMITA OBSERVACIONES EFECTUADAS POR EL ING. WILBERTH A. CHAMBILLA CCOSI SUPERVISOR DE OBRA A VALORIZACION 06 - INFORME",
+          "fuente": "Tomo 3 PMO (Folio 16)",
+          "confiabilidad": "MEDIA"
+        },
+        {
+          "fecha": "05.04.2023",
+          "tipo": "Inicio / Contrato",
+          "documento": "INFORME N.2218 - 2023-PMO-FDM",
+          "asunto_razon": "REFERENCIA FECHA INFORME N.2218 - 2023-PMO-FDM. ABOG. ROSSMARY B. SILVA ACEVEDO Director Ejecutivo — FDM ING. JAVIER ENRIQUE LAURA RAMOS Gerente PMO (",
+          "fuente": "Tomo 3 PMO (Folio 17)",
+          "confiabilidad": "ALTA"
+        },
+        {
+          "fecha": "11.04.2023",
+          "tipo": "Recepción de Obra",
+          "documento": "CARTA N2 056-2023-WACHC-S-CORENBU",
+          "asunto_razon": "REFERENCIA PROYECTO FECHA SE TRASLADE AL CONSORCIO SANTA FORTUNATA EL DESCARGO DEL ING. WILBERTH CHAMBILLA CCOSI SUPERVISOR DE OBRA SOBRE LA NEGACION ",
+          "fuente": "Tomo 3 PMO (Folio 22)",
+          "confiabilidad": "ALTA"
+        },
+        {
+          "fecha": "12.04.2023",
+          "tipo": "Valorización / Avance Mensual",
+          "documento": "Folio 31",
+          "asunto_razon": "REFERENCIA FECHA Se Notifique al Consorcio Santa Fortunata incumplimiento en la presentación de documentos de gestión de ejecución de Obra. CARTA 047-",
+          "fuente": "Tomo 3 PMO (Folio 31)",
+          "confiabilidad": "MEDIA"
+        },
+        {
+          "fecha": "12.04.2023",
+          "tipo": "Valorización / Avance Mensual",
+          "documento": "Folio 32",
+          "asunto_razon": "REFERENCIA FECHA 'NFORME N.P233 - 2023-PMO-FDM. ABOG. ROSSMARY B. SILVA ACEVEDO Director Ejecutivo — FDM ING. JAVIER LAURA RAMOS Gerente PMO - FDM Sob",
+          "fuente": "Tomo 3 PMO (Folio 32)",
+          "confiabilidad": "MEDIA"
+        },
+        {
+          "fecha": "24.04.2023",
+          "tipo": "Liquidación Técnica-Financiera",
+          "documento": "Folio 52",
+          "asunto_razon": "REFERENCIA PROYECTO FECHA SOBRE COMUNICADO DE RENUNCIA DE SUPERVISOR DE OBRA Y SOLICITUD DE CULMINACION DE CONTRATO NP 003-2023-FDM DE SUPERVISION DE ",
+          "fuente": "Tomo 3 PMO (Folio 52)",
+          "confiabilidad": "MEDIA"
+        },
+        {
+          "fecha": "24.04.2023",
+          "tipo": "Reinicio de Obra",
+          "documento": "OFICIO N2 0538-2023-A",
+          "asunto_razon": "REFERENCIA FECHA SOBRE ESTADO SITUACIONAL DE EJECUCION Y CONCLUSION DE OBRA: \"MANTENIMIENTO CORRECTIVO PARA LA ADECUADA INSTALACIÓN DE COBERTURAS SOBR",
+          "fuente": "Tomo 3 PMO (Folio 58)",
+          "confiabilidad": "MEDIA"
+        },
+        {
+          "fecha": "24.04.2023",
+          "tipo": "Inicio / Contrato",
+          "documento": "Folio 64",
+          "asunto_razon": "REFERENCIA FECHA SOBRE ENTREGA DE TERRENO PARA INICIO DE TRABAJOS CARTA 005-2023/ClC-M&J de 24.04.2023 \"MEJORAMIENTO DEL SISTEMA PLUVIAL MEDIANTE LA I",
+          "fuente": "Tomo 3 PMO (Folio 64)",
+          "confiabilidad": "MEDIA"
+        },
+        {
           "fecha": "13 de octubre de 2026",
           "tipo": "Hito de Seguimiento PMO",
           "documento": "Informe Nº 988-2026-PMO-MEFE",
@@ -4021,7 +4445,7 @@
           "confiabilidad": "ALTA"
         }
       ],
-      "total_hitos": 67
+      "total_hitos": 82
     },
     {
       "id": 20,
@@ -4131,6 +4555,62 @@
           "confiabilidad": "MEDIA"
         },
         {
+          "fecha": "05 de abril del 2023",
+          "tipo": "Ampliación de Plazo",
+          "documento": "carta N0029-2023-HAMR",
+          "asunto_razon": "REFERENCIA FECHA APROBACION DE AMPLIACIÓN DE PLAZO DE PROVEEDORES a) carta N0029-2023-HAMR b) carta N0030-2023-HAMR c) carta N0031-2023-HAMR Proyecto ",
+          "fuente": "Tomo 3 PMO (Folio 9)",
+          "confiabilidad": "MEDIA"
+        },
+        {
+          "fecha": "07.03.2023",
+          "tipo": "Suspensión / Paralización",
+          "documento": "carta N0035-2023-HAMR",
+          "asunto_razon": "REFERENCIA FECHA INFORME N.Q 220-2023- PMO - FDM. ABOG. ROSSMARY B. SILVA ACEVEDO Directora Ejecutivo —FDM ING. JAVIER E. LAURA RAMOS GERENTE PMO (E) ",
+          "fuente": "Tomo 3 PMO (Folio 19)",
+          "confiabilidad": "MEDIA"
+        },
+        {
+          "fecha": "Abr-May 2023",
+          "tipo": "Hito de Seguimiento PMO",
+          "documento": "Carta N0034-2023-HAMR",
+          "asunto_razon": "REFERENCIA FECHA Solicitud de opinión ténica respecto a observaciones emitidas por eI IESP Jose Carlos Mariátegui — Lab. de mecánica de Producción Ind",
+          "fuente": "Tomo 3 PMO (Folio 20)",
+          "confiabilidad": "MEDIA"
+        },
+        {
+          "fecha": "20 de abril del 2023",
+          "tipo": "Recepción de Obra",
+          "documento": "carta N0039-2023-HAMR",
+          "asunto_razon": "REFERENCIA FECHA INFORME N.p 237-2023- PMO - FDM. ABOG. ROSSMARY B. SILVA ACEVEDO Directora Ejecutivo —FDM ING. JAVIER E. LAURA RAMOS GERENTE PMO (E) ",
+          "fuente": "Tomo 3 PMO (Folio 36)",
+          "confiabilidad": "MEDIA"
+        },
+        {
+          "fecha": "21 de abril del 2023",
+          "tipo": "Hito de Seguimiento PMO",
+          "documento": "INFORME N.2 244-2023- PMO - FDM ABOG",
+          "asunto_razon": "REFERENCIA FECHA )S'3R SE REMITE INFORMACIÓN SOLICITADA POR LA DIRECCIÓN REGIONAL DE EDUCACIÓN MOQUEGUA a) carta N0040-2023-HAMR b) Oficio N0348-2023-",
+          "fuente": "Tomo 3 PMO (Folio 41)",
+          "confiabilidad": "ALTA"
+        },
+        {
+          "fecha": "24 de abril del 2023",
+          "tipo": "Suspensión / Paralización",
+          "documento": "carta N004-2023-GNCT",
+          "asunto_razon": "REFERENCIA FECHA ANULACIÓN DE ORDEN DE SERVICIO 103-00003 a) carta N004-2023-GNCT Proyecto \"MEJORAMIENTO DE LOS SERVICIOS DE EDUCACIÓN SUPERIOR TECNOL",
+          "fuente": "Tomo 3 PMO (Folio 46)",
+          "confiabilidad": "MEDIA"
+        },
+        {
+          "fecha": "04.05.2023",
+          "tipo": "Recepción de Obra",
+          "documento": "CARTA N2 147-2023-GRM",
+          "asunto_razon": "REFERENCIA PROYECTO FECHA SOBRE RESPUESTA DE GERENCIA REGIONAL DE INFRAESTRUCTURA A SOLICITUD DE CONFORMACION DE COMITÉ DE RECEPCION DE OBRA CARTA N2 ",
+          "fuente": "Tomo 3 PMO (Folio 75)",
+          "confiabilidad": "ALTA"
+        },
+        {
           "fecha": "12 de diciembre del 2025",
           "tipo": "Hito de Seguimiento PMO",
           "documento": "CARTA N° 01-2025-AT-AJZC",
@@ -4171,7 +4651,7 @@
           "confiabilidad": "MEDIA"
         }
       ],
-      "total_hitos": 15
+      "total_hitos": 22
     },
     {
       "id": 21,
@@ -4217,6 +4697,38 @@
           "confiabilidad": "ALTA"
         },
         {
+          "fecha": "03.04.2023",
+          "tipo": "Hito de Seguimiento PMO",
+          "documento": "INFORME N.2212- 2023-PMO-FDM",
+          "asunto_razon": "REFERENCIA FECHA INFORME N.2212- 2023-PMO-FDM. ABOG. ROSSMARY B. SILVA ACEVEDO Directora Ejecutiva — FDM ING. JAVIER ENRIQUE LAURA RAMOS Gerente PMO (",
+          "fuente": "Tomo 3 PMO (Folio 12)",
+          "confiabilidad": "ALTA"
+        },
+        {
+          "fecha": "Abr-May 2023",
+          "tipo": "Hito de Seguimiento PMO",
+          "documento": "Folio 15",
+          "asunto_razon": "REFERENCIA FECHA INFORME N.Q 216 - 2023- PMO - FDM ABOG. ROSSMARY B. SILVA ACEVEDO Directora Ejecutivo —FDM ING. JAVIER E. INRA RAMOS GERENTE PMO (E) ",
+          "fuente": "Tomo 3 PMO (Folio 15)",
+          "confiabilidad": "MEDIA"
+        },
+        {
+          "fecha": "31.03.2023",
+          "tipo": "Hito de Seguimiento PMO",
+          "documento": "Folio 27",
+          "asunto_razon": "REFERENCIA FECHA 1 8 ABR 2023 zs_ oct SOBRE SOLICITUD DE COPIA DEL PROYECTO Y/O EXPEDIENTE TECNICO: \"CONSTRUCCIÓN E IMPLEMENTACIÓN DE CREMATORIO PARA ",
+          "fuente": "Tomo 3 PMO (Folio 27)",
+          "confiabilidad": "MEDIA"
+        },
+        {
+          "fecha": "18 de abril del 2023",
+          "tipo": "Hito de Seguimiento PMO",
+          "documento": "Folio 28",
+          "asunto_razon": "PROYECTO FECHA /02C 01 SE SOLICITE A LA SOCIEDAD DE BENEFICENCIA MOQUEGUA REMISION ADMINISTRATIVAS OBLIGATORIAS DE AUTORIZACIONES ESTABLECIDOS EN EL M",
+          "fuente": "Tomo 3 PMO (Folio 28)",
+          "confiabilidad": "MEDIA"
+        },
+        {
           "fecha": "29 DE OCTUBRE DEL 2025",
           "tipo": "Hito de Seguimiento PMO",
           "documento": "CARTA Nº 062",
@@ -4249,7 +4761,7 @@
           "confiabilidad": "ALTA"
         }
       ],
-      "total_hitos": 6
+      "total_hitos": 10
     },
     {
       "id": 22,
@@ -4823,6 +5335,126 @@
           "confiabilidad": "ALTA"
         },
         {
+          "fecha": "04 de abril del 2023",
+          "tipo": "Ampliación de Plazo",
+          "documento": "Folio 5",
+          "asunto_razon": "REFERENCIA FECHA APROBACIÓN DE ADICIONAL N004 CON DEDUCTIVO VINCULANTE - IMPLEMENTACIONES EN EL SISTEMA ELÉCTRICO PARA EL CORRECTO FUNCIONAMIENTO DEL ",
+          "fuente": "Tomo 3 PMO (Folio 5)",
+          "confiabilidad": "MEDIA"
+        },
+        {
+          "fecha": "30.03.2023",
+          "tipo": "Hito de Seguimiento PMO",
+          "documento": "INFORME N.2209- 2023-PMO-FDM",
+          "asunto_razon": "REFERENCIA PROYECTO FECHA SE REMITA OPINION DE SUPERVISOR DE OBRA SOBRE DESCARGO A INCUMPLIMIENTO DE OBLIGACIONES CONTRACTUALES AUSENCIA DE PERSONAL C",
+          "fuente": "Tomo 3 PMO (Folio 8)",
+          "confiabilidad": "ALTA"
+        },
+        {
+          "fecha": "05.04.2023",
+          "tipo": "Valorización / Avance Mensual",
+          "documento": "CARTA N2 043-2023-CENB",
+          "asunto_razon": "REFERENCIA FECHA Se Comunique al Consorcio Santa Fortunata la cuantificación de penalidades efectuado por eI Contratista CORENBU S.R.L. Supervisor de ",
+          "fuente": "Tomo 3 PMO (Folio 10)",
+          "confiabilidad": "ALTA"
+        },
+        {
+          "fecha": "10 de abril del 2023",
+          "tipo": "Hito de Seguimiento PMO",
+          "documento": "INFORME N.2213 - 2023-PMO-FDM",
+          "asunto_razon": "REFERENCIA FECHA Solicito reunión de Coordinación Técnica con ejecutor de Obra y Supervisor de Obra \"MANTENIMIENTO CORRECTIVO PARA LA ADECUADA INSTALA",
+          "fuente": "Tomo 3 PMO (Folio 11)",
+          "confiabilidad": "ALTA"
+        },
+        {
+          "fecha": "05.04.2023",
+          "tipo": "Valorización / Avance Mensual",
+          "documento": "Folio 13",
+          "asunto_razon": "REFERENCIA PROYECTO FECHA SE REMITA OBSERVACIONES EFECTUADAS POR EL ING. WILBERTH A. CHAMBILLA CCOSI SUPERVISOR DE OBRA A VALORIZACION 04- INFORME MEN",
+          "fuente": "Tomo 3 PMO (Folio 13)",
+          "confiabilidad": "MEDIA"
+        },
+        {
+          "fecha": "05.04.2023",
+          "tipo": "Valorización / Avance Mensual",
+          "documento": "INFORME N.9 215 - 2023-PMO-FDM",
+          "asunto_razon": "REFERENCIA PROYECTO FECHA SE REMITA OBSERVACIONES EFECrUADAS POR EL ING. WILBERTH A. CHAMBILLA CCOSI SUPERVISOR DE OBRA A VALORIZACION 05 - INFORME ME",
+          "fuente": "Tomo 3 PMO (Folio 14)",
+          "confiabilidad": "ALTA"
+        },
+        {
+          "fecha": "Abr-May 2023",
+          "tipo": "Hito de Seguimiento PMO",
+          "documento": "Folio 15",
+          "asunto_razon": "REFERENCIA FECHA INFORME N.Q 216 - 2023- PMO - FDM ABOG. ROSSMARY B. SILVA ACEVEDO Directora Ejecutivo —FDM ING. JAVIER E. INRA RAMOS GERENTE PMO (E) ",
+          "fuente": "Tomo 3 PMO (Folio 15)",
+          "confiabilidad": "MEDIA"
+        },
+        {
+          "fecha": "11.04.2023",
+          "tipo": "Valorización / Avance Mensual",
+          "documento": "Folio 16",
+          "asunto_razon": "REFERENCIA PROYECTO FECHA 05 SE REMITA OBSERVACIONES EFECTUADAS POR EL ING. WILBERTH A. CHAMBILLA CCOSI SUPERVISOR DE OBRA A VALORIZACION 06 - INFORME",
+          "fuente": "Tomo 3 PMO (Folio 16)",
+          "confiabilidad": "MEDIA"
+        },
+        {
+          "fecha": "05.04.2023",
+          "tipo": "Inicio / Contrato",
+          "documento": "INFORME N.2218 - 2023-PMO-FDM",
+          "asunto_razon": "REFERENCIA FECHA INFORME N.2218 - 2023-PMO-FDM. ABOG. ROSSMARY B. SILVA ACEVEDO Director Ejecutivo — FDM ING. JAVIER ENRIQUE LAURA RAMOS Gerente PMO (",
+          "fuente": "Tomo 3 PMO (Folio 17)",
+          "confiabilidad": "ALTA"
+        },
+        {
+          "fecha": "11.04.2023",
+          "tipo": "Recepción de Obra",
+          "documento": "CARTA N2 056-2023-WACHC-S-CORENBU",
+          "asunto_razon": "REFERENCIA PROYECTO FECHA SE TRASLADE AL CONSORCIO SANTA FORTUNATA EL DESCARGO DEL ING. WILBERTH CHAMBILLA CCOSI SUPERVISOR DE OBRA SOBRE LA NEGACION ",
+          "fuente": "Tomo 3 PMO (Folio 22)",
+          "confiabilidad": "ALTA"
+        },
+        {
+          "fecha": "12.04.2023",
+          "tipo": "Valorización / Avance Mensual",
+          "documento": "Folio 31",
+          "asunto_razon": "REFERENCIA FECHA Se Notifique al Consorcio Santa Fortunata incumplimiento en la presentación de documentos de gestión de ejecución de Obra. CARTA 047-",
+          "fuente": "Tomo 3 PMO (Folio 31)",
+          "confiabilidad": "MEDIA"
+        },
+        {
+          "fecha": "12.04.2023",
+          "tipo": "Valorización / Avance Mensual",
+          "documento": "Folio 32",
+          "asunto_razon": "REFERENCIA FECHA 'NFORME N.P233 - 2023-PMO-FDM. ABOG. ROSSMARY B. SILVA ACEVEDO Director Ejecutivo — FDM ING. JAVIER LAURA RAMOS Gerente PMO - FDM Sob",
+          "fuente": "Tomo 3 PMO (Folio 32)",
+          "confiabilidad": "MEDIA"
+        },
+        {
+          "fecha": "24.04.2023",
+          "tipo": "Liquidación Técnica-Financiera",
+          "documento": "Folio 52",
+          "asunto_razon": "REFERENCIA PROYECTO FECHA SOBRE COMUNICADO DE RENUNCIA DE SUPERVISOR DE OBRA Y SOLICITUD DE CULMINACION DE CONTRATO NP 003-2023-FDM DE SUPERVISION DE ",
+          "fuente": "Tomo 3 PMO (Folio 52)",
+          "confiabilidad": "MEDIA"
+        },
+        {
+          "fecha": "24.04.2023",
+          "tipo": "Reinicio de Obra",
+          "documento": "OFICIO N2 0538-2023-A",
+          "asunto_razon": "REFERENCIA FECHA SOBRE ESTADO SITUACIONAL DE EJECUCION Y CONCLUSION DE OBRA: \"MANTENIMIENTO CORRECTIVO PARA LA ADECUADA INSTALACIÓN DE COBERTURAS SOBR",
+          "fuente": "Tomo 3 PMO (Folio 58)",
+          "confiabilidad": "MEDIA"
+        },
+        {
+          "fecha": "24.04.2023",
+          "tipo": "Inicio / Contrato",
+          "documento": "Folio 64",
+          "asunto_razon": "REFERENCIA FECHA SOBRE ENTREGA DE TERRENO PARA INICIO DE TRABAJOS CARTA 005-2023/ClC-M&J de 24.04.2023 \"MEJORAMIENTO DEL SISTEMA PLUVIAL MEDIANTE LA I",
+          "fuente": "Tomo 3 PMO (Folio 64)",
+          "confiabilidad": "MEDIA"
+        },
+        {
           "fecha": "19 de setiembre de 2025",
           "tipo": "Adicional / Modificación",
           "documento": "Carta N° 064-2025-SUP",
@@ -4935,7 +5567,7 @@
           "confiabilidad": "ALTA"
         }
       ],
-      "total_hitos": 82
+      "total_hitos": 97
     },
     {
       "id": 23,
@@ -4997,6 +5629,22 @@
           "confiabilidad": "ALTA"
         },
         {
+          "fecha": "13 de abril del 2023",
+          "tipo": "Liquidación Técnica-Financiera",
+          "documento": "Folio 25",
+          "asunto_razon": "REFERENCIA FECHA INFORME N.P226- 2023 PMO-FDM ABOG. ROSSMARY B. SILVA ACEVEDO Directora Ejecutiva —FDM ING. JAVIER LAURA RAMOS Gerente PMO - FDM OBSER",
+          "fuente": "Tomo 3 PMO (Folio 25)",
+          "confiabilidad": "MEDIA"
+        },
+        {
+          "fecha": "21 de abril del 2023",
+          "tipo": "Hito de Seguimiento PMO",
+          "documento": "Folio 40",
+          "asunto_razon": "FECHA JI,' 11C, SOLICITO A ADMINISTRACIÓN REMITA LOS CONIHA [OS SUPERVISIÓN PARA DAR INICIO A LA EJECUCIÓN DE LAS OBRAS DE LOS PROYECTOS DE LOS LOCALE",
+          "fuente": "Tomo 3 PMO (Folio 40)",
+          "confiabilidad": "MEDIA"
+        },
+        {
           "fecha": "04 de noviembre del 2026",
           "tipo": "Recepción de Obra",
           "documento": "CARTA N° 0   -2026-D",
@@ -5013,7 +5661,7 @@
           "confiabilidad": "ALTA"
         }
       ],
-      "total_hitos": 6
+      "total_hitos": 8
     },
     {
       "id": 24,
@@ -5075,6 +5723,22 @@
           "confiabilidad": "ALTA"
         },
         {
+          "fecha": "13 de abril del 2023",
+          "tipo": "Liquidación Técnica-Financiera",
+          "documento": "Folio 25",
+          "asunto_razon": "REFERENCIA FECHA INFORME N.P226- 2023 PMO-FDM ABOG. ROSSMARY B. SILVA ACEVEDO Directora Ejecutiva —FDM ING. JAVIER LAURA RAMOS Gerente PMO - FDM OBSER",
+          "fuente": "Tomo 3 PMO (Folio 25)",
+          "confiabilidad": "MEDIA"
+        },
+        {
+          "fecha": "21 de abril del 2023",
+          "tipo": "Hito de Seguimiento PMO",
+          "documento": "Folio 40",
+          "asunto_razon": "FECHA JI,' 11C, SOLICITO A ADMINISTRACIÓN REMITA LOS CONIHA [OS SUPERVISIÓN PARA DAR INICIO A LA EJECUCIÓN DE LAS OBRAS DE LOS PROYECTOS DE LOS LOCALE",
+          "fuente": "Tomo 3 PMO (Folio 40)",
+          "confiabilidad": "MEDIA"
+        },
+        {
           "fecha": "04 de noviembre del 2026",
           "tipo": "Recepción de Obra",
           "documento": "CARTA N° 0   -2026-D",
@@ -5091,7 +5755,7 @@
           "confiabilidad": "ALTA"
         }
       ],
-      "total_hitos": 6
+      "total_hitos": 8
     },
     {
       "id": 25,
@@ -5153,6 +5817,22 @@
           "confiabilidad": "ALTA"
         },
         {
+          "fecha": "13 de abril del 2023",
+          "tipo": "Liquidación Técnica-Financiera",
+          "documento": "Folio 25",
+          "asunto_razon": "REFERENCIA FECHA INFORME N.P226- 2023 PMO-FDM ABOG. ROSSMARY B. SILVA ACEVEDO Directora Ejecutiva —FDM ING. JAVIER LAURA RAMOS Gerente PMO - FDM OBSER",
+          "fuente": "Tomo 3 PMO (Folio 25)",
+          "confiabilidad": "MEDIA"
+        },
+        {
+          "fecha": "21 de abril del 2023",
+          "tipo": "Hito de Seguimiento PMO",
+          "documento": "Folio 40",
+          "asunto_razon": "FECHA JI,' 11C, SOLICITO A ADMINISTRACIÓN REMITA LOS CONIHA [OS SUPERVISIÓN PARA DAR INICIO A LA EJECUCIÓN DE LAS OBRAS DE LOS PROYECTOS DE LOS LOCALE",
+          "fuente": "Tomo 3 PMO (Folio 40)",
+          "confiabilidad": "MEDIA"
+        },
+        {
           "fecha": "04 de noviembre del 2026",
           "tipo": "Recepción de Obra",
           "documento": "CARTA N° 0   -2026-D",
@@ -5169,7 +5849,7 @@
           "confiabilidad": "ALTA"
         }
       ],
-      "total_hitos": 6
+      "total_hitos": 8
     },
     {
       "id": 26,
@@ -5444,6 +6124,110 @@
           "confiabilidad": "MEDIA"
         },
         {
+          "fecha": "04 de abril del 2023",
+          "tipo": "Hito de Seguimiento PMO",
+          "documento": "CARTA N0035-SUP-EWT-2023",
+          "asunto_razon": "REFERENCIA FECHA DENEGATORIA A CAMBIO DE PROFESIONAL DE INGENIERO SUPERVISOR DE OBRA E INGENIERO DE CALIDAD a) CARTA N0035-SUP-EWT-2023 OBRA: \"MEJORAM",
+          "fuente": "Tomo 3 PMO (Folio 3)",
+          "confiabilidad": "ALTA"
+        },
+        {
+          "fecha": "Abr-May 2023",
+          "tipo": "Hito de Seguimiento PMO",
+          "documento": "Folio 15",
+          "asunto_razon": "REFERENCIA FECHA INFORME N.Q 216 - 2023- PMO - FDM ABOG. ROSSMARY B. SILVA ACEVEDO Directora Ejecutivo —FDM ING. JAVIER E. INRA RAMOS GERENTE PMO (E) ",
+          "fuente": "Tomo 3 PMO (Folio 15)",
+          "confiabilidad": "MEDIA"
+        },
+        {
+          "fecha": "13 de abril del 2023",
+          "tipo": "Recepción de Obra",
+          "documento": "Folio 18",
+          "asunto_razon": "REFERENCIA FECHA LEVANTAMIENTO DE OBSERVACIONES DE DOCUMENTOS PARA SUSCRIPCIÓN DE CONTRATO DERIVADO DEL PROCESO MAYOR NO 004-2023-FDM a) CARTA NO 013-",
+          "fuente": "Tomo 3 PMO (Folio 18)",
+          "confiabilidad": "MEDIA"
+        },
+        {
+          "fecha": "13 de abril del 2023",
+          "tipo": "Hito de Seguimiento PMO",
+          "documento": "Carta N0040-SlJP-EYVT-2023",
+          "asunto_razon": "REFERENCIA FECHA APROBACIÓN DE CAMBIO DE PROFESIONAL DE SUPERVISOR DE OBRA a) CARTA N'040-SUP-EWT-2023 OBRA: \"MEJORAMIENTO DEL SERVICIO DE TRANSITABIL",
+          "fuente": "Tomo 3 PMO (Folio 21)",
+          "confiabilidad": "MEDIA"
+        },
+        {
+          "fecha": "13 de abril del 2023",
+          "tipo": "Hito de Seguimiento PMO",
+          "documento": "CARTA N0039-SUP-EWT-2023",
+          "asunto_razon": "REFERENCIA FECHA OBSERVACIÓN DE CRONOGRAMA DE PAGOS DE SUPERVISIÓN a) CARTA N0039-SUP-EWT-2023 OBRA: \"MEJORAMIENTO DEL SERVICIO DE TRANSITABILIDAD VIA",
+          "fuente": "Tomo 3 PMO (Folio 23)",
+          "confiabilidad": "ALTA"
+        },
+        {
+          "fecha": "13 de abril del 2023",
+          "tipo": "Hito de Seguimiento PMO",
+          "documento": "CARTA N0008-2023",
+          "asunto_razon": "REFERENCIA FECHA 1 3 ABR 2023 o OBSERVACIONES A DIAGRAMA GANTT Y CRONOGRAMA VALORIZADO a) CARTA N'038-SUP-EYVT-2023 b) CARTA N0008-2023/CC/FZP-RC OBRA",
+          "fuente": "Tomo 3 PMO (Folio 24)",
+          "confiabilidad": "ALTA"
+        },
+        {
+          "fecha": "19 de abril del 2023",
+          "tipo": "Inicio / Contrato",
+          "documento": "CARTA N0004-2023",
+          "asunto_razon": "REFERENCIA FECHA INFORME N.P 236 - 2023- PMO - FDM. ABOG. ROSSMARY B. SILVA ACEVEDO Directora Ejecutiva —FDM ING. JAVIER E. LAURA RAMOS GERENTE PMO (E",
+          "fuente": "Tomo 3 PMO (Folio 35)",
+          "confiabilidad": "ALTA"
+        },
+        {
+          "fecha": "21 de abril del 2023",
+          "tipo": "Hito de Seguimiento PMO",
+          "documento": "CARTA N0037-SUP-EYVT-2023",
+          "asunto_razon": "REFERENCIA FECHA ABOG. ROSSMARY B. SILVA ACEVEDO Directora Ejecutiva —FDM ING. JAVIER E. LAURA RAMOS GERENTE PMO (E) PRONUNCIAMIENTO A INFORME DE COMP",
+          "fuente": "Tomo 3 PMO (Folio 38)",
+          "confiabilidad": "ALTA"
+        },
+        {
+          "fecha": "24 de abril del 2023",
+          "tipo": "Hito de Seguimiento PMO",
+          "documento": "Folio 47",
+          "asunto_razon": "FECHA SOLICITO A ADMINISTRACIÓN REMITA LOS CONTRATOS DE EJECUCIÓN DE OBRA Y SUPERVISIÓN Moquegua, 24 de abril del 2023 Mediante eI presente me dirijo ",
+          "fuente": "Tomo 3 PMO (Folio 47)",
+          "confiabilidad": "MEDIA"
+        },
+        {
+          "fecha": "24 de abril del 2023",
+          "tipo": "Hito de Seguimiento PMO",
+          "documento": "CARTA N0041-SUP-EWT-2023",
+          "asunto_razon": "REFERENCIA FECHA APROBACIÓN DE CRONOGRAMA DE PAGOS DE SUPERVISIÓN a) CARTA N0041-SUP-EWT-2023 OBRA: \"MEJORAMIENTO DEL SERVICIO DE TRANSITABILIDAD VIAL",
+          "fuente": "Tomo 3 PMO (Folio 49)",
+          "confiabilidad": "ALTA"
+        },
+        {
+          "fecha": "24 de abril de 2023",
+          "tipo": "Ampliación de Plazo",
+          "documento": "Folio 51",
+          "asunto_razon": "REFERENCIA FECHA SOLICITO ENTREGA DE TERRENO PARA LA EJECUCIÓN DE OBRA DEL PROYECTO \"MEJORAMIENTO Y AMPLIACIÓN DEL SERVICIO DE TRANSITABIUDAD VEHICULA",
+          "fuente": "Tomo 3 PMO (Folio 51)",
+          "confiabilidad": "MEDIA"
+        },
+        {
+          "fecha": "25 de abril del 2023",
+          "tipo": "Hito de Seguimiento PMO",
+          "documento": "CARTA N0042-SUP-EWT-2023",
+          "asunto_razon": "REFERENCIA FECHA APROBACIÓN DE CAMBIO DE PROFESIONAL DE SUPERVISOR DE OBRA a) CARTA N0042-SUP-EWT-2023 OBRA: \"MEJORAMIENTO DEL SERVICIO DE TRANSITABIL",
+          "fuente": "Tomo 3 PMO (Folio 54)",
+          "confiabilidad": "ALTA"
+        },
+        {
+          "fecha": "27 de abril del 2023",
+          "tipo": "Inicio / Contrato",
+          "documento": "CARTA N0010-2023",
+          "asunto_razon": "REFERENCIA FECHA APROBACIÓN DE CAMBIO DE PROFESIONALES DE INGENIERO DE CALIDAD Y ESPECIALISTA EN SEGURIDAD EN OBRA Y SALUD OCUPACIONAL. a) CARTA N0010",
+          "fuente": "Tomo 3 PMO (Folio 59)",
+          "confiabilidad": "ALTA"
+        },
+        {
           "fecha": "03 de noviembre del 2026",
           "tipo": "Valorización / Avance Mensual",
           "documento": "CARTA N° 0 xxx-",
@@ -5492,7 +6276,7 @@
           "confiabilidad": "ALTA"
         }
       ],
-      "total_hitos": 9
+      "total_hitos": 22
     },
     {
       "id": 32,
@@ -5614,6 +6398,14 @@
           "confiabilidad": "MEDIA"
         },
         {
+          "fecha": "13 de abril del 2023",
+          "tipo": "Liquidación Técnica-Financiera",
+          "documento": "Folio 25",
+          "asunto_razon": "REFERENCIA FECHA INFORME N.P226- 2023 PMO-FDM ABOG. ROSSMARY B. SILVA ACEVEDO Directora Ejecutiva —FDM ING. JAVIER LAURA RAMOS Gerente PMO - FDM OBSER",
+          "fuente": "Tomo 3 PMO (Folio 25)",
+          "confiabilidad": "MEDIA"
+        },
+        {
           "fecha": "04 de noviembre del 2026",
           "tipo": "Recepción de Obra",
           "documento": "CARTA N° 0   -2026-D",
@@ -5710,7 +6502,7 @@
           "confiabilidad": "ALTA"
         }
       ],
-      "total_hitos": 13
+      "total_hitos": 14
     },
     {
       "id": 35,
@@ -5767,8 +6559,17 @@
         "transf": false
       },
       "alerta": "BUSCAR EN ARCHIVADORES / FALTAN DOCUMENTOS",
-      "historial": [],
-      "total_hitos": 0
+      "historial": [
+        {
+          "fecha": "13 de abril del 2023",
+          "tipo": "Liquidación Técnica-Financiera",
+          "documento": "Folio 25",
+          "asunto_razon": "REFERENCIA FECHA INFORME N.P226- 2023 PMO-FDM ABOG. ROSSMARY B. SILVA ACEVEDO Directora Ejecutiva —FDM ING. JAVIER LAURA RAMOS Gerente PMO - FDM OBSER",
+          "fuente": "Tomo 3 PMO (Folio 25)",
+          "confiabilidad": "MEDIA"
+        }
+      ],
+      "total_hitos": 1
     },
     {
       "id": 37,
@@ -5822,6 +6623,14 @@
           "confiabilidad": "ALTA"
         },
         {
+          "fecha": "21 de abril del 2023",
+          "tipo": "Hito de Seguimiento PMO",
+          "documento": "Folio 40",
+          "asunto_razon": "FECHA JI,' 11C, SOLICITO A ADMINISTRACIÓN REMITA LOS CONIHA [OS SUPERVISIÓN PARA DAR INICIO A LA EJECUCIÓN DE LAS OBRAS DE LOS PROYECTOS DE LOS LOCALE",
+          "fuente": "Tomo 3 PMO (Folio 40)",
+          "confiabilidad": "MEDIA"
+        },
+        {
           "fecha": "2025-2026",
           "tipo": "Ampliación de Plazo",
           "documento": "CARTA N° 0 xxx-",
@@ -5838,7 +6647,7 @@
           "confiabilidad": "ALTA"
         }
       ],
-      "total_hitos": 5
+      "total_hitos": 6
     },
     {
       "id": 38,
@@ -5867,6 +6676,14 @@
       },
       "alerta": "BUSCAR EN ARCHIVADORES / FALTAN DOCUMENTOS",
       "historial": [
+        {
+          "fecha": "Abr-May 2023",
+          "tipo": "Hito de Seguimiento PMO",
+          "documento": "Folio 15",
+          "asunto_razon": "REFERENCIA FECHA INFORME N.Q 216 - 2023- PMO - FDM ABOG. ROSSMARY B. SILVA ACEVEDO Directora Ejecutivo —FDM ING. JAVIER E. INRA RAMOS GERENTE PMO (E) ",
+          "fuente": "Tomo 3 PMO (Folio 15)",
+          "confiabilidad": "MEDIA"
+        },
         {
           "fecha": "03 de noviembre del 2026",
           "tipo": "Valorización / Avance Mensual",
@@ -5908,7 +6725,7 @@
           "confiabilidad": "ALTA"
         }
       ],
-      "total_hitos": 5
+      "total_hitos": 6
     },
     {
       "id": 39,
@@ -5937,6 +6754,14 @@
       },
       "alerta": "BUSCAR EN ARCHIVADORES / FALTAN DOCUMENTOS",
       "historial": [
+        {
+          "fecha": "24 de abril del 2023",
+          "tipo": "Hito de Seguimiento PMO",
+          "documento": "Folio 47",
+          "asunto_razon": "FECHA SOLICITO A ADMINISTRACIÓN REMITA LOS CONTRATOS DE EJECUCIÓN DE OBRA Y SUPERVISIÓN Moquegua, 24 de abril del 2023 Mediante eI presente me dirijo ",
+          "fuente": "Tomo 3 PMO (Folio 47)",
+          "confiabilidad": "MEDIA"
+        },
         {
           "fecha": "29 de agosto de 2025",
           "tipo": "Adicional / Modificación",
@@ -6010,7 +6835,7 @@
           "confiabilidad": "ALTA"
         }
       ],
-      "total_hitos": 9
+      "total_hitos": 10
     },
     {
       "id": 40,
@@ -6122,6 +6947,30 @@
           "confiabilidad": "MEDIA"
         },
         {
+          "fecha": "13 de abril del 2023",
+          "tipo": "Recepción de Obra",
+          "documento": "Folio 18",
+          "asunto_razon": "REFERENCIA FECHA LEVANTAMIENTO DE OBSERVACIONES DE DOCUMENTOS PARA SUSCRIPCIÓN DE CONTRATO DERIVADO DEL PROCESO MAYOR NO 004-2023-FDM a) CARTA NO 013-",
+          "fuente": "Tomo 3 PMO (Folio 18)",
+          "confiabilidad": "MEDIA"
+        },
+        {
+          "fecha": "24 de abril del 2023",
+          "tipo": "Hito de Seguimiento PMO",
+          "documento": "Folio 47",
+          "asunto_razon": "FECHA SOLICITO A ADMINISTRACIÓN REMITA LOS CONTRATOS DE EJECUCIÓN DE OBRA Y SUPERVISIÓN Moquegua, 24 de abril del 2023 Mediante eI presente me dirijo ",
+          "fuente": "Tomo 3 PMO (Folio 47)",
+          "confiabilidad": "MEDIA"
+        },
+        {
+          "fecha": "24 de abril de 2023",
+          "tipo": "Ampliación de Plazo",
+          "documento": "Folio 51",
+          "asunto_razon": "REFERENCIA FECHA SOLICITO ENTREGA DE TERRENO PARA LA EJECUCIÓN DE OBRA DEL PROYECTO \"MEJORAMIENTO Y AMPLIACIÓN DEL SERVICIO DE TRANSITABIUDAD VEHICULA",
+          "fuente": "Tomo 3 PMO (Folio 51)",
+          "confiabilidad": "MEDIA"
+        },
+        {
           "fecha": "03 de noviembre del 2026",
           "tipo": "Valorización / Avance Mensual",
           "documento": "CARTA N° 0 xxx-",
@@ -6162,7 +7011,7 @@
           "confiabilidad": "ALTA"
         }
       ],
-      "total_hitos": 8
+      "total_hitos": 11
     },
     {
       "id": 43,
@@ -6224,6 +7073,14 @@
           "confiabilidad": "ALTA"
         },
         {
+          "fecha": "21 de abril del 2023",
+          "tipo": "Hito de Seguimiento PMO",
+          "documento": "Folio 40",
+          "asunto_razon": "FECHA JI,' 11C, SOLICITO A ADMINISTRACIÓN REMITA LOS CONIHA [OS SUPERVISIÓN PARA DAR INICIO A LA EJECUCIÓN DE LAS OBRAS DE LOS PROYECTOS DE LOS LOCALE",
+          "fuente": "Tomo 3 PMO (Folio 40)",
+          "confiabilidad": "MEDIA"
+        },
+        {
           "fecha": "21 de setiembre del 2026",
           "tipo": "Inicio / Contrato",
           "documento": "CARTA N° 0 xxx-",
@@ -6248,7 +7105,7 @@
           "confiabilidad": "ALTA"
         }
       ],
-      "total_hitos": 7
+      "total_hitos": 8
     },
     {
       "id": 44,
@@ -6310,6 +7167,14 @@
           "confiabilidad": "ALTA"
         },
         {
+          "fecha": "21 de abril del 2023",
+          "tipo": "Hito de Seguimiento PMO",
+          "documento": "Folio 40",
+          "asunto_razon": "FECHA JI,' 11C, SOLICITO A ADMINISTRACIÓN REMITA LOS CONIHA [OS SUPERVISIÓN PARA DAR INICIO A LA EJECUCIÓN DE LAS OBRAS DE LOS PROYECTOS DE LOS LOCALE",
+          "fuente": "Tomo 3 PMO (Folio 40)",
+          "confiabilidad": "MEDIA"
+        },
+        {
           "fecha": "21 de setiembre del 2026",
           "tipo": "Inicio / Contrato",
           "documento": "CARTA N° 0 xxx-",
@@ -6334,7 +7199,7 @@
           "confiabilidad": "ALTA"
         }
       ],
-      "total_hitos": 7
+      "total_hitos": 8
     },
     {
       "id": 45,
@@ -6396,6 +7261,14 @@
           "confiabilidad": "ALTA"
         },
         {
+          "fecha": "21 de abril del 2023",
+          "tipo": "Hito de Seguimiento PMO",
+          "documento": "Folio 40",
+          "asunto_razon": "FECHA JI,' 11C, SOLICITO A ADMINISTRACIÓN REMITA LOS CONIHA [OS SUPERVISIÓN PARA DAR INICIO A LA EJECUCIÓN DE LAS OBRAS DE LOS PROYECTOS DE LOS LOCALE",
+          "fuente": "Tomo 3 PMO (Folio 40)",
+          "confiabilidad": "MEDIA"
+        },
+        {
           "fecha": "2025-2026",
           "tipo": "Ampliación de Plazo",
           "documento": "CARTA N° 0 xxx-",
@@ -6412,7 +7285,7 @@
           "confiabilidad": "ALTA"
         }
       ],
-      "total_hitos": 6
+      "total_hitos": 7
     },
     {
       "id": 46,
@@ -6474,6 +7347,14 @@
           "confiabilidad": "ALTA"
         },
         {
+          "fecha": "21 de abril del 2023",
+          "tipo": "Hito de Seguimiento PMO",
+          "documento": "Folio 40",
+          "asunto_razon": "FECHA JI,' 11C, SOLICITO A ADMINISTRACIÓN REMITA LOS CONIHA [OS SUPERVISIÓN PARA DAR INICIO A LA EJECUCIÓN DE LAS OBRAS DE LOS PROYECTOS DE LOS LOCALE",
+          "fuente": "Tomo 3 PMO (Folio 40)",
+          "confiabilidad": "MEDIA"
+        },
+        {
           "fecha": "2025-2026",
           "tipo": "Ampliación de Plazo",
           "documento": "CARTA N° 0 xxx-",
@@ -6490,7 +7371,7 @@
           "confiabilidad": "ALTA"
         }
       ],
-      "total_hitos": 6
+      "total_hitos": 7
     },
     {
       "id": 47,
@@ -6541,6 +7422,22 @@
           "documento": "Folio 57",
           "asunto_razon": "REFERENCIA FECHA OBASERVACIONES DE DOCUMENTOS PARA SUSCRIPCIÓN DE CONTRATO DERIVADO DEL PROCESO MAYOR NO 004-2023-FDM a) CARTA N' 011-2023-ARUNTASAC b",
           "fuente": "Tomo 2 PMO (Folio 57)",
+          "confiabilidad": "MEDIA"
+        },
+        {
+          "fecha": "13 de abril del 2023",
+          "tipo": "Recepción de Obra",
+          "documento": "Folio 18",
+          "asunto_razon": "REFERENCIA FECHA LEVANTAMIENTO DE OBSERVACIONES DE DOCUMENTOS PARA SUSCRIPCIÓN DE CONTRATO DERIVADO DEL PROCESO MAYOR NO 004-2023-FDM a) CARTA NO 013-",
+          "fuente": "Tomo 3 PMO (Folio 18)",
+          "confiabilidad": "MEDIA"
+        },
+        {
+          "fecha": "24 de abril de 2023",
+          "tipo": "Ampliación de Plazo",
+          "documento": "Folio 51",
+          "asunto_razon": "REFERENCIA FECHA SOLICITO ENTREGA DE TERRENO PARA LA EJECUCIÓN DE OBRA DEL PROYECTO \"MEJORAMIENTO Y AMPLIACIÓN DEL SERVICIO DE TRANSITABIUDAD VEHICULA",
+          "fuente": "Tomo 3 PMO (Folio 51)",
           "confiabilidad": "MEDIA"
         },
         {
@@ -6624,7 +7521,7 @@
           "confiabilidad": "MEDIA"
         }
       ],
-      "total_hitos": 13
+      "total_hitos": 15
     },
     {
       "id": 48,
@@ -6726,6 +7623,38 @@
           "confiabilidad": "MEDIA"
         },
         {
+          "fecha": "Abr-May 2023",
+          "tipo": "Hito de Seguimiento PMO",
+          "documento": "Folio 15",
+          "asunto_razon": "REFERENCIA FECHA INFORME N.Q 216 - 2023- PMO - FDM ABOG. ROSSMARY B. SILVA ACEVEDO Directora Ejecutivo —FDM ING. JAVIER E. INRA RAMOS GERENTE PMO (E) ",
+          "fuente": "Tomo 3 PMO (Folio 15)",
+          "confiabilidad": "MEDIA"
+        },
+        {
+          "fecha": "24 de abril del 2023",
+          "tipo": "Recepción de Obra",
+          "documento": "CARTA N0005-2023-CLG",
+          "asunto_razon": "REFERENCIA FECHA APROBACIÓN DE CAMBIO DE PROFESIONAL DE RESIDENTE DE OBRA a) CARTA N0005-2023-CLG OBRA: \"MEJORAMIENTO DEL SERVICIO DE ASISTENCIA ALIME",
+          "fuente": "Tomo 3 PMO (Folio 45)",
+          "confiabilidad": "ALTA"
+        },
+        {
+          "fecha": "24 de abril del 2023",
+          "tipo": "Hito de Seguimiento PMO",
+          "documento": "Folio 47",
+          "asunto_razon": "FECHA SOLICITO A ADMINISTRACIÓN REMITA LOS CONTRATOS DE EJECUCIÓN DE OBRA Y SUPERVISIÓN Moquegua, 24 de abril del 2023 Mediante eI presente me dirijo ",
+          "fuente": "Tomo 3 PMO (Folio 47)",
+          "confiabilidad": "MEDIA"
+        },
+        {
+          "fecha": "24 de abril del 2023",
+          "tipo": "Ampliación de Plazo",
+          "documento": "CARTA N0083COPX",
+          "asunto_razon": "REFERENCIA FECHA FONDO DE DESARROLLO DE MOQUEGUA 2 5 ABR 2023 RECIBID i.u...çouos:...... .3....... HORA'.. RESPUESTA A SOLICITUD DE CONTROVERSIAS a) C",
+          "fuente": "Tomo 3 PMO (Folio 50)",
+          "confiabilidad": "ALTA"
+        },
+        {
           "fecha": "26 de agosto del 2025",
           "tipo": "Ampliación de Plazo",
           "documento": "carta N°521-2025-D",
@@ -6750,7 +7679,7 @@
           "confiabilidad": "ALTA"
         }
       ],
-      "total_hitos": 12
+      "total_hitos": 16
     },
     {
       "id": 49,
@@ -6828,6 +7757,22 @@
           "confiabilidad": "MEDIA"
         },
         {
+          "fecha": "Abr-May 2023",
+          "tipo": "Hito de Seguimiento PMO",
+          "documento": "Folio 15",
+          "asunto_razon": "REFERENCIA FECHA INFORME N.Q 216 - 2023- PMO - FDM ABOG. ROSSMARY B. SILVA ACEVEDO Directora Ejecutivo —FDM ING. JAVIER E. INRA RAMOS GERENTE PMO (E) ",
+          "fuente": "Tomo 3 PMO (Folio 15)",
+          "confiabilidad": "MEDIA"
+        },
+        {
+          "fecha": "24 de abril del 2023",
+          "tipo": "Ampliación de Plazo",
+          "documento": "CARTA N0083COPX",
+          "asunto_razon": "REFERENCIA FECHA FONDO DE DESARROLLO DE MOQUEGUA 2 5 ABR 2023 RECIBID i.u...çouos:...... .3....... HORA'.. RESPUESTA A SOLICITUD DE CONTROVERSIAS a) C",
+          "fuente": "Tomo 3 PMO (Folio 50)",
+          "confiabilidad": "ALTA"
+        },
+        {
           "fecha": "20 de octubre del 2025",
           "tipo": "Valorización / Avance Mensual",
           "documento": "carta N°254-2025-INV",
@@ -6836,7 +7781,7 @@
           "confiabilidad": "ALTA"
         }
       ],
-      "total_hitos": 7
+      "total_hitos": 9
     },
     {
       "id": 50,
@@ -6895,6 +7840,14 @@
           "documento": "Folio 52",
           "asunto_razon": "REFERENCIA FECHA REQUERIMIENTO DE ASIGNACIÓN DE PRESUPUESTO MODALIDAD FONDO POR ENCARGOS. PROYECTO FISICO DE LA OBRA : LINEA DE IMPLULSIÓN Y SISTEMA D",
           "fuente": "Tomo 2 PMO (Folio 52)",
+          "confiabilidad": "MEDIA"
+        },
+        {
+          "fecha": "17 de abril del 2023",
+          "tipo": "Hito de Seguimiento PMO",
+          "documento": "Folio 26",
+          "asunto_razon": "REFERENCIA FECHA Solicitud de información- CELICON INGENIEROS SAC PROYECTO DE LA LINEA DE TRANSMISIÓN CHILOTA CHINCUNE 22.9 kV CON EL SISTEMA ELECTRIC",
+          "fuente": "Tomo 3 PMO (Folio 26)",
           "confiabilidad": "MEDIA"
         },
         {
@@ -7066,7 +8019,7 @@
           "confiabilidad": "ALTA"
         }
       ],
-      "total_hitos": 25
+      "total_hitos": 26
     },
     {
       "id": 51,
@@ -7144,6 +8097,22 @@
           "confiabilidad": "MEDIA"
         },
         {
+          "fecha": "Abr-May 2023",
+          "tipo": "Hito de Seguimiento PMO",
+          "documento": "Folio 15",
+          "asunto_razon": "REFERENCIA FECHA INFORME N.Q 216 - 2023- PMO - FDM ABOG. ROSSMARY B. SILVA ACEVEDO Directora Ejecutivo —FDM ING. JAVIER E. INRA RAMOS GERENTE PMO (E) ",
+          "fuente": "Tomo 3 PMO (Folio 15)",
+          "confiabilidad": "MEDIA"
+        },
+        {
+          "fecha": "24 de abril del 2023",
+          "tipo": "Ampliación de Plazo",
+          "documento": "CARTA N0083COPX",
+          "asunto_razon": "REFERENCIA FECHA FONDO DE DESARROLLO DE MOQUEGUA 2 5 ABR 2023 RECIBID i.u...çouos:...... .3....... HORA'.. RESPUESTA A SOLICITUD DE CONTROVERSIAS a) C",
+          "fuente": "Tomo 3 PMO (Folio 50)",
+          "confiabilidad": "ALTA"
+        },
+        {
           "fecha": "20 de octubre del 2025",
           "tipo": "Valorización / Avance Mensual",
           "documento": "carta N°254-2025-INV",
@@ -7152,7 +8121,7 @@
           "confiabilidad": "ALTA"
         }
       ],
-      "total_hitos": 7
+      "total_hitos": 9
     },
     {
       "id": 52,
@@ -7446,6 +8415,94 @@
           "confiabilidad": "MEDIA"
         },
         {
+          "fecha": "04 de abril del 2023",
+          "tipo": "Ampliación de Plazo",
+          "documento": "Folio 5",
+          "asunto_razon": "REFERENCIA FECHA APROBACIÓN DE ADICIONAL N004 CON DEDUCTIVO VINCULANTE - IMPLEMENTACIONES EN EL SISTEMA ELÉCTRICO PARA EL CORRECTO FUNCIONAMIENTO DEL ",
+          "fuente": "Tomo 3 PMO (Folio 5)",
+          "confiabilidad": "MEDIA"
+        },
+        {
+          "fecha": "Abr-May 2023",
+          "tipo": "Hito de Seguimiento PMO",
+          "documento": "Folio 15",
+          "asunto_razon": "REFERENCIA FECHA INFORME N.Q 216 - 2023- PMO - FDM ABOG. ROSSMARY B. SILVA ACEVEDO Directora Ejecutivo —FDM ING. JAVIER E. INRA RAMOS GERENTE PMO (E) ",
+          "fuente": "Tomo 3 PMO (Folio 15)",
+          "confiabilidad": "MEDIA"
+        },
+        {
+          "fecha": "18 de abril del 2023",
+          "tipo": "Ampliación de Plazo",
+          "documento": "carta N0095-SUP-REORBE-MSCBO",
+          "asunto_razon": "REFERENCIA FECHA 05: Observaciones de Informe Mensual N\"OII dei contratista ejecutor de obra CONSORSIO CRISMA a) carta N0095-SUP-REORBE-MSCBO b) Carta",
+          "fuente": "Tomo 3 PMO (Folio 29)",
+          "confiabilidad": "MEDIA"
+        },
+        {
+          "fecha": "28 de abril del 2022",
+          "tipo": "Liquidación Técnica-Financiera",
+          "documento": "Carta N0096-SUP-REORBE-MSCBO",
+          "asunto_razon": "INFORME N.g 231-2023- PMO - EDM. ABOG. ROSSMARY B. SILVA ACEVEDO Directora Ejecutivo —FDM ING. JAVIER E. LAURA RAMOS GER",
+          "fuente": "Tomo 3 PMO (Folio 30)",
+          "confiabilidad": "MEDIA"
+        },
+        {
+          "fecha": "21 de abril del 2023",
+          "tipo": "Ampliación de Plazo",
+          "documento": "carta N0097-SUP-REORBE-MSCBO",
+          "asunto_razon": "REFERENCIA FECHA INFORME N.q 240-2023- PMO - FDM. ABOG. ROSSMARY B. SILVA ACEVEDO Directora Ejecutivo —FDM ING. JAVIER E. LAURA RAMOS GERENTE PMO (E) ",
+          "fuente": "Tomo 3 PMO (Folio 39)",
+          "confiabilidad": "MEDIA"
+        },
+        {
+          "fecha": "21 de abril del 2023",
+          "tipo": "Inicio / Contrato",
+          "documento": "carta N0053-2023",
+          "asunto_razon": "REFERENCIA FECHA INFORME N.P 245-2023- PMO - FDM. ABOG. ROSSMARY B. SILVA ACEVEDO Directora Ejecutivo —FDM ING. JAVIER E. LAURA RAMOS GERENTE PMO (E) ",
+          "fuente": "Tomo 3 PMO (Folio 42)",
+          "confiabilidad": "MEDIA"
+        },
+        {
+          "fecha": "21 de abril del 2023",
+          "tipo": "Ampliación de Plazo",
+          "documento": "carta N0099-SUP-REORBE-MSCBO",
+          "asunto_razon": "REFERENCIA FECHA ABOG. ROSSMARY B. SILVA ACEVEDO Directora Ejecutivo —FDM ING. JAVIER E. LAURA RAMOS GERENTE PMO (E) AMPLIACIÓN DE PIÑO N004 a) carta ",
+          "fuente": "Tomo 3 PMO (Folio 43)",
+          "confiabilidad": "MEDIA"
+        },
+        {
+          "fecha": "21 de abril del 2023",
+          "tipo": "Hito de Seguimiento PMO",
+          "documento": "Folio 44",
+          "asunto_razon": "REFERENCIA FECHA CONFORMIDAD DEL SERVICIO DE CONSULTORíA 101-00031 a) ORDEN DE SERVICIO 101-00031 b) GE-0435-2023 Moquegua, 21 de abril del 2023 Media",
+          "fuente": "Tomo 3 PMO (Folio 44)",
+          "confiabilidad": "MEDIA"
+        },
+        {
+          "fecha": "25 de abril del 2023",
+          "tipo": "Ampliación de Plazo",
+          "documento": "Folio 56",
+          "asunto_razon": "REFERENCIA FECHA Conformidad de Informe Mensual N'OII del contratista ejecutor de obra CONSORSIO CRISMA a) Carta Naos 7-2023 / CONSORCIO CRISMA Obra \"",
+          "fuente": "Tomo 3 PMO (Folio 56)",
+          "confiabilidad": "MEDIA"
+        },
+        {
+          "fecha": "24 de abril del 2023",
+          "tipo": "Ampliación de Plazo",
+          "documento": "Carta n00386-2023-DE",
+          "asunto_razon": "REFERENCIA FECHA ADENDA POR AMPLIACIÓN DE PLAZO N004- CONTRATISTA a) Carta n00386-2023-DE/FDM b) Carta N0099-SUP-REORBE-MSCBO b) Carta N0055-2023/CONS",
+          "fuente": "Tomo 3 PMO (Folio 57)",
+          "confiabilidad": "MEDIA"
+        },
+        {
+          "fecha": "28 de abril del 2023",
+          "tipo": "Ampliación de Plazo",
+          "documento": "carta N0060-2023",
+          "asunto_razon": "REFERENCIA FECHA RESPUESTA A CONSULTA SOBRE LAVADEROS DE ACERO INOXIDABLE a) carta N0060-2023 / CONSORCIO CRISMA Obra \"MEJORAMIENTO DEL SERVICIO DE CO",
+          "fuente": "Tomo 3 PMO (Folio 66)",
+          "confiabilidad": "MEDIA"
+        },
+        {
           "fecha": "17 DE NOVIEMBRE DEL 2025",
           "tipo": "Liquidación Técnica-Financiera",
           "documento": "OFICIO Nº 022-2025-MPGSC-O",
@@ -7454,7 +8511,7 @@
           "confiabilidad": "ALTA"
         }
       ],
-      "total_hitos": 34
+      "total_hitos": 45
     },
     {
       "id": 53,
@@ -7732,6 +8789,118 @@
           "confiabilidad": "MEDIA"
         },
         {
+          "fecha": "04 de abril del 2023",
+          "tipo": "Ampliación de Plazo",
+          "documento": "Folio 5",
+          "asunto_razon": "REFERENCIA FECHA APROBACIÓN DE ADICIONAL N004 CON DEDUCTIVO VINCULANTE - IMPLEMENTACIONES EN EL SISTEMA ELÉCTRICO PARA EL CORRECTO FUNCIONAMIENTO DEL ",
+          "fuente": "Tomo 3 PMO (Folio 5)",
+          "confiabilidad": "MEDIA"
+        },
+        {
+          "fecha": "Abr-May 2023",
+          "tipo": "Hito de Seguimiento PMO",
+          "documento": "Folio 15",
+          "asunto_razon": "REFERENCIA FECHA INFORME N.Q 216 - 2023- PMO - FDM ABOG. ROSSMARY B. SILVA ACEVEDO Directora Ejecutivo —FDM ING. JAVIER E. INRA RAMOS GERENTE PMO (E) ",
+          "fuente": "Tomo 3 PMO (Folio 15)",
+          "confiabilidad": "MEDIA"
+        },
+        {
+          "fecha": "13 de abril del 2023",
+          "tipo": "Recepción de Obra",
+          "documento": "Folio 18",
+          "asunto_razon": "REFERENCIA FECHA LEVANTAMIENTO DE OBSERVACIONES DE DOCUMENTOS PARA SUSCRIPCIÓN DE CONTRATO DERIVADO DEL PROCESO MAYOR NO 004-2023-FDM a) CARTA NO 013-",
+          "fuente": "Tomo 3 PMO (Folio 18)",
+          "confiabilidad": "MEDIA"
+        },
+        {
+          "fecha": "18 de abril del 2023",
+          "tipo": "Ampliación de Plazo",
+          "documento": "carta N0095-SUP-REORBE-MSCBO",
+          "asunto_razon": "REFERENCIA FECHA 05: Observaciones de Informe Mensual N\"OII dei contratista ejecutor de obra CONSORSIO CRISMA a) carta N0095-SUP-REORBE-MSCBO b) Carta",
+          "fuente": "Tomo 3 PMO (Folio 29)",
+          "confiabilidad": "MEDIA"
+        },
+        {
+          "fecha": "28 de abril del 2022",
+          "tipo": "Liquidación Técnica-Financiera",
+          "documento": "Carta N0096-SUP-REORBE-MSCBO",
+          "asunto_razon": "INFORME N.g 231-2023- PMO - EDM. ABOG. ROSSMARY B. SILVA ACEVEDO Directora Ejecutivo —FDM ING. JAVIER E. LAURA RAMOS GER",
+          "fuente": "Tomo 3 PMO (Folio 30)",
+          "confiabilidad": "MEDIA"
+        },
+        {
+          "fecha": "21 de abril del 2023",
+          "tipo": "Ampliación de Plazo",
+          "documento": "carta N0097-SUP-REORBE-MSCBO",
+          "asunto_razon": "REFERENCIA FECHA INFORME N.q 240-2023- PMO - FDM. ABOG. ROSSMARY B. SILVA ACEVEDO Directora Ejecutivo —FDM ING. JAVIER E. LAURA RAMOS GERENTE PMO (E) ",
+          "fuente": "Tomo 3 PMO (Folio 39)",
+          "confiabilidad": "MEDIA"
+        },
+        {
+          "fecha": "21 de abril del 2023",
+          "tipo": "Inicio / Contrato",
+          "documento": "carta N0053-2023",
+          "asunto_razon": "REFERENCIA FECHA INFORME N.P 245-2023- PMO - FDM. ABOG. ROSSMARY B. SILVA ACEVEDO Directora Ejecutivo —FDM ING. JAVIER E. LAURA RAMOS GERENTE PMO (E) ",
+          "fuente": "Tomo 3 PMO (Folio 42)",
+          "confiabilidad": "MEDIA"
+        },
+        {
+          "fecha": "21 de abril del 2023",
+          "tipo": "Ampliación de Plazo",
+          "documento": "carta N0099-SUP-REORBE-MSCBO",
+          "asunto_razon": "REFERENCIA FECHA ABOG. ROSSMARY B. SILVA ACEVEDO Directora Ejecutivo —FDM ING. JAVIER E. LAURA RAMOS GERENTE PMO (E) AMPLIACIÓN DE PIÑO N004 a) carta ",
+          "fuente": "Tomo 3 PMO (Folio 43)",
+          "confiabilidad": "MEDIA"
+        },
+        {
+          "fecha": "21 de abril del 2023",
+          "tipo": "Hito de Seguimiento PMO",
+          "documento": "Folio 44",
+          "asunto_razon": "REFERENCIA FECHA CONFORMIDAD DEL SERVICIO DE CONSULTORíA 101-00031 a) ORDEN DE SERVICIO 101-00031 b) GE-0435-2023 Moquegua, 21 de abril del 2023 Media",
+          "fuente": "Tomo 3 PMO (Folio 44)",
+          "confiabilidad": "MEDIA"
+        },
+        {
+          "fecha": "24 de abril de 2023",
+          "tipo": "Ampliación de Plazo",
+          "documento": "Folio 51",
+          "asunto_razon": "REFERENCIA FECHA SOLICITO ENTREGA DE TERRENO PARA LA EJECUCIÓN DE OBRA DEL PROYECTO \"MEJORAMIENTO Y AMPLIACIÓN DEL SERVICIO DE TRANSITABIUDAD VEHICULA",
+          "fuente": "Tomo 3 PMO (Folio 51)",
+          "confiabilidad": "MEDIA"
+        },
+        {
+          "fecha": "24.04.2023",
+          "tipo": "Liquidación Técnica-Financiera",
+          "documento": "Folio 52",
+          "asunto_razon": "REFERENCIA PROYECTO FECHA SOBRE COMUNICADO DE RENUNCIA DE SUPERVISOR DE OBRA Y SOLICITUD DE CULMINACION DE CONTRATO NP 003-2023-FDM DE SUPERVISION DE ",
+          "fuente": "Tomo 3 PMO (Folio 52)",
+          "confiabilidad": "MEDIA"
+        },
+        {
+          "fecha": "25 de abril del 2023",
+          "tipo": "Ampliación de Plazo",
+          "documento": "Folio 56",
+          "asunto_razon": "REFERENCIA FECHA Conformidad de Informe Mensual N'OII del contratista ejecutor de obra CONSORSIO CRISMA a) Carta Naos 7-2023 / CONSORCIO CRISMA Obra \"",
+          "fuente": "Tomo 3 PMO (Folio 56)",
+          "confiabilidad": "MEDIA"
+        },
+        {
+          "fecha": "24.04.2023",
+          "tipo": "Inicio / Contrato",
+          "documento": "Folio 64",
+          "asunto_razon": "REFERENCIA FECHA SOBRE ENTREGA DE TERRENO PARA INICIO DE TRABAJOS CARTA 005-2023/ClC-M&J de 24.04.2023 \"MEJORAMIENTO DEL SISTEMA PLUVIAL MEDIANTE LA I",
+          "fuente": "Tomo 3 PMO (Folio 64)",
+          "confiabilidad": "MEDIA"
+        },
+        {
+          "fecha": "28 de abril del 2023",
+          "tipo": "Ampliación de Plazo",
+          "documento": "carta N0060-2023",
+          "asunto_razon": "REFERENCIA FECHA RESPUESTA A CONSULTA SOBRE LAVADEROS DE ACERO INOXIDABLE a) carta N0060-2023 / CONSORCIO CRISMA Obra \"MEJORAMIENTO DEL SERVICIO DE CO",
+          "fuente": "Tomo 3 PMO (Folio 66)",
+          "confiabilidad": "MEDIA"
+        },
+        {
           "fecha": "30 de setiembre de 2025",
           "tipo": "Hito de Seguimiento PMO",
           "documento": "carta Nº 0018-2025-CSCO",
@@ -7948,7 +9117,7 @@
           "confiabilidad": "ALTA"
         }
       ],
-      "total_hitos": 58
+      "total_hitos": 72
     },
     {
       "id": 54,
@@ -8007,6 +9176,14 @@
           "documento": "Folio 52",
           "asunto_razon": "REFERENCIA FECHA REQUERIMIENTO DE ASIGNACIÓN DE PRESUPUESTO MODALIDAD FONDO POR ENCARGOS. PROYECTO FISICO DE LA OBRA : LINEA DE IMPLULSIÓN Y SISTEMA D",
           "fuente": "Tomo 2 PMO (Folio 52)",
+          "confiabilidad": "MEDIA"
+        },
+        {
+          "fecha": "17 de abril del 2023",
+          "tipo": "Hito de Seguimiento PMO",
+          "documento": "Folio 26",
+          "asunto_razon": "REFERENCIA FECHA Solicitud de información- CELICON INGENIEROS SAC PROYECTO DE LA LINEA DE TRANSMISIÓN CHILOTA CHINCUNE 22.9 kV CON EL SISTEMA ELECTRIC",
+          "fuente": "Tomo 3 PMO (Folio 26)",
           "confiabilidad": "MEDIA"
         },
         {
@@ -8178,7 +9355,7 @@
           "confiabilidad": "ALTA"
         }
       ],
-      "total_hitos": 25
+      "total_hitos": 26
     },
     {
       "id": 55,
@@ -8208,6 +9385,14 @@
       "alerta": "BUSCAR EN ARCHIVADORES / FALTAN DOCUMENTOS",
       "historial": [
         {
+          "fecha": "13 de abril del 2023",
+          "tipo": "Liquidación Técnica-Financiera",
+          "documento": "Folio 25",
+          "asunto_razon": "REFERENCIA FECHA INFORME N.P226- 2023 PMO-FDM ABOG. ROSSMARY B. SILVA ACEVEDO Directora Ejecutiva —FDM ING. JAVIER LAURA RAMOS Gerente PMO - FDM OBSER",
+          "fuente": "Tomo 3 PMO (Folio 25)",
+          "confiabilidad": "MEDIA"
+        },
+        {
           "fecha": "13 DE NOVIEMBRE DEL 2025",
           "tipo": "Hito de Seguimiento PMO",
           "documento": "INFORME N°054-2025-PMO",
@@ -8224,7 +9409,7 @@
           "confiabilidad": "ALTA"
         }
       ],
-      "total_hitos": 2
+      "total_hitos": 3
     },
     {
       "id": 56,
@@ -8957,6 +10142,62 @@
           "confiabilidad": "MEDIA"
         },
         {
+          "fecha": "05 de abril del 2023",
+          "tipo": "Ampliación de Plazo",
+          "documento": "carta N0029-2023-HAMR",
+          "asunto_razon": "REFERENCIA FECHA APROBACION DE AMPLIACIÓN DE PLAZO DE PROVEEDORES a) carta N0029-2023-HAMR b) carta N0030-2023-HAMR c) carta N0031-2023-HAMR Proyecto ",
+          "fuente": "Tomo 3 PMO (Folio 9)",
+          "confiabilidad": "MEDIA"
+        },
+        {
+          "fecha": "07.03.2023",
+          "tipo": "Suspensión / Paralización",
+          "documento": "carta N0035-2023-HAMR",
+          "asunto_razon": "REFERENCIA FECHA INFORME N.Q 220-2023- PMO - FDM. ABOG. ROSSMARY B. SILVA ACEVEDO Directora Ejecutivo —FDM ING. JAVIER E. LAURA RAMOS GERENTE PMO (E) ",
+          "fuente": "Tomo 3 PMO (Folio 19)",
+          "confiabilidad": "MEDIA"
+        },
+        {
+          "fecha": "Abr-May 2023",
+          "tipo": "Hito de Seguimiento PMO",
+          "documento": "Carta N0034-2023-HAMR",
+          "asunto_razon": "REFERENCIA FECHA Solicitud de opinión ténica respecto a observaciones emitidas por eI IESP Jose Carlos Mariátegui — Lab. de mecánica de Producción Ind",
+          "fuente": "Tomo 3 PMO (Folio 20)",
+          "confiabilidad": "MEDIA"
+        },
+        {
+          "fecha": "20 de abril del 2023",
+          "tipo": "Recepción de Obra",
+          "documento": "carta N0039-2023-HAMR",
+          "asunto_razon": "REFERENCIA FECHA INFORME N.p 237-2023- PMO - FDM. ABOG. ROSSMARY B. SILVA ACEVEDO Directora Ejecutivo —FDM ING. JAVIER E. LAURA RAMOS GERENTE PMO (E) ",
+          "fuente": "Tomo 3 PMO (Folio 36)",
+          "confiabilidad": "MEDIA"
+        },
+        {
+          "fecha": "21 de abril del 2023",
+          "tipo": "Hito de Seguimiento PMO",
+          "documento": "INFORME N.2 244-2023- PMO - FDM ABOG",
+          "asunto_razon": "REFERENCIA FECHA )S'3R SE REMITE INFORMACIÓN SOLICITADA POR LA DIRECCIÓN REGIONAL DE EDUCACIÓN MOQUEGUA a) carta N0040-2023-HAMR b) Oficio N0348-2023-",
+          "fuente": "Tomo 3 PMO (Folio 41)",
+          "confiabilidad": "ALTA"
+        },
+        {
+          "fecha": "24 de abril del 2023",
+          "tipo": "Suspensión / Paralización",
+          "documento": "carta N004-2023-GNCT",
+          "asunto_razon": "REFERENCIA FECHA ANULACIÓN DE ORDEN DE SERVICIO 103-00003 a) carta N004-2023-GNCT Proyecto \"MEJORAMIENTO DE LOS SERVICIOS DE EDUCACIÓN SUPERIOR TECNOL",
+          "fuente": "Tomo 3 PMO (Folio 46)",
+          "confiabilidad": "MEDIA"
+        },
+        {
+          "fecha": "04.05.2023",
+          "tipo": "Recepción de Obra",
+          "documento": "CARTA N2 147-2023-GRM",
+          "asunto_razon": "REFERENCIA PROYECTO FECHA SOBRE RESPUESTA DE GERENCIA REGIONAL DE INFRAESTRUCTURA A SOLICITUD DE CONFORMACION DE COMITÉ DE RECEPCION DE OBRA CARTA N2 ",
+          "fuente": "Tomo 3 PMO (Folio 75)",
+          "confiabilidad": "ALTA"
+        },
+        {
           "fecha": "12 de diciembre del 2025",
           "tipo": "Hito de Seguimiento PMO",
           "documento": "CARTA N° 01-2025-AT-AJZC",
@@ -8997,7 +10238,7 @@
           "confiabilidad": "MEDIA"
         }
       ],
-      "total_hitos": 17
+      "total_hitos": 24
     },
     {
       "id": 61,
@@ -9026,6 +10267,14 @@
       },
       "alerta": "COMPLETO EN CAJA ()",
       "historial": [
+        {
+          "fecha": "24 de abril de 2023",
+          "tipo": "Ampliación de Plazo",
+          "documento": "Folio 51",
+          "asunto_razon": "REFERENCIA FECHA SOLICITO ENTREGA DE TERRENO PARA LA EJECUCIÓN DE OBRA DEL PROYECTO \"MEJORAMIENTO Y AMPLIACIÓN DEL SERVICIO DE TRANSITABIUDAD VEHICULA",
+          "fuente": "Tomo 3 PMO (Folio 51)",
+          "confiabilidad": "MEDIA"
+        },
         {
           "fecha": "30 de setiembre de 2025",
           "tipo": "Hito de Seguimiento PMO",
@@ -9291,7 +10540,7 @@
           "confiabilidad": "ALTA"
         }
       ],
-      "total_hitos": 33
+      "total_hitos": 34
     },
     {
       "id": 62,
@@ -9551,6 +10800,78 @@
           "confiabilidad": "MEDIA"
         },
         {
+          "fecha": "04 de abril del 2023",
+          "tipo": "Hito de Seguimiento PMO",
+          "documento": "CARTA N0035-SUP-EWT-2023",
+          "asunto_razon": "REFERENCIA FECHA DENEGATORIA A CAMBIO DE PROFESIONAL DE INGENIERO SUPERVISOR DE OBRA E INGENIERO DE CALIDAD a) CARTA N0035-SUP-EWT-2023 OBRA: \"MEJORAM",
+          "fuente": "Tomo 3 PMO (Folio 3)",
+          "confiabilidad": "ALTA"
+        },
+        {
+          "fecha": "13 de abril del 2023",
+          "tipo": "Hito de Seguimiento PMO",
+          "documento": "Carta N0040-SlJP-EYVT-2023",
+          "asunto_razon": "REFERENCIA FECHA APROBACIÓN DE CAMBIO DE PROFESIONAL DE SUPERVISOR DE OBRA a) CARTA N'040-SUP-EWT-2023 OBRA: \"MEJORAMIENTO DEL SERVICIO DE TRANSITABIL",
+          "fuente": "Tomo 3 PMO (Folio 21)",
+          "confiabilidad": "MEDIA"
+        },
+        {
+          "fecha": "13 de abril del 2023",
+          "tipo": "Hito de Seguimiento PMO",
+          "documento": "CARTA N0039-SUP-EWT-2023",
+          "asunto_razon": "REFERENCIA FECHA OBSERVACIÓN DE CRONOGRAMA DE PAGOS DE SUPERVISIÓN a) CARTA N0039-SUP-EWT-2023 OBRA: \"MEJORAMIENTO DEL SERVICIO DE TRANSITABILIDAD VIA",
+          "fuente": "Tomo 3 PMO (Folio 23)",
+          "confiabilidad": "ALTA"
+        },
+        {
+          "fecha": "13 de abril del 2023",
+          "tipo": "Hito de Seguimiento PMO",
+          "documento": "CARTA N0008-2023",
+          "asunto_razon": "REFERENCIA FECHA 1 3 ABR 2023 o OBSERVACIONES A DIAGRAMA GANTT Y CRONOGRAMA VALORIZADO a) CARTA N'038-SUP-EYVT-2023 b) CARTA N0008-2023/CC/FZP-RC OBRA",
+          "fuente": "Tomo 3 PMO (Folio 24)",
+          "confiabilidad": "ALTA"
+        },
+        {
+          "fecha": "19 de abril del 2023",
+          "tipo": "Inicio / Contrato",
+          "documento": "CARTA N0004-2023",
+          "asunto_razon": "REFERENCIA FECHA INFORME N.P 236 - 2023- PMO - FDM. ABOG. ROSSMARY B. SILVA ACEVEDO Directora Ejecutiva —FDM ING. JAVIER E. LAURA RAMOS GERENTE PMO (E",
+          "fuente": "Tomo 3 PMO (Folio 35)",
+          "confiabilidad": "ALTA"
+        },
+        {
+          "fecha": "21 de abril del 2023",
+          "tipo": "Hito de Seguimiento PMO",
+          "documento": "CARTA N0037-SUP-EYVT-2023",
+          "asunto_razon": "REFERENCIA FECHA ABOG. ROSSMARY B. SILVA ACEVEDO Directora Ejecutiva —FDM ING. JAVIER E. LAURA RAMOS GERENTE PMO (E) PRONUNCIAMIENTO A INFORME DE COMP",
+          "fuente": "Tomo 3 PMO (Folio 38)",
+          "confiabilidad": "ALTA"
+        },
+        {
+          "fecha": "24 de abril del 2023",
+          "tipo": "Hito de Seguimiento PMO",
+          "documento": "CARTA N0041-SUP-EWT-2023",
+          "asunto_razon": "REFERENCIA FECHA APROBACIÓN DE CRONOGRAMA DE PAGOS DE SUPERVISIÓN a) CARTA N0041-SUP-EWT-2023 OBRA: \"MEJORAMIENTO DEL SERVICIO DE TRANSITABILIDAD VIAL",
+          "fuente": "Tomo 3 PMO (Folio 49)",
+          "confiabilidad": "ALTA"
+        },
+        {
+          "fecha": "25 de abril del 2023",
+          "tipo": "Hito de Seguimiento PMO",
+          "documento": "CARTA N0042-SUP-EWT-2023",
+          "asunto_razon": "REFERENCIA FECHA APROBACIÓN DE CAMBIO DE PROFESIONAL DE SUPERVISOR DE OBRA a) CARTA N0042-SUP-EWT-2023 OBRA: \"MEJORAMIENTO DEL SERVICIO DE TRANSITABIL",
+          "fuente": "Tomo 3 PMO (Folio 54)",
+          "confiabilidad": "ALTA"
+        },
+        {
+          "fecha": "27 de abril del 2023",
+          "tipo": "Inicio / Contrato",
+          "documento": "CARTA N0010-2023",
+          "asunto_razon": "REFERENCIA FECHA APROBACIÓN DE CAMBIO DE PROFESIONALES DE INGENIERO DE CALIDAD Y ESPECIALISTA EN SEGURIDAD EN OBRA Y SALUD OCUPACIONAL. a) CARTA N0010",
+          "fuente": "Tomo 3 PMO (Folio 59)",
+          "confiabilidad": "ALTA"
+        },
+        {
           "fecha": "19 de setiembre de 2025",
           "tipo": "Adicional / Modificación",
           "documento": "Carta N° 064-2025-SUP",
@@ -9735,7 +11056,7 @@
           "confiabilidad": "ALTA"
         }
       ],
-      "total_hitos": 24
+      "total_hitos": 33
     },
     {
       "id": 64,
@@ -9770,6 +11091,86 @@
           "documento": "CARTA N0002-2023",
           "asunto_razon": "REFERENCIA FECHA ADELANTO DE MATERIALES SOLICITADO POR EL CONSORCIO CRUZPATA a) CARTA N0002-2023/CC/FZP-RC OBRA: MEJORAMIENTO DEL SERVICIO DE TRANSITA",
           "fuente": "Tomo 2 PMO (Folio 38)",
+          "confiabilidad": "ALTA"
+        },
+        {
+          "fecha": "04 de abril del 2023",
+          "tipo": "Hito de Seguimiento PMO",
+          "documento": "CARTA N0035-SUP-EWT-2023",
+          "asunto_razon": "REFERENCIA FECHA DENEGATORIA A CAMBIO DE PROFESIONAL DE INGENIERO SUPERVISOR DE OBRA E INGENIERO DE CALIDAD a) CARTA N0035-SUP-EWT-2023 OBRA: \"MEJORAM",
+          "fuente": "Tomo 3 PMO (Folio 3)",
+          "confiabilidad": "ALTA"
+        },
+        {
+          "fecha": "13 de abril del 2023",
+          "tipo": "Hito de Seguimiento PMO",
+          "documento": "Carta N0040-SlJP-EYVT-2023",
+          "asunto_razon": "REFERENCIA FECHA APROBACIÓN DE CAMBIO DE PROFESIONAL DE SUPERVISOR DE OBRA a) CARTA N'040-SUP-EWT-2023 OBRA: \"MEJORAMIENTO DEL SERVICIO DE TRANSITABIL",
+          "fuente": "Tomo 3 PMO (Folio 21)",
+          "confiabilidad": "MEDIA"
+        },
+        {
+          "fecha": "13 de abril del 2023",
+          "tipo": "Hito de Seguimiento PMO",
+          "documento": "CARTA N0039-SUP-EWT-2023",
+          "asunto_razon": "REFERENCIA FECHA OBSERVACIÓN DE CRONOGRAMA DE PAGOS DE SUPERVISIÓN a) CARTA N0039-SUP-EWT-2023 OBRA: \"MEJORAMIENTO DEL SERVICIO DE TRANSITABILIDAD VIA",
+          "fuente": "Tomo 3 PMO (Folio 23)",
+          "confiabilidad": "ALTA"
+        },
+        {
+          "fecha": "13 de abril del 2023",
+          "tipo": "Hito de Seguimiento PMO",
+          "documento": "CARTA N0008-2023",
+          "asunto_razon": "REFERENCIA FECHA 1 3 ABR 2023 o OBSERVACIONES A DIAGRAMA GANTT Y CRONOGRAMA VALORIZADO a) CARTA N'038-SUP-EYVT-2023 b) CARTA N0008-2023/CC/FZP-RC OBRA",
+          "fuente": "Tomo 3 PMO (Folio 24)",
+          "confiabilidad": "ALTA"
+        },
+        {
+          "fecha": "19 de abril del 2023",
+          "tipo": "Inicio / Contrato",
+          "documento": "CARTA N0004-2023",
+          "asunto_razon": "REFERENCIA FECHA INFORME N.P 236 - 2023- PMO - FDM. ABOG. ROSSMARY B. SILVA ACEVEDO Directora Ejecutiva —FDM ING. JAVIER E. LAURA RAMOS GERENTE PMO (E",
+          "fuente": "Tomo 3 PMO (Folio 35)",
+          "confiabilidad": "ALTA"
+        },
+        {
+          "fecha": "21 de abril del 2023",
+          "tipo": "Hito de Seguimiento PMO",
+          "documento": "CARTA N0037-SUP-EYVT-2023",
+          "asunto_razon": "REFERENCIA FECHA ABOG. ROSSMARY B. SILVA ACEVEDO Directora Ejecutiva —FDM ING. JAVIER E. LAURA RAMOS GERENTE PMO (E) PRONUNCIAMIENTO A INFORME DE COMP",
+          "fuente": "Tomo 3 PMO (Folio 38)",
+          "confiabilidad": "ALTA"
+        },
+        {
+          "fecha": "24 de abril del 2023",
+          "tipo": "Hito de Seguimiento PMO",
+          "documento": "Folio 47",
+          "asunto_razon": "FECHA SOLICITO A ADMINISTRACIÓN REMITA LOS CONTRATOS DE EJECUCIÓN DE OBRA Y SUPERVISIÓN Moquegua, 24 de abril del 2023 Mediante eI presente me dirijo ",
+          "fuente": "Tomo 3 PMO (Folio 47)",
+          "confiabilidad": "MEDIA"
+        },
+        {
+          "fecha": "24 de abril del 2023",
+          "tipo": "Hito de Seguimiento PMO",
+          "documento": "CARTA N0041-SUP-EWT-2023",
+          "asunto_razon": "REFERENCIA FECHA APROBACIÓN DE CRONOGRAMA DE PAGOS DE SUPERVISIÓN a) CARTA N0041-SUP-EWT-2023 OBRA: \"MEJORAMIENTO DEL SERVICIO DE TRANSITABILIDAD VIAL",
+          "fuente": "Tomo 3 PMO (Folio 49)",
+          "confiabilidad": "ALTA"
+        },
+        {
+          "fecha": "25 de abril del 2023",
+          "tipo": "Hito de Seguimiento PMO",
+          "documento": "CARTA N0042-SUP-EWT-2023",
+          "asunto_razon": "REFERENCIA FECHA APROBACIÓN DE CAMBIO DE PROFESIONAL DE SUPERVISOR DE OBRA a) CARTA N0042-SUP-EWT-2023 OBRA: \"MEJORAMIENTO DEL SERVICIO DE TRANSITABIL",
+          "fuente": "Tomo 3 PMO (Folio 54)",
+          "confiabilidad": "ALTA"
+        },
+        {
+          "fecha": "27 de abril del 2023",
+          "tipo": "Inicio / Contrato",
+          "documento": "CARTA N0010-2023",
+          "asunto_razon": "REFERENCIA FECHA APROBACIÓN DE CAMBIO DE PROFESIONALES DE INGENIERO DE CALIDAD Y ESPECIALISTA EN SEGURIDAD EN OBRA Y SALUD OCUPACIONAL. a) CARTA N0010",
+          "fuente": "Tomo 3 PMO (Folio 59)",
           "confiabilidad": "ALTA"
         },
         {
@@ -9813,7 +11214,7 @@
           "confiabilidad": "ALTA"
         }
       ],
-      "total_hitos": 6
+      "total_hitos": 16
     },
     {
       "id": 65,
@@ -10493,9 +11894,17 @@
           "asunto_razon": "REFERENCIA FECHA REQUERIMIENTO DE ASIGNACIÓN DE PRESUPUESTO MODALIDAD FONDO POR ENCARGOS. PROYECTO FISICO DE LA OBRA : LINEA DE IMPLULSIÓN Y SISTEMA D",
           "fuente": "Tomo 2 PMO (Folio 52)",
           "confiabilidad": "MEDIA"
+        },
+        {
+          "fecha": "20 de abril del 2023",
+          "tipo": "Recepción de Obra",
+          "documento": "carta N0039-2023-HAMR",
+          "asunto_razon": "REFERENCIA FECHA INFORME N.p 237-2023- PMO - FDM. ABOG. ROSSMARY B. SILVA ACEVEDO Directora Ejecutivo —FDM ING. JAVIER E. LAURA RAMOS GERENTE PMO (E) ",
+          "fuente": "Tomo 3 PMO (Folio 36)",
+          "confiabilidad": "MEDIA"
         }
       ],
-      "total_hitos": 1
+      "total_hitos": 2
     },
     {
       "id": 4,
@@ -10539,9 +11948,17 @@
           "asunto_razon": "REFERENCIA FECHA OBASERVACIONES DE DOCUMENTOS PARA SUSCRIPCIÓN DE CONTRATO DERIVADO DEL PROCESO MAYOR NO 004-2023-FDM a) CARTA N' 011-2023-ARUNTASAC b",
           "fuente": "Tomo 2 PMO (Folio 57)",
           "confiabilidad": "MEDIA"
+        },
+        {
+          "fecha": "13 de abril del 2023",
+          "tipo": "Recepción de Obra",
+          "documento": "Folio 18",
+          "asunto_razon": "REFERENCIA FECHA LEVANTAMIENTO DE OBSERVACIONES DE DOCUMENTOS PARA SUSCRIPCIÓN DE CONTRATO DERIVADO DEL PROCESO MAYOR NO 004-2023-FDM a) CARTA NO 013-",
+          "fuente": "Tomo 3 PMO (Folio 18)",
+          "confiabilidad": "MEDIA"
         }
       ],
-      "total_hitos": 2
+      "total_hitos": 3
     },
     {
       "id": 5,
@@ -10710,9 +12127,41 @@
           "asunto_razon": "REFERENCIA FECHA DE MOQUEGUA 3 0 MAR 2023 RECIBIDO '3:'40 Solicito Adenda por Reducción por deductivo vinculante Proceso Mayor N0009-2021-FDM, para la",
           "fuente": "Tomo 2 PMO (Folio 63)",
           "confiabilidad": "MEDIA"
+        },
+        {
+          "fecha": "Abr-May 2023",
+          "tipo": "Hito de Seguimiento PMO",
+          "documento": "Folio 15",
+          "asunto_razon": "REFERENCIA FECHA INFORME N.Q 216 - 2023- PMO - FDM ABOG. ROSSMARY B. SILVA ACEVEDO Directora Ejecutivo —FDM ING. JAVIER E. INRA RAMOS GERENTE PMO (E) ",
+          "fuente": "Tomo 3 PMO (Folio 15)",
+          "confiabilidad": "MEDIA"
+        },
+        {
+          "fecha": "31.03.2023",
+          "tipo": "Hito de Seguimiento PMO",
+          "documento": "Folio 27",
+          "asunto_razon": "REFERENCIA FECHA 1 8 ABR 2023 zs_ oct SOBRE SOLICITUD DE COPIA DEL PROYECTO Y/O EXPEDIENTE TECNICO: \"CONSTRUCCIÓN E IMPLEMENTACIÓN DE CREMATORIO PARA ",
+          "fuente": "Tomo 3 PMO (Folio 27)",
+          "confiabilidad": "MEDIA"
+        },
+        {
+          "fecha": "24 de abril del 2023",
+          "tipo": "Ampliación de Plazo",
+          "documento": "CARTA N0083COPX",
+          "asunto_razon": "REFERENCIA FECHA FONDO DE DESARROLLO DE MOQUEGUA 2 5 ABR 2023 RECIBID i.u...çouos:...... .3....... HORA'.. RESPUESTA A SOLICITUD DE CONTROVERSIAS a) C",
+          "fuente": "Tomo 3 PMO (Folio 50)",
+          "confiabilidad": "ALTA"
+        },
+        {
+          "fecha": "24.04.2023",
+          "tipo": "Inicio / Contrato",
+          "documento": "Folio 64",
+          "asunto_razon": "REFERENCIA FECHA SOBRE ENTREGA DE TERRENO PARA INICIO DE TRABAJOS CARTA 005-2023/ClC-M&J de 24.04.2023 \"MEJORAMIENTO DEL SISTEMA PLUVIAL MEDIANTE LA I",
+          "fuente": "Tomo 3 PMO (Folio 64)",
+          "confiabilidad": "MEDIA"
         }
       ],
-      "total_hitos": 14
+      "total_hitos": 18
     },
     {
       "id": 7,
@@ -10967,6 +12416,14 @@
       "alerta": "[   ]",
       "historial": [
         {
+          "fecha": "20 de abril del 2023",
+          "tipo": "Recepción de Obra",
+          "documento": "carta N0039-2023-HAMR",
+          "asunto_razon": "REFERENCIA FECHA INFORME N.p 237-2023- PMO - FDM. ABOG. ROSSMARY B. SILVA ACEVEDO Directora Ejecutivo —FDM ING. JAVIER E. LAURA RAMOS GERENTE PMO (E) ",
+          "fuente": "Tomo 3 PMO (Folio 36)",
+          "confiabilidad": "MEDIA"
+        },
+        {
           "fecha": "20 de octubre del 2025",
           "tipo": "Valorización / Avance Mensual",
           "documento": "carta N°254-2025-INV",
@@ -10975,7 +12432,7 @@
           "confiabilidad": "ALTA"
         }
       ],
-      "total_hitos": 1
+      "total_hitos": 2
     },
     {
       "id": 11,
@@ -11360,6 +12817,30 @@
           "confiabilidad": "MEDIA"
         },
         {
+          "fecha": "05 de abril del 2023",
+          "tipo": "Ampliación de Plazo",
+          "documento": "carta N0029-2023-HAMR",
+          "asunto_razon": "REFERENCIA FECHA APROBACION DE AMPLIACIÓN DE PLAZO DE PROVEEDORES a) carta N0029-2023-HAMR b) carta N0030-2023-HAMR c) carta N0031-2023-HAMR Proyecto ",
+          "fuente": "Tomo 3 PMO (Folio 9)",
+          "confiabilidad": "MEDIA"
+        },
+        {
+          "fecha": "20 de abril del 2023",
+          "tipo": "Recepción de Obra",
+          "documento": "carta N0039-2023-HAMR",
+          "asunto_razon": "REFERENCIA FECHA INFORME N.p 237-2023- PMO - FDM. ABOG. ROSSMARY B. SILVA ACEVEDO Directora Ejecutivo —FDM ING. JAVIER E. LAURA RAMOS GERENTE PMO (E) ",
+          "fuente": "Tomo 3 PMO (Folio 36)",
+          "confiabilidad": "MEDIA"
+        },
+        {
+          "fecha": "21 de abril del 2023",
+          "tipo": "Hito de Seguimiento PMO",
+          "documento": "INFORME N.2 244-2023- PMO - FDM ABOG",
+          "asunto_razon": "REFERENCIA FECHA )S'3R SE REMITE INFORMACIÓN SOLICITADA POR LA DIRECCIÓN REGIONAL DE EDUCACIÓN MOQUEGUA a) carta N0040-2023-HAMR b) Oficio N0348-2023-",
+          "fuente": "Tomo 3 PMO (Folio 41)",
+          "confiabilidad": "ALTA"
+        },
+        {
           "fecha": "13 DE NOVIEMBRE DEL 2025",
           "tipo": "Hito de Seguimiento PMO",
           "documento": "INFORME N°054-2025-PMO",
@@ -11656,7 +13137,7 @@
           "confiabilidad": "ALTA"
         }
       ],
-      "total_hitos": 38
+      "total_hitos": 41
     },
     {
       "id": 14,
@@ -11707,6 +13188,22 @@
           "documento": "Folio 57",
           "asunto_razon": "REFERENCIA FECHA OBASERVACIONES DE DOCUMENTOS PARA SUSCRIPCIÓN DE CONTRATO DERIVADO DEL PROCESO MAYOR NO 004-2023-FDM a) CARTA N' 011-2023-ARUNTASAC b",
           "fuente": "Tomo 2 PMO (Folio 57)",
+          "confiabilidad": "MEDIA"
+        },
+        {
+          "fecha": "13 de abril del 2023",
+          "tipo": "Recepción de Obra",
+          "documento": "Folio 18",
+          "asunto_razon": "REFERENCIA FECHA LEVANTAMIENTO DE OBSERVACIONES DE DOCUMENTOS PARA SUSCRIPCIÓN DE CONTRATO DERIVADO DEL PROCESO MAYOR NO 004-2023-FDM a) CARTA NO 013-",
+          "fuente": "Tomo 3 PMO (Folio 18)",
+          "confiabilidad": "MEDIA"
+        },
+        {
+          "fecha": "24 de abril de 2023",
+          "tipo": "Ampliación de Plazo",
+          "documento": "Folio 51",
+          "asunto_razon": "REFERENCIA FECHA SOLICITO ENTREGA DE TERRENO PARA LA EJECUCIÓN DE OBRA DEL PROYECTO \"MEJORAMIENTO Y AMPLIACIÓN DEL SERVICIO DE TRANSITABIUDAD VEHICULA",
+          "fuente": "Tomo 3 PMO (Folio 51)",
           "confiabilidad": "MEDIA"
         },
         {
@@ -12934,7 +14431,7 @@
           "confiabilidad": "ALTA"
         }
       ],
-      "total_hitos": 156
+      "total_hitos": 158
     },
     {
       "id": 15,
@@ -13044,6 +14541,62 @@
           "confiabilidad": "MEDIA"
         },
         {
+          "fecha": "05 de abril del 2023",
+          "tipo": "Ampliación de Plazo",
+          "documento": "carta N0029-2023-HAMR",
+          "asunto_razon": "REFERENCIA FECHA APROBACION DE AMPLIACIÓN DE PLAZO DE PROVEEDORES a) carta N0029-2023-HAMR b) carta N0030-2023-HAMR c) carta N0031-2023-HAMR Proyecto ",
+          "fuente": "Tomo 3 PMO (Folio 9)",
+          "confiabilidad": "MEDIA"
+        },
+        {
+          "fecha": "07.03.2023",
+          "tipo": "Suspensión / Paralización",
+          "documento": "carta N0035-2023-HAMR",
+          "asunto_razon": "REFERENCIA FECHA INFORME N.Q 220-2023- PMO - FDM. ABOG. ROSSMARY B. SILVA ACEVEDO Directora Ejecutivo —FDM ING. JAVIER E. LAURA RAMOS GERENTE PMO (E) ",
+          "fuente": "Tomo 3 PMO (Folio 19)",
+          "confiabilidad": "MEDIA"
+        },
+        {
+          "fecha": "Abr-May 2023",
+          "tipo": "Hito de Seguimiento PMO",
+          "documento": "Carta N0034-2023-HAMR",
+          "asunto_razon": "REFERENCIA FECHA Solicitud de opinión ténica respecto a observaciones emitidas por eI IESP Jose Carlos Mariátegui — Lab. de mecánica de Producción Ind",
+          "fuente": "Tomo 3 PMO (Folio 20)",
+          "confiabilidad": "MEDIA"
+        },
+        {
+          "fecha": "20 de abril del 2023",
+          "tipo": "Recepción de Obra",
+          "documento": "carta N0039-2023-HAMR",
+          "asunto_razon": "REFERENCIA FECHA INFORME N.p 237-2023- PMO - FDM. ABOG. ROSSMARY B. SILVA ACEVEDO Directora Ejecutivo —FDM ING. JAVIER E. LAURA RAMOS GERENTE PMO (E) ",
+          "fuente": "Tomo 3 PMO (Folio 36)",
+          "confiabilidad": "MEDIA"
+        },
+        {
+          "fecha": "21 de abril del 2023",
+          "tipo": "Hito de Seguimiento PMO",
+          "documento": "INFORME N.2 244-2023- PMO - FDM ABOG",
+          "asunto_razon": "REFERENCIA FECHA )S'3R SE REMITE INFORMACIÓN SOLICITADA POR LA DIRECCIÓN REGIONAL DE EDUCACIÓN MOQUEGUA a) carta N0040-2023-HAMR b) Oficio N0348-2023-",
+          "fuente": "Tomo 3 PMO (Folio 41)",
+          "confiabilidad": "ALTA"
+        },
+        {
+          "fecha": "24 de abril del 2023",
+          "tipo": "Suspensión / Paralización",
+          "documento": "carta N004-2023-GNCT",
+          "asunto_razon": "REFERENCIA FECHA ANULACIÓN DE ORDEN DE SERVICIO 103-00003 a) carta N004-2023-GNCT Proyecto \"MEJORAMIENTO DE LOS SERVICIOS DE EDUCACIÓN SUPERIOR TECNOL",
+          "fuente": "Tomo 3 PMO (Folio 46)",
+          "confiabilidad": "MEDIA"
+        },
+        {
+          "fecha": "04.05.2023",
+          "tipo": "Recepción de Obra",
+          "documento": "CARTA N2 147-2023-GRM",
+          "asunto_razon": "REFERENCIA PROYECTO FECHA SOBRE RESPUESTA DE GERENCIA REGIONAL DE INFRAESTRUCTURA A SOLICITUD DE CONFORMACION DE COMITÉ DE RECEPCION DE OBRA CARTA N2 ",
+          "fuente": "Tomo 3 PMO (Folio 75)",
+          "confiabilidad": "ALTA"
+        },
+        {
           "fecha": "13 de agosto del 2026",
           "tipo": "Recepción de Obra",
           "documento": "Carta Nº    - 2026-D",
@@ -13060,7 +14613,7 @@
           "confiabilidad": "ALTA"
         }
       ],
-      "total_hitos": 12
+      "total_hitos": 19
     },
     {
       "id": 16,
@@ -14504,9 +16057,25 @@
           "asunto_razon": "REFERENCIA FECHA OBASERVACIONES DE DOCUMENTOS PARA SUSCRIPCIÓN DE CONTRATO DERIVADO DEL PROCESO MAYOR NO 004-2023-FDM a) CARTA N' 011-2023-ARUNTASAC b",
           "fuente": "Tomo 2 PMO (Folio 57)",
           "confiabilidad": "MEDIA"
+        },
+        {
+          "fecha": "13 de abril del 2023",
+          "tipo": "Recepción de Obra",
+          "documento": "Folio 18",
+          "asunto_razon": "REFERENCIA FECHA LEVANTAMIENTO DE OBSERVACIONES DE DOCUMENTOS PARA SUSCRIPCIÓN DE CONTRATO DERIVADO DEL PROCESO MAYOR NO 004-2023-FDM a) CARTA NO 013-",
+          "fuente": "Tomo 3 PMO (Folio 18)",
+          "confiabilidad": "MEDIA"
+        },
+        {
+          "fecha": "24 de abril de 2023",
+          "tipo": "Ampliación de Plazo",
+          "documento": "Folio 51",
+          "asunto_razon": "REFERENCIA FECHA SOLICITO ENTREGA DE TERRENO PARA LA EJECUCIÓN DE OBRA DEL PROYECTO \"MEJORAMIENTO Y AMPLIACIÓN DEL SERVICIO DE TRANSITABIUDAD VEHICULA",
+          "fuente": "Tomo 3 PMO (Folio 51)",
+          "confiabilidad": "MEDIA"
         }
       ],
-      "total_hitos": 4
+      "total_hitos": 6
     },
     {
       "id": 42,
@@ -14560,6 +16129,22 @@
           "confiabilidad": "MEDIA"
         },
         {
+          "fecha": "13 de abril del 2023",
+          "tipo": "Recepción de Obra",
+          "documento": "Folio 18",
+          "asunto_razon": "REFERENCIA FECHA LEVANTAMIENTO DE OBSERVACIONES DE DOCUMENTOS PARA SUSCRIPCIÓN DE CONTRATO DERIVADO DEL PROCESO MAYOR NO 004-2023-FDM a) CARTA NO 013-",
+          "fuente": "Tomo 3 PMO (Folio 18)",
+          "confiabilidad": "MEDIA"
+        },
+        {
+          "fecha": "24 de abril de 2023",
+          "tipo": "Ampliación de Plazo",
+          "documento": "Folio 51",
+          "asunto_razon": "REFERENCIA FECHA SOLICITO ENTREGA DE TERRENO PARA LA EJECUCIÓN DE OBRA DEL PROYECTO \"MEJORAMIENTO Y AMPLIACIÓN DEL SERVICIO DE TRANSITABIUDAD VEHICULA",
+          "fuente": "Tomo 3 PMO (Folio 51)",
+          "confiabilidad": "MEDIA"
+        },
+        {
           "fecha": "03 de noviembre del 2026",
           "tipo": "Valorización / Avance Mensual",
           "documento": "CARTA N° 0 xxx-",
@@ -14600,7 +16185,7 @@
           "confiabilidad": "ALTA"
         }
       ],
-      "total_hitos": 8
+      "total_hitos": 10
     },
     {
       "id": 43,
@@ -14700,6 +16285,14 @@
           "confiabilidad": "MEDIA"
         },
         {
+          "fecha": "13 de abril del 2023",
+          "tipo": "Liquidación Técnica-Financiera",
+          "documento": "Folio 25",
+          "asunto_razon": "REFERENCIA FECHA INFORME N.P226- 2023 PMO-FDM ABOG. ROSSMARY B. SILVA ACEVEDO Directora Ejecutiva —FDM ING. JAVIER LAURA RAMOS Gerente PMO - FDM OBSER",
+          "fuente": "Tomo 3 PMO (Folio 25)",
+          "confiabilidad": "MEDIA"
+        },
+        {
           "fecha": "20 de octubre del 2025",
           "tipo": "Valorización / Avance Mensual",
           "documento": "carta N°254-2025-INV",
@@ -14708,7 +16301,7 @@
           "confiabilidad": "ALTA"
         }
       ],
-      "total_hitos": 3
+      "total_hitos": 4
     },
     {
       "id": 3,
@@ -14869,8 +16462,25 @@
         "transf": false
       },
       "alerta": "[   ]",
-      "historial": [],
-      "total_hitos": 0
+      "historial": [
+        {
+          "fecha": "04 de abril del 2023",
+          "tipo": "Ampliación de Plazo",
+          "documento": "Folio 5",
+          "asunto_razon": "REFERENCIA FECHA APROBACIÓN DE ADICIONAL N004 CON DEDUCTIVO VINCULANTE - IMPLEMENTACIONES EN EL SISTEMA ELÉCTRICO PARA EL CORRECTO FUNCIONAMIENTO DEL ",
+          "fuente": "Tomo 3 PMO (Folio 5)",
+          "confiabilidad": "MEDIA"
+        },
+        {
+          "fecha": "Abr-May 2023",
+          "tipo": "Hito de Seguimiento PMO",
+          "documento": "Folio 15",
+          "asunto_razon": "REFERENCIA FECHA INFORME N.Q 216 - 2023- PMO - FDM ABOG. ROSSMARY B. SILVA ACEVEDO Directora Ejecutivo —FDM ING. JAVIER E. INRA RAMOS GERENTE PMO (E) ",
+          "fuente": "Tomo 3 PMO (Folio 15)",
+          "confiabilidad": "MEDIA"
+        }
+      ],
+      "total_hitos": 2
     },
     {
       "id": 8,
@@ -14924,6 +16534,14 @@
           "confiabilidad": "MEDIA"
         },
         {
+          "fecha": "19 de abril del 2023",
+          "tipo": "Recepción de Obra",
+          "documento": "Folio 33",
+          "asunto_razon": "REFERENCIA FECHA INFORME N.g 234 - 2023- PMO - FDM. ABOG. ROSSMARY B. SILVA ACEVEDO Directora Ejecutivo —FDM ING. JAVIER E. LAURA RAMOS GERENTE PMO (E",
+          "fuente": "Tomo 3 PMO (Folio 33)",
+          "confiabilidad": "MEDIA"
+        },
+        {
           "fecha": "20 de octubre del 2025",
           "tipo": "Valorización / Avance Mensual",
           "documento": "carta N°254-2025-INV",
@@ -14932,7 +16550,7 @@
           "confiabilidad": "ALTA"
         }
       ],
-      "total_hitos": 4
+      "total_hitos": 5
     },
     {
       "id": 9,
@@ -15176,6 +16794,14 @@
           "documento": "Folio 12",
           "asunto_razon": "CLÁUSULA VIGÉSIMA: NOTIFICACIONES ELECTRÓNICAS Toda comunicación de EL FONDO a EL CONTRATISTA enviada a la siguiente dir",
           "fuente": "Tomo 1 PMO (Folio 12)",
+          "confiabilidad": "MEDIA"
+        },
+        {
+          "fecha": "13 de abril del 2023",
+          "tipo": "Liquidación Técnica-Financiera",
+          "documento": "Folio 25",
+          "asunto_razon": "REFERENCIA FECHA INFORME N.P226- 2023 PMO-FDM ABOG. ROSSMARY B. SILVA ACEVEDO Directora Ejecutiva —FDM ING. JAVIER LAURA RAMOS Gerente PMO - FDM OBSER",
+          "fuente": "Tomo 3 PMO (Folio 25)",
           "confiabilidad": "MEDIA"
         },
         {
@@ -15467,7 +17093,7 @@
           "confiabilidad": "ALTA"
         }
       ],
-      "total_hitos": 38
+      "total_hitos": 39
     },
     {
       "id": 13,
@@ -17253,6 +18879,14 @@
       "alerta": "[   ]",
       "historial": [
         {
+          "fecha": "18 de abril del 2023",
+          "tipo": "Hito de Seguimiento PMO",
+          "documento": "Folio 28",
+          "asunto_razon": "PROYECTO FECHA /02C 01 SE SOLICITE A LA SOCIEDAD DE BENEFICENCIA MOQUEGUA REMISION ADMINISTRATIVAS OBLIGATORIAS DE AUTORIZACIONES ESTABLECIDOS EN EL M",
+          "fuente": "Tomo 3 PMO (Folio 28)",
+          "confiabilidad": "MEDIA"
+        },
+        {
           "fecha": "13 de octubre de 2026",
           "tipo": "Hito de Seguimiento PMO",
           "documento": "Informe Nº 988-2026-PMO-MEFE",
@@ -17261,7 +18895,7 @@
           "confiabilidad": "ALTA"
         }
       ],
-      "total_hitos": 1
+      "total_hitos": 2
     },
     {
       "id": 20,
@@ -17290,6 +18924,22 @@
       },
       "alerta": "[   ]",
       "historial": [
+        {
+          "fecha": "04 de abril del 2023",
+          "tipo": "Ampliación de Plazo",
+          "documento": "Folio 5",
+          "asunto_razon": "REFERENCIA FECHA APROBACIÓN DE ADICIONAL N004 CON DEDUCTIVO VINCULANTE - IMPLEMENTACIONES EN EL SISTEMA ELÉCTRICO PARA EL CORRECTO FUNCIONAMIENTO DEL ",
+          "fuente": "Tomo 3 PMO (Folio 5)",
+          "confiabilidad": "MEDIA"
+        },
+        {
+          "fecha": "Abr-May 2023",
+          "tipo": "Hito de Seguimiento PMO",
+          "documento": "Folio 15",
+          "asunto_razon": "REFERENCIA FECHA INFORME N.Q 216 - 2023- PMO - FDM ABOG. ROSSMARY B. SILVA ACEVEDO Directora Ejecutivo —FDM ING. JAVIER E. INRA RAMOS GERENTE PMO (E) ",
+          "fuente": "Tomo 3 PMO (Folio 15)",
+          "confiabilidad": "MEDIA"
+        },
         {
           "fecha": "12 de diciembre del 2025",
           "tipo": "Hito de Seguimiento PMO",
@@ -17331,7 +18981,7 @@
           "confiabilidad": "MEDIA"
         }
       ],
-      "total_hitos": 5
+      "total_hitos": 7
     },
     {
       "id": 21,
@@ -17701,8 +19351,17 @@
         "transf": false
       },
       "alerta": "[   ]",
-      "historial": [],
-      "total_hitos": 0
+      "historial": [
+        {
+          "fecha": "13 de abril del 2023",
+          "tipo": "Liquidación Técnica-Financiera",
+          "documento": "Folio 25",
+          "asunto_razon": "REFERENCIA FECHA INFORME N.P226- 2023 PMO-FDM ABOG. ROSSMARY B. SILVA ACEVEDO Directora Ejecutiva —FDM ING. JAVIER LAURA RAMOS Gerente PMO - FDM OBSER",
+          "fuente": "Tomo 3 PMO (Folio 25)",
+          "confiabilidad": "MEDIA"
+        }
+      ],
+      "total_hitos": 1
     },
     {
       "id": 27,
@@ -17845,6 +19504,14 @@
       "alerta": "[   ]",
       "historial": [
         {
+          "fecha": "13 de abril del 2023",
+          "tipo": "Liquidación Técnica-Financiera",
+          "documento": "Folio 25",
+          "asunto_razon": "REFERENCIA FECHA INFORME N.P226- 2023 PMO-FDM ABOG. ROSSMARY B. SILVA ACEVEDO Directora Ejecutiva —FDM ING. JAVIER LAURA RAMOS Gerente PMO - FDM OBSER",
+          "fuente": "Tomo 3 PMO (Folio 25)",
+          "confiabilidad": "MEDIA"
+        },
+        {
           "fecha": "35-08-2026",
           "tipo": "Ampliación de Plazo",
           "documento": "CARTA N° 0 xxx-",
@@ -17861,7 +19528,7 @@
           "confiabilidad": "ALTA"
         }
       ],
-      "total_hitos": 2
+      "total_hitos": 3
     },
     {
       "id": 31,
@@ -17985,6 +19652,22 @@
       "alerta": "[   ]",
       "historial": [
         {
+          "fecha": "04 de abril del 2023",
+          "tipo": "Ampliación de Plazo",
+          "documento": "Folio 5",
+          "asunto_razon": "REFERENCIA FECHA APROBACIÓN DE ADICIONAL N004 CON DEDUCTIVO VINCULANTE - IMPLEMENTACIONES EN EL SISTEMA ELÉCTRICO PARA EL CORRECTO FUNCIONAMIENTO DEL ",
+          "fuente": "Tomo 3 PMO (Folio 5)",
+          "confiabilidad": "MEDIA"
+        },
+        {
+          "fecha": "Abr-May 2023",
+          "tipo": "Hito de Seguimiento PMO",
+          "documento": "Folio 15",
+          "asunto_razon": "REFERENCIA FECHA INFORME N.Q 216 - 2023- PMO - FDM ABOG. ROSSMARY B. SILVA ACEVEDO Directora Ejecutivo —FDM ING. JAVIER E. INRA RAMOS GERENTE PMO (E) ",
+          "fuente": "Tomo 3 PMO (Folio 15)",
+          "confiabilidad": "MEDIA"
+        },
+        {
           "fecha": "2025-2026",
           "tipo": "Liquidación Técnica-Financiera",
           "documento": "CARTA N° 0 xxx-",
@@ -17993,7 +19676,7 @@
           "confiabilidad": "MEDIA"
         }
       ],
-      "total_hitos": 1
+      "total_hitos": 3
     },
     {
       "id": 33,
@@ -18498,8 +20181,25 @@
         "transf": false
       },
       "alerta": "[   ]",
-      "historial": [],
-      "total_hitos": 0
+      "historial": [
+        {
+          "fecha": "04 de abril del 2023",
+          "tipo": "Ampliación de Plazo",
+          "documento": "Folio 5",
+          "asunto_razon": "REFERENCIA FECHA APROBACIÓN DE ADICIONAL N004 CON DEDUCTIVO VINCULANTE - IMPLEMENTACIONES EN EL SISTEMA ELÉCTRICO PARA EL CORRECTO FUNCIONAMIENTO DEL ",
+          "fuente": "Tomo 3 PMO (Folio 5)",
+          "confiabilidad": "MEDIA"
+        },
+        {
+          "fecha": "Abr-May 2023",
+          "tipo": "Hito de Seguimiento PMO",
+          "documento": "Folio 15",
+          "asunto_razon": "REFERENCIA FECHA INFORME N.Q 216 - 2023- PMO - FDM ABOG. ROSSMARY B. SILVA ACEVEDO Directora Ejecutivo —FDM ING. JAVIER E. INRA RAMOS GERENTE PMO (E) ",
+          "fuente": "Tomo 3 PMO (Folio 15)",
+          "confiabilidad": "MEDIA"
+        }
+      ],
+      "total_hitos": 2
     },
     {
       "id": 42,
@@ -18655,6 +20355,14 @@
           "confiabilidad": "ALTA"
         },
         {
+          "fecha": "28 de abril del 2022",
+          "tipo": "Liquidación Técnica-Financiera",
+          "documento": "Carta N0096-SUP-REORBE-MSCBO",
+          "asunto_razon": "INFORME N.g 231-2023- PMO - EDM. ABOG. ROSSMARY B. SILVA ACEVEDO Directora Ejecutivo —FDM ING. JAVIER E. LAURA RAMOS GER",
+          "fuente": "Tomo 3 PMO (Folio 30)",
+          "confiabilidad": "MEDIA"
+        },
+        {
           "fecha": "21 de setiembre del 2026",
           "tipo": "Inicio / Contrato",
           "documento": "CARTA N° 0 xxx-",
@@ -18679,7 +20387,7 @@
           "confiabilidad": "ALTA"
         }
       ],
-      "total_hitos": 8
+      "total_hitos": 9
     },
     {
       "id": 44,
@@ -19153,6 +20861,46 @@
           "confiabilidad": "MEDIA"
         },
         {
+          "fecha": "Abr-May 2023",
+          "tipo": "Hito de Seguimiento PMO",
+          "documento": "Folio 15",
+          "asunto_razon": "REFERENCIA FECHA INFORME N.Q 216 - 2023- PMO - FDM ABOG. ROSSMARY B. SILVA ACEVEDO Directora Ejecutivo —FDM ING. JAVIER E. INRA RAMOS GERENTE PMO (E) ",
+          "fuente": "Tomo 3 PMO (Folio 15)",
+          "confiabilidad": "MEDIA"
+        },
+        {
+          "fecha": "31.03.2023",
+          "tipo": "Hito de Seguimiento PMO",
+          "documento": "Folio 27",
+          "asunto_razon": "REFERENCIA FECHA 1 8 ABR 2023 zs_ oct SOBRE SOLICITUD DE COPIA DEL PROYECTO Y/O EXPEDIENTE TECNICO: \"CONSTRUCCIÓN E IMPLEMENTACIÓN DE CREMATORIO PARA ",
+          "fuente": "Tomo 3 PMO (Folio 27)",
+          "confiabilidad": "MEDIA"
+        },
+        {
+          "fecha": "21 de abril del 2023",
+          "tipo": "Hito de Seguimiento PMO",
+          "documento": "Folio 44",
+          "asunto_razon": "REFERENCIA FECHA CONFORMIDAD DEL SERVICIO DE CONSULTORíA 101-00031 a) ORDEN DE SERVICIO 101-00031 b) GE-0435-2023 Moquegua, 21 de abril del 2023 Media",
+          "fuente": "Tomo 3 PMO (Folio 44)",
+          "confiabilidad": "MEDIA"
+        },
+        {
+          "fecha": "24 de abril del 2023",
+          "tipo": "Ampliación de Plazo",
+          "documento": "CARTA N0083COPX",
+          "asunto_razon": "REFERENCIA FECHA FONDO DE DESARROLLO DE MOQUEGUA 2 5 ABR 2023 RECIBID i.u...çouos:...... .3....... HORA'.. RESPUESTA A SOLICITUD DE CONTROVERSIAS a) C",
+          "fuente": "Tomo 3 PMO (Folio 50)",
+          "confiabilidad": "ALTA"
+        },
+        {
+          "fecha": "24.04.2023",
+          "tipo": "Inicio / Contrato",
+          "documento": "Folio 64",
+          "asunto_razon": "REFERENCIA FECHA SOBRE ENTREGA DE TERRENO PARA INICIO DE TRABAJOS CARTA 005-2023/ClC-M&J de 24.04.2023 \"MEJORAMIENTO DEL SISTEMA PLUVIAL MEDIANTE LA I",
+          "fuente": "Tomo 3 PMO (Folio 64)",
+          "confiabilidad": "MEDIA"
+        },
+        {
           "fecha": "20 de octubre del 2025",
           "tipo": "Valorización / Avance Mensual",
           "documento": "carta N°254-2025-INV",
@@ -19161,7 +20909,7 @@
           "confiabilidad": "ALTA"
         }
       ],
-      "total_hitos": 13
+      "total_hitos": 18
     },
     {
       "id": 3,
@@ -19290,9 +21038,73 @@
           "asunto_razon": "REFERENCIA FECHA APROBACION DE ADICIONAL NOOI CON DEDUCTIVO VINCULANTE a) carta N0027-2023-HAMR b) carta N0002-2023SCGC Proyecto \"MEJORAMIENTO DE LOS ",
           "fuente": "Tomo 2 PMO (Folio 56)",
           "confiabilidad": "MEDIA"
+        },
+        {
+          "fecha": "05 de abril del 2023",
+          "tipo": "Ampliación de Plazo",
+          "documento": "carta N0029-2023-HAMR",
+          "asunto_razon": "REFERENCIA FECHA APROBACION DE AMPLIACIÓN DE PLAZO DE PROVEEDORES a) carta N0029-2023-HAMR b) carta N0030-2023-HAMR c) carta N0031-2023-HAMR Proyecto ",
+          "fuente": "Tomo 3 PMO (Folio 9)",
+          "confiabilidad": "MEDIA"
+        },
+        {
+          "fecha": "Abr-May 2023",
+          "tipo": "Hito de Seguimiento PMO",
+          "documento": "Folio 15",
+          "asunto_razon": "REFERENCIA FECHA INFORME N.Q 216 - 2023- PMO - FDM ABOG. ROSSMARY B. SILVA ACEVEDO Directora Ejecutivo —FDM ING. JAVIER E. INRA RAMOS GERENTE PMO (E) ",
+          "fuente": "Tomo 3 PMO (Folio 15)",
+          "confiabilidad": "MEDIA"
+        },
+        {
+          "fecha": "07.03.2023",
+          "tipo": "Suspensión / Paralización",
+          "documento": "carta N0035-2023-HAMR",
+          "asunto_razon": "REFERENCIA FECHA INFORME N.Q 220-2023- PMO - FDM. ABOG. ROSSMARY B. SILVA ACEVEDO Directora Ejecutivo —FDM ING. JAVIER E. LAURA RAMOS GERENTE PMO (E) ",
+          "fuente": "Tomo 3 PMO (Folio 19)",
+          "confiabilidad": "MEDIA"
+        },
+        {
+          "fecha": "Abr-May 2023",
+          "tipo": "Hito de Seguimiento PMO",
+          "documento": "Carta N0034-2023-HAMR",
+          "asunto_razon": "REFERENCIA FECHA Solicitud de opinión ténica respecto a observaciones emitidas por eI IESP Jose Carlos Mariátegui — Lab. de mecánica de Producción Ind",
+          "fuente": "Tomo 3 PMO (Folio 20)",
+          "confiabilidad": "MEDIA"
+        },
+        {
+          "fecha": "20 de abril del 2023",
+          "tipo": "Recepción de Obra",
+          "documento": "carta N0039-2023-HAMR",
+          "asunto_razon": "REFERENCIA FECHA INFORME N.p 237-2023- PMO - FDM. ABOG. ROSSMARY B. SILVA ACEVEDO Directora Ejecutivo —FDM ING. JAVIER E. LAURA RAMOS GERENTE PMO (E) ",
+          "fuente": "Tomo 3 PMO (Folio 36)",
+          "confiabilidad": "MEDIA"
+        },
+        {
+          "fecha": "21 de abril del 2023",
+          "tipo": "Hito de Seguimiento PMO",
+          "documento": "INFORME N.2 244-2023- PMO - FDM ABOG",
+          "asunto_razon": "REFERENCIA FECHA )S'3R SE REMITE INFORMACIÓN SOLICITADA POR LA DIRECCIÓN REGIONAL DE EDUCACIÓN MOQUEGUA a) carta N0040-2023-HAMR b) Oficio N0348-2023-",
+          "fuente": "Tomo 3 PMO (Folio 41)",
+          "confiabilidad": "ALTA"
+        },
+        {
+          "fecha": "24 de abril del 2023",
+          "tipo": "Suspensión / Paralización",
+          "documento": "carta N004-2023-GNCT",
+          "asunto_razon": "REFERENCIA FECHA ANULACIÓN DE ORDEN DE SERVICIO 103-00003 a) carta N004-2023-GNCT Proyecto \"MEJORAMIENTO DE LOS SERVICIOS DE EDUCACIÓN SUPERIOR TECNOL",
+          "fuente": "Tomo 3 PMO (Folio 46)",
+          "confiabilidad": "MEDIA"
+        },
+        {
+          "fecha": "04.05.2023",
+          "tipo": "Recepción de Obra",
+          "documento": "CARTA N2 147-2023-GRM",
+          "asunto_razon": "REFERENCIA PROYECTO FECHA SOBRE RESPUESTA DE GERENCIA REGIONAL DE INFRAESTRUCTURA A SOLICITUD DE CONFORMACION DE COMITÉ DE RECEPCION DE OBRA CARTA N2 ",
+          "fuente": "Tomo 3 PMO (Folio 75)",
+          "confiabilidad": "ALTA"
         }
       ],
-      "total_hitos": 9
+      "total_hitos": 17
     },
     {
       "id": 5,
@@ -19352,9 +21164,25 @@
           "asunto_razon": "REFERENCIA FECHA OBASERVACIONES DE DOCUMENTOS PARA SUSCRIPCIÓN DE CONTRATO DERIVADO DEL PROCESO MAYOR NO 004-2023-FDM a) CARTA N' 011-2023-ARUNTASAC b",
           "fuente": "Tomo 2 PMO (Folio 57)",
           "confiabilidad": "MEDIA"
+        },
+        {
+          "fecha": "21 de abril del 2023",
+          "tipo": "Hito de Seguimiento PMO",
+          "documento": "Folio 44",
+          "asunto_razon": "REFERENCIA FECHA CONFORMIDAD DEL SERVICIO DE CONSULTORíA 101-00031 a) ORDEN DE SERVICIO 101-00031 b) GE-0435-2023 Moquegua, 21 de abril del 2023 Media",
+          "fuente": "Tomo 3 PMO (Folio 44)",
+          "confiabilidad": "MEDIA"
+        },
+        {
+          "fecha": "24 de abril de 2023",
+          "tipo": "Ampliación de Plazo",
+          "documento": "Folio 51",
+          "asunto_razon": "REFERENCIA FECHA SOLICITO ENTREGA DE TERRENO PARA LA EJECUCIÓN DE OBRA DEL PROYECTO \"MEJORAMIENTO Y AMPLIACIÓN DEL SERVICIO DE TRANSITABIUDAD VEHICULA",
+          "fuente": "Tomo 3 PMO (Folio 51)",
+          "confiabilidad": "MEDIA"
         }
       ],
-      "total_hitos": 4
+      "total_hitos": 6
     },
     {
       "id": 6,
@@ -19474,6 +21302,22 @@
           "confiabilidad": "MEDIA"
         },
         {
+          "fecha": "21 de abril del 2023",
+          "tipo": "Hito de Seguimiento PMO",
+          "documento": "CARTA N0037-SUP-EYVT-2023",
+          "asunto_razon": "REFERENCIA FECHA ABOG. ROSSMARY B. SILVA ACEVEDO Directora Ejecutiva —FDM ING. JAVIER E. LAURA RAMOS GERENTE PMO (E) PRONUNCIAMIENTO A INFORME DE COMP",
+          "fuente": "Tomo 3 PMO (Folio 38)",
+          "confiabilidad": "ALTA"
+        },
+        {
+          "fecha": "24.04.2023",
+          "tipo": "Inicio / Contrato",
+          "documento": "Folio 64",
+          "asunto_razon": "REFERENCIA FECHA SOBRE ENTREGA DE TERRENO PARA INICIO DE TRABAJOS CARTA 005-2023/ClC-M&J de 24.04.2023 \"MEJORAMIENTO DEL SISTEMA PLUVIAL MEDIANTE LA I",
+          "fuente": "Tomo 3 PMO (Folio 64)",
+          "confiabilidad": "MEDIA"
+        },
+        {
           "fecha": "20 de octubre del 2025",
           "tipo": "Valorización / Avance Mensual",
           "documento": "carta N°254-2025-INV",
@@ -19482,7 +21326,7 @@
           "confiabilidad": "ALTA"
         }
       ],
-      "total_hitos": 5
+      "total_hitos": 7
     },
     {
       "id": 9,
@@ -19600,6 +21444,46 @@
           "confiabilidad": "MEDIA"
         },
         {
+          "fecha": "Abr-May 2023",
+          "tipo": "Hito de Seguimiento PMO",
+          "documento": "Folio 15",
+          "asunto_razon": "REFERENCIA FECHA INFORME N.Q 216 - 2023- PMO - FDM ABOG. ROSSMARY B. SILVA ACEVEDO Directora Ejecutivo —FDM ING. JAVIER E. INRA RAMOS GERENTE PMO (E) ",
+          "fuente": "Tomo 3 PMO (Folio 15)",
+          "confiabilidad": "MEDIA"
+        },
+        {
+          "fecha": "24 de abril del 2023",
+          "tipo": "Recepción de Obra",
+          "documento": "CARTA N0005-2023-CLG",
+          "asunto_razon": "REFERENCIA FECHA APROBACIÓN DE CAMBIO DE PROFESIONAL DE RESIDENTE DE OBRA a) CARTA N0005-2023-CLG OBRA: \"MEJORAMIENTO DEL SERVICIO DE ASISTENCIA ALIME",
+          "fuente": "Tomo 3 PMO (Folio 45)",
+          "confiabilidad": "ALTA"
+        },
+        {
+          "fecha": "24 de abril del 2023",
+          "tipo": "Hito de Seguimiento PMO",
+          "documento": "Folio 47",
+          "asunto_razon": "FECHA SOLICITO A ADMINISTRACIÓN REMITA LOS CONTRATOS DE EJECUCIÓN DE OBRA Y SUPERVISIÓN Moquegua, 24 de abril del 2023 Mediante eI presente me dirijo ",
+          "fuente": "Tomo 3 PMO (Folio 47)",
+          "confiabilidad": "MEDIA"
+        },
+        {
+          "fecha": "24 de abril del 2023",
+          "tipo": "Ampliación de Plazo",
+          "documento": "CARTA N0083COPX",
+          "asunto_razon": "REFERENCIA FECHA FONDO DE DESARROLLO DE MOQUEGUA 2 5 ABR 2023 RECIBID i.u...çouos:...... .3....... HORA'.. RESPUESTA A SOLICITUD DE CONTROVERSIAS a) C",
+          "fuente": "Tomo 3 PMO (Folio 50)",
+          "confiabilidad": "ALTA"
+        },
+        {
+          "fecha": "24.04.2023",
+          "tipo": "Inicio / Contrato",
+          "documento": "Folio 64",
+          "asunto_razon": "REFERENCIA FECHA SOBRE ENTREGA DE TERRENO PARA INICIO DE TRABAJOS CARTA 005-2023/ClC-M&J de 24.04.2023 \"MEJORAMIENTO DEL SISTEMA PLUVIAL MEDIANTE LA I",
+          "fuente": "Tomo 3 PMO (Folio 64)",
+          "confiabilidad": "MEDIA"
+        },
+        {
           "fecha": "26 de agosto del 2025",
           "tipo": "Ampliación de Plazo",
           "documento": "carta N°521-2025-D",
@@ -19704,7 +21588,7 @@
           "confiabilidad": "ALTA"
         }
       ],
-      "total_hitos": 24
+      "total_hitos": 29
     }
   ]
 }
