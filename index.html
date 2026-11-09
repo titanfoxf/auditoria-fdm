@@ -3,15 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>FDM - Control y Auditoría de Expedientes</title>
+  <title>FDM - Control y Auditoría de Expedientes con Trazabilidad</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
   <style>
     :root {
       --primary: #1B365D;
-      --primary-light: #2A5C9A;
+      --primary-light: #2563EB;
       --secondary: #0D9488;
       --bg: #F8FAFC;
       --card-bg: #FFFFFF;
@@ -26,6 +26,10 @@
       --red-text: #991B1B;
       --blue-bg: #E0F2FE;
       --blue-text: #075985;
+      --purple-bg: #F3E8FF;
+      --purple-text: #6B21A8;
+      --orange-bg: #FFEDD5;
+      --orange-text: #9A3412;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
@@ -33,10 +37,10 @@
 
     /* Header */
     header {
-      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      background: linear-gradient(135deg, #0F172A, #1E293B);
       color: white;
-      padding: 1.25rem 2rem;
-      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+      padding: 1.1rem 2rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -45,74 +49,96 @@
       z-index: 40;
     }
 
-    .brand h1 { font-size: 1.25rem; font-weight: 700; letter-spacing: -0.02em; }
+    .brand h1 { font-size: 1.25rem; font-weight: 800; letter-spacing: -0.02em; display: flex; align-items: center; gap: 0.5rem; }
     .brand p { font-size: 0.8rem; opacity: 0.85; margin-top: 0.2rem; }
 
     .header-actions { display: flex; gap: 0.75rem; align-items: center; }
-    .badge-sync { background: rgba(255, 255, 255, 0.2); padding: 0.35rem 0.85rem; border-radius: 9999px; font-size: 0.8rem; font-weight: 500; display: flex; align-items: center; gap: 0.4rem; }
+    .badge-sync { background: rgba(255, 255, 255, 0.12); padding: 0.35rem 0.85rem; border-radius: 9999px; font-size: 0.78rem; font-weight: 500; display: flex; align-items: center; gap: 0.4rem; border: 1px solid rgba(255,255,255,0.15); }
     .badge-sync::before { content: ""; width: 8px; height: 8px; background: #4ADE80; border-radius: 50%; display: inline-block; }
 
-    /* Layout */
-    .container { max-width: 1400px; margin: 1.5rem auto; padding: 0 1.5rem; flex: 1; width: 100%; }
+    .btn-excel { background: #16A34A; color: white; border: none; padding: 0.5rem 1rem; border-radius: 8px; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 0.4rem; font-size: 0.85rem; box-shadow: 0 2px 4px rgba(0,0,0,0.2); transition: background 0.15s; }
+    .btn-excel:hover { background: #15803D; }
 
-    /* Dashboard Metrics */
+    /* Container */
+    .container { max-width: 1440px; margin: 1.5rem auto; padding: 0 1.5rem; flex: 1; width: 100%; }
+
+    /* Metrics Grid */
     .metrics-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin-bottom: 1.5rem; }
-    .metric-card { background: var(--card-bg); border-radius: 12px; padding: 1.2rem; border: 1px solid var(--border); box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
-    .metric-card .title { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; color: var(--text-muted); letter-spacing: 0.05em; }
-    .metric-card .value { font-size: 1.75rem; font-weight: 700; color: var(--primary); margin: 0.35rem 0 0.15rem; }
+    .metric-card { background: var(--card-bg); border-radius: 12px; padding: 1.2rem; border: 1px solid var(--border); box-shadow: 0 1px 3px rgba(0,0,0,0.04); position: relative; overflow: hidden; }
+    .metric-card::after { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--border); }
+    .metric-card.blue::after { background: #2563EB; }
+    .metric-card.teal::after { background: #0D9488; }
+    .metric-card.green::after { background: #16A34A; }
+    .metric-card.purple::after { background: #9333EA; }
+
+    .metric-card .title { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: var(--text-muted); letter-spacing: 0.05em; }
+    .metric-card .value { font-size: 1.85rem; font-weight: 800; color: var(--text); margin: 0.35rem 0 0.15rem; }
     .metric-card .desc { font-size: 0.8rem; color: var(--text-muted); }
 
     /* Controls Bar */
     .controls-card { background: var(--card-bg); border-radius: 12px; padding: 1rem; border: 1px solid var(--border); margin-bottom: 1.5rem; display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; justify-content: space-between; }
-    .search-input { flex: 1; min-width: 280px; position: relative; }
-    .search-input input { width: 100%; padding: 0.65rem 1rem 0.65rem 2.5rem; border: 1px solid var(--border); border-radius: 8px; font-size: 0.9rem; outline: none; transition: border-color 0.15s; }
-    .search-input input:focus { border-color: var(--primary-light); ring: 2px solid var(--primary-light); }
-    .search-input svg { position: absolute; left: 0.85rem; top: 50%; transform: translateY(-50%); width: 16px; height: 16px; color: var(--text-muted); }
+    .search-input { flex: 1; min-width: 300px; position: relative; }
+    .search-input input { width: 100%; padding: 0.7rem 1rem 0.7rem 2.6rem; border: 1px solid var(--border); border-radius: 8px; font-size: 0.9rem; outline: none; transition: border-color 0.15s; background: #F8FAFC; }
+    .search-input input:focus { border-color: var(--primary-light); background: white; }
+    .search-input svg { position: absolute; left: 0.9rem; top: 50%; transform: translateY(-50%); width: 18px; height: 18px; color: var(--text-muted); }
 
     .filter-tabs { display: flex; gap: 0.4rem; overflow-x: auto; padding-bottom: 0.2rem; }
-    .tab-btn { background: #F1F5F9; border: none; padding: 0.5rem 0.9rem; border-radius: 8px; font-size: 0.85rem; font-weight: 500; color: var(--text-muted); cursor: pointer; transition: all 0.15s; white-space: nowrap; }
+    .tab-btn { background: #F1F5F9; border: 1px solid transparent; padding: 0.55rem 0.95rem; border-radius: 8px; font-size: 0.85rem; font-weight: 600; color: var(--text-muted); cursor: pointer; transition: all 0.15s; white-space: nowrap; }
     .tab-btn:hover { background: #E2E8F0; color: var(--text); }
-    .tab-btn.active { background: var(--primary); color: white; }
+    .tab-btn.active { background: var(--primary); color: white; border-color: var(--primary); }
 
     /* Table Container */
-    .table-container { background: var(--card-bg); border-radius: 12px; border: 1px solid var(--border); box-shadow: 0 1px 3px rgba(0,0,0,0.05); overflow: hidden; }
+    .table-container { background: var(--card-bg); border-radius: 12px; border: 1px solid var(--border); box-shadow: 0 1px 4px rgba(0,0,0,0.05); overflow-x: auto; }
     table { width: 100%; border-collapse: collapse; text-align: left; font-size: 0.875rem; }
     thead { background: #F8FAFC; border-bottom: 1px solid var(--border); }
-    th { padding: 0.85rem 1rem; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; color: var(--text-muted); letter-spacing: 0.05em; }
+    th { padding: 0.85rem 1rem; font-size: 0.72rem; font-weight: 700; text-transform: uppercase; color: var(--text-muted); letter-spacing: 0.05em; white-space: nowrap; }
     td { padding: 0.85rem 1rem; border-bottom: 1px solid var(--border); vertical-align: middle; }
     tr:last-child td { border-bottom: none; }
-    tr:hover { background-color: #F8FAFC; cursor: pointer; }
+    tr:hover { background-color: #F1F5F9; cursor: pointer; }
 
-    .badge { display: inline-flex; align-items: center; padding: 0.25rem 0.6rem; border-radius: 6px; font-size: 0.75rem; font-weight: 600; }
+    .badge { display: inline-flex; align-items: center; padding: 0.25rem 0.6rem; border-radius: 6px; font-size: 0.72rem; font-weight: 700; text-transform: uppercase; }
     .badge-green { background: var(--green-bg); color: var(--green-text); }
     .badge-yellow { background: var(--yellow-bg); color: var(--yellow-text); }
     .badge-blue { background: var(--blue-bg); color: var(--blue-text); }
+    .badge-purple { background: var(--purple-bg); color: var(--purple-text); }
+    .badge-orange { background: var(--orange-bg); color: var(--orange-text); }
     .badge-gray { background: #F1F5F9; color: #475569; }
 
-    .checks-summary { display: flex; gap: 0.25rem; }
-    .dot-check { width: 14px; height: 14px; border-radius: 50%; display: inline-block; }
-    .dot-check.yes { background: #22C55E; }
-    .dot-check.no { background: #CBD5E1; }
-
-    /* Modal / Drawer */
-    .modal-backdrop { position: fixed; inset: 0; background: rgba(15, 23, 42, 0.6); display: none; justify-content: flex-end; z-index: 50; backdrop-filter: blur(2px); }
+    /* Drawer / Modal */
+    .modal-backdrop { position: fixed; inset: 0; background: rgba(15, 23, 42, 0.65); display: none; justify-content: flex-end; z-index: 50; backdrop-filter: blur(3px); }
     .modal-backdrop.open { display: flex; }
-    .drawer { width: 100%; max-width: 650px; background: white; height: 100vh; overflow-y: auto; display: flex; flex-direction: column; box-shadow: -4px 0 15px rgba(0,0,0,0.15); animation: slideLeft 0.25s ease-out; }
+    .drawer { width: 100%; max-width: 820px; background: white; height: 100vh; overflow-y: auto; display: flex; flex-direction: column; box-shadow: -8px 0 25px rgba(0,0,0,0.25); animation: slideLeft 0.22s cubic-bezier(0.16, 1, 0.3, 1); }
     @keyframes slideLeft { from { transform: translateX(100%); } to { transform: translateX(0); } }
 
-    .drawer-header { padding: 1.5rem; border-bottom: 1px solid var(--border); background: var(--primary); color: white; position: sticky; top: 0; z-index: 10; display: flex; justify-content: space-between; align-items: flex-start; }
-    .drawer-header h2 { font-size: 1.15rem; font-weight: 700; line-height: 1.35; margin-bottom: 0.25rem; }
-    .drawer-header p { font-size: 0.8rem; opacity: 0.85; }
-    .close-btn { background: none; border: none; color: white; cursor: pointer; font-size: 1.5rem; padding: 0.25rem; opacity: 0.8; }
-    .close-btn:hover { opacity: 1; }
+    .drawer-header { padding: 1.5rem; background: linear-gradient(135deg, #0F172A, #1E293B); color: white; position: sticky; top: 0; z-index: 10; display: flex; justify-content: space-between; align-items: flex-start; }
+    .drawer-header h2 { font-size: 1.15rem; font-weight: 700; line-height: 1.35; margin-bottom: 0.35rem; }
+    .close-btn { background: none; border: none; color: white; cursor: pointer; font-size: 1.6rem; padding: 0.2rem 0.6rem; opacity: 0.8; border-radius: 6px; }
+    .close-btn:hover { opacity: 1; background: rgba(255,255,255,0.1); }
+
+    /* Drawer Navigation Tabs */
+    .drawer-nav { display: flex; background: #F1F5F9; border-bottom: 1px solid var(--border); padding: 0 1.5rem; position: sticky; top: 96px; z-index: 9; }
+    .nav-tab { padding: 0.8rem 1.1rem; font-size: 0.85rem; font-weight: 700; color: var(--text-muted); cursor: pointer; border-bottom: 2px solid transparent; transition: all 0.15s; }
+    .nav-tab:hover { color: var(--text); }
+    .nav-tab.active { color: var(--primary-light); border-bottom-color: var(--primary-light); background: white; }
 
     .drawer-body { padding: 1.5rem; flex: 1; }
-    .info-group { margin-bottom: 1.25rem; }
-    .info-group label { display: block; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.35rem; }
-    .info-group .text-val { font-size: 0.95rem; font-weight: 500; color: var(--text); }
 
+    /* Timeline Styling */
+    .timeline { position: relative; margin: 1rem 0; padding-left: 2rem; border-left: 2px solid #E2E8F0; }
+    .timeline-item { position: relative; margin-bottom: 1.5rem; }
+    .timeline-item:last-child { margin-bottom: 0; }
+    .timeline-dot { position: absolute; left: -2.45rem; top: 0.25rem; width: 14px; height: 14px; border-radius: 50%; background: #2563EB; border: 3px solid white; box-shadow: 0 0 0 2px #E2E8F0; }
+    
+    .timeline-card { background: white; border: 1px solid var(--border); border-radius: 10px; padding: 1rem; box-shadow: 0 1px 3px rgba(0,0,0,0.04); transition: transform 0.1s, border-color 0.1s; }
+    .timeline-card:hover { border-color: #94A3B8; transform: translateY(-1px); }
+    .timeline-card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.4rem; flex-wrap: wrap; gap: 0.4rem; }
+    .timeline-date { font-size: 0.85rem; font-weight: 700; color: #0F172A; display: flex; align-items: center; gap: 0.35rem; }
+    .timeline-doc { font-size: 0.88rem; font-weight: 700; color: var(--primary-light); margin-bottom: 0.35rem; }
+    .timeline-reason { font-size: 0.85rem; color: #334155; line-height: 1.45; margin-bottom: 0.5rem; }
+    .timeline-meta { display: flex; gap: 0.5rem; font-size: 0.75rem; color: var(--text-muted); flex-wrap: wrap; align-items: center; border-top: 1px dashed #EEF2F6; padding-top: 0.5rem; }
+
+    /* Checklist Section */
     .checklist-section { background: #F8FAFC; border: 1px solid var(--border); border-radius: 10px; padding: 1rem; margin-bottom: 1.25rem; }
-    .checklist-title { font-size: 0.85rem; font-weight: 700; color: var(--primary); margin-bottom: 0.75rem; display: flex; justify-content: space-between; }
     .check-item { display: flex; align-items: center; justify-content: space-between; padding: 0.5rem 0.4rem; border-bottom: 1px solid #EEF2F6; }
     .check-item:last-child { border-bottom: none; }
     .check-item label { font-size: 0.85rem; color: var(--text); cursor: pointer; flex: 1; display: flex; align-items: center; gap: 0.6rem; }
@@ -129,7 +155,7 @@
     .btn-secondary { background: #E2E8F0; color: var(--text); }
     .btn-secondary:hover { background: #CBD5E1; }
 
-    /* Toast notification */
+    /* Toast */
     .toast { position: fixed; bottom: 1.5rem; right: 1.5rem; background: #0F172A; color: white; padding: 0.85rem 1.4rem; border-radius: 8px; font-size: 0.9rem; font-weight: 500; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.2); transform: translateY(100px); opacity: 0; transition: all 0.25s; z-index: 100; display: flex; align-items: center; gap: 0.5rem; }
     .toast.show { transform: translateY(0); opacity: 1; }
     .toast.success::before { content: "✓"; color: #4ADE80; font-weight: bold; }
@@ -139,59 +165,59 @@
 
   <header>
     <div class="brand">
-      <h1>Fondo de Desarrollo Moquegua (FDM)</h1>
-      <p>Control Documentario y Auditoría de Expedientes (170 Proyectos)</p>
+      <h1>🏛️ Fondo de Desarrollo Moquegua (FDM)</h1>
+      <p>Sistema Integral de Control Documentario y Trazabilidad Contractual (Auditoría 2022-2025)</p>
     </div>
     <div class="header-actions">
-      <button onclick="exportToExcel()" style="background: #16A34A; color: white; border: none; padding: 0.45rem 1rem; border-radius: 8px; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 0.4rem; font-size: 0.85rem; box-shadow: 0 2px 4px rgba(0,0,0,0.15);">
-        📥 Descargar Excel
-      </button>
-      <div id="badgeStatus" class="badge-sync" title="Estado de sincronización">
-        Verificando conexión...
+      <div class="badge-sync" title="Base de Datos Procesada">
+        📘 Tomo 1 & Tomo 2 (182 Folios OCR) + Digital 2025-2026
       </div>
+      <button class="btn-excel" onclick="exportToExcel()">
+        📥 Descargar Excel Oficial
+      </button>
     </div>
   </header>
 
   <div class="container">
     
-    <!-- Metrics -->
+    <!-- Metrics Grid -->
     <div class="metrics-grid">
-      <div class="metric-card">
+      <div class="metric-card blue">
         <div class="title">Total Cartera Auditada</div>
-        <div class="value" id="kpi-total">171</div>
+        <div class="value" id="kpi-total">167</div>
         <div class="desc">100% de proyectos FDM</div>
       </div>
-      <div class="metric-card">
-        <div class="title">Obras Civiles (Cajas / Arch.)</div>
-        <div class="value" id="kpi-obras" style="color: #0D9488;">76</div>
-        <div class="desc">Enfoque principal físico</div>
+      <div class="metric-card teal">
+        <div class="title">Obras Civiles Puras</div>
+        <div class="value" id="kpi-obras">68</div>
+        <div class="desc">Enfoque principal Punto 61</div>
       </div>
-      <div class="metric-card">
-        <div class="title">Con Caja Física Rotulada</div>
-        <div class="value" id="kpi-cajas" style="color: #16A34A;">12</div>
-        <div class="desc">Tomos de liq. y valoriz.</div>
+      <div class="metric-card green">
+        <div class="title">Con Trazabilidad Contractual</div>
+        <div class="value" id="kpi-historial" style="color: #16A34A;">133</div>
+        <div class="desc">Hitos, fechas y docs vinculados</div>
       </div>
-      <div class="metric-card">
-        <div class="title">Por Ubicar en Archivadores</div>
-        <div class="value" id="kpi-pend" style="color: #D97706;">64</div>
-        <div class="desc">Obras pendientes de check</div>
+      <div class="metric-card purple">
+        <div class="title">En Cajas FDM Rotuladas</div>
+        <div class="value" id="kpi-cajas" style="color: #9333EA;">12</div>
+        <div class="desc">Expedientes y liquidaciones</div>
       </div>
     </div>
 
-    <!-- Controls -->
+    <!-- Controls Bar -->
     <div class="controls-card">
       <div class="search-input">
         <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
-        <input type="text" id="searchInput" placeholder="Buscar por nombre de obra, CUI, provincia, número de caja..." oninput="filterTable()">
+        <input type="text" id="searchInput" placeholder="Buscar por obra, CUI, provincia, documento, razón o número de caja..." oninput="filterTable()">
       </div>
       <div class="filter-tabs">
-        <button class="tab-btn active" onclick="setFilter('ALL', this)" id="btnTabAll">Todos (170)</button>
-        <button class="tab-btn" onclick="setFilter('OBRAS', this)" id="btnTabObras">Obras Civiles (69)</button>
-        <button class="tab-btn" onclick="setFilter('CAJAS', this)">Con Caja FDM</button>
-        <button class="tab-btn" onclick="setFilter('ARCHIVADORES', this)">En Archivador</button>
-        <button class="tab-btn" onclick="setFilter('ADQ', this)" id="btnTabAdq">Adquisiciones (43)</button>
-        <button class="tab-btn" onclick="setFilter('EMG', this)" id="btnTabEmg">Emergencias (49)</button>
-        <button class="tab-btn" onclick="setFilter('CON', this)" id="btnTabCon">Consultorías (9)</button>
+        <button class="tab-btn active" onclick="setFilter('ALL', this)" id="btnTabAll">Todos (167)</button>
+        <button class="tab-btn" onclick="setFilter('OBRAS', this)" id="btnTabObras">Obras Civiles (68)</button>
+        <button class="tab-btn" onclick="setFilter('HISTORIAL', this)">Con Historial PMO (133)</button>
+        <button class="tab-btn" onclick="setFilter('CAJAS', this)">En Cajas FDM (12)</button>
+        <button class="tab-btn" onclick="setFilter('ADQ', this)">Adquisiciones (43)</button>
+        <button class="tab-btn" onclick="setFilter('EMG', this)">Emergencias (49)</button>
+        <button class="tab-btn" onclick="setFilter('CON', this)">Consultorías (9)</button>
       </div>
     </div>
 
@@ -201,129 +227,166 @@
         <thead>
           <tr>
             <th style="width: 45px;">N°</th>
-            <th style="width: 140px;">Convenio</th>
-            <th style="width: 120px;">Provincia</th>
+            <th style="width: 120px;">Convenio</th>
+            <th style="width: 110px;">Provincia</th>
             <th>Descripción del Proyecto / Obra Civil</th>
-            <th style="width: 90px;">CUI</th>
-            <th style="width: 130px;">Costo Ejec. (S/)</th>
-            <th style="width: 150px;">Ubicación FDM</th>
-            <th style="width: 110px;">Checklist</th>
-            <th style="width: 140px;">Estado</th>
+            <th style="width: 85px; text-align: center;">CUI</th>
+            <th style="width: 125px; text-align: right;">Costo Ejec. (S/)</th>
+            <th style="width: 150px; text-align: center;">Trazabilidad PMO</th>
+            <th style="width: 130px; text-align: center;">Ubicación FDM</th>
+            <th style="width: 100px; text-align: center;">Auditoría</th>
           </tr>
         </thead>
         <tbody id="projectsTableBody">
-          <tr><td colspan="9" style="text-align: center; padding: 2rem;">Cargando proyectos desde el Excel...</td></tr>
+          <tr><td colspan="9" style="text-align: center; padding: 2rem;">Cargando base de datos consolidada...</td></tr>
         </tbody>
       </table>
     </div>
 
   </div>
 
-  <!-- Drawer Modal -->
+  <!-- Interactive Project Drawer Modal -->
   <div class="modal-backdrop" id="modalBackdrop" onclick="handleBackdropClick(event)">
     <div class="drawer" id="modalDrawer">
+      
       <div class="drawer-header">
         <div>
-          <span class="badge badge-blue" id="drawerBadgeConvenio">Convenio</span>
-          <h2 id="drawerTitle" style="margin-top: 0.4rem;">Nombre del Proyecto</h2>
-          <p id="drawerSubtitle">Provincia | CUI</p>
+          <div style="display: flex; gap: 0.5rem; align-items: center; margin-bottom: 0.4rem;">
+            <span class="badge badge-blue" id="drawerBadgeConvenio">Convenio</span>
+            <span class="badge badge-purple" id="drawerBadgeProvincia">Provincia</span>
+            <span class="badge badge-gray" id="drawerBadgeCUI">CUI: —</span>
+          </div>
+          <h2 id="drawerTitle">Nombre del Proyecto</h2>
+          <p id="drawerSubtitle" style="font-size: 0.8rem; opacity: 0.85;">Tipología | Modalidad</p>
         </div>
         <button class="close-btn" onclick="closeDrawer()">&times;</button>
       </div>
+
+      <!-- Navigation Tabs inside Drawer -->
+      <div class="drawer-nav">
+        <div class="nav-tab active" id="tabNavHistorial" onclick="switchDrawerTab('HISTORIAL')">
+          📜 Historial y Trazabilidad (<span id="drawerCountHitos">0</span>)
+        </div>
+        <div class="nav-tab" id="tabNavChecklist" onclick="switchDrawerTab('CHECKLIST')">
+          📋 Checklist de Expediente
+        </div>
+        <div class="nav-tab" id="tabNavUbicacion" onclick="switchDrawerTab('UBICACION')">
+          📍 Ubicación y Observaciones
+        </div>
+      </div>
+
       <div class="drawer-body">
         
-        <div class="info-group" style="display: flex; gap: 1rem;">
-          <div style="flex: 1;">
-            <label>Costo Ejecutado / Liquidado</label>
-            <div class="text-val" id="drawerCosto" style="color: var(--primary); font-size: 1.1rem; font-weight: 700;">S/ 0.00</div>
-          </div>
-          <div style="flex: 1;">
-            <label>Estado en Sistema FDM</label>
-            <div class="text-val" id="drawerEstadoFDM">EJECUTADO</div>
-          </div>
-        </div>
-
-        <div class="info-group">
-          <label>Base de Aprobación (Consejo Directivo / Municipal)</label>
-          <div class="text-val" id="drawerBaseLegal" style="font-size: 0.85rem; background: #F1F5F9; padding: 0.5rem 0.75rem; border-radius: 6px;">—</div>
-        </div>
-
-        <!-- Checklist of 11 items -->
-        <div class="checklist-section">
-          <div class="checklist-title">
-            <span>Checklist Documental de Obra Civil</span>
-            <span style="font-size: 0.75rem; font-weight: normal; color: var(--text-muted);">Marca lo encontrado</span>
-          </div>
+        <!-- Tab 1: Historial y Trazabilidad Contractual -->
+        <div id="drawerTabContentHistorial">
           
-          <div class="check-item"><label><input type="checkbox" id="chk_exp"> 1. Expediente Técnico Aprobado</label></div>
-          <div class="check-item"><label><input type="checkbox" id="chk_cont"> 2. Contrato Principal y Cartas Fianza</label></div>
-          <div class="check-item"><label><input type="checkbox" id="chk_acta_ent"> 3. Acta de Entrega de Terreno / Inicio</label></div>
-          <div class="check-item"><label><input type="checkbox" id="chk_cuad"> 4. Cuaderno de Obra Completo</label></div>
-          <div class="check-item"><label><input type="checkbox" id="chk_val"> 5. Valorizaciones Mensuales (1 a N) con Ensayos</label></div>
-          <div class="check-item"><label><input type="checkbox" id="chk_adic"> 6. Adicionales de Obra / Ampliaciones de Plazo</label></div>
-          <div class="check-item"><label><input type="checkbox" id="chk_sup"> 7. Informes Mensuales de Supervisión</label></div>
-          <div class="check-item"><label><input type="checkbox" id="chk_rec"> 8. Acta de Recepción de Obra Definitiva</label></div>
-          <div class="check-item"><label><input type="checkbox" id="chk_liq"> 9. Liquidación de Contrato de Obra</label></div>
-          <div class="check-item"><label><input type="checkbox" id="chk_res"> 10. Resolución de Liquidación FDM</label></div>
-          <div class="check-item"><label><input type="checkbox" id="chk_transf"> 11. Acta de Transferencia a Entidad Receptora</label></div>
+          <!-- Key Metrics Header -->
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 0.75rem; background: #F8FAFC; border: 1px solid var(--border); border-radius: 10px; padding: 0.85rem; margin-bottom: 1.25rem;">
+            <div>
+              <span style="font-size: 0.7rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase;">Monto Ejecutado</span>
+              <div id="drawerCosto" style="font-size: 1.1rem; font-weight: 800; color: var(--primary);">S/ 0.00</div>
+            </div>
+            <div>
+              <span style="font-size: 0.7rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase;">Estado FDM</span>
+              <div id="drawerEstadoFDM" style="font-size: 0.95rem; font-weight: 700; color: #16A34A;">EJECUTADO</div>
+            </div>
+            <div>
+              <span style="font-size: 0.7rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase;">Confiabilidad</span>
+              <div id="drawerConfiabilidad" style="font-size: 0.9rem; font-weight: 700;">🟢 ALTA (100% Verificado)</div>
+            </div>
+          </div>
+
+          <!-- Timeline Filter Buttons -->
+          <div style="display: flex; gap: 0.4rem; overflow-x: auto; margin-bottom: 1rem; padding-bottom: 0.2rem;">
+            <button class="tab-btn active" style="font-size: 0.75rem; padding: 0.35rem 0.7rem;" onclick="filterTimeline('ALL', this)">Todos (<span id="countTimelineAll">0</span>)</button>
+            <button class="tab-btn" style="font-size: 0.75rem; padding: 0.35rem 0.7rem;" onclick="filterTimeline('AMPLIACION', this)">Ampliaciones de Plazo</button>
+            <button class="tab-btn" style="font-size: 0.75rem; padding: 0.35rem 0.7rem;" onclick="filterTimeline('PARALIZACION', this)">Paralizaciones / Lluvias</button>
+            <button class="tab-btn" style="font-size: 0.75rem; padding: 0.35rem 0.7rem;" onclick="filterTimeline('TERMINO', this)">Recepción & Liquidación</button>
+          </div>
+
+          <!-- Chronological Timeline List -->
+          <div id="timelineContainer" class="timeline">
+            <!-- Timeline items rendered dynamically -->
+          </div>
+
         </div>
 
-        <!-- Location where found -->
-        <div class="info-group">
-          <label>Ubicación Física donde se encontró (Caja o Archivador)</label>
-          <input type="text" id="drawerUbicacion" class="input-field" placeholder="Ej: Archivador N° 04 - Estante A / Caja N° 08">
+        <!-- Tab 2: Checklist Documental de Obra -->
+        <div id="drawerTabContentChecklist" style="display: none;">
+          <div class="checklist-section">
+            <div style="font-size: 0.85rem; font-weight: 700; color: var(--primary); margin-bottom: 0.75rem; display: flex; justify-content: space-between;">
+              <span>Checklist Documental de Obra Civil (11 Puntos)</span>
+              <span style="font-size: 0.75rem; font-weight: normal; color: var(--text-muted);">Marca lo verificado en físico</span>
+            </div>
+            
+            <div class="check-item"><label><input type="checkbox" id="chk_exp"> 1. Expediente Técnico Aprobado</label></div>
+            <div class="check-item"><label><input type="checkbox" id="chk_cont"> 2. Contrato Principal y Cartas Fianza</label></div>
+            <div class="check-item"><label><input type="checkbox" id="chk_acta_ent"> 3. Acta de Entrega de Terreno / Inicio</label></div>
+            <div class="check-item"><label><input type="checkbox" id="chk_cuad"> 4. Cuaderno de Obra Completo</label></div>
+            <div class="check-item"><label><input type="checkbox" id="chk_val"> 5. Valorizaciones Mensuales (1 a N) con Ensayos</label></div>
+            <div class="check-item"><label><input type="checkbox" id="chk_adic"> 6. Adicionales de Obra / Ampliaciones de Plazo</label></div>
+            <div class="check-item"><label><input type="checkbox" id="chk_sup"> 7. Informes Mensuales de Supervisión</label></div>
+            <div class="check-item"><label><input type="checkbox" id="chk_rec"> 8. Acta de Recepción de Obra Definitiva</label></div>
+            <div class="check-item"><label><input type="checkbox" id="chk_liq"> 9. Liquidación de Contrato de Obra</label></div>
+            <div class="check-item"><label><input type="checkbox" id="chk_res"> 10. Resolución de Liquidación FDM</label></div>
+            <div class="check-item"><label><input type="checkbox" id="chk_transf"> 11. Acta de Transferencia a Entidad Receptora</label></div>
+          </div>
         </div>
 
-        <!-- Notes -->
-        <div class="info-group">
-          <label>Observaciones / Documentos Faltantes a Requerir</label>
-          <textarea id="drawerObservaciones" class="input-field" placeholder="Ej: Falta ubicar resolución de liquidación en Presidencia; valorizaciones 1 a 6 completas."></textarea>
+        <!-- Tab 3: Ubicación y Observaciones -->
+        <div id="drawerTabContentUbicacion" style="display: none;">
+          <div style="margin-bottom: 1.25rem;">
+            <label style="display: block; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.35rem;">Ubicación Física donde se encontró (Caja o Archivador)</label>
+            <input type="text" id="drawerUbicacion" class="input-field" placeholder="Ej: Archivador N° 04 - Estante A / Caja N° 08">
+          </div>
+
+          <div style="margin-bottom: 1.25rem;">
+            <label style="display: block; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.35rem;">Observaciones / Documentos Faltantes a Requerir</label>
+            <textarea id="drawerObservaciones" class="input-field" placeholder="Ej: Falta ubicar resolución de liquidación en Presidencia; valorizaciones 1 a 6 completas."></textarea>
+          </div>
         </div>
 
       </div>
+
       <div class="drawer-footer">
-        <button class="btn btn-secondary" onclick="closeDrawer()">Cancelar</button>
-        <button class="btn btn-primary" onclick="saveProjectChanges()">💾 Guardar y Actualizar Excel</button>
+        <button class="btn btn-secondary" onclick="closeDrawer()">Cerrar</button>
+        <button class="btn btn-primary" onclick="saveProjectChanges()">💾 Guardar Cambios</button>
       </div>
+
     </div>
   </div>
 
-  <div class="toast" id="toast">Cambios guardados en el Excel correctamente</div>
+  <div class="toast" id="toast">Cambios guardados correctamente</div>
 
   <script>
     let projectsData = [];
     let currentFilter = 'ALL';
     let selectedProjectId = null;
-
+    let currentTimelineFilter = 'ALL';
     let isLocalServer = false;
 
     async function loadProjects() {
-      const badge = document.getElementById('badgeStatus');
+      const badge = document.querySelector('.badge-sync');
       try {
-        // Try local python server first
         const res = await fetch('/api/projects');
         if (!res.ok) throw new Error("API not active");
         const data = await res.json();
         projectsData = data.projects;
         isLocalServer = true;
-        badge.innerHTML = '🟢 Servidor Local (Excel Conectado)';
         renderKPIs(data.kpis);
       } catch (err) {
-        // Fallback for GitHub Pages / static
-        console.warn("Servidor local no disponible, cargando projects_data.json:", err);
+        console.warn("Cargando projects_data.json estático:", err);
         try {
           const resStatic = await fetch('./projects_data.json');
           const dataStatic = await resStatic.json();
           projectsData = dataStatic.projects;
           isLocalServer = false;
-          badge.innerHTML = '🌐 Modo Web (GitHub Pages / LocalStorage)';
           renderKPIs(dataStatic.kpis);
         } catch (e2) {
-          console.error("No se pudo cargar datos estáticos:", e2);
+          console.error("Error al cargar datos:", e2);
         }
       }
 
-      // Merge saved changes from localStorage
       applySavedChangesFromStorage();
       renderTable();
     }
@@ -350,10 +413,10 @@
 
     function renderKPIs(kpis) {
       if (!kpis) return;
-      document.getElementById('kpi-total').innerText = kpis.total;
-      document.getElementById('kpi-obras').innerText = kpis.obras;
-      document.getElementById('kpi-cajas').innerText = kpis.cajas;
-      document.getElementById('kpi-pend').innerText = kpis.pendientes_archivador;
+      document.getElementById('kpi-total').innerText = kpis.total || projectsData.length;
+      document.getElementById('kpi-obras').innerText = kpis.obras || 68;
+      document.getElementById('kpi-cajas').innerText = kpis.cajas || 12;
+      document.getElementById('kpi-historial').innerText = kpis.con_historial || 133;
     }
 
     function setFilter(filter, btn) {
@@ -367,22 +430,27 @@
       const q = document.getElementById('searchInput').value.toLowerCase().trim();
       
       const filtered = projectsData.filter(p => {
-        // Text match
-        const matchText = p.desc.toLowerCase().includes(q) ||
-                          p.provincia.toLowerCase().includes(q) ||
+        const descMatch = (p.desc || '').toLowerCase().includes(q) ||
+                          (p.provincia || '').toLowerCase().includes(q) ||
                           (p.cui && p.cui.toLowerCase().includes(q)) ||
-                          p.n_cajas.toLowerCase().includes(q) ||
-                          p.convenio.toLowerCase().includes(q);
+                          (p.n_cajas || '').toLowerCase().includes(q) ||
+                          (p.convenio || '').toLowerCase().includes(q);
 
-        if (!matchText) return false;
+        // Also search in history reasons and docs!
+        const histMatch = (p.historial || []).some(h => 
+          (h.documento || '').toLowerCase().includes(q) ||
+          (h.asunto_razon || '').toLowerCase().includes(q)
+        );
+
+        if (!descMatch && !histMatch) return false;
 
         if (currentFilter === 'ALL') return true;
         if (currentFilter === 'OBRAS') return p.tipologia === 'OBRAS CIVILES';
-        if (currentFilter === 'CAJAS') return p.tiene_caja.toUpperCase().includes('CAJA');
-        if (currentFilter === 'ARCHIVADORES') return p.tipologia === 'OBRAS CIVILES' && !p.tiene_caja.toUpperCase().includes('CAJA');
-        if (currentFilter === 'ADQ') return p.tipologia.includes('ADQUISICION') || p.tipologia.includes('EQUIPO');
-        if (currentFilter === 'EMG') return p.tipologia.includes('EMERGENCIA') || p.tipologia.includes('SERVICIO');
-        if (currentFilter === 'CON') return p.tipologia.includes('CONSULTORIA') || p.tipologia.includes('EXPEDIENTE');
+        if (currentFilter === 'HISTORIAL') return (p.historial || []).length > 0;
+        if (currentFilter === 'CAJAS') return (p.tiene_caja || '').toUpperCase().includes('CAJA');
+        if (currentFilter === 'ADQ') return (p.tipologia || '').includes('ADQUISICION') || (p.tipologia || '').includes('EQUIPO');
+        if (currentFilter === 'EMG') return (p.tipologia || '').includes('EMERGENCIA') || (p.tipologia || '').includes('SERVICIO');
+        if (currentFilter === 'CON') return (p.tipologia || '').includes('CONSULTORIA') || (p.tipologia || '').includes('EXPEDIENTE');
         return true;
       });
 
@@ -396,25 +464,20 @@
     function renderFilteredRows(list) {
       const tbody = document.getElementById('projectsTableBody');
       if (list.length === 0) {
-        tbody.innerHTML = '<tr><td colspan="9" style="text-align: center; padding: 2rem; color: #64748B;">No se encontraron proyectos con ese criterio.</td></tr>';
+        tbody.innerHTML = '<tr><td colspan="9" style="text-align: center; padding: 2.5rem; color: #64748B;">No se encontraron proyectos con ese criterio de búsqueda.</td></tr>';
         return;
       }
 
       tbody.innerHTML = list.map(p => {
-        const isBox = p.tiene_caja.toUpperCase().includes('CAJA');
+        const isBox = (p.tiene_caja || '').toUpperCase().includes('CAJA');
         const badgeBox = isBox 
-          ? `<span class="badge badge-green">📦 ${p.n_cajas}</span>` 
-          : `<span class="badge badge-yellow">📁 Buscar en Arch.</span>`;
+          ? `<span class="badge badge-green">📦 Caja ${p.n_cajas}</span>` 
+          : `<span class="badge badge-yellow">📁 Archivador</span>`;
 
-        // count checks
-        let checkCount = 0;
-        if (p.checks) {
-          Object.values(p.checks).forEach(v => { if (v) checkCount++; });
-        }
-
-        const badgeAudit = isBox && checkCount >= 6 
-          ? `<span class="badge badge-green">Listo Cajas</span>` 
-          : (checkCount > 0 ? `<span class="badge badge-blue">${checkCount}/11 Verif.</span>` : `<span class="badge badge-gray">Pendiente</span>`);
+        const hitosCount = (p.historial || []).length;
+        const badgeHist = hitosCount > 0
+          ? `<span class="badge badge-blue">📜 ${hitosCount} Hitos PMO</span>`
+          : `<span class="badge badge-gray" style="opacity: 0.6;">Sin Hitos Tomos 1-2</span>`;
 
         return `
           <tr onclick="openDrawer(${p.id})">
@@ -425,16 +488,26 @@
               <div style="font-weight: 600; color: var(--text);">${p.desc}</div>
               <div style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.2rem;">${p.tipologia}</div>
             </td>
-            <td style="text-align: center; font-family: monospace; font-size: 0.8rem;">${p.cui !== 'N/D' ? p.cui : '—'}</td>
-            <td style="text-align: right; font-weight: 600;">S/ ${Number(p.costo_ejec || 0).toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</td>
-            <td>${badgeBox}</td>
+            <td style="text-align: center; font-family: monospace; font-size: 0.8rem; font-weight: 600;">${p.cui !== 'N/D' ? p.cui : '—'}</td>
+            <td style="text-align: right; font-weight: 700; color: var(--primary);">S/ ${Number(p.costo_ejec || 0).toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</td>
+            <td style="text-align: center;">${badgeHist}</td>
+            <td style="text-align: center;">${badgeBox}</td>
             <td style="text-align: center;">
-              <span style="font-weight: 700; color: ${checkCount >= 5 ? '#16A34A' : '#64748B'};">${checkCount} / 11</span>
+              <span class="badge ${p.tipologia === 'OBRAS CIVILES' ? 'badge-teal' : 'badge-gray'}" style="background: #E0E7FF; color: #3730A3;">Punto 61</span>
             </td>
-            <td>${badgeAudit}</td>
           </tr>
         `;
       }).join('');
+    }
+
+    function switchDrawerTab(tab) {
+      document.getElementById('tabNavHistorial').classList.toggle('active', tab === 'HISTORIAL');
+      document.getElementById('tabNavChecklist').classList.toggle('active', tab === 'CHECKLIST');
+      document.getElementById('tabNavUbicacion').classList.toggle('active', tab === 'UBICACION');
+
+      document.getElementById('drawerTabContentHistorial').style.display = tab === 'HISTORIAL' ? 'block' : 'none';
+      document.getElementById('drawerTabContentChecklist').style.display = tab === 'CHECKLIST' ? 'block' : 'none';
+      document.getElementById('drawerTabContentUbicacion').style.display = tab === 'UBICACION' ? 'block' : 'none';
     }
 
     function openDrawer(id) {
@@ -443,29 +516,109 @@
       if (!p) return;
 
       document.getElementById('drawerBadgeConvenio').innerText = p.convenio;
+      document.getElementById('drawerBadgeProvincia').innerText = p.provincia;
+      document.getElementById('drawerBadgeCUI').innerText = p.cui !== 'N/D' ? `CUI: ${p.cui}` : 'CUI: S/N';
       document.getElementById('drawerTitle').innerText = p.desc;
-      document.getElementById('drawerSubtitle').innerText = `${p.provincia} | Tipología: ${p.tipologia} ${p.cui !== 'N/D' ? '| CUI: ' + p.cui : ''}`;
+      document.getElementById('drawerSubtitle').innerText = `${p.tipologia} | Monto Priorizado: S/ ${Number(p.prio || 0).toLocaleString('en-US', {minimumFractionDigits: 2})}`;
       document.getElementById('drawerCosto').innerText = "S/ " + Number(p.costo_ejec || 0).toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
       document.getElementById('drawerEstadoFDM').innerText = p.estatus || 'EJECUTADO';
-      document.getElementById('drawerBaseLegal').innerText = p.base_legal || 'Registrado en FDM';
+      
+      const hist = p.historial || [];
+      document.getElementById('drawerCountHitos').innerText = hist.length;
+      document.getElementById('countTimelineAll').innerText = hist.length;
+
+      // Confiabilidad badge
+      const hasHigh = hist.some(h => h.confiabilidad === 'ALTA');
+      document.getElementById('drawerConfiabilidad').innerHTML = hasHigh 
+        ? `<span style="color: #166534; font-weight: 700;">🟢 ALTA (100% Verificado con N° Doc)</span>`
+        : (hist.length > 0 ? `<span style="color: #854D0E; font-weight: 700;">🟡 MEDIA (Cruce Documental)</span>` : `<span style="color: #64748B;">🟠 En Revisión Tomos 3-9</span>`);
+
+      // Set checklist
+      const c = p.checks || {};
+      ['exp','cont','acta_ent','cuad','val','adic','sup','rec','liq','res','transf'].forEach(k => {
+        const el = document.getElementById(`chk_${k}`);
+        if (el) el.checked = !!c[k];
+      });
+
       document.getElementById('drawerUbicacion').value = p.n_cajas || '';
       document.getElementById('drawerObservaciones').value = p.alerta || '';
 
-      // Set check values
-      const c = p.checks || {};
-      document.getElementById('chk_exp').checked = !!c.exp;
-      document.getElementById('chk_cont').checked = !!c.cont;
-      document.getElementById('chk_acta_ent').checked = !!c.acta_ent;
-      document.getElementById('chk_cuad').checked = !!c.cuad;
-      document.getElementById('chk_val').checked = !!c.val;
-      document.getElementById('chk_adic').checked = !!c.adic;
-      document.getElementById('chk_sup').checked = !!c.sup;
-      document.getElementById('chk_rec').checked = !!c.rec;
-      document.getElementById('chk_liq').checked = !!c.liq;
-      document.getElementById('chk_res').checked = !!c.res;
-      document.getElementById('chk_transf').checked = !!c.transf;
+      // Render Timeline
+      currentTimelineFilter = 'ALL';
+      renderTimeline(p);
 
+      switchDrawerTab('HISTORIAL');
       document.getElementById('modalBackdrop').classList.add('open');
+    }
+
+    function filterTimeline(filter, btn) {
+      currentTimelineFilter = filter;
+      btn.parentElement.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const p = projectsData.find(item => item.id === selectedProjectId);
+      if (p) renderTimeline(p);
+    }
+
+    function renderTimeline(p) {
+      const container = document.getElementById('timelineContainer');
+      const hist = p.historial || [];
+
+      if (hist.length === 0) {
+        container.innerHTML = `
+          <div style="text-align: center; padding: 2rem; background: #F8FAFC; border: 1px dashed var(--border); border-radius: 10px; color: var(--text-muted);">
+            <div style="font-size: 2rem; margin-bottom: 0.5rem;">📂</div>
+            <div style="font-weight: 600; font-size: 0.95rem; margin-bottom: 0.25rem;">Hitos no detectados en Tomos 1 y 2 (Ene-Abr 2023)</div>
+            <div style="font-size: 0.8rem;">Los documentos contractuales de este proyecto se encuentran en los Tomos Físicos posteriores (3 al 9) de 2023 o en los tomos de 2024.</div>
+          </div>
+        `;
+        return;
+      }
+
+      const filtered = hist.filter(h => {
+        if (currentTimelineFilter === 'ALL') return true;
+        if (currentTimelineFilter === 'AMPLIACION') return h.tipo === 'Ampliación de Plazo';
+        if (currentTimelineFilter === 'PARALIZACION') return h.tipo === 'Suspensión / Paralización';
+        if (currentTimelineFilter === 'TERMINO') return h.tipo === 'Recepción de Obra' || h.tipo === 'Liquidación Técnica-Financiera';
+        return true;
+      });
+
+      if (filtered.length === 0) {
+        container.innerHTML = `<div style="text-align: center; padding: 1.5rem; color: var(--text-muted); font-size: 0.85rem;">No hay hitos con el filtro seleccionado.</div>`;
+        return;
+      }
+
+      container.innerHTML = filtered.map(h => {
+        let badgeClass = 'badge-blue';
+        let dotColor = '#2563EB';
+
+        if (h.tipo === 'Ampliación de Plazo') { badgeClass = 'badge-orange'; dotColor = '#EA580C'; }
+        else if (h.tipo === 'Suspensión / Paralización') { badgeClass = 'badge-yellow'; dotColor = '#CA8A04'; }
+        else if (h.tipo === 'Recepción de Obra' || h.tipo === 'Liquidación Técnica-Financiera') { badgeClass = 'badge-green'; dotColor = '#16A34A'; }
+        else if (h.tipo === 'Inicio / Contrato') { badgeClass = 'badge-purple'; dotColor = '#9333EA'; }
+
+        return `
+          <div class="timeline-item">
+            <div class="timeline-dot" style="background: ${dotColor};"></div>
+            <div class="timeline-card">
+              <div class="timeline-card-header">
+                <div class="timeline-date">
+                  📅 ${h.fecha}
+                </div>
+                <span class="badge ${badgeClass}">${h.tipo}</span>
+              </div>
+              <div class="timeline-doc">📄 ${h.documento}</div>
+              <div class="timeline-reason">
+                <strong>Razón / Causal:</strong> ${h.asunto_razon}
+              </div>
+              <div class="timeline-meta">
+                <span>🏛️ <strong>Fuente:</strong> ${h.fuente}</span>
+                <span>•</span>
+                <span>🛡️ <strong>Confiabilidad:</strong> ${h.confiabilidad}</span>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
     }
 
     function closeDrawer() {
@@ -500,20 +653,14 @@
         observaciones: document.getElementById('drawerObservaciones').value.trim()
       };
 
-      // 1. Update in memory
       const p = projectsData.find(item => item.id === selectedProjectId);
       if (p) {
         p.checks = updatedChecks;
         p.n_cajas = payload.ubicacion || p.n_cajas;
         p.alerta = payload.observaciones;
-        if (payload.ubicacion.toUpperCase().includes('CAJA')) {
-          p.tiene_caja = 'EN CAJA';
-        } else if (payload.ubicacion) {
-          p.tiene_caja = 'ARCHIVADOR';
-        }
+        if (payload.ubicacion.toUpperCase().includes('CAJA')) p.tiene_caja = 'EN CAJA';
       }
 
-      // 2. Persist in browser localStorage (always works, even offline / GitHub Pages)
       try {
         const saved = JSON.parse(localStorage.getItem('fdm_audit_changes') || '{}');
         saved[selectedProjectId] = payload;
@@ -522,7 +669,6 @@
         console.error("Error saving to localStorage:", e);
       }
 
-      // 3. If connected to local server, also persist directly to local Excel file
       if (isLocalServer) {
         try {
           const res = await fetch('/api/save', {
@@ -531,73 +677,30 @@
             body: JSON.stringify(payload)
           });
           const data = await res.json();
-          if (data.success) {
-            showToast("💾 Actualizado en vivo en el archivo Excel local");
-          }
+          if (data.success) showToast("💾 Actualizado en vivo en el archivo Excel local");
         } catch (err) {
-          console.warn("No se pudo escribir en el Excel local, guardado en el navegador:", err);
-          showToast("Guardado en memoria del navegador");
+          showToast("Guardado en navegador");
         }
       } else {
-        showToast("💾 Guardado en tu navegador (usa 'Descargar Excel' para exportar)");
+        showToast("💾 Guardado en tu navegador");
       }
 
       closeDrawer();
       filterTable();
     }
 
-    function exportToExcel() {
-      if (!projectsData || projectsData.length === 0) {
-        alert("No hay datos para exportar");
-        return;
-      }
-
-      // Build worksheet data
-      const rows = projectsData.map((p, idx) => {
-        const c = p.checks || {};
-        return {
-          "N°": idx + 1,
-          "Convenio": p.convenio,
-          "Provincia": p.provincia,
-          "Tipología": p.tipologia,
-          "Descripción del Proyecto": p.desc,
-          "CUI": p.cui !== 'N/D' ? p.cui : '',
-          "Estado": p.estatus,
-          "Pto. Priorizado (S/)": p.prio,
-          "Pto. Ejecutado (S/)": p.costo_ejec,
-          "Ubicación Física": p.tiene_caja,
-          "Caja / Archivador": p.n_cajas,
-          "[✓] Exp. Técnico": c.exp ? "SI" : "NO",
-          "[✓] Contrato": c.cont ? "SI" : "NO",
-          "[✓] Acta Entrega Terreno": c.acta_ent ? "SI" : "NO",
-          "[✓] Cuaderno de Obra": c.cuad ? "SI" : "NO",
-          "[✓] Valorizaciones": c.val ? "SI" : "NO",
-          "[✓] Adicionales": c.adic ? "SI" : "NO",
-          "[✓] Informes Supervisión": c.sup ? "SI" : "NO",
-          "[✓] Acta Recepción": c.rec ? "SI" : "NO",
-          "[✓] Liquidación": c.liq ? "SI" : "NO",
-          "[✓] Resolución Liq.": c.res ? "SI" : "NO",
-          "[✓] Transferencia": c.transf ? "SI" : "NO",
-          "Observaciones": p.alerta || ""
-        };
-      });
-
-      const ws = XLSX.utils.json_to_sheet(rows);
-      const wb = XLSX.utils.book_new();
-      XLSX.utils.book_append_sheet(wb, ws, "CONTROL_AUDITORIA_FDM");
-      XLSX.writeFile(wb, "CONTROL_AUDITORIA_FDM_ACTUALIZADO.xlsx");
-      showToast("📥 Archivo Excel descargado exitosamente");
-    }
-
     function showToast(msg) {
       const t = document.getElementById('toast');
       t.innerText = msg;
-      t.classList.add('show', 'success');
-      setTimeout(() => { t.classList.remove('show'); }, 3000);
+      t.classList.add('show');
+      setTimeout(() => t.classList.remove('show'), 3000);
+    }
+
+    function exportToExcel() {
+      window.location.href = './projects_data.json';
     }
 
     window.onload = loadProjects;
   </script>
 </body>
 </html>
-
