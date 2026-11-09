@@ -7,11 +7,11 @@
     "obras_civiles": 69,
     "con_historial": 141,
     "en_caja": 20,
-    "con_fecha_inicio": 155,
-    "sin_fecha_inicio": 12,
-    "info_completa": 67,
-    "info_parcial": 80,
-    "info_incompleta": 16,
+    "con_fecha_inicio": 63,
+    "sin_fecha_inicio": 104,
+    "info_completa": 62,
+    "info_parcial": 79,
+    "info_incompleta": 22,
     "no_aplica": 4
   },
   "projects": [
@@ -831,19 +831,21 @@
         }
       ],
       "total_hitos": 47,
-      "fecha_inicio": "Iniciada en periodo 2020-2021",
-      "fecha_inicio_sort": "2020-01-01",
-      "tiene_fecha_inicio": true,
-      "fecha_inicio_doc": "Matriz Entregable 1 + Estados Financieros FDM",
+      "fecha_inicio": "",
+      "fecha_inicio_sort": "9999-99-99",
+      "tiene_fecha_inicio": false,
+      "fecha_inicio_doc": "Pendiente de ubicar Acta de Entrega de Terreno o Ficha N° 01 en Tomos/Archivo",
       "fecha_termino_prog": "2022",
       "fecha_culminacion_real": "2022",
       "acta_recepcion": "Acta de Recepción 2022",
       "resolucion_liquidacion": "Liquidada 2022-2023",
-      "estado_info": "COMPLETA",
-      "estado_info_label": "🟢 TRAZABILIDAD INTEGRAL",
-      "estado_info_desc": "Cuenta con documentos de inicio y recepción/liquidación en Tomos PMO escaneados",
-      "detalles_faltantes": [],
-      "confiabilidad": "ALTA"
+      "estado_info": "PARCIAL",
+      "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
+      "estado_info_desc": "Hitos en Tomos (47 registros); faltan documentos clave para sustento pleno",
+      "detalles_faltantes": [
+        "Falta ubicar Acta de Entrega de Terreno o Ficha N° 01 (Fecha exacta de inicio)"
+      ],
+      "confiabilidad": "MEDIA"
     },
     {
       "id": 3,
@@ -873,21 +875,23 @@
       "alerta": "BUSCAR EN ARCHIVADORES / FALTAN DOCUMENTOS",
       "historial": [],
       "total_hitos": 0,
-      "fecha_inicio": "Iniciada en periodo 2020-2021",
-      "fecha_inicio_sort": "2020-01-01",
-      "tiene_fecha_inicio": true,
-      "fecha_inicio_doc": "Matriz Entregable 1 + Estados Financieros FDM",
+      "fecha_inicio": "",
+      "fecha_inicio_sort": "9999-99-99",
+      "tiene_fecha_inicio": false,
+      "fecha_inicio_doc": "Pendiente de ubicar Acta de Entrega de Terreno o Ficha N° 01 en Tomos/Archivo",
       "fecha_termino_prog": "2022",
       "fecha_culminacion_real": "2022",
       "acta_recepcion": "Acta de Recepción 2022",
       "resolucion_liquidacion": "Liquidada 2022-2023",
-      "estado_info": "PARCIAL",
-      "estado_info_label": "🟡 REGISTRO HISTÓRICO",
-      "estado_info_desc": "Figura en matriz histórica 2020-2022; falta ubicar expediente físico en Tomos 7-9 o archivador",
+      "estado_info": "INCOMPLETA",
+      "estado_info_label": "🔴 INFORMACIÓN PENDIENTE",
+      "estado_info_desc": "Sin documentos en Tomos 1 al 6 ni caja identificada; requiere búsqueda prioritaria",
       "detalles_faltantes": [
-        "Falta ubicar expediente físico o Tomos de liquidación 2020-2022"
+        "Falta ubicar expediente completo",
+        "Falta Acta de Inicio",
+        "Falta Liquidación"
       ],
-      "confiabilidad": "MEDIA"
+      "confiabilidad": "BAJA"
     },
     {
       "id": 4,
@@ -917,21 +921,23 @@
       "alerta": "BUSCAR EN ARCHIVADORES / FALTAN DOCUMENTOS",
       "historial": [],
       "total_hitos": 0,
-      "fecha_inicio": "Iniciada en periodo 2020-2021",
-      "fecha_inicio_sort": "2020-01-01",
-      "tiene_fecha_inicio": true,
-      "fecha_inicio_doc": "Matriz Entregable 1 + Estados Financieros FDM",
+      "fecha_inicio": "",
+      "fecha_inicio_sort": "9999-99-99",
+      "tiene_fecha_inicio": false,
+      "fecha_inicio_doc": "Pendiente de ubicar Acta de Entrega de Terreno o Ficha N° 01 en Tomos/Archivo",
       "fecha_termino_prog": "2022",
       "fecha_culminacion_real": "2022",
       "acta_recepcion": "Acta de Recepción 2022",
       "resolucion_liquidacion": "Liquidada 2022-2023",
-      "estado_info": "PARCIAL",
-      "estado_info_label": "🟡 REGISTRO HISTÓRICO",
-      "estado_info_desc": "Figura en matriz histórica 2020-2022; falta ubicar expediente físico en Tomos 7-9 o archivador",
+      "estado_info": "INCOMPLETA",
+      "estado_info_label": "🔴 INFORMACIÓN PENDIENTE",
+      "estado_info_desc": "Sin documentos en Tomos 1 al 6 ni caja identificada; requiere búsqueda prioritaria",
       "detalles_faltantes": [
-        "Falta ubicar expediente físico o Tomos de liquidación 2020-2022"
+        "Falta ubicar expediente completo",
+        "Falta Acta de Inicio",
+        "Falta Liquidación"
       ],
-      "confiabilidad": "MEDIA"
+      "confiabilidad": "BAJA"
     },
     {
       "id": 5,
@@ -961,21 +967,23 @@
       "alerta": "BUSCAR EN ARCHIVADORES / FALTAN DOCUMENTOS",
       "historial": [],
       "total_hitos": 0,
-      "fecha_inicio": "Iniciada en periodo 2020-2021",
-      "fecha_inicio_sort": "2020-01-01",
-      "tiene_fecha_inicio": true,
-      "fecha_inicio_doc": "Matriz Entregable 1 + Estados Financieros FDM",
+      "fecha_inicio": "",
+      "fecha_inicio_sort": "9999-99-99",
+      "tiene_fecha_inicio": false,
+      "fecha_inicio_doc": "Pendiente de ubicar Acta de Entrega de Terreno o Ficha N° 01 en Tomos/Archivo",
       "fecha_termino_prog": "2022",
       "fecha_culminacion_real": "2022",
       "acta_recepcion": "Acta de Recepción 2022",
       "resolucion_liquidacion": "Liquidada 2022-2023",
-      "estado_info": "PARCIAL",
-      "estado_info_label": "🟡 REGISTRO HISTÓRICO",
-      "estado_info_desc": "Figura en matriz histórica 2020-2022; falta ubicar expediente físico en Tomos 7-9 o archivador",
+      "estado_info": "INCOMPLETA",
+      "estado_info_label": "🔴 INFORMACIÓN PENDIENTE",
+      "estado_info_desc": "Sin documentos en Tomos 1 al 6 ni caja identificada; requiere búsqueda prioritaria",
       "detalles_faltantes": [
-        "Falta ubicar expediente físico o Tomos de liquidación 2020-2022"
+        "Falta ubicar expediente completo",
+        "Falta Acta de Inicio",
+        "Falta Liquidación"
       ],
-      "confiabilidad": "MEDIA"
+      "confiabilidad": "BAJA"
     },
     {
       "id": 6,
@@ -1062,19 +1070,19 @@
         }
       ],
       "total_hitos": 7,
-      "fecha_inicio": "Aprox. 17 de mayo del 2021 (Primer Hito PMO)",
-      "fecha_inicio_sort": "2021-05-17",
-      "tiene_fecha_inicio": true,
-      "fecha_inicio_doc": "Folio 10 (Tomo 2 PMO (Folio 10))",
+      "fecha_inicio": "",
+      "fecha_inicio_sort": "9999-99-99",
+      "tiene_fecha_inicio": false,
+      "fecha_inicio_doc": "Pendiente de ubicar Acta de Entrega de Terreno o Ficha N° 01 en Tomos/Archivo",
       "fecha_termino_prog": "",
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
       "estado_info": "PARCIAL",
       "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
-      "estado_info_desc": "Cuenta con hitos de ejecución y cierre; falta acta de inicio",
+      "estado_info_desc": "Hitos en Tomos (7 registros); faltan documentos clave para sustento pleno",
       "detalles_faltantes": [
-        "Falta Acta de Inicio en Tomos"
+        "Falta ubicar Acta de Entrega de Terreno o Ficha N° 01 (Fecha exacta de inicio)"
       ],
       "confiabilidad": "MEDIA"
     },
@@ -1106,10 +1114,10 @@
       "alerta": "BUSCAR EN ARCHIVADORES / FALTAN DOCUMENTOS",
       "historial": [],
       "total_hitos": 0,
-      "fecha_inicio": "No Ejecutada (Exp. Observado)",
-      "fecha_inicio_sort": "2020-01-01",
-      "tiene_fecha_inicio": true,
-      "fecha_inicio_doc": "No aplica fecha de inicio de obra física: Proyecto en formulación con Expediente Técnico Observado (S/ 0.00 ejecutado).",
+      "fecha_inicio": "",
+      "fecha_inicio_sort": "9999-99-99",
+      "tiene_fecha_inicio": false,
+      "fecha_inicio_doc": "Pendiente de ubicar Acta de Entrega de Terreno o Ficha N° 01 en Tomos/Archivo",
       "fecha_termino_prog": "",
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
@@ -2290,19 +2298,21 @@
         }
       ],
       "total_hitos": 74,
-      "fecha_inicio": "Segundo Semestre 2022",
-      "fecha_inicio_sort": "2022-01-01",
-      "tiene_fecha_inicio": true,
-      "fecha_inicio_doc": "Tomo 1 PMO Págs. 18, 48, 62 (Cartas 018 y 026-SUP)",
+      "fecha_inicio": "",
+      "fecha_inicio_sort": "9999-99-99",
+      "tiene_fecha_inicio": false,
+      "fecha_inicio_doc": "Pendiente de ubicar Acta de Entrega de Terreno o Ficha N° 01 en Tomos/Archivo",
       "fecha_termino_prog": "Enero 2023",
       "fecha_culminacion_real": "15/02/2023 (Val N° 03)",
       "acta_recepcion": "06/02/2023 (Comité Recepción MPI - Pág 48 Tomo 1)",
       "resolucion_liquidacion": "Liquidación Técnica 2023",
-      "estado_info": "COMPLETA",
-      "estado_info_label": "🟢 TRAZABILIDAD INTEGRAL",
-      "estado_info_desc": "Cuenta con documentos de inicio y recepción/liquidación en Tomos PMO escaneados",
-      "detalles_faltantes": [],
-      "confiabilidad": "ALTA"
+      "estado_info": "PARCIAL",
+      "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
+      "estado_info_desc": "Hitos en Tomos (74 registros); faltan documentos clave para sustento pleno",
+      "detalles_faltantes": [
+        "Falta ubicar Acta de Entrega de Terreno o Ficha N° 01 (Fecha exacta de inicio)"
+      ],
+      "confiabilidad": "MEDIA"
     },
     {
       "id": 10,
@@ -2847,7 +2857,7 @@
       "resolucion_liquidacion": "",
       "estado_info": "COMPLETA",
       "estado_info_label": "🟢 TRAZABILIDAD INTEGRAL",
-      "estado_info_desc": "Cuenta con documentos de inicio y recepción/liquidación en Tomos PMO escaneados",
+      "estado_info_desc": "Cuenta con fecha exacta de inicio y cierre verificado en Tomos PMO escaneados",
       "detalles_faltantes": [],
       "confiabilidad": "ALTA"
     },
@@ -2879,10 +2889,10 @@
       "alerta": "BUSCAR EN ARCHIVADORES / FALTAN DOCUMENTOS",
       "historial": [],
       "total_hitos": 0,
-      "fecha_inicio": "No Ejecutada (Exp. Observado)",
-      "fecha_inicio_sort": "2020-01-01",
-      "tiene_fecha_inicio": true,
-      "fecha_inicio_doc": "No aplica fecha de inicio de obra física: Expediente Técnico observado, sin inicio físico de obra (S/ 0.00 ejecutado).",
+      "fecha_inicio": "",
+      "fecha_inicio_sort": "9999-99-99",
+      "tiene_fecha_inicio": false,
+      "fecha_inicio_doc": "Pendiente de ubicar Acta de Entrega de Terreno o Ficha N° 01 en Tomos/Archivo",
       "fecha_termino_prog": "",
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
@@ -3526,7 +3536,7 @@
       "resolucion_liquidacion": "",
       "estado_info": "COMPLETA",
       "estado_info_label": "🟢 TRAZABILIDAD INTEGRAL",
-      "estado_info_desc": "Cuenta con documentos de inicio y recepción/liquidación en Tomos PMO escaneados",
+      "estado_info_desc": "Cuenta con fecha exacta de inicio y cierre verificado en Tomos PMO escaneados",
       "detalles_faltantes": [],
       "confiabilidad": "ALTA"
     },
@@ -5316,7 +5326,7 @@
       "resolucion_liquidacion": "",
       "estado_info": "COMPLETA",
       "estado_info_label": "🟢 TRAZABILIDAD INTEGRAL",
-      "estado_info_desc": "Cuenta con documentos de inicio y recepción/liquidación en Tomos PMO escaneados",
+      "estado_info_desc": "Cuenta con fecha exacta de inicio y cierre verificado en Tomos PMO escaneados",
       "detalles_faltantes": [],
       "confiabilidad": "ALTA"
     },
@@ -5365,19 +5375,19 @@
         }
       ],
       "total_hitos": 2,
-      "fecha_inicio": "Aprox. 13 de agosto del 2026 (Primer Hito PMO)",
-      "fecha_inicio_sort": "2026-08-13",
-      "tiene_fecha_inicio": true,
-      "fecha_inicio_doc": "Carta Nº    - 2026-D (Secretaría Digital (cartas 2026\\INF_789-2026- cHIL))",
+      "fecha_inicio": "",
+      "fecha_inicio_sort": "9999-99-99",
+      "tiene_fecha_inicio": false,
+      "fecha_inicio_doc": "Pendiente de ubicar Acta de Entrega de Terreno o Ficha N° 01 en Tomos/Archivo",
       "fecha_termino_prog": "",
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
       "estado_info": "PARCIAL",
       "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
-      "estado_info_desc": "Cuenta con hitos de ejecución y cierre; falta acta de inicio",
+      "estado_info_desc": "Hitos en Tomos (2 registros); faltan documentos clave para sustento pleno",
       "detalles_faltantes": [
-        "Falta Acta de Inicio en Tomos"
+        "Falta ubicar Acta de Entrega de Terreno o Ficha N° 01 (Fecha exacta de inicio)"
       ],
       "confiabilidad": "MEDIA"
     },
@@ -5634,10 +5644,10 @@
         }
       ],
       "total_hitos": 28,
-      "fecha_inicio": "Aprox. 13 de agosto del 2021 (Primer Hito PMO)",
-      "fecha_inicio_sort": "2021-08-13",
-      "tiene_fecha_inicio": true,
-      "fecha_inicio_doc": "CARTA N0016-2023-RADA-SO-FDM (Tomo 3 PMO (Folio 37))",
+      "fecha_inicio": "",
+      "fecha_inicio_sort": "9999-99-99",
+      "tiene_fecha_inicio": false,
+      "fecha_inicio_doc": "Pendiente de ubicar Acta de Entrega de Terreno o Ficha N° 01 en Tomos/Archivo",
       "fecha_termino_prog": "",
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
@@ -5645,7 +5655,9 @@
       "estado_info": "COMPLETA",
       "estado_info_label": "🟢 EXPEDIENTE EN CAJA FDM",
       "estado_info_desc": "Expediente físico verificado en EN CAJA con liquidación técnica-financiera",
-      "detalles_faltantes": [],
+      "detalles_faltantes": [
+        "Acta de Inicio en revisión dentro del expediente físico de la Caja"
+      ],
       "confiabilidad": "ALTA"
     },
     {
@@ -5781,19 +5793,19 @@
         }
       ],
       "total_hitos": 13,
-      "fecha_inicio": "Aprox. 17 de noviembre del 2022 (Primer Hito PMO)",
-      "fecha_inicio_sort": "2022-11-17",
-      "tiene_fecha_inicio": true,
-      "fecha_inicio_doc": "Folio 25 (Tomo 1 PMO (Folio 25))",
+      "fecha_inicio": "",
+      "fecha_inicio_sort": "9999-99-99",
+      "tiene_fecha_inicio": false,
+      "fecha_inicio_doc": "Pendiente de ubicar Acta de Entrega de Terreno o Ficha N° 01 en Tomos/Archivo",
       "fecha_termino_prog": "",
       "fecha_culminacion_real": "",
       "acta_recepcion": "10/03/2023 (Tomo 3 Folio 4)",
       "resolucion_liquidacion": "",
       "estado_info": "PARCIAL",
       "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
-      "estado_info_desc": "Cuenta con hitos de ejecución y cierre; falta acta de inicio",
+      "estado_info_desc": "Hitos en Tomos (13 registros); faltan documentos clave para sustento pleno",
       "detalles_faltantes": [
-        "Falta Acta de Inicio en Tomos"
+        "Falta ubicar Acta de Entrega de Terreno o Ficha N° 01 (Fecha exacta de inicio)"
       ],
       "confiabilidad": "MEDIA"
     },
@@ -5890,19 +5902,19 @@
         }
       ],
       "total_hitos": 8,
-      "fecha_inicio": "Aprox. 13 de agosto del 2021 (Primer Hito PMO)",
-      "fecha_inicio_sort": "2021-08-13",
-      "tiene_fecha_inicio": true,
-      "fecha_inicio_doc": "CARTA N0016-2023-RADA-SO-FDM (Tomo 3 PMO (Folio 37))",
+      "fecha_inicio": "",
+      "fecha_inicio_sort": "9999-99-99",
+      "tiene_fecha_inicio": false,
+      "fecha_inicio_doc": "Pendiente de ubicar Acta de Entrega de Terreno o Ficha N° 01 en Tomos/Archivo",
       "fecha_termino_prog": "",
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
       "estado_info": "PARCIAL",
       "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
-      "estado_info_desc": "Cuenta con hitos de ejecución y cierre; falta acta de inicio",
+      "estado_info_desc": "Hitos en Tomos (8 registros); faltan documentos clave para sustento pleno",
       "detalles_faltantes": [
-        "Falta Acta de Inicio en Tomos"
+        "Falta ubicar Acta de Entrega de Terreno o Ficha N° 01 (Fecha exacta de inicio)"
       ],
       "confiabilidad": "MEDIA"
     },
@@ -6841,7 +6853,7 @@
       "resolucion_liquidacion": "En observaciones de liquidación técnica (Tomo 5 Folios 1 y 72)",
       "estado_info": "COMPLETA",
       "estado_info_label": "🟢 TRAZABILIDAD INTEGRAL",
-      "estado_info_desc": "Cuenta con documentos de inicio y recepción/liquidación en Tomos PMO escaneados",
+      "estado_info_desc": "Cuenta con fecha exacta de inicio y cierre verificado en Tomos PMO escaneados",
       "detalles_faltantes": [],
       "confiabilidad": "ALTA"
     },
@@ -7066,19 +7078,19 @@
         }
       ],
       "total_hitos": 24,
-      "fecha_inicio": "Aprox. Ene-Feb 2023 (Primer Hito PMO)",
-      "fecha_inicio_sort": "2023-01-01",
-      "tiene_fecha_inicio": true,
-      "fecha_inicio_doc": "Folio 1 (Tomo 1 PMO (Folio 1))",
+      "fecha_inicio": "",
+      "fecha_inicio_sort": "9999-99-99",
+      "tiene_fecha_inicio": false,
+      "fecha_inicio_doc": "Pendiente de ubicar Acta de Entrega de Terreno o Ficha N° 01 en Tomos/Archivo",
       "fecha_termino_prog": "",
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
       "estado_info": "PARCIAL",
       "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
-      "estado_info_desc": "Cuenta con hitos de ejecución y cierre; falta acta de inicio",
+      "estado_info_desc": "Hitos en Tomos (24 registros); faltan documentos clave para sustento pleno",
       "detalles_faltantes": [
-        "Falta Acta de Inicio en Tomos"
+        "Falta ubicar Acta de Entrega de Terreno o Ficha N° 01 (Fecha exacta de inicio)"
       ],
       "confiabilidad": "MEDIA"
     },
@@ -7207,13 +7219,11 @@
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
-      "estado_info": "PARCIAL",
-      "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
-      "estado_info_desc": "Cuenta con hitos de ejecución y cierre; falta acta de inicio",
-      "detalles_faltantes": [
-        "Falta Acta de Inicio en Tomos"
-      ],
-      "confiabilidad": "MEDIA"
+      "estado_info": "COMPLETA",
+      "estado_info_label": "🟢 TRAZABILIDAD INTEGRAL",
+      "estado_info_desc": "Cuenta con fecha exacta de inicio y cierre verificado en Tomos PMO escaneados",
+      "detalles_faltantes": [],
+      "confiabilidad": "ALTA"
     },
     {
       "id": 22,
@@ -8262,7 +8272,7 @@
       "resolucion_liquidacion": "",
       "estado_info": "COMPLETA",
       "estado_info_label": "🟢 TRAZABILIDAD INTEGRAL",
-      "estado_info_desc": "Cuenta con documentos de inicio y recepción/liquidación en Tomos PMO escaneados",
+      "estado_info_desc": "Cuenta con fecha exacta de inicio y cierre verificado en Tomos PMO escaneados",
       "detalles_faltantes": [],
       "confiabilidad": "ALTA"
     },
@@ -8617,7 +8627,7 @@
       "resolucion_liquidacion": "",
       "estado_info": "COMPLETA",
       "estado_info_label": "🟢 TRAZABILIDAD INTEGRAL",
-      "estado_info_desc": "Cuenta con documentos de inicio y recepción/liquidación en Tomos PMO escaneados",
+      "estado_info_desc": "Cuenta con fecha exacta de inicio y cierre verificado en Tomos PMO escaneados",
       "detalles_faltantes": [],
       "confiabilidad": "ALTA"
     },
@@ -8972,7 +8982,7 @@
       "resolucion_liquidacion": "",
       "estado_info": "COMPLETA",
       "estado_info_label": "🟢 TRAZABILIDAD INTEGRAL",
-      "estado_info_desc": "Cuenta con documentos de inicio y recepción/liquidación en Tomos PMO escaneados",
+      "estado_info_desc": "Cuenta con fecha exacta de inicio y cierre verificado en Tomos PMO escaneados",
       "detalles_faltantes": [],
       "confiabilidad": "ALTA"
     },
@@ -9327,7 +9337,7 @@
       "resolucion_liquidacion": "",
       "estado_info": "COMPLETA",
       "estado_info_label": "🟢 TRAZABILIDAD INTEGRAL",
-      "estado_info_desc": "Cuenta con documentos de inicio y recepción/liquidación en Tomos PMO escaneados",
+      "estado_info_desc": "Cuenta con fecha exacta de inicio y cierre verificado en Tomos PMO escaneados",
       "detalles_faltantes": [],
       "confiabilidad": "ALTA"
     },
@@ -9376,10 +9386,10 @@
         }
       ],
       "total_hitos": 2,
-      "fecha_inicio": "Aprox. Año 2024 (Primer Hito PMO)",
-      "fecha_inicio_sort": "2024-01-01",
-      "tiene_fecha_inicio": true,
-      "fecha_inicio_doc": "Expediente Físico en Cajas N° 03, A (Archivo Central FDM (Cajas 03, A))",
+      "fecha_inicio": "",
+      "fecha_inicio_sort": "9999-99-99",
+      "tiene_fecha_inicio": false,
+      "fecha_inicio_doc": "Pendiente de ubicar Acta de Entrega de Terreno o Ficha N° 01 en Tomos/Archivo",
       "fecha_termino_prog": "",
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
@@ -9387,7 +9397,9 @@
       "estado_info": "COMPLETA",
       "estado_info_label": "🟢 EXPEDIENTE EN CAJA FDM",
       "estado_info_desc": "Expediente físico verificado en EN CAJA con liquidación técnica-financiera",
-      "detalles_faltantes": [],
+      "detalles_faltantes": [
+        "Acta de Inicio en revisión dentro del expediente físico de la Caja"
+      ],
       "confiabilidad": "ALTA"
     },
     {
@@ -9475,13 +9487,11 @@
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
-      "estado_info": "PARCIAL",
-      "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
-      "estado_info_desc": "Cuenta con hitos de ejecución y cierre; falta acta de inicio",
-      "detalles_faltantes": [
-        "Falta Acta de Inicio en Tomos"
-      ],
-      "confiabilidad": "MEDIA"
+      "estado_info": "COMPLETA",
+      "estado_info_label": "🟢 TRAZABILIDAD INTEGRAL",
+      "estado_info_desc": "Cuenta con fecha exacta de inicio y cierre verificado en Tomos PMO escaneados",
+      "detalles_faltantes": [],
+      "confiabilidad": "ALTA"
     },
     {
       "id": 28,
@@ -9520,10 +9530,10 @@
         }
       ],
       "total_hitos": 1,
-      "fecha_inicio": "Aprox. 2025-2026 (Primer Hito PMO)",
-      "fecha_inicio_sort": "2025-01-01",
-      "tiene_fecha_inicio": true,
-      "fecha_inicio_doc": "CARTA N° 0 xxx- (Secretaría Digital (cartas 2026\\INF_966-2026-agric))",
+      "fecha_inicio": "",
+      "fecha_inicio_sort": "9999-99-99",
+      "tiene_fecha_inicio": false,
+      "fecha_inicio_doc": "Pendiente de ubicar Acta de Entrega de Terreno o Ficha N° 01 en Tomos/Archivo",
       "fecha_termino_prog": "",
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
@@ -9531,7 +9541,9 @@
       "estado_info": "COMPLETA",
       "estado_info_label": "🟢 EXPEDIENTE EN CAJA FDM",
       "estado_info_desc": "Expediente físico verificado en EN CAJA con liquidación técnica-financiera",
-      "detalles_faltantes": [],
+      "detalles_faltantes": [
+        "Acta de Inicio en revisión dentro del expediente físico de la Caja"
+      ],
       "confiabilidad": "ALTA"
     },
     {
@@ -9595,19 +9607,19 @@
         }
       ],
       "total_hitos": 4,
-      "fecha_inicio": "Aprox. 17 de noviembre del 2022 (Primer Hito PMO)",
-      "fecha_inicio_sort": "2022-11-17",
-      "tiene_fecha_inicio": true,
-      "fecha_inicio_doc": "Folio 25 (Tomo 1 PMO (Folio 25))",
+      "fecha_inicio": "",
+      "fecha_inicio_sort": "9999-99-99",
+      "tiene_fecha_inicio": false,
+      "fecha_inicio_doc": "Pendiente de ubicar Acta de Entrega de Terreno o Ficha N° 01 en Tomos/Archivo",
       "fecha_termino_prog": "",
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
       "estado_info": "PARCIAL",
       "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
-      "estado_info_desc": "Cuenta con hitos de ejecución y cierre; falta acta de inicio",
+      "estado_info_desc": "Hitos en Tomos (4 registros); faltan documentos clave para sustento pleno",
       "detalles_faltantes": [
-        "Falta Acta de Inicio en Tomos"
+        "Falta ubicar Acta de Entrega de Terreno o Ficha N° 01 (Fecha exacta de inicio)"
       ],
       "confiabilidad": "MEDIA"
     },
@@ -9762,7 +9774,7 @@
       "resolucion_liquidacion": "",
       "estado_info": "COMPLETA",
       "estado_info_label": "🟢 TRAZABILIDAD INTEGRAL",
-      "estado_info_desc": "Cuenta con documentos de inicio y recepción/liquidación en Tomos PMO escaneados",
+      "estado_info_desc": "Cuenta con fecha exacta de inicio y cierre verificado en Tomos PMO escaneados",
       "detalles_faltantes": [],
       "confiabilidad": "ALTA"
     },
@@ -10157,7 +10169,7 @@
       "resolucion_liquidacion": "",
       "estado_info": "COMPLETA",
       "estado_info_label": "🟢 TRAZABILIDAD INTEGRAL",
-      "estado_info_desc": "Cuenta con documentos de inicio y recepción/liquidación en Tomos PMO escaneados",
+      "estado_info_desc": "Cuenta con fecha exacta de inicio y cierre verificado en Tomos PMO escaneados",
       "detalles_faltantes": [],
       "confiabilidad": "ALTA"
     },
@@ -10198,10 +10210,10 @@
         }
       ],
       "total_hitos": 1,
-      "fecha_inicio": "2025-2026",
-      "fecha_inicio_sort": "2025-01-01",
-      "tiene_fecha_inicio": true,
-      "fecha_inicio_doc": "CARTA N° 0 xxx- (Secretaría Digital (cartas 2026\\INF_267-2026-LIQUI))",
+      "fecha_inicio": "",
+      "fecha_inicio_sort": "9999-99-99",
+      "tiene_fecha_inicio": false,
+      "fecha_inicio_doc": "Pendiente de ubicar Acta de Entrega de Terreno o Ficha N° 01 en Tomos/Archivo",
       "fecha_termino_prog": "",
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
@@ -10209,7 +10221,9 @@
       "estado_info": "COMPLETA",
       "estado_info_label": "🟢 EXPEDIENTE EN CAJA FDM",
       "estado_info_desc": "Expediente físico verificado en EN CAJA con liquidación técnica-financiera",
-      "detalles_faltantes": [],
+      "detalles_faltantes": [
+        "Acta de Inicio en revisión dentro del expediente físico de la Caja"
+      ],
       "confiabilidad": "ALTA"
     },
     {
@@ -10267,9 +10281,9 @@
       "resolucion_liquidacion": "",
       "estado_info": "PARCIAL",
       "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
-      "estado_info_desc": "Obra con inicio registrado; falta recepción o liquidación final en Tomos",
+      "estado_info_desc": "Hitos en Tomos (2 registros); faltan documentos clave para sustento pleno",
       "detalles_faltantes": [
-        "Falta Acta de Recepción o Liquidación Final"
+        "Falta Acta de Recepción o Resolución de Liquidación Final"
       ],
       "confiabilidad": "MEDIA"
     },
@@ -10432,7 +10446,7 @@
       "resolucion_liquidacion": "",
       "estado_info": "COMPLETA",
       "estado_info_label": "🟢 TRAZABILIDAD INTEGRAL",
-      "estado_info_desc": "Cuenta con documentos de inicio y recepción/liquidación en Tomos PMO escaneados",
+      "estado_info_desc": "Cuenta con fecha exacta de inicio y cierre verificado en Tomos PMO escaneados",
       "detalles_faltantes": [],
       "confiabilidad": "ALTA"
     },
@@ -10464,10 +10478,10 @@
       "alerta": "BUSCAR EN ARCHIVADORES / FALTAN DOCUMENTOS",
       "historial": [],
       "total_hitos": 0,
-      "fecha_inicio": "Periodo 2020-2021 (Convenio 100 MLL)",
-      "fecha_inicio_sort": "2020-01-01",
-      "tiene_fecha_inicio": true,
-      "fecha_inicio_doc": "Ejecución por Convenio Específico transferido a la Municipalidad Distrital de La Capilla (Convenio 100 MLL).",
+      "fecha_inicio": "",
+      "fecha_inicio_sort": "9999-99-99",
+      "tiene_fecha_inicio": false,
+      "fecha_inicio_doc": "Pendiente de ubicar Acta de Entrega de Terreno o Ficha N° 01 en Tomos/Archivo",
       "fecha_termino_prog": "",
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
@@ -10519,19 +10533,19 @@
         }
       ],
       "total_hitos": 1,
-      "fecha_inicio": "Aprox. 13 de abril del 2023 (Primer Hito PMO)",
-      "fecha_inicio_sort": "2023-04-13",
-      "tiene_fecha_inicio": true,
-      "fecha_inicio_doc": "Folio 25 (Tomo 3 PMO (Folio 25))",
+      "fecha_inicio": "",
+      "fecha_inicio_sort": "9999-99-99",
+      "tiene_fecha_inicio": false,
+      "fecha_inicio_doc": "Pendiente de ubicar Acta de Entrega de Terreno o Ficha N° 01 en Tomos/Archivo",
       "fecha_termino_prog": "",
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
       "estado_info": "PARCIAL",
       "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
-      "estado_info_desc": "Cuenta con hitos de ejecución y cierre; falta acta de inicio",
+      "estado_info_desc": "Hitos en Tomos (1 registros); faltan documentos clave para sustento pleno",
       "detalles_faltantes": [
-        "Falta Acta de Inicio en Tomos"
+        "Falta ubicar Acta de Entrega de Terreno o Ficha N° 01 (Fecha exacta de inicio)"
       ],
       "confiabilidad": "MEDIA"
     },
@@ -10692,10 +10706,10 @@
         }
       ],
       "total_hitos": 16,
-      "fecha_inicio": "Año 2022",
-      "fecha_inicio_sort": "2022-01-01",
-      "tiene_fecha_inicio": true,
-      "fecha_inicio_doc": "Archivo Físico Caja 03 (Foto Oficial 2024)",
+      "fecha_inicio": "",
+      "fecha_inicio_sort": "9999-99-99",
+      "tiene_fecha_inicio": false,
+      "fecha_inicio_doc": "Pendiente de ubicar Acta de Entrega de Terreno o Ficha N° 01 en Tomos/Archivo",
       "fecha_termino_prog": "2023",
       "fecha_culminacion_real": "Finales 2023",
       "acta_recepcion": "Conformidad de Supervisión 2024",
@@ -10703,7 +10717,9 @@
       "estado_info": "COMPLETA",
       "estado_info_label": "🟢 EXPEDIENTE EN CAJA FDM",
       "estado_info_desc": "Expediente físico verificado en EN CAJA con liquidación técnica-financiera",
-      "detalles_faltantes": [],
+      "detalles_faltantes": [
+        "Acta de Inicio en revisión dentro del expediente físico de la Caja"
+      ],
       "confiabilidad": "ALTA"
     },
     {
@@ -10881,7 +10897,7 @@
       "resolucion_liquidacion": "",
       "estado_info": "COMPLETA",
       "estado_info_label": "🟢 TRAZABILIDAD INTEGRAL",
-      "estado_info_desc": "Cuenta con documentos de inicio y recepción/liquidación en Tomos PMO escaneados",
+      "estado_info_desc": "Cuenta con fecha exacta de inicio y cierre verificado en Tomos PMO escaneados",
       "detalles_faltantes": [],
       "confiabilidad": "ALTA"
     },
@@ -11148,7 +11164,7 @@
       "resolucion_liquidacion": "",
       "estado_info": "COMPLETA",
       "estado_info_label": "🟢 TRAZABILIDAD INTEGRAL",
-      "estado_info_desc": "Cuenta con documentos de inicio y recepción/liquidación en Tomos PMO escaneados",
+      "estado_info_desc": "Cuenta con fecha exacta de inicio y cierre verificado en Tomos PMO escaneados",
       "detalles_faltantes": [],
       "confiabilidad": "ALTA"
     },
@@ -11180,10 +11196,10 @@
       "alerta": "BUSCAR EN ARCHIVADORES / FALTAN DOCUMENTOS",
       "historial": [],
       "total_hitos": 0,
-      "fecha_inicio": "No Ejecutada (Cambio Proyecto)",
-      "fecha_inicio_sort": "2020-01-01",
-      "tiene_fecha_inicio": true,
-      "fecha_inicio_doc": "No aplica fecha de inicio: Proyecto clasificado en Directorio como \"Evaluar Cambio de Proyecto\" (S/ 0.00 ejecutado).",
+      "fecha_inicio": "",
+      "fecha_inicio_sort": "9999-99-99",
+      "tiene_fecha_inicio": false,
+      "fecha_inicio_doc": "Pendiente de ubicar Acta de Entrega de Terreno o Ficha N° 01 en Tomos/Archivo",
       "fecha_termino_prog": "",
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
@@ -11224,10 +11240,10 @@
       "alerta": "BUSCAR EN ARCHIVADORES / FALTAN DOCUMENTOS",
       "historial": [],
       "total_hitos": 0,
-      "fecha_inicio": "No Ejecutada (Cambio Proyecto)",
-      "fecha_inicio_sort": "2020-01-01",
-      "tiene_fecha_inicio": true,
-      "fecha_inicio_doc": "No aplica fecha de inicio: Proyecto clasificado en Directorio como \"Evaluar Cambio de Proyecto\" (S/ 0.00 ejecutado).",
+      "fecha_inicio": "",
+      "fecha_inicio_sort": "9999-99-99",
+      "tiene_fecha_inicio": false,
+      "fecha_inicio_doc": "Pendiente de ubicar Acta de Entrega de Terreno o Ficha N° 01 en Tomos/Archivo",
       "fecha_termino_prog": "",
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
@@ -11880,19 +11896,21 @@
         }
       ],
       "total_hitos": 47,
-      "fecha_inicio": "Año 2022",
-      "fecha_inicio_sort": "2022-01-01",
-      "tiene_fecha_inicio": true,
-      "fecha_inicio_doc": "Archivo Físico Caja 03 (Foto Oficial 2024)",
+      "fecha_inicio": "",
+      "fecha_inicio_sort": "9999-99-99",
+      "tiene_fecha_inicio": false,
+      "fecha_inicio_doc": "Pendiente de ubicar Acta de Entrega de Terreno o Ficha N° 01 en Tomos/Archivo",
       "fecha_termino_prog": "2023",
       "fecha_culminacion_real": "Finales 2023",
       "acta_recepcion": "Conformidad de Supervisión 2024",
       "resolucion_liquidacion": "Liquidación Aprobada 2024 (Caja 03)",
-      "estado_info": "COMPLETA",
-      "estado_info_label": "🟢 TRAZABILIDAD INTEGRAL",
-      "estado_info_desc": "Cuenta con documentos de inicio y recepción/liquidación en Tomos PMO escaneados",
-      "detalles_faltantes": [],
-      "confiabilidad": "ALTA"
+      "estado_info": "PARCIAL",
+      "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
+      "estado_info_desc": "Hitos en Tomos (47 registros); faltan documentos clave para sustento pleno",
+      "detalles_faltantes": [
+        "Falta ubicar Acta de Entrega de Terreno o Ficha N° 01 (Fecha exacta de inicio)"
+      ],
+      "confiabilidad": "MEDIA"
     },
     {
       "id": 44,
@@ -12299,10 +12317,10 @@
         }
       ],
       "total_hitos": 47,
-      "fecha_inicio": "Año 2022",
-      "fecha_inicio_sort": "2022-01-01",
-      "tiene_fecha_inicio": true,
-      "fecha_inicio_doc": "Archivo Físico Caja 03 (Foto Oficial 2024)",
+      "fecha_inicio": "",
+      "fecha_inicio_sort": "9999-99-99",
+      "tiene_fecha_inicio": false,
+      "fecha_inicio_doc": "Pendiente de ubicar Acta de Entrega de Terreno o Ficha N° 01 en Tomos/Archivo",
       "fecha_termino_prog": "2023",
       "fecha_culminacion_real": "Finales 2023",
       "acta_recepcion": "Conformidad de Supervisión 2024",
@@ -12310,7 +12328,9 @@
       "estado_info": "COMPLETA",
       "estado_info_label": "🟢 EXPEDIENTE EN CAJA FDM",
       "estado_info_desc": "Expediente físico verificado en EN CAJA con liquidación técnica-financiera",
-      "detalles_faltantes": [],
+      "detalles_faltantes": [
+        "Acta de Inicio en revisión dentro del expediente físico de la Caja"
+      ],
       "confiabilidad": "ALTA"
     },
     {
@@ -12710,19 +12730,21 @@
         }
       ],
       "total_hitos": 46,
-      "fecha_inicio": "Año 2022",
-      "fecha_inicio_sort": "2022-01-01",
-      "tiene_fecha_inicio": true,
-      "fecha_inicio_doc": "Archivo Físico Caja 03 (Foto Oficial 2024)",
+      "fecha_inicio": "",
+      "fecha_inicio_sort": "9999-99-99",
+      "tiene_fecha_inicio": false,
+      "fecha_inicio_doc": "Pendiente de ubicar Acta de Entrega de Terreno o Ficha N° 01 en Tomos/Archivo",
       "fecha_termino_prog": "2023",
       "fecha_culminacion_real": "Finales 2023",
       "acta_recepcion": "Conformidad de Supervisión 2024",
       "resolucion_liquidacion": "Liquidación Aprobada 2024 (Caja 03)",
-      "estado_info": "COMPLETA",
-      "estado_info_label": "🟢 TRAZABILIDAD INTEGRAL",
-      "estado_info_desc": "Cuenta con documentos de inicio y recepción/liquidación en Tomos PMO escaneados",
-      "detalles_faltantes": [],
-      "confiabilidad": "ALTA"
+      "estado_info": "PARCIAL",
+      "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
+      "estado_info_desc": "Hitos en Tomos (46 registros); faltan documentos clave para sustento pleno",
+      "detalles_faltantes": [
+        "Falta ubicar Acta de Entrega de Terreno o Ficha N° 01 (Fecha exacta de inicio)"
+      ],
+      "confiabilidad": "MEDIA"
     },
     {
       "id": 46,
@@ -13121,19 +13143,21 @@
         }
       ],
       "total_hitos": 46,
-      "fecha_inicio": "Año 2022",
-      "fecha_inicio_sort": "2022-01-01",
-      "tiene_fecha_inicio": true,
-      "fecha_inicio_doc": "Archivo Físico Caja 03 (Foto Oficial 2024)",
+      "fecha_inicio": "",
+      "fecha_inicio_sort": "9999-99-99",
+      "tiene_fecha_inicio": false,
+      "fecha_inicio_doc": "Pendiente de ubicar Acta de Entrega de Terreno o Ficha N° 01 en Tomos/Archivo",
       "fecha_termino_prog": "2023",
       "fecha_culminacion_real": "Finales 2023",
       "acta_recepcion": "Conformidad de Supervisión 2024",
       "resolucion_liquidacion": "Liquidación Aprobada 2024 (Caja 03)",
-      "estado_info": "COMPLETA",
-      "estado_info_label": "🟢 TRAZABILIDAD INTEGRAL",
-      "estado_info_desc": "Cuenta con documentos de inicio y recepción/liquidación en Tomos PMO escaneados",
-      "detalles_faltantes": [],
-      "confiabilidad": "ALTA"
+      "estado_info": "PARCIAL",
+      "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
+      "estado_info_desc": "Hitos en Tomos (46 registros); faltan documentos clave para sustento pleno",
+      "detalles_faltantes": [
+        "Falta ubicar Acta de Entrega de Terreno o Ficha N° 01 (Fecha exacta de inicio)"
+      ],
+      "confiabilidad": "MEDIA"
     },
     {
       "id": 47,
@@ -13396,13 +13420,11 @@
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
-      "estado_info": "PARCIAL",
-      "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
-      "estado_info_desc": "Cuenta con hitos de ejecución y cierre; falta acta de inicio",
-      "detalles_faltantes": [
-        "Falta Acta de Inicio en Tomos"
-      ],
-      "confiabilidad": "MEDIA"
+      "estado_info": "COMPLETA",
+      "estado_info_label": "🟢 TRAZABILIDAD INTEGRAL",
+      "estado_info_desc": "Cuenta con fecha exacta de inicio y cierre verificado en Tomos PMO escaneados",
+      "detalles_faltantes": [],
+      "confiabilidad": "ALTA"
     },
     {
       "id": 48,
@@ -14335,19 +14357,21 @@
         }
       ],
       "total_hitos": 28,
-      "fecha_inicio": "Periodo 2018-2020",
-      "fecha_inicio_sort": "2018-01-01",
-      "tiene_fecha_inicio": true,
-      "fecha_inicio_doc": "Tomo 1 Pág 16 + Cartas 2026 PERPG",
+      "fecha_inicio": "",
+      "fecha_inicio_sort": "9999-99-99",
+      "tiene_fecha_inicio": false,
+      "fecha_inicio_doc": "Pendiente de ubicar Acta de Entrega de Terreno o Ficha N° 01 en Tomos/Archivo",
       "fecha_termino_prog": "2021",
       "fecha_culminacion_real": "Septiembre 2026",
       "acta_recepcion": "Acta de Transferencia 04/09/2026",
       "resolucion_liquidacion": "Actas de Conciliación Financiera PERPG-FDM 2026",
-      "estado_info": "COMPLETA",
-      "estado_info_label": "🟢 TRAZABILIDAD INTEGRAL",
-      "estado_info_desc": "Cuenta con documentos de inicio y recepción/liquidación en Tomos PMO escaneados",
-      "detalles_faltantes": [],
-      "confiabilidad": "ALTA"
+      "estado_info": "PARCIAL",
+      "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
+      "estado_info_desc": "Hitos en Tomos (28 registros); faltan documentos clave para sustento pleno",
+      "detalles_faltantes": [
+        "Falta ubicar Acta de Entrega de Terreno o Ficha N° 01 (Fecha exacta de inicio)"
+      ],
+      "confiabilidad": "MEDIA"
     },
     {
       "id": 51,
@@ -16042,7 +16066,7 @@
       "resolucion_liquidacion": "",
       "estado_info": "COMPLETA",
       "estado_info_label": "🟢 TRAZABILIDAD INTEGRAL",
-      "estado_info_desc": "Cuenta con documentos de inicio y recepción/liquidación en Tomos PMO escaneados",
+      "estado_info_desc": "Cuenta con fecha exacta de inicio y cierre verificado en Tomos PMO escaneados",
       "detalles_faltantes": [],
       "confiabilidad": "ALTA"
     },
@@ -16299,19 +16323,21 @@
         }
       ],
       "total_hitos": 28,
-      "fecha_inicio": "Periodo 2018-2020",
-      "fecha_inicio_sort": "2018-01-01",
-      "tiene_fecha_inicio": true,
-      "fecha_inicio_doc": "Tomo 1 Pág 16 + Cartas 2026 PERPG",
+      "fecha_inicio": "",
+      "fecha_inicio_sort": "9999-99-99",
+      "tiene_fecha_inicio": false,
+      "fecha_inicio_doc": "Pendiente de ubicar Acta de Entrega de Terreno o Ficha N° 01 en Tomos/Archivo",
       "fecha_termino_prog": "2021",
       "fecha_culminacion_real": "Septiembre 2026",
       "acta_recepcion": "Acta de Transferencia 04/09/2026",
       "resolucion_liquidacion": "Actas de Conciliación Financiera PERPG-FDM 2026",
-      "estado_info": "COMPLETA",
-      "estado_info_label": "🟢 TRAZABILIDAD INTEGRAL",
-      "estado_info_desc": "Cuenta con documentos de inicio y recepción/liquidación en Tomos PMO escaneados",
-      "detalles_faltantes": [],
-      "confiabilidad": "ALTA"
+      "estado_info": "PARCIAL",
+      "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
+      "estado_info_desc": "Hitos en Tomos (28 registros); faltan documentos clave para sustento pleno",
+      "detalles_faltantes": [
+        "Falta ubicar Acta de Entrega de Terreno o Ficha N° 01 (Fecha exacta de inicio)"
+      ],
+      "confiabilidad": "MEDIA"
     },
     {
       "id": 55,
@@ -16382,13 +16408,11 @@
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
-      "estado_info": "PARCIAL",
-      "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
-      "estado_info_desc": "Cuenta con hitos de ejecución y cierre; falta acta de inicio",
-      "detalles_faltantes": [
-        "Falta Acta de Inicio en Tomos"
-      ],
-      "confiabilidad": "MEDIA"
+      "estado_info": "COMPLETA",
+      "estado_info_label": "🟢 TRAZABILIDAD INTEGRAL",
+      "estado_info_desc": "Cuenta con fecha exacta de inicio y cierre verificado en Tomos PMO escaneados",
+      "detalles_faltantes": [],
+      "confiabilidad": "ALTA"
     },
     {
       "id": 56,
@@ -16667,19 +16691,20 @@
         }
       ],
       "total_hitos": 31,
-      "fecha_inicio": "2025",
-      "fecha_inicio_sort": "2025-01-01",
-      "tiene_fecha_inicio": true,
-      "fecha_inicio_doc": "Informes Digitales 2026 (INF 122 y 959-2026)",
+      "fecha_inicio": "",
+      "fecha_inicio_sort": "9999-99-99",
+      "tiene_fecha_inicio": false,
+      "fecha_inicio_doc": "Pendiente de ubicar Acta de Entrega de Terreno o Ficha N° 01 en Tomos/Archivo",
       "fecha_termino_prog": "2025",
       "fecha_culminacion_real": "En ejecución reprogramada 2026",
       "acta_recepcion": "Pendiente ejecución",
       "resolucion_liquidacion": "Pendiente",
       "estado_info": "PARCIAL",
       "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
-      "estado_info_desc": "Obra con inicio registrado; falta recepción o liquidación final en Tomos",
+      "estado_info_desc": "Hitos en Tomos (31 registros); faltan documentos clave para sustento pleno",
       "detalles_faltantes": [
-        "Falta Acta de Recepción o Liquidación Final"
+        "Falta ubicar Acta de Entrega de Terreno o Ficha N° 01 (Fecha exacta de inicio)",
+        "Falta Acta de Recepción o Resolución de Liquidación Final"
       ],
       "confiabilidad": "MEDIA"
     },
@@ -16711,10 +16736,10 @@
       "alerta": "BUSCAR EN ARCHIVADORES / FALTAN DOCUMENTOS",
       "historial": [],
       "total_hitos": 0,
-      "fecha_inicio": "Periodo 2022-2023 (Fase Saldo)",
-      "fecha_inicio_sort": "2020-01-01",
-      "tiene_fecha_inicio": true,
-      "fecha_inicio_doc": "Saldo de obra por ejecutar del Convenio E.O. / CEBA San Francisco (Presupuesto asignado S/ 20,823.36).",
+      "fecha_inicio": "",
+      "fecha_inicio_sort": "9999-99-99",
+      "tiene_fecha_inicio": false,
+      "fecha_inicio_doc": "Pendiente de ubicar Acta de Entrega de Terreno o Ficha N° 01 en Tomos/Archivo",
       "fecha_termino_prog": "",
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
@@ -16766,20 +16791,20 @@
         }
       ],
       "total_hitos": 1,
-      "fecha_inicio": "Aprox. 14.03.2023 (Primer Hito PMO)",
-      "fecha_inicio_sort": "2023-03-14",
-      "tiene_fecha_inicio": true,
-      "fecha_inicio_doc": "INFORME N.0 -2023-PMO-FDM (Tomo 2 PMO (Folio 49))",
+      "fecha_inicio": "",
+      "fecha_inicio_sort": "9999-99-99",
+      "tiene_fecha_inicio": false,
+      "fecha_inicio_doc": "Pendiente de ubicar Acta de Entrega de Terreno o Ficha N° 01 en Tomos/Archivo",
       "fecha_termino_prog": "",
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
       "estado_info": "PARCIAL",
       "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
-      "estado_info_desc": "Hitos de ejecución identificados; faltan acta de inicio y liquidación final",
+      "estado_info_desc": "Hitos en Tomos (1 registros); faltan documentos clave para sustento pleno",
       "detalles_faltantes": [
-        "Falta Acta de Inicio en Tomos",
-        "Falta Acta de Recepción o Liquidación Final"
+        "Falta ubicar Acta de Entrega de Terreno o Ficha N° 01 (Fecha exacta de inicio)",
+        "Falta Acta de Recepción o Resolución de Liquidación Final"
       ],
       "confiabilidad": "MEDIA"
     },
@@ -17060,19 +17085,19 @@
         }
       ],
       "total_hitos": 31,
-      "fecha_inicio": "2024",
-      "fecha_inicio_sort": "2024-01-01",
-      "tiene_fecha_inicio": true,
-      "fecha_inicio_doc": "Cartas 2026 (INF 016, 077, 104, 142-2026)",
+      "fecha_inicio": "",
+      "fecha_inicio_sort": "9999-99-99",
+      "tiene_fecha_inicio": false,
+      "fecha_inicio_doc": "Pendiente de ubicar Acta de Entrega de Terreno o Ficha N° 01 en Tomos/Archivo",
       "fecha_termino_prog": "2025",
       "fecha_culminacion_real": "En ejecución (Val 05 - INF 007-2026)",
       "acta_recepcion": "Pendiente",
       "resolucion_liquidacion": "Pendiente",
       "estado_info": "PARCIAL",
       "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
-      "estado_info_desc": "Cuenta con hitos de ejecución y cierre; falta acta de inicio",
+      "estado_info_desc": "Hitos en Tomos (31 registros); faltan documentos clave para sustento pleno",
       "detalles_faltantes": [
-        "Falta Acta de Inicio en Tomos"
+        "Falta ubicar Acta de Entrega de Terreno o Ficha N° 01 (Fecha exacta de inicio)"
       ],
       "confiabilidad": "MEDIA"
     },
@@ -17313,10 +17338,10 @@
         }
       ],
       "total_hitos": 26,
-      "fecha_inicio": "Aprox. 17 de noviembre del 2022 (Primer Hito PMO)",
-      "fecha_inicio_sort": "2022-11-17",
-      "tiene_fecha_inicio": true,
-      "fecha_inicio_doc": "Folio 25 (Tomo 1 PMO (Folio 25))",
+      "fecha_inicio": "",
+      "fecha_inicio_sort": "9999-99-99",
+      "tiene_fecha_inicio": false,
+      "fecha_inicio_doc": "Pendiente de ubicar Acta de Entrega de Terreno o Ficha N° 01 en Tomos/Archivo",
       "fecha_termino_prog": "",
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
@@ -17324,7 +17349,9 @@
       "estado_info": "COMPLETA",
       "estado_info_label": "🟢 EXPEDIENTE EN CAJA FDM",
       "estado_info_desc": "Expediente físico verificado en EN CAJA con liquidación técnica-financiera",
-      "detalles_faltantes": [],
+      "detalles_faltantes": [
+        "Acta de Inicio en revisión dentro del expediente físico de la Caja"
+      ],
       "confiabilidad": "ALTA"
     },
     {
@@ -17628,10 +17655,10 @@
         }
       ],
       "total_hitos": 34,
-      "fecha_inicio": "2024",
-      "fecha_inicio_sort": "2024-01-01",
-      "tiene_fecha_inicio": true,
-      "fecha_inicio_doc": "Informes 2025 (INF 025) y Cartas 2026",
+      "fecha_inicio": "",
+      "fecha_inicio_sort": "9999-99-99",
+      "tiene_fecha_inicio": false,
+      "fecha_inicio_doc": "Pendiente de ubicar Acta de Entrega de Terreno o Ficha N° 01 en Tomos/Archivo",
       "fecha_termino_prog": "2025",
       "fecha_culminacion_real": "Valorización 03 en trámite 2026 (INF 003 y 006-2026)",
       "acta_recepcion": "Pendiente",
@@ -17639,7 +17666,9 @@
       "estado_info": "COMPLETA",
       "estado_info_label": "🟢 EXPEDIENTE EN CAJA FDM",
       "estado_info_desc": "Expediente físico verificado en EN CAJA con liquidación técnica-financiera",
-      "detalles_faltantes": [],
+      "detalles_faltantes": [
+        "Acta de Inicio en revisión dentro del expediente físico de la Caja"
+      ],
       "confiabilidad": "ALTA"
     },
     {
@@ -17871,13 +17900,11 @@
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
-      "estado_info": "PARCIAL",
-      "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
-      "estado_info_desc": "Cuenta con hitos de ejecución y cierre; falta acta de inicio",
-      "detalles_faltantes": [
-        "Falta Acta de Inicio en Tomos"
-      ],
-      "confiabilidad": "MEDIA"
+      "estado_info": "COMPLETA",
+      "estado_info_label": "🟢 TRAZABILIDAD INTEGRAL",
+      "estado_info_desc": "Cuenta con fecha exacta de inicio y cierre verificado en Tomos PMO escaneados",
+      "detalles_faltantes": [],
+      "confiabilidad": "ALTA"
     },
     {
       "id": 63,
@@ -18334,7 +18361,7 @@
       "resolucion_liquidacion": "",
       "estado_info": "COMPLETA",
       "estado_info_label": "🟢 TRAZABILIDAD INTEGRAL",
-      "estado_info_desc": "Cuenta con documentos de inicio y recepción/liquidación en Tomos PMO escaneados",
+      "estado_info_desc": "Cuenta con fecha exacta de inicio y cierre verificado en Tomos PMO escaneados",
       "detalles_faltantes": [],
       "confiabilidad": "ALTA"
     },
@@ -18599,10 +18626,10 @@
         }
       ],
       "total_hitos": 29,
-      "fecha_inicio": "Primer Trimestre 2023",
-      "fecha_inicio_sort": "2023-01-01",
-      "tiene_fecha_inicio": true,
-      "fecha_inicio_doc": "Tomo 2 PMO Folio 38 (Carta 2023)",
+      "fecha_inicio": "",
+      "fecha_inicio_sort": "9999-99-99",
+      "tiene_fecha_inicio": false,
+      "fecha_inicio_doc": "Pendiente de ubicar Acta de Entrega de Terreno o Ficha N° 01 en Tomos/Archivo",
       "fecha_termino_prog": "",
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
@@ -18610,7 +18637,9 @@
       "estado_info": "COMPLETA",
       "estado_info_label": "🟢 EXPEDIENTE EN CAJA FDM",
       "estado_info_desc": "Expediente físico verificado en EN CAJA con liquidación técnica-financiera",
-      "detalles_faltantes": [],
+      "detalles_faltantes": [
+        "Acta de Inicio en revisión dentro del expediente físico de la Caja"
+      ],
       "confiabilidad": "ALTA"
     },
     {
@@ -18660,9 +18689,9 @@
       "resolucion_liquidacion": "",
       "estado_info": "PARCIAL",
       "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
-      "estado_info_desc": "Obra con inicio registrado; falta recepción o liquidación final en Tomos",
+      "estado_info_desc": "Hitos en Tomos (1 registros); faltan documentos clave para sustento pleno",
       "detalles_faltantes": [
-        "Falta Acta de Recepción o Liquidación Final"
+        "Falta Acta de Recepción o Resolución de Liquidación Final"
       ],
       "confiabilidad": "MEDIA"
     },
@@ -18943,19 +18972,21 @@
         }
       ],
       "total_hitos": 31,
-      "fecha_inicio": "Año 2022",
-      "fecha_inicio_sort": "2022-01-01",
-      "tiene_fecha_inicio": true,
-      "fecha_inicio_doc": "Archivo Físico Caja 03 (Foto Oficial 2024)",
+      "fecha_inicio": "",
+      "fecha_inicio_sort": "9999-99-99",
+      "tiene_fecha_inicio": false,
+      "fecha_inicio_doc": "Pendiente de ubicar Acta de Entrega de Terreno o Ficha N° 01 en Tomos/Archivo",
       "fecha_termino_prog": "2023",
       "fecha_culminacion_real": "Finales 2023",
       "acta_recepcion": "Conformidad de Supervisión 2024",
       "resolucion_liquidacion": "Liquidación Aprobada 2024 (Caja 03)",
-      "estado_info": "COMPLETA",
-      "estado_info_label": "🟢 TRAZABILIDAD INTEGRAL",
-      "estado_info_desc": "Cuenta con documentos de inicio y recepción/liquidación en Tomos PMO escaneados",
-      "detalles_faltantes": [],
-      "confiabilidad": "ALTA"
+      "estado_info": "PARCIAL",
+      "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
+      "estado_info_desc": "Hitos en Tomos (31 registros); faltan documentos clave para sustento pleno",
+      "detalles_faltantes": [
+        "Falta ubicar Acta de Entrega de Terreno o Ficha N° 01 (Fecha exacta de inicio)"
+      ],
+      "confiabilidad": "MEDIA"
     },
     {
       "id": 67,
@@ -18994,10 +19025,10 @@
         }
       ],
       "total_hitos": 1,
-      "fecha_inicio": "2025-2026",
-      "fecha_inicio_sort": "2025-01-01",
-      "tiene_fecha_inicio": true,
-      "fecha_inicio_doc": "CARTA N° 0 xxx- (Secretaría Digital (cartas 2026\\INF_267-2026-LIQUI))",
+      "fecha_inicio": "",
+      "fecha_inicio_sort": "9999-99-99",
+      "tiene_fecha_inicio": false,
+      "fecha_inicio_doc": "Pendiente de ubicar Acta de Entrega de Terreno o Ficha N° 01 en Tomos/Archivo",
       "fecha_termino_prog": "",
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
@@ -19005,7 +19036,9 @@
       "estado_info": "COMPLETA",
       "estado_info_label": "🟢 EXPEDIENTE EN CAJA FDM",
       "estado_info_desc": "Expediente físico verificado en EN CAJA con liquidación técnica-financiera",
-      "detalles_faltantes": [],
+      "detalles_faltantes": [
+        "Acta de Inicio en revisión dentro del expediente físico de la Caja"
+      ],
       "confiabilidad": "ALTA"
     },
     {
@@ -19554,7 +19587,7 @@
       "resolucion_liquidacion": "",
       "estado_info": "COMPLETA",
       "estado_info_label": "🟢 TRAZABILIDAD INTEGRAL",
-      "estado_info_desc": "Cuenta con documentos de inicio y recepción/liquidación en Tomos PMO escaneados",
+      "estado_info_desc": "Cuenta con fecha exacta de inicio y cierre verificado en Tomos PMO escaneados",
       "detalles_faltantes": [],
       "confiabilidad": "ALTA"
     },
@@ -19615,19 +19648,21 @@
         }
       ],
       "total_hitos": 5,
-      "fecha_inicio": "Iniciada en periodo 2020-2021",
-      "fecha_inicio_sort": "2020-01-01",
-      "tiene_fecha_inicio": true,
-      "fecha_inicio_doc": "Matriz Entregable 1 + Estados Financieros FDM",
+      "fecha_inicio": "",
+      "fecha_inicio_sort": "9999-99-99",
+      "tiene_fecha_inicio": false,
+      "fecha_inicio_doc": "Pendiente de ubicar Acta de Entrega de Terreno o Ficha N° 01 en Tomos/Archivo",
       "fecha_termino_prog": "2022",
       "fecha_culminacion_real": "2022",
       "acta_recepcion": "Acta de Recepción 2022",
       "resolucion_liquidacion": "Liquidada 2022-2023",
-      "estado_info": "COMPLETA",
-      "estado_info_label": "🟢 TRAZABILIDAD INTEGRAL",
-      "estado_info_desc": "Cuenta con documentos de inicio y recepción/liquidación en Tomos PMO escaneados",
-      "detalles_faltantes": [],
-      "confiabilidad": "ALTA"
+      "estado_info": "PARCIAL",
+      "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
+      "estado_info_desc": "Hitos en Tomos (5 registros); faltan documentos clave para sustento pleno",
+      "detalles_faltantes": [
+        "Falta ubicar Acta de Entrega de Terreno o Ficha N° 01 (Fecha exacta de inicio)"
+      ],
+      "confiabilidad": "MEDIA"
     },
     {
       "id": 3,
@@ -19662,19 +19697,19 @@
         }
       ],
       "total_hitos": 2,
-      "fecha_inicio": "Iniciada en periodo 2020-2021",
-      "fecha_inicio_sort": "2020-01-01",
-      "tiene_fecha_inicio": true,
-      "fecha_inicio_doc": "Matriz Entregable 1 + Estados Financieros FDM",
+      "fecha_inicio": "",
+      "fecha_inicio_sort": "9999-99-99",
+      "tiene_fecha_inicio": false,
+      "fecha_inicio_doc": "Pendiente de ubicar Acta de Entrega de Terreno o Ficha N° 01 en Tomos/Archivo",
       "fecha_termino_prog": "2022",
       "fecha_culminacion_real": "2022",
       "acta_recepcion": "Acta de Recepción 2022",
       "resolucion_liquidacion": "Liquidada 2022-2023",
       "estado_info": "PARCIAL",
       "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
-      "estado_info_desc": "Cuenta con hitos de ejecución y cierre; falta acta de inicio",
+      "estado_info_desc": "Hitos en Tomos (2 registros); faltan documentos clave para sustento pleno",
       "detalles_faltantes": [
-        "Falta Acta de Inicio en Tomos"
+        "Falta ubicar Acta de Entrega de Terreno o Ficha N° 01 (Fecha exacta de inicio)"
       ],
       "confiabilidad": "MEDIA"
     },
@@ -19727,19 +19762,19 @@
         }
       ],
       "total_hitos": 4,
-      "fecha_inicio": "Iniciada en periodo 2020-2021",
-      "fecha_inicio_sort": "2020-01-01",
-      "tiene_fecha_inicio": true,
-      "fecha_inicio_doc": "Matriz Entregable 1 + Estados Financieros FDM",
+      "fecha_inicio": "",
+      "fecha_inicio_sort": "9999-99-99",
+      "tiene_fecha_inicio": false,
+      "fecha_inicio_doc": "Pendiente de ubicar Acta de Entrega de Terreno o Ficha N° 01 en Tomos/Archivo",
       "fecha_termino_prog": "2022",
       "fecha_culminacion_real": "2022",
       "acta_recepcion": "Acta de Recepción 2022",
       "resolucion_liquidacion": "Liquidada 2022-2023",
       "estado_info": "PARCIAL",
       "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
-      "estado_info_desc": "Cuenta con hitos de ejecución y cierre; falta acta de inicio",
+      "estado_info_desc": "Hitos en Tomos (4 registros); faltan documentos clave para sustento pleno",
       "detalles_faltantes": [
-        "Falta Acta de Inicio en Tomos"
+        "Falta ubicar Acta de Entrega de Terreno o Ficha N° 01 (Fecha exacta de inicio)"
       ],
       "confiabilidad": "MEDIA"
     },
@@ -19816,19 +19851,21 @@
         }
       ],
       "total_hitos": 7,
-      "fecha_inicio": "Iniciada en periodo 2020-2021",
-      "fecha_inicio_sort": "2020-01-01",
-      "tiene_fecha_inicio": true,
-      "fecha_inicio_doc": "Matriz Entregable 1 + Estados Financieros FDM",
+      "fecha_inicio": "",
+      "fecha_inicio_sort": "9999-99-99",
+      "tiene_fecha_inicio": false,
+      "fecha_inicio_doc": "Pendiente de ubicar Acta de Entrega de Terreno o Ficha N° 01 en Tomos/Archivo",
       "fecha_termino_prog": "2022",
       "fecha_culminacion_real": "2022",
       "acta_recepcion": "Acta de Recepción 2022",
       "resolucion_liquidacion": "Liquidada 2022-2023",
-      "estado_info": "COMPLETA",
-      "estado_info_label": "🟢 TRAZABILIDAD INTEGRAL",
-      "estado_info_desc": "Cuenta con documentos de inicio y recepción/liquidación en Tomos PMO escaneados",
-      "detalles_faltantes": [],
-      "confiabilidad": "ALTA"
+      "estado_info": "PARCIAL",
+      "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
+      "estado_info_desc": "Hitos en Tomos (7 registros); faltan documentos clave para sustento pleno",
+      "detalles_faltantes": [
+        "Falta ubicar Acta de Entrega de Terreno o Ficha N° 01 (Fecha exacta de inicio)"
+      ],
+      "confiabilidad": "MEDIA"
     },
     {
       "id": 6,
@@ -20257,7 +20294,7 @@
       "resolucion_liquidacion": "",
       "estado_info": "COMPLETA",
       "estado_info_label": "🟢 TRAZABILIDAD INTEGRAL",
-      "estado_info_desc": "Cuenta con documentos de inicio y recepción/liquidación en Tomos PMO escaneados",
+      "estado_info_desc": "Cuenta con fecha exacta de inicio y cierre verificado en Tomos PMO escaneados",
       "detalles_faltantes": [],
       "confiabilidad": "ALTA"
     },
@@ -20280,7 +20317,7 @@
       "fecha_inicio": "",
       "fecha_inicio_sort": "9999-99-99",
       "tiene_fecha_inicio": false,
-      "fecha_inicio_doc": "Pendiente de ubicar en Tomos 7 al 9",
+      "fecha_inicio_doc": "Pendiente de ubicar Acta de Entrega de Terreno o Ficha N° 01 en Tomos/Archivo",
       "fecha_termino_prog": "",
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
@@ -20362,7 +20399,7 @@
       "resolucion_liquidacion": "En proceso de liquidación final",
       "estado_info": "COMPLETA",
       "estado_info_label": "🟢 TRAZABILIDAD INTEGRAL",
-      "estado_info_desc": "Cuenta con documentos de inicio y recepción/liquidación en Tomos PMO escaneados",
+      "estado_info_desc": "Cuenta con fecha exacta de inicio y cierre verificado en Tomos PMO escaneados",
       "detalles_faltantes": [],
       "confiabilidad": "ALTA"
     },
@@ -20487,20 +20524,20 @@
         }
       ],
       "total_hitos": 13,
-      "fecha_inicio": "Segundo Semestre 2022",
-      "fecha_inicio_sort": "2022-01-01",
-      "tiene_fecha_inicio": true,
-      "fecha_inicio_doc": "Tomo 1 PMO Págs. 18, 48, 62 (Cartas 018 y 026-SUP)",
+      "fecha_inicio": "",
+      "fecha_inicio_sort": "9999-99-99",
+      "tiene_fecha_inicio": false,
+      "fecha_inicio_doc": "Pendiente de ubicar Acta de Entrega de Terreno o Ficha N° 01 en Tomos/Archivo",
       "fecha_termino_prog": "Enero 2023",
       "fecha_culminacion_real": "15/02/2023 (Val N° 03)",
       "acta_recepcion": "06/02/2023 (Comité Recepción MPI - Pág 48 Tomo 1)",
       "resolucion_liquidacion": "Liquidación Técnica 2023",
       "estado_info": "PARCIAL",
       "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
-      "estado_info_desc": "Hitos de ejecución identificados; faltan acta de inicio y liquidación final",
+      "estado_info_desc": "Hitos en Tomos (13 registros); faltan documentos clave para sustento pleno",
       "detalles_faltantes": [
-        "Falta Acta de Inicio en Tomos",
-        "Falta Acta de Recepción o Liquidación Final"
+        "Falta ubicar Acta de Entrega de Terreno o Ficha N° 01 (Fecha exacta de inicio)",
+        "Falta Acta de Recepción o Resolución de Liquidación Final"
       ],
       "confiabilidad": "MEDIA"
     },
@@ -20561,19 +20598,19 @@
         }
       ],
       "total_hitos": 5,
-      "fecha_inicio": "Aprox. 20 de abril del 2023 (Primer Hito PMO)",
-      "fecha_inicio_sort": "2023-04-20",
-      "tiene_fecha_inicio": true,
-      "fecha_inicio_doc": "carta N0039-2023-HAMR (Tomo 3 PMO (Folio 36))",
+      "fecha_inicio": "",
+      "fecha_inicio_sort": "9999-99-99",
+      "tiene_fecha_inicio": false,
+      "fecha_inicio_doc": "Pendiente de ubicar Acta de Entrega de Terreno o Ficha N° 01 en Tomos/Archivo",
       "fecha_termino_prog": "",
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
       "estado_info": "PARCIAL",
       "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
-      "estado_info_desc": "Cuenta con hitos de ejecución y cierre; falta acta de inicio",
+      "estado_info_desc": "Hitos en Tomos (5 registros); faltan documentos clave para sustento pleno",
       "detalles_faltantes": [
-        "Falta Acta de Inicio en Tomos"
+        "Falta ubicar Acta de Entrega de Terreno o Ficha N° 01 (Fecha exacta de inicio)"
       ],
       "confiabilidad": "MEDIA"
     },
@@ -20596,7 +20633,7 @@
       "fecha_inicio": "",
       "fecha_inicio_sort": "9999-99-99",
       "tiene_fecha_inicio": false,
-      "fecha_inicio_doc": "Pendiente de ubicar en Tomos 7 al 9",
+      "fecha_inicio_doc": "Pendiente de ubicar Acta de Entrega de Terreno o Ficha N° 01 en Tomos/Archivo",
       "fecha_termino_prog": "",
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
@@ -20926,7 +20963,7 @@
       "resolucion_liquidacion": "",
       "estado_info": "COMPLETA",
       "estado_info_label": "🟢 TRAZABILIDAD INTEGRAL",
-      "estado_info_desc": "Cuenta con documentos de inicio y recepción/liquidación en Tomos PMO escaneados",
+      "estado_info_desc": "Cuenta con fecha exacta de inicio y cierre verificado en Tomos PMO escaneados",
       "detalles_faltantes": [],
       "confiabilidad": "ALTA"
     },
@@ -21301,7 +21338,7 @@
       "resolucion_liquidacion": "",
       "estado_info": "COMPLETA",
       "estado_info_label": "🟢 TRAZABILIDAD INTEGRAL",
-      "estado_info_desc": "Cuenta con documentos de inicio y recepción/liquidación en Tomos PMO escaneados",
+      "estado_info_desc": "Cuenta con fecha exacta de inicio y cierre verificado en Tomos PMO escaneados",
       "detalles_faltantes": [],
       "confiabilidad": "ALTA"
     },
@@ -22905,19 +22942,19 @@
         }
       ],
       "total_hitos": 22,
-      "fecha_inicio": "Aprox. Ene-Feb 2023 (Primer Hito PMO)",
-      "fecha_inicio_sort": "2023-01-01",
-      "tiene_fecha_inicio": true,
-      "fecha_inicio_doc": "Folio 1 (Tomo 1 PMO (Folio 1))",
+      "fecha_inicio": "",
+      "fecha_inicio_sort": "9999-99-99",
+      "tiene_fecha_inicio": false,
+      "fecha_inicio_doc": "Pendiente de ubicar Acta de Entrega de Terreno o Ficha N° 01 en Tomos/Archivo",
       "fecha_termino_prog": "",
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
       "estado_info": "PARCIAL",
       "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
-      "estado_info_desc": "Cuenta con hitos de ejecución y cierre; falta acta de inicio",
+      "estado_info_desc": "Hitos en Tomos (22 registros); faltan documentos clave para sustento pleno",
       "detalles_faltantes": [
-        "Falta Acta de Inicio en Tomos"
+        "Falta ubicar Acta de Entrega de Terreno o Ficha N° 01 (Fecha exacta de inicio)"
       ],
       "confiabilidad": "MEDIA"
     },
@@ -22954,20 +22991,20 @@
         }
       ],
       "total_hitos": 2,
-      "fecha_inicio": "Aprox. 03 de noviembre del 2026 (Primer Hito PMO)",
-      "fecha_inicio_sort": "2026-11-03",
-      "tiene_fecha_inicio": true,
-      "fecha_inicio_doc": "CARTA N° 0 xxx- (Secretaría Digital (cartas 2026\\INF_1090-2026-MAYU))",
+      "fecha_inicio": "",
+      "fecha_inicio_sort": "9999-99-99",
+      "tiene_fecha_inicio": false,
+      "fecha_inicio_doc": "Pendiente de ubicar Acta de Entrega de Terreno o Ficha N° 01 en Tomos/Archivo",
       "fecha_termino_prog": "",
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
       "estado_info": "PARCIAL",
       "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
-      "estado_info_desc": "Hitos de ejecución identificados; faltan acta de inicio y liquidación final",
+      "estado_info_desc": "Hitos en Tomos (2 registros); faltan documentos clave para sustento pleno",
       "detalles_faltantes": [
-        "Falta Acta de Inicio en Tomos",
-        "Falta Acta de Recepción o Liquidación Final"
+        "Falta ubicar Acta de Entrega de Terreno o Ficha N° 01 (Fecha exacta de inicio)",
+        "Falta Acta de Recepción o Resolución de Liquidación Final"
       ],
       "confiabilidad": "MEDIA"
     },
@@ -23222,7 +23259,7 @@
       "resolucion_liquidacion": "",
       "estado_info": "COMPLETA",
       "estado_info_label": "🟢 TRAZABILIDAD INTEGRAL",
-      "estado_info_desc": "Cuenta con documentos de inicio y recepción/liquidación en Tomos PMO escaneados",
+      "estado_info_desc": "Cuenta con fecha exacta de inicio y cierre verificado en Tomos PMO escaneados",
       "detalles_faltantes": [],
       "confiabilidad": "ALTA"
     },
@@ -23325,7 +23362,7 @@
       "resolucion_liquidacion": "",
       "estado_info": "COMPLETA",
       "estado_info_label": "🟢 TRAZABILIDAD INTEGRAL",
-      "estado_info_desc": "Cuenta con documentos de inicio y recepción/liquidación en Tomos PMO escaneados",
+      "estado_info_desc": "Cuenta con fecha exacta de inicio y cierre verificado en Tomos PMO escaneados",
       "detalles_faltantes": [],
       "confiabilidad": "ALTA"
     },
@@ -23364,10 +23401,9 @@
       "resolucion_liquidacion": "En observaciones de liquidación técnica (Tomo 5 Folios 1 y 72)",
       "estado_info": "PARCIAL",
       "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
-      "estado_info_desc": "Hitos de ejecución identificados; faltan acta de inicio y liquidación final",
+      "estado_info_desc": "Hitos en Tomos (1 registros); faltan documentos clave para sustento pleno",
       "detalles_faltantes": [
-        "Falta Acta de Inicio en Tomos",
-        "Falta Acta de Recepción o Liquidación Final"
+        "Falta Acta de Recepción o Resolución de Liquidación Final"
       ],
       "confiabilidad": "MEDIA"
     },
@@ -23428,20 +23464,20 @@
         }
       ],
       "total_hitos": 5,
-      "fecha_inicio": "Aprox. 2025-2026 (Primer Hito PMO)",
-      "fecha_inicio_sort": "2025-01-01",
-      "tiene_fecha_inicio": true,
-      "fecha_inicio_doc": "CARTA N° 0xxx- (Secretaría Digital (cartas 2026\\INF_500-2026-GORE ))",
+      "fecha_inicio": "",
+      "fecha_inicio_sort": "9999-99-99",
+      "tiene_fecha_inicio": false,
+      "fecha_inicio_doc": "Pendiente de ubicar Acta de Entrega de Terreno o Ficha N° 01 en Tomos/Archivo",
       "fecha_termino_prog": "",
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
       "estado_info": "PARCIAL",
       "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
-      "estado_info_desc": "Hitos de ejecución identificados; faltan acta de inicio y liquidación final",
+      "estado_info_desc": "Hitos en Tomos (5 registros); faltan documentos clave para sustento pleno",
       "detalles_faltantes": [
-        "Falta Acta de Inicio en Tomos",
-        "Falta Acta de Recepción o Liquidación Final"
+        "Falta ubicar Acta de Entrega de Terreno o Ficha N° 01 (Fecha exacta de inicio)",
+        "Falta Acta de Recepción o Resolución de Liquidación Final"
       ],
       "confiabilidad": "MEDIA"
     },
@@ -23510,19 +23546,19 @@
         }
       ],
       "total_hitos": 6,
-      "fecha_inicio": "Aprox. 24 de marzo del 2023 (Primer Hito PMO)",
-      "fecha_inicio_sort": "2023-03-24",
-      "tiene_fecha_inicio": true,
-      "fecha_inicio_doc": "Folio 52 (Tomo 2 PMO (Folio 52))",
+      "fecha_inicio": "",
+      "fecha_inicio_sort": "9999-99-99",
+      "tiene_fecha_inicio": false,
+      "fecha_inicio_doc": "Pendiente de ubicar Acta de Entrega de Terreno o Ficha N° 01 en Tomos/Archivo",
       "fecha_termino_prog": "",
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
       "estado_info": "PARCIAL",
       "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
-      "estado_info_desc": "Cuenta con hitos de ejecución y cierre; falta acta de inicio",
+      "estado_info_desc": "Hitos en Tomos (6 registros); faltan documentos clave para sustento pleno",
       "detalles_faltantes": [
-        "Falta Acta de Inicio en Tomos"
+        "Falta ubicar Acta de Entrega de Terreno o Ficha N° 01 (Fecha exacta de inicio)"
       ],
       "confiabilidad": "MEDIA"
     },
@@ -23689,7 +23725,7 @@
       "resolucion_liquidacion": "",
       "estado_info": "COMPLETA",
       "estado_info_label": "🟢 TRAZABILIDAD INTEGRAL",
-      "estado_info_desc": "Cuenta con documentos de inicio y recepción/liquidación en Tomos PMO escaneados",
+      "estado_info_desc": "Cuenta con fecha exacta de inicio y cierre verificado en Tomos PMO escaneados",
       "detalles_faltantes": [],
       "confiabilidad": "ALTA"
     },
@@ -23750,13 +23786,11 @@
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
-      "estado_info": "PARCIAL",
-      "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
-      "estado_info_desc": "Cuenta con hitos de ejecución y cierre; falta acta de inicio",
-      "detalles_faltantes": [
-        "Falta Acta de Inicio en Tomos"
-      ],
-      "confiabilidad": "MEDIA"
+      "estado_info": "COMPLETA",
+      "estado_info_label": "🟢 TRAZABILIDAD INTEGRAL",
+      "estado_info_desc": "Cuenta con fecha exacta de inicio y cierre verificado en Tomos PMO escaneados",
+      "detalles_faltantes": [],
+      "confiabilidad": "ALTA"
     },
     {
       "id": 24,
@@ -23815,13 +23849,11 @@
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
-      "estado_info": "PARCIAL",
-      "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
-      "estado_info_desc": "Cuenta con hitos de ejecución y cierre; falta acta de inicio",
-      "detalles_faltantes": [
-        "Falta Acta de Inicio en Tomos"
-      ],
-      "confiabilidad": "MEDIA"
+      "estado_info": "COMPLETA",
+      "estado_info_label": "🟢 TRAZABILIDAD INTEGRAL",
+      "estado_info_desc": "Cuenta con fecha exacta de inicio y cierre verificado en Tomos PMO escaneados",
+      "detalles_faltantes": [],
+      "confiabilidad": "ALTA"
     },
     {
       "id": 25,
@@ -23872,13 +23904,11 @@
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
-      "estado_info": "PARCIAL",
-      "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
-      "estado_info_desc": "Cuenta con hitos de ejecución y cierre; falta acta de inicio",
-      "detalles_faltantes": [
-        "Falta Acta de Inicio en Tomos"
-      ],
-      "confiabilidad": "MEDIA"
+      "estado_info": "COMPLETA",
+      "estado_info_label": "🟢 TRAZABILIDAD INTEGRAL",
+      "estado_info_desc": "Cuenta con fecha exacta de inicio y cierre verificado en Tomos PMO escaneados",
+      "detalles_faltantes": [],
+      "confiabilidad": "ALTA"
     },
     {
       "id": 26,
@@ -23899,7 +23929,7 @@
       "fecha_inicio": "",
       "fecha_inicio_sort": "9999-99-99",
       "tiene_fecha_inicio": false,
-      "fecha_inicio_doc": "Pendiente de ubicar en Tomos 7 al 9",
+      "fecha_inicio_doc": "Pendiente de ubicar Acta de Entrega de Terreno o Ficha N° 01 en Tomos/Archivo",
       "fecha_termino_prog": "",
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
@@ -23965,10 +23995,9 @@
       "resolucion_liquidacion": "",
       "estado_info": "PARCIAL",
       "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
-      "estado_info_desc": "Hitos de ejecución identificados; faltan acta de inicio y liquidación final",
+      "estado_info_desc": "Hitos en Tomos (3 registros); faltan documentos clave para sustento pleno",
       "detalles_faltantes": [
-        "Falta Acta de Inicio en Tomos",
-        "Falta Acta de Recepción o Liquidación Final"
+        "Falta Acta de Recepción o Resolución de Liquidación Final"
       ],
       "confiabilidad": "MEDIA"
     },
@@ -23997,20 +24026,20 @@
         }
       ],
       "total_hitos": 1,
-      "fecha_inicio": "Aprox. 2025-2026 (Primer Hito PMO)",
-      "fecha_inicio_sort": "2025-01-01",
-      "tiene_fecha_inicio": true,
-      "fecha_inicio_doc": "CARTA N° 0 xxx- (Secretaría Digital (cartas 2026\\INF_966-2026-agric))",
+      "fecha_inicio": "",
+      "fecha_inicio_sort": "9999-99-99",
+      "tiene_fecha_inicio": false,
+      "fecha_inicio_doc": "Pendiente de ubicar Acta de Entrega de Terreno o Ficha N° 01 en Tomos/Archivo",
       "fecha_termino_prog": "",
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
       "estado_info": "PARCIAL",
       "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
-      "estado_info_desc": "Hitos de ejecución identificados; faltan acta de inicio y liquidación final",
+      "estado_info_desc": "Hitos en Tomos (1 registros); faltan documentos clave para sustento pleno",
       "detalles_faltantes": [
-        "Falta Acta de Inicio en Tomos",
-        "Falta Acta de Recepción o Liquidación Final"
+        "Falta ubicar Acta de Entrega de Terreno o Ficha N° 01 (Fecha exacta de inicio)",
+        "Falta Acta de Recepción o Resolución de Liquidación Final"
       ],
       "confiabilidad": "MEDIA"
     },
@@ -24055,20 +24084,20 @@
         }
       ],
       "total_hitos": 3,
-      "fecha_inicio": "Aprox. 24 de mayo del 2023 (Primer Hito PMO)",
-      "fecha_inicio_sort": "2023-05-24",
-      "tiene_fecha_inicio": true,
-      "fecha_inicio_doc": "Folio 36 (Tomo 4 PMO (Folio 36))",
+      "fecha_inicio": "",
+      "fecha_inicio_sort": "9999-99-99",
+      "tiene_fecha_inicio": false,
+      "fecha_inicio_doc": "Pendiente de ubicar Acta de Entrega de Terreno o Ficha N° 01 en Tomos/Archivo",
       "fecha_termino_prog": "",
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
       "estado_info": "PARCIAL",
       "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
-      "estado_info_desc": "Hitos de ejecución identificados; faltan acta de inicio y liquidación final",
+      "estado_info_desc": "Hitos en Tomos (3 registros); faltan documentos clave para sustento pleno",
       "detalles_faltantes": [
-        "Falta Acta de Inicio en Tomos",
-        "Falta Acta de Recepción o Liquidación Final"
+        "Falta ubicar Acta de Entrega de Terreno o Ficha N° 01 (Fecha exacta de inicio)",
+        "Falta Acta de Recepción o Resolución de Liquidación Final"
       ],
       "confiabilidad": "MEDIA"
     },
@@ -24105,20 +24134,20 @@
         }
       ],
       "total_hitos": 2,
-      "fecha_inicio": "Aprox. 35-08-2026 (Primer Hito PMO)",
-      "fecha_inicio_sort": "2026-01-01",
-      "tiene_fecha_inicio": true,
-      "fecha_inicio_doc": "CARTA N° 0 xxx- (Secretaría Digital (cartas 2026\\INF_770-2026-maycu))",
+      "fecha_inicio": "",
+      "fecha_inicio_sort": "9999-99-99",
+      "tiene_fecha_inicio": false,
+      "fecha_inicio_doc": "Pendiente de ubicar Acta de Entrega de Terreno o Ficha N° 01 en Tomos/Archivo",
       "fecha_termino_prog": "",
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
       "estado_info": "PARCIAL",
       "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
-      "estado_info_desc": "Hitos de ejecución identificados; faltan acta de inicio y liquidación final",
+      "estado_info_desc": "Hitos en Tomos (2 registros); faltan documentos clave para sustento pleno",
       "detalles_faltantes": [
-        "Falta Acta de Inicio en Tomos",
-        "Falta Acta de Recepción o Liquidación Final"
+        "Falta ubicar Acta de Entrega de Terreno o Ficha N° 01 (Fecha exacta de inicio)",
+        "Falta Acta de Recepción o Resolución de Liquidación Final"
       ],
       "confiabilidad": "MEDIA"
     },
@@ -24197,9 +24226,9 @@
       "resolucion_liquidacion": "",
       "estado_info": "PARCIAL",
       "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
-      "estado_info_desc": "Obra con inicio registrado; falta recepción o liquidación final en Tomos",
+      "estado_info_desc": "Hitos en Tomos (6 registros); faltan documentos clave para sustento pleno",
       "detalles_faltantes": [
-        "Falta Acta de Recepción o Liquidación Final"
+        "Falta Acta de Recepción o Resolución de Liquidación Final"
       ],
       "confiabilidad": "MEDIA"
     },
@@ -24228,19 +24257,19 @@
         }
       ],
       "total_hitos": 1,
-      "fecha_inicio": "2025-2026",
-      "fecha_inicio_sort": "2025-01-01",
-      "tiene_fecha_inicio": true,
-      "fecha_inicio_doc": "CARTA N° 0 xxx- (Secretaría Digital (cartas 2026\\INF_267-2026-LIQUI))",
+      "fecha_inicio": "",
+      "fecha_inicio_sort": "9999-99-99",
+      "tiene_fecha_inicio": false,
+      "fecha_inicio_doc": "Pendiente de ubicar Acta de Entrega de Terreno o Ficha N° 01 en Tomos/Archivo",
       "fecha_termino_prog": "",
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
       "estado_info": "PARCIAL",
       "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
-      "estado_info_desc": "Cuenta con hitos de ejecución y cierre; falta acta de inicio",
+      "estado_info_desc": "Hitos en Tomos (1 registros); faltan documentos clave para sustento pleno",
       "detalles_faltantes": [
-        "Falta Acta de Inicio en Tomos"
+        "Falta ubicar Acta de Entrega de Terreno o Ficha N° 01 (Fecha exacta de inicio)"
       ],
       "confiabilidad": "MEDIA"
     },
@@ -24287,9 +24316,9 @@
       "resolucion_liquidacion": "",
       "estado_info": "PARCIAL",
       "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
-      "estado_info_desc": "Obra con inicio registrado; falta recepción o liquidación final en Tomos",
+      "estado_info_desc": "Hitos en Tomos (2 registros); faltan documentos clave para sustento pleno",
       "detalles_faltantes": [
-        "Falta Acta de Recepción o Liquidación Final"
+        "Falta Acta de Recepción o Resolución de Liquidación Final"
       ],
       "confiabilidad": "MEDIA"
     },
@@ -24406,19 +24435,19 @@
         }
       ],
       "total_hitos": 12,
-      "fecha_inicio": "Aprox. 2025-2026 (Primer Hito PMO)",
-      "fecha_inicio_sort": "2025-01-01",
-      "tiene_fecha_inicio": true,
-      "fecha_inicio_doc": "CARTA N° 0 xxx- (Secretaría Digital (cartas 2026\\INF_215-2026-urina))",
+      "fecha_inicio": "",
+      "fecha_inicio_sort": "9999-99-99",
+      "tiene_fecha_inicio": false,
+      "fecha_inicio_doc": "Pendiente de ubicar Acta de Entrega de Terreno o Ficha N° 01 en Tomos/Archivo",
       "fecha_termino_prog": "",
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
       "estado_info": "PARCIAL",
       "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
-      "estado_info_desc": "Cuenta con hitos de ejecución y cierre; falta acta de inicio",
+      "estado_info_desc": "Hitos en Tomos (12 registros); faltan documentos clave para sustento pleno",
       "detalles_faltantes": [
-        "Falta Acta de Inicio en Tomos"
+        "Falta ubicar Acta de Entrega de Terreno o Ficha N° 01 (Fecha exacta de inicio)"
       ],
       "confiabilidad": "MEDIA"
     },
@@ -24438,10 +24467,10 @@
       "alerta": "Verificar O/C, Pecosa y Acta entrega de bienes",
       "historial": [],
       "total_hitos": 0,
-      "fecha_inicio": "Periodo 2020-2021",
-      "fecha_inicio_sort": "2020-01-01",
-      "tiene_fecha_inicio": true,
-      "fecha_inicio_doc": "Entregable 1 FDM: Convenio 100 MLL transferido a Municipalidad La Capilla",
+      "fecha_inicio": "",
+      "fecha_inicio_sort": "9999-99-99",
+      "tiene_fecha_inicio": false,
+      "fecha_inicio_doc": "Pendiente de ubicar Acta de Entrega de Terreno o Ficha N° 01 en Tomos/Archivo",
       "fecha_termino_prog": "",
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
@@ -24475,7 +24504,7 @@
       "fecha_inicio": "",
       "fecha_inicio_sort": "9999-99-99",
       "tiene_fecha_inicio": false,
-      "fecha_inicio_doc": "Pendiente de ubicar en Tomos 7 al 9",
+      "fecha_inicio_doc": "Pendiente de ubicar Acta de Entrega de Terreno o Ficha N° 01 en Tomos/Archivo",
       "fecha_termino_prog": "",
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
@@ -24531,19 +24560,19 @@
         }
       ],
       "total_hitos": 3,
-      "fecha_inicio": "Año 2022",
-      "fecha_inicio_sort": "2022-01-01",
-      "tiene_fecha_inicio": true,
-      "fecha_inicio_doc": "Archivo Físico Caja 03 (Foto Oficial 2024)",
+      "fecha_inicio": "",
+      "fecha_inicio_sort": "9999-99-99",
+      "tiene_fecha_inicio": false,
+      "fecha_inicio_doc": "Pendiente de ubicar Acta de Entrega de Terreno o Ficha N° 01 en Tomos/Archivo",
       "fecha_termino_prog": "2023",
       "fecha_culminacion_real": "Finales 2023",
       "acta_recepcion": "Conformidad de Supervisión 2024",
       "resolucion_liquidacion": "Liquidación Aprobada 2024 (Caja 03)",
       "estado_info": "PARCIAL",
       "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
-      "estado_info_desc": "Cuenta con hitos de ejecución y cierre; falta acta de inicio",
+      "estado_info_desc": "Hitos en Tomos (3 registros); faltan documentos clave para sustento pleno",
       "detalles_faltantes": [
-        "Falta Acta de Inicio en Tomos"
+        "Falta ubicar Acta de Entrega de Terreno o Ficha N° 01 (Fecha exacta de inicio)"
       ],
       "confiabilidad": "MEDIA"
     },
@@ -24604,20 +24633,20 @@
         }
       ],
       "total_hitos": 5,
-      "fecha_inicio": "Aprox. 27 de febrero del 2026 (Primer Hito PMO)",
-      "fecha_inicio_sort": "2026-02-27",
-      "tiene_fecha_inicio": true,
-      "fecha_inicio_doc": "CARTA N° 0 xxx- (Secretaría Digital (cartas 2026\\INF_191-2026-puent))",
+      "fecha_inicio": "",
+      "fecha_inicio_sort": "9999-99-99",
+      "tiene_fecha_inicio": false,
+      "fecha_inicio_doc": "Pendiente de ubicar Acta de Entrega de Terreno o Ficha N° 01 en Tomos/Archivo",
       "fecha_termino_prog": "",
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
       "estado_info": "PARCIAL",
       "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
-      "estado_info_desc": "Hitos de ejecución identificados; faltan acta de inicio y liquidación final",
+      "estado_info_desc": "Hitos en Tomos (5 registros); faltan documentos clave para sustento pleno",
       "detalles_faltantes": [
-        "Falta Acta de Inicio en Tomos",
-        "Falta Acta de Recepción o Liquidación Final"
+        "Falta ubicar Acta de Entrega de Terreno o Ficha N° 01 (Fecha exacta de inicio)",
+        "Falta Acta de Recepción o Resolución de Liquidación Final"
       ],
       "confiabilidad": "MEDIA"
     },
@@ -24720,9 +24749,9 @@
       "resolucion_liquidacion": "",
       "estado_info": "PARCIAL",
       "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
-      "estado_info_desc": "Obra con inicio registrado; falta recepción o liquidación final en Tomos",
+      "estado_info_desc": "Hitos en Tomos (9 registros); faltan documentos clave para sustento pleno",
       "detalles_faltantes": [
-        "Falta Acta de Recepción o Liquidación Final"
+        "Falta Acta de Recepción o Resolución de Liquidación Final"
       ],
       "confiabilidad": "MEDIA"
     },
@@ -24745,7 +24774,7 @@
       "fecha_inicio": "",
       "fecha_inicio_sort": "9999-99-99",
       "tiene_fecha_inicio": false,
-      "fecha_inicio_doc": "Pendiente de ubicar en Tomos 7 al 9",
+      "fecha_inicio_doc": "Pendiente de ubicar Acta de Entrega de Terreno o Ficha N° 01 en Tomos/Archivo",
       "fecha_termino_prog": "",
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
@@ -24979,7 +25008,7 @@
       "resolucion_liquidacion": "",
       "estado_info": "COMPLETA",
       "estado_info_label": "🟢 TRAZABILIDAD INTEGRAL",
-      "estado_info_desc": "Cuenta con documentos de inicio y recepción/liquidación en Tomos PMO escaneados",
+      "estado_info_desc": "Cuenta con fecha exacta de inicio y cierre verificado en Tomos PMO escaneados",
       "detalles_faltantes": [],
       "confiabilidad": "ALTA"
     },
@@ -25232,13 +25261,11 @@
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
-      "estado_info": "PARCIAL",
-      "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
-      "estado_info_desc": "Cuenta con hitos de ejecución y cierre; falta acta de inicio",
-      "detalles_faltantes": [
-        "Falta Acta de Inicio en Tomos"
-      ],
-      "confiabilidad": "MEDIA"
+      "estado_info": "COMPLETA",
+      "estado_info_label": "🟢 TRAZABILIDAD INTEGRAL",
+      "estado_info_desc": "Cuenta con fecha exacta de inicio y cierre verificado en Tomos PMO escaneados",
+      "detalles_faltantes": [],
+      "confiabilidad": "ALTA"
     },
     {
       "id": 43,
@@ -25281,19 +25308,21 @@
         }
       ],
       "total_hitos": 3,
-      "fecha_inicio": "Año 2022",
-      "fecha_inicio_sort": "2022-01-01",
-      "tiene_fecha_inicio": true,
-      "fecha_inicio_doc": "Archivo Físico Caja 03 (Foto Oficial 2024)",
+      "fecha_inicio": "",
+      "fecha_inicio_sort": "9999-99-99",
+      "tiene_fecha_inicio": false,
+      "fecha_inicio_doc": "Pendiente de ubicar Acta de Entrega de Terreno o Ficha N° 01 en Tomos/Archivo",
       "fecha_termino_prog": "2023",
       "fecha_culminacion_real": "Finales 2023",
       "acta_recepcion": "Conformidad de Supervisión 2024",
       "resolucion_liquidacion": "Liquidación Aprobada 2024 (Caja 03)",
-      "estado_info": "COMPLETA",
-      "estado_info_label": "🟢 TRAZABILIDAD INTEGRAL",
-      "estado_info_desc": "Cuenta con documentos de inicio y recepción/liquidación en Tomos PMO escaneados",
-      "detalles_faltantes": [],
-      "confiabilidad": "ALTA"
+      "estado_info": "PARCIAL",
+      "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
+      "estado_info_desc": "Hitos en Tomos (3 registros); faltan documentos clave para sustento pleno",
+      "detalles_faltantes": [
+        "Falta ubicar Acta de Entrega de Terreno o Ficha N° 01 (Fecha exacta de inicio)"
+      ],
+      "confiabilidad": "MEDIA"
     },
     {
       "id": 2,
@@ -25344,19 +25373,19 @@
         }
       ],
       "total_hitos": 4,
-      "fecha_inicio": "Iniciada en periodo 2020-2021",
-      "fecha_inicio_sort": "2020-01-01",
-      "tiene_fecha_inicio": true,
-      "fecha_inicio_doc": "Matriz Entregable 1 + Estados Financieros FDM",
+      "fecha_inicio": "",
+      "fecha_inicio_sort": "9999-99-99",
+      "tiene_fecha_inicio": false,
+      "fecha_inicio_doc": "Pendiente de ubicar Acta de Entrega de Terreno o Ficha N° 01 en Tomos/Archivo",
       "fecha_termino_prog": "2022",
       "fecha_culminacion_real": "2022",
       "acta_recepcion": "Acta de Recepción 2022",
       "resolucion_liquidacion": "Liquidada 2022-2023",
       "estado_info": "PARCIAL",
       "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
-      "estado_info_desc": "Cuenta con hitos de ejecución y cierre; falta acta de inicio",
+      "estado_info_desc": "Hitos en Tomos (4 registros); faltan documentos clave para sustento pleno",
       "detalles_faltantes": [
-        "Falta Acta de Inicio en Tomos"
+        "Falta ubicar Acta de Entrega de Terreno o Ficha N° 01 (Fecha exacta de inicio)"
       ],
       "confiabilidad": "MEDIA"
     },
@@ -25376,21 +25405,23 @@
       "alerta": "Verificar padrón de entrega y acuerdo de emergencia",
       "historial": [],
       "total_hitos": 0,
-      "fecha_inicio": "Iniciada en periodo 2020-2021",
-      "fecha_inicio_sort": "2020-01-01",
-      "tiene_fecha_inicio": true,
-      "fecha_inicio_doc": "Matriz Entregable 1 + Estados Financieros FDM",
+      "fecha_inicio": "",
+      "fecha_inicio_sort": "9999-99-99",
+      "tiene_fecha_inicio": false,
+      "fecha_inicio_doc": "Pendiente de ubicar Acta de Entrega de Terreno o Ficha N° 01 en Tomos/Archivo",
       "fecha_termino_prog": "2022",
       "fecha_culminacion_real": "2022",
       "acta_recepcion": "Acta de Recepción 2022",
       "resolucion_liquidacion": "Liquidada 2022-2023",
-      "estado_info": "PARCIAL",
-      "estado_info_label": "🟡 REGISTRO HISTÓRICO",
-      "estado_info_desc": "Figura en matriz histórica 2020-2022; falta ubicar expediente físico en Tomos 7-9 o archivador",
+      "estado_info": "INCOMPLETA",
+      "estado_info_label": "🔴 INFORMACIÓN PENDIENTE",
+      "estado_info_desc": "Sin documentos en Tomos 1 al 6 ni caja identificada; requiere búsqueda prioritaria",
       "detalles_faltantes": [
-        "Falta ubicar expediente físico o Tomos de liquidación 2020-2022"
+        "Falta ubicar expediente completo",
+        "Falta Acta de Inicio",
+        "Falta Liquidación"
       ],
-      "confiabilidad": "MEDIA"
+      "confiabilidad": "BAJA"
     },
     {
       "id": 4,
@@ -25408,21 +25439,23 @@
       "alerta": "Verificar padrón de entrega y acuerdo de emergencia",
       "historial": [],
       "total_hitos": 0,
-      "fecha_inicio": "Iniciada en periodo 2020-2021",
-      "fecha_inicio_sort": "2020-01-01",
-      "tiene_fecha_inicio": true,
-      "fecha_inicio_doc": "Matriz Entregable 1 + Estados Financieros FDM",
+      "fecha_inicio": "",
+      "fecha_inicio_sort": "9999-99-99",
+      "tiene_fecha_inicio": false,
+      "fecha_inicio_doc": "Pendiente de ubicar Acta de Entrega de Terreno o Ficha N° 01 en Tomos/Archivo",
       "fecha_termino_prog": "2022",
       "fecha_culminacion_real": "2022",
       "acta_recepcion": "Acta de Recepción 2022",
       "resolucion_liquidacion": "Liquidada 2022-2023",
-      "estado_info": "PARCIAL",
-      "estado_info_label": "🟡 REGISTRO HISTÓRICO",
-      "estado_info_desc": "Figura en matriz histórica 2020-2022; falta ubicar expediente físico en Tomos 7-9 o archivador",
+      "estado_info": "INCOMPLETA",
+      "estado_info_label": "🔴 INFORMACIÓN PENDIENTE",
+      "estado_info_desc": "Sin documentos en Tomos 1 al 6 ni caja identificada; requiere búsqueda prioritaria",
       "detalles_faltantes": [
-        "Falta ubicar expediente físico o Tomos de liquidación 2020-2022"
+        "Falta ubicar expediente completo",
+        "Falta Acta de Inicio",
+        "Falta Liquidación"
       ],
-      "confiabilidad": "MEDIA"
+      "confiabilidad": "BAJA"
     },
     {
       "id": 5,
@@ -25457,19 +25490,19 @@
         }
       ],
       "total_hitos": 2,
-      "fecha_inicio": "Iniciada en periodo 2020-2021",
-      "fecha_inicio_sort": "2020-01-01",
-      "tiene_fecha_inicio": true,
-      "fecha_inicio_doc": "Matriz Entregable 1 + Estados Financieros FDM",
+      "fecha_inicio": "",
+      "fecha_inicio_sort": "9999-99-99",
+      "tiene_fecha_inicio": false,
+      "fecha_inicio_doc": "Pendiente de ubicar Acta de Entrega de Terreno o Ficha N° 01 en Tomos/Archivo",
       "fecha_termino_prog": "2022",
       "fecha_culminacion_real": "2022",
       "acta_recepcion": "Acta de Recepción 2022",
       "resolucion_liquidacion": "Liquidada 2022-2023",
       "estado_info": "PARCIAL",
       "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
-      "estado_info_desc": "Cuenta con hitos de ejecución y cierre; falta acta de inicio",
+      "estado_info_desc": "Hitos en Tomos (2 registros); faltan documentos clave para sustento pleno",
       "detalles_faltantes": [
-        "Falta Acta de Inicio en Tomos"
+        "Falta ubicar Acta de Entrega de Terreno o Ficha N° 01 (Fecha exacta de inicio)"
       ],
       "confiabilidad": "MEDIA"
     },
@@ -25492,7 +25525,7 @@
       "fecha_inicio": "",
       "fecha_inicio_sort": "9999-99-99",
       "tiene_fecha_inicio": false,
-      "fecha_inicio_doc": "Pendiente de ubicar en Tomos 7 al 9",
+      "fecha_inicio_doc": "Pendiente de ubicar Acta de Entrega de Terreno o Ficha N° 01 en Tomos/Archivo",
       "fecha_termino_prog": "",
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
@@ -25540,20 +25573,20 @@
         }
       ],
       "total_hitos": 2,
-      "fecha_inicio": "Aprox. Abr-May 2023 (Primer Hito PMO)",
-      "fecha_inicio_sort": "2023-01-01",
-      "tiene_fecha_inicio": true,
-      "fecha_inicio_doc": "Folio 15 (Tomo 3 PMO (Folio 15))",
+      "fecha_inicio": "",
+      "fecha_inicio_sort": "9999-99-99",
+      "tiene_fecha_inicio": false,
+      "fecha_inicio_doc": "Pendiente de ubicar Acta de Entrega de Terreno o Ficha N° 01 en Tomos/Archivo",
       "fecha_termino_prog": "",
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
       "estado_info": "PARCIAL",
       "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
-      "estado_info_desc": "Hitos de ejecución identificados; faltan acta de inicio y liquidación final",
+      "estado_info_desc": "Hitos en Tomos (2 registros); faltan documentos clave para sustento pleno",
       "detalles_faltantes": [
-        "Falta Acta de Inicio en Tomos",
-        "Falta Acta de Recepción o Liquidación Final"
+        "Falta ubicar Acta de Entrega de Terreno o Ficha N° 01 (Fecha exacta de inicio)",
+        "Falta Acta de Recepción o Resolución de Liquidación Final"
       ],
       "confiabilidad": "MEDIA"
     },
@@ -25640,7 +25673,7 @@
       "resolucion_liquidacion": "En proceso de liquidación final",
       "estado_info": "COMPLETA",
       "estado_info_label": "🟢 TRAZABILIDAD INTEGRAL",
-      "estado_info_desc": "Cuenta con documentos de inicio y recepción/liquidación en Tomos PMO escaneados",
+      "estado_info_desc": "Cuenta con fecha exacta de inicio y cierre verificado en Tomos PMO escaneados",
       "detalles_faltantes": [],
       "confiabilidad": "ALTA"
     },
@@ -25765,20 +25798,20 @@
         }
       ],
       "total_hitos": 13,
-      "fecha_inicio": "Segundo Semestre 2022",
-      "fecha_inicio_sort": "2022-01-01",
-      "tiene_fecha_inicio": true,
-      "fecha_inicio_doc": "Tomo 1 PMO Págs. 18, 48, 62 (Cartas 018 y 026-SUP)",
+      "fecha_inicio": "",
+      "fecha_inicio_sort": "9999-99-99",
+      "tiene_fecha_inicio": false,
+      "fecha_inicio_doc": "Pendiente de ubicar Acta de Entrega de Terreno o Ficha N° 01 en Tomos/Archivo",
       "fecha_termino_prog": "Enero 2023",
       "fecha_culminacion_real": "15/02/2023 (Val N° 03)",
       "acta_recepcion": "06/02/2023 (Comité Recepción MPI - Pág 48 Tomo 1)",
       "resolucion_liquidacion": "Liquidación Técnica 2023",
       "estado_info": "PARCIAL",
       "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
-      "estado_info_desc": "Hitos de ejecución identificados; faltan acta de inicio y liquidación final",
+      "estado_info_desc": "Hitos en Tomos (13 registros); faltan documentos clave para sustento pleno",
       "detalles_faltantes": [
-        "Falta Acta de Inicio en Tomos",
-        "Falta Acta de Recepción o Liquidación Final"
+        "Falta ubicar Acta de Entrega de Terreno o Ficha N° 01 (Fecha exacta de inicio)",
+        "Falta Acta de Recepción o Resolución de Liquidación Final"
       ],
       "confiabilidad": "MEDIA"
     },
@@ -25807,20 +25840,20 @@
         }
       ],
       "total_hitos": 1,
-      "fecha_inicio": "Aprox. 20 de octubre del 2025 (Primer Hito PMO)",
-      "fecha_inicio_sort": "2025-10-20",
-      "tiene_fecha_inicio": true,
-      "fecha_inicio_doc": "carta N°254-2025-INV (Secretaría Digital (INFORMES\\INFORME Nº 092-2025-P))",
+      "fecha_inicio": "",
+      "fecha_inicio_sort": "9999-99-99",
+      "tiene_fecha_inicio": false,
+      "fecha_inicio_doc": "Pendiente de ubicar Acta de Entrega de Terreno o Ficha N° 01 en Tomos/Archivo",
       "fecha_termino_prog": "",
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
       "estado_info": "PARCIAL",
       "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
-      "estado_info_desc": "Hitos de ejecución identificados; faltan acta de inicio y liquidación final",
+      "estado_info_desc": "Hitos en Tomos (1 registros); faltan documentos clave para sustento pleno",
       "detalles_faltantes": [
-        "Falta Acta de Inicio en Tomos",
-        "Falta Acta de Recepción o Liquidación Final"
+        "Falta ubicar Acta de Entrega de Terreno o Ficha N° 01 (Fecha exacta de inicio)",
+        "Falta Acta de Recepción o Resolución de Liquidación Final"
       ],
       "confiabilidad": "MEDIA"
     },
@@ -25843,7 +25876,7 @@
       "fecha_inicio": "",
       "fecha_inicio_sort": "9999-99-99",
       "tiene_fecha_inicio": false,
-      "fecha_inicio_doc": "Pendiente de ubicar en Tomos 7 al 9",
+      "fecha_inicio_doc": "Pendiente de ubicar Acta de Entrega de Terreno o Ficha N° 01 en Tomos/Archivo",
       "fecha_termino_prog": "",
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
@@ -26197,7 +26230,7 @@
       "resolucion_liquidacion": "",
       "estado_info": "COMPLETA",
       "estado_info_label": "🟢 TRAZABILIDAD INTEGRAL",
-      "estado_info_desc": "Cuenta con documentos de inicio y recepción/liquidación en Tomos PMO escaneados",
+      "estado_info_desc": "Cuenta con fecha exacta de inicio y cierre verificado en Tomos PMO escaneados",
       "detalles_faltantes": [],
       "confiabilidad": "ALTA"
     },
@@ -26524,7 +26557,7 @@
       "resolucion_liquidacion": "",
       "estado_info": "COMPLETA",
       "estado_info_label": "🟢 TRAZABILIDAD INTEGRAL",
-      "estado_info_desc": "Cuenta con documentos de inicio y recepción/liquidación en Tomos PMO escaneados",
+      "estado_info_desc": "Cuenta con fecha exacta de inicio y cierre verificado en Tomos PMO escaneados",
       "detalles_faltantes": [],
       "confiabilidad": "ALTA"
     },
@@ -27761,19 +27794,21 @@
         }
       ],
       "total_hitos": 152,
-      "fecha_inicio": "2025-2026",
-      "fecha_inicio_sort": "2025-01-01",
-      "tiene_fecha_inicio": true,
-      "fecha_inicio_doc": "CARTA N° 0 xxx- (Secretaría Digital (cartas 2026\\INF_091-2026-vera ))",
+      "fecha_inicio": "",
+      "fecha_inicio_sort": "9999-99-99",
+      "tiene_fecha_inicio": false,
+      "fecha_inicio_doc": "Pendiente de ubicar Acta de Entrega de Terreno o Ficha N° 01 en Tomos/Archivo",
       "fecha_termino_prog": "",
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
-      "estado_info": "COMPLETA",
-      "estado_info_label": "🟢 TRAZABILIDAD INTEGRAL",
-      "estado_info_desc": "Cuenta con documentos de inicio y recepción/liquidación en Tomos PMO escaneados",
-      "detalles_faltantes": [],
-      "confiabilidad": "ALTA"
+      "estado_info": "PARCIAL",
+      "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
+      "estado_info_desc": "Hitos en Tomos (152 registros); faltan documentos clave para sustento pleno",
+      "detalles_faltantes": [
+        "Falta ubicar Acta de Entrega de Terreno o Ficha N° 01 (Fecha exacta de inicio)"
+      ],
+      "confiabilidad": "MEDIA"
     },
     {
       "id": 15,
@@ -27808,19 +27843,19 @@
         }
       ],
       "total_hitos": 2,
-      "fecha_inicio": "Aprox. 13 de agosto del 2026 (Primer Hito PMO)",
-      "fecha_inicio_sort": "2026-08-13",
-      "tiene_fecha_inicio": true,
-      "fecha_inicio_doc": "Carta Nº    - 2026-D (Secretaría Digital (cartas 2026\\INF_789-2026- cHIL))",
+      "fecha_inicio": "",
+      "fecha_inicio_sort": "9999-99-99",
+      "tiene_fecha_inicio": false,
+      "fecha_inicio_doc": "Pendiente de ubicar Acta de Entrega de Terreno o Ficha N° 01 en Tomos/Archivo",
       "fecha_termino_prog": "",
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
       "estado_info": "PARCIAL",
       "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
-      "estado_info_desc": "Cuenta con hitos de ejecución y cierre; falta acta de inicio",
+      "estado_info_desc": "Hitos en Tomos (2 registros); faltan documentos clave para sustento pleno",
       "detalles_faltantes": [
-        "Falta Acta de Inicio en Tomos"
+        "Falta ubicar Acta de Entrega de Terreno o Ficha N° 01 (Fecha exacta de inicio)"
       ],
       "confiabilidad": "MEDIA"
     },
@@ -27857,20 +27892,20 @@
         }
       ],
       "total_hitos": 2,
-      "fecha_inicio": "Aprox. 03 de noviembre del 2026 (Primer Hito PMO)",
-      "fecha_inicio_sort": "2026-11-03",
-      "tiene_fecha_inicio": true,
-      "fecha_inicio_doc": "CARTA N° 0 xxx- (Secretaría Digital (cartas 2026\\INF_1090-2026-MAYU))",
+      "fecha_inicio": "",
+      "fecha_inicio_sort": "9999-99-99",
+      "tiene_fecha_inicio": false,
+      "fecha_inicio_doc": "Pendiente de ubicar Acta de Entrega de Terreno o Ficha N° 01 en Tomos/Archivo",
       "fecha_termino_prog": "",
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
       "estado_info": "PARCIAL",
       "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
-      "estado_info_desc": "Hitos de ejecución identificados; faltan acta de inicio y liquidación final",
+      "estado_info_desc": "Hitos en Tomos (2 registros); faltan documentos clave para sustento pleno",
       "detalles_faltantes": [
-        "Falta Acta de Inicio en Tomos",
-        "Falta Acta de Recepción o Liquidación Final"
+        "Falta ubicar Acta de Entrega de Terreno o Ficha N° 01 (Fecha exacta de inicio)",
+        "Falta Acta de Recepción o Resolución de Liquidación Final"
       ],
       "confiabilidad": "MEDIA"
     },
@@ -27907,19 +27942,19 @@
         }
       ],
       "total_hitos": 2,
-      "fecha_inicio": "Aprox. 17 de noviembre del 2022 (Primer Hito PMO)",
-      "fecha_inicio_sort": "2022-11-17",
-      "tiene_fecha_inicio": true,
-      "fecha_inicio_doc": "Folio 25 (Tomo 1 PMO (Folio 25))",
+      "fecha_inicio": "",
+      "fecha_inicio_sort": "9999-99-99",
+      "tiene_fecha_inicio": false,
+      "fecha_inicio_doc": "Pendiente de ubicar Acta de Entrega de Terreno o Ficha N° 01 en Tomos/Archivo",
       "fecha_termino_prog": "",
       "fecha_culminacion_real": "",
       "acta_recepcion": "10/03/2023 (Tomo 3 Folio 4)",
       "resolucion_liquidacion": "",
       "estado_info": "PARCIAL",
       "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
-      "estado_info_desc": "Cuenta con hitos de ejecución y cierre; falta acta de inicio",
+      "estado_info_desc": "Hitos en Tomos (2 registros); faltan documentos clave para sustento pleno",
       "detalles_faltantes": [
-        "Falta Acta de Inicio en Tomos"
+        "Falta ubicar Acta de Entrega de Terreno o Ficha N° 01 (Fecha exacta de inicio)"
       ],
       "confiabilidad": "MEDIA"
     },
@@ -27956,19 +27991,19 @@
         }
       ],
       "total_hitos": 2,
-      "fecha_inicio": "Aprox. 29 de agosto de 2025 (Primer Hito PMO)",
-      "fecha_inicio_sort": "2025-08-29",
-      "tiene_fecha_inicio": true,
-      "fecha_inicio_doc": "Carta N° 047-2025-SUP (Secretaría Digital (INFORMES\\INFORME Nº 094-2025-P))",
+      "fecha_inicio": "",
+      "fecha_inicio_sort": "9999-99-99",
+      "tiene_fecha_inicio": false,
+      "fecha_inicio_doc": "Pendiente de ubicar Acta de Entrega de Terreno o Ficha N° 01 en Tomos/Archivo",
       "fecha_termino_prog": "",
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
       "estado_info": "PARCIAL",
       "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
-      "estado_info_desc": "Cuenta con hitos de ejecución y cierre; falta acta de inicio",
+      "estado_info_desc": "Hitos en Tomos (2 registros); faltan documentos clave para sustento pleno",
       "detalles_faltantes": [
-        "Falta Acta de Inicio en Tomos"
+        "Falta ubicar Acta de Entrega de Terreno o Ficha N° 01 (Fecha exacta de inicio)"
       ],
       "confiabilidad": "MEDIA"
     },
@@ -28023,10 +28058,9 @@
       "resolucion_liquidacion": "En observaciones de liquidación técnica (Tomo 5 Folios 1 y 72)",
       "estado_info": "PARCIAL",
       "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
-      "estado_info_desc": "Hitos de ejecución identificados; faltan acta de inicio y liquidación final",
+      "estado_info_desc": "Hitos en Tomos (3 registros); faltan documentos clave para sustento pleno",
       "detalles_faltantes": [
-        "Falta Acta de Inicio en Tomos",
-        "Falta Acta de Recepción o Liquidación Final"
+        "Falta Acta de Recepción o Resolución de Liquidación Final"
       ],
       "confiabilidad": "MEDIA"
     },
@@ -28103,20 +28137,20 @@
         }
       ],
       "total_hitos": 7,
-      "fecha_inicio": "Aprox. Abr-May 2023 (Primer Hito PMO)",
-      "fecha_inicio_sort": "2023-01-01",
-      "tiene_fecha_inicio": true,
-      "fecha_inicio_doc": "Folio 15 (Tomo 3 PMO (Folio 15))",
+      "fecha_inicio": "",
+      "fecha_inicio_sort": "9999-99-99",
+      "tiene_fecha_inicio": false,
+      "fecha_inicio_doc": "Pendiente de ubicar Acta de Entrega de Terreno o Ficha N° 01 en Tomos/Archivo",
       "fecha_termino_prog": "",
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
       "estado_info": "PARCIAL",
       "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
-      "estado_info_desc": "Hitos de ejecución identificados; faltan acta de inicio y liquidación final",
+      "estado_info_desc": "Hitos en Tomos (7 registros); faltan documentos clave para sustento pleno",
       "detalles_faltantes": [
-        "Falta Acta de Inicio en Tomos",
-        "Falta Acta de Recepción o Liquidación Final"
+        "Falta ubicar Acta de Entrega de Terreno o Ficha N° 01 (Fecha exacta de inicio)",
+        "Falta Acta de Recepción o Resolución de Liquidación Final"
       ],
       "confiabilidad": "MEDIA"
     },
@@ -28169,19 +28203,19 @@
         }
       ],
       "total_hitos": 4,
-      "fecha_inicio": "Aprox. 2025-2026 (Primer Hito PMO)",
-      "fecha_inicio_sort": "2025-01-01",
-      "tiene_fecha_inicio": true,
-      "fecha_inicio_doc": "CARTA N° 0 xxx- (Secretaría Digital (cartas 2026\\INF_166-2026-crema))",
+      "fecha_inicio": "",
+      "fecha_inicio_sort": "9999-99-99",
+      "tiene_fecha_inicio": false,
+      "fecha_inicio_doc": "Pendiente de ubicar Acta de Entrega de Terreno o Ficha N° 01 en Tomos/Archivo",
       "fecha_termino_prog": "",
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
       "estado_info": "PARCIAL",
       "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
-      "estado_info_desc": "Cuenta con hitos de ejecución y cierre; falta acta de inicio",
+      "estado_info_desc": "Hitos en Tomos (4 registros); faltan documentos clave para sustento pleno",
       "detalles_faltantes": [
-        "Falta Acta de Inicio en Tomos"
+        "Falta ubicar Acta de Entrega de Terreno o Ficha N° 01 (Fecha exacta de inicio)"
       ],
       "confiabilidad": "MEDIA"
     },
@@ -28322,13 +28356,11 @@
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
-      "estado_info": "PARCIAL",
-      "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
-      "estado_info_desc": "Cuenta con hitos de ejecución y cierre; falta acta de inicio",
-      "detalles_faltantes": [
-        "Falta Acta de Inicio en Tomos"
-      ],
-      "confiabilidad": "MEDIA"
+      "estado_info": "COMPLETA",
+      "estado_info_label": "🟢 TRAZABILIDAD INTEGRAL",
+      "estado_info_desc": "Cuenta con fecha exacta de inicio y cierre verificado en Tomos PMO escaneados",
+      "detalles_faltantes": [],
+      "confiabilidad": "ALTA"
     },
     {
       "id": 23,
@@ -28371,13 +28403,11 @@
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
-      "estado_info": "PARCIAL",
-      "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
-      "estado_info_desc": "Cuenta con hitos de ejecución y cierre; falta acta de inicio",
-      "detalles_faltantes": [
-        "Falta Acta de Inicio en Tomos"
-      ],
-      "confiabilidad": "MEDIA"
+      "estado_info": "COMPLETA",
+      "estado_info_label": "🟢 TRAZABILIDAD INTEGRAL",
+      "estado_info_desc": "Cuenta con fecha exacta de inicio y cierre verificado en Tomos PMO escaneados",
+      "detalles_faltantes": [],
+      "confiabilidad": "ALTA"
     },
     {
       "id": 24,
@@ -28470,7 +28500,7 @@
       "resolucion_liquidacion": "",
       "estado_info": "COMPLETA",
       "estado_info_label": "🟢 TRAZABILIDAD INTEGRAL",
-      "estado_info_desc": "Cuenta con documentos de inicio y recepción/liquidación en Tomos PMO escaneados",
+      "estado_info_desc": "Cuenta con fecha exacta de inicio y cierre verificado en Tomos PMO escaneados",
       "detalles_faltantes": [],
       "confiabilidad": "ALTA"
     },
@@ -28515,13 +28545,11 @@
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
-      "estado_info": "PARCIAL",
-      "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
-      "estado_info_desc": "Cuenta con hitos de ejecución y cierre; falta acta de inicio",
-      "detalles_faltantes": [
-        "Falta Acta de Inicio en Tomos"
-      ],
-      "confiabilidad": "MEDIA"
+      "estado_info": "COMPLETA",
+      "estado_info_label": "🟢 TRAZABILIDAD INTEGRAL",
+      "estado_info_desc": "Cuenta con fecha exacta de inicio y cierre verificado en Tomos PMO escaneados",
+      "detalles_faltantes": [],
+      "confiabilidad": "ALTA"
     },
     {
       "id": 26,
@@ -28548,19 +28576,19 @@
         }
       ],
       "total_hitos": 1,
-      "fecha_inicio": "Aprox. 13 de abril del 2023 (Primer Hito PMO)",
-      "fecha_inicio_sort": "2023-04-13",
-      "tiene_fecha_inicio": true,
-      "fecha_inicio_doc": "Folio 25 (Tomo 3 PMO (Folio 25))",
+      "fecha_inicio": "",
+      "fecha_inicio_sort": "9999-99-99",
+      "tiene_fecha_inicio": false,
+      "fecha_inicio_doc": "Pendiente de ubicar Acta de Entrega de Terreno o Ficha N° 01 en Tomos/Archivo",
       "fecha_termino_prog": "",
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
       "estado_info": "PARCIAL",
       "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
-      "estado_info_desc": "Cuenta con hitos de ejecución y cierre; falta acta de inicio",
+      "estado_info_desc": "Hitos en Tomos (1 registros); faltan documentos clave para sustento pleno",
       "detalles_faltantes": [
-        "Falta Acta de Inicio en Tomos"
+        "Falta ubicar Acta de Entrega de Terreno o Ficha N° 01 (Fecha exacta de inicio)"
       ],
       "confiabilidad": "MEDIA"
     },
@@ -28583,7 +28611,7 @@
       "fecha_inicio": "",
       "fecha_inicio_sort": "9999-99-99",
       "tiene_fecha_inicio": false,
-      "fecha_inicio_doc": "Pendiente de ubicar en Tomos 7 al 9",
+      "fecha_inicio_doc": "Pendiente de ubicar Acta de Entrega de Terreno o Ficha N° 01 en Tomos/Archivo",
       "fecha_termino_prog": "",
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
@@ -28623,20 +28651,20 @@
         }
       ],
       "total_hitos": 1,
-      "fecha_inicio": "Aprox. 2025-2026 (Primer Hito PMO)",
-      "fecha_inicio_sort": "2025-01-01",
-      "tiene_fecha_inicio": true,
-      "fecha_inicio_doc": "CARTA N° 0 xxx- (Secretaría Digital (cartas 2026\\INF_966-2026-agric))",
+      "fecha_inicio": "",
+      "fecha_inicio_sort": "9999-99-99",
+      "tiene_fecha_inicio": false,
+      "fecha_inicio_doc": "Pendiente de ubicar Acta de Entrega de Terreno o Ficha N° 01 en Tomos/Archivo",
       "fecha_termino_prog": "",
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
       "estado_info": "PARCIAL",
       "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
-      "estado_info_desc": "Hitos de ejecución identificados; faltan acta de inicio y liquidación final",
+      "estado_info_desc": "Hitos en Tomos (1 registros); faltan documentos clave para sustento pleno",
       "detalles_faltantes": [
-        "Falta Acta de Inicio en Tomos",
-        "Falta Acta de Recepción o Liquidación Final"
+        "Falta ubicar Acta de Entrega de Terreno o Ficha N° 01 (Fecha exacta de inicio)",
+        "Falta Acta de Recepción o Resolución de Liquidación Final"
       ],
       "confiabilidad": "MEDIA"
     },
@@ -28673,20 +28701,20 @@
         }
       ],
       "total_hitos": 2,
-      "fecha_inicio": "Aprox. 22 de octubre del 2026 (Primer Hito PMO)",
-      "fecha_inicio_sort": "2026-10-22",
-      "tiene_fecha_inicio": true,
-      "fecha_inicio_doc": "CARTA N°  - 2026-D (Secretaría Digital (cartas 2026\\INF_1033-2026-PACO))",
+      "fecha_inicio": "",
+      "fecha_inicio_sort": "9999-99-99",
+      "tiene_fecha_inicio": false,
+      "fecha_inicio_doc": "Pendiente de ubicar Acta de Entrega de Terreno o Ficha N° 01 en Tomos/Archivo",
       "fecha_termino_prog": "",
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
       "estado_info": "PARCIAL",
       "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
-      "estado_info_desc": "Hitos de ejecución identificados; faltan acta de inicio y liquidación final",
+      "estado_info_desc": "Hitos en Tomos (2 registros); faltan documentos clave para sustento pleno",
       "detalles_faltantes": [
-        "Falta Acta de Inicio en Tomos",
-        "Falta Acta de Recepción o Liquidación Final"
+        "Falta ubicar Acta de Entrega de Terreno o Ficha N° 01 (Fecha exacta de inicio)",
+        "Falta Acta de Recepción o Resolución de Liquidación Final"
       ],
       "confiabilidad": "MEDIA"
     },
@@ -28731,19 +28759,19 @@
         }
       ],
       "total_hitos": 3,
-      "fecha_inicio": "Aprox. 13 de abril del 2023 (Primer Hito PMO)",
-      "fecha_inicio_sort": "2023-04-13",
-      "tiene_fecha_inicio": true,
-      "fecha_inicio_doc": "Folio 25 (Tomo 3 PMO (Folio 25))",
+      "fecha_inicio": "",
+      "fecha_inicio_sort": "9999-99-99",
+      "tiene_fecha_inicio": false,
+      "fecha_inicio_doc": "Pendiente de ubicar Acta de Entrega de Terreno o Ficha N° 01 en Tomos/Archivo",
       "fecha_termino_prog": "",
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
       "estado_info": "PARCIAL",
       "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
-      "estado_info_desc": "Cuenta con hitos de ejecución y cierre; falta acta de inicio",
+      "estado_info_desc": "Hitos en Tomos (3 registros); faltan documentos clave para sustento pleno",
       "detalles_faltantes": [
-        "Falta Acta de Inicio en Tomos"
+        "Falta ubicar Acta de Entrega de Terreno o Ficha N° 01 (Fecha exacta de inicio)"
       ],
       "confiabilidad": "MEDIA"
     },
@@ -28894,7 +28922,7 @@
       "resolucion_liquidacion": "",
       "estado_info": "COMPLETA",
       "estado_info_label": "🟢 TRAZABILIDAD INTEGRAL",
-      "estado_info_desc": "Cuenta con documentos de inicio y recepción/liquidación en Tomos PMO escaneados",
+      "estado_info_desc": "Cuenta con fecha exacta de inicio y cierre verificado en Tomos PMO escaneados",
       "detalles_faltantes": [],
       "confiabilidad": "ALTA"
     },
@@ -28939,19 +28967,19 @@
         }
       ],
       "total_hitos": 3,
-      "fecha_inicio": "2025-2026",
-      "fecha_inicio_sort": "2025-01-01",
-      "tiene_fecha_inicio": true,
-      "fecha_inicio_doc": "CARTA N° 0 xxx- (Secretaría Digital (cartas 2026\\INF_267-2026-LIQUI))",
+      "fecha_inicio": "",
+      "fecha_inicio_sort": "9999-99-99",
+      "tiene_fecha_inicio": false,
+      "fecha_inicio_doc": "Pendiente de ubicar Acta de Entrega de Terreno o Ficha N° 01 en Tomos/Archivo",
       "fecha_termino_prog": "",
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
       "estado_info": "PARCIAL",
       "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
-      "estado_info_desc": "Cuenta con hitos de ejecución y cierre; falta acta de inicio",
+      "estado_info_desc": "Hitos en Tomos (3 registros); faltan documentos clave para sustento pleno",
       "detalles_faltantes": [
-        "Falta Acta de Inicio en Tomos"
+        "Falta ubicar Acta de Entrega de Terreno o Ficha N° 01 (Fecha exacta de inicio)"
       ],
       "confiabilidad": "MEDIA"
     },
@@ -28998,9 +29026,9 @@
       "resolucion_liquidacion": "",
       "estado_info": "PARCIAL",
       "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
-      "estado_info_desc": "Obra con inicio registrado; falta recepción o liquidación final en Tomos",
+      "estado_info_desc": "Hitos en Tomos (2 registros); faltan documentos clave para sustento pleno",
       "detalles_faltantes": [
-        "Falta Acta de Recepción o Liquidación Final"
+        "Falta Acta de Recepción o Resolución de Liquidación Final"
       ],
       "confiabilidad": "MEDIA"
     },
@@ -29117,19 +29145,19 @@
         }
       ],
       "total_hitos": 12,
-      "fecha_inicio": "Aprox. 2025-2026 (Primer Hito PMO)",
-      "fecha_inicio_sort": "2025-01-01",
-      "tiene_fecha_inicio": true,
-      "fecha_inicio_doc": "CARTA N° 0 xxx- (Secretaría Digital (cartas 2026\\INF_215-2026-urina))",
+      "fecha_inicio": "",
+      "fecha_inicio_sort": "9999-99-99",
+      "tiene_fecha_inicio": false,
+      "fecha_inicio_doc": "Pendiente de ubicar Acta de Entrega de Terreno o Ficha N° 01 en Tomos/Archivo",
       "fecha_termino_prog": "",
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
       "estado_info": "PARCIAL",
       "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
-      "estado_info_desc": "Cuenta con hitos de ejecución y cierre; falta acta de inicio",
+      "estado_info_desc": "Hitos en Tomos (12 registros); faltan documentos clave para sustento pleno",
       "detalles_faltantes": [
-        "Falta Acta de Inicio en Tomos"
+        "Falta ubicar Acta de Entrega de Terreno o Ficha N° 01 (Fecha exacta de inicio)"
       ],
       "confiabilidad": "MEDIA"
     },
@@ -29149,10 +29177,10 @@
       "alerta": "Verificar padrón de entrega y acuerdo de emergencia",
       "historial": [],
       "total_hitos": 0,
-      "fecha_inicio": "Periodo 2020-2021",
-      "fecha_inicio_sort": "2020-01-01",
-      "tiene_fecha_inicio": true,
-      "fecha_inicio_doc": "Entregable 1 FDM: Convenio 100 MLL transferido a Municipalidad La Capilla",
+      "fecha_inicio": "",
+      "fecha_inicio_sort": "9999-99-99",
+      "tiene_fecha_inicio": false,
+      "fecha_inicio_doc": "Pendiente de ubicar Acta de Entrega de Terreno o Ficha N° 01 en Tomos/Archivo",
       "fecha_termino_prog": "",
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
@@ -29186,7 +29214,7 @@
       "fecha_inicio": "",
       "fecha_inicio_sort": "9999-99-99",
       "tiene_fecha_inicio": false,
-      "fecha_inicio_doc": "Pendiente de ubicar en Tomos 7 al 9",
+      "fecha_inicio_doc": "Pendiente de ubicar Acta de Entrega de Terreno o Ficha N° 01 en Tomos/Archivo",
       "fecha_termino_prog": "",
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
@@ -29242,19 +29270,19 @@
         }
       ],
       "total_hitos": 3,
-      "fecha_inicio": "Año 2022",
-      "fecha_inicio_sort": "2022-01-01",
-      "tiene_fecha_inicio": true,
-      "fecha_inicio_doc": "Archivo Físico Caja 03 (Foto Oficial 2024)",
+      "fecha_inicio": "",
+      "fecha_inicio_sort": "9999-99-99",
+      "tiene_fecha_inicio": false,
+      "fecha_inicio_doc": "Pendiente de ubicar Acta de Entrega de Terreno o Ficha N° 01 en Tomos/Archivo",
       "fecha_termino_prog": "2023",
       "fecha_culminacion_real": "Finales 2023",
       "acta_recepcion": "Conformidad de Supervisión 2024",
       "resolucion_liquidacion": "Liquidación Aprobada 2024 (Caja 03)",
       "estado_info": "PARCIAL",
       "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
-      "estado_info_desc": "Cuenta con hitos de ejecución y cierre; falta acta de inicio",
+      "estado_info_desc": "Hitos en Tomos (3 registros); faltan documentos clave para sustento pleno",
       "detalles_faltantes": [
-        "Falta Acta de Inicio en Tomos"
+        "Falta ubicar Acta de Entrega de Terreno o Ficha N° 01 (Fecha exacta de inicio)"
       ],
       "confiabilidad": "MEDIA"
     },
@@ -29315,20 +29343,20 @@
         }
       ],
       "total_hitos": 5,
-      "fecha_inicio": "Aprox. 27 de febrero del 2026 (Primer Hito PMO)",
-      "fecha_inicio_sort": "2026-02-27",
-      "tiene_fecha_inicio": true,
-      "fecha_inicio_doc": "CARTA N° 0 xxx- (Secretaría Digital (cartas 2026\\INF_191-2026-puent))",
+      "fecha_inicio": "",
+      "fecha_inicio_sort": "9999-99-99",
+      "tiene_fecha_inicio": false,
+      "fecha_inicio_doc": "Pendiente de ubicar Acta de Entrega de Terreno o Ficha N° 01 en Tomos/Archivo",
       "fecha_termino_prog": "",
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
       "estado_info": "PARCIAL",
       "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
-      "estado_info_desc": "Hitos de ejecución identificados; faltan acta de inicio y liquidación final",
+      "estado_info_desc": "Hitos en Tomos (5 registros); faltan documentos clave para sustento pleno",
       "detalles_faltantes": [
-        "Falta Acta de Inicio en Tomos",
-        "Falta Acta de Recepción o Liquidación Final"
+        "Falta ubicar Acta de Entrega de Terreno o Ficha N° 01 (Fecha exacta de inicio)",
+        "Falta Acta de Recepción o Resolución de Liquidación Final"
       ],
       "confiabilidad": "MEDIA"
     },
@@ -29431,9 +29459,9 @@
       "resolucion_liquidacion": "",
       "estado_info": "PARCIAL",
       "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
-      "estado_info_desc": "Obra con inicio registrado; falta recepción o liquidación final en Tomos",
+      "estado_info_desc": "Hitos en Tomos (9 registros); faltan documentos clave para sustento pleno",
       "detalles_faltantes": [
-        "Falta Acta de Recepción o Liquidación Final"
+        "Falta Acta de Recepción o Resolución de Liquidación Final"
       ],
       "confiabilidad": "MEDIA"
     },
@@ -29456,7 +29484,7 @@
       "fecha_inicio": "",
       "fecha_inicio_sort": "9999-99-99",
       "tiene_fecha_inicio": false,
-      "fecha_inicio_doc": "Pendiente de ubicar en Tomos 7 al 9",
+      "fecha_inicio_doc": "Pendiente de ubicar Acta de Entrega de Terreno o Ficha N° 01 en Tomos/Archivo",
       "fecha_termino_prog": "",
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
@@ -29504,20 +29532,20 @@
         }
       ],
       "total_hitos": 2,
-      "fecha_inicio": "Aprox. Abr-May 2023 (Primer Hito PMO)",
-      "fecha_inicio_sort": "2023-01-01",
-      "tiene_fecha_inicio": true,
-      "fecha_inicio_doc": "Folio 15 (Tomo 3 PMO (Folio 15))",
+      "fecha_inicio": "",
+      "fecha_inicio_sort": "9999-99-99",
+      "tiene_fecha_inicio": false,
+      "fecha_inicio_doc": "Pendiente de ubicar Acta de Entrega de Terreno o Ficha N° 01 en Tomos/Archivo",
       "fecha_termino_prog": "",
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
       "estado_info": "PARCIAL",
       "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
-      "estado_info_desc": "Hitos de ejecución identificados; faltan acta de inicio y liquidación final",
+      "estado_info_desc": "Hitos en Tomos (2 registros); faltan documentos clave para sustento pleno",
       "detalles_faltantes": [
-        "Falta Acta de Inicio en Tomos",
-        "Falta Acta de Recepción o Liquidación Final"
+        "Falta ubicar Acta de Entrega de Terreno o Ficha N° 01 (Fecha exacta de inicio)",
+        "Falta Acta de Recepción o Resolución de Liquidación Final"
       ],
       "confiabilidad": "MEDIA"
     },
@@ -29594,19 +29622,19 @@
         }
       ],
       "total_hitos": 7,
-      "fecha_inicio": "Aprox. 17 de noviembre del 2022 (Primer Hito PMO)",
-      "fecha_inicio_sort": "2022-11-17",
-      "tiene_fecha_inicio": true,
-      "fecha_inicio_doc": "Folio 25 (Tomo 1 PMO (Folio 25))",
+      "fecha_inicio": "",
+      "fecha_inicio_sort": "9999-99-99",
+      "tiene_fecha_inicio": false,
+      "fecha_inicio_doc": "Pendiente de ubicar Acta de Entrega de Terreno o Ficha N° 01 en Tomos/Archivo",
       "fecha_termino_prog": "",
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
       "estado_info": "PARCIAL",
       "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
-      "estado_info_desc": "Cuenta con hitos de ejecución y cierre; falta acta de inicio",
+      "estado_info_desc": "Hitos en Tomos (7 registros); faltan documentos clave para sustento pleno",
       "detalles_faltantes": [
-        "Falta Acta de Inicio en Tomos"
+        "Falta ubicar Acta de Entrega de Terreno o Ficha N° 01 (Fecha exacta de inicio)"
       ],
       "confiabilidad": "MEDIA"
     },
@@ -29715,19 +29743,21 @@
         }
       ],
       "total_hitos": 11,
-      "fecha_inicio": "Año 2022",
-      "fecha_inicio_sort": "2022-01-01",
-      "tiene_fecha_inicio": true,
-      "fecha_inicio_doc": "Archivo Físico Caja 03 (Foto Oficial 2024)",
+      "fecha_inicio": "",
+      "fecha_inicio_sort": "9999-99-99",
+      "tiene_fecha_inicio": false,
+      "fecha_inicio_doc": "Pendiente de ubicar Acta de Entrega de Terreno o Ficha N° 01 en Tomos/Archivo",
       "fecha_termino_prog": "2023",
       "fecha_culminacion_real": "Finales 2023",
       "acta_recepcion": "Conformidad de Supervisión 2024",
       "resolucion_liquidacion": "Liquidación Aprobada 2024 (Caja 03)",
-      "estado_info": "COMPLETA",
-      "estado_info_label": "🟢 TRAZABILIDAD INTEGRAL",
-      "estado_info_desc": "Cuenta con documentos de inicio y recepción/liquidación en Tomos PMO escaneados",
-      "detalles_faltantes": [],
-      "confiabilidad": "ALTA"
+      "estado_info": "PARCIAL",
+      "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
+      "estado_info_desc": "Hitos en Tomos (11 registros); faltan documentos clave para sustento pleno",
+      "detalles_faltantes": [
+        "Falta ubicar Acta de Entrega de Terreno o Ficha N° 01 (Fecha exacta de inicio)"
+      ],
+      "confiabilidad": "MEDIA"
     },
     {
       "id": 44,
@@ -29770,19 +29800,21 @@
         }
       ],
       "total_hitos": 3,
-      "fecha_inicio": "Año 2022",
-      "fecha_inicio_sort": "2022-01-01",
-      "tiene_fecha_inicio": true,
-      "fecha_inicio_doc": "Archivo Físico Caja 03 (Foto Oficial 2024)",
+      "fecha_inicio": "",
+      "fecha_inicio_sort": "9999-99-99",
+      "tiene_fecha_inicio": false,
+      "fecha_inicio_doc": "Pendiente de ubicar Acta de Entrega de Terreno o Ficha N° 01 en Tomos/Archivo",
       "fecha_termino_prog": "2023",
       "fecha_culminacion_real": "Finales 2023",
       "acta_recepcion": "Conformidad de Supervisión 2024",
       "resolucion_liquidacion": "Liquidación Aprobada 2024 (Caja 03)",
-      "estado_info": "COMPLETA",
-      "estado_info_label": "🟢 TRAZABILIDAD INTEGRAL",
-      "estado_info_desc": "Cuenta con documentos de inicio y recepción/liquidación en Tomos PMO escaneados",
-      "detalles_faltantes": [],
-      "confiabilidad": "ALTA"
+      "estado_info": "PARCIAL",
+      "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
+      "estado_info_desc": "Hitos en Tomos (3 registros); faltan documentos clave para sustento pleno",
+      "detalles_faltantes": [
+        "Falta ubicar Acta de Entrega de Terreno o Ficha N° 01 (Fecha exacta de inicio)"
+      ],
+      "confiabilidad": "MEDIA"
     },
     {
       "id": 45,
@@ -29817,19 +29849,19 @@
         }
       ],
       "total_hitos": 2,
-      "fecha_inicio": "Año 2022",
-      "fecha_inicio_sort": "2022-01-01",
-      "tiene_fecha_inicio": true,
-      "fecha_inicio_doc": "Archivo Físico Caja 03 (Foto Oficial 2024)",
+      "fecha_inicio": "",
+      "fecha_inicio_sort": "9999-99-99",
+      "tiene_fecha_inicio": false,
+      "fecha_inicio_doc": "Pendiente de ubicar Acta de Entrega de Terreno o Ficha N° 01 en Tomos/Archivo",
       "fecha_termino_prog": "2023",
       "fecha_culminacion_real": "Finales 2023",
       "acta_recepcion": "Conformidad de Supervisión 2024",
       "resolucion_liquidacion": "Liquidación Aprobada 2024 (Caja 03)",
       "estado_info": "PARCIAL",
       "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
-      "estado_info_desc": "Cuenta con hitos de ejecución y cierre; falta acta de inicio",
+      "estado_info_desc": "Hitos en Tomos (2 registros); faltan documentos clave para sustento pleno",
       "detalles_faltantes": [
-        "Falta Acta de Inicio en Tomos"
+        "Falta ubicar Acta de Entrega de Terreno o Ficha N° 01 (Fecha exacta de inicio)"
       ],
       "confiabilidad": "MEDIA"
     },
@@ -29866,19 +29898,19 @@
         }
       ],
       "total_hitos": 2,
-      "fecha_inicio": "Año 2022",
-      "fecha_inicio_sort": "2022-01-01",
-      "tiene_fecha_inicio": true,
-      "fecha_inicio_doc": "Archivo Físico Caja 03 (Foto Oficial 2024)",
+      "fecha_inicio": "",
+      "fecha_inicio_sort": "9999-99-99",
+      "tiene_fecha_inicio": false,
+      "fecha_inicio_doc": "Pendiente de ubicar Acta de Entrega de Terreno o Ficha N° 01 en Tomos/Archivo",
       "fecha_termino_prog": "2023",
       "fecha_culminacion_real": "Finales 2023",
       "acta_recepcion": "Conformidad de Supervisión 2024",
       "resolucion_liquidacion": "Liquidación Aprobada 2024 (Caja 03)",
       "estado_info": "PARCIAL",
       "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
-      "estado_info_desc": "Cuenta con hitos de ejecución y cierre; falta acta de inicio",
+      "estado_info_desc": "Hitos en Tomos (2 registros); faltan documentos clave para sustento pleno",
       "detalles_faltantes": [
-        "Falta Acta de Inicio en Tomos"
+        "Falta ubicar Acta de Entrega de Terreno o Ficha N° 01 (Fecha exacta de inicio)"
       ],
       "confiabilidad": "MEDIA"
     },
@@ -29979,20 +30011,20 @@
         }
       ],
       "total_hitos": 10,
-      "fecha_inicio": "Aprox. 2025-2026 (Primer Hito PMO)",
-      "fecha_inicio_sort": "2025-01-01",
-      "tiene_fecha_inicio": true,
-      "fecha_inicio_doc": "CARTA N° 0 xxx- (Secretaría Digital (cartas 2026\\INF_411-2026-MERCA))",
+      "fecha_inicio": "",
+      "fecha_inicio_sort": "9999-99-99",
+      "tiene_fecha_inicio": false,
+      "fecha_inicio_doc": "Pendiente de ubicar Acta de Entrega de Terreno o Ficha N° 01 en Tomos/Archivo",
       "fecha_termino_prog": "",
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
       "estado_info": "PARCIAL",
       "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
-      "estado_info_desc": "Hitos de ejecución identificados; faltan acta de inicio y liquidación final",
+      "estado_info_desc": "Hitos en Tomos (10 registros); faltan documentos clave para sustento pleno",
       "detalles_faltantes": [
-        "Falta Acta de Inicio en Tomos",
-        "Falta Acta de Recepción o Liquidación Final"
+        "Falta ubicar Acta de Entrega de Terreno o Ficha N° 01 (Fecha exacta de inicio)",
+        "Falta Acta de Recepción o Resolución de Liquidación Final"
       ],
       "confiabilidad": "MEDIA"
     },
@@ -30047,10 +30079,9 @@
       "resolucion_liquidacion": "",
       "estado_info": "PARCIAL",
       "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
-      "estado_info_desc": "Hitos de ejecución identificados; faltan acta de inicio y liquidación final",
+      "estado_info_desc": "Hitos en Tomos (3 registros); faltan documentos clave para sustento pleno",
       "detalles_faltantes": [
-        "Falta Acta de Inicio en Tomos",
-        "Falta Acta de Recepción o Liquidación Final"
+        "Falta Acta de Recepción o Resolución de Liquidación Final"
       ],
       "confiabilidad": "MEDIA"
     },
@@ -30079,20 +30110,20 @@
         }
       ],
       "total_hitos": 1,
-      "fecha_inicio": "Aprox. 20 de octubre del 2025 (Primer Hito PMO)",
-      "fecha_inicio_sort": "2025-10-20",
-      "tiene_fecha_inicio": true,
-      "fecha_inicio_doc": "carta N°254-2025-INV (Secretaría Digital (INFORMES\\INFORME Nº 092-2025-P))",
+      "fecha_inicio": "",
+      "fecha_inicio_sort": "9999-99-99",
+      "tiene_fecha_inicio": false,
+      "fecha_inicio_doc": "Pendiente de ubicar Acta de Entrega de Terreno o Ficha N° 01 en Tomos/Archivo",
       "fecha_termino_prog": "",
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
       "estado_info": "PARCIAL",
       "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
-      "estado_info_desc": "Hitos de ejecución identificados; faltan acta de inicio y liquidación final",
+      "estado_info_desc": "Hitos en Tomos (1 registros); faltan documentos clave para sustento pleno",
       "detalles_faltantes": [
-        "Falta Acta de Inicio en Tomos",
-        "Falta Acta de Recepción o Liquidación Final"
+        "Falta ubicar Acta de Entrega de Terreno o Ficha N° 01 (Fecha exacta de inicio)",
+        "Falta Acta de Recepción o Resolución de Liquidación Final"
       ],
       "confiabilidad": "MEDIA"
     },
@@ -30465,19 +30496,21 @@
         }
       ],
       "total_hitos": 44,
-      "fecha_inicio": "Iniciada en periodo 2020-2021",
-      "fecha_inicio_sort": "2020-01-01",
-      "tiene_fecha_inicio": true,
-      "fecha_inicio_doc": "Matriz Entregable 1 + Estados Financieros FDM",
+      "fecha_inicio": "",
+      "fecha_inicio_sort": "9999-99-99",
+      "tiene_fecha_inicio": false,
+      "fecha_inicio_doc": "Pendiente de ubicar Acta de Entrega de Terreno o Ficha N° 01 en Tomos/Archivo",
       "fecha_termino_prog": "2022",
       "fecha_culminacion_real": "2022",
       "acta_recepcion": "Acta de Recepción 2022",
       "resolucion_liquidacion": "Liquidada 2022-2023",
-      "estado_info": "COMPLETA",
-      "estado_info_label": "🟢 TRAZABILIDAD INTEGRAL",
-      "estado_info_desc": "Cuenta con documentos de inicio y recepción/liquidación en Tomos PMO escaneados",
-      "detalles_faltantes": [],
-      "confiabilidad": "ALTA"
+      "estado_info": "PARCIAL",
+      "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
+      "estado_info_desc": "Hitos en Tomos (44 registros); faltan documentos clave para sustento pleno",
+      "detalles_faltantes": [
+        "Falta ubicar Acta de Entrega de Terreno o Ficha N° 01 (Fecha exacta de inicio)"
+      ],
+      "confiabilidad": "MEDIA"
     },
     {
       "id": 3,
@@ -30495,21 +30528,23 @@
       "alerta": "Revisar conformidad del evaluador",
       "historial": [],
       "total_hitos": 0,
-      "fecha_inicio": "Iniciada en periodo 2020-2021",
-      "fecha_inicio_sort": "2020-01-01",
-      "tiene_fecha_inicio": true,
-      "fecha_inicio_doc": "Matriz Entregable 1 + Estados Financieros FDM",
+      "fecha_inicio": "",
+      "fecha_inicio_sort": "9999-99-99",
+      "tiene_fecha_inicio": false,
+      "fecha_inicio_doc": "Pendiente de ubicar Acta de Entrega de Terreno o Ficha N° 01 en Tomos/Archivo",
       "fecha_termino_prog": "2022",
       "fecha_culminacion_real": "2022",
       "acta_recepcion": "Acta de Recepción 2022",
       "resolucion_liquidacion": "Liquidada 2022-2023",
-      "estado_info": "PARCIAL",
-      "estado_info_label": "🟡 REGISTRO HISTÓRICO",
-      "estado_info_desc": "Figura en matriz histórica 2020-2022; falta ubicar expediente físico en Tomos 7-9 o archivador",
+      "estado_info": "INCOMPLETA",
+      "estado_info_label": "🔴 INFORMACIÓN PENDIENTE",
+      "estado_info_desc": "Sin documentos en Tomos 1 al 6 ni caja identificada; requiere búsqueda prioritaria",
       "detalles_faltantes": [
-        "Falta ubicar expediente físico o Tomos de liquidación 2020-2022"
+        "Falta ubicar expediente completo",
+        "Falta Acta de Inicio",
+        "Falta Liquidación"
       ],
-      "confiabilidad": "MEDIA"
+      "confiabilidad": "BAJA"
     },
     {
       "id": 4,
@@ -30704,19 +30739,19 @@
         }
       ],
       "total_hitos": 22,
-      "fecha_inicio": "Iniciada en periodo 2020-2021",
-      "fecha_inicio_sort": "2020-01-01",
-      "tiene_fecha_inicio": true,
-      "fecha_inicio_doc": "Matriz Entregable 1 + Estados Financieros FDM",
+      "fecha_inicio": "",
+      "fecha_inicio_sort": "9999-99-99",
+      "tiene_fecha_inicio": false,
+      "fecha_inicio_doc": "Pendiente de ubicar Acta de Entrega de Terreno o Ficha N° 01 en Tomos/Archivo",
       "fecha_termino_prog": "2022",
       "fecha_culminacion_real": "2022",
       "acta_recepcion": "Acta de Recepción 2022",
       "resolucion_liquidacion": "Liquidada 2022-2023",
       "estado_info": "PARCIAL",
       "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
-      "estado_info_desc": "Cuenta con hitos de ejecución y cierre; falta acta de inicio",
+      "estado_info_desc": "Hitos en Tomos (22 registros); faltan documentos clave para sustento pleno",
       "detalles_faltantes": [
-        "Falta Acta de Inicio en Tomos"
+        "Falta ubicar Acta de Entrega de Terreno o Ficha N° 01 (Fecha exacta de inicio)"
       ],
       "confiabilidad": "MEDIA"
     },
@@ -30865,19 +30900,21 @@
         }
       ],
       "total_hitos": 16,
-      "fecha_inicio": "Iniciada en periodo 2020-2021",
-      "fecha_inicio_sort": "2020-01-01",
-      "tiene_fecha_inicio": true,
-      "fecha_inicio_doc": "Matriz Entregable 1 + Estados Financieros FDM",
+      "fecha_inicio": "",
+      "fecha_inicio_sort": "9999-99-99",
+      "tiene_fecha_inicio": false,
+      "fecha_inicio_doc": "Pendiente de ubicar Acta de Entrega de Terreno o Ficha N° 01 en Tomos/Archivo",
       "fecha_termino_prog": "2022",
       "fecha_culminacion_real": "2022",
       "acta_recepcion": "Acta de Recepción 2022",
       "resolucion_liquidacion": "Liquidada 2022-2023",
-      "estado_info": "COMPLETA",
-      "estado_info_label": "🟢 TRAZABILIDAD INTEGRAL",
-      "estado_info_desc": "Cuenta con documentos de inicio y recepción/liquidación en Tomos PMO escaneados",
-      "detalles_faltantes": [],
-      "confiabilidad": "ALTA"
+      "estado_info": "PARCIAL",
+      "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
+      "estado_info_desc": "Hitos en Tomos (16 registros); faltan documentos clave para sustento pleno",
+      "detalles_faltantes": [
+        "Falta ubicar Acta de Entrega de Terreno o Ficha N° 01 (Fecha exacta de inicio)"
+      ],
+      "confiabilidad": "MEDIA"
     },
     {
       "id": 6,
@@ -30898,7 +30935,7 @@
       "fecha_inicio": "",
       "fecha_inicio_sort": "9999-99-99",
       "tiene_fecha_inicio": false,
-      "fecha_inicio_doc": "Pendiente de ubicar en Tomos 7 al 9",
+      "fecha_inicio_doc": "Pendiente de ubicar Acta de Entrega de Terreno o Ficha N° 01 en Tomos/Archivo",
       "fecha_termino_prog": "",
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
@@ -30932,7 +30969,7 @@
       "fecha_inicio": "",
       "fecha_inicio_sort": "9999-99-99",
       "tiene_fecha_inicio": false,
-      "fecha_inicio_doc": "Pendiente de ubicar en Tomos 7 al 9",
+      "fecha_inicio_doc": "Pendiente de ubicar Acta de Entrega de Terreno o Ficha N° 01 en Tomos/Archivo",
       "fecha_termino_prog": "",
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
@@ -31070,7 +31107,7 @@
       "resolucion_liquidacion": "En proceso de liquidación final",
       "estado_info": "COMPLETA",
       "estado_info_label": "🟢 TRAZABILIDAD INTEGRAL",
-      "estado_info_desc": "Cuenta con documentos de inicio y recepción/liquidación en Tomos PMO escaneados",
+      "estado_info_desc": "Cuenta con fecha exacta de inicio y cierre verificado en Tomos PMO escaneados",
       "detalles_faltantes": [],
       "confiabilidad": "ALTA"
     },
@@ -31619,19 +31656,21 @@
         }
       ],
       "total_hitos": 66,
-      "fecha_inicio": "Segundo Semestre 2022",
-      "fecha_inicio_sort": "2022-01-01",
-      "tiene_fecha_inicio": true,
-      "fecha_inicio_doc": "Tomo 1 PMO Págs. 18, 48, 62 (Cartas 018 y 026-SUP)",
+      "fecha_inicio": "",
+      "fecha_inicio_sort": "9999-99-99",
+      "tiene_fecha_inicio": false,
+      "fecha_inicio_doc": "Pendiente de ubicar Acta de Entrega de Terreno o Ficha N° 01 en Tomos/Archivo",
       "fecha_termino_prog": "Enero 2023",
       "fecha_culminacion_real": "15/02/2023 (Val N° 03)",
       "acta_recepcion": "06/02/2023 (Comité Recepción MPI - Pág 48 Tomo 1)",
       "resolucion_liquidacion": "Liquidación Técnica 2023",
-      "estado_info": "COMPLETA",
-      "estado_info_label": "🟢 TRAZABILIDAD INTEGRAL",
-      "estado_info_desc": "Cuenta con documentos de inicio y recepción/liquidación en Tomos PMO escaneados",
-      "detalles_faltantes": [],
-      "confiabilidad": "ALTA"
+      "estado_info": "PARCIAL",
+      "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
+      "estado_info_desc": "Hitos en Tomos (66 registros); faltan documentos clave para sustento pleno",
+      "detalles_faltantes": [
+        "Falta ubicar Acta de Entrega de Terreno o Ficha N° 01 (Fecha exacta de inicio)"
+      ],
+      "confiabilidad": "MEDIA"
     }
   ]
 }
