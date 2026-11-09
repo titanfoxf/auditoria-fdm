@@ -68,55 +68,69 @@
     /* Metrics Grid */
     .metrics-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 1rem; margin-bottom: 1.5rem; }
     .metric-card { background: var(--card-bg); border-radius: 12px; padding: 1.15rem; border: 1px solid var(--border); box-shadow: 0 1px 3px rgba(0,0,0,0.04); position: relative; overflow: hidden; cursor: pointer; transition: transform 0.15s, box-shadow 0.15s; }
-    .metric-card:hover { transform: translateY(-2px); box-shadow: 0 4px 10px rgba(0,0,0,0.08); }
-    .metric-card::after { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--border); }
-    .metric-card.blue::after { background: #2563EB; }
-    .metric-card.green::after { background: #16A34A; }
-    .metric-card.yellow::after { background: #EAB308; }
-    .metric-card.red::after { background: #EF4444; }
-    .metric-card.purple::after { background: #9333EA; }
+    .metric-card:hover { transform: translateY(-2px); box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); }
+    .metric-card::before { content: ""; position: absolute; top: 0; left: 0; width: 4px; height: 100%; }
+    .metric-card.blue::before { background: var(--primary-light); }
+    .metric-card.green::before { background: #16A34A; }
+    .metric-card.yellow::before { background: #EAB308; }
+    .metric-card.purple::before { background: #9333EA; }
+    .metric-card.red::before { background: #DC2626; }
 
-    .metric-card .title { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; color: var(--text-muted); letter-spacing: 0.05em; display: flex; justify-content: space-between; align-items: center; }
+    .metric-card .title { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); display: flex; justify-content: space-between; }
     .metric-card .value { font-size: 1.85rem; font-weight: 800; color: var(--text); margin: 0.35rem 0 0.15rem; }
-    .metric-card .desc { font-size: 0.78rem; color: var(--text-muted); }
+    .metric-card .desc { font-size: 0.75rem; color: var(--text-muted); }
+
+    /* Analytics Dashboard */
+    .analytics-panel { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1rem; margin-bottom: 1.5rem; }
+    .analytics-card { background: white; border: 1px solid var(--border); border-radius: 12px; padding: 1.2rem; box-shadow: 0 1px 3px rgba(0,0,0,0.04); }
+    .analytics-title { font-size: 0.85rem; font-weight: 700; color: #0F172A; margin-bottom: 1rem; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #F1F5F9; padding-bottom: 0.5rem; }
+    .analytics-title span { font-size: 0.75rem; color: var(--text-muted); font-weight: 500; }
+
+    /* Progress bar styles */
+    .progress-bar-container { margin-bottom: 0.75rem; }
+    .progress-label { display: flex; justify-content: space-between; font-size: 0.78rem; font-weight: 600; margin-bottom: 0.3rem; }
+    .progress-track { width: 100%; height: 10px; background: #F1F5F9; border-radius: 9999px; overflow: hidden; display: flex; }
+    .progress-fill { height: 100%; transition: width 0.3s ease; }
+
+    /* Mini stats list */
+    .stats-pill-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.6rem; }
+    .stat-mini-pill { background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 8px; padding: 0.6rem 0.8rem; }
+    .stat-mini-pill .lbl { font-size: 0.7rem; color: var(--text-muted); font-weight: 600; text-transform: uppercase; }
+    .stat-mini-pill .num { font-size: 1.15rem; font-weight: 800; color: #0F172A; margin-top: 0.15rem; }
 
     /* Controls Bar */
-    .controls-card { background: var(--card-bg); border-radius: 12px; padding: 1rem; border: 1px solid var(--border); margin-bottom: 1.5rem; display: flex; flex-direction: column; gap: 0.85rem; }
-    .controls-top { display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; justify-content: space-between; }
-    
-    .search-input { flex: 1; min-width: 320px; position: relative; }
-    .search-input input { width: 100%; padding: 0.7rem 1rem 0.7rem 2.6rem; border: 1px solid var(--border); border-radius: 8px; font-size: 0.9rem; outline: none; transition: border-color 0.15s; background: #F8FAFC; }
-    .search-input input:focus { border-color: var(--primary-light); background: white; }
-    .search-input svg { position: absolute; left: 0.9rem; top: 50%; transform: translateY(-50%); width: 18px; height: 18px; color: var(--text-muted); }
+    .controls-card { background: var(--card-bg); border-radius: 12px; border: 1px solid var(--border); box-shadow: 0 1px 3px rgba(0,0,0,0.04); margin-bottom: 1.5rem; }
+    .controls-top { padding: 1.25rem 1.25rem 0.75rem 1.25rem; display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; }
+    .search-input { position: relative; flex: 1; min-width: 260px; }
+    .search-input input { width: 100%; padding: 0.65rem 1rem 0.65rem 2.4rem; border: 1px solid var(--border); border-radius: 8px; font-size: 0.9rem; outline: none; transition: border-color 0.15s; }
+    .search-input input:focus { border-color: var(--primary-light); }
+    .search-input svg { position: absolute; left: 0.8rem; top: 50%; transform: translateY(-50%); width: 16px; height: 16px; color: var(--text-muted); }
 
-    .sort-controls { display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap; }
-    .sort-label { font-size: 0.8rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; }
-    .sort-select { padding: 0.55rem 0.85rem; border: 1px solid var(--border); border-radius: 8px; font-size: 0.85rem; font-weight: 600; background: white; color: var(--text); outline: none; cursor: pointer; }
-    .sort-select:focus { border-color: var(--primary-light); }
+    .sort-controls { display: flex; align-items: center; gap: 0.5rem; }
+    .sort-label { font-size: 0.82rem; font-weight: 600; color: var(--text-muted); }
+    .sort-select { padding: 0.55rem 0.85rem; border: 1px solid var(--border); border-radius: 8px; font-size: 0.85rem; background: white; color: var(--text); cursor: pointer; outline: none; font-weight: 500; }
 
-    .filter-tabs { display: flex; gap: 0.4rem; overflow-x: auto; padding-bottom: 0.2rem; flex-wrap: wrap; }
-    .tab-btn { background: #F1F5F9; border: 1px solid transparent; padding: 0.45rem 0.85rem; border-radius: 8px; font-size: 0.82rem; font-weight: 600; color: var(--text-muted); cursor: pointer; transition: all 0.15s; white-space: nowrap; }
-    .tab-btn:hover { background: #E2E8F0; color: var(--text); }
-    .tab-btn.active { background: var(--primary); color: white; border-color: var(--primary); }
-    .tab-btn.alert { background: #FEF3C7; color: #92400E; border-color: #FDE68A; }
-    .tab-btn.alert.active { background: #D97706; color: white; }
-    .tab-btn.green { background: #DCFCE7; color: #166534; }
-    .tab-btn.green.active { background: #16A34A; color: white; }
-    .tab-btn.red { background: #FEE2E2; color: #991B1B; }
-    .tab-btn.red.active { background: #DC2626; color: white; }
+    .filter-tabs { display: flex; gap: 0.5rem; overflow-x: auto; padding: 0 1.25rem 1rem 1.25rem; border-top: 1px solid #F1F5F9; padding-top: 0.75rem; }
+    .tab-btn { background: none; border: 1px solid transparent; padding: 0.45rem 0.85rem; font-size: 0.8rem; font-weight: 600; border-radius: 6px; cursor: pointer; white-space: nowrap; color: var(--text-muted); transition: all 0.15s; }
+    .tab-btn:hover { background: #F1F5F9; color: var(--text); }
+    .tab-btn.active { background: #0F172A; color: white; }
+    .tab-btn.green.active { background: #16A34A; }
+    .tab-btn.alert.active { background: #CA8A04; }
+    .tab-btn.red.active { background: #DC2626; }
 
-    /* Table Container */
-    .table-container { background: var(--card-bg); border-radius: 12px; border: 1px solid var(--border); box-shadow: 0 1px 4px rgba(0,0,0,0.05); overflow-x: auto; }
-    table { width: 100%; border-collapse: collapse; text-align: left; font-size: 0.875rem; }
-    thead { background: #F8FAFC; border-bottom: 2px solid var(--border); }
-    th { padding: 0.85rem 0.95rem; font-size: 0.72rem; font-weight: 700; text-transform: uppercase; color: var(--text-muted); letter-spacing: 0.05em; white-space: nowrap; }
+    /* Table */
+    .table-container { background: var(--card-bg); border-radius: 12px; border: 1px solid var(--border); box-shadow: 0 1px 3px rgba(0,0,0,0.04); overflow-x: auto; }
+    table { width: 100%; border-collapse: collapse; text-align: left; font-size: 0.85rem; }
+    th { background: #F8FAFC; color: var(--text-muted); font-weight: 600; text-transform: uppercase; font-size: 0.72rem; letter-spacing: 0.05em; padding: 0.85rem 1rem; border-bottom: 1px solid var(--border); white-space: nowrap; }
     th.sortable { cursor: pointer; user-select: none; }
-    th.sortable:hover { color: var(--primary-light); background: #EEF2F6; }
-    td { padding: 0.85rem 0.95rem; border-bottom: 1px solid var(--border); vertical-align: middle; }
+    th.sortable:hover { color: var(--text); background: #F1F5F9; }
+    td { padding: 0.9rem 1rem; border-bottom: 1px solid var(--border); vertical-align: middle; }
     tr:last-child td { border-bottom: none; }
-    tr:hover { background-color: #F1F5F9; cursor: pointer; }
+    tbody tr { cursor: pointer; transition: background-color 0.1s; }
+    tbody tr:hover { background-color: #F8FAFC; }
 
-    .badge { display: inline-flex; align-items: center; padding: 0.25rem 0.6rem; border-radius: 6px; font-size: 0.72rem; font-weight: 700; text-transform: uppercase; }
+    /* Badges */
+    .badge { display: inline-flex; align-items: center; gap: 0.3rem; padding: 0.25rem 0.6rem; border-radius: 9999px; font-size: 0.72rem; font-weight: 600; white-space: nowrap; }
     .badge-green { background: var(--green-bg); color: var(--green-text); }
     .badge-yellow { background: var(--yellow-bg); color: var(--yellow-text); }
     .badge-blue { background: var(--blue-bg); color: var(--blue-text); }
@@ -128,7 +142,7 @@
     /* Drawer / Modal */
     .modal-backdrop { position: fixed; inset: 0; background: rgba(15, 23, 42, 0.65); display: none; justify-content: flex-end; z-index: 50; backdrop-filter: blur(3px); }
     .modal-backdrop.open { display: flex; }
-    .drawer { width: 100%; max-width: 840px; background: white; height: 100vh; overflow-y: auto; display: flex; flex-direction: column; box-shadow: -8px 0 25px rgba(0,0,0,0.25); animation: slideLeft 0.22s cubic-bezier(0.16, 1, 0.3, 1); }
+    .drawer { width: 100%; max-width: 880px; background: white; height: 100vh; overflow-y: auto; display: flex; flex-direction: column; box-shadow: -8px 0 25px rgba(0,0,0,0.25); animation: slideLeft 0.22s cubic-bezier(0.16, 1, 0.3, 1); }
     @keyframes slideLeft { from { transform: translateX(100%); } to { transform: translateX(0); } }
 
     .drawer-header { padding: 1.5rem; background: linear-gradient(135deg, #0F172A, #1E293B); color: white; position: sticky; top: 0; z-index: 10; display: flex; justify-content: space-between; align-items: flex-start; }
@@ -145,13 +159,23 @@
 
     /* Completeness Status Card */
     .status-summary-card { background: #F8FAFC; border: 1px solid var(--border); border-radius: 12px; padding: 1.1rem; margin-bottom: 1.25rem; }
-    .status-summary-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem; }
+    .status-summary-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem; flex-wrap: wrap; gap: 0.4rem; }
     .checklist-milestones { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 0.5rem; }
     .milestone-pill { background: white; border: 1px solid var(--border); border-radius: 8px; padding: 0.55rem 0.75rem; font-size: 0.75rem; display: flex; flex-direction: column; gap: 0.15rem; }
     .milestone-pill.ok { border-left: 3px solid #16A34A; }
     .milestone-pill.missing { border-left: 3px solid #DC2626; background: #FFF5F5; }
+    .milestone-pill.gray { border-left: 3px solid #94A3B8; background: #F8FAFC; }
     .milestone-label { font-weight: 700; color: var(--text-muted); font-size: 0.68rem; text-transform: uppercase; }
     .milestone-val { font-weight: 700; color: var(--text); font-size: 0.8rem; }
+
+    /* Timeline & Tree Controls Bar inside Drawer */
+    .drawer-view-controls { display: flex; justify-content: space-between; align-items: center; background: #F1F5F9; padding: 0.5rem 0.75rem; border-radius: 8px; margin-bottom: 1rem; flex-wrap: wrap; gap: 0.5rem; }
+    .view-toggle-group { display: flex; gap: 0.3rem; background: white; padding: 0.2rem; border-radius: 6px; border: 1px solid var(--border); }
+    .btn-view-toggle { border: none; background: transparent; padding: 0.35rem 0.75rem; border-radius: 5px; font-size: 0.75rem; font-weight: 700; cursor: pointer; color: var(--text-muted); transition: all 0.15s; }
+    .btn-view-toggle.active { background: #0F172A; color: white; }
+
+    .btn-order-sort { background: white; border: 1px solid var(--border); border-radius: 6px; padding: 0.35rem 0.75rem; font-size: 0.75rem; font-weight: 600; cursor: pointer; color: var(--text); display: flex; align-items: center; gap: 0.35rem; }
+    .btn-order-sort:hover { background: #F8FAFC; }
 
     /* Timeline Styling */
     .timeline { position: relative; margin: 1rem 0; padding-left: 2rem; border-left: 2px solid #E2E8F0; }
@@ -163,9 +187,27 @@
     .timeline-card:hover { border-color: #94A3B8; transform: translateY(-1px); }
     .timeline-card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.4rem; flex-wrap: wrap; gap: 0.4rem; }
     .timeline-date { font-size: 0.85rem; font-weight: 700; color: #0F172A; display: flex; align-items: center; gap: 0.35rem; }
-    .timeline-doc { font-size: 0.88rem; font-weight: 700; color: var(--primary-light); margin-bottom: 0.35rem; }
+    .timeline-doc { font-size: 0.9rem; font-weight: 800; color: var(--primary-light); margin-bottom: 0.35rem; display: flex; align-items: center; gap: 0.3rem; }
     .timeline-reason { font-size: 0.85rem; color: #334155; line-height: 1.45; margin-bottom: 0.5rem; }
     .timeline-meta { display: flex; gap: 0.5rem; font-size: 0.75rem; color: var(--text-muted); flex-wrap: wrap; align-items: center; border-top: 1px dashed #EEF2F6; padding-top: 0.5rem; }
+
+    /* Tree View Styling */
+    .tree-view { display: flex; flex-direction: column; gap: 1.25rem; margin-top: 0.75rem; }
+    .tree-phase-card { background: white; border: 1px solid var(--border); border-radius: 10px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.03); }
+    .tree-phase-header { background: #F8FAFC; padding: 0.75rem 1rem; font-size: 0.85rem; font-weight: 700; color: #0F172A; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border); }
+    .tree-phase-header .phase-title { display: flex; align-items: center; gap: 0.45rem; }
+    .tree-phase-badge { background: #E2E8F0; color: #334155; font-size: 0.72rem; padding: 0.2rem 0.55rem; border-radius: 9999px; font-weight: 700; }
+    
+    .tree-nodes-list { padding: 0.75rem 1rem; display: flex; flex-direction: column; gap: 0.65rem; }
+    .tree-node-item { display: flex; gap: 0.75rem; align-items: flex-start; padding: 0.5rem 0.65rem; border-radius: 6px; background: #FAFAFA; border: 1px solid #F1F5F9; }
+    .tree-node-item:hover { background: #F1F5F9; border-color: #E2E8F0; }
+    .tree-node-bullet { font-size: 1rem; line-height: 1.2; }
+    .tree-node-content { flex: 1; }
+    .tree-node-title { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.25rem; flex-wrap: wrap; gap: 0.35rem; }
+    .tree-doc-code { font-weight: 800; font-size: 0.85rem; color: #1E3A8A; background: #DBEAFE; padding: 0.15rem 0.45rem; border-radius: 4px; }
+    .tree-doc-date { font-weight: 600; font-size: 0.78rem; color: #475569; }
+    .tree-doc-reason { font-size: 0.82rem; color: #334155; line-height: 1.4; margin-bottom: 0.25rem; }
+    .tree-doc-citation { font-size: 0.72rem; color: #64748B; font-weight: 500; }
 
     /* Checklist Section */
     .checklist-section { background: #F8FAFC; border: 1px solid var(--border); border-radius: 10px; padding: 1rem; margin-bottom: 1.25rem; }
@@ -219,23 +261,120 @@
       </div>
       <div class="metric-card green" onclick="setFilter('COMPLETA', document.getElementById('btnTabCompleta'))">
         <div class="title">Información Completa <span>🟢</span></div>
-        <div class="value" id="kpi-completa" style="color: #16A34A;">119</div>
-        <div class="desc">Inicio + Cierre/Caja verificados</div>
+        <div class="value" id="kpi-completa" style="color: #16A34A;">79</div>
+        <div class="desc">En Caja FDM o Inicio+Cierre probado</div>
       </div>
       <div class="metric-card yellow" onclick="setFilter('PARCIAL', document.getElementById('btnTabParcial'))">
         <div class="title">Trazabilidad Parcial <span>🟡</span></div>
-        <div class="value" id="kpi-parcial" style="color: #CA8A04;">28</div>
-        <div class="desc">Hitos PMO en tomos; falta inicio o liq.</div>
+        <div class="value" id="kpi-parcial" style="color: #CA8A04;">63</div>
+        <div class="desc">Hitos en tomos; falta inicio o liq.</div>
       </div>
       <div class="metric-card red" onclick="setFilter('SIN_INICIO', document.getElementById('btnTabSinInicio'))">
         <div class="title">⚠️ Falta Fecha Inicio <span>🚨</span></div>
-        <div class="value" id="kpi-sin-inicio" style="color: #DC2626;">20</div>
-        <div class="desc">Buscar en Tomos 6 al 9</div>
+        <div class="value" id="kpi-sin-inicio" style="color: #DC2626;">74</div>
+        <div class="desc">Pendiente ubicar documento inicial</div>
       </div>
       <div class="metric-card purple" onclick="setFilter('CAJAS', document.getElementById('btnTabCajas'))">
         <div class="title">En Cajas Rotuladas <span>📦</span></div>
-        <div class="value" id="kpi-cajas" style="color: #9333EA;">12</div>
+        <div class="value" id="kpi-cajas" style="color: #9333EA;">20</div>
         <div class="desc">Expedientes físicos en archivo</div>
+      </div>
+    </div>
+
+    <!-- Analytics Dashboard Panels -->
+    <div class="analytics-panel">
+      <!-- Widget 1: Estado de Auditoría (Audit Readiness) -->
+      <div class="analytics-card">
+        <div class="analytics-title">
+          <span>📊 Estado Documental de Auditoría</span>
+          <span id="readinessPercent">47.3% Completo</span>
+        </div>
+        <div class="progress-bar-container">
+          <div class="progress-label">
+            <span style="color: #16A34A;">🟢 Completas (<span id="statComp">79</span>)</span>
+            <span style="color: #CA8A04;">🟡 Parciales (<span id="statParc">63</span>)</span>
+            <span style="color: #DC2626;">🔴 Pendientes (<span id="statPend">21</span>)</span>
+          </div>
+          <div class="progress-track">
+            <div id="progFillComp" class="progress-fill" style="width: 47.3%; background: #16A34A;"></div>
+            <div id="progFillParc" class="progress-fill" style="width: 37.7%; background: #EAB308;"></div>
+            <div id="progFillPend" class="progress-fill" style="width: 12.6%; background: #DC2626;"></div>
+            <div id="progFillNoAp" class="progress-fill" style="width: 2.4%; background: #94A3B8;"></div>
+          </div>
+        </div>
+        <div class="stats-pill-grid" style="margin-top: 1rem;">
+          <div class="stat-mini-pill" onclick="setFilter('COMPLETA', document.getElementById('btnTabCompleta'))" style="cursor: pointer;">
+            <div class="lbl">Sustento Pleno</div>
+            <div class="num" style="color: #16A34A;">79 obras</div>
+          </div>
+          <div class="stat-mini-pill" onclick="setFilter('PARCIAL', document.getElementById('btnTabParcial'))" style="cursor: pointer;">
+            <div class="lbl">En Trazabilidad</div>
+            <div class="num" style="color: #CA8A04;">63 obras</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Widget 2: Distribución por Provincia -->
+      <div class="analytics-card">
+        <div class="analytics-title">
+          <span>📍 Distribución Territorial</span>
+          <span>3 Provincias</span>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 0.6rem;">
+          <div>
+            <div class="progress-label">
+              <span>⚓ Provincia de Ilo</span>
+              <span id="provIloCount">68 proyectos</span>
+            </div>
+            <div class="progress-track">
+              <div class="progress-fill" style="width: 40.7%; background: #2563EB;"></div>
+            </div>
+          </div>
+          <div>
+            <div class="progress-label">
+              <span>🏛️ Provincia Mariscal Nieto</span>
+              <span id="provMNCount">53 proyectos</span>
+            </div>
+            <div class="progress-track">
+              <div class="progress-fill" style="width: 31.7%; background: #0D9488;"></div>
+            </div>
+          </div>
+          <div>
+            <div class="progress-label">
+              <span>🌾 General Sánchez Cerro</span>
+              <span id="provGSCCount">46 proyectos</span>
+            </div>
+            <div class="progress-track">
+              <div class="progress-fill" style="width: 27.6%; background: #8B5CF6;"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Widget 3: Avance Acumulado de Tomos Auditados -->
+      <div class="analytics-card">
+        <div class="analytics-title">
+          <span>📚 Acervo Documentario Procesado</span>
+          <span>Tomos 1 al 8 (642 Folios)</span>
+        </div>
+        <div class="stats-pill-grid">
+          <div class="stat-mini-pill">
+            <div class="lbl">Folios Físicos OCR</div>
+            <div class="num" style="color: #2563EB;">642 Folios</div>
+          </div>
+          <div class="stat-mini-pill">
+            <div class="lbl">Periodo Analizado</div>
+            <div class="num" style="font-size: 0.95rem; color: #0F172A;">Ene - Nov 2023</div>
+          </div>
+          <div class="stat-mini-pill">
+            <div class="lbl">Hitos Vinculados</div>
+            <div class="num" style="color: #0D9488;">141 Proy.</div>
+          </div>
+          <div class="stat-mini-pill">
+            <div class="lbl">Cajas en Custodia</div>
+            <div class="num" style="color: #9333EA;">20 Cajas</div>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -261,11 +400,11 @@
 
       <div class="filter-tabs">
         <button class="tab-btn active" onclick="setFilter('ALL', this)" id="btnTabAll">Todos (167)</button>
-        <button class="tab-btn" onclick="setFilter('OBRAS', this)" id="btnTabObras">Obras Civiles (68)</button>
-        <button class="tab-btn green" onclick="setFilter('COMPLETA', this)" id="btnTabCompleta">🟢 Info Completa (119)</button>
-        <button class="tab-btn alert" onclick="setFilter('PARCIAL', this)" id="btnTabParcial">🟡 Info Parcial (28)</button>
-        <button class="tab-btn red" onclick="setFilter('SIN_INICIO', this)" id="btnTabSinInicio">⚠️ Faltan Fecha Inicio (20)</button>
-        <button class="tab-btn" onclick="setFilter('CAJAS', this)" id="btnTabCajas">En Cajas FDM (12)</button>
+        <button class="tab-btn" onclick="setFilter('OBRAS', this)" id="btnTabObras">Obras Civiles (69)</button>
+        <button class="tab-btn green" onclick="setFilter('COMPLETA', this)" id="btnTabCompleta">🟢 Info Completa (79)</button>
+        <button class="tab-btn alert" onclick="setFilter('PARCIAL', this)" id="btnTabParcial">🟡 Info Parcial (63)</button>
+        <button class="tab-btn red" onclick="setFilter('SIN_INICIO', this)" id="btnTabSinInicio">⚠️ Faltan Fecha Inicio (74)</button>
+        <button class="tab-btn" onclick="setFilter('CAJAS', this)" id="btnTabCajas">En Cajas FDM (20)</button>
         <button class="tab-btn" onclick="setFilter('ADQ', this)">Adquisiciones (43)</button>
         <button class="tab-btn" onclick="setFilter('EMG', this)">Emergencias (49)</button>
         <button class="tab-btn" onclick="setFilter('CON', this)">Consultorías (9)</button>
@@ -278,74 +417,75 @@
         <thead>
           <tr>
             <th style="width: 45px;" class="sortable" onclick="toggleSort('ID')">N° ⇕</th>
-            <th style="width: 110px;">Convenio</th>
-            <th style="width: 100px;">Provincia</th>
-            <th>Descripción del Proyecto / Obra Civil</th>
-            <th style="width: 80px; text-align: center;">CUI</th>
-            <th style="width: 130px; text-align: center;" class="sortable" onclick="toggleSort('DATE')">📅 Fecha Inicio ⇕</th>
-            <th style="width: 140px; text-align: center;">Estado Documental</th>
-            <th style="width: 120px; text-align: right;">Costo Ejec. (S/)</th>
-            <th style="width: 110px; text-align: center;">Ubicación</th>
+            <th style="width: 90px;">CONVENIO</th>
+            <th style="width: 100px;">PROVINCIA</th>
+            <th>DESCRIPCIÓN DEL PROYECTO / OBRA CIVIL</th>
+            <th style="width: 90px; text-align: center;">CUI</th>
+            <th style="width: 140px; text-align: center;" class="sortable" onclick="toggleSort('DATE')">FECHA INICIO ⇕</th>
+            <th style="width: 130px; text-align: center;">ESTADO DOC.</th>
+            <th style="width: 110px; text-align: right;">COSTO EJEC.</th>
+            <th style="width: 120px; text-align: center;">UBICACIÓN FDM</th>
           </tr>
         </thead>
         <tbody id="projectsTableBody">
-          <tr><td colspan="9" style="text-align: center; padding: 2rem;">Cargando base de datos consolidada...</td></tr>
+          <!-- Rows rendered dynamically -->
         </tbody>
       </table>
     </div>
 
   </div>
 
-  <!-- Interactive Project Drawer Modal -->
+  <!-- Modal Drawer: Historial, Checklist y Ubicación -->
   <div class="modal-backdrop" id="modalBackdrop" onclick="handleBackdropClick(event)">
-    <div class="drawer" id="modalDrawer">
+    <div class="drawer" id="projectDrawer">
       
       <div class="drawer-header">
         <div>
-          <div style="display: flex; gap: 0.5rem; align-items: center; margin-bottom: 0.4rem;">
-            <span class="badge badge-blue" id="drawerBadgeConvenio">Convenio</span>
-            <span class="badge badge-purple" id="drawerBadgeProvincia">Provincia</span>
-            <span class="badge badge-gray" id="drawerBadgeCUI">CUI: —</span>
+          <div style="display: flex; gap: 0.5rem; margin-bottom: 0.4rem; align-items: center; flex-wrap: wrap;">
+            <span class="badge badge-purple" id="drawerConvenio">100 MLL.</span>
+            <span class="badge badge-blue" id="drawerProvincia">ILO</span>
+            <span class="badge badge-gray" id="drawerCui">CUI: 2525252</span>
           </div>
-          <h2 id="drawerTitle">Nombre del Proyecto</h2>
-          <p id="drawerSubtitle" style="font-size: 0.8rem; opacity: 0.85;">Tipología | Modalidad</p>
+          <h2 id="drawerProjectName">Nombre del Proyecto</h2>
+          <div style="font-size: 0.78rem; opacity: 0.85;">
+            <span id="drawerTipologia">OBRAS CIVILES</span> | Monto Priorizado: <strong id="drawerMontoPriorizado">S/ 0.00</strong>
+          </div>
         </div>
         <button class="close-btn" onclick="closeDrawer()">&times;</button>
       </div>
 
-      <!-- Navigation Tabs inside Drawer -->
       <div class="drawer-nav">
-        <div class="nav-tab active" id="tabNavHistorial" onclick="switchDrawerTab('HISTORIAL')">
-          📜 Historial y Trazabilidad (<span id="drawerCountHitos">0</span>)
+        <div class="nav-tab active" onclick="switchDrawerTab('HISTORIAL')" id="tabNavHistorial">
+          📑 Historial y Trazabilidad (<span id="drawerCountHitos">0</span>)
         </div>
-        <div class="nav-tab" id="tabNavChecklist" onclick="switchDrawerTab('CHECKLIST')">
+        <div class="nav-tab" onclick="switchDrawerTab('CHECKLIST')" id="tabNavChecklist">
           📋 Checklist de Expediente
         </div>
-        <div class="nav-tab" id="tabNavUbicacion" onclick="switchDrawerTab('UBICACION')">
+        <div class="nav-tab" onclick="switchDrawerTab('UBICACION')" id="tabNavUbicacion">
           📍 Ubicación y Observaciones
         </div>
       </div>
 
       <div class="drawer-body">
         
-        <!-- Tab 1: Historial y Trazabilidad Contractual -->
+        <!-- Tab 1: Historial y Trazabilidad Contractual PMO -->
         <div id="drawerTabContentHistorial">
           
-          <!-- Completeness & Missing Items Card -->
-          <div class="status-summary-card" id="drawerStatusSummaryCard">
+          <!-- Estado de Información Summary -->
+          <div class="status-summary-card">
             <div class="status-summary-header">
               <div>
-                <span style="font-size: 0.7rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase;">Estado de Información</span>
-                <div id="drawerEstadoInfoLabel" style="font-size: 1rem; font-weight: 800; color: #16A34A; margin-top: 0.15rem;">🟢 INFORMACIÓN COMPLETA</div>
+                <span style="font-size: 0.72rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase;">Estado de Información</span>
+                <div style="font-size: 1.05rem; font-weight: 800;" id="drawerEstadoInfoLabel">🟢 INFORMACIÓN COMPLETA</div>
               </div>
-              <div id="drawerBadgeConfiabilidad" class="badge badge-green">Confiabilidad: ALTA</div>
+              <span class="badge badge-green" id="drawerBadgeConfiabilidad">Confiabilidad: ALTA</span>
             </div>
 
             <!-- Milestone Pillars -->
             <div class="checklist-milestones">
               <div class="milestone-pill" id="pillInicio">
                 <span class="milestone-label">Fecha Inicio</span>
-                <span class="milestone-val" id="pillInicioVal">09/03/2023</span>
+                <span class="milestone-val" id="pillInicioVal">27/02/2023</span>
               </div>
               <div class="milestone-pill" id="pillPlazo">
                 <span class="milestone-label">Plazo / Ampliac.</span>
@@ -363,25 +503,46 @@
 
             <!-- Alert Box for Missing Items -->
             <div id="drawerMissingAlertBox" style="margin-top: 0.75rem; background: #FEF2F2; border: 1px solid #FECACA; border-radius: 8px; padding: 0.65rem 0.85rem; font-size: 0.8rem; color: #991B1B; display: none;">
-              <strong style="display: block; margin-bottom: 0.2rem;">⚠️ Información que falta ubicar para sustento:</strong>
+              <strong style="display: block; margin-bottom: 0.2rem;">⚠️ Información que falta ubicar para sustento pleno:</strong>
               <ul id="drawerMissingList" style="padding-left: 1.2rem; line-height: 1.4;"></ul>
               <div style="margin-top: 0.4rem; font-size: 0.75rem; color: #7F1D1D; font-style: italic;">
-                🔍 Recomendación: Buscar en los Tomos Físicos de Secretaría PMO posteriores (Tomos 6 al 9 de 2023).
+                🔍 Buscar en Tomo 9 de 2023 o en expedientes físicos de 2024.
               </div>
             </div>
+          </div>
+
+          <!-- Controls Bar for Timeline / Tree View inside Modal -->
+          <div class="drawer-view-controls">
+            <div class="view-toggle-group">
+              <button class="btn-view-toggle active" id="btnViewTimeline" onclick="setTimelineView('TIMELINE')">
+                📅 Línea de Tiempo
+              </button>
+              <button class="btn-view-toggle" id="btnViewTree" onclick="setTimelineView('TREE')">
+                🌳 Árbol de Actuados
+              </button>
+            </div>
+
+            <button class="btn-order-sort" id="btnSortOrder" onclick="toggleTimelineSortOrder()">
+              ⬇️ Más antiguo primero
+            </button>
           </div>
 
           <!-- Timeline Filter Buttons -->
           <div style="display: flex; gap: 0.4rem; overflow-x: auto; margin-bottom: 1rem; padding-bottom: 0.2rem;">
             <button class="tab-btn active" style="font-size: 0.75rem; padding: 0.35rem 0.7rem;" onclick="filterTimeline('ALL', this)">Todos (<span id="countTimelineAll">0</span>)</button>
-            <button class="tab-btn" style="font-size: 0.75rem; padding: 0.35rem 0.7rem;" onclick="filterTimeline('AMPLIACION', this)">Ampliaciones de Plazo</button>
-            <button class="tab-btn" style="font-size: 0.75rem; padding: 0.35rem 0.7rem;" onclick="filterTimeline('PARALIZACION', this)">Paralizaciones / Lluvias</button>
-            <button class="tab-btn" style="font-size: 0.75rem; padding: 0.35rem 0.7rem;" onclick="filterTimeline('TERMINO', this)">Recepción & Liquidación</button>
+            <button class="tab-btn" style="font-size: 0.75rem; padding: 0.35rem 0.7rem;" onclick="filterTimeline('INICIO', this)">🚀 Inicio & Contrato</button>
+            <button class="tab-btn" style="font-size: 0.75rem; padding: 0.35rem 0.7rem;" onclick="filterTimeline('VALORIZACION', this)">📈 Valorizaciones</button>
+            <button class="tab-btn" style="font-size: 0.75rem; padding: 0.35rem 0.7rem;" onclick="filterTimeline('AMPLIACION', this)">⚠️ Ampliaciones & Plazos</button>
+            <button class="tab-btn" style="font-size: 0.75rem; padding: 0.35rem 0.7rem;" onclick="filterTimeline('TERMINO', this)">🏁 Recepción & Liq.</button>
           </div>
 
-          <!-- Chronological Timeline List -->
+          <!-- Dynamic Container: Timeline View OR Tree View -->
           <div id="timelineContainer" class="timeline">
-            <!-- Timeline items rendered dynamically -->
+            <!-- Items rendered dynamically -->
+          </div>
+
+          <div id="treeContainer" class="tree-view" style="display: none;">
+            <!-- Tree view rendered dynamically -->
           </div>
 
         </div>
@@ -439,6 +600,8 @@
     let currentSort = 'ID_ASC';
     let selectedProjectId = null;
     let currentTimelineFilter = 'ALL';
+    let currentTimelineView = 'TIMELINE'; // 'TIMELINE' or 'TREE'
+    let currentTimelineSortOrder = 'ASC'; // 'ASC' (oldest first) or 'DESC' (newest first)
     let isLocalServer = false;
 
     async function loadProjects() {
@@ -464,6 +627,7 @@
 
       applySavedChangesFromStorage();
       renderTable();
+      renderAnalyticsDashboard();
     }
 
     function applySavedChangesFromStorage() {
@@ -489,10 +653,53 @@
     function renderKPIs(kpis) {
       if (!kpis) return;
       document.getElementById('kpi-total').innerText = kpis.total || projectsData.length;
-      document.getElementById('kpi-completa').innerText = kpis.info_completa || 119;
-      document.getElementById('kpi-parcial').innerText = kpis.info_parcial || 28;
-      document.getElementById('kpi-sin-inicio').innerText = kpis.sin_fecha_inicio || 20;
-      document.getElementById('kpi-cajas').innerText = kpis.cajas || 12;
+      document.getElementById('kpi-completa').innerText = kpis.info_completa || 79;
+      document.getElementById('kpi-parcial').innerText = kpis.info_parcial || 63;
+      document.getElementById('kpi-sin-inicio').innerText = kpis.sin_fecha_inicio || 74;
+      document.getElementById('kpi-cajas').innerText = kpis.en_caja || 20;
+    }
+
+    function renderAnalyticsDashboard() {
+      const total = projectsData.length || 167;
+      const comp = projectsData.filter(p => p.estado_info === 'COMPLETA').length;
+      const parc = projectsData.filter(p => p.estado_info === 'PARCIAL').length;
+      const pend = projectsData.filter(p => p.estado_info === 'INCOMPLETA').length;
+      const noap = projectsData.filter(p => p.estado_info === 'NO_APLICA').length;
+
+      const pComp = ((comp / total) * 100).toFixed(1);
+      const pParc = ((parc / total) * 100).toFixed(1);
+      const pPend = ((pend / total) * 100).toFixed(1);
+      const pNoap = ((noap / total) * 100).toFixed(1);
+
+      const elReadiness = document.getElementById('readinessPercent');
+      if (elReadiness) elReadiness.innerText = `${pComp}% Completo`;
+
+      const elStatComp = document.getElementById('statComp');
+      if (elStatComp) elStatComp.innerText = comp;
+      const elStatParc = document.getElementById('statParc');
+      if (elStatParc) elStatParc.innerText = parc;
+      const elStatPend = document.getElementById('statPend');
+      if (elStatPend) elStatPend.innerText = pend;
+
+      const fComp = document.getElementById('progFillComp');
+      if (fComp) fComp.style.width = `${pComp}%`;
+      const fParc = document.getElementById('progFillParc');
+      if (fParc) fParc.style.width = `${pParc}%`;
+      const fPend = document.getElementById('progFillPend');
+      if (fPend) fPend.style.width = `${pPend}%`;
+      const fNoap = document.getElementById('progFillNoAp');
+      if (fNoap) fNoap.style.width = `${pNoap}%`;
+
+      const ilo = projectsData.filter(p => (p.provincia || '').toUpperCase().includes('ILO')).length;
+      const mn = projectsData.filter(p => (p.provincia || '').toUpperCase().includes('MARISCAL') || (p.provincia || '').toUpperCase() === 'M.N.').length;
+      const gsc = projectsData.filter(p => (p.provincia || '').toUpperCase().includes('SANCHEZ') || (p.provincia || '').toUpperCase() === 'G.S.C.').length;
+
+      const elIlo = document.getElementById('provIloCount');
+      if (elIlo) elIlo.innerText = `${ilo} proyectos`;
+      const elMN = document.getElementById('provMNCount');
+      if (elMN) elMN.innerText = `${mn} proyectos`;
+      const elGSC = document.getElementById('provGSCCount');
+      if (elGSC) elGSC.innerText = `${gsc} proyectos`;
     }
 
     function setFilter(filter, btn) {
@@ -519,96 +726,84 @@
 
     function filterTable() {
       const q = document.getElementById('searchInput').value.toLowerCase().trim();
-      
-      let filtered = projectsData.filter(p => {
-        const descMatch = (p.desc || '').toLowerCase().includes(q) ||
-                          (p.provincia || '').toLowerCase().includes(q) ||
-                          (p.cui && p.cui.toLowerCase().includes(q)) ||
-                          (p.fecha_inicio || '').toLowerCase().includes(q) ||
-                          (p.n_cajas || '').toLowerCase().includes(q) ||
-                          (p.convenio || '').toLowerCase().includes(q);
 
-        const histMatch = (p.historial || []).some(h => 
-          (h.documento || '').toLowerCase().includes(q) ||
-          (h.asunto_razon || '').toLowerCase().includes(q)
-        );
-
-        if (!descMatch && !histMatch) return false;
-
-        if (currentFilter === 'ALL') return true;
+      const filtered = projectsData.filter(p => {
         if (currentFilter === 'OBRAS') return p.tipologia === 'OBRAS CIVILES';
+        if (currentFilter === 'ADQ') return p.tipologia === 'ADQUISICIONES Y EQUIPAMIENTO';
+        if (currentFilter === 'EMG') return p.tipologia === 'EMERGENCIAS Y SERVICIOS';
+        if (currentFilter === 'CON') return p.tipologia === 'CONSULTORÍAS Y EXPEDIENTES';
+        if (currentFilter === 'CAJAS') return (p.tiene_caja || '').toUpperCase().includes('CAJA');
         if (currentFilter === 'COMPLETA') return p.estado_info === 'COMPLETA';
         if (currentFilter === 'PARCIAL') return p.estado_info === 'PARCIAL';
-        if (currentFilter === 'SIN_INICIO') return !p.tiene_fecha_inicio;
-        if (currentFilter === 'CAJAS') return (p.tiene_caja || '').toUpperCase().includes('CAJA');
-        if (currentFilter === 'ADQ') return (p.tipologia || '').includes('ADQUISICION') || (p.tipologia || '').includes('EQUIPO');
-        if (currentFilter === 'EMG') return (p.tipologia || '').includes('EMERGENCIA') || (p.tipologia || '').includes('SERVICIO');
-        if (currentFilter === 'CON') return (p.tipologia || '').includes('CONSULTORIA') || (p.tipologia || '').includes('EXPEDIENTE');
+        if (currentFilter === 'SIN_INICIO') return !p.tiene_fecha_inicio && p.estado_info !== 'NO_APLICA';
         return true;
+      }).filter(p => {
+        if (!q) return true;
+        const h_text = (p.historial || []).map(h => `${h.documento} ${h.asunto_razon} ${h.fecha}`).join(' ').toLowerCase();
+        return p.desc.toLowerCase().includes(q) ||
+               p.provincia.toLowerCase().includes(q) ||
+               p.convenio.toLowerCase().includes(q) ||
+               (p.cui && p.cui.toLowerCase().includes(q)) ||
+               (p.tiene_caja && p.tiene_caja.toLowerCase().includes(q)) ||
+               (p.fecha_inicio && p.fecha_inicio.toLowerCase().includes(q)) ||
+               h_text.includes(q);
       });
 
-      // Apply Sorting
+      // Sorting
       filtered.sort((a, b) => {
         if (currentSort === 'ID_ASC') return a.id - b.id;
         if (currentSort === 'ID_DESC') return b.id - a.id;
-        
         if (currentSort === 'DATE_ASC') {
-          // Put projects without date at the end
-          const dateA = a.tiene_fecha_inicio ? a.fecha_inicio_sort : '9999-99-99';
-          const dateB = b.tiene_fecha_inicio ? b.fecha_inicio_sort : '9999-99-99';
-          return dateA.localeCompare(dateB);
+          return (a.fecha_inicio_sort || '9999-99-99').localeCompare(b.fecha_inicio_sort || '9999-99-99') || (a.id - b.id);
         }
-        
         if (currentSort === 'DATE_DESC') {
-          const dateA = a.tiene_fecha_inicio ? a.fecha_inicio_sort : '0000-00-00';
-          const dateB = b.tiene_fecha_inicio ? b.fecha_inicio_sort : '0000-00-00';
-          return dateB.localeCompare(dateA);
+          const dA = a.fecha_inicio_sort || '0000-00-00';
+          const dB = b.fecha_inicio_sort || '0000-00-00';
+          return dB.localeCompare(dA) || (a.id - b.id);
         }
-
         if (currentSort === 'MISSING_FIRST') {
           if (!a.tiene_fecha_inicio && b.tiene_fecha_inicio) return -1;
           if (a.tiene_fecha_inicio && !b.tiene_fecha_inicio) return 1;
           return a.id - b.id;
         }
-
         if (currentSort === 'STATUS_ALERT') {
-          const weights = { 'INCOMPLETA': 1, 'PARCIAL': 2, 'COMPLETA': 3 };
+          const weights = { 'INCOMPLETA': 1, 'PARCIAL': 2, 'COMPLETA': 3, 'NO_APLICA': 4 };
           return (weights[a.estado_info] || 9) - (weights[b.estado_info] || 9);
         }
-
-        if (currentSort === 'COST_DESC') {
-          return (Number(b.costo_ejec) || 0) - (Number(a.costo_ejec) || 0);
-        }
-
+        if (currentSort === 'COST_DESC') return b.costo_ejec - a.costo_ejec;
         return a.id - b.id;
       });
 
-      renderFilteredRows(filtered);
+      renderRows(filtered);
     }
 
-    function renderTable() {
-      filterTable();
-    }
-
-    function renderFilteredRows(list) {
+    function renderRows(list) {
       const tbody = document.getElementById('projectsTableBody');
+      tbody.innerHTML = '';
+
       if (list.length === 0) {
-        tbody.innerHTML = '<tr><td colspan="9" style="text-align: center; padding: 2.5rem; color: #64748B;">No se encontraron proyectos con ese criterio de búsqueda.</td></tr>';
+        tbody.innerHTML = `<tr><td colspan="9" style="text-align: center; padding: 2rem; color: var(--text-muted);">No se encontraron proyectos con los criterios de búsqueda.</td></tr>`;
         return;
       }
 
-      tbody.innerHTML = list.map(p => {
-        const isBox = (p.tiene_caja || '').toUpperCase().includes('CAJA');
-        const badgeBox = isBox 
-          ? `<span class="badge badge-green">📦 Caja ${p.n_cajas}</span>` 
-          : `<span class="badge badge-yellow">📁 Archivador</span>`;
+      const rowsHtml = list.map(p => {
+        const costoFmt = p.costo_ejec > 0 
+          ? `S/ ${p.costo_ejec.toLocaleString('es-PE', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`
+          : 'S/ 0.00';
 
-        // Start Date Badge / Alert
+        let badgeCaja = `<span class="badge badge-yellow" title="En Archivador de Secretaría">📁 ARCHIVADOR</span>`;
+        if ((p.tiene_caja || '').toUpperCase().includes('CAJA')) {
+          badgeCaja = `<span class="badge badge-green" title="Expediente en Caja FDM">📦 ${p.tiene_caja}</span>`;
+        }
+
+        // Start Date Badge
         let badgeInicio = '';
         if (p.tiene_fecha_inicio) {
-          badgeInicio = `<span style="font-weight: 700; color: #1E293B; font-size: 0.8rem; background: #F1F5F9; padding: 0.25rem 0.5rem; border-radius: 6px; border: 1px solid #E2E8F0; display: inline-block;">📅 ${p.fecha_inicio}</span>`;
+          badgeInicio = `<span class="badge badge-blue" style="font-size: 0.73rem;" title="${p.fecha_inicio_doc || 'Fecha verificada'}">📅 ${p.fecha_inicio}</span>`;
+        } else if (p.estado_info === 'NO_APLICA') {
+          badgeInicio = `<span class="badge badge-gray" style="font-size: 0.7rem;">⚪ No Aplica</span>`;
         } else {
-          badgeInicio = `<span class="badge badge-red" style="font-size: 0.7rem;" title="Falta Acta de Entrega de Terreno o Contrato Inicial">⚠️ Sin Fecha Inicio</span>`;
+          badgeInicio = `<span class="badge badge-red" style="font-size: 0.7rem;" title="Pendiente de ubicar acta original">⚠️ Sin Fecha Inicio</span>`;
         }
 
         // Completeness Badge
@@ -635,34 +830,36 @@
             <td style="text-align: center; font-family: monospace; font-size: 0.8rem; font-weight: 600;">${p.cui !== 'N/D' ? p.cui : '—'}</td>
             <td style="text-align: center;">${badgeInicio}</td>
             <td style="text-align: center;">${badgeInfo}</td>
-            <td style="text-align: right; font-weight: 700; color: var(--primary);">S/ ${Number(p.costo_ejec || 0).toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</td>
-            <td style="text-align: center;">${badgeBox}</td>
+            <td style="text-align: right; font-weight: 600; font-family: monospace;">${costoFmt}</td>
+            <td style="text-align: center;">${badgeCaja}</td>
           </tr>
         `;
       }).join('');
+
+      tbody.innerHTML = rowsHtml;
     }
 
-    function switchDrawerTab(tab) {
-      document.getElementById('tabNavHistorial').classList.toggle('active', tab === 'HISTORIAL');
-      document.getElementById('tabNavChecklist').classList.toggle('active', tab === 'CHECKLIST');
-      document.getElementById('tabNavUbicacion').classList.toggle('active', tab === 'UBICACION');
-
-      document.getElementById('drawerTabContentHistorial').style.display = tab === 'HISTORIAL' ? 'block' : 'none';
-      document.getElementById('drawerTabContentChecklist').style.display = tab === 'CHECKLIST' ? 'block' : 'none';
-      document.getElementById('drawerTabContentUbicacion').style.display = tab === 'UBICACION' ? 'block' : 'none';
+    function renderTable() {
+      filterTable();
     }
 
+    // Modal Drawer logic
     function openDrawer(id) {
       selectedProjectId = id;
       const p = projectsData.find(item => item.id === id);
       if (!p) return;
 
-      document.getElementById('drawerBadgeConvenio').innerText = p.convenio;
-      document.getElementById('drawerBadgeProvincia').innerText = p.provincia;
-      document.getElementById('drawerBadgeCUI').innerText = p.cui !== 'N/D' ? `CUI: ${p.cui}` : 'CUI: S/N';
-      document.getElementById('drawerTitle').innerText = p.desc;
-      document.getElementById('drawerSubtitle').innerText = `${p.tipologia} | Monto Priorizado: S/ ${Number(p.prio || 0).toLocaleString('en-US', {minimumFractionDigits: 2})}`;
+      document.getElementById('drawerProjectName').innerText = p.desc;
+      document.getElementById('drawerConvenio').innerText = p.convenio;
+      document.getElementById('drawerProvincia').innerText = p.provincia;
+      document.getElementById('drawerCui').innerText = p.cui !== 'N/D' ? `CUI: ${p.cui}` : 'CUI: S/N';
+      document.getElementById('drawerTipologia').innerText = p.tipologia;
       
+      const prioFmt = p.prio > 0 
+        ? `S/ ${p.prio.toLocaleString('es-PE', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`
+        : 'S/ 0.00';
+      document.getElementById('drawerMontoPriorizado').innerText = prioFmt;
+
       const hist = p.historial || [];
       document.getElementById('drawerCountHitos').innerText = hist.length;
       document.getElementById('countTimelineAll').innerText = hist.length;
@@ -706,7 +903,7 @@
       } else {
         pillIni.className = "milestone-pill missing";
         pillIniVal.innerText = "⚠️ Falta Acta Inicio";
-        pillIniVal.title = "Buscar acta de entrega de terreno en Tomos 7 al 9";
+        pillIniVal.title = "Buscar acta de entrega de terreno en Tomo 9 o archivo";
       }
 
       const pillPlazo = document.getElementById('pillPlazo');
@@ -749,21 +946,52 @@
       }
 
       // Set checklist
-      const c = p.checks || {};
-      ['exp','cont','acta_ent','cuad','val','adic','sup','rec','liq','res','transf'].forEach(k => {
-        const el = document.getElementById(`chk_${k}`);
-        if (el) el.checked = !!c[k];
-      });
+      const checks = p.checks || {};
+      document.getElementById('chk_exp').checked = !!checks.exp;
+      document.getElementById('chk_cont').checked = !!checks.cont;
+      document.getElementById('chk_acta_ent').checked = !!checks.acta_ent;
+      document.getElementById('chk_cuad').checked = !!checks.cuad;
+      document.getElementById('chk_val').checked = !!checks.val;
+      document.getElementById('chk_adic').checked = !!checks.adic;
+      document.getElementById('chk_sup').checked = !!checks.sup;
+      document.getElementById('chk_rec').checked = !!checks.rec;
+      document.getElementById('chk_liq').checked = !!checks.liq;
+      document.getElementById('chk_res').checked = !!checks.res;
+      document.getElementById('chk_transf').checked = !!checks.transf;
 
+      // Tab 3
       document.getElementById('drawerUbicacion').value = p.n_cajas || '';
       document.getElementById('drawerObservaciones').value = p.alerta || '';
 
-      // Render Timeline
+      // Render Timeline / Tree View
       currentTimelineFilter = 'ALL';
-      renderTimeline(p);
+      renderDrawerActuados(p);
 
       switchDrawerTab('HISTORIAL');
       document.getElementById('modalBackdrop').classList.add('open');
+    }
+
+    function setTimelineView(view) {
+      currentTimelineView = view;
+      document.getElementById('btnViewTimeline').classList.toggle('active', view === 'TIMELINE');
+      document.getElementById('btnViewTree').classList.toggle('active', view === 'TREE');
+      document.getElementById('timelineContainer').style.display = view === 'TIMELINE' ? 'block' : 'none';
+      document.getElementById('treeContainer').style.display = view === 'TREE' ? 'flex' : 'none';
+
+      const p = projectsData.find(item => item.id === selectedProjectId);
+      if (p) renderDrawerActuados(p);
+    }
+
+    function toggleTimelineSortOrder() {
+      currentTimelineSortOrder = (currentTimelineSortOrder === 'ASC') ? 'DESC' : 'ASC';
+      const btn = document.getElementById('btnSortOrder');
+      if (btn) {
+        btn.innerText = currentTimelineSortOrder === 'ASC' 
+          ? "⬇️ Más antiguo primero" 
+          : "⬆️ Más reciente primero";
+      }
+      const p = projectsData.find(item => item.id === selectedProjectId);
+      if (p) renderDrawerActuados(p);
     }
 
     function filterTimeline(filter, btn) {
@@ -771,7 +999,42 @@
       btn.parentElement.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
       const p = projectsData.find(item => item.id === selectedProjectId);
-      if (p) renderTimeline(p);
+      if (p) renderDrawerActuados(p);
+    }
+
+    function getSortedAndFilteredEvents(p) {
+      const hist = p.historial || [];
+
+      // Filter
+      const filtered = hist.filter(h => {
+        if (currentTimelineFilter === 'ALL') return true;
+        if (currentTimelineFilter === 'INICIO') return h.tipo === 'Inicio / Contrato';
+        if (currentTimelineFilter === 'VALORIZACION') return h.tipo === 'Valorización / Avance Mensual' || (h.asunto_razon || '').toUpperCase().includes('VALORIZACI');
+        if (currentTimelineFilter === 'AMPLIACION') return h.tipo === 'Ampliación de Plazo' || (h.asunto_razon || '').toUpperCase().includes('AMPLIACI');
+        if (currentTimelineFilter === 'TERMINO') return h.tipo === 'Recepción de Obra' || h.tipo === 'Liquidación Técnica-Financiera' || (h.tipo || '').includes('Cierre');
+        return true;
+      });
+
+      // Strict Chronological Sort by fecha_sort
+      filtered.sort((a, b) => {
+        const dA = a.fecha_sort || '9999-99-99';
+        const dB = b.fecha_sort || '9999-99-99';
+        if (currentTimelineSortOrder === 'ASC') {
+          return dA.localeCompare(dB) || (a.fecha || '').localeCompare(b.fecha || '');
+        } else {
+          return dB.localeCompare(dA) || (b.fecha || '').localeCompare(a.fecha || '');
+        }
+      });
+
+      return filtered;
+    }
+
+    function renderDrawerActuados(p) {
+      if (currentTimelineView === 'TIMELINE') {
+        renderTimeline(p);
+      } else {
+        renderTreeView(p);
+      }
     }
 
     function renderTimeline(p) {
@@ -791,20 +1054,14 @@
         return;
       }
 
-      const filtered = hist.filter(h => {
-        if (currentTimelineFilter === 'ALL') return true;
-        if (currentTimelineFilter === 'AMPLIACION') return h.tipo === 'Ampliación de Plazo';
-        if (currentTimelineFilter === 'PARALIZACION') return h.tipo === 'Suspensión / Paralización';
-        if (currentTimelineFilter === 'TERMINO') return h.tipo === 'Recepción de Obra' || h.tipo === 'Liquidación Técnica-Financiera';
-        return true;
-      });
+      const events = getSortedAndFilteredEvents(p);
 
-      if (filtered.length === 0) {
-        container.innerHTML = `<div style="text-align: center; padding: 1.5rem; color: var(--text-muted); font-size: 0.85rem;">No hay hitos con el filtro seleccionado.</div>`;
+      if (events.length === 0) {
+        container.innerHTML = `<div style="text-align: center; padding: 1.5rem; color: var(--text-muted); font-size: 0.85rem;">No hay actuados con el filtro seleccionado.</div>`;
         return;
       }
 
-      container.innerHTML = filtered.map(h => {
+      container.innerHTML = events.map(h => {
         let badgeClass = 'badge-blue';
         let dotColor = '#2563EB';
 
@@ -823,12 +1080,14 @@
                 </div>
                 <span class="badge ${badgeClass}">${h.tipo}</span>
               </div>
-              <div class="timeline-doc">📄 ${h.documento}</div>
+              <div class="timeline-doc">
+                📄 <span>${h.documento}</span>
+              </div>
               <div class="timeline-reason">
-                <strong>Razón / Causal:</strong> ${h.asunto_razon}
+                <strong>Actuado / Causal:</strong> ${h.asunto_razon}
               </div>
               <div class="timeline-meta">
-                <span>🏛️ <strong>Fuente:</strong> ${h.fuente}</span>
+                <span>🏛️ <strong>Ubicación Oficial:</strong> ${h.fuente}</span>
                 <span>•</span>
                 <span>🛡️ <strong>Confiabilidad:</strong> ${h.confiabilidad}</span>
               </div>
@@ -836,6 +1095,91 @@
           </div>
         `;
       }).join('');
+    }
+
+    function renderTreeView(p) {
+      const container = document.getElementById('treeContainer');
+      const hist = p.historial || [];
+
+      if (hist.length === 0) {
+        container.innerHTML = `
+          <div style="text-align: center; padding: 2rem; background: #F8FAFC; border: 1px dashed var(--border); border-radius: 12px; color: var(--text-muted);">
+            <div style="font-size: 2rem; margin-bottom: 0.4rem;">🌳</div>
+            <div style="font-weight: 700; color: #0F172A;">Árbol de Actuados sin antecedentes en Tomos 1 al 8</div>
+            <div style="font-size: 0.8rem; margin-top: 0.25rem;">Buscar expedientes en Tomo 9 o archivo central 2024.</div>
+          </div>
+        `;
+        return;
+      }
+
+      const events = getSortedAndFilteredEvents(p);
+
+      // Group into 5 standard engineering phases
+      const phases = [
+        { id: '1. INICIO Y HABILITACIÓN CONTRACTUAL', title: '1. Inicio y Habilitación Contractual', icon: '🚀' },
+        { id: '2. EJECUCIÓN Y VALORIZACIONES MENSUALES', title: '2. Ejecución Física y Valorizaciones', icon: '📈' },
+        { id: '3. MODIFICACIONES, PLAZOS E INCIDENCIAS', title: '3. Modificaciones, Plazos e Incidencias', icon: '⚠️' },
+        { id: '4. CULMINACIÓN Y RECEPCIÓN DE OBRA', title: '4. Culminación Física y Recepción de Obra', icon: '🏁' },
+        { id: '5. LIQUIDACIÓN Y CIERRE FINANCIERO', title: '5. Liquidación Técnico-Financiera y Cierre', icon: '📑' }
+      ];
+
+      const html = phases.map(ph => {
+        const phEvents = events.filter(e => (e.fase || '').startsWith(ph.id.substring(0, 2)));
+
+        if (phEvents.length === 0) {
+          return `
+            <div class="tree-phase-card" style="opacity: 0.65;">
+              <div class="tree-phase-header">
+                <div class="phase-title"><span>${ph.icon}</span> <span>${ph.title}</span></div>
+                <span class="tree-phase-badge">0 actuados</span>
+              </div>
+              <div style="padding: 0.65rem 1rem; font-size: 0.78rem; color: var(--text-muted); font-style: italic;">
+                Pendiente de ubicar en tomos físicos o archivo.
+              </div>
+            </div>
+          `;
+        }
+
+        const nodesHtml = phEvents.map(e => `
+          <div class="tree-node-item">
+            <div class="tree-node-bullet">${ph.icon}</div>
+            <div class="tree-node-content">
+              <div class="tree-node-title">
+                <span class="tree-doc-code">${e.documento}</span>
+                <span class="tree-doc-date">📅 ${e.fecha}</span>
+              </div>
+              <div class="tree-doc-reason">${e.asunto_razon}</div>
+              <div class="tree-doc-citation">
+                🏛️ Fuente probatoria: <strong>${e.fuente}</strong> (${e.confiabilidad})
+              </div>
+            </div>
+          </div>
+        `).join('');
+
+        return `
+          <div class="tree-phase-card">
+            <div class="tree-phase-header">
+              <div class="phase-title"><span>${ph.icon}</span> <span>${ph.title}</span></div>
+              <span class="tree-phase-badge" style="background: #DBEAFE; color: #1E40AF;">${phEvents.length} actuados</span>
+            </div>
+            <div class="tree-nodes-list">
+              ${nodesHtml}
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      container.innerHTML = html;
+    }
+
+    function switchDrawerTab(tab) {
+      document.getElementById('tabNavHistorial').classList.toggle('active', tab === 'HISTORIAL');
+      document.getElementById('tabNavChecklist').classList.toggle('active', tab === 'CHECKLIST');
+      document.getElementById('tabNavUbicacion').classList.toggle('active', tab === 'UBICACION');
+
+      document.getElementById('drawerTabContentHistorial').style.display = tab === 'HISTORIAL' ? 'block' : 'none';
+      document.getElementById('drawerTabContentChecklist').style.display = tab === 'CHECKLIST' ? 'block' : 'none';
+      document.getElementById('drawerTabContentUbicacion').style.display = tab === 'UBICACION' ? 'block' : 'none';
     }
 
     function closeDrawer() {
@@ -860,64 +1204,50 @@
         rec: document.getElementById('chk_rec').checked,
         liq: document.getElementById('chk_liq').checked,
         res: document.getElementById('chk_res').checked,
-        transf: document.getElementById('chk_transf').checked,
+        transf: document.getElementById('chk_transf').checked
       };
 
-      const payload = {
-        id: selectedProjectId,
-        checks: updatedChecks,
-        ubicacion: document.getElementById('drawerUbicacion').value.trim(),
-        observaciones: document.getElementById('drawerObservaciones').value.trim()
-      };
+      const updatedUbicacion = document.getElementById('drawerUbicacion').value;
+      const updatedObservaciones = document.getElementById('drawerObservaciones').value;
 
       const p = projectsData.find(item => item.id === selectedProjectId);
       if (p) {
         p.checks = updatedChecks;
-        p.n_cajas = payload.ubicacion || p.n_cajas;
-        p.alerta = payload.observaciones;
-        if (payload.ubicacion.toUpperCase().includes('CAJA')) p.tiene_caja = 'EN CAJA';
+        p.n_cajas = updatedUbicacion;
+        p.tiene_caja = updatedUbicacion.toUpperCase().includes('CAJA') ? 'EN CAJA' : 'ARCHIVADOR';
+        p.alerta = updatedObservaciones;
       }
 
       try {
         const saved = JSON.parse(localStorage.getItem('fdm_audit_changes') || '{}');
-        saved[selectedProjectId] = payload;
+        saved[selectedProjectId] = {
+          checks: updatedChecks,
+          ubicacion: updatedUbicacion,
+          observaciones: updatedObservaciones
+        };
         localStorage.setItem('fdm_audit_changes', JSON.stringify(saved));
       } catch (e) {
-        console.error("Error saving to localStorage:", e);
+        console.error("Error writing localStorage:", e);
       }
 
-      if (isLocalServer) {
-        try {
-          const res = await fetch('/api/save', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(payload)
-          });
-          const data = await res.json();
-          if (data.success) showToast("💾 Actualizado en vivo en el archivo Excel local");
-        } catch (err) {
-          showToast("Guardado en navegador");
-        }
-      } else {
-        showToast("💾 Guardado en tu navegador");
-      }
-
-      closeDrawer();
+      showToast("Cambios guardados en memoria correctamente");
       filterTable();
     }
 
     function showToast(msg) {
-      const t = document.getElementById('toast');
-      t.innerText = msg;
-      t.classList.add('show');
-      setTimeout(() => t.classList.remove('show'), 3000);
+      const toast = document.getElementById('toast');
+      toast.innerText = msg;
+      toast.className = 'toast success show';
+      setTimeout(() => toast.classList.remove('show'), 2600);
     }
 
     function exportToExcel() {
-      window.location.href = './projects_data.json';
+      window.location.href = './PUNTO_61_MATRIZ_OBRAS_INICIADAS_Y_TERMINADAS_2022_2025.xlsx';
     }
 
-    window.onload = loadProjects;
+    // Initialize
+    window.addEventListener('DOMContentLoaded', loadProjects);
   </script>
+
 </body>
 </html>
