@@ -25,7 +25,7 @@
         "res": true,
         "transf": true
       },
-      "alerta": "Sin antecedentes en Tomos 1 a 8 ni caja rotulada",
+      "alerta": "Sin antecedentes en Tomos 1 a 9 ni caja rotulada",
       "historial": [],
       "total_hitos": 0,
       "fecha_inicio": "",
@@ -38,7 +38,7 @@
       "resolucion_liquidacion": "",
       "estado_info": "PENDIENTE",
       "estado_info_label": "🔴 INFORMACIÓN PENDIENTE",
-      "estado_info_desc": "Sin documentos localizados en Tomos 1 a 8 ni caja asignada",
+      "estado_info_desc": "Sin documentos localizados en Tomos 1 a 9 ni caja asignada",
       "detalles_faltantes": [
         "Acta de Entrega de Terreno / Acta de Inicio de Obra",
         "Acta de Culminación Física de Obra",
@@ -72,7 +72,7 @@
         "res": true,
         "transf": true
       },
-      "alerta": "Sin antecedentes en Tomos 1 a 8 ni caja rotulada",
+      "alerta": "Sin antecedentes en Tomos 1 a 9 ni caja rotulada",
       "historial": [],
       "total_hitos": 0,
       "fecha_inicio": "",
@@ -85,7 +85,7 @@
       "resolucion_liquidacion": "",
       "estado_info": "PENDIENTE",
       "estado_info_label": "🔴 INFORMACIÓN PENDIENTE",
-      "estado_info_desc": "Sin documentos localizados en Tomos 1 a 8 ni caja asignada",
+      "estado_info_desc": "Sin documentos localizados en Tomos 1 a 9 ni caja asignada",
       "detalles_faltantes": [
         "Acta de Entrega de Terreno / Acta de Inicio de Obra",
         "Acta de Culminación Física de Obra",
@@ -119,7 +119,7 @@
         "res": true,
         "transf": true
       },
-      "alerta": "Sin antecedentes en Tomos 1 a 8 ni caja rotulada",
+      "alerta": "Sin antecedentes en Tomos 1 a 9 ni caja rotulada",
       "historial": [],
       "total_hitos": 0,
       "fecha_inicio": "",
@@ -132,7 +132,7 @@
       "resolucion_liquidacion": "",
       "estado_info": "PENDIENTE",
       "estado_info_label": "🔴 INFORMACIÓN PENDIENTE",
-      "estado_info_desc": "Sin documentos localizados en Tomos 1 a 8 ni caja asignada",
+      "estado_info_desc": "Sin documentos localizados en Tomos 1 a 9 ni caja asignada",
       "detalles_faltantes": [
         "Acta de Entrega de Terreno / Acta de Inicio de Obra",
         "Acta de Culminación Física de Obra",
@@ -166,7 +166,7 @@
         "res": true,
         "transf": true
       },
-      "alerta": "Sin antecedentes en Tomos 1 a 8 ni caja rotulada",
+      "alerta": "Sin antecedentes en Tomos 1 a 9 ni caja rotulada",
       "historial": [],
       "total_hitos": 0,
       "fecha_inicio": "",
@@ -179,7 +179,7 @@
       "resolucion_liquidacion": "",
       "estado_info": "PENDIENTE",
       "estado_info_label": "🔴 INFORMACIÓN PENDIENTE",
-      "estado_info_desc": "Sin documentos localizados en Tomos 1 a 8 ni caja asignada",
+      "estado_info_desc": "Sin documentos localizados en Tomos 1 a 9 ni caja asignada",
       "detalles_faltantes": [
         "Acta de Entrega de Terreno / Acta de Inicio de Obra",
         "Acta de Culminación Física de Obra",
@@ -213,7 +213,7 @@
         "res": true,
         "transf": true
       },
-      "alerta": "Sin antecedentes en Tomos 1 a 8 ni caja rotulada",
+      "alerta": "Sin antecedentes en Tomos 1 a 9 ni caja rotulada",
       "historial": [],
       "total_hitos": 0,
       "fecha_inicio": "",
@@ -226,7 +226,7 @@
       "resolucion_liquidacion": "",
       "estado_info": "PENDIENTE",
       "estado_info_label": "🔴 INFORMACIÓN PENDIENTE",
-      "estado_info_desc": "Sin documentos localizados en Tomos 1 a 8 ni caja asignada",
+      "estado_info_desc": "Sin documentos localizados en Tomos 1 a 9 ni caja asignada",
       "detalles_faltantes": [
         "Acta de Entrega de Terreno / Acta de Inicio de Obra",
         "Acta de Culminación Física de Obra",
@@ -341,9 +341,29 @@
           "fuente": "Tomo 7 PMO (Folio 5)",
           "confiabilidad": "ALTA",
           "fecha_sort": "2023-08-22"
+        },
+        {
+          "fecha": "29 de noviembre del 2023",
+          "tipo": "Hito de Seguimiento PMO",
+          "fase": "2. EJECUCIÓN Y VALORIZACIONES MENSUALES",
+          "documento": "INFORME N° 687-2023-PMO-FDM",
+          "asunto_razon": "Seguimiento técnico y control contractual por la PMO [Ref: CARTA N01056-2023-D.E/FDM]",
+          "fuente": "Tomo 9 PMO (Folio 26)",
+          "confiabilidad": "ALTA",
+          "fecha_sort": "2023-11-29"
+        },
+        {
+          "fecha": "11 de diciembre del 2023",
+          "tipo": "Valorización / Avance Mensual",
+          "fase": "2. EJECUCIÓN Y VALORIZACIONES MENSUALES",
+          "documento": "INFORME N° 709-2023-PMO-FDM",
+          "asunto_razon": "CONFORMIDAD A SERVICIO DE REFACCION Y MEJORAMIENTO DEL SISTEMA DE RED DE AGUA, DESAGÚE Y ALMACENAMIENTO DE LOS SERVICIOS HIGIENICOS, BUNGALOW Y BOMBA DE IMPULSI",
+          "fuente": "Tomo 9 PMO (Folio 49)",
+          "confiabilidad": "ALTA",
+          "fecha_sort": "2023-12-11"
         }
       ],
-      "total_hitos": 8,
+      "total_hitos": 10,
       "fecha_inicio": "",
       "fecha_inicio_sort": "9999-99-99",
       "tiene_fecha_inicio": false,
@@ -977,9 +997,19 @@
           "fuente": "Tomo 5 PMO (Folio 72)",
           "confiabilidad": "ALTA",
           "fecha_sort": "2023-07-12"
+        },
+        {
+          "fecha": "21 de noviembre del 2023",
+          "tipo": "Liquidación Técnica-Financiera",
+          "fase": "5. LIQUIDACIÓN Y CIERRE FINANCIERO",
+          "documento": "INFORME N° 667-2023-PMO-FDM",
+          "asunto_razon": "OBSERVACIONES A LIQUIDACIÓN DE SUPERVISIÓN [Ref: CARTA NO 064-SUP-EYVT-2023 OBRA]",
+          "fuente": "Tomo 9 PMO (Folio 7)",
+          "confiabilidad": "ALTA",
+          "fecha_sort": "2023-11-21"
         }
       ],
-      "total_hitos": 18,
+      "total_hitos": 19,
       "fecha_inicio": "17 de noviembre del 2022",
       "fecha_inicio_sort": "9999-99-99",
       "tiene_fecha_inicio": true,
@@ -1019,7 +1049,7 @@
         "res": true,
         "transf": true
       },
-      "alerta": "Sin antecedentes en Tomos 1 a 8 ni caja rotulada",
+      "alerta": "Sin antecedentes en Tomos 1 a 9 ni caja rotulada",
       "historial": [],
       "total_hitos": 0,
       "fecha_inicio": "",
@@ -1032,7 +1062,7 @@
       "resolucion_liquidacion": "",
       "estado_info": "PENDIENTE",
       "estado_info_label": "🔴 INFORMACIÓN PENDIENTE",
-      "estado_info_desc": "Sin documentos localizados en Tomos 1 a 8 ni caja asignada",
+      "estado_info_desc": "Sin documentos localizados en Tomos 1 a 9 ni caja asignada",
       "detalles_faltantes": [
         "Acta de Entrega de Terreno / Acta de Inicio de Obra",
         "Acta de Culminación Física de Obra",
@@ -1357,8 +1387,8 @@
         },
         {
           "fecha": "07 de agosto del 2023",
-          "tipo": "Valorización / Avance Mensual",
-          "fase": "2. EJECUCIÓN Y VALORIZACIONES MENSUALES",
+          "tipo": "Modificación / Incidencia",
+          "fase": "3. MODIFICACIONES, PLAZOS E INCIDENCIAS",
           "documento": "INFORME N° 466-2023-PMO-FDM",
           "asunto_razon": "VALORIZACIÓN N'02 DE EJECUCION DE OBRA CORRESPONDIENTE AL MES DE JUNIO DEL 2023; Y SE CORRE TRASLADO DE PENALIDAD APLICABLE PARA DESCARGO DEL CONSORCIO SALUD IL",
           "fuente": "Tomo 6 PMO (Folio 44)",
@@ -1417,10 +1447,10 @@
         },
         {
           "fecha": "24 de agosto del 2023",
-          "tipo": "Recepción de Obra",
-          "fase": "4. CULMINACIÓN Y RECEPCIÓN DE OBRA",
+          "tipo": "Modificación / Incidencia",
+          "fase": "3. MODIFICACIONES, PLAZOS E INCIDENCIAS",
           "documento": "INFORME N° 507-2023-PMO-FDM",
-          "asunto_razon": "ADQUISICION DE TOMOGRAFO COMPUTARIZADO MULTICORTE; CONSTRUCCION DE MODULO DE ATENCION TEMPORAL EN EL HOSPITAL DE ILO - DISTRITO DE ILO, PROVINCIA DE ILO, REGION",
+          "asunto_razon": "APLICACIÓN DE PENALIDAD [Ref: CARTA NO 0746-2023-D.E./FDM FONDO DE DESARROLLO MOQUZGUA 24A602023 RECIBID HOPA. 6.1.QV]",
           "fuente": "Tomo 7 PMO (Folio 12)",
           "confiabilidad": "ALTA",
           "fecha_sort": "2023-08-24"
@@ -1467,8 +1497,8 @@
         },
         {
           "fecha": "15 de setiembre del 2023",
-          "tipo": "Valorización / Avance Mensual",
-          "fase": "2. EJECUCIÓN Y VALORIZACIONES MENSUALES",
+          "tipo": "Modificación / Incidencia",
+          "fase": "3. MODIFICACIONES, PLAZOS E INCIDENCIAS",
           "documento": "INFORME N° 539-2023-PMO-FDM",
           "asunto_razon": "CONFORMIDAD DE VALORIZACIÓN NO 03 E INFORME MENSUAL NO 03 DE SUPERVISIÓN CORRESPONDIENTE DEL 01 AL 14 DE JULIO DEL 2023; Y SE TRASLADA PARA DESCARGO DE PENALIDA",
           "fuente": "Tomo 7 PMO (Folio 46)",
@@ -1507,10 +1537,10 @@
         },
         {
           "fecha": "25 de setiembre del 2023",
-          "tipo": "Recepción de Obra",
-          "fase": "4. CULMINACIÓN Y RECEPCIÓN DE OBRA",
+          "tipo": "Modificación / Incidencia",
+          "fase": "3. MODIFICACIONES, PLAZOS E INCIDENCIAS",
           "documento": "INFORME N° 569-2023-PMO-FDM",
-          "asunto_razon": "ADQUISICION DE TOMOGRAFO COMPUTARIZADO MULTICORTE; CONSTRUCCION DE MODULO DE ATENCION TEMPORAL EN EL HOSPITAL DE ILO - DISTRITO DE ILO, PROVINCIA DE ILO, REGION",
+          "asunto_razon": "APLICACIÓN DE PENALIDAD [Ref: CARTA NO 0045-RJFM/MOQ-2023. FONDO DE DESARROLLO DE MOQVE 2502023 HORA]",
           "fuente": "Tomo 7 PMO (Folio 77)",
           "confiabilidad": "ALTA",
           "fecha_sort": "2023-09-25"
@@ -1566,6 +1596,46 @@
           "fecha_sort": "2023-11-15"
         },
         {
+          "fecha": "28 de noviembre del 2023",
+          "tipo": "Hito de Seguimiento PMO",
+          "fase": "2. EJECUCIÓN Y VALORIZACIONES MENSUALES",
+          "documento": "INFORME N° 683-2023-PMO-FDM",
+          "asunto_razon": "ADQUISICIÓN DE TOMOGRAFO COMPUTARIZADO MULTICORTE; CONSTRUCCION DE MODULO DE ATENCIÓN TEMPORAL EN EL HOSPITAL DE ILO - DISTRITO DE ILO, PROVINCIA DE ILO, REGIÓN",
+          "fuente": "Tomo 9 PMO (Folio 22)",
+          "confiabilidad": "ALTA",
+          "fecha_sort": "2023-11-28"
+        },
+        {
+          "fecha": "28 de noviembre del 2023",
+          "tipo": "Modificación / Incidencia",
+          "fase": "3. MODIFICACIONES, PLAZOS E INCIDENCIAS",
+          "documento": "INFORME N° 685-2023-PMO-FDM",
+          "asunto_razon": "APLICACIÓN DE PENALIDAD POR DEMORA EN LA PRESENTACIÓN DE LA VALORIZACIÓN 04 CORRESPONDIENTE A AGOSTO DEL 2023. [Ref: CARTA NO 1066-2023-D.E./FDM OBRA]",
+          "fuente": "Tomo 9 PMO (Folio 24)",
+          "confiabilidad": "ALTA",
+          "fecha_sort": "2023-11-28"
+        },
+        {
+          "fecha": "30 de noviembre del 2023",
+          "tipo": "Valorización / Avance Mensual",
+          "fase": "2. EJECUCIÓN Y VALORIZACIONES MENSUALES",
+          "documento": "INFORME N° 691-2023-PMO-FDM",
+          "asunto_razon": "CONFORMIDAD A LEVANTAMIENTO DE FONDO DE b 'ARROLIO DE MCQUEGUA a n NOV 202 RECIBID HOPA..k}.2Q..FOUOSl.......... VALORIZACIÓN N004 DE EJECUCION DE OBRA CORRESPO",
+          "fuente": "Tomo 9 PMO (Folio 30)",
+          "confiabilidad": "ALTA",
+          "fecha_sort": "2023-11-30"
+        },
+        {
+          "fecha": "21 de diciembre del 2023",
+          "tipo": "Valorización / Avance Mensual",
+          "fase": "2. EJECUCIÓN Y VALORIZACIONES MENSUALES",
+          "documento": "INFORME N° 725-2023-PMO-FDM",
+          "asunto_razon": "VALORIZACIONES DE OBRA PARA REGISTRO Y ACTUALIZACIÓN DE BANCO DE INVERSIONES DEL",
+          "fuente": "Tomo 9 PMO (Folio 64)",
+          "confiabilidad": "ALTA",
+          "fecha_sort": "2023-12-21"
+        },
+        {
           "fecha": "Archivo Central FDM",
           "tipo": "Liquidación Técnica-Financiera",
           "fase": "5. LIQUIDACIÓN Y CIERRE FINANCIERO",
@@ -1576,7 +1646,7 @@
           "fecha_sort": "9999-99-99"
         }
       ],
-      "total_hitos": 46,
+      "total_hitos": 50,
       "fecha_inicio": "16 de mayo del 2023",
       "fecha_inicio_sort": "9999-99-99",
       "tiene_fecha_inicio": true,
@@ -1925,8 +1995,8 @@
         },
         {
           "fecha": "28 de marzo del 2023",
-          "tipo": "Hito de Seguimiento PMO",
-          "fase": "2. EJECUCIÓN Y VALORIZACIONES MENSUALES",
+          "tipo": "Modificación / Incidencia",
+          "fase": "3. MODIFICACIONES, PLAZOS E INCIDENCIAS",
           "documento": "INFORME N° 180-2023-PMO-FDM",
           "asunto_razon": "PRONUNCIAMIENTO AL DESCARGO DEL CONTRATISTA CONSORCIO HUACANANE SOBRE APLICACIÓN DE PENALIDADES DERIVADO DE INCUMPLIMIENTO DE OBLIGACIONES CONTRACTUALES DEL PRO",
           "fuente": "Tomo 2 PMO (Folio 54)",
@@ -1935,8 +2005,8 @@
         },
         {
           "fecha": "28 de marzo del 2023",
-          "tipo": "Valorización / Avance Mensual",
-          "fase": "2. EJECUCIÓN Y VALORIZACIONES MENSUALES",
+          "tipo": "Modificación / Incidencia",
+          "fase": "3. MODIFICACIONES, PLAZOS E INCIDENCIAS",
           "documento": "INFORME N° 181-2023-PMO-FDM",
           "asunto_razon": "INFORME MENSUAL Y VALORIZACIÓN N' 09 DE OBRA; Y PRONUNCIAMIENTO A APLICACIÓN DE PENALIDAD [Ref: CARTA N0041-CR-00004-2022-CH/NFC Obra, Carta NO 007-2023-RADA-SO",
           "fuente": "Tomo 2 PMO (Folio 55)",
@@ -2082,9 +2152,19 @@
           "fuente": "Tomo 8 PMO (Folio 78)",
           "confiabilidad": "ALTA",
           "fecha_sort": "2023-11-15"
+        },
+        {
+          "fecha": "21 de noviembre del 2023",
+          "tipo": "Recepción de Obra",
+          "fase": "4. CULMINACIÓN Y RECEPCIÓN DE OBRA",
+          "documento": "INFORME N° 669-2023-PMO-FDM",
+          "asunto_razon": "CONFORMIDAD A EJECUCIÓN DE PRUEBA DE CARGA CARTA N0125-2023-FPT \"Creación del Puente Vehicular de la Junta Vecinal Benito Huacanane Calientes del Distrito de To",
+          "fuente": "Tomo 9 PMO (Folio 9)",
+          "confiabilidad": "ALTA",
+          "fecha_sort": "2023-11-21"
         }
       ],
-      "total_hitos": 30,
+      "total_hitos": 31,
       "fecha_inicio": "17 de agosto del 2021",
       "fecha_inicio_sort": "9999-99-99",
       "tiene_fecha_inicio": true,
@@ -2285,9 +2365,29 @@
           "fuente": "Tomo 8 PMO (Folio 69)",
           "confiabilidad": "ALTA",
           "fecha_sort": "2023-11-09"
+        },
+        {
+          "fecha": "06 de diciembre del 2023",
+          "tipo": "Liquidación Técnica-Financiera",
+          "fase": "5. LIQUIDACIÓN Y CIERRE FINANCIERO",
+          "documento": "INFORME N° 002-2023-PMO-FDM",
+          "asunto_razon": "OBSERVACIONES A LA LIQUIDACIÓN PRESENTADA POR EL ING. MIGUEL ARCANGEL GUZMAN RAMOS. CARTA N071-SO-MAGR/FDM-SACUAYA/2023 \"MEJORAMIENTO Y CONSTRUCCION DEL SERVICI",
+          "fuente": "Tomo 9 PMO (Folio 40)",
+          "confiabilidad": "ALTA",
+          "fecha_sort": "2023-12-06"
+        },
+        {
+          "fecha": "21 de diciembre del 2023",
+          "tipo": "Liquidación Técnica-Financiera",
+          "fase": "5. LIQUIDACIÓN Y CIERRE FINANCIERO",
+          "documento": "INFORME N° 726-2023-PMO-FDM",
+          "asunto_razon": "CONFORMIDAD A LA LIQUIDACIÓN PRESENTADA POR EL ING. MIGUEL ARCANGEL GUZMAN RAMOS. CARTA N072-SO-MAGR/FDM-SACUAYA/2023 'MEJORAMIENTO Y CONSTRUCCION DEL SERVICIO ",
+          "fuente": "Tomo 9 PMO (Folio 65)",
+          "confiabilidad": "ALTA",
+          "fecha_sort": "2023-12-21"
         }
       ],
-      "total_hitos": 16,
+      "total_hitos": 18,
       "fecha_inicio": "",
       "fecha_inicio_sort": "9999-99-99",
       "tiene_fecha_inicio": false,
@@ -2330,7 +2430,7 @@
         "res": true,
         "transf": true
       },
-      "alerta": "Sin antecedentes en Tomos 1 a 8 ni caja rotulada",
+      "alerta": "Sin antecedentes en Tomos 1 a 9 ni caja rotulada",
       "historial": [],
       "total_hitos": 0,
       "fecha_inicio": "",
@@ -2343,7 +2443,7 @@
       "resolucion_liquidacion": "",
       "estado_info": "PENDIENTE",
       "estado_info_label": "🔴 INFORMACIÓN PENDIENTE",
-      "estado_info_desc": "Sin documentos localizados en Tomos 1 a 8 ni caja asignada",
+      "estado_info_desc": "Sin documentos localizados en Tomos 1 a 9 ni caja asignada",
       "detalles_faltantes": [
         "Acta de Entrega de Terreno / Acta de Inicio de Obra",
         "Acta de Culminación Física de Obra",
@@ -2391,8 +2491,8 @@
         },
         {
           "fecha": "06 de enero del 2023",
-          "tipo": "Valorización / Avance Mensual",
-          "fase": "2. EJECUCIÓN Y VALORIZACIONES MENSUALES",
+          "tipo": "Modificación / Incidencia",
+          "fase": "3. MODIFICACIONES, PLAZOS E INCIDENCIAS",
           "documento": "INFORME N° 2015-2023-PMO-FDM",
           "asunto_razon": "Mantenimiento Correctivo para la Adecuada Instalación de Coberturas sobre los Puestos y Pasadizos en las Instalaciones del Centro Ferial Santa Fortunata del Dis",
           "fuente": "Tomo 2 PMO (Folio 2)",
@@ -2851,8 +2951,8 @@
         },
         {
           "fecha": "14 de marzo del 2023",
-          "tipo": "Valorización / Avance Mensual",
-          "fase": "2. EJECUCIÓN Y VALORIZACIONES MENSUALES",
+          "tipo": "Modificación / Incidencia",
+          "fase": "3. MODIFICACIONES, PLAZOS E INCIDENCIAS",
           "documento": "INFORME N° 143-2023-PMO-FDM",
           "asunto_razon": "MANTENIMIENTO CORRECTIVO PARA LA ADECUADA INSTALACION DE COBERTURAS SOBRE LOS PUESTOS Y PASADIZOS EN LAS INSTALACIONES DEL CENTRO FERIAL SANTA FORTUNATA DEL DIS",
           "fuente": "Tomo 1 PMO (Folio 113)",
@@ -2901,8 +3001,8 @@
         },
         {
           "fecha": "17 de marzo del 2023",
-          "tipo": "Valorización / Avance Mensual",
-          "fase": "2. EJECUCIÓN Y VALORIZACIONES MENSUALES",
+          "tipo": "Modificación / Incidencia",
+          "fase": "3. MODIFICACIONES, PLAZOS E INCIDENCIAS",
           "documento": "INFORME N° 002-2023-PMO-FDM",
           "asunto_razon": "Mantenimiento Correctivo para la Adecuada Instalación de Coberturas sobre los Puestos y Pasadizos en las Instalaciones del Centro Ferial Santa Fortunata del Dis",
           "fuente": "Tomo 2 PMO (Folio 30)",
@@ -2911,8 +3011,8 @@
         },
         {
           "fecha": "17 de marzo del 2023",
-          "tipo": "Valorización / Avance Mensual",
-          "fase": "2. EJECUCIÓN Y VALORIZACIONES MENSUALES",
+          "tipo": "Modificación / Incidencia",
+          "fase": "3. MODIFICACIONES, PLAZOS E INCIDENCIAS",
           "documento": "INFORME N° 2157-2023-PMO-FDM",
           "asunto_razon": "Mantenimiento Correctivo para la Adecuada Instalación de Coberturas sobre los Puestos y Pasadizos en las Instalaciones del Centro Ferial Santa Fortunata del Dis",
           "fuente": "Tomo 2 PMO (Folio 31)",
@@ -2921,8 +3021,8 @@
         },
         {
           "fecha": "17 de marzo del 2023",
-          "tipo": "Valorización / Avance Mensual",
-          "fase": "2. EJECUCIÓN Y VALORIZACIONES MENSUALES",
+          "tipo": "Modificación / Incidencia",
+          "fase": "3. MODIFICACIONES, PLAZOS E INCIDENCIAS",
           "documento": "INFORME N° 157-2023-PMO-FDM",
           "asunto_razon": "Mantenimiento Correctivo para la Adecuada Instalación de Coberturas sobre los Puestos y Pasadizos en las Instalaciones del Centro Ferial Santa Fortunata del Dis",
           "fuente": "Tomo 2 PMO (Folio 32)",
@@ -3021,8 +3121,8 @@
         },
         {
           "fecha": "10 de abril del 2023",
-          "tipo": "Valorización / Avance Mensual",
-          "fase": "2. EJECUCIÓN Y VALORIZACIONES MENSUALES",
+          "tipo": "Modificación / Incidencia",
+          "fase": "3. MODIFICACIONES, PLAZOS E INCIDENCIAS",
           "documento": "Informe PMO (Folio 10)",
           "asunto_razon": "Mantenimiento Correctivo para la Adecuada Instalación de Coberturas sobre los Puestos Pasadizos en las Instalaciones del Centro Ferial Santa Fortunata del Distr",
           "fuente": "Tomo 3 PMO (Folio 10)",
@@ -3321,8 +3421,8 @@
         },
         {
           "fecha": "28 de junio del 2023",
-          "tipo": "Valorización / Avance Mensual",
-          "fase": "2. EJECUCIÓN Y VALORIZACIONES MENSUALES",
+          "tipo": "Modificación / Incidencia",
+          "fase": "3. MODIFICACIONES, PLAZOS E INCIDENCIAS",
           "documento": "INFORME N° 396-2023-PMO-FDM",
           "asunto_razon": "aprobación de Valorización NP 09 e Informe Mensual N? 09 correspondiente al mes de mayo del 2023, el mismo que cuenta con el informe de aprobación de la Ing. Li",
           "fuente": "Tomo 5 PMO (Folio 49)",
@@ -3361,8 +3461,8 @@
         },
         {
           "fecha": "26 de julio del 2023",
-          "tipo": "Hito de Seguimiento PMO",
-          "fase": "2. EJECUCIÓN Y VALORIZACIONES MENSUALES",
+          "tipo": "Modificación / Incidencia",
+          "fase": "3. MODIFICACIONES, PLAZOS E INCIDENCIAS",
           "documento": "INFORME N° 446-2023-PMO-FDM",
           "asunto_razon": "SE TRASLADA PENALIDAD APLICABLE PARA DESCARGO",
           "fuente": "Tomo 6 PMO (Folio 25)",
@@ -3468,17 +3568,37 @@
           "fuente": "Tomo 8 PMO (Folio 61)",
           "confiabilidad": "ALTA",
           "fecha_sort": "2023-11-02"
+        },
+        {
+          "fecha": "29 de noviembre del 2023",
+          "tipo": "Liquidación Técnica-Financiera",
+          "fase": "5. LIQUIDACIÓN Y CIERRE FINANCIERO",
+          "documento": "INFORME N° 688-2023-PMO-FDM",
+          "asunto_razon": "INFORMACIÓN SOLICITA DE SUPERVISIÓN",
+          "fuente": "Tomo 9 PMO (Folio 27)",
+          "confiabilidad": "ALTA",
+          "fecha_sort": "2023-11-29"
+        },
+        {
+          "fecha": "07 de diciembre del 2023",
+          "tipo": "Liquidación Técnica-Financiera",
+          "fase": "5. LIQUIDACIÓN Y CIERRE FINANCIERO",
+          "documento": "INFORME N° 702-2023-PMO-FDM",
+          "asunto_razon": "OBSERVACIONES A INFORME FINAL Y LIQUIDACIÓN DE OBRA [Ref: CARTA NO 033-2023-LTG.SA b, CARTA NO 78-2023-RRC-CSF OBRA]",
+          "fuente": "Tomo 9 PMO (Folio 41)",
+          "confiabilidad": "ALTA",
+          "fecha_sort": "2023-12-07"
         }
       ],
-      "total_hitos": 109,
+      "total_hitos": 111,
       "fecha_inicio": "17 de setiembre del 2022",
       "fecha_inicio_sort": "9999-99-99",
       "tiene_fecha_inicio": true,
-      "fecha_inicio_doc": "INFORME N° 086-2023-PMO-FDM (Tomo 1 Folio 61)",
-      "fecha_termino_prog": "",
-      "fecha_culminacion_real": "",
+      "fecha_inicio_doc": "INFORME N° 086-2023-PMO-FDM (Tomo 1 Folio 61) e INFORME N° 702-2023-PMO-FDM (Tomo 9 Folio 41)",
+      "fecha_termino_prog": "15 de junio del 2023",
+      "fecha_culminacion_real": "15 de junio del 2023 (100% Concluida y Recepcionada)",
       "acta_recepcion": "",
-      "resolucion_liquidacion": "",
+      "resolucion_liquidacion": "Informe Final y Liquidación de Obra (Informe N° 702-2023-PMO-FDM, Tomo 9 Folio 41)",
       "estado_info": "COMPLETA",
       "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
       "estado_info_desc": "Cuenta con documentos probatorios de inicio y culminación/liquidación en Tomos PMO",
@@ -3510,7 +3630,7 @@
         "res": true,
         "transf": true
       },
-      "alerta": "Sin antecedentes en Tomos 1 a 8 ni caja rotulada",
+      "alerta": "Sin antecedentes en Tomos 1 a 9 ni caja rotulada",
       "historial": [],
       "total_hitos": 0,
       "fecha_inicio": "",
@@ -3523,7 +3643,7 @@
       "resolucion_liquidacion": "",
       "estado_info": "PENDIENTE",
       "estado_info_label": "🔴 INFORMACIÓN PENDIENTE",
-      "estado_info_desc": "Sin documentos localizados en Tomos 1 a 8 ni caja asignada",
+      "estado_info_desc": "Sin documentos localizados en Tomos 1 a 9 ni caja asignada",
       "detalles_faltantes": [
         "Acta de Entrega de Terreno / Acta de Inicio de Obra",
         "Acta de Culminación Física de Obra",
@@ -3664,7 +3784,7 @@
         "res": true,
         "transf": true
       },
-      "alerta": "Falta ubicar: Acta de Entrega de Terreno / Acta de Inicio de Obra; Acta de Culminación Física de Obra",
+      "alerta": "Trazabilidad completa con fechas comprobadas",
       "historial": [
         {
           "fecha": "16 de febrero del 2023",
@@ -3748,8 +3868,8 @@
         },
         {
           "fecha": "22 de agosto del 2023",
-          "tipo": "Valorización / Avance Mensual",
-          "fase": "2. EJECUCIÓN Y VALORIZACIONES MENSUALES",
+          "tipo": "Modificación / Incidencia",
+          "fase": "3. MODIFICACIONES, PLAZOS E INCIDENCIAS",
           "documento": "INFORME N° 496-2023-PMO-FDM",
           "asunto_razon": "CONFORMIDAD A VALORIZACIÓN NOOI E INFORME MENSUAL NOOI DE SUPERVISIÓN, CORRESPONDIENTE AL MES DE JULIO DEL 2023; Y SE CORRE TRASLADO PARA DESCARGO DE PENALIDAD ",
           "fuente": "Tomo 7 PMO (Folio 1)",
@@ -3768,10 +3888,10 @@
         },
         {
           "fecha": "29 de agosto del 2023",
-          "tipo": "Valorización / Avance Mensual",
-          "fase": "2. EJECUCIÓN Y VALORIZACIONES MENSUALES",
+          "tipo": "Modificación / Incidencia",
+          "fase": "3. MODIFICACIONES, PLAZOS E INCIDENCIAS",
           "documento": "INFORME N° 513-2023-PMO-FDM",
-          "asunto_razon": "VALORIZACIÓN E INFORME MENSUAL FUERA DEL PLAZO CONTRACTUAL. [Ref: CARTA N00800-2023-D.E./FDM]",
+          "asunto_razon": "APLICACIÓN DE PENALIDAD POR REMITIR VALORIZACIÓN E INFORME MENSUAL FUERA DEL PLAZO CONTRACTUAL. [Ref: CARTA N00800-2023-D.E./FDM]",
           "fuente": "Tomo 7 PMO (Folio 18)",
           "confiabilidad": "ALTA",
           "fecha_sort": "2023-08-29"
@@ -3955,25 +4075,42 @@
           "fuente": "Tomo 8 PMO (Folio 72)",
           "confiabilidad": "ALTA",
           "fecha_sort": "2023-11-10"
+        },
+        {
+          "fecha": "17 de noviembre del 2023",
+          "tipo": "Liquidación Técnica-Financiera",
+          "fase": "5. LIQUIDACIÓN Y CIERRE FINANCIERO",
+          "documento": "INFORME N° 662-2023-PMO-FDM",
+          "asunto_razon": "OBSERVACIONES A INFORME FINAL Y LIQUIDACIÓN DE SUPERVISIÓN [Ref: CARTA N0037-2023-SMVWELDlNG]",
+          "fuente": "Tomo 9 PMO (Folio 2)",
+          "confiabilidad": "ALTA",
+          "fecha_sort": "2023-11-17"
+        },
+        {
+          "fecha": "19 de diciembre del 2023",
+          "tipo": "Liquidación Técnica-Financiera",
+          "fase": "5. LIQUIDACIÓN Y CIERRE FINANCIERO",
+          "documento": "INFORME N° 721-2023-PMO-FDM",
+          "asunto_razon": "CONFORMIDAD A SERVICIO DE REVISIÓN DE LIQUIDACIONES O/S F12-00006 Moquegua, 19 de diciembre del 2023 Mediante eI presente me dirijo a Usted, con la finalidad de",
+          "fuente": "Tomo 9 PMO (Folio 60)",
+          "confiabilidad": "ALTA",
+          "fecha_sort": "2023-12-19"
         }
       ],
-      "total_hitos": 29,
-      "fecha_inicio": "",
+      "total_hitos": 31,
+      "fecha_inicio": "04 de julio del 2023",
       "fecha_inicio_sort": "9999-99-99",
-      "tiene_fecha_inicio": false,
-      "fecha_inicio_doc": "",
-      "fecha_termino_prog": "",
-      "fecha_culminacion_real": "Acta de Término de Obra suscrita",
+      "tiene_fecha_inicio": true,
+      "fecha_inicio_doc": "INFORME N° 662-2023-PMO-FDM (Tomo 9 Folio 2)",
+      "fecha_termino_prog": "25 de setiembre del 2023",
+      "fecha_culminacion_real": "23 de setiembre del 2023 (100% Concluida)",
       "acta_recepcion": "",
-      "resolucion_liquidacion": "",
-      "estado_info": "PARCIAL",
-      "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
-      "estado_info_desc": "Hitos identificados en Tomos PMO; falta ubicar: Acta de Entrega de Terreno / Acta de Inicio de Obra; Acta de Culminación Física de Obra",
-      "detalles_faltantes": [
-        "Acta de Entrega de Terreno / Acta de Inicio de Obra",
-        "Acta de Culminación Física de Obra"
-      ],
-      "confiabilidad": "MEDIA"
+      "resolucion_liquidacion": "Conformidad a Revisión de Liquidación (Informe N° 721-2023-PMO-FDM, Tomo 9 Folio 60)",
+      "estado_info": "COMPLETA",
+      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
+      "estado_info_desc": "Cuenta con documentos probatorios de inicio y culminación/liquidación en Tomos PMO",
+      "detalles_faltantes": [],
+      "confiabilidad": "ALTA"
     },
     {
       "id": 23,
@@ -4168,7 +4305,7 @@
         "res": true,
         "transf": true
       },
-      "alerta": "Sin antecedentes en Tomos 1 a 8 ni caja rotulada",
+      "alerta": "Sin antecedentes en Tomos 1 a 9 ni caja rotulada",
       "historial": [],
       "total_hitos": 0,
       "fecha_inicio": "",
@@ -4181,7 +4318,7 @@
       "resolucion_liquidacion": "",
       "estado_info": "PENDIENTE",
       "estado_info_label": "🔴 INFORMACIÓN PENDIENTE",
-      "estado_info_desc": "Sin documentos localizados en Tomos 1 a 8 ni caja asignada",
+      "estado_info_desc": "Sin documentos localizados en Tomos 1 a 9 ni caja asignada",
       "detalles_faltantes": [
         "Acta de Entrega de Terreno / Acta de Inicio de Obra",
         "Acta de Culminación Física de Obra",
@@ -4215,7 +4352,7 @@
         "res": true,
         "transf": true
       },
-      "alerta": "Sin antecedentes en Tomos 1 a 8 ni caja rotulada",
+      "alerta": "Sin antecedentes en Tomos 1 a 9 ni caja rotulada",
       "historial": [],
       "total_hitos": 0,
       "fecha_inicio": "",
@@ -4228,7 +4365,7 @@
       "resolucion_liquidacion": "",
       "estado_info": "PENDIENTE",
       "estado_info_label": "🔴 INFORMACIÓN PENDIENTE",
-      "estado_info_desc": "Sin documentos localizados en Tomos 1 a 8 ni caja asignada",
+      "estado_info_desc": "Sin documentos localizados en Tomos 1 a 9 ni caja asignada",
       "detalles_faltantes": [
         "Acta de Entrega de Terreno / Acta de Inicio de Obra",
         "Acta de Culminación Física de Obra",
@@ -4315,7 +4452,7 @@
         "res": true,
         "transf": true
       },
-      "alerta": "Sin antecedentes en Tomos 1 a 8 ni caja rotulada",
+      "alerta": "Sin antecedentes en Tomos 1 a 9 ni caja rotulada",
       "historial": [],
       "total_hitos": 0,
       "fecha_inicio": "",
@@ -4328,7 +4465,7 @@
       "resolucion_liquidacion": "",
       "estado_info": "PENDIENTE",
       "estado_info_label": "🔴 INFORMACIÓN PENDIENTE",
-      "estado_info_desc": "Sin documentos localizados en Tomos 1 a 8 ni caja asignada",
+      "estado_info_desc": "Sin documentos localizados en Tomos 1 a 9 ni caja asignada",
       "detalles_faltantes": [
         "Acta de Entrega de Terreno / Acta de Inicio de Obra",
         "Acta de Culminación Física de Obra",
@@ -4362,7 +4499,7 @@
         "res": true,
         "transf": true
       },
-      "alerta": "Falta ubicar: Acta de Entrega de Terreno / Acta de Inicio de Obra; Acta de Culminación Física de Obra",
+      "alerta": "Trazabilidad completa con fechas comprobadas",
       "historial": [
         {
           "fecha": "13 de junio del 2023",
@@ -4426,8 +4563,8 @@
         },
         {
           "fecha": "02 de agosto del 2023",
-          "tipo": "Hito de Seguimiento PMO",
-          "fase": "2. EJECUCIÓN Y VALORIZACIONES MENSUALES",
+          "tipo": "Modificación / Incidencia",
+          "fase": "3. MODIFICACIONES, PLAZOS E INCIDENCIAS",
           "documento": "INFORME N° 462-2023-PMO-FDM",
           "asunto_razon": "SE TRASLADA PENALIDAD APLICABLE PARA DESCARGO [Ref: CARTA N0007-2023 CONSORCIO CONVERCOM OBRA, Carta NO 007-2023 CONSORCIO CONVERCOM del representante legal e I",
           "fuente": "Tomo 6 PMO (Folio 40)",
@@ -4593,25 +4730,102 @@
           "fuente": "Tomo 8 PMO (Folio 66)",
           "confiabilidad": "ALTA",
           "fecha_sort": "2023-11-08"
+        },
+        {
+          "fecha": "20 de noviembre del 2023",
+          "tipo": "Hito de Seguimiento PMO",
+          "fase": "2. EJECUCIÓN Y VALORIZACIONES MENSUALES",
+          "documento": "INFORME N° 660-2023-PMO-FDM",
+          "asunto_razon": "Seguimiento técnico y control contractual por la PMO",
+          "fuente": "Tomo 9 PMO (Folio 1)",
+          "confiabilidad": "ALTA",
+          "fecha_sort": "2023-11-20"
+        },
+        {
+          "fecha": "24 de noviembre del 2023",
+          "tipo": "Valorización / Avance Mensual",
+          "fase": "2. EJECUCIÓN Y VALORIZACIONES MENSUALES",
+          "documento": "INFORME N° 680-2023-PMO-FDM",
+          "asunto_razon": "OBSERVACIONES A VALORIZACIÓN N004 E INFORME MENSUAL N004 DE EJECUCIÓN DE OBRA, CORRESPONDIENTE AL MES DE OCTUBRE DEL 2023 [Ref: CARTA N0044-2023 CONSORCIO CONVE",
+          "fuente": "Tomo 9 PMO (Folio 19)",
+          "confiabilidad": "ALTA",
+          "fecha_sort": "2023-11-24"
+        },
+        {
+          "fecha": "27 de noviembre del 2023",
+          "tipo": "Valorización / Avance Mensual",
+          "fase": "2. EJECUCIÓN Y VALORIZACIONES MENSUALES",
+          "documento": "INFORME N° 682-2023-PMO-FDM",
+          "asunto_razon": "OBSERVACIONES A VALORIZACIÓN N004 E INFORME MENSUAL N004 DE SUPERVISIÓN, CORRESPONDIENTE AL MES DE OCTUBRE DEL 2023 [Ref: CARTA N0045-2023 CONSORCIO CONVERCOM O",
+          "fuente": "Tomo 9 PMO (Folio 21)",
+          "confiabilidad": "ALTA",
+          "fecha_sort": "2023-11-27"
+        },
+        {
+          "fecha": "29 de noviembre del 2023",
+          "tipo": "Valorización / Avance Mensual",
+          "fase": "2. EJECUCIÓN Y VALORIZACIONES MENSUALES",
+          "documento": "INFORME N° 690-2023-PMO-FDM",
+          "asunto_razon": "CONFORMIDAD A LEVANTAMIENTO DE OBSERVACIONES DE LA VALORIZACIÓN N004 E INFORME MENSUAL N004 DE EJECUCIÓN DE OBRA, CORRESPONDIENTE AL MES DE OCTUBRE DEL 2023 [Re",
+          "fuente": "Tomo 9 PMO (Folio 29)",
+          "confiabilidad": "ALTA",
+          "fecha_sort": "2023-11-29"
+        },
+        {
+          "fecha": "01 de diciembre del 2023",
+          "tipo": "Valorización / Avance Mensual",
+          "fase": "2. EJECUCIÓN Y VALORIZACIONES MENSUALES",
+          "documento": "INFORME N° 000-2023-PMO-FDM",
+          "asunto_razon": "CONFORMIDAD A LEVANTAMIENTO DE OBSERVACIONES A VALORIZACIÓN N'04 E INFORME MENSUAL N'04 DE SUPERVISIÓN, CORRESPONDIENTE AL MES DE OCTUBRE DEL 2023 [Ref: CARTA N",
+          "fuente": "Tomo 9 PMO (Folio 34)",
+          "confiabilidad": "ALTA",
+          "fecha_sort": "2023-12-01"
+        },
+        {
+          "fecha": "19 de diciembre del 2023",
+          "tipo": "Valorización / Avance Mensual",
+          "fase": "2. EJECUCIÓN Y VALORIZACIONES MENSUALES",
+          "documento": "INFORME N° 722-2023-PMO-FDM",
+          "asunto_razon": "CONFORMIDAD DE LA VALORIZACIÓN N005 E INFORME MENSUAL N005 DE EJECUCIÓN DE OBRA, CORRESPONDIENTE DEL 01 AL 30 DE NOVIEMBRE DEL 2023 [Ref: CARTA NO 53-2023 CONSO",
+          "fuente": "Tomo 9 PMO (Folio 61)",
+          "confiabilidad": "ALTA",
+          "fecha_sort": "2023-12-19"
+        },
+        {
+          "fecha": "27 de diciembre del 2023",
+          "tipo": "Valorización / Avance Mensual",
+          "fase": "2. EJECUCIÓN Y VALORIZACIONES MENSUALES",
+          "documento": "INFORME N° 729-2023-PMO-FDM",
+          "asunto_razon": "CONFORMIDAD DE LA VALORIZACIÓN N'05 E INFORME MENSUAL N•05 DE SUPERVISIÓN, CORRESPONDIENTE AL MES DE NOVIEMBRE DEL 2023 [Ref: CARTA N0052-2023 CONSORCIO CONVERC",
+          "fuente": "Tomo 9 PMO (Folio 68)",
+          "confiabilidad": "ALTA",
+          "fecha_sort": "2023-12-27"
+        },
+        {
+          "fecha": "29 de diciembre del 2023",
+          "tipo": "Recepción de Obra",
+          "fase": "4. CULMINACIÓN Y RECEPCIÓN DE OBRA",
+          "documento": "INFORME N° 730-2023-PMO-FDM",
+          "asunto_razon": "culminación de la obra, la cual tenía como fecha contractual programada eI 28.10.2023, razón por la cual, amerita la aplicación de penalidades por mora asi como",
+          "fuente": "Tomo 9 PMO (Folio 69)",
+          "confiabilidad": "ALTA",
+          "fecha_sort": "2023-12-29"
         }
       ],
-      "total_hitos": 23,
-      "fecha_inicio": "",
+      "total_hitos": 31,
+      "fecha_inicio": "01 de julio del 2023",
       "fecha_inicio_sort": "9999-99-99",
-      "tiene_fecha_inicio": false,
-      "fecha_inicio_doc": "",
-      "fecha_termino_prog": "",
+      "tiene_fecha_inicio": true,
+      "fecha_inicio_doc": "INFORME N° 722-2023-PMO-FDM (Tomo 9 Folio 61)",
+      "fecha_termino_prog": "28 de octubre del 2023",
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
-      "estado_info": "PARCIAL",
-      "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
-      "estado_info_desc": "Hitos identificados en Tomos PMO; falta ubicar: Acta de Entrega de Terreno / Acta de Inicio de Obra; Acta de Culminación Física de Obra",
-      "detalles_faltantes": [
-        "Acta de Entrega de Terreno / Acta de Inicio de Obra",
-        "Acta de Culminación Física de Obra"
-      ],
-      "confiabilidad": "MEDIA"
+      "estado_info": "COMPLETA",
+      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
+      "estado_info_desc": "Cuenta con documentos probatorios de inicio y culminación/liquidación en Tomos PMO",
+      "detalles_faltantes": [],
+      "confiabilidad": "ALTA"
     },
     {
       "id": 31,
@@ -4745,7 +4959,7 @@
         "res": true,
         "transf": true
       },
-      "alerta": "Sin antecedentes en Tomos 1 a 8 ni caja rotulada",
+      "alerta": "Sin antecedentes en Tomos 1 a 9 ni caja rotulada",
       "historial": [],
       "total_hitos": 0,
       "fecha_inicio": "",
@@ -4758,7 +4972,7 @@
       "resolucion_liquidacion": "",
       "estado_info": "PENDIENTE",
       "estado_info_label": "🔴 INFORMACIÓN PENDIENTE",
-      "estado_info_desc": "Sin documentos localizados en Tomos 1 a 8 ni caja asignada",
+      "estado_info_desc": "Sin documentos localizados en Tomos 1 a 9 ni caja asignada",
       "detalles_faltantes": [
         "Acta de Entrega de Terreno / Acta de Inicio de Obra",
         "Acta de Culminación Física de Obra",
@@ -4792,7 +5006,7 @@
         "res": true,
         "transf": true
       },
-      "alerta": "Sin antecedentes en Tomos 1 a 8 ni caja rotulada",
+      "alerta": "Sin antecedentes en Tomos 1 a 9 ni caja rotulada",
       "historial": [],
       "total_hitos": 0,
       "fecha_inicio": "",
@@ -4805,7 +5019,7 @@
       "resolucion_liquidacion": "",
       "estado_info": "PENDIENTE",
       "estado_info_label": "🔴 INFORMACIÓN PENDIENTE",
-      "estado_info_desc": "Sin documentos localizados en Tomos 1 a 8 ni caja asignada",
+      "estado_info_desc": "Sin documentos localizados en Tomos 1 a 9 ni caja asignada",
       "detalles_faltantes": [
         "Acta de Entrega de Terreno / Acta de Inicio de Obra",
         "Acta de Culminación Física de Obra",
@@ -4839,7 +5053,7 @@
         "res": true,
         "transf": true
       },
-      "alerta": "Sin antecedentes en Tomos 1 a 8 ni caja rotulada",
+      "alerta": "Sin antecedentes en Tomos 1 a 9 ni caja rotulada",
       "historial": [],
       "total_hitos": 0,
       "fecha_inicio": "",
@@ -4852,7 +5066,7 @@
       "resolucion_liquidacion": "",
       "estado_info": "PENDIENTE",
       "estado_info_label": "🔴 INFORMACIÓN PENDIENTE",
-      "estado_info_desc": "Sin documentos localizados en Tomos 1 a 8 ni caja asignada",
+      "estado_info_desc": "Sin documentos localizados en Tomos 1 a 9 ni caja asignada",
       "detalles_faltantes": [
         "Acta de Entrega de Terreno / Acta de Inicio de Obra",
         "Acta de Culminación Física de Obra",
@@ -4886,7 +5100,7 @@
         "res": true,
         "transf": true
       },
-      "alerta": "Sin antecedentes en Tomos 1 a 8 ni caja rotulada",
+      "alerta": "Sin antecedentes en Tomos 1 a 9 ni caja rotulada",
       "historial": [],
       "total_hitos": 0,
       "fecha_inicio": "",
@@ -4899,7 +5113,7 @@
       "resolucion_liquidacion": "",
       "estado_info": "PENDIENTE",
       "estado_info_label": "🔴 INFORMACIÓN PENDIENTE",
-      "estado_info_desc": "Sin documentos localizados en Tomos 1 a 8 ni caja asignada",
+      "estado_info_desc": "Sin documentos localizados en Tomos 1 a 9 ni caja asignada",
       "detalles_faltantes": [
         "Acta de Entrega de Terreno / Acta de Inicio de Obra",
         "Acta de Culminación Física de Obra",
@@ -4933,7 +5147,7 @@
         "res": true,
         "transf": true
       },
-      "alerta": "Sin antecedentes en Tomos 1 a 8 ni caja rotulada",
+      "alerta": "Sin antecedentes en Tomos 1 a 9 ni caja rotulada",
       "historial": [],
       "total_hitos": 0,
       "fecha_inicio": "",
@@ -4946,7 +5160,7 @@
       "resolucion_liquidacion": "",
       "estado_info": "PENDIENTE",
       "estado_info_label": "🔴 INFORMACIÓN PENDIENTE",
-      "estado_info_desc": "Sin documentos localizados en Tomos 1 a 8 ni caja asignada",
+      "estado_info_desc": "Sin documentos localizados en Tomos 1 a 9 ni caja asignada",
       "detalles_faltantes": [
         "Acta de Entrega de Terreno / Acta de Inicio de Obra",
         "Acta de Culminación Física de Obra",
@@ -4980,7 +5194,7 @@
         "res": true,
         "transf": true
       },
-      "alerta": "Sin antecedentes en Tomos 1 a 8 ni caja rotulada",
+      "alerta": "Sin antecedentes en Tomos 1 a 9 ni caja rotulada",
       "historial": [],
       "total_hitos": 0,
       "fecha_inicio": "",
@@ -4993,7 +5207,7 @@
       "resolucion_liquidacion": "",
       "estado_info": "PENDIENTE",
       "estado_info_label": "🔴 INFORMACIÓN PENDIENTE",
-      "estado_info_desc": "Sin documentos localizados en Tomos 1 a 8 ni caja asignada",
+      "estado_info_desc": "Sin documentos localizados en Tomos 1 a 9 ni caja asignada",
       "detalles_faltantes": [
         "Acta de Entrega de Terreno / Acta de Inicio de Obra",
         "Acta de Culminación Física de Obra",
@@ -5027,7 +5241,7 @@
         "res": true,
         "transf": true
       },
-      "alerta": "Sin antecedentes en Tomos 1 a 8 ni caja rotulada",
+      "alerta": "Sin antecedentes en Tomos 1 a 9 ni caja rotulada",
       "historial": [],
       "total_hitos": 0,
       "fecha_inicio": "",
@@ -5040,7 +5254,7 @@
       "resolucion_liquidacion": "",
       "estado_info": "PENDIENTE",
       "estado_info_label": "🔴 INFORMACIÓN PENDIENTE",
-      "estado_info_desc": "Sin documentos localizados en Tomos 1 a 8 ni caja asignada",
+      "estado_info_desc": "Sin documentos localizados en Tomos 1 a 9 ni caja asignada",
       "detalles_faltantes": [
         "Acta de Entrega de Terreno / Acta de Inicio de Obra",
         "Acta de Culminación Física de Obra",
@@ -5074,7 +5288,7 @@
         "res": true,
         "transf": true
       },
-      "alerta": "Sin antecedentes en Tomos 1 a 8 ni caja rotulada",
+      "alerta": "Sin antecedentes en Tomos 1 a 9 ni caja rotulada",
       "historial": [],
       "total_hitos": 0,
       "fecha_inicio": "",
@@ -5087,7 +5301,7 @@
       "resolucion_liquidacion": "",
       "estado_info": "PENDIENTE",
       "estado_info_label": "🔴 INFORMACIÓN PENDIENTE",
-      "estado_info_desc": "Sin documentos localizados en Tomos 1 a 8 ni caja asignada",
+      "estado_info_desc": "Sin documentos localizados en Tomos 1 a 9 ni caja asignada",
       "detalles_faltantes": [
         "Acta de Entrega de Terreno / Acta de Inicio de Obra",
         "Acta de Culminación Física de Obra",
@@ -5279,8 +5493,8 @@
         },
         {
           "fecha": "17 de julio del 2023",
-          "tipo": "Hito de Seguimiento PMO",
-          "fase": "2. EJECUCIÓN Y VALORIZACIONES MENSUALES",
+          "tipo": "Modificación / Incidencia",
+          "fase": "3. MODIFICACIONES, PLAZOS E INCIDENCIAS",
           "documento": "INFORME N° 427-2023-PMO-FDM",
           "asunto_razon": "SE TRASLADA PENALIDAD APLICACABLE CONTRATISTA EJECUTOR DE OBRA",
           "fuente": "Tomo 6 PMO (Folio 6)",
@@ -5289,8 +5503,8 @@
         },
         {
           "fecha": "17 de julio del 2023",
-          "tipo": "Valorización / Avance Mensual",
-          "fase": "2. EJECUCIÓN Y VALORIZACIONES MENSUALES",
+          "tipo": "Modificación / Incidencia",
+          "fase": "3. MODIFICACIONES, PLAZOS E INCIDENCIAS",
           "documento": "INFORME N° 428-2023-PMO-FDM",
           "asunto_razon": "SE TRASLADA PENALIDAD APLICABLE PARA DESCARGO DE SUPERVISIÓN",
           "fuente": "Tomo 6 PMO (Folio 7)",
@@ -5299,20 +5513,20 @@
         },
         {
           "fecha": "24 de julio del 2023",
-          "tipo": "Hito de Seguimiento PMO",
-          "fase": "2. EJECUCIÓN Y VALORIZACIONES MENSUALES",
+          "tipo": "Modificación / Incidencia",
+          "fase": "3. MODIFICACIONES, PLAZOS E INCIDENCIAS",
           "documento": "INFORME N° 440-2023-PMO-FDM",
-          "asunto_razon": "Seguimiento técnico y control contractual por la PMO [Ref: Carta NP 0668-2023-D.E./FDM sustentado mediante Informe N]",
+          "asunto_razon": "APLICACIÓN DE PENALIDADES [Ref: Carta NP 0668-2023-D.E./FDM sustentado mediante Informe N]",
           "fuente": "Tomo 6 PMO (Folio 19)",
           "confiabilidad": "ALTA",
           "fecha_sort": "2023-07-24"
         },
         {
           "fecha": "24 de julio del 2023",
-          "tipo": "Hito de Seguimiento PMO",
-          "fase": "2. EJECUCIÓN Y VALORIZACIONES MENSUALES",
+          "tipo": "Modificación / Incidencia",
+          "fase": "3. MODIFICACIONES, PLAZOS E INCIDENCIAS",
           "documento": "INFORME N° 441-2023-PMO-FDM",
-          "asunto_razon": "Seguimiento técnico y control contractual por la PMO",
+          "asunto_razon": "APLICACIÓN DE PENALIDADES A SUPERVISIÓN DE OBRA",
           "fuente": "Tomo 6 PMO (Folio 20)",
           "confiabilidad": "ALTA",
           "fecha_sort": "2023-07-24"
@@ -5469,8 +5683,8 @@
         },
         {
           "fecha": "20 de setiembre del 2023",
-          "tipo": "Valorización / Avance Mensual",
-          "fase": "2. EJECUCIÓN Y VALORIZACIONES MENSUALES",
+          "tipo": "Modificación / Incidencia",
+          "fase": "3. MODIFICACIONES, PLAZOS E INCIDENCIAS",
           "documento": "INFORME N° 561-2023-PMO-FDM",
           "asunto_razon": "conformidad y queja por parte de los pobladores; por 10 que se requiere el cumplimiento y ejecución del plan de protección del medio ambiente; y mitigación de t",
           "fuente": "Tomo 7 PMO (Folio 68)",
@@ -5592,8 +5806,18 @@
           "tipo": "Recepción de Obra",
           "fase": "4. CULMINACIÓN Y RECEPCIÓN DE OBRA",
           "documento": "INFORME N° 644-2023-PMO-FDM",
-          "asunto_razon": "adquisición de materiales. A. DATOSGENERALES Contrato de obra Modalidad de concurso Entidad contratante Contratista Contrato Firma de contrato Representante leg",
+          "asunto_razon": "aplicación de penalidades por la empresa contratista ejecutora ARUNTA CONTRATISTAS SAC, al no contar con acero corrugado de 3/8\" en obra de acuerdo al calendari",
           "fuente": "Tomo 8 PMO (Folio 64)",
+          "confiabilidad": "ALTA",
+          "fecha_sort": "2023-11-08"
+        },
+        {
+          "fecha": "08 de noviembre del 2023",
+          "tipo": "Recepción de Obra",
+          "fase": "4. CULMINACIÓN Y RECEPCIÓN DE OBRA",
+          "documento": "INFORME N° 665-2023-PMO-FDM",
+          "asunto_razon": "aplicación de penalidades por la empresa contratista ejecutora ARUNTA CONTRATISTAS SAC, al no contar con materiales necesario en obra los días 13, 14 y 15 de no",
+          "fuente": "Tomo 9 PMO (Folio 5)",
           "confiabilidad": "ALTA",
           "fecha_sort": "2023-11-08"
         },
@@ -5618,6 +5842,236 @@
           "fecha_sort": "2023-11-16"
         },
         {
+          "fecha": "17 de noviembre del 2023",
+          "tipo": "Modificación / Incidencia",
+          "fase": "3. MODIFICACIONES, PLAZOS E INCIDENCIAS",
+          "documento": "INFORME N° 663-2023-PMO-FDM",
+          "asunto_razon": "APLICACIÓN DE PENALIDAD AL NO CONTAR CON LOS MATERIALES NECESARIOS EN OBRA LOS DÍAS 02 Y 03 DE NOVIEMBRE DEL 2023 [Ref: CARTA N0103-2023-ARUNTASAC/OMATE OBRA]",
+          "fuente": "Tomo 9 PMO (Folio 3)",
+          "confiabilidad": "ALTA",
+          "fecha_sort": "2023-11-17"
+        },
+        {
+          "fecha": "17 de noviembre del 2023",
+          "tipo": "Valorización / Avance Mensual",
+          "fase": "2. EJECUCIÓN Y VALORIZACIONES MENSUALES",
+          "documento": "INFORME N° 664-2023-PMO-FDM",
+          "asunto_razon": "VALORIZACIÓN CORRESPONDIENTE AL MES DE OCTUBRE DEL 2023 [Ref: CARTA N0054-2023-RP-CONSORClO SUPERVISOR OMATE/FDM OBRA]",
+          "fuente": "Tomo 9 PMO (Folio 4)",
+          "confiabilidad": "ALTA",
+          "fecha_sort": "2023-11-17"
+        },
+        {
+          "fecha": "21 de noviembre del 2023",
+          "tipo": "Valorización / Avance Mensual",
+          "fase": "2. EJECUCIÓN Y VALORIZACIONES MENSUALES",
+          "documento": "INFORME N° 670-2023-PMO-FDM",
+          "asunto_razon": "CONFORMIDAD DE LEVANTAMIENTO DE OBSERVACIONES DE LA VALORIZACIÓN NO 04 DE EJECUCIÓN DE OBRA CORRESPONDIENTE AL MES DE OCTUBRE DEL 2023 [Ref: CARTA N0105-2023-AW",
+          "fuente": "Tomo 9 PMO (Folio 10)",
+          "confiabilidad": "ALTA",
+          "fecha_sort": "2023-11-21"
+        },
+        {
+          "fecha": "23 de noviembre del 2023",
+          "tipo": "Ampliación de Plazo",
+          "fase": "3. MODIFICACIONES, PLAZOS E INCIDENCIAS",
+          "documento": "INFORME N° 672-2023-PMO-FDM",
+          "asunto_razon": "PRONUNCIAMIENTO A LEVANTAMIENTO DE OBSERVACIONES DE LA SOLICITUD DE AMPLIACIÓN DE PLAZO PARCIAL [Ref: CARTA N0060-2023-RP-CONSORClO SUPERVISOR OMATE/FDM b, CART",
+          "fuente": "Tomo 9 PMO (Folio 12)",
+          "confiabilidad": "ALTA",
+          "fecha_sort": "2023-11-23"
+        },
+        {
+          "fecha": "23 de noviembre del 2023",
+          "tipo": "Hito de Seguimiento PMO",
+          "fase": "2. EJECUCIÓN Y VALORIZACIONES MENSUALES",
+          "documento": "INFORME N° 674-2023-PMO-FDM",
+          "asunto_razon": "CONSULTAS [Ref: OFICIO Nro 742-2023-A/MPGSC b, CARTA NP 087-2023-ARUNTASAC/OMATE OBRA]",
+          "fuente": "Tomo 9 PMO (Folio 14)",
+          "confiabilidad": "ALTA",
+          "fecha_sort": "2023-11-23"
+        },
+        {
+          "fecha": "23 de noviembre del 2023",
+          "tipo": "Valorización / Avance Mensual",
+          "fase": "2. EJECUCIÓN Y VALORIZACIONES MENSUALES",
+          "documento": "INFORME N° 675-2023-PMO-FDM",
+          "asunto_razon": "CONFORMIDAD A LEVANTAMIENTO DE OBSERVACIONES DE LA VALORIZACIÓN NO 04 DE SUPERVISIÓN CORRESPONDIENTE AL MES DE OCTUBRE DEL 2023 [Ref: CARTA N0063-2023-RP-CONSOR",
+          "fuente": "Tomo 9 PMO (Folio 15)",
+          "confiabilidad": "ALTA",
+          "fecha_sort": "2023-11-23"
+        },
+        {
+          "fecha": "24 de noviembre del 2023",
+          "tipo": "Hito de Seguimiento PMO",
+          "fase": "2. EJECUCIÓN Y VALORIZACIONES MENSUALES",
+          "documento": "INFORME N° 679-2023-PMO-FDM",
+          "asunto_razon": "Seguimiento técnico y control contractual por la PMO",
+          "fuente": "Tomo 9 PMO (Folio 18)",
+          "confiabilidad": "ALTA",
+          "fecha_sort": "2023-11-24"
+        },
+        {
+          "fecha": "28 de noviembre del 2023",
+          "tipo": "Modificación / Incidencia",
+          "fase": "3. MODIFICACIONES, PLAZOS E INCIDENCIAS",
+          "documento": "INFORME N° 686-2023-PMO-FDM",
+          "asunto_razon": "APLICACIÓN DE PENALIDAD POR NO CONTAR MATERIALES NECESARIOS EN OBRA LOS DÍAS 13,14 Y 15 DE NOVIEMBRE DEL 2023. [Ref: CARTA NO 1080-2023-D.E./FDM OBRA]",
+          "fuente": "Tomo 9 PMO (Folio 25)",
+          "confiabilidad": "ALTA",
+          "fecha_sort": "2023-11-28"
+        },
+        {
+          "fecha": "29 de noviembre del 2023",
+          "tipo": "Recepción de Obra",
+          "fase": "4. CULMINACIÓN Y RECEPCIÓN DE OBRA",
+          "documento": "INFORME N° 689-2023-PMO-FDM",
+          "asunto_razon": "CULMINACION DE TRABAJOS [Ref: OFICIO N0761-2023-A/MPGSC FONDO DE DESARROLID DE, oficio no 761-2023-A/MPGSC]",
+          "fuente": "Tomo 9 PMO (Folio 28)",
+          "confiabilidad": "ALTA",
+          "fecha_sort": "2023-11-29"
+        },
+        {
+          "fecha": "01 de diciembre del 2023",
+          "tipo": "Valorización / Avance Mensual",
+          "fase": "2. EJECUCIÓN Y VALORIZACIONES MENSUALES",
+          "documento": "INFORME N° 693-2023-PMO-FDM",
+          "asunto_razon": "OBSERVACIONES A LOS TRABAJOS REALIZADOS EN EL TRAMOS 0+00 A [Ref: CARTA N00114-2023-ARUNTA SAC/OMATE, oficio no 761-2023-A/MPGSC, carta NO 118-2023-D.E /FDM]",
+          "fuente": "Tomo 9 PMO (Folio 32)",
+          "confiabilidad": "ALTA",
+          "fecha_sort": "2023-12-01"
+        },
+        {
+          "fecha": "01 de diciembre del 2023",
+          "tipo": "Ampliación de Plazo",
+          "fase": "3. MODIFICACIONES, PLAZOS E INCIDENCIAS",
+          "documento": "INFORME N° 694-2023-PMO-FDM",
+          "asunto_razon": "APROBACIÓN DE SOLICITUD DE AMPLIACIÓN DE PLAZO PARCIAL [Ref: CARTA N0066-2023-RP-CONSORClO SUPERVISOR OMATE/FDM B, CARTA N00110-2023-ARUNTA SAC/OMATE OBRA]",
+          "fuente": "Tomo 9 PMO (Folio 33)",
+          "confiabilidad": "ALTA",
+          "fecha_sort": "2023-12-01"
+        },
+        {
+          "fecha": "04 de diciembre del 2023",
+          "tipo": "Ampliación de Plazo",
+          "fase": "3. MODIFICACIONES, PLAZOS E INCIDENCIAS",
+          "documento": "INFORME N° 698-2023-PMO-FDM",
+          "asunto_razon": "APROBACIÓN DE SOLICITUD DE AMPLIACIÓN DE PLAZO PARCIAL NO 02 [Ref: CARTA N0068-2023-RP-CONSORClO SUPERVISOR OMATE/FDM B, CARTA N00112-2023-ARUNTA SAC/OMATE OBRA",
+          "fuente": "Tomo 9 PMO (Folio 37)",
+          "confiabilidad": "ALTA",
+          "fecha_sort": "2023-12-04"
+        },
+        {
+          "fecha": "07 de diciembre del 2023",
+          "tipo": "Recepción de Obra",
+          "fase": "4. CULMINACIÓN Y RECEPCIÓN DE OBRA",
+          "documento": "INFORME N° 703-2023-PMO-FDM",
+          "asunto_razon": "autorización de la ejecución de prestaciones adicionales y la elaboración de su expediente técnico\". ANTECEDENTES Con carta NOOOI-2023-CEAD, la proyectista Arq.",
+          "fuente": "Tomo 9 PMO (Folio 42)",
+          "confiabilidad": "ALTA",
+          "fecha_sort": "2023-12-07"
+        },
+        {
+          "fecha": "07 de diciembre del 2023",
+          "tipo": "Ampliación de Plazo",
+          "fase": "3. MODIFICACIONES, PLAZOS E INCIDENCIAS",
+          "documento": "INFORME N° 704-2023-PMO-FDM",
+          "asunto_razon": "AMPLIACION DE PLAZO NOI, -SUPERVISOR DE OBRA [Ref: CARTA N01117-2023-D.E/FDM OBRA]",
+          "fuente": "Tomo 9 PMO (Folio 43)",
+          "confiabilidad": "ALTA",
+          "fecha_sort": "2023-12-07"
+        },
+        {
+          "fecha": "11 de diciembre del 2023",
+          "tipo": "Ampliación de Plazo",
+          "fase": "3. MODIFICACIONES, PLAZOS E INCIDENCIAS",
+          "documento": "INFORME N° 705-2023-PMO-FDM",
+          "asunto_razon": "AMPLIACION DE PLAZO N02- SUPERVISOR DE OBRA [Ref: CARTA N01130-2023-D.E/FDM OBRA]",
+          "fuente": "Tomo 9 PMO (Folio 44)",
+          "confiabilidad": "ALTA",
+          "fecha_sort": "2023-12-11"
+        },
+        {
+          "fecha": "12 de diciembre del 2023",
+          "tipo": "Hito de Seguimiento PMO",
+          "fase": "2. EJECUCIÓN Y VALORIZACIONES MENSUALES",
+          "documento": "INFORME N° 711-2023-PMO-FDM",
+          "asunto_razon": "Seguimiento técnico y control contractual por la PMO [Ref: CARTA N01117-2023-D.E/FDM CARTA NO 1130-2023-D.E/FDM]",
+          "fuente": "Tomo 9 PMO (Folio 51)",
+          "confiabilidad": "ALTA",
+          "fecha_sort": "2023-12-12"
+        },
+        {
+          "fecha": "13 de diciembre del 2023",
+          "tipo": "Valorización / Avance Mensual",
+          "fase": "2. EJECUCIÓN Y VALORIZACIONES MENSUALES",
+          "documento": "INFORME N° 712-2023-PMO-FDM",
+          "asunto_razon": "PRONUNCIAMIENTO RESPECTO A OBSERVACIONES [Ref: OFICIO N0795-2023-A/MPGSC, oficio no 761-2023-A/MPGSC, carta N0118-2023-D.E /FDM]",
+          "fuente": "Tomo 9 PMO (Folio 52)",
+          "confiabilidad": "ALTA",
+          "fecha_sort": "2023-12-13"
+        },
+        {
+          "fecha": "13 de diciembre del 2023",
+          "tipo": "Valorización / Avance Mensual",
+          "fase": "2. EJECUCIÓN Y VALORIZACIONES MENSUALES",
+          "documento": "INFORME N° 713-2023-PMO-FDM",
+          "asunto_razon": "VALORIZACIÓN NO 05 DE EJECUCIÓN DE OBRA CORRESPONDIENTE DEL 01 AL 30 DE NOVIEMBRE DEL 2023 [Ref: CARTA N0074-2023-RP-CONSORClO SUPERVISOR OMATE/FDM b, CARTA N00",
+          "fuente": "Tomo 9 PMO (Folio 53)",
+          "confiabilidad": "ALTA",
+          "fecha_sort": "2023-12-13"
+        },
+        {
+          "fecha": "13 de diciembre del 2023",
+          "tipo": "Valorización / Avance Mensual",
+          "fase": "2. EJECUCIÓN Y VALORIZACIONES MENSUALES",
+          "documento": "INFORME N° 714-2023-PMO-FDM",
+          "asunto_razon": "VALORIZACIÓN E INFORME MENSUAL NO 05 DE SUPERVISIÓN CORRESPONDIENTE DEL 01 AL 30 DE NOVIEMBRE DEL 2023 [Ref: CARTA N0074-2023-RP-CONSORClO SUPERVISOR OMATE/FDM ",
+          "fuente": "Tomo 9 PMO (Folio 54)",
+          "confiabilidad": "ALTA",
+          "fecha_sort": "2023-12-13"
+        },
+        {
+          "fecha": "13 de diciembre del 2023",
+          "tipo": "Valorización / Avance Mensual",
+          "fase": "2. EJECUCIÓN Y VALORIZACIONES MENSUALES",
+          "documento": "INFORME N° 719-2023-PMO-FDM",
+          "asunto_razon": "CONFORMIDAD A LEVANTAMIENTO DE OBSERVACIONES DE LA VALORIZACIÓN E INFORME MENSUAL NO 05 DE SUPERVISIÓN CORRESPONDIENTE DEL 01 AL 30 DE NOVIEMBRE DEL 2023 [Ref: ",
+          "fuente": "Tomo 9 PMO (Folio 59)",
+          "confiabilidad": "ALTA",
+          "fecha_sort": "2023-12-13"
+        },
+        {
+          "fecha": "15 de diciembre del 2023",
+          "tipo": "Ampliación de Plazo",
+          "fase": "3. MODIFICACIONES, PLAZOS E INCIDENCIAS",
+          "documento": "INFORME N° 716-2023-PMO-FDM",
+          "asunto_razon": "AMPLIACION DE PLAZO PARCIAL N'3 [Ref: CARTA N0076-2023-RP-CONSORClO SUPERVISOR OMATE/FDM B, CARTA N00120-2023-ARUNTA SAC/OMATE OBRA]",
+          "fuente": "Tomo 9 PMO (Folio 56)",
+          "confiabilidad": "ALTA",
+          "fecha_sort": "2023-12-15"
+        },
+        {
+          "fecha": "18 de diciembre del 2023",
+          "tipo": "Valorización / Avance Mensual",
+          "fase": "2. EJECUCIÓN Y VALORIZACIONES MENSUALES",
+          "documento": "INFORME N° 718-2023-PMO-FDM",
+          "asunto_razon": "CONFORMIDAD A LEVANTAMIENTO DE OBSERVACIONES DE LA VALORIZACIÓN NO 05 DE EJECUCIÓN DE OBRA CORRESPONDIENTE DEL 01 AL 30 DE NOVIEMBRE DEL 2023 [Ref: CARTA N00129",
+          "fuente": "Tomo 9 PMO (Folio 58)",
+          "confiabilidad": "ALTA",
+          "fecha_sort": "2023-12-18"
+        },
+        {
+          "fecha": "29 de diciembre del 2023",
+          "tipo": "Modificación / Incidencia",
+          "fase": "3. MODIFICACIONES, PLAZOS E INCIDENCIAS",
+          "documento": "INFORME N° 732-2023-PMO-FDM",
+          "asunto_razon": "OBSERVACIONES A EXPEDIENTE DE ADICIONAL DE OBRA [Ref: CARTA N0080-2023-RP-CONSORClO SUPERVISOR OMATE/FDM b, CARTA NO 130-2023-ARUNTASAC/OMATE OBRA]",
+          "fuente": "Tomo 9 PMO (Folio 70)",
+          "confiabilidad": "ALTA",
+          "fecha_sort": "2023-12-29"
+        },
+        {
           "fecha": "Archivo Central FDM",
           "tipo": "Liquidación Técnica-Financiera",
           "fase": "5. LIQUIDACIÓN Y CIERRE FINANCIERO",
@@ -5628,7 +6082,7 @@
           "fecha_sort": "9999-99-99"
         }
       ],
-      "total_hitos": 41,
+      "total_hitos": 65,
       "fecha_inicio": "04 de julio del 2023",
       "fecha_inicio_sort": "9999-99-99",
       "tiene_fecha_inicio": true,
@@ -5668,7 +6122,7 @@
         "res": true,
         "transf": true
       },
-      "alerta": "Sin antecedentes en Tomos 1 a 8 ni caja rotulada",
+      "alerta": "Sin antecedentes en Tomos 1 a 9 ni caja rotulada",
       "historial": [],
       "total_hitos": 0,
       "fecha_inicio": "",
@@ -5681,7 +6135,7 @@
       "resolucion_liquidacion": "",
       "estado_info": "PENDIENTE",
       "estado_info_label": "🔴 INFORMACIÓN PENDIENTE",
-      "estado_info_desc": "Sin documentos localizados en Tomos 1 a 8 ni caja asignada",
+      "estado_info_desc": "Sin documentos localizados en Tomos 1 a 9 ni caja asignada",
       "detalles_faltantes": [
         "Acta de Entrega de Terreno / Acta de Inicio de Obra",
         "Acta de Culminación Física de Obra",
@@ -5998,6 +6452,36 @@
           "fecha_sort": "2023-10-27"
         },
         {
+          "fecha": "02 de noviembre del 2023",
+          "tipo": "Valorización / Avance Mensual",
+          "fase": "2. EJECUCIÓN Y VALORIZACIONES MENSUALES",
+          "documento": "INFORME N° 673-2023-PMO-FDM",
+          "asunto_razon": "CONFORMIDAD DE LA VALORIZACIÓN 05 E INFORME MENSUAL N005 DE EJECUCIÓN DE OBRA CORRESPONDIENTE A SETIEMBRE DEL 2023. [Ref: CARTA NO 068-2023-SUP/FDM b, CARTA NO ",
+          "fuente": "Tomo 9 PMO (Folio 13)",
+          "confiabilidad": "ALTA",
+          "fecha_sort": "2023-11-02"
+        },
+        {
+          "fecha": "01 de diciembre del 2023",
+          "tipo": "Recepción de Obra",
+          "fase": "4. CULMINACIÓN Y RECEPCIÓN DE OBRA",
+          "documento": "INFORME N° 692-2023-PMO-FDM",
+          "asunto_razon": "RECEPCION DE OBRA CARTA N' 048-2023-CM/RC [Ref: Carta NO 0939-2023-D.E./FDM]",
+          "fuente": "Tomo 9 PMO (Folio 31)",
+          "confiabilidad": "ALTA",
+          "fecha_sort": "2023-12-01"
+        },
+        {
+          "fecha": "04 de diciembre del 2023",
+          "tipo": "Valorización / Avance Mensual",
+          "fase": "2. EJECUCIÓN Y VALORIZACIONES MENSUALES",
+          "documento": "INFORME N° 697-2023-PMO-FDM",
+          "asunto_razon": "VALORIZACIÓN 06 E INFORME MENSUAL N006 DE SUPERVISIÓN CORRESPONDIENTE DEL 01 AL 04 DE OCTUBRE DEL 2023. [Ref: CARTA NO 069-2023-SUP/FDM OBRA]",
+          "fuente": "Tomo 9 PMO (Folio 36)",
+          "confiabilidad": "ALTA",
+          "fecha_sort": "2023-12-04"
+        },
+        {
           "fecha": "Archivo Central FDM",
           "tipo": "Liquidación Técnica-Financiera",
           "fase": "5. LIQUIDACIÓN Y CIERRE FINANCIERO",
@@ -6008,14 +6492,14 @@
           "fecha_sort": "9999-99-99"
         }
       ],
-      "total_hitos": 29,
+      "total_hitos": 32,
       "fecha_inicio": "24 de mayo del 2023",
       "fecha_inicio_sort": "9999-99-99",
       "tiene_fecha_inicio": true,
-      "fecha_inicio_doc": "INFORME N° 358-2023-PMO-FDM (Tomo 5 Folio 12) e INFORME N° 629-2023-PMO-FDM (Tomo 8 Folio 48)",
+      "fecha_inicio_doc": "INFORME N° 358-2023-PMO-FDM (Tomo 5 Folio 12) e INFORME N° 692-2023-PMO-FDM (Tomo 9 Folio 31)",
       "fecha_termino_prog": "20 de setiembre del 2023",
-      "fecha_culminacion_real": "",
-      "acta_recepcion": "",
+      "fecha_culminacion_real": "04 de octubre del 2023 (Ampliación 01 - 14 d.c.)",
+      "acta_recepcion": "Solicitud de Recepción Carta N° 048-2023-CM/RC e Informe N° 692-2023-PMO-FDM (Tomo 9 Folio 31)",
       "resolucion_liquidacion": "",
       "estado_info": "COMPLETA",
       "estado_info_label": "🟢 EXPEDIENTE EN CAJA FDM",
@@ -6379,9 +6863,19 @@
           "fuente": "Tomo 8 PMO (Folio 51)",
           "confiabilidad": "ALTA",
           "fecha_sort": "2023-10-26"
+        },
+        {
+          "fecha": "28 de noviembre del 2023",
+          "tipo": "Liquidación Técnica-Financiera",
+          "fase": "5. LIQUIDACIÓN Y CIERRE FINANCIERO",
+          "documento": "INFORME N° 684-2023-PMO-FDM",
+          "asunto_razon": "OBSERVACIONES A INFORME FINAL Y LIQUIDACIÓN DE OBRA [Ref: CARTA NO 035-2023-SUP/FDM b, CARTA NO 074/EDlMARZASRL/lLO-2023 OBRA]",
+          "fuente": "Tomo 9 PMO (Folio 23)",
+          "confiabilidad": "ALTA",
+          "fecha_sort": "2023-11-28"
         }
       ],
-      "total_hitos": 33,
+      "total_hitos": 34,
       "fecha_inicio": "16 de mayo del 2023",
       "fecha_inicio_sort": "9999-99-99",
       "tiene_fecha_inicio": true,
@@ -6720,7 +7214,7 @@
       "tiene_fecha_inicio": true,
       "fecha_inicio_doc": "INFORME N° 661-2023-PMO-FDM (Tomo 8 Folio 81)",
       "fecha_termino_prog": "13 de agosto del 2023",
-      "fecha_culminacion_real": "100% Culminado",
+      "fecha_culminacion_real": "13 de agosto del 2023 (100% Culminada)",
       "acta_recepcion": "",
       "resolucion_liquidacion": "Informe Final y Liquidación presentado (Informe N° 661-2023-PMO-FDM)",
       "estado_info": "COMPLETA",
@@ -6754,7 +7248,7 @@
         "res": true,
         "transf": true
       },
-      "alerta": "Sin antecedentes en Tomos 1 a 8 ni caja rotulada",
+      "alerta": "Sin antecedentes en Tomos 1 a 9 ni caja rotulada",
       "historial": [],
       "total_hitos": 0,
       "fecha_inicio": "",
@@ -6767,7 +7261,7 @@
       "resolucion_liquidacion": "",
       "estado_info": "PENDIENTE",
       "estado_info_label": "🔴 INFORMACIÓN PENDIENTE",
-      "estado_info_desc": "Sin documentos localizados en Tomos 1 a 8 ni caja asignada",
+      "estado_info_desc": "Sin documentos localizados en Tomos 1 a 9 ni caja asignada",
       "detalles_faltantes": [
         "Acta de Entrega de Terreno / Acta de Inicio de Obra",
         "Acta de Culminación Física de Obra",
@@ -7088,11 +7582,11 @@
       "fecha_inicio": "14 de enero del 2022",
       "fecha_inicio_sort": "9999-99-99",
       "tiene_fecha_inicio": true,
-      "fecha_inicio_doc": "INFORME N° 131-2023-PMO-FDM (Tomo 1 Folio 100)",
+      "fecha_inicio_doc": "INFORME N° 131-2023-PMO-FDM (Tomo 1 Folio 100) e INFORME N° 708-2023-PMO-FDM (Tomo 9 Folio 48)",
       "fecha_termino_prog": "11 de setiembre del 2022",
-      "fecha_culminacion_real": "",
+      "fecha_culminacion_real": "11 de setiembre del 2022",
       "acta_recepcion": "",
-      "resolucion_liquidacion": "",
+      "resolucion_liquidacion": "Aprobación Liquidación Técnica-Financiera (Informe N° 708-2023-PMO-FDM, Tomo 9 Folio 48)",
       "estado_info": "COMPLETA",
       "estado_info_label": "🟢 EXPEDIENTE EN CAJA FDM",
       "estado_info_desc": "Expediente físico verificado en EN CAJA (Caja 03, Caja A (2 Tomos)) con liquidación técnica-financiera",
@@ -7124,7 +7618,7 @@
         "res": true,
         "transf": true
       },
-      "alerta": "Sin antecedentes en Tomos 1 a 8 ni caja rotulada",
+      "alerta": "Sin antecedentes en Tomos 1 a 9 ni caja rotulada",
       "historial": [],
       "total_hitos": 0,
       "fecha_inicio": "",
@@ -7137,7 +7631,7 @@
       "resolucion_liquidacion": "",
       "estado_info": "PENDIENTE",
       "estado_info_label": "🔴 INFORMACIÓN PENDIENTE",
-      "estado_info_desc": "Sin documentos localizados en Tomos 1 a 8 ni caja asignada",
+      "estado_info_desc": "Sin documentos localizados en Tomos 1 a 9 ni caja asignada",
       "detalles_faltantes": [
         "Acta de Entrega de Terreno / Acta de Inicio de Obra",
         "Acta de Culminación Física de Obra",
@@ -7171,7 +7665,7 @@
         "res": true,
         "transf": true
       },
-      "alerta": "Sin antecedentes en Tomos 1 a 8 ni caja rotulada",
+      "alerta": "Sin antecedentes en Tomos 1 a 9 ni caja rotulada",
       "historial": [],
       "total_hitos": 0,
       "fecha_inicio": "",
@@ -7184,7 +7678,7 @@
       "resolucion_liquidacion": "",
       "estado_info": "PENDIENTE",
       "estado_info_label": "🔴 INFORMACIÓN PENDIENTE",
-      "estado_info_desc": "Sin documentos localizados en Tomos 1 a 8 ni caja asignada",
+      "estado_info_desc": "Sin documentos localizados en Tomos 1 a 9 ni caja asignada",
       "detalles_faltantes": [
         "Acta de Entrega de Terreno / Acta de Inicio de Obra",
         "Acta de Culminación Física de Obra",
@@ -7218,7 +7712,7 @@
         "res": true,
         "transf": true
       },
-      "alerta": "Sin antecedentes en Tomos 1 a 8 ni caja rotulada",
+      "alerta": "Sin antecedentes en Tomos 1 a 9 ni caja rotulada",
       "historial": [],
       "total_hitos": 0,
       "fecha_inicio": "",
@@ -7231,7 +7725,7 @@
       "resolucion_liquidacion": "",
       "estado_info": "PENDIENTE",
       "estado_info_label": "🔴 INFORMACIÓN PENDIENTE",
-      "estado_info_desc": "Sin documentos localizados en Tomos 1 a 8 ni caja asignada",
+      "estado_info_desc": "Sin documentos localizados en Tomos 1 a 9 ni caja asignada",
       "detalles_faltantes": [
         "Acta de Entrega de Terreno / Acta de Inicio de Obra",
         "Acta de Culminación Física de Obra",
@@ -7329,8 +7823,8 @@
         },
         {
           "fecha": "Enero-Marzo 2023",
-          "tipo": "Valorización / Avance Mensual",
-          "fase": "2. EJECUCIÓN Y VALORIZACIONES MENSUALES",
+          "tipo": "Modificación / Incidencia",
+          "fase": "3. MODIFICACIONES, PLAZOS E INCIDENCIAS",
           "documento": "Informe PMO (Folio 13)",
           "asunto_razon": "valorización de Supervisión N008. Con fecha 13.01.2023 mediante Carta NP 0048-2023-D.E./FDM, ei Fondo de Desarrollo Moquegua notifica al Consultor de Supervisió",
           "fuente": "Tomo 1 PMO (Folio 13)",
@@ -7998,6 +8492,46 @@
           "fecha_sort": "2023-10-04"
         },
         {
+          "fecha": "05 de diciembre del 2023",
+          "tipo": "Liquidación Técnica-Financiera",
+          "fase": "5. LIQUIDACIÓN Y CIERRE FINANCIERO",
+          "documento": "INFORME N° 699-2023-PMO-FDM",
+          "asunto_razon": "LIQUIDACION DE COMPONENTE EQUIPAMIENTO",
+          "fuente": "Tomo 9 PMO (Folio 38)",
+          "confiabilidad": "ALTA",
+          "fecha_sort": "2023-12-05"
+        },
+        {
+          "fecha": "05 de diciembre del 2023",
+          "tipo": "Liquidación Técnica-Financiera",
+          "fase": "5. LIQUIDACIÓN Y CIERRE FINANCIERO",
+          "documento": "INFORME N° 700-2023-PMO-FDM",
+          "asunto_razon": "LIQUIDACION DE OBRA CARTA N0123-SUP-REORBE-MSCBO \"MEJORAMIENTO DEL SERVICIO DE CONTROL BIOLÓGICO DE PLAGAS EN FRUTALES EN 6 DISTRITOS DE LA PROVINCIA GENERAL SÁ",
+          "fuente": "Tomo 9 PMO (Folio 39)",
+          "confiabilidad": "ALTA",
+          "fecha_sort": "2023-12-05"
+        },
+        {
+          "fecha": "15 de diciembre del 2023",
+          "tipo": "Liquidación Técnica-Financiera",
+          "fase": "5. LIQUIDACIÓN Y CIERRE FINANCIERO",
+          "documento": "INFORME N° 715-2023-PMO-FDM",
+          "asunto_razon": "OBSERVACIONES A LIQUIDACIÓN DE OBRA [Ref: carta NO 122-SUP-REORBE-MSCBO b]",
+          "fuente": "Tomo 9 PMO (Folio 55)",
+          "confiabilidad": "ALTA",
+          "fecha_sort": "2023-12-15"
+        },
+        {
+          "fecha": "19 de diciembre del 2023",
+          "tipo": "Liquidación Técnica-Financiera",
+          "fase": "5. LIQUIDACIÓN Y CIERRE FINANCIERO",
+          "documento": "INFORME N° 721-2023-PMO-FDM",
+          "asunto_razon": "CONFORMIDAD A SERVICIO DE REVISIÓN DE LIQUIDACIONES O/S F12-00006 Moquegua, 19 de diciembre del 2023 Mediante eI presente me dirijo a Usted, con la finalidad de",
+          "fuente": "Tomo 9 PMO (Folio 60)",
+          "confiabilidad": "ALTA",
+          "fecha_sort": "2023-12-19"
+        },
+        {
           "fecha": "Archivo Central FDM",
           "tipo": "Liquidación Técnica-Financiera",
           "fase": "5. LIQUIDACIÓN Y CIERRE FINANCIERO",
@@ -8008,15 +8542,15 @@
           "fecha_sort": "9999-99-99"
         }
       ],
-      "total_hitos": 74,
+      "total_hitos": 78,
       "fecha_inicio": "30 de abril del 2022",
       "fecha_inicio_sort": "9999-99-99",
       "tiene_fecha_inicio": true,
-      "fecha_inicio_doc": "INFORME N° 036-2023-PMO-FDM (Tomo 1 Folio 17)",
+      "fecha_inicio_doc": "INFORME N° 036-2023-PMO-FDM (Tomo 1 Folio 17) e INFORME N° 721-2023-PMO-FDM (Tomo 9 Folio 60)",
       "fecha_termino_prog": "06 de febrero del 2023",
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
-      "resolucion_liquidacion": "",
+      "resolucion_liquidacion": "Conformidad Liquidación de Obra y Supervisión (Informe N° 721-2023-PMO-FDM, Tomo 9 Folio 60)",
       "estado_info": "COMPLETA",
       "estado_info_label": "🟢 EXPEDIENTE EN CAJA FDM",
       "estado_info_desc": "Expediente físico verificado en EN CAJA (Cajas 05, 06, 07) con liquidación técnica-financiera",
@@ -8079,9 +8613,29 @@
           "fuente": "Tomo 7 PMO (Folio 86)",
           "confiabilidad": "ALTA",
           "fecha_sort": "2023-09-28"
+        },
+        {
+          "fecha": "21 de noviembre del 2023",
+          "tipo": "Modificación / Incidencia",
+          "fase": "3. MODIFICACIONES, PLAZOS E INCIDENCIAS",
+          "documento": "INFORME N° 668-2023-PMO-FDM",
+          "asunto_razon": "OBSERVACIONES A SOLICITUD DE PRESTACIONES ADICIONALES INFORME NO 0013-2023-IMECS/JMCH Moquegua, 21 de noviembre del 2023 Mediante el presente me dirijo a Usted,",
+          "fuente": "Tomo 9 PMO (Folio 8)",
+          "confiabilidad": "ALTA",
+          "fecha_sort": "2023-11-21"
+        },
+        {
+          "fecha": "18 de diciembre del 2023",
+          "tipo": "Modificación / Incidencia",
+          "fase": "3. MODIFICACIONES, PLAZOS E INCIDENCIAS",
+          "documento": "INFORME N° 724-2023-PMO-FDM",
+          "asunto_razon": "SOLICITUD DE PRESTACIÓN ADICIONAL DE SERVICIO INFORME NO 0014-2023-IMECS/JMCH Moquegua, 18 de diciembre del 2023 Mediante eI presente me dirijo a Usted, con la ",
+          "fuente": "Tomo 9 PMO (Folio 63)",
+          "confiabilidad": "ALTA",
+          "fecha_sort": "2023-12-18"
         }
       ],
-      "total_hitos": 3,
+      "total_hitos": 5,
       "fecha_inicio": "",
       "fecha_inicio_sort": "9999-99-99",
       "tiene_fecha_inicio": false,
@@ -8124,7 +8678,7 @@
         "res": true,
         "transf": true
       },
-      "alerta": "Sin antecedentes en Tomos 1 a 8 ni caja rotulada",
+      "alerta": "Sin antecedentes en Tomos 1 a 9 ni caja rotulada",
       "historial": [],
       "total_hitos": 0,
       "fecha_inicio": "",
@@ -8137,7 +8691,7 @@
       "resolucion_liquidacion": "",
       "estado_info": "PENDIENTE",
       "estado_info_label": "🔴 INFORMACIÓN PENDIENTE",
-      "estado_info_desc": "Sin documentos localizados en Tomos 1 a 8 ni caja asignada",
+      "estado_info_desc": "Sin documentos localizados en Tomos 1 a 9 ni caja asignada",
       "detalles_faltantes": [
         "Acta de Entrega de Terreno / Acta de Inicio de Obra",
         "Acta de Culminación Física de Obra",
@@ -8171,7 +8725,7 @@
         "res": true,
         "transf": true
       },
-      "alerta": "Sin antecedentes en Tomos 1 a 8 ni caja rotulada",
+      "alerta": "Sin antecedentes en Tomos 1 a 9 ni caja rotulada",
       "historial": [],
       "total_hitos": 0,
       "fecha_inicio": "",
@@ -8184,7 +8738,7 @@
       "resolucion_liquidacion": "",
       "estado_info": "PENDIENTE",
       "estado_info_label": "🔴 INFORMACIÓN PENDIENTE",
-      "estado_info_desc": "Sin documentos localizados en Tomos 1 a 8 ni caja asignada",
+      "estado_info_desc": "Sin documentos localizados en Tomos 1 a 9 ni caja asignada",
       "detalles_faltantes": [
         "Acta de Entrega de Terreno / Acta de Inicio de Obra",
         "Acta de Culminación Física de Obra",
@@ -8218,7 +8772,7 @@
         "res": true,
         "transf": true
       },
-      "alerta": "Sin antecedentes en Tomos 1 a 8 ni caja rotulada",
+      "alerta": "Sin antecedentes en Tomos 1 a 9 ni caja rotulada",
       "historial": [],
       "total_hitos": 0,
       "fecha_inicio": "",
@@ -8231,7 +8785,7 @@
       "resolucion_liquidacion": "",
       "estado_info": "PENDIENTE",
       "estado_info_label": "🔴 INFORMACIÓN PENDIENTE",
-      "estado_info_desc": "Sin documentos localizados en Tomos 1 a 8 ni caja asignada",
+      "estado_info_desc": "Sin documentos localizados en Tomos 1 a 9 ni caja asignada",
       "detalles_faltantes": [
         "Acta de Entrega de Terreno / Acta de Inicio de Obra",
         "Acta de Culminación Física de Obra",
@@ -8265,7 +8819,7 @@
         "res": true,
         "transf": true
       },
-      "alerta": "Sin antecedentes en Tomos 1 a 8 ni caja rotulada",
+      "alerta": "Sin antecedentes en Tomos 1 a 9 ni caja rotulada",
       "historial": [],
       "total_hitos": 0,
       "fecha_inicio": "",
@@ -8278,7 +8832,7 @@
       "resolucion_liquidacion": "",
       "estado_info": "PENDIENTE",
       "estado_info_label": "🔴 INFORMACIÓN PENDIENTE",
-      "estado_info_desc": "Sin documentos localizados en Tomos 1 a 8 ni caja asignada",
+      "estado_info_desc": "Sin documentos localizados en Tomos 1 a 9 ni caja asignada",
       "detalles_faltantes": [
         "Acta de Entrega de Terreno / Acta de Inicio de Obra",
         "Acta de Culminación Física de Obra",
@@ -8312,7 +8866,7 @@
         "res": true,
         "transf": true
       },
-      "alerta": "Sin antecedentes en Tomos 1 a 8 ni caja rotulada",
+      "alerta": "Sin antecedentes en Tomos 1 a 9 ni caja rotulada",
       "historial": [],
       "total_hitos": 0,
       "fecha_inicio": "",
@@ -8325,7 +8879,7 @@
       "resolucion_liquidacion": "",
       "estado_info": "PENDIENTE",
       "estado_info_label": "🔴 INFORMACIÓN PENDIENTE",
-      "estado_info_desc": "Sin documentos localizados en Tomos 1 a 8 ni caja asignada",
+      "estado_info_desc": "Sin documentos localizados en Tomos 1 a 9 ni caja asignada",
       "detalles_faltantes": [
         "Acta de Entrega de Terreno / Acta de Inicio de Obra",
         "Acta de Culminación Física de Obra",
@@ -8359,7 +8913,7 @@
         "res": true,
         "transf": true
       },
-      "alerta": "Sin antecedentes en Tomos 1 a 8 ni caja rotulada",
+      "alerta": "Sin antecedentes en Tomos 1 a 9 ni caja rotulada",
       "historial": [],
       "total_hitos": 0,
       "fecha_inicio": "",
@@ -8372,7 +8926,7 @@
       "resolucion_liquidacion": "",
       "estado_info": "PENDIENTE",
       "estado_info_label": "🔴 INFORMACIÓN PENDIENTE",
-      "estado_info_desc": "Sin documentos localizados en Tomos 1 a 8 ni caja asignada",
+      "estado_info_desc": "Sin documentos localizados en Tomos 1 a 9 ni caja asignada",
       "detalles_faltantes": [
         "Acta de Entrega de Terreno / Acta de Inicio de Obra",
         "Acta de Culminación Física de Obra",
@@ -8406,7 +8960,7 @@
         "res": true,
         "transf": true
       },
-      "alerta": "Sin antecedentes en Tomos 1 a 8 ni caja rotulada",
+      "alerta": "Sin antecedentes en Tomos 1 a 9 ni caja rotulada",
       "historial": [],
       "total_hitos": 0,
       "fecha_inicio": "",
@@ -8419,7 +8973,7 @@
       "resolucion_liquidacion": "",
       "estado_info": "PENDIENTE",
       "estado_info_label": "🔴 INFORMACIÓN PENDIENTE",
-      "estado_info_desc": "Sin documentos localizados en Tomos 1 a 8 ni caja asignada",
+      "estado_info_desc": "Sin documentos localizados en Tomos 1 a 9 ni caja asignada",
       "detalles_faltantes": [
         "Acta de Entrega de Terreno / Acta de Inicio de Obra",
         "Acta de Culminación Física de Obra",
@@ -8506,7 +9060,7 @@
         "res": true,
         "transf": true
       },
-      "alerta": "Sin antecedentes en Tomos 1 a 8 ni caja rotulada",
+      "alerta": "Sin antecedentes en Tomos 1 a 9 ni caja rotulada",
       "historial": [],
       "total_hitos": 0,
       "fecha_inicio": "",
@@ -8519,7 +9073,7 @@
       "resolucion_liquidacion": "",
       "estado_info": "PENDIENTE",
       "estado_info_label": "🔴 INFORMACIÓN PENDIENTE",
-      "estado_info_desc": "Sin documentos localizados en Tomos 1 a 8 ni caja asignada",
+      "estado_info_desc": "Sin documentos localizados en Tomos 1 a 9 ni caja asignada",
       "detalles_faltantes": [
         "Acta de Entrega de Terreno / Acta de Inicio de Obra",
         "Acta de Culminación Física de Obra",
@@ -8553,7 +9107,7 @@
         "res": true,
         "transf": true
       },
-      "alerta": "Sin antecedentes en Tomos 1 a 8 ni caja rotulada",
+      "alerta": "Sin antecedentes en Tomos 1 a 9 ni caja rotulada",
       "historial": [],
       "total_hitos": 0,
       "fecha_inicio": "",
@@ -8566,7 +9120,7 @@
       "resolucion_liquidacion": "",
       "estado_info": "PENDIENTE",
       "estado_info_label": "🔴 INFORMACIÓN PENDIENTE",
-      "estado_info_desc": "Sin documentos localizados en Tomos 1 a 8 ni caja asignada",
+      "estado_info_desc": "Sin documentos localizados en Tomos 1 a 9 ni caja asignada",
       "detalles_faltantes": [
         "Acta de Entrega de Terreno / Acta de Inicio de Obra",
         "Acta de Culminación Física de Obra",
@@ -8913,6 +9467,86 @@
           "fecha_sort": "2023-11-14"
         },
         {
+          "fecha": "21 de noviembre del 2023",
+          "tipo": "Valorización / Avance Mensual",
+          "fase": "2. EJECUCIÓN Y VALORIZACIONES MENSUALES",
+          "documento": "INFORME N° 671-2023-PMO-FDM",
+          "asunto_razon": "OBSERVACIONES A EJECUCIÓN ACTA DE VISITA \"MEJORAMIENTO DEL SERVICIO DE TRANSITABILIDAD VIAL PUENTE CRUZPATA EN LA RUTA MO-103, KM 150+000 MIRAFLORES DEL DISTRIT",
+          "fuente": "Tomo 9 PMO (Folio 11)",
+          "confiabilidad": "ALTA",
+          "fecha_sort": "2023-11-21"
+        },
+        {
+          "fecha": "23 de noviembre del 2023",
+          "tipo": "Modificación / Incidencia",
+          "fase": "3. MODIFICACIONES, PLAZOS E INCIDENCIAS",
+          "documento": "INFORME N° 676-2023-PMO-FDM",
+          "asunto_razon": "PRONUNCIAMIENTO A ADICIONALES DE OBRA [Ref: CARTA N0067-SUP-EWT-2023 FONDO DE DESARROLLO DE MCQu 2hNOV2023 RECIBIDO HOW.K.]",
+          "fuente": "Tomo 9 PMO (Folio 16)",
+          "confiabilidad": "ALTA",
+          "fecha_sort": "2023-11-23"
+        },
+        {
+          "fecha": "11 de diciembre del 2023",
+          "tipo": "Valorización / Avance Mensual",
+          "fase": "2. EJECUCIÓN Y VALORIZACIONES MENSUALES",
+          "documento": "INFORME N° 706-2023-PMO-FDM",
+          "asunto_razon": "OBSERVACIONES A VALORIZACIÓN E INFORME MENSUAL N003 CORRESPONDIENTE DEL 06 AL 30 DE NOVIEMBRE DEL 2023. [Ref: CARTA N0076-SUP-EWT-2023 b, CARTA N0075-SUP-EYT-20",
+          "fuente": "Tomo 9 PMO (Folio 45)",
+          "confiabilidad": "ALTA",
+          "fecha_sort": "2023-12-11"
+        },
+        {
+          "fecha": "11 de diciembre del 2023",
+          "tipo": "Valorización / Avance Mensual",
+          "fase": "2. EJECUCIÓN Y VALORIZACIONES MENSUALES",
+          "documento": "INFORME N° 706-2023-PMO-FDM",
+          "asunto_razon": "OBSERVACIONES A VALORIZACIÓN E INFORME MENSUAL CORRESPONDIENTE DEL 06 AL 30 DE NOVIEMBRE DEL 2023. [Ref: CARTA N0076-SUP-EWT-2023 b, CARTA N0075-SUP-Ewr-2023 d]",
+          "fuente": "Tomo 9 PMO (Folio 46)",
+          "confiabilidad": "ALTA",
+          "fecha_sort": "2023-12-11"
+        },
+        {
+          "fecha": "11 de diciembre del 2023",
+          "tipo": "Modificación / Incidencia",
+          "fase": "3. MODIFICACIONES, PLAZOS E INCIDENCIAS",
+          "documento": "INFORME N° 707-2023-PMO-FDM",
+          "asunto_razon": "OBSERVACIONES A CRONOGRAMAS DE REINICIO DE OBRA [Ref: CARTA N0071-SUP-EWT-2023 b]",
+          "fuente": "Tomo 9 PMO (Folio 47)",
+          "confiabilidad": "ALTA",
+          "fecha_sort": "2023-12-11"
+        },
+        {
+          "fecha": "11 de diciembre del 2023",
+          "tipo": "Valorización / Avance Mensual",
+          "fase": "2. EJECUCIÓN Y VALORIZACIONES MENSUALES",
+          "documento": "INFORME N° 710-2023-PMO-FDM",
+          "asunto_razon": "OBSERVACIONES A VALORIZACIÓN E INFORME MENSUAL N003 DE SUPERVISIÓN CORRESPONDIENTE DEL 06 AL 30 DE NOVIEMBRE DEL 2023. [Ref: CARTA N0074-SUP-EM-2023 OBRA]",
+          "fuente": "Tomo 9 PMO (Folio 50)",
+          "confiabilidad": "ALTA",
+          "fecha_sort": "2023-12-11"
+        },
+        {
+          "fecha": "20 de diciembre del 2023",
+          "tipo": "Valorización / Avance Mensual",
+          "fase": "2. EJECUCIÓN Y VALORIZACIONES MENSUALES",
+          "documento": "INFORME N° 723-2023-PMO-FDM",
+          "asunto_razon": "CONFORMIDAD A LEVANTAMIENTO DE OBSERVACIONES DE LA VALORIZACIÓN E INFORME MENSUAL NO 03 DE SUPERVISIÓN CORRESPONDIENTE DEL 06 AL 30 DE NOVIEMBRE DEL 2023. [Ref:",
+          "fuente": "Tomo 9 PMO (Folio 62)",
+          "confiabilidad": "ALTA",
+          "fecha_sort": "2023-12-20"
+        },
+        {
+          "fecha": "22 de diciembre del 2023",
+          "tipo": "Valorización / Avance Mensual",
+          "fase": "2. EJECUCIÓN Y VALORIZACIONES MENSUALES",
+          "documento": "INFORME N° 727-2023-PMO-FDM",
+          "asunto_razon": "CONFORMIDAD A LEVANTAMIENTO DE OBSERVACIONES A VALORIZACIÓN E INFORME MENSUAL N003 CORRESPONDIENTE DEL 06 AL 30 DE NOVIEMBRE DEL 2023. [Ref: CARTA N0083-SUP-EYT",
+          "fuente": "Tomo 9 PMO (Folio 66)",
+          "confiabilidad": "ALTA",
+          "fecha_sort": "2023-12-22"
+        },
+        {
           "fecha": "Archivo Central FDM",
           "tipo": "Liquidación Técnica-Financiera",
           "fase": "5. LIQUIDACIÓN Y CIERRE FINANCIERO",
@@ -8923,7 +9557,7 @@
           "fecha_sort": "9999-99-99"
         }
       ],
-      "total_hitos": 32,
+      "total_hitos": 40,
       "fecha_inicio": "27 de abril del 2023",
       "fecha_inicio_sort": "9999-99-99",
       "tiene_fecha_inicio": true,
@@ -8963,7 +9597,7 @@
         "res": true,
         "transf": true
       },
-      "alerta": "Sin antecedentes en Tomos 1 a 8 ni caja rotulada",
+      "alerta": "Sin antecedentes en Tomos 1 a 9 ni caja rotulada",
       "historial": [],
       "total_hitos": 0,
       "fecha_inicio": "",
@@ -8976,7 +9610,7 @@
       "resolucion_liquidacion": "",
       "estado_info": "PENDIENTE",
       "estado_info_label": "🔴 INFORMACIÓN PENDIENTE",
-      "estado_info_desc": "Sin documentos localizados en Tomos 1 a 8 ni caja asignada",
+      "estado_info_desc": "Sin documentos localizados en Tomos 1 a 9 ni caja asignada",
       "detalles_faltantes": [
         "Acta de Entrega de Terreno / Acta de Inicio de Obra",
         "Acta de Culminación Física de Obra",
@@ -9010,7 +9644,7 @@
         "res": true,
         "transf": true
       },
-      "alerta": "Sin antecedentes en Tomos 1 a 8 ni caja rotulada",
+      "alerta": "Sin antecedentes en Tomos 1 a 9 ni caja rotulada",
       "historial": [],
       "total_hitos": 0,
       "fecha_inicio": "",
@@ -9023,7 +9657,7 @@
       "resolucion_liquidacion": "",
       "estado_info": "PENDIENTE",
       "estado_info_label": "🔴 INFORMACIÓN PENDIENTE",
-      "estado_info_desc": "Sin documentos localizados en Tomos 1 a 8 ni caja asignada",
+      "estado_info_desc": "Sin documentos localizados en Tomos 1 a 9 ni caja asignada",
       "detalles_faltantes": [
         "Acta de Entrega de Terreno / Acta de Inicio de Obra",
         "Acta de Culminación Física de Obra",
@@ -9057,7 +9691,7 @@
         "res": true,
         "transf": true
       },
-      "alerta": "Sin antecedentes en Tomos 1 a 8 ni caja rotulada",
+      "alerta": "Sin antecedentes en Tomos 1 a 9 ni caja rotulada",
       "historial": [],
       "total_hitos": 0,
       "fecha_inicio": "",
@@ -9070,7 +9704,7 @@
       "resolucion_liquidacion": "",
       "estado_info": "PENDIENTE",
       "estado_info_label": "🔴 INFORMACIÓN PENDIENTE",
-      "estado_info_desc": "Sin documentos localizados en Tomos 1 a 8 ni caja asignada",
+      "estado_info_desc": "Sin documentos localizados en Tomos 1 a 9 ni caja asignada",
       "detalles_faltantes": [
         "Acta de Entrega de Terreno / Acta de Inicio de Obra",
         "Acta de Culminación Física de Obra",
@@ -9104,7 +9738,7 @@
         "res": true,
         "transf": true
       },
-      "alerta": "Sin antecedentes en Tomos 1 a 8 ni caja rotulada",
+      "alerta": "Sin antecedentes en Tomos 1 a 9 ni caja rotulada",
       "historial": [],
       "total_hitos": 0,
       "fecha_inicio": "",
@@ -9117,7 +9751,7 @@
       "resolucion_liquidacion": "",
       "estado_info": "PENDIENTE",
       "estado_info_label": "🔴 INFORMACIÓN PENDIENTE",
-      "estado_info_desc": "Sin documentos localizados en Tomos 1 a 8 ni caja asignada",
+      "estado_info_desc": "Sin documentos localizados en Tomos 1 a 9 ni caja asignada",
       "detalles_faltantes": [
         "Acta de Entrega de Terreno / Acta de Inicio de Obra",
         "Acta de Culminación Física de Obra",
@@ -9151,7 +9785,7 @@
         "res": true,
         "transf": true
       },
-      "alerta": "Sin antecedentes en Tomos 1 a 8 ni caja rotulada",
+      "alerta": "Sin antecedentes en Tomos 1 a 9 ni caja rotulada",
       "historial": [],
       "total_hitos": 0,
       "fecha_inicio": "",
@@ -9164,7 +9798,7 @@
       "resolucion_liquidacion": "",
       "estado_info": "PENDIENTE",
       "estado_info_label": "🔴 INFORMACIÓN PENDIENTE",
-      "estado_info_desc": "Sin documentos localizados en Tomos 1 a 8 ni caja asignada",
+      "estado_info_desc": "Sin documentos localizados en Tomos 1 a 9 ni caja asignada",
       "detalles_faltantes": [
         "Acta de Entrega de Terreno / Acta de Inicio de Obra",
         "Acta de Culminación Física de Obra",
@@ -12119,11 +12753,11 @@
     "obras_civiles": 69,
     "con_historial": 35,
     "en_cajas": 17,
-    "completas": 15,
-    "parciales": 12,
+    "completas": 17,
+    "parciales": 10,
     "pendientes": 38,
     "no_ejecutadas": 4,
-    "fechas_exactas": 12,
+    "fechas_exactas": 14,
     "por_provincia": {
       "ILO": 50,
       "MARISCAL NIETO": 0,
