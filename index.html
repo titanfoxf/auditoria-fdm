@@ -515,7 +515,7 @@
           </div>
 
           <!-- Controls Bar for Timeline / Tree View inside Modal -->
-          <div class="drawer-view-controls">
+          <div class="drawer-view-controls" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.75rem;">
             <div class="view-toggle-group">
               <button class="btn-view-toggle active" id="btnViewTimeline" onclick="setTimelineView('TIMELINE')">
                 📅 Línea de Tiempo
@@ -525,9 +525,16 @@
               </button>
             </div>
 
-            <button class="btn-order-sort" id="btnSortOrder" onclick="toggleTimelineSortOrder()">
-              ⬇️ Más antiguo primero
-            </button>
+            <div style="display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;">
+              <label style="display: flex; align-items: center; gap: 0.35rem; font-size: 0.76rem; font-weight: 600; color: #1E293B; cursor: pointer; background: #EFF6FF; border: 1px solid #BFDBFE; padding: 0.35rem 0.65rem; border-radius: 6px;">
+                <input type="checkbox" id="chkOnlyRelevant" checked onchange="toggleAuditRelevantOnly(this.checked)" style="accent-color: #2563EB; cursor: pointer;">
+                <span>🎯 Solo Actuados Relevantes de Auditoría</span>
+              </label>
+
+              <button class="btn-order-sort" id="btnSortOrder" onclick="toggleTimelineSortOrder()">
+                ⬇️ Más antiguo primero
+              </button>
+            </div>
           </div>
 
           <!-- Timeline Filter Buttons -->
@@ -869,8 +876,9 @@
       document.getElementById('drawerMontoPriorizado').innerText = prioFmt;
 
       const hist = p.historial || [];
-      document.getElementById('drawerCountHitos').innerText = hist.length;
-      document.getElementById('countTimelineAll').innerText = hist.length;
+      const relCount = hist.filter(h => h.es_relevante_auditoria !== false).length;
+      document.getElementById('drawerCountHitos').innerText = currentOnlyRelevant ? `${relCount}` : `${hist.length}`;
+      document.getElementById('countTimelineAll').innerText = currentOnlyRelevant ? `${relCount}` : `${hist.length}`;
 
       // Status Summary Card
       const estadoLabel = document.getElementById('drawerEstadoInfoLabel');
@@ -1002,6 +1010,20 @@
       if (p) renderDrawerActuados(p);
     }
 
+    let currentOnlyRelevant = true;
+
+    function toggleAuditRelevantOnly(checked) {
+      currentOnlyRelevant = checked;
+      const p = projectsData.find(item => item.id === selectedProjectId);
+      if (p) {
+        const hist = p.historial || [];
+        const relCount = hist.filter(h => h.es_relevante_auditoria !== false).length;
+        document.getElementById('drawerCountHitos').innerText = currentOnlyRelevant ? `${relCount}` : `${hist.length}`;
+        document.getElementById('countTimelineAll').innerText = currentOnlyRelevant ? `${relCount}` : `${hist.length}`;
+        renderDrawerActuados(p);
+      }
+    }
+
     function filterTimeline(filter, btn) {
       currentTimelineFilter = filter;
       btn.parentElement.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
@@ -1013,8 +1035,14 @@
     function getSortedAndFilteredEvents(p) {
       const hist = p.historial || [];
 
-      // Filter
-      const filtered = hist.filter(h => {
+      // Filter by Audit Relevance if enabled
+      let events = hist;
+      if (currentOnlyRelevant) {
+        events = events.filter(h => h.es_relevante_auditoria !== false);
+      }
+
+      // Filter by Phase / Type
+      const filtered = events.filter(h => {
         if (currentTimelineFilter === 'ALL') return true;
         if (currentTimelineFilter === 'INICIO') return h.tipo === 'Inicio / Contrato';
         if (currentTimelineFilter === 'VALORIZACION') return h.tipo === 'Valorización / Avance Mensual' || (h.asunto_razon || '').toUpperCase().includes('VALORIZACI');
