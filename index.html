@@ -255,29 +255,29 @@
     <!-- Metrics Grid -->
     <div class="metrics-grid">
       <div class="metric-card blue" onclick="setFilter('ALL', document.getElementById('btnTabAll'))">
-        <div class="title">Total Cartera Auditada <span>📂</span></div>
-        <div class="value" id="kpi-total">167</div>
-        <div class="desc">100% de proyectos FDM</div>
+        <div class="title">Total Obras Civiles <span>🏗️</span></div>
+        <div class="value" id="kpi-total">69</div>
+        <div class="desc">100% Cartera Auditada FDM</div>
       </div>
       <div class="metric-card green" onclick="setFilter('COMPLETA', document.getElementById('btnTabCompleta'))">
         <div class="title">Información Completa <span>🟢</span></div>
-        <div class="value" id="kpi-completa" style="color: #16A34A;">79</div>
+        <div class="value" id="kpi-completa" style="color: #16A34A;">20</div>
         <div class="desc">En Caja FDM o Inicio+Cierre probado</div>
       </div>
       <div class="metric-card yellow" onclick="setFilter('PARCIAL', document.getElementById('btnTabParcial'))">
         <div class="title">Trazabilidad Parcial <span>🟡</span></div>
-        <div class="value" id="kpi-parcial" style="color: #CA8A04;">63</div>
+        <div class="value" id="kpi-parcial" style="color: #CA8A04;">13</div>
         <div class="desc">Hitos en tomos; falta inicio o liq.</div>
       </div>
       <div class="metric-card red" onclick="setFilter('SIN_INICIO', document.getElementById('btnTabSinInicio'))">
-        <div class="title">⚠️ Falta Fecha Inicio <span>🚨</span></div>
-        <div class="value" id="kpi-sin-inicio" style="color: #DC2626;">74</div>
-        <div class="desc">Pendiente ubicar documento inicial</div>
+        <div class="title">⚠️ Sin Fecha Inicio <span>🚨</span></div>
+        <div class="value" id="kpi-sin-inicio" style="color: #DC2626;">32</div>
+        <div class="desc">Pendiente ubicar en Archivo Central</div>
       </div>
       <div class="metric-card purple" onclick="setFilter('CAJAS', document.getElementById('btnTabCajas'))">
         <div class="title">En Cajas Rotuladas <span>📦</span></div>
-        <div class="value" id="kpi-cajas" style="color: #9333EA;">20</div>
-        <div class="desc">Expedientes físicos en archivo</div>
+        <div class="value" id="kpi-cajas" style="color: #9333EA;">11</div>
+        <div class="desc">Expedientes físicos en custodia</div>
       </div>
     </div>
 
@@ -287,29 +287,30 @@
       <div class="analytics-card">
         <div class="analytics-title">
           <span>📊 Estado Documental de Auditoría</span>
-          <span id="readinessPercent">47.3% Completo</span>
+          <span id="readinessPercent">29.0% Completo</span>
         </div>
         <div class="progress-bar-container">
           <div class="progress-label">
-            <span style="color: #16A34A;">🟢 Completas (<span id="statComp">79</span>)</span>
-            <span style="color: #CA8A04;">🟡 Parciales (<span id="statParc">63</span>)</span>
-            <span style="color: #DC2626;">🔴 Pendientes (<span id="statPend">21</span>)</span>
+            <span style="color: #16A34A;">🟢 Completas (<span id="statComp">20</span>)</span>
+            <span style="color: #CA8A04;">🟡 Parciales (<span id="statParc">13</span>)</span>
+            <span style="color: #DC2626;">🔴 Pendientes (<span id="statPend">32</span>)</span>
+            <span style="color: #64748B;">⚪ No Aplica (<span id="statNoAp">4</span>)</span>
           </div>
           <div class="progress-track">
-            <div id="progFillComp" class="progress-fill" style="width: 47.3%; background: #16A34A;"></div>
-            <div id="progFillParc" class="progress-fill" style="width: 37.7%; background: #EAB308;"></div>
-            <div id="progFillPend" class="progress-fill" style="width: 12.6%; background: #DC2626;"></div>
-            <div id="progFillNoAp" class="progress-fill" style="width: 2.4%; background: #94A3B8;"></div>
+            <div id="progFillComp" class="progress-fill" style="width: 29.0%; background: #16A34A;"></div>
+            <div id="progFillParc" class="progress-fill" style="width: 18.8%; background: #EAB308;"></div>
+            <div id="progFillPend" class="progress-fill" style="width: 46.4%; background: #DC2626;"></div>
+            <div id="progFillNoAp" class="progress-fill" style="width: 5.8%; background: #94A3B8;"></div>
           </div>
         </div>
         <div class="stats-pill-grid" style="margin-top: 1rem;">
           <div class="stat-mini-pill" onclick="setFilter('COMPLETA', document.getElementById('btnTabCompleta'))" style="cursor: pointer;">
             <div class="lbl">Sustento Pleno</div>
-            <div class="num" style="color: #16A34A;">79 obras</div>
+            <div class="num" style="color: #16A34A;">20 obras</div>
           </div>
           <div class="stat-mini-pill" onclick="setFilter('PARCIAL', document.getElementById('btnTabParcial'))" style="cursor: pointer;">
             <div class="lbl">En Trazabilidad</div>
-            <div class="num" style="color: #CA8A04;">63 obras</div>
+            <div class="num" style="color: #CA8A04;">13 obras</div>
           </div>
         </div>
       </div>
@@ -318,34 +319,34 @@
       <div class="analytics-card">
         <div class="analytics-title">
           <span>📍 Distribución Territorial</span>
-          <span>3 Provincias</span>
+          <span>69 Obras Civiles</span>
         </div>
         <div style="display: flex; flex-direction: column; gap: 0.6rem;">
           <div>
             <div class="progress-label">
               <span>⚓ Provincia de Ilo</span>
-              <span id="provIloCount">68 proyectos</span>
+              <span id="provIloCount">20 obras</span>
             </div>
             <div class="progress-track">
-              <div class="progress-fill" style="width: 40.7%; background: #2563EB;"></div>
+              <div class="progress-fill" style="width: 29.0%; background: #2563EB;"></div>
             </div>
           </div>
           <div>
             <div class="progress-label">
               <span>🏛️ Provincia Mariscal Nieto</span>
-              <span id="provMNCount">53 proyectos</span>
+              <span id="provMNCount">12 obras</span>
             </div>
             <div class="progress-track">
-              <div class="progress-fill" style="width: 31.7%; background: #0D9488;"></div>
+              <div class="progress-fill" style="width: 17.4%; background: #0D9488;"></div>
             </div>
           </div>
           <div>
             <div class="progress-label">
               <span>🌾 General Sánchez Cerro</span>
-              <span id="provGSCCount">46 proyectos</span>
+              <span id="provGSCCount">37 obras</span>
             </div>
             <div class="progress-track">
-              <div class="progress-fill" style="width: 27.6%; background: #8B5CF6;"></div>
+              <div class="progress-fill" style="width: 53.6%; background: #8B5CF6;"></div>
             </div>
           </div>
         </div>
@@ -388,10 +389,10 @@
         <div class="sort-controls">
           <span class="sort-label">Ordenar:</span>
           <select id="sortSelect" class="sort-select" onchange="changeSort(this.value)">
-            <option value="ID_ASC">N° Proyecto (1 a 167)</option>
+            <option value="ID_ASC">N° Obra Civil (1 a 69)</option>
             <option value="DATE_ASC">📅 Fecha de Inicio (Más antiguas primero)</option>
             <option value="DATE_DESC">📅 Fecha de Inicio (Más recientes primero)</option>
-            <option value="MISSING_FIRST">⚠️ Proyectos sin Fecha Inicio primero</option>
+            <option value="MISSING_FIRST">⚠️ Obras sin Fecha Inicio primero</option>
             <option value="STATUS_ALERT">🚨 Estado de Información (Incompletas primero)</option>
             <option value="COST_DESC">💰 Mayor Costo Ejecutado</option>
           </select>
@@ -399,15 +400,16 @@
       </div>
 
       <div class="filter-tabs">
-        <button class="tab-btn active" onclick="setFilter('ALL', this)" id="btnTabAll">Todos (167)</button>
-        <button class="tab-btn" onclick="setFilter('OBRAS', this)" id="btnTabObras">Obras Civiles (69)</button>
-        <button class="tab-btn green" onclick="setFilter('COMPLETA', this)" id="btnTabCompleta">🟢 Info Completa (79)</button>
-        <button class="tab-btn alert" onclick="setFilter('PARCIAL', this)" id="btnTabParcial">🟡 Info Parcial (63)</button>
-        <button class="tab-btn red" onclick="setFilter('SIN_INICIO', this)" id="btnTabSinInicio">⚠️ Faltan Fecha Inicio (74)</button>
-        <button class="tab-btn" onclick="setFilter('CAJAS', this)" id="btnTabCajas">En Cajas FDM (20)</button>
-        <button class="tab-btn" onclick="setFilter('ADQ', this)">Adquisiciones (43)</button>
-        <button class="tab-btn" onclick="setFilter('EMG', this)">Emergencias (49)</button>
-        <button class="tab-btn" onclick="setFilter('CON', this)">Consultorías (9)</button>
+        <button class="tab-btn active" onclick="setFilter('ALL', this)" id="btnTabAll">Todas las Obras (69)</button>
+        <button class="tab-btn green" onclick="setFilter('COMPLETA', this)" id="btnTabCompleta">🟢 Info Completa (20)</button>
+        <button class="tab-btn alert" onclick="setFilter('PARCIAL', this)" id="btnTabParcial">🟡 Trazabilidad Parcial (13)</button>
+        <button class="tab-btn red" onclick="setFilter('SIN_INICIO', this)" id="btnTabSinInicio">⚠️ Sin Fecha Inicio (32)</button>
+        <button class="tab-btn" onclick="setFilter('CAJAS', this)" id="btnTabCajas">📦 En Cajas FDM (11)</button>
+        <button class="tab-btn" onclick="setFilter('NO_APLICA', this)" id="btnTabNoAplica">⚪ No Aplica (4)</button>
+        <span style="border-left: 1px solid var(--border); margin: 0 0.35rem;"></span>
+        <button class="tab-btn" onclick="setFilter('PROV_ILO', this)">⚓ Ilo (20)</button>
+        <button class="tab-btn" onclick="setFilter('PROV_MN', this)">🏛️ Mariscal Nieto (12)</button>
+        <button class="tab-btn" onclick="setFilter('PROV_GSC', this)">🌾 Sánchez Cerro (37)</button>
       </div>
     </div>
 
@@ -442,6 +444,7 @@
       <div class="drawer-header">
         <div>
           <div style="display: flex; gap: 0.5rem; margin-bottom: 0.4rem; align-items: center; flex-wrap: wrap;">
+            <span class="badge" style="background: rgba(255,255,255,0.22); color: #FFF; font-weight: 800; border: 1px solid rgba(255,255,255,0.35);" id="drawerObraId">OBRA N° 01</span>
             <span class="badge badge-purple" id="drawerConvenio">100 MLL.</span>
             <span class="badge badge-blue" id="drawerProvincia">ILO</span>
             <span class="badge badge-gray" id="drawerCui">CUI: 2525252</span>
@@ -653,17 +656,17 @@
     function renderKPIs(kpis) {
       if (!kpis) return;
       document.getElementById('kpi-total').innerText = kpis.total || projectsData.length;
-      document.getElementById('kpi-completa').innerText = kpis.info_completa || 79;
-      document.getElementById('kpi-parcial').innerText = kpis.info_parcial || 63;
-      document.getElementById('kpi-sin-inicio').innerText = kpis.sin_fecha_inicio || 74;
-      document.getElementById('kpi-cajas').innerText = kpis.en_caja || 20;
+      document.getElementById('kpi-completa').innerText = kpis.info_completa || kpis.completas || 20;
+      document.getElementById('kpi-parcial').innerText = kpis.info_parcial || kpis.parciales || 13;
+      document.getElementById('kpi-sin-inicio').innerText = kpis.sin_fecha_inicio || kpis.pendientes || 32;
+      document.getElementById('kpi-cajas').innerText = kpis.en_caja || kpis.en_cajas || 11;
     }
 
     function renderAnalyticsDashboard() {
-      const total = projectsData.length || 167;
+      const total = projectsData.length || 69;
       const comp = projectsData.filter(p => p.estado_info === 'COMPLETA').length;
       const parc = projectsData.filter(p => p.estado_info === 'PARCIAL').length;
-      const pend = projectsData.filter(p => p.estado_info === 'INCOMPLETA').length;
+      const pend = projectsData.filter(p => p.estado_info === 'PENDIENTE').length;
       const noap = projectsData.filter(p => p.estado_info === 'NO_APLICA').length;
 
       const pComp = ((comp / total) * 100).toFixed(1);
@@ -680,6 +683,8 @@
       if (elStatParc) elStatParc.innerText = parc;
       const elStatPend = document.getElementById('statPend');
       if (elStatPend) elStatPend.innerText = pend;
+      const elStatNoAp = document.getElementById('statNoAp');
+      if (elStatNoAp) elStatNoAp.innerText = noap;
 
       const fComp = document.getElementById('progFillComp');
       if (fComp) fComp.style.width = `${pComp}%`;
@@ -695,11 +700,11 @@
       const gsc = projectsData.filter(p => (p.provincia || '').toUpperCase().includes('SANCHEZ') || (p.provincia || '').toUpperCase() === 'G.S.C.').length;
 
       const elIlo = document.getElementById('provIloCount');
-      if (elIlo) elIlo.innerText = `${ilo} proyectos`;
+      if (elIlo) elIlo.innerText = `${ilo} obras`;
       const elMN = document.getElementById('provMNCount');
-      if (elMN) elMN.innerText = `${mn} proyectos`;
+      if (elMN) elMN.innerText = `${mn} obras`;
       const elGSC = document.getElementById('provGSCCount');
-      if (elGSC) elGSC.innerText = `${gsc} proyectos`;
+      if (elGSC) elGSC.innerText = `${gsc} obras`;
     }
 
     function setFilter(filter, btn) {
@@ -728,14 +733,14 @@
       const q = document.getElementById('searchInput').value.toLowerCase().trim();
 
       const filtered = projectsData.filter(p => {
-        if (currentFilter === 'OBRAS') return p.tipologia === 'OBRAS CIVILES';
-        if (currentFilter === 'ADQ') return p.tipologia === 'ADQUISICIONES Y EQUIPAMIENTO';
-        if (currentFilter === 'EMG') return p.tipologia === 'EMERGENCIAS Y SERVICIOS';
-        if (currentFilter === 'CON') return p.tipologia === 'CONSULTORÍAS Y EXPEDIENTES';
-        if (currentFilter === 'CAJAS') return (p.tiene_caja || '').toUpperCase().includes('CAJA');
         if (currentFilter === 'COMPLETA') return p.estado_info === 'COMPLETA';
         if (currentFilter === 'PARCIAL') return p.estado_info === 'PARCIAL';
         if (currentFilter === 'SIN_INICIO') return !p.tiene_fecha_inicio && p.estado_info !== 'NO_APLICA';
+        if (currentFilter === 'CAJAS') return (p.tiene_caja || '').toUpperCase().includes('CAJA');
+        if (currentFilter === 'NO_APLICA') return p.estado_info === 'NO_APLICA';
+        if (currentFilter === 'PROV_ILO') return (p.provincia || '').toUpperCase().includes('ILO');
+        if (currentFilter === 'PROV_MN') return (p.provincia || '').toUpperCase().includes('MARISCAL') || (p.provincia || '').toUpperCase() === 'M.N.';
+        if (currentFilter === 'PROV_GSC') return (p.provincia || '').toUpperCase().includes('SANCHEZ') || (p.provincia || '').toUpperCase() === 'G.S.C.';
         return true;
       }).filter(p => {
         if (!q) return true;
@@ -848,6 +853,9 @@
       selectedProjectId = id;
       const p = projectsData.find(item => item.id === id);
       if (!p) return;
+
+      const obraIdLabel = document.getElementById('drawerObraId');
+      if (obraIdLabel) obraIdLabel.innerText = `OBRA CIVIL N° ${String(p.id).padStart(2, '0')}`;
 
       document.getElementById('drawerProjectName').innerText = p.desc;
       document.getElementById('drawerConvenio').innerText = p.convenio;
