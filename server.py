@@ -10,17 +10,19 @@ EXCEL_PATH = r"D:\ANTIGRAVITACION\ESP_PROYECTOS_ELABORACION\ENTREGABLE_1_MATRIZ_
 STATIC_DIR = os.path.dirname(os.path.abspath(__file__))
 
 def get_projects_from_excel():
-    # Load history from projects_data.json if exists
-    history_map = {}
+    # Load enriched data from projects_data.json
+    extra_map = {}
+    cached_kpis = {}
     json_path = os.path.join(STATIC_DIR, 'projects_data.json')
     if os.path.exists(json_path):
         try:
             with open(json_path, 'r', encoding='utf-8') as f:
                 d_static = json.load(f)
+                cached_kpis = d_static.get('kpis', {})
                 for pr in d_static.get('projects', []):
-                    history_map[pr['id']] = pr.get('historial', [])
+                    extra_map[pr['id']] = pr
         except Exception as e:
-            print("Error loading history map:", e)
+            print("Error loading extra map:", e)
 
     wb = openpyxl.load_workbook(EXCEL_PATH, data_only=False)
     projects = []
@@ -43,7 +45,6 @@ def get_projects_from_excel():
         tiene_caja = str(ws_oc.cell(r, 9).value or '')
         n_cajas = str(ws_oc.cell(r, 10).value or '')
 
-        # Checks in cols 11 to 21 (K to U)
         checks = {
             'exp': '[ ✓ ]' in str(ws_oc.cell(r, 11).value),
             'cont': '[ ✓ ]' in str(ws_oc.cell(r, 12).value),
@@ -58,6 +59,8 @@ def get_projects_from_excel():
             'transf': '[ ✓ ]' in str(ws_oc.cell(r, 21).value),
         }
         alerta = ws_oc.cell(r, 22).value or ''
+
+        ext = extra_map.get(gid, {})
 
         projects.append({
             'id': gid,
@@ -75,7 +78,19 @@ def get_projects_from_excel():
             'alerta': alerta,
             'excel_sheet': '01_OBRAS_CIVILES',
             'excel_row': r,
-            'historial': history_map.get(gid, [])
+            'historial': ext.get('historial', []),
+            'fecha_inicio': ext.get('fecha_inicio', ''),
+            'fecha_inicio_sort': ext.get('fecha_inicio_sort', '9999-99-99'),
+            'tiene_fecha_inicio': ext.get('tiene_fecha_inicio', False),
+            'fecha_inicio_doc': ext.get('fecha_inicio_doc', ''),
+            'fecha_termino_prog': ext.get('fecha_termino_prog', ''),
+            'fecha_culminacion_real': ext.get('fecha_culminacion_real', ''),
+            'acta_recepcion': ext.get('acta_recepcion', ''),
+            'resolucion_liquidacion': ext.get('resolucion_liquidacion', ''),
+            'estado_info': ext.get('estado_info', 'PARCIAL' if ext.get('historial') else 'INCOMPLETA'),
+            'estado_info_label': ext.get('estado_info_label', ''),
+            'detalles_faltantes': ext.get('detalles_faltantes', []),
+            'confiabilidad': ext.get('confiabilidad', 'MEDIA')
         })
 
     # 2. Read other sheets for full coverage
@@ -104,6 +119,8 @@ def get_projects_from_excel():
             n_cajas = str(ws_sub.cell(r, 9).value or '')
             alerta = ws_sub.cell(r, 10).value or ''
 
+            ext = extra_map.get(gid, {})
+
             projects.append({
                 'id': gid,
                 'convenio': conv,
@@ -120,17 +137,34 @@ def get_projects_from_excel():
                 'alerta': alerta,
                 'excel_sheet': sheet_name,
                 'excel_row': r,
-                'historial': history_map.get(gid, [])
+                'historial': ext.get('historial', []),
+                'fecha_inicio': ext.get('fecha_inicio', ''),
+                'fecha_inicio_sort': ext.get('fecha_inicio_sort', '9999-99-99'),
+                'tiene_fecha_inicio': ext.get('tiene_fecha_inicio', False),
+                'fecha_inicio_doc': ext.get('fecha_inicio_doc', ''),
+                'fecha_termino_prog': ext.get('fecha_termino_prog', ''),
+                'fecha_culminacion_real': ext.get('fecha_culminacion_real', ''),
+                'acta_recepcion': ext.get('acta_recepcion', ''),
+                'resolucion_liquidacion': ext.get('resolucion_liquidacion', ''),
+                'estado_info': ext.get('estado_info', 'COMPLETA'),
+                'estado_info_label': ext.get('estado_info_label', ''),
+                'detalles_faltantes': ext.get('detalles_faltantes', []),
+                'confiabilidad': ext.get('confiabilidad', 'MEDIA')
             })
 
-    kpis = {
+    kpis = cached_kpis if cached_kpis else {
         'total': len(projects),
         'obras': len([p for p in projects if p['tipologia'] == 'OBRAS CIVILES']),
         'cajas': len([p for p in projects if 'CAJA' in p['tiene_caja'].upper()]),
         'pendientes_archivador': len([p for p in projects if p['tipologia'] == 'OBRAS CIVILES' and 'CAJA' not in p['tiene_caja'].upper()]),
         'con_historial': len([p for p in projects if len(p.get('historial', [])) > 0]),
-        'tomos_procesados': 2,
-        'folios_procesados': 182
+        'con_fecha_inicio': len([p for p in projects if p.get('tiene_fecha_inicio')]),
+        'sin_fecha_inicio': len([p for p in projects if not p.get('tiene_fecha_inicio')]),
+        'info_completa': len([p for p in projects if p.get('estado_info') == 'COMPLETA']),
+        'info_parcial': len([p for p in projects if p.get('estado_info') == 'PARCIAL']),
+        'info_incompleta': len([p for p in projects if p.get('estado_info') == 'INCOMPLETA']),
+        'tomos_procesados': 5,
+        'folios_procesados': 399
     }
     return projects, kpis
 

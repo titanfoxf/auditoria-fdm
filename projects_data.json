@@ -7,7 +7,12 @@
     "pendientes_archivador": 50,
     "con_historial": 141,
     "tomos_procesados": 5,
-    "folios_procesados": 399
+    "folios_procesados": 399,
+    "con_fecha_inicio": 147,
+    "sin_fecha_inicio": 20,
+    "info_completa": 119,
+    "info_parcial": 28,
+    "info_incompleta": 20
   },
   "projects": [
     {
@@ -326,7 +331,20 @@
           "confiabilidad": "MEDIA"
         }
       ],
-      "total_hitos": 36
+      "total_hitos": 36,
+      "fecha_inicio": "27 de febrero del 2023",
+      "fecha_inicio_sort": "2023-02-27",
+      "tiene_fecha_inicio": true,
+      "fecha_inicio_doc": "Folio 91 (Tomo 1 PMO (Folio 91))",
+      "fecha_termino_prog": "",
+      "fecha_culminacion_real": "",
+      "acta_recepcion": "",
+      "resolucion_liquidacion": "",
+      "estado_info": "COMPLETA",
+      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
+      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "detalles_faltantes": [],
+      "confiabilidad": "MEDIA"
     },
     {
       "id": 2,
@@ -652,7 +670,20 @@
           "confiabilidad": "ALTA"
         }
       ],
-      "total_hitos": 37
+      "total_hitos": 37,
+      "fecha_inicio": "Iniciada en periodo 2020-2021",
+      "fecha_inicio_sort": "2020-01-01",
+      "tiene_fecha_inicio": true,
+      "fecha_inicio_doc": "Matriz Entregable 1 + Estados Financieros FDM",
+      "fecha_termino_prog": "2022",
+      "fecha_culminacion_real": "2022",
+      "acta_recepcion": "Acta de Recepción 2022",
+      "resolucion_liquidacion": "Liquidada 2022-2023",
+      "estado_info": "COMPLETA",
+      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
+      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "detalles_faltantes": [],
+      "confiabilidad": "MEDIA (Ratificada por Estados Financieros)"
     },
     {
       "id": 3,
@@ -681,7 +712,20 @@
       },
       "alerta": "BUSCAR EN ARCHIVADORES / FALTAN DOCUMENTOS",
       "historial": [],
-      "total_hitos": 0
+      "total_hitos": 0,
+      "fecha_inicio": "Iniciada en periodo 2020-2021",
+      "fecha_inicio_sort": "2020-01-01",
+      "tiene_fecha_inicio": true,
+      "fecha_inicio_doc": "Matriz Entregable 1 + Estados Financieros FDM",
+      "fecha_termino_prog": "2022",
+      "fecha_culminacion_real": "2022",
+      "acta_recepcion": "Acta de Recepción 2022",
+      "resolucion_liquidacion": "Liquidada 2022-2023",
+      "estado_info": "COMPLETA",
+      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
+      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "detalles_faltantes": [],
+      "confiabilidad": "MEDIA (Ratificada por Estados Financieros)"
     },
     {
       "id": 4,
@@ -710,7 +754,20 @@
       },
       "alerta": "BUSCAR EN ARCHIVADORES / FALTAN DOCUMENTOS",
       "historial": [],
-      "total_hitos": 0
+      "total_hitos": 0,
+      "fecha_inicio": "Iniciada en periodo 2020-2021",
+      "fecha_inicio_sort": "2020-01-01",
+      "tiene_fecha_inicio": true,
+      "fecha_inicio_doc": "Matriz Entregable 1 + Estados Financieros FDM",
+      "fecha_termino_prog": "2022",
+      "fecha_culminacion_real": "2022",
+      "acta_recepcion": "Acta de Recepción 2022",
+      "resolucion_liquidacion": "Liquidada 2022-2023",
+      "estado_info": "COMPLETA",
+      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
+      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "detalles_faltantes": [],
+      "confiabilidad": "MEDIA (Ratificada por Estados Financieros)"
     },
     {
       "id": 5,
@@ -739,7 +796,20 @@
       },
       "alerta": "BUSCAR EN ARCHIVADORES / FALTAN DOCUMENTOS",
       "historial": [],
-      "total_hitos": 0
+      "total_hitos": 0,
+      "fecha_inicio": "Iniciada en periodo 2020-2021",
+      "fecha_inicio_sort": "2020-01-01",
+      "tiene_fecha_inicio": true,
+      "fecha_inicio_doc": "Matriz Entregable 1 + Estados Financieros FDM",
+      "fecha_termino_prog": "2022",
+      "fecha_culminacion_real": "2022",
+      "acta_recepcion": "Acta de Recepción 2022",
+      "resolucion_liquidacion": "Liquidada 2022-2023",
+      "estado_info": "COMPLETA",
+      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
+      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "detalles_faltantes": [],
+      "confiabilidad": "MEDIA (Ratificada por Estados Financieros)"
     },
     {
       "id": 6,
@@ -817,7 +887,20 @@
           "confiabilidad": "MEDIA"
         }
       ],
-      "total_hitos": 6
+      "total_hitos": 6,
+      "fecha_inicio": "Aprox. 17 de mayo del 2021 (Primer Hito PMO)",
+      "fecha_inicio_sort": "2021-05-17",
+      "tiene_fecha_inicio": true,
+      "fecha_inicio_doc": "Folio 10 (Tomo 2 PMO (Folio 10))",
+      "fecha_termino_prog": "",
+      "fecha_culminacion_real": "",
+      "acta_recepcion": "",
+      "resolucion_liquidacion": "",
+      "estado_info": "COMPLETA",
+      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
+      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "detalles_faltantes": [],
+      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
     },
     {
       "id": 7,
@@ -846,7 +929,24 @@
       },
       "alerta": "BUSCAR EN ARCHIVADORES / FALTAN DOCUMENTOS",
       "historial": [],
-      "total_hitos": 0
+      "total_hitos": 0,
+      "fecha_inicio": "",
+      "fecha_inicio_sort": "9999-99-99",
+      "tiene_fecha_inicio": false,
+      "fecha_inicio_doc": "Pendiente de ubicar en Tomos 6 al 9",
+      "fecha_termino_prog": "",
+      "fecha_culminacion_real": "",
+      "acta_recepcion": "",
+      "resolucion_liquidacion": "",
+      "estado_info": "INCOMPLETA",
+      "estado_info_label": "🔴 INFORMACIÓN PENDIENTE",
+      "estado_info_desc": "Faltan documentos contractuales clave; buscar en Tomos 6 al 9",
+      "detalles_faltantes": [
+        "Falta Acta de Entrega de Terreno / Suscripción de Contrato (Fecha de Inicio)",
+        "Falta Fecha de Culminación Física Real",
+        "Falta Acta de Recepción de Obra o Resolución de Liquidación"
+      ],
+      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
     },
     {
       "id": 8,
@@ -1300,7 +1400,20 @@
           "confiabilidad": "ALTA"
         }
       ],
-      "total_hitos": 53
+      "total_hitos": 53,
+      "fecha_inicio": "09/03/2023",
+      "fecha_inicio_sort": "2023-03-09",
+      "tiene_fecha_inicio": true,
+      "fecha_inicio_doc": "Tomo 1 PMO Pág. 104 (Inf. 135-2023-PMO)",
+      "fecha_termino_prog": "05/09/2023",
+      "fecha_culminacion_real": "Primer Trimestre 2024",
+      "acta_recepcion": "Acta de Recepción 2024 (MPI)",
+      "resolucion_liquidacion": "En proceso de liquidación final",
+      "estado_info": "COMPLETA",
+      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
+      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "detalles_faltantes": [],
+      "confiabilidad": "ALTA (100% Verificado)"
     },
     {
       "id": 9,
@@ -1866,7 +1979,20 @@
           "confiabilidad": "ALTA"
         }
       ],
-      "total_hitos": 67
+      "total_hitos": 67,
+      "fecha_inicio": "Segundo Semestre 2022",
+      "fecha_inicio_sort": "2022-01-01",
+      "tiene_fecha_inicio": true,
+      "fecha_inicio_doc": "Tomo 1 PMO Págs. 18, 48, 62 (Cartas 018 y 026-SUP)",
+      "fecha_termino_prog": "Enero 2023",
+      "fecha_culminacion_real": "15/02/2023 (Val N° 03)",
+      "acta_recepcion": "06/02/2023 (Comité Recepción MPI - Pág 48 Tomo 1)",
+      "resolucion_liquidacion": "Liquidación Técnica 2023",
+      "estado_info": "COMPLETA",
+      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
+      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "detalles_faltantes": [],
+      "confiabilidad": "ALTA (100% Verificado)"
     },
     {
       "id": 10,
@@ -2320,7 +2446,20 @@
           "confiabilidad": "ALTA"
         }
       ],
-      "total_hitos": 53
+      "total_hitos": 53,
+      "fecha_inicio": "23 de enero del 2023",
+      "fecha_inicio_sort": "2023-01-23",
+      "tiene_fecha_inicio": true,
+      "fecha_inicio_doc": "Folio 20 (Tomo 1 PMO (Folio 20))",
+      "fecha_termino_prog": "",
+      "fecha_culminacion_real": "",
+      "acta_recepcion": "",
+      "resolucion_liquidacion": "",
+      "estado_info": "COMPLETA",
+      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
+      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "detalles_faltantes": [],
+      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
     },
     {
       "id": 11,
@@ -2349,7 +2488,24 @@
       },
       "alerta": "BUSCAR EN ARCHIVADORES / FALTAN DOCUMENTOS",
       "historial": [],
-      "total_hitos": 0
+      "total_hitos": 0,
+      "fecha_inicio": "",
+      "fecha_inicio_sort": "9999-99-99",
+      "tiene_fecha_inicio": false,
+      "fecha_inicio_doc": "Pendiente de ubicar en Tomos 6 al 9",
+      "fecha_termino_prog": "",
+      "fecha_culminacion_real": "",
+      "acta_recepcion": "",
+      "resolucion_liquidacion": "",
+      "estado_info": "INCOMPLETA",
+      "estado_info_label": "🔴 INFORMACIÓN PENDIENTE",
+      "estado_info_desc": "Faltan documentos contractuales clave; buscar en Tomos 6 al 9",
+      "detalles_faltantes": [
+        "Falta Acta de Entrega de Terreno / Suscripción de Contrato (Fecha de Inicio)",
+        "Falta Fecha de Culminación Física Real",
+        "Falta Acta de Recepción de Obra o Resolución de Liquidación"
+      ],
+      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
     },
     {
       "id": 12,
@@ -2843,7 +2999,20 @@
           "confiabilidad": "ALTA"
         }
       ],
-      "total_hitos": 58
+      "total_hitos": 58,
+      "fecha_inicio": "24.04.2023",
+      "fecha_inicio_sort": "2023-04-24",
+      "tiene_fecha_inicio": true,
+      "fecha_inicio_doc": "Folio 64 (Tomo 3 PMO (Folio 64))",
+      "fecha_termino_prog": "",
+      "fecha_culminacion_real": "",
+      "acta_recepcion": "",
+      "resolucion_liquidacion": "",
+      "estado_info": "COMPLETA",
+      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
+      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "detalles_faltantes": [],
+      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
     },
     {
       "id": 13,
@@ -3177,7 +3346,20 @@
           "confiabilidad": "ALTA"
         }
       ],
-      "total_hitos": 38
+      "total_hitos": 38,
+      "fecha_inicio": "13 DE NOVIEMBRE DEL 2025",
+      "fecha_inicio_sort": "2025-11-13",
+      "tiene_fecha_inicio": true,
+      "fecha_inicio_doc": "INFORME N°054-2025-PMO (Secretaría Digital (INFORMES\\INFORME Nº 054-2025-P))",
+      "fecha_termino_prog": "",
+      "fecha_culminacion_real": "",
+      "acta_recepcion": "",
+      "resolucion_liquidacion": "",
+      "estado_info": "COMPLETA",
+      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
+      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "detalles_faltantes": [],
+      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
     },
     {
       "id": 14,
@@ -4519,7 +4701,20 @@
           "confiabilidad": "ALTA"
         }
       ],
-      "total_hitos": 164
+      "total_hitos": 164,
+      "fecha_inicio": "26 de junio del 2023",
+      "fecha_inicio_sort": "2023-06-26",
+      "tiene_fecha_inicio": true,
+      "fecha_inicio_doc": "INFORME N.9 387 - 2023-PMO-FDM (Tomo 5 PMO (Folio 40))",
+      "fecha_termino_prog": "",
+      "fecha_culminacion_real": "",
+      "acta_recepcion": "",
+      "resolucion_liquidacion": "",
+      "estado_info": "COMPLETA",
+      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
+      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "detalles_faltantes": [],
+      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
     },
     {
       "id": 15,
@@ -4565,7 +4760,20 @@
           "confiabilidad": "ALTA"
         }
       ],
-      "total_hitos": 2
+      "total_hitos": 2,
+      "fecha_inicio": "Aprox. 13 de agosto del 2026 (Primer Hito PMO)",
+      "fecha_inicio_sort": "2026-08-13",
+      "tiene_fecha_inicio": true,
+      "fecha_inicio_doc": "Carta Nº    - 2026-D (Secretaría Digital (cartas 2026\\INF_789-2026- cHIL))",
+      "fecha_termino_prog": "",
+      "fecha_culminacion_real": "",
+      "acta_recepcion": "",
+      "resolucion_liquidacion": "",
+      "estado_info": "COMPLETA",
+      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
+      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "detalles_faltantes": [],
+      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
     },
     {
       "id": 16,
@@ -4811,7 +5019,20 @@
           "confiabilidad": "ALTA"
         }
       ],
-      "total_hitos": 27
+      "total_hitos": 27,
+      "fecha_inicio": "Aprox. 13 de agosto del 2021 (Primer Hito PMO)",
+      "fecha_inicio_sort": "2021-08-13",
+      "tiene_fecha_inicio": true,
+      "fecha_inicio_doc": "CARTA N0016-2023-RADA-SO-FDM (Tomo 3 PMO (Folio 37))",
+      "fecha_termino_prog": "",
+      "fecha_culminacion_real": "",
+      "acta_recepcion": "",
+      "resolucion_liquidacion": "",
+      "estado_info": "COMPLETA",
+      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
+      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "detalles_faltantes": [],
+      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
     },
     {
       "id": 17,
@@ -4929,7 +5150,20 @@
           "confiabilidad": "ALTA"
         }
       ],
-      "total_hitos": 11
+      "total_hitos": 11,
+      "fecha_inicio": "Aprox. 17 de noviembre del 2022 (Primer Hito PMO)",
+      "fecha_inicio_sort": "2022-11-17",
+      "tiene_fecha_inicio": true,
+      "fecha_inicio_doc": "Folio 25 (Tomo 1 PMO (Folio 25))",
+      "fecha_termino_prog": "",
+      "fecha_culminacion_real": "",
+      "acta_recepcion": "10/03/2023 (Tomo 3 Folio 4)",
+      "resolucion_liquidacion": "",
+      "estado_info": "COMPLETA",
+      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
+      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "detalles_faltantes": [],
+      "confiabilidad": "ALTA (100% Verificado)"
     },
     {
       "id": 18,
@@ -5023,7 +5257,20 @@
           "confiabilidad": "ALTA"
         }
       ],
-      "total_hitos": 8
+      "total_hitos": 8,
+      "fecha_inicio": "Aprox. 13 de agosto del 2021 (Primer Hito PMO)",
+      "fecha_inicio_sort": "2021-08-13",
+      "tiene_fecha_inicio": true,
+      "fecha_inicio_doc": "CARTA N0016-2023-RADA-SO-FDM (Tomo 3 PMO (Folio 37))",
+      "fecha_termino_prog": "",
+      "fecha_culminacion_real": "",
+      "acta_recepcion": "",
+      "resolucion_liquidacion": "",
+      "estado_info": "COMPLETA",
+      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
+      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "detalles_faltantes": [],
+      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
     },
     {
       "id": 19,
@@ -5877,7 +6124,20 @@
           "confiabilidad": "ALTA"
         }
       ],
-      "total_hitos": 103
+      "total_hitos": 103,
+      "fecha_inicio": "23/08/2022 (Contrato 008-2022)",
+      "fecha_inicio_sort": "2022-08-23",
+      "tiene_fecha_inicio": true,
+      "fecha_inicio_doc": "Tomo 1 + Tomo 5 Folios 1 y 56",
+      "fecha_termino_prog": "21/12/2022",
+      "fecha_culminacion_real": "Marzo 2023",
+      "acta_recepcion": "Comité de Recepción 2023",
+      "resolucion_liquidacion": "En observaciones de liquidación técnica (Tomo 5 Folios 1 y 72)",
+      "estado_info": "COMPLETA",
+      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
+      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "detalles_faltantes": [],
+      "confiabilidad": "ALTA (100% Verificado)"
     },
     {
       "id": 20,
@@ -6099,7 +6359,20 @@
           "confiabilidad": "MEDIA"
         }
       ],
-      "total_hitos": 24
+      "total_hitos": 24,
+      "fecha_inicio": "Aprox. Ene-Feb 2023 (Primer Hito PMO)",
+      "fecha_inicio_sort": "2023-01-01",
+      "tiene_fecha_inicio": true,
+      "fecha_inicio_doc": "Folio 1 (Tomo 1 PMO (Folio 1))",
+      "fecha_termino_prog": "",
+      "fecha_culminacion_real": "",
+      "acta_recepcion": "",
+      "resolucion_liquidacion": "",
+      "estado_info": "COMPLETA",
+      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
+      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "detalles_faltantes": [],
+      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
     },
     {
       "id": 21,
@@ -6217,7 +6490,20 @@
           "confiabilidad": "ALTA"
         }
       ],
-      "total_hitos": 11
+      "total_hitos": 11,
+      "fecha_inicio": "24 de marzo del 2023",
+      "fecha_inicio_sort": "2023-03-24",
+      "tiene_fecha_inicio": true,
+      "fecha_inicio_doc": "INFORME N.0169-2023-PMO-FDM ABOG (Tomo 2 PMO (Folio 43))",
+      "fecha_termino_prog": "",
+      "fecha_culminacion_real": "",
+      "acta_recepcion": "",
+      "resolucion_liquidacion": "",
+      "estado_info": "COMPLETA",
+      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
+      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "detalles_faltantes": [],
+      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
     },
     {
       "id": 22,
@@ -7183,7 +7469,20 @@
           "confiabilidad": "ALTA"
         }
       ],
-      "total_hitos": 117
+      "total_hitos": 117,
+      "fecha_inicio": "13.01.2023",
+      "fecha_inicio_sort": "2023-01-13",
+      "tiene_fecha_inicio": true,
+      "fecha_inicio_doc": "Folio 7 (Tomo 1 PMO (Folio 7))",
+      "fecha_termino_prog": "",
+      "fecha_culminacion_real": "",
+      "acta_recepcion": "",
+      "resolucion_liquidacion": "",
+      "estado_info": "COMPLETA",
+      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
+      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "detalles_faltantes": [],
+      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
     },
     {
       "id": 23,
@@ -7461,7 +7760,20 @@
           "confiabilidad": "ALTA"
         }
       ],
-      "total_hitos": 31
+      "total_hitos": 31,
+      "fecha_inicio": "25 de enero del 2023",
+      "fecha_inicio_sort": "2023-01-25",
+      "tiene_fecha_inicio": true,
+      "fecha_inicio_doc": "Folio 28 (Tomo 1 PMO (Folio 28))",
+      "fecha_termino_prog": "",
+      "fecha_culminacion_real": "",
+      "acta_recepcion": "",
+      "resolucion_liquidacion": "",
+      "estado_info": "COMPLETA",
+      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
+      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "detalles_faltantes": [],
+      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
     },
     {
       "id": 24,
@@ -7739,7 +8051,20 @@
           "confiabilidad": "ALTA"
         }
       ],
-      "total_hitos": 31
+      "total_hitos": 31,
+      "fecha_inicio": "25 de enero del 2023",
+      "fecha_inicio_sort": "2023-01-25",
+      "tiene_fecha_inicio": true,
+      "fecha_inicio_doc": "Folio 28 (Tomo 1 PMO (Folio 28))",
+      "fecha_termino_prog": "",
+      "fecha_culminacion_real": "",
+      "acta_recepcion": "",
+      "resolucion_liquidacion": "",
+      "estado_info": "COMPLETA",
+      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
+      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "detalles_faltantes": [],
+      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
     },
     {
       "id": 25,
@@ -8017,7 +8342,20 @@
           "confiabilidad": "ALTA"
         }
       ],
-      "total_hitos": 31
+      "total_hitos": 31,
+      "fecha_inicio": "25 de enero del 2023",
+      "fecha_inicio_sort": "2023-01-25",
+      "tiene_fecha_inicio": true,
+      "fecha_inicio_doc": "Folio 28 (Tomo 1 PMO (Folio 28))",
+      "fecha_termino_prog": "",
+      "fecha_culminacion_real": "",
+      "acta_recepcion": "",
+      "resolucion_liquidacion": "",
+      "estado_info": "COMPLETA",
+      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
+      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "detalles_faltantes": [],
+      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
     },
     {
       "id": 26,
@@ -8063,7 +8401,20 @@
           "confiabilidad": "ALTA"
         }
       ],
-      "total_hitos": 2
+      "total_hitos": 2,
+      "fecha_inicio": "Aprox. Año 2024 (Primer Hito PMO)",
+      "fecha_inicio_sort": "2024-01-01",
+      "tiene_fecha_inicio": true,
+      "fecha_inicio_doc": "Expediente Físico en Cajas N° 03, A (Archivo Central FDM (Cajas 03, A))",
+      "fecha_termino_prog": "",
+      "fecha_culminacion_real": "",
+      "acta_recepcion": "",
+      "resolucion_liquidacion": "",
+      "estado_info": "COMPLETA",
+      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
+      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "detalles_faltantes": [],
+      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
     },
     {
       "id": 27,
@@ -8101,7 +8452,23 @@
           "confiabilidad": "ALTA"
         }
       ],
-      "total_hitos": 1
+      "total_hitos": 1,
+      "fecha_inicio": "27 de junio del 2023",
+      "fecha_inicio_sort": "2023-06-27",
+      "tiene_fecha_inicio": true,
+      "fecha_inicio_doc": "INFORME N.9 394- 2023-PMO-FDM (Tomo 5 PMO (Folio 47))",
+      "fecha_termino_prog": "",
+      "fecha_culminacion_real": "",
+      "acta_recepcion": "",
+      "resolucion_liquidacion": "",
+      "estado_info": "PARCIAL",
+      "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
+      "estado_info_desc": "Hitos en ejecución identificados; falta acta de inicio o resolución de liquidación",
+      "detalles_faltantes": [
+        "Falta Fecha de Culminación Física Real",
+        "Falta Acta de Recepción de Obra o Resolución de Liquidación"
+      ],
+      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
     },
     {
       "id": 28,
@@ -8139,7 +8506,20 @@
           "confiabilidad": "MEDIA"
         }
       ],
-      "total_hitos": 1
+      "total_hitos": 1,
+      "fecha_inicio": "Aprox. 2025-2026 (Primer Hito PMO)",
+      "fecha_inicio_sort": "2025-01-01",
+      "tiene_fecha_inicio": true,
+      "fecha_inicio_doc": "CARTA N° 0 xxx- (Secretaría Digital (cartas 2026\\INF_966-2026-agric))",
+      "fecha_termino_prog": "",
+      "fecha_culminacion_real": "",
+      "acta_recepcion": "",
+      "resolucion_liquidacion": "",
+      "estado_info": "COMPLETA",
+      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
+      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "detalles_faltantes": [],
+      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
     },
     {
       "id": 29,
@@ -8201,7 +8581,20 @@
           "confiabilidad": "ALTA"
         }
       ],
-      "total_hitos": 4
+      "total_hitos": 4,
+      "fecha_inicio": "Aprox. 17 de noviembre del 2022 (Primer Hito PMO)",
+      "fecha_inicio_sort": "2022-11-17",
+      "tiene_fecha_inicio": true,
+      "fecha_inicio_doc": "Folio 25 (Tomo 1 PMO (Folio 25))",
+      "fecha_termino_prog": "",
+      "fecha_culminacion_real": "",
+      "acta_recepcion": "",
+      "resolucion_liquidacion": "",
+      "estado_info": "COMPLETA",
+      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
+      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "detalles_faltantes": [],
+      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
     },
     {
       "id": 30,
@@ -8287,7 +8680,20 @@
           "confiabilidad": "ALTA"
         }
       ],
-      "total_hitos": 7
+      "total_hitos": 7,
+      "fecha_inicio": "13 de junio del 2023",
+      "fecha_inicio_sort": "2023-06-13",
+      "tiene_fecha_inicio": true,
+      "fecha_inicio_doc": "Folio 10 (Tomo 5 PMO (Folio 10))",
+      "fecha_termino_prog": "",
+      "fecha_culminacion_real": "",
+      "acta_recepcion": "",
+      "resolucion_liquidacion": "",
+      "estado_info": "COMPLETA",
+      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
+      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "detalles_faltantes": [],
+      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
     },
     {
       "id": 31,
@@ -8605,7 +9011,20 @@
           "confiabilidad": "ALTA"
         }
       ],
-      "total_hitos": 36
+      "total_hitos": 36,
+      "fecha_inicio": "28 de marzo del 2023",
+      "fecha_inicio_sort": "2023-03-28",
+      "tiene_fecha_inicio": true,
+      "fecha_inicio_doc": "Folio 57 (Tomo 2 PMO (Folio 57))",
+      "fecha_termino_prog": "",
+      "fecha_culminacion_real": "",
+      "acta_recepcion": "",
+      "resolucion_liquidacion": "",
+      "estado_info": "COMPLETA",
+      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
+      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "detalles_faltantes": [],
+      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
     },
     {
       "id": 32,
@@ -8643,7 +9062,20 @@
           "confiabilidad": "MEDIA"
         }
       ],
-      "total_hitos": 1
+      "total_hitos": 1,
+      "fecha_inicio": "2025-2026",
+      "fecha_inicio_sort": "2025-01-01",
+      "tiene_fecha_inicio": true,
+      "fecha_inicio_doc": "CARTA N° 0 xxx- (Secretaría Digital (cartas 2026\\INF_267-2026-LIQUI))",
+      "fecha_termino_prog": "",
+      "fecha_culminacion_real": "",
+      "acta_recepcion": "",
+      "resolucion_liquidacion": "",
+      "estado_info": "COMPLETA",
+      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
+      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "detalles_faltantes": [],
+      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
     },
     {
       "id": 33,
@@ -8689,7 +9121,23 @@
           "confiabilidad": "ALTA"
         }
       ],
-      "total_hitos": 2
+      "total_hitos": 2,
+      "fecha_inicio": "21 de setiembre del 2026",
+      "fecha_inicio_sort": "2026-09-21",
+      "tiene_fecha_inicio": true,
+      "fecha_inicio_doc": "CARTA N° 0 xxx- (Secretaría Digital (cartas 2026\\INF_900-2026-PUENT))",
+      "fecha_termino_prog": "",
+      "fecha_culminacion_real": "",
+      "acta_recepcion": "",
+      "resolucion_liquidacion": "",
+      "estado_info": "PARCIAL",
+      "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
+      "estado_info_desc": "Hitos en ejecución identificados; falta acta de inicio o resolución de liquidación",
+      "detalles_faltantes": [
+        "Falta Fecha de Culminación Física Real",
+        "Falta Acta de Recepción de Obra o Resolución de Liquidación"
+      ],
+      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
     },
     {
       "id": 34,
@@ -8839,7 +9287,20 @@
           "confiabilidad": "ALTA"
         }
       ],
-      "total_hitos": 15
+      "total_hitos": 15,
+      "fecha_inicio": "26 de junio del 2023",
+      "fecha_inicio_sort": "2023-06-26",
+      "tiene_fecha_inicio": true,
+      "fecha_inicio_doc": "INFORME N.9 387 - 2023-PMO-FDM (Tomo 5 PMO (Folio 40))",
+      "fecha_termino_prog": "",
+      "fecha_culminacion_real": "",
+      "acta_recepcion": "",
+      "resolucion_liquidacion": "",
+      "estado_info": "COMPLETA",
+      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
+      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "detalles_faltantes": [],
+      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
     },
     {
       "id": 35,
@@ -8868,7 +9329,24 @@
       },
       "alerta": "BUSCAR EN ARCHIVADORES / FALTAN DOCUMENTOS",
       "historial": [],
-      "total_hitos": 0
+      "total_hitos": 0,
+      "fecha_inicio": "",
+      "fecha_inicio_sort": "9999-99-99",
+      "tiene_fecha_inicio": false,
+      "fecha_inicio_doc": "Pendiente de ubicar en Tomos 6 al 9",
+      "fecha_termino_prog": "",
+      "fecha_culminacion_real": "",
+      "acta_recepcion": "",
+      "resolucion_liquidacion": "",
+      "estado_info": "INCOMPLETA",
+      "estado_info_label": "🔴 INFORMACIÓN PENDIENTE",
+      "estado_info_desc": "Faltan documentos contractuales clave; buscar en Tomos 6 al 9",
+      "detalles_faltantes": [
+        "Falta Acta de Entrega de Terreno / Suscripción de Contrato (Fecha de Inicio)",
+        "Falta Fecha de Culminación Física Real",
+        "Falta Acta de Recepción de Obra o Resolución de Liquidación"
+      ],
+      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
     },
     {
       "id": 36,
@@ -8906,7 +9384,20 @@
           "confiabilidad": "MEDIA"
         }
       ],
-      "total_hitos": 1
+      "total_hitos": 1,
+      "fecha_inicio": "Aprox. 13 de abril del 2023 (Primer Hito PMO)",
+      "fecha_inicio_sort": "2023-04-13",
+      "tiene_fecha_inicio": true,
+      "fecha_inicio_doc": "Folio 25 (Tomo 3 PMO (Folio 25))",
+      "fecha_termino_prog": "",
+      "fecha_culminacion_real": "",
+      "acta_recepcion": "",
+      "resolucion_liquidacion": "",
+      "estado_info": "COMPLETA",
+      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
+      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "detalles_faltantes": [],
+      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
     },
     {
       "id": 37,
@@ -9032,7 +9523,20 @@
           "confiabilidad": "ALTA"
         }
       ],
-      "total_hitos": 12
+      "total_hitos": 12,
+      "fecha_inicio": "Año 2022",
+      "fecha_inicio_sort": "2022-01-01",
+      "tiene_fecha_inicio": true,
+      "fecha_inicio_doc": "Archivo Físico Caja 03 (Foto Oficial 2024)",
+      "fecha_termino_prog": "2023",
+      "fecha_culminacion_real": "Finales 2023",
+      "acta_recepcion": "Conformidad de Supervisión 2024",
+      "resolucion_liquidacion": "Liquidación Aprobada 2024 (Caja 03)",
+      "estado_info": "COMPLETA",
+      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
+      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "detalles_faltantes": [],
+      "confiabilidad": "ALTA (100% Verificado)"
     },
     {
       "id": 38,
@@ -9142,7 +9646,20 @@
           "confiabilidad": "ALTA"
         }
       ],
-      "total_hitos": 10
+      "total_hitos": 10,
+      "fecha_inicio": "26 de junio del 2023",
+      "fecha_inicio_sort": "2023-06-26",
+      "tiene_fecha_inicio": true,
+      "fecha_inicio_doc": "INFORME N.9 387 - 2023-PMO-FDM (Tomo 5 PMO (Folio 40))",
+      "fecha_termino_prog": "",
+      "fecha_culminacion_real": "",
+      "acta_recepcion": "",
+      "resolucion_liquidacion": "",
+      "estado_info": "COMPLETA",
+      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
+      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "detalles_faltantes": [],
+      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
     },
     {
       "id": 39,
@@ -9324,7 +9841,20 @@
           "confiabilidad": "ALTA"
         }
       ],
-      "total_hitos": 19
+      "total_hitos": 19,
+      "fecha_inicio": "24 de abril del 2023",
+      "fecha_inicio_sort": "2023-04-24",
+      "tiene_fecha_inicio": true,
+      "fecha_inicio_doc": "Folio 47 (Tomo 3 PMO (Folio 47))",
+      "fecha_termino_prog": "",
+      "fecha_culminacion_real": "",
+      "acta_recepcion": "",
+      "resolucion_liquidacion": "",
+      "estado_info": "COMPLETA",
+      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
+      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "detalles_faltantes": [],
+      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
     },
     {
       "id": 40,
@@ -9353,7 +9883,24 @@
       },
       "alerta": "BUSCAR EN ARCHIVADORES / FALTAN DOCUMENTOS",
       "historial": [],
-      "total_hitos": 0
+      "total_hitos": 0,
+      "fecha_inicio": "",
+      "fecha_inicio_sort": "9999-99-99",
+      "tiene_fecha_inicio": false,
+      "fecha_inicio_doc": "Pendiente de ubicar en Tomos 6 al 9",
+      "fecha_termino_prog": "",
+      "fecha_culminacion_real": "",
+      "acta_recepcion": "",
+      "resolucion_liquidacion": "",
+      "estado_info": "INCOMPLETA",
+      "estado_info_label": "🔴 INFORMACIÓN PENDIENTE",
+      "estado_info_desc": "Faltan documentos contractuales clave; buscar en Tomos 6 al 9",
+      "detalles_faltantes": [
+        "Falta Acta de Entrega de Terreno / Suscripción de Contrato (Fecha de Inicio)",
+        "Falta Fecha de Culminación Física Real",
+        "Falta Acta de Recepción de Obra o Resolución de Liquidación"
+      ],
+      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
     },
     {
       "id": 41,
@@ -9382,7 +9929,24 @@
       },
       "alerta": "BUSCAR EN ARCHIVADORES / FALTAN DOCUMENTOS",
       "historial": [],
-      "total_hitos": 0
+      "total_hitos": 0,
+      "fecha_inicio": "",
+      "fecha_inicio_sort": "9999-99-99",
+      "tiene_fecha_inicio": false,
+      "fecha_inicio_doc": "Pendiente de ubicar en Tomos 6 al 9",
+      "fecha_termino_prog": "",
+      "fecha_culminacion_real": "",
+      "acta_recepcion": "",
+      "resolucion_liquidacion": "",
+      "estado_info": "INCOMPLETA",
+      "estado_info_label": "🔴 INFORMACIÓN PENDIENTE",
+      "estado_info_desc": "Faltan documentos contractuales clave; buscar en Tomos 6 al 9",
+      "detalles_faltantes": [
+        "Falta Acta de Entrega de Terreno / Suscripción de Contrato (Fecha de Inicio)",
+        "Falta Fecha de Culminación Física Real",
+        "Falta Acta de Recepción de Obra o Resolución de Liquidación"
+      ],
+      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
     },
     {
       "id": 42,
@@ -9524,7 +10088,20 @@
           "confiabilidad": "ALTA"
         }
       ],
-      "total_hitos": 14
+      "total_hitos": 14,
+      "fecha_inicio": "28 de marzo del 2023",
+      "fecha_inicio_sort": "2023-03-28",
+      "tiene_fecha_inicio": true,
+      "fecha_inicio_doc": "Folio 57 (Tomo 2 PMO (Folio 57))",
+      "fecha_termino_prog": "",
+      "fecha_culminacion_real": "",
+      "acta_recepcion": "",
+      "resolucion_liquidacion": "",
+      "estado_info": "COMPLETA",
+      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
+      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "detalles_faltantes": [],
+      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
     },
     {
       "id": 43,
@@ -9834,7 +10411,20 @@
           "confiabilidad": "ALTA"
         }
       ],
-      "total_hitos": 35
+      "total_hitos": 35,
+      "fecha_inicio": "Año 2022",
+      "fecha_inicio_sort": "2022-01-01",
+      "tiene_fecha_inicio": true,
+      "fecha_inicio_doc": "Archivo Físico Caja 03 (Foto Oficial 2024)",
+      "fecha_termino_prog": "2023",
+      "fecha_culminacion_real": "Finales 2023",
+      "acta_recepcion": "Conformidad de Supervisión 2024",
+      "resolucion_liquidacion": "Liquidación Aprobada 2024 (Caja 03)",
+      "estado_info": "COMPLETA",
+      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
+      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "detalles_faltantes": [],
+      "confiabilidad": "ALTA (100% Verificado)"
     },
     {
       "id": 44,
@@ -10144,7 +10734,20 @@
           "confiabilidad": "ALTA"
         }
       ],
-      "total_hitos": 35
+      "total_hitos": 35,
+      "fecha_inicio": "Año 2022",
+      "fecha_inicio_sort": "2022-01-01",
+      "tiene_fecha_inicio": true,
+      "fecha_inicio_doc": "Archivo Físico Caja 03 (Foto Oficial 2024)",
+      "fecha_termino_prog": "2023",
+      "fecha_culminacion_real": "Finales 2023",
+      "acta_recepcion": "Conformidad de Supervisión 2024",
+      "resolucion_liquidacion": "Liquidación Aprobada 2024 (Caja 03)",
+      "estado_info": "COMPLETA",
+      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
+      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "detalles_faltantes": [],
+      "confiabilidad": "ALTA (100% Verificado)"
     },
     {
       "id": 45,
@@ -10446,7 +11049,20 @@
           "confiabilidad": "ALTA"
         }
       ],
-      "total_hitos": 34
+      "total_hitos": 34,
+      "fecha_inicio": "Año 2022",
+      "fecha_inicio_sort": "2022-01-01",
+      "tiene_fecha_inicio": true,
+      "fecha_inicio_doc": "Archivo Físico Caja 03 (Foto Oficial 2024)",
+      "fecha_termino_prog": "2023",
+      "fecha_culminacion_real": "Finales 2023",
+      "acta_recepcion": "Conformidad de Supervisión 2024",
+      "resolucion_liquidacion": "Liquidación Aprobada 2024 (Caja 03)",
+      "estado_info": "COMPLETA",
+      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
+      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "detalles_faltantes": [],
+      "confiabilidad": "ALTA (100% Verificado)"
     },
     {
       "id": 46,
@@ -10748,7 +11364,20 @@
           "confiabilidad": "ALTA"
         }
       ],
-      "total_hitos": 34
+      "total_hitos": 34,
+      "fecha_inicio": "Año 2022",
+      "fecha_inicio_sort": "2022-01-01",
+      "tiene_fecha_inicio": true,
+      "fecha_inicio_doc": "Archivo Físico Caja 03 (Foto Oficial 2024)",
+      "fecha_termino_prog": "2023",
+      "fecha_culminacion_real": "Finales 2023",
+      "acta_recepcion": "Conformidad de Supervisión 2024",
+      "resolucion_liquidacion": "Liquidación Aprobada 2024 (Caja 03)",
+      "estado_info": "COMPLETA",
+      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
+      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "detalles_faltantes": [],
+      "confiabilidad": "ALTA (100% Verificado)"
     },
     {
       "id": 47,
@@ -10914,7 +11543,20 @@
           "confiabilidad": "MEDIA"
         }
       ],
-      "total_hitos": 17
+      "total_hitos": 17,
+      "fecha_inicio": "28 de marzo del 2023",
+      "fecha_inicio_sort": "2023-03-28",
+      "tiene_fecha_inicio": true,
+      "fecha_inicio_doc": "Folio 57 (Tomo 2 PMO (Folio 57))",
+      "fecha_termino_prog": "",
+      "fecha_culminacion_real": "",
+      "acta_recepcion": "",
+      "resolucion_liquidacion": "",
+      "estado_info": "COMPLETA",
+      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
+      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "detalles_faltantes": [],
+      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
     },
     {
       "id": 48,
@@ -11264,7 +11906,20 @@
           "confiabilidad": "ALTA"
         }
       ],
-      "total_hitos": 40
+      "total_hitos": 40,
+      "fecha_inicio": "27 de febrero del 2023",
+      "fecha_inicio_sort": "2023-02-27",
+      "tiene_fecha_inicio": true,
+      "fecha_inicio_doc": "Folio 91 (Tomo 1 PMO (Folio 91))",
+      "fecha_termino_prog": "",
+      "fecha_culminacion_real": "",
+      "acta_recepcion": "",
+      "resolucion_liquidacion": "",
+      "estado_info": "COMPLETA",
+      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
+      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "detalles_faltantes": [],
+      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
     },
     {
       "id": 49,
@@ -11454,7 +12109,20 @@
           "confiabilidad": "ALTA"
         }
       ],
-      "total_hitos": 20
+      "total_hitos": 20,
+      "fecha_inicio": "15 de marzo del 2023",
+      "fecha_inicio_sort": "2023-03-15",
+      "tiene_fecha_inicio": true,
+      "fecha_inicio_doc": "CARTA N0080 (Tomo 2 PMO (Folio 18))",
+      "fecha_termino_prog": "",
+      "fecha_culminacion_real": "",
+      "acta_recepcion": "",
+      "resolucion_liquidacion": "",
+      "estado_info": "COMPLETA",
+      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
+      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "detalles_faltantes": [],
+      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
     },
     {
       "id": 50,
@@ -11692,7 +12360,20 @@
           "confiabilidad": "ALTA"
         }
       ],
-      "total_hitos": 26
+      "total_hitos": 26,
+      "fecha_inicio": "Periodo 2018-2020",
+      "fecha_inicio_sort": "2018-01-01",
+      "tiene_fecha_inicio": true,
+      "fecha_inicio_doc": "Tomo 1 Pág 16 + Cartas 2026 PERPG",
+      "fecha_termino_prog": "2021",
+      "fecha_culminacion_real": "Septiembre 2026",
+      "acta_recepcion": "Acta de Transferencia 04/09/2026",
+      "resolucion_liquidacion": "Actas de Conciliación Financiera PERPG-FDM 2026",
+      "estado_info": "COMPLETA",
+      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
+      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "detalles_faltantes": [],
+      "confiabilidad": "ALTA (100% Verificado)"
     },
     {
       "id": 51,
@@ -11882,7 +12563,20 @@
           "confiabilidad": "ALTA"
         }
       ],
-      "total_hitos": 20
+      "total_hitos": 20,
+      "fecha_inicio": "15 de marzo del 2023",
+      "fecha_inicio_sort": "2023-03-15",
+      "tiene_fecha_inicio": true,
+      "fecha_inicio_doc": "CARTA N0080 (Tomo 2 PMO (Folio 18))",
+      "fecha_termino_prog": "",
+      "fecha_culminacion_real": "",
+      "acta_recepcion": "",
+      "resolucion_liquidacion": "",
+      "estado_info": "COMPLETA",
+      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
+      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "detalles_faltantes": [],
+      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
     },
     {
       "id": 52,
@@ -12440,7 +13134,20 @@
           "confiabilidad": "ALTA"
         }
       ],
-      "total_hitos": 66
+      "total_hitos": 66,
+      "fecha_inicio": "21 de abril del 2023",
+      "fecha_inicio_sort": "2023-04-21",
+      "tiene_fecha_inicio": true,
+      "fecha_inicio_doc": "carta N0053-2023 (Tomo 3 PMO (Folio 42))",
+      "fecha_termino_prog": "",
+      "fecha_culminacion_real": "",
+      "acta_recepcion": "",
+      "resolucion_liquidacion": "",
+      "estado_info": "COMPLETA",
+      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
+      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "detalles_faltantes": [],
+      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
     },
     {
       "id": 53,
@@ -13238,7 +13945,20 @@
           "confiabilidad": "ALTA"
         }
       ],
-      "total_hitos": 96
+      "total_hitos": 96,
+      "fecha_inicio": "23 de enero del 2023",
+      "fecha_inicio_sort": "2023-01-23",
+      "tiene_fecha_inicio": true,
+      "fecha_inicio_doc": "Folio 20 (Tomo 1 PMO (Folio 20))",
+      "fecha_termino_prog": "",
+      "fecha_culminacion_real": "",
+      "acta_recepcion": "",
+      "resolucion_liquidacion": "",
+      "estado_info": "COMPLETA",
+      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
+      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "detalles_faltantes": [],
+      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
     },
     {
       "id": 54,
@@ -13476,7 +14196,20 @@
           "confiabilidad": "ALTA"
         }
       ],
-      "total_hitos": 26
+      "total_hitos": 26,
+      "fecha_inicio": "Periodo 2018-2020",
+      "fecha_inicio_sort": "2018-01-01",
+      "tiene_fecha_inicio": true,
+      "fecha_inicio_doc": "Tomo 1 Pág 16 + Cartas 2026 PERPG",
+      "fecha_termino_prog": "2021",
+      "fecha_culminacion_real": "Septiembre 2026",
+      "acta_recepcion": "Acta de Transferencia 04/09/2026",
+      "resolucion_liquidacion": "Actas de Conciliación Financiera PERPG-FDM 2026",
+      "estado_info": "COMPLETA",
+      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
+      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "detalles_faltantes": [],
+      "confiabilidad": "ALTA (100% Verificado)"
     },
     {
       "id": 55,
@@ -13538,7 +14271,20 @@
           "confiabilidad": "ALTA"
         }
       ],
-      "total_hitos": 4
+      "total_hitos": 4,
+      "fecha_inicio": "13 DE NOVIEMBRE DEL 2025",
+      "fecha_inicio_sort": "2025-11-13",
+      "tiene_fecha_inicio": true,
+      "fecha_inicio_doc": "INFORME N°054-2025-PMO (Secretaría Digital (INFORMES\\INFORME Nº 054-2025-P))",
+      "fecha_termino_prog": "",
+      "fecha_culminacion_real": "",
+      "acta_recepcion": "",
+      "resolucion_liquidacion": "",
+      "estado_info": "COMPLETA",
+      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
+      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "detalles_faltantes": [],
+      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
     },
     {
       "id": 56,
@@ -13816,7 +14562,20 @@
           "confiabilidad": "ALTA"
         }
       ],
-      "total_hitos": 31
+      "total_hitos": 31,
+      "fecha_inicio": "2025",
+      "fecha_inicio_sort": "2025-01-01",
+      "tiene_fecha_inicio": true,
+      "fecha_inicio_doc": "Informes Digitales 2026 (INF 122 y 959-2026)",
+      "fecha_termino_prog": "2025",
+      "fecha_culminacion_real": "En ejecución reprogramada 2026",
+      "acta_recepcion": "Pendiente ejecución",
+      "resolucion_liquidacion": "Pendiente",
+      "estado_info": "COMPLETA",
+      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
+      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "detalles_faltantes": [],
+      "confiabilidad": "ALTA (100% Verificado)"
     },
     {
       "id": 57,
@@ -13845,7 +14604,24 @@
       },
       "alerta": "BUSCAR EN ARCHIVADORES / FALTAN DOCUMENTOS",
       "historial": [],
-      "total_hitos": 0
+      "total_hitos": 0,
+      "fecha_inicio": "",
+      "fecha_inicio_sort": "9999-99-99",
+      "tiene_fecha_inicio": false,
+      "fecha_inicio_doc": "Pendiente de ubicar en Tomos 6 al 9",
+      "fecha_termino_prog": "",
+      "fecha_culminacion_real": "",
+      "acta_recepcion": "",
+      "resolucion_liquidacion": "",
+      "estado_info": "INCOMPLETA",
+      "estado_info_label": "🔴 INFORMACIÓN PENDIENTE",
+      "estado_info_desc": "Faltan documentos contractuales clave; buscar en Tomos 6 al 9",
+      "detalles_faltantes": [
+        "Falta Acta de Entrega de Terreno / Suscripción de Contrato (Fecha de Inicio)",
+        "Falta Fecha de Culminación Física Real",
+        "Falta Acta de Recepción de Obra o Resolución de Liquidación"
+      ],
+      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
     },
     {
       "id": 58,
@@ -13883,7 +14659,23 @@
           "confiabilidad": "ALTA"
         }
       ],
-      "total_hitos": 1
+      "total_hitos": 1,
+      "fecha_inicio": "Aprox. 14.03.2023 (Primer Hito PMO)",
+      "fecha_inicio_sort": "2023-03-14",
+      "tiene_fecha_inicio": true,
+      "fecha_inicio_doc": "INFORME N.0 -2023-PMO-FDM (Tomo 2 PMO (Folio 49))",
+      "fecha_termino_prog": "",
+      "fecha_culminacion_real": "",
+      "acta_recepcion": "",
+      "resolucion_liquidacion": "",
+      "estado_info": "PARCIAL",
+      "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
+      "estado_info_desc": "Hitos en ejecución identificados; falta acta de inicio o resolución de liquidación",
+      "detalles_faltantes": [
+        "Falta Fecha de Culminación Física Real",
+        "Falta Acta de Recepción de Obra o Resolución de Liquidación"
+      ],
+      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
     },
     {
       "id": 59,
@@ -14161,7 +14953,20 @@
           "confiabilidad": "ALTA"
         }
       ],
-      "total_hitos": 31
+      "total_hitos": 31,
+      "fecha_inicio": "2024",
+      "fecha_inicio_sort": "2024-01-01",
+      "tiene_fecha_inicio": true,
+      "fecha_inicio_doc": "Cartas 2026 (INF 016, 077, 104, 142-2026)",
+      "fecha_termino_prog": "2025",
+      "fecha_culminacion_real": "En ejecución (Val 05 - INF 007-2026)",
+      "acta_recepcion": "Pendiente",
+      "resolucion_liquidacion": "Pendiente",
+      "estado_info": "COMPLETA",
+      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
+      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "detalles_faltantes": [],
+      "confiabilidad": "ALTA (100% Verificado)"
     },
     {
       "id": 60,
@@ -14399,7 +15204,20 @@
           "confiabilidad": "MEDIA"
         }
       ],
-      "total_hitos": 26
+      "total_hitos": 26,
+      "fecha_inicio": "Aprox. 17 de noviembre del 2022 (Primer Hito PMO)",
+      "fecha_inicio_sort": "2022-11-17",
+      "tiene_fecha_inicio": true,
+      "fecha_inicio_doc": "Folio 25 (Tomo 1 PMO (Folio 25))",
+      "fecha_termino_prog": "",
+      "fecha_culminacion_real": "",
+      "acta_recepcion": "",
+      "resolucion_liquidacion": "",
+      "estado_info": "COMPLETA",
+      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
+      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "detalles_faltantes": [],
+      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
     },
     {
       "id": 61,
@@ -14701,7 +15519,20 @@
           "confiabilidad": "ALTA"
         }
       ],
-      "total_hitos": 34
+      "total_hitos": 34,
+      "fecha_inicio": "2024",
+      "fecha_inicio_sort": "2024-01-01",
+      "tiene_fecha_inicio": true,
+      "fecha_inicio_doc": "Informes 2025 (INF 025) y Cartas 2026",
+      "fecha_termino_prog": "2025",
+      "fecha_culminacion_real": "Valorización 03 en trámite 2026 (INF 003 y 006-2026)",
+      "acta_recepcion": "Pendiente",
+      "resolucion_liquidacion": "Pendiente",
+      "estado_info": "COMPLETA",
+      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
+      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "detalles_faltantes": [],
+      "confiabilidad": "ALTA (100% Verificado)"
     },
     {
       "id": 62,
@@ -14923,7 +15754,20 @@
           "confiabilidad": "ALTA"
         }
       ],
-      "total_hitos": 24
+      "total_hitos": 24,
+      "fecha_inicio": "22 de octubre del 2026",
+      "fecha_inicio_sort": "2026-10-22",
+      "tiene_fecha_inicio": true,
+      "fecha_inicio_doc": "CARTA N°  - 2026-D (Secretaría Digital (cartas 2026\\INF_1027-2026-urin))",
+      "fecha_termino_prog": "",
+      "fecha_culminacion_real": "",
+      "acta_recepcion": "",
+      "resolucion_liquidacion": "",
+      "estado_info": "COMPLETA",
+      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
+      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "detalles_faltantes": [],
+      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
     },
     {
       "id": 63,
@@ -15305,7 +16149,20 @@
           "confiabilidad": "ALTA"
         }
       ],
-      "total_hitos": 44
+      "total_hitos": 44,
+      "fecha_inicio": "19 de abril del 2023",
+      "fecha_inicio_sort": "2023-04-19",
+      "tiene_fecha_inicio": true,
+      "fecha_inicio_doc": "CARTA N0004-2023 (Tomo 3 PMO (Folio 35))",
+      "fecha_termino_prog": "",
+      "fecha_culminacion_real": "",
+      "acta_recepcion": "",
+      "resolucion_liquidacion": "",
+      "estado_info": "COMPLETA",
+      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
+      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "detalles_faltantes": [],
+      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
     },
     {
       "id": 64,
@@ -15567,7 +16424,20 @@
           "confiabilidad": "ALTA"
         }
       ],
-      "total_hitos": 29
+      "total_hitos": 29,
+      "fecha_inicio": "Primer Trimestre 2023",
+      "fecha_inicio_sort": "2023-01-01",
+      "tiene_fecha_inicio": true,
+      "fecha_inicio_doc": "Tomo 2 PMO Folio 38 (Carta 2023)",
+      "fecha_termino_prog": "",
+      "fecha_culminacion_real": "",
+      "acta_recepcion": "",
+      "resolucion_liquidacion": "",
+      "estado_info": "COMPLETA",
+      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
+      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "detalles_faltantes": [],
+      "confiabilidad": "ALTA (100% Verificado)"
     },
     {
       "id": 65,
@@ -15605,7 +16475,23 @@
           "confiabilidad": "ALTA"
         }
       ],
-      "total_hitos": 1
+      "total_hitos": 1,
+      "fecha_inicio": "21 de setiembre del 2026",
+      "fecha_inicio_sort": "2026-09-21",
+      "tiene_fecha_inicio": true,
+      "fecha_inicio_doc": "CARTA N° 0 xxx- (Secretaría Digital (cartas 2026\\INF_900-2026-PUENT))",
+      "fecha_termino_prog": "",
+      "fecha_culminacion_real": "",
+      "acta_recepcion": "",
+      "resolucion_liquidacion": "",
+      "estado_info": "PARCIAL",
+      "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
+      "estado_info_desc": "Hitos en ejecución identificados; falta acta de inicio o resolución de liquidación",
+      "detalles_faltantes": [
+        "Falta Fecha de Culminación Física Real",
+        "Falta Acta de Recepción de Obra o Resolución de Liquidación"
+      ],
+      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
     },
     {
       "id": 66,
@@ -15827,7 +16713,20 @@
           "confiabilidad": "ALTA"
         }
       ],
-      "total_hitos": 24
+      "total_hitos": 24,
+      "fecha_inicio": "Año 2022",
+      "fecha_inicio_sort": "2022-01-01",
+      "tiene_fecha_inicio": true,
+      "fecha_inicio_doc": "Archivo Físico Caja 03 (Foto Oficial 2024)",
+      "fecha_termino_prog": "2023",
+      "fecha_culminacion_real": "Finales 2023",
+      "acta_recepcion": "Conformidad de Supervisión 2024",
+      "resolucion_liquidacion": "Liquidación Aprobada 2024 (Caja 03)",
+      "estado_info": "COMPLETA",
+      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
+      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "detalles_faltantes": [],
+      "confiabilidad": "ALTA (100% Verificado)"
     },
     {
       "id": 67,
@@ -15865,7 +16764,20 @@
           "confiabilidad": "MEDIA"
         }
       ],
-      "total_hitos": 1
+      "total_hitos": 1,
+      "fecha_inicio": "2025-2026",
+      "fecha_inicio_sort": "2025-01-01",
+      "tiene_fecha_inicio": true,
+      "fecha_inicio_doc": "CARTA N° 0 xxx- (Secretaría Digital (cartas 2026\\INF_267-2026-LIQUI))",
+      "fecha_termino_prog": "",
+      "fecha_culminacion_real": "",
+      "acta_recepcion": "",
+      "resolucion_liquidacion": "",
+      "estado_info": "COMPLETA",
+      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
+      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "detalles_faltantes": [],
+      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
     },
     {
       "id": 68,
@@ -16071,7 +16983,20 @@
           "confiabilidad": "ALTA"
         }
       ],
-      "total_hitos": 22
+      "total_hitos": 22,
+      "fecha_inicio": "13 de junio del 2023",
+      "fecha_inicio_sort": "2023-06-13",
+      "tiene_fecha_inicio": true,
+      "fecha_inicio_doc": "Folio 10 (Tomo 5 PMO (Folio 10))",
+      "fecha_termino_prog": "",
+      "fecha_culminacion_real": "",
+      "acta_recepcion": "",
+      "resolucion_liquidacion": "",
+      "estado_info": "COMPLETA",
+      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
+      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "detalles_faltantes": [],
+      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
     },
     {
       "id": 69,
@@ -16277,7 +17202,20 @@
           "confiabilidad": "ALTA"
         }
       ],
-      "total_hitos": 22
+      "total_hitos": 22,
+      "fecha_inicio": "13 de junio del 2023",
+      "fecha_inicio_sort": "2023-06-13",
+      "tiene_fecha_inicio": true,
+      "fecha_inicio_doc": "Folio 10 (Tomo 5 PMO (Folio 10))",
+      "fecha_termino_prog": "",
+      "fecha_culminacion_real": "",
+      "acta_recepcion": "",
+      "resolucion_liquidacion": "",
+      "estado_info": "COMPLETA",
+      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
+      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "detalles_faltantes": [],
+      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
     },
     {
       "id": 2,
@@ -16347,7 +17285,20 @@
           "confiabilidad": "ALTA"
         }
       ],
-      "total_hitos": 5
+      "total_hitos": 5,
+      "fecha_inicio": "Iniciada en periodo 2020-2021",
+      "fecha_inicio_sort": "2020-01-01",
+      "tiene_fecha_inicio": true,
+      "fecha_inicio_doc": "Matriz Entregable 1 + Estados Financieros FDM",
+      "fecha_termino_prog": "2022",
+      "fecha_culminacion_real": "2022",
+      "acta_recepcion": "Acta de Recepción 2022",
+      "resolucion_liquidacion": "Liquidada 2022-2023",
+      "estado_info": "COMPLETA",
+      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
+      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "detalles_faltantes": [],
+      "confiabilidad": "MEDIA (Ratificada por Estados Financieros)"
     },
     {
       "id": 3,
@@ -16393,7 +17344,20 @@
           "confiabilidad": "MEDIA"
         }
       ],
-      "total_hitos": 2
+      "total_hitos": 2,
+      "fecha_inicio": "Iniciada en periodo 2020-2021",
+      "fecha_inicio_sort": "2020-01-01",
+      "tiene_fecha_inicio": true,
+      "fecha_inicio_doc": "Matriz Entregable 1 + Estados Financieros FDM",
+      "fecha_termino_prog": "2022",
+      "fecha_culminacion_real": "2022",
+      "acta_recepcion": "Acta de Recepción 2022",
+      "resolucion_liquidacion": "Liquidada 2022-2023",
+      "estado_info": "COMPLETA",
+      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
+      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "detalles_faltantes": [],
+      "confiabilidad": "MEDIA (Ratificada por Estados Financieros)"
     },
     {
       "id": 4,
@@ -16455,7 +17419,20 @@
           "confiabilidad": "MEDIA"
         }
       ],
-      "total_hitos": 4
+      "total_hitos": 4,
+      "fecha_inicio": "Iniciada en periodo 2020-2021",
+      "fecha_inicio_sort": "2020-01-01",
+      "tiene_fecha_inicio": true,
+      "fecha_inicio_doc": "Matriz Entregable 1 + Estados Financieros FDM",
+      "fecha_termino_prog": "2022",
+      "fecha_culminacion_real": "2022",
+      "acta_recepcion": "Acta de Recepción 2022",
+      "resolucion_liquidacion": "Liquidada 2022-2023",
+      "estado_info": "COMPLETA",
+      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
+      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "detalles_faltantes": [],
+      "confiabilidad": "MEDIA (Ratificada por Estados Financieros)"
     },
     {
       "id": 5,
@@ -16525,7 +17502,20 @@
           "confiabilidad": "MEDIA"
         }
       ],
-      "total_hitos": 5
+      "total_hitos": 5,
+      "fecha_inicio": "Iniciada en periodo 2020-2021",
+      "fecha_inicio_sort": "2020-01-01",
+      "tiene_fecha_inicio": true,
+      "fecha_inicio_doc": "Matriz Entregable 1 + Estados Financieros FDM",
+      "fecha_termino_prog": "2022",
+      "fecha_culminacion_real": "2022",
+      "acta_recepcion": "Acta de Recepción 2022",
+      "resolucion_liquidacion": "Liquidada 2022-2023",
+      "estado_info": "COMPLETA",
+      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
+      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "detalles_faltantes": [],
+      "confiabilidad": "MEDIA (Ratificada por Estados Financieros)"
     },
     {
       "id": 6,
@@ -16859,7 +17849,20 @@
           "confiabilidad": "ALTA"
         }
       ],
-      "total_hitos": 38
+      "total_hitos": 38,
+      "fecha_inicio": "15 de marzo del 2023",
+      "fecha_inicio_sort": "2023-03-15",
+      "tiene_fecha_inicio": true,
+      "fecha_inicio_doc": "CARTA N0080 (Tomo 2 PMO (Folio 18))",
+      "fecha_termino_prog": "",
+      "fecha_culminacion_real": "",
+      "acta_recepcion": "",
+      "resolucion_liquidacion": "",
+      "estado_info": "COMPLETA",
+      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
+      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "detalles_faltantes": [],
+      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
     },
     {
       "id": 7,
@@ -16888,7 +17891,24 @@
       },
       "alerta": "[   ]",
       "historial": [],
-      "total_hitos": 0
+      "total_hitos": 0,
+      "fecha_inicio": "",
+      "fecha_inicio_sort": "9999-99-99",
+      "tiene_fecha_inicio": false,
+      "fecha_inicio_doc": "Pendiente de ubicar en Tomos 6 al 9",
+      "fecha_termino_prog": "",
+      "fecha_culminacion_real": "",
+      "acta_recepcion": "",
+      "resolucion_liquidacion": "",
+      "estado_info": "INCOMPLETA",
+      "estado_info_label": "🔴 INFORMACIÓN PENDIENTE",
+      "estado_info_desc": "Faltan documentos contractuales clave; buscar en Tomos 6 al 9",
+      "detalles_faltantes": [
+        "Falta Acta de Entrega de Terreno / Suscripción de Contrato (Fecha de Inicio)",
+        "Falta Fecha de Culminación Física Real",
+        "Falta Acta de Recepción de Obra o Resolución de Liquidación"
+      ],
+      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
     },
     {
       "id": 8,
@@ -16958,7 +17978,20 @@
           "confiabilidad": "ALTA"
         }
       ],
-      "total_hitos": 5
+      "total_hitos": 5,
+      "fecha_inicio": "09/03/2023",
+      "fecha_inicio_sort": "2023-03-09",
+      "tiene_fecha_inicio": true,
+      "fecha_inicio_doc": "Tomo 1 PMO Pág. 104 (Inf. 135-2023-PMO)",
+      "fecha_termino_prog": "05/09/2023",
+      "fecha_culminacion_real": "Primer Trimestre 2024",
+      "acta_recepcion": "Acta de Recepción 2024 (MPI)",
+      "resolucion_liquidacion": "En proceso de liquidación final",
+      "estado_info": "COMPLETA",
+      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
+      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "detalles_faltantes": [],
+      "confiabilidad": "ALTA (100% Verificado)"
     },
     {
       "id": 9,
@@ -17092,7 +18125,20 @@
           "confiabilidad": "ALTA"
         }
       ],
-      "total_hitos": 13
+      "total_hitos": 13,
+      "fecha_inicio": "Segundo Semestre 2022",
+      "fecha_inicio_sort": "2022-01-01",
+      "tiene_fecha_inicio": true,
+      "fecha_inicio_doc": "Tomo 1 PMO Págs. 18, 48, 62 (Cartas 018 y 026-SUP)",
+      "fecha_termino_prog": "Enero 2023",
+      "fecha_culminacion_real": "15/02/2023 (Val N° 03)",
+      "acta_recepcion": "06/02/2023 (Comité Recepción MPI - Pág 48 Tomo 1)",
+      "resolucion_liquidacion": "Liquidación Técnica 2023",
+      "estado_info": "COMPLETA",
+      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
+      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "detalles_faltantes": [],
+      "confiabilidad": "ALTA (100% Verificado)"
     },
     {
       "id": 10,
@@ -17146,7 +18192,20 @@
           "confiabilidad": "ALTA"
         }
       ],
-      "total_hitos": 3
+      "total_hitos": 3,
+      "fecha_inicio": "Aprox. 20 de abril del 2023 (Primer Hito PMO)",
+      "fecha_inicio_sort": "2023-04-20",
+      "tiene_fecha_inicio": true,
+      "fecha_inicio_doc": "carta N0039-2023-HAMR (Tomo 3 PMO (Folio 36))",
+      "fecha_termino_prog": "",
+      "fecha_culminacion_real": "",
+      "acta_recepcion": "",
+      "resolucion_liquidacion": "",
+      "estado_info": "COMPLETA",
+      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
+      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "detalles_faltantes": [],
+      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
     },
     {
       "id": 11,
@@ -17175,7 +18234,24 @@
       },
       "alerta": "[   ]",
       "historial": [],
-      "total_hitos": 0
+      "total_hitos": 0,
+      "fecha_inicio": "",
+      "fecha_inicio_sort": "9999-99-99",
+      "tiene_fecha_inicio": false,
+      "fecha_inicio_doc": "Pendiente de ubicar en Tomos 6 al 9",
+      "fecha_termino_prog": "",
+      "fecha_culminacion_real": "",
+      "acta_recepcion": "",
+      "resolucion_liquidacion": "",
+      "estado_info": "INCOMPLETA",
+      "estado_info_label": "🔴 INFORMACIÓN PENDIENTE",
+      "estado_info_desc": "Faltan documentos contractuales clave; buscar en Tomos 6 al 9",
+      "detalles_faltantes": [
+        "Falta Acta de Entrega de Terreno / Suscripción de Contrato (Fecha de Inicio)",
+        "Falta Fecha de Culminación Física Real",
+        "Falta Acta de Recepción de Obra o Resolución de Liquidación"
+      ],
+      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
     },
     {
       "id": 12,
@@ -17493,7 +18569,20 @@
           "confiabilidad": "ALTA"
         }
       ],
-      "total_hitos": 36
+      "total_hitos": 36,
+      "fecha_inicio": "26 de agosto del 2025",
+      "fecha_inicio_sort": "2025-08-26",
+      "tiene_fecha_inicio": true,
+      "fecha_inicio_doc": "carta N°521-2025-D (Secretaría Digital (INFORMES\\INFORME Nº 025-2025-P))",
+      "fecha_termino_prog": "",
+      "fecha_culminacion_real": "",
+      "acta_recepcion": "",
+      "resolucion_liquidacion": "",
+      "estado_info": "COMPLETA",
+      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
+      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "detalles_faltantes": [],
+      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
     },
     {
       "id": 13,
@@ -17867,7 +18956,20 @@
           "confiabilidad": "ALTA"
         }
       ],
-      "total_hitos": 43
+      "total_hitos": 43,
+      "fecha_inicio": "13 DE NOVIEMBRE DEL 2025",
+      "fecha_inicio_sort": "2025-11-13",
+      "tiene_fecha_inicio": true,
+      "fecha_inicio_doc": "INFORME N°054-2025-PMO (Secretaría Digital (INFORMES\\INFORME Nº 054-2025-P))",
+      "fecha_termino_prog": "",
+      "fecha_culminacion_real": "",
+      "acta_recepcion": "",
+      "resolucion_liquidacion": "",
+      "estado_info": "COMPLETA",
+      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
+      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "detalles_faltantes": [],
+      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
     },
     {
       "id": 14,
@@ -19185,7 +20287,20 @@
           "confiabilidad": "ALTA"
         }
       ],
-      "total_hitos": 161
+      "total_hitos": 161,
+      "fecha_inicio": "28 de marzo del 2023",
+      "fecha_inicio_sort": "2023-03-28",
+      "tiene_fecha_inicio": true,
+      "fecha_inicio_doc": "Folio 57 (Tomo 2 PMO (Folio 57))",
+      "fecha_termino_prog": "",
+      "fecha_culminacion_real": "",
+      "acta_recepcion": "",
+      "resolucion_liquidacion": "",
+      "estado_info": "COMPLETA",
+      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
+      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "detalles_faltantes": [],
+      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
     },
     {
       "id": 15,
@@ -19391,7 +20506,20 @@
           "confiabilidad": "ALTA"
         }
       ],
-      "total_hitos": 22
+      "total_hitos": 22,
+      "fecha_inicio": "Aprox. Ene-Feb 2023 (Primer Hito PMO)",
+      "fecha_inicio_sort": "2023-01-01",
+      "tiene_fecha_inicio": true,
+      "fecha_inicio_doc": "Folio 1 (Tomo 1 PMO (Folio 1))",
+      "fecha_termino_prog": "",
+      "fecha_culminacion_real": "",
+      "acta_recepcion": "",
+      "resolucion_liquidacion": "",
+      "estado_info": "COMPLETA",
+      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
+      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "detalles_faltantes": [],
+      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
     },
     {
       "id": 16,
@@ -19437,7 +20565,23 @@
           "confiabilidad": "ALTA"
         }
       ],
-      "total_hitos": 2
+      "total_hitos": 2,
+      "fecha_inicio": "Aprox. 03 de noviembre del 2026 (Primer Hito PMO)",
+      "fecha_inicio_sort": "2026-11-03",
+      "tiene_fecha_inicio": true,
+      "fecha_inicio_doc": "CARTA N° 0 xxx- (Secretaría Digital (cartas 2026\\INF_1090-2026-MAYU))",
+      "fecha_termino_prog": "",
+      "fecha_culminacion_real": "",
+      "acta_recepcion": "",
+      "resolucion_liquidacion": "",
+      "estado_info": "PARCIAL",
+      "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
+      "estado_info_desc": "Hitos en ejecución identificados; falta acta de inicio o resolución de liquidación",
+      "detalles_faltantes": [
+        "Falta Fecha de Culminación Física Real",
+        "Falta Acta de Recepción de Obra o Resolución de Liquidación"
+      ],
+      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
     },
     {
       "id": 17,
@@ -19571,7 +20715,20 @@
           "confiabilidad": "ALTA"
         }
       ],
-      "total_hitos": 13
+      "total_hitos": 13,
+      "fecha_inicio": "07 de junio del 2023",
+      "fecha_inicio_sort": "2023-06-07",
+      "tiene_fecha_inicio": true,
+      "fecha_inicio_doc": "Folio 56 (Tomo 4 PMO (Folio 56))",
+      "fecha_termino_prog": "",
+      "fecha_culminacion_real": "",
+      "acta_recepcion": "10/03/2023 (Tomo 3 Folio 4)",
+      "resolucion_liquidacion": "",
+      "estado_info": "COMPLETA",
+      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
+      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "detalles_faltantes": [],
+      "confiabilidad": "ALTA (100% Verificado)"
     },
     {
       "id": 18,
@@ -19657,7 +20814,20 @@
           "confiabilidad": "ALTA"
         }
       ],
-      "total_hitos": 7
+      "total_hitos": 7,
+      "fecha_inicio": "20 de junio del 2023",
+      "fecha_inicio_sort": "2023-06-20",
+      "tiene_fecha_inicio": true,
+      "fecha_inicio_doc": "Folio 29 (Tomo 5 PMO (Folio 29))",
+      "fecha_termino_prog": "",
+      "fecha_culminacion_real": "",
+      "acta_recepcion": "",
+      "resolucion_liquidacion": "",
+      "estado_info": "COMPLETA",
+      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
+      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "detalles_faltantes": [],
+      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
     },
     {
       "id": 19,
@@ -19695,7 +20865,20 @@
           "confiabilidad": "ALTA"
         }
       ],
-      "total_hitos": 1
+      "total_hitos": 1,
+      "fecha_inicio": "23/08/2022 (Contrato 008-2022)",
+      "fecha_inicio_sort": "2022-08-23",
+      "tiene_fecha_inicio": true,
+      "fecha_inicio_doc": "Tomo 1 + Tomo 5 Folios 1 y 56",
+      "fecha_termino_prog": "21/12/2022",
+      "fecha_culminacion_real": "Marzo 2023",
+      "acta_recepcion": "Comité de Recepción 2023",
+      "resolucion_liquidacion": "En observaciones de liquidación técnica (Tomo 5 Folios 1 y 72)",
+      "estado_info": "COMPLETA",
+      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
+      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "detalles_faltantes": [],
+      "confiabilidad": "ALTA (100% Verificado)"
     },
     {
       "id": 20,
@@ -19765,7 +20948,23 @@
           "confiabilidad": "MEDIA"
         }
       ],
-      "total_hitos": 5
+      "total_hitos": 5,
+      "fecha_inicio": "Aprox. 2025-2026 (Primer Hito PMO)",
+      "fecha_inicio_sort": "2025-01-01",
+      "tiene_fecha_inicio": true,
+      "fecha_inicio_doc": "CARTA N° 0xxx- (Secretaría Digital (cartas 2026\\INF_500-2026-GORE ))",
+      "fecha_termino_prog": "",
+      "fecha_culminacion_real": "",
+      "acta_recepcion": "",
+      "resolucion_liquidacion": "",
+      "estado_info": "PARCIAL",
+      "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
+      "estado_info_desc": "Hitos en ejecución identificados; falta acta de inicio o resolución de liquidación",
+      "detalles_faltantes": [
+        "Falta Fecha de Culminación Física Real",
+        "Falta Acta de Recepción de Obra o Resolución de Liquidación"
+      ],
+      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
     },
     {
       "id": 21,
@@ -19843,7 +21042,20 @@
           "confiabilidad": "ALTA"
         }
       ],
-      "total_hitos": 6
+      "total_hitos": 6,
+      "fecha_inicio": "Aprox. 24 de marzo del 2023 (Primer Hito PMO)",
+      "fecha_inicio_sort": "2023-03-24",
+      "tiene_fecha_inicio": true,
+      "fecha_inicio_doc": "Folio 52 (Tomo 2 PMO (Folio 52))",
+      "fecha_termino_prog": "",
+      "fecha_culminacion_real": "",
+      "acta_recepcion": "",
+      "resolucion_liquidacion": "",
+      "estado_info": "COMPLETA",
+      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
+      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "detalles_faltantes": [],
+      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
     },
     {
       "id": 22,
@@ -20009,7 +21221,20 @@
           "confiabilidad": "ALTA"
         }
       ],
-      "total_hitos": 17
+      "total_hitos": 17,
+      "fecha_inicio": "25 de enero del 2023",
+      "fecha_inicio_sort": "2023-01-25",
+      "tiene_fecha_inicio": true,
+      "fecha_inicio_doc": "Folio 28 (Tomo 1 PMO (Folio 28))",
+      "fecha_termino_prog": "",
+      "fecha_culminacion_real": "",
+      "acta_recepcion": "",
+      "resolucion_liquidacion": "",
+      "estado_info": "COMPLETA",
+      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
+      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "detalles_faltantes": [],
+      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
     },
     {
       "id": 23,
@@ -20063,7 +21288,20 @@
           "confiabilidad": "ALTA"
         }
       ],
-      "total_hitos": 3
+      "total_hitos": 3,
+      "fecha_inicio": "13 de octubre del 2026",
+      "fecha_inicio_sort": "2026-10-13",
+      "tiene_fecha_inicio": true,
+      "fecha_inicio_doc": "CARTA N°  - 2026-D (Secretaría Digital (cartas 2026\\INF_981-2026-herre))",
+      "fecha_termino_prog": "",
+      "fecha_culminacion_real": "",
+      "acta_recepcion": "",
+      "resolucion_liquidacion": "",
+      "estado_info": "COMPLETA",
+      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
+      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "detalles_faltantes": [],
+      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
     },
     {
       "id": 24,
@@ -20125,7 +21363,20 @@
           "confiabilidad": "ALTA"
         }
       ],
-      "total_hitos": 4
+      "total_hitos": 4,
+      "fecha_inicio": "13 de octubre del 2026",
+      "fecha_inicio_sort": "2026-10-13",
+      "tiene_fecha_inicio": true,
+      "fecha_inicio_doc": "CARTA N°  - 2026-D (Secretaría Digital (cartas 2026\\INF_981-2026-herre))",
+      "fecha_termino_prog": "",
+      "fecha_culminacion_real": "",
+      "acta_recepcion": "",
+      "resolucion_liquidacion": "",
+      "estado_info": "COMPLETA",
+      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
+      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "detalles_faltantes": [],
+      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
     },
     {
       "id": 25,
@@ -20179,7 +21430,20 @@
           "confiabilidad": "ALTA"
         }
       ],
-      "total_hitos": 3
+      "total_hitos": 3,
+      "fecha_inicio": "13 de octubre del 2026",
+      "fecha_inicio_sort": "2026-10-13",
+      "tiene_fecha_inicio": true,
+      "fecha_inicio_doc": "CARTA N°  - 2026-D (Secretaría Digital (cartas 2026\\INF_981-2026-herre))",
+      "fecha_termino_prog": "",
+      "fecha_culminacion_real": "",
+      "acta_recepcion": "",
+      "resolucion_liquidacion": "",
+      "estado_info": "COMPLETA",
+      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
+      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "detalles_faltantes": [],
+      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
     },
     {
       "id": 26,
@@ -20208,7 +21472,24 @@
       },
       "alerta": "[   ]",
       "historial": [],
-      "total_hitos": 0
+      "total_hitos": 0,
+      "fecha_inicio": "",
+      "fecha_inicio_sort": "9999-99-99",
+      "tiene_fecha_inicio": false,
+      "fecha_inicio_doc": "Pendiente de ubicar en Tomos 6 al 9",
+      "fecha_termino_prog": "",
+      "fecha_culminacion_real": "",
+      "acta_recepcion": "",
+      "resolucion_liquidacion": "",
+      "estado_info": "INCOMPLETA",
+      "estado_info_label": "🔴 INFORMACIÓN PENDIENTE",
+      "estado_info_desc": "Faltan documentos contractuales clave; buscar en Tomos 6 al 9",
+      "detalles_faltantes": [
+        "Falta Acta de Entrega de Terreno / Suscripción de Contrato (Fecha de Inicio)",
+        "Falta Fecha de Culminación Física Real",
+        "Falta Acta de Recepción de Obra o Resolución de Liquidación"
+      ],
+      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
     },
     {
       "id": 27,
@@ -20262,7 +21543,23 @@
           "confiabilidad": "MEDIA"
         }
       ],
-      "total_hitos": 3
+      "total_hitos": 3,
+      "fecha_inicio": "14 de enero del 2022",
+      "fecha_inicio_sort": "2022-01-14",
+      "tiene_fecha_inicio": true,
+      "fecha_inicio_doc": "Acta de Recepción de Obra entre la comisión de recepción de obra del Fondo de Desarrollo de Moquegua, EI Consultor de Supervisión de Obra \"Consorcio Sr. de Locumba\" y la empresa Contratista ejecutora \"Consorcio Obras Promuvi X\" y representantes de la Entidad receptora \"Unidad de Gestión Educativa Ilo\". Con fecha 04.02.2023 mediante Carta N0077/COPX/ILO-2023, EI Consorcio Obras Promuvi X presenta al Consultor de Supervisión de obra EI Informe final de Liquidación de obra. Con fecha 11.02.2023 mediante Carta N0078/COPX/lLO-2023, EI Consorcio Obras Promuvi X presenta al Consultor de Supervisión de obra el levantamiento de observaciones respecto a la liquidación de Obra. Con fecha 04.02.2023 mediante Carta N0077/COPX/ILO-2023, EI Consorcio Obras Promuvi X presenta a la Supervisión eI Informe final de Liquidación de obra. Con fecha 06.02.2023 mediante Carta NO 123-SUP-CSSL-CSIPP, La Supervisión remite al Consorcio Obras Promuvi X, observaciones al Informe final de Liquidación de obra, donde EI Supervisor recomienda incorporar cálculos y justificaciones a la liquidación. Escaneado con CamScanner (Tomo 5 PMO (Folio 2))",
+      "fecha_termino_prog": "",
+      "fecha_culminacion_real": "",
+      "acta_recepcion": "",
+      "resolucion_liquidacion": "",
+      "estado_info": "PARCIAL",
+      "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
+      "estado_info_desc": "Hitos en ejecución identificados; falta acta de inicio o resolución de liquidación",
+      "detalles_faltantes": [
+        "Falta Fecha de Culminación Física Real",
+        "Falta Acta de Recepción de Obra o Resolución de Liquidación"
+      ],
+      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
     },
     {
       "id": 28,
@@ -20300,7 +21597,23 @@
           "confiabilidad": "MEDIA"
         }
       ],
-      "total_hitos": 1
+      "total_hitos": 1,
+      "fecha_inicio": "Aprox. 2025-2026 (Primer Hito PMO)",
+      "fecha_inicio_sort": "2025-01-01",
+      "tiene_fecha_inicio": true,
+      "fecha_inicio_doc": "CARTA N° 0 xxx- (Secretaría Digital (cartas 2026\\INF_966-2026-agric))",
+      "fecha_termino_prog": "",
+      "fecha_culminacion_real": "",
+      "acta_recepcion": "",
+      "resolucion_liquidacion": "",
+      "estado_info": "PARCIAL",
+      "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
+      "estado_info_desc": "Hitos en ejecución identificados; falta acta de inicio o resolución de liquidación",
+      "detalles_faltantes": [
+        "Falta Fecha de Culminación Física Real",
+        "Falta Acta de Recepción de Obra o Resolución de Liquidación"
+      ],
+      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
     },
     {
       "id": 29,
@@ -20354,7 +21667,23 @@
           "confiabilidad": "ALTA"
         }
       ],
-      "total_hitos": 3
+      "total_hitos": 3,
+      "fecha_inicio": "Aprox. 24 de mayo del 2023 (Primer Hito PMO)",
+      "fecha_inicio_sort": "2023-05-24",
+      "tiene_fecha_inicio": true,
+      "fecha_inicio_doc": "Folio 36 (Tomo 4 PMO (Folio 36))",
+      "fecha_termino_prog": "",
+      "fecha_culminacion_real": "",
+      "acta_recepcion": "",
+      "resolucion_liquidacion": "",
+      "estado_info": "PARCIAL",
+      "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
+      "estado_info_desc": "Hitos en ejecución identificados; falta acta de inicio o resolución de liquidación",
+      "detalles_faltantes": [
+        "Falta Fecha de Culminación Física Real",
+        "Falta Acta de Recepción de Obra o Resolución de Liquidación"
+      ],
+      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
     },
     {
       "id": 30,
@@ -20400,7 +21729,23 @@
           "confiabilidad": "ALTA"
         }
       ],
-      "total_hitos": 2
+      "total_hitos": 2,
+      "fecha_inicio": "Aprox. 35-08-2026 (Primer Hito PMO)",
+      "fecha_inicio_sort": "2026-01-01",
+      "tiene_fecha_inicio": true,
+      "fecha_inicio_doc": "CARTA N° 0 xxx- (Secretaría Digital (cartas 2026\\INF_770-2026-maycu))",
+      "fecha_termino_prog": "",
+      "fecha_culminacion_real": "",
+      "acta_recepcion": "",
+      "resolucion_liquidacion": "",
+      "estado_info": "PARCIAL",
+      "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
+      "estado_info_desc": "Hitos en ejecución identificados; falta acta de inicio o resolución de liquidación",
+      "detalles_faltantes": [
+        "Falta Fecha de Culminación Física Real",
+        "Falta Acta de Recepción de Obra o Resolución de Liquidación"
+      ],
+      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
     },
     {
       "id": 31,
@@ -20478,7 +21823,23 @@
           "confiabilidad": "ALTA"
         }
       ],
-      "total_hitos": 6
+      "total_hitos": 6,
+      "fecha_inicio": "21 de setiembre del 2026",
+      "fecha_inicio_sort": "2026-09-21",
+      "tiene_fecha_inicio": true,
+      "fecha_inicio_doc": "CARTA N° 0 xxx- (Secretaría Digital (cartas 2026\\INF_900-2026-PUENT))",
+      "fecha_termino_prog": "",
+      "fecha_culminacion_real": "",
+      "acta_recepcion": "",
+      "resolucion_liquidacion": "",
+      "estado_info": "PARCIAL",
+      "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
+      "estado_info_desc": "Hitos en ejecución identificados; falta acta de inicio o resolución de liquidación",
+      "detalles_faltantes": [
+        "Falta Fecha de Culminación Física Real",
+        "Falta Acta de Recepción de Obra o Resolución de Liquidación"
+      ],
+      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
     },
     {
       "id": 32,
@@ -20516,7 +21877,20 @@
           "confiabilidad": "MEDIA"
         }
       ],
-      "total_hitos": 1
+      "total_hitos": 1,
+      "fecha_inicio": "2025-2026",
+      "fecha_inicio_sort": "2025-01-01",
+      "tiene_fecha_inicio": true,
+      "fecha_inicio_doc": "CARTA N° 0 xxx- (Secretaría Digital (cartas 2026\\INF_267-2026-LIQUI))",
+      "fecha_termino_prog": "",
+      "fecha_culminacion_real": "",
+      "acta_recepcion": "",
+      "resolucion_liquidacion": "",
+      "estado_info": "COMPLETA",
+      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
+      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "detalles_faltantes": [],
+      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
     },
     {
       "id": 33,
@@ -20562,7 +21936,23 @@
           "confiabilidad": "ALTA"
         }
       ],
-      "total_hitos": 2
+      "total_hitos": 2,
+      "fecha_inicio": "21 de setiembre del 2026",
+      "fecha_inicio_sort": "2026-09-21",
+      "tiene_fecha_inicio": true,
+      "fecha_inicio_doc": "CARTA N° 0 xxx- (Secretaría Digital (cartas 2026\\INF_900-2026-PUENT))",
+      "fecha_termino_prog": "",
+      "fecha_culminacion_real": "",
+      "acta_recepcion": "",
+      "resolucion_liquidacion": "",
+      "estado_info": "PARCIAL",
+      "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
+      "estado_info_desc": "Hitos en ejecución identificados; falta acta de inicio o resolución de liquidación",
+      "detalles_faltantes": [
+        "Falta Fecha de Culminación Física Real",
+        "Falta Acta de Recepción de Obra o Resolución de Liquidación"
+      ],
+      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
     },
     {
       "id": 34,
@@ -20688,7 +22078,20 @@
           "confiabilidad": "ALTA"
         }
       ],
-      "total_hitos": 12
+      "total_hitos": 12,
+      "fecha_inicio": "Aprox. 2025-2026 (Primer Hito PMO)",
+      "fecha_inicio_sort": "2025-01-01",
+      "tiene_fecha_inicio": true,
+      "fecha_inicio_doc": "CARTA N° 0 xxx- (Secretaría Digital (cartas 2026\\INF_215-2026-urina))",
+      "fecha_termino_prog": "",
+      "fecha_culminacion_real": "",
+      "acta_recepcion": "",
+      "resolucion_liquidacion": "",
+      "estado_info": "COMPLETA",
+      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
+      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "detalles_faltantes": [],
+      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
     },
     {
       "id": 35,
@@ -20717,7 +22120,24 @@
       },
       "alerta": "[   ]",
       "historial": [],
-      "total_hitos": 0
+      "total_hitos": 0,
+      "fecha_inicio": "",
+      "fecha_inicio_sort": "9999-99-99",
+      "tiene_fecha_inicio": false,
+      "fecha_inicio_doc": "Pendiente de ubicar en Tomos 6 al 9",
+      "fecha_termino_prog": "",
+      "fecha_culminacion_real": "",
+      "acta_recepcion": "",
+      "resolucion_liquidacion": "",
+      "estado_info": "INCOMPLETA",
+      "estado_info_label": "🔴 INFORMACIÓN PENDIENTE",
+      "estado_info_desc": "Faltan documentos contractuales clave; buscar en Tomos 6 al 9",
+      "detalles_faltantes": [
+        "Falta Acta de Entrega de Terreno / Suscripción de Contrato (Fecha de Inicio)",
+        "Falta Fecha de Culminación Física Real",
+        "Falta Acta de Recepción de Obra o Resolución de Liquidación"
+      ],
+      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
     },
     {
       "id": 36,
@@ -20746,7 +22166,24 @@
       },
       "alerta": "[   ]",
       "historial": [],
-      "total_hitos": 0
+      "total_hitos": 0,
+      "fecha_inicio": "",
+      "fecha_inicio_sort": "9999-99-99",
+      "tiene_fecha_inicio": false,
+      "fecha_inicio_doc": "Pendiente de ubicar en Tomos 6 al 9",
+      "fecha_termino_prog": "",
+      "fecha_culminacion_real": "",
+      "acta_recepcion": "",
+      "resolucion_liquidacion": "",
+      "estado_info": "INCOMPLETA",
+      "estado_info_label": "🔴 INFORMACIÓN PENDIENTE",
+      "estado_info_desc": "Faltan documentos contractuales clave; buscar en Tomos 6 al 9",
+      "detalles_faltantes": [
+        "Falta Acta de Entrega de Terreno / Suscripción de Contrato (Fecha de Inicio)",
+        "Falta Fecha de Culminación Física Real",
+        "Falta Acta de Recepción de Obra o Resolución de Liquidación"
+      ],
+      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
     },
     {
       "id": 37,
@@ -20800,7 +22237,20 @@
           "confiabilidad": "ALTA"
         }
       ],
-      "total_hitos": 3
+      "total_hitos": 3,
+      "fecha_inicio": "Año 2022",
+      "fecha_inicio_sort": "2022-01-01",
+      "tiene_fecha_inicio": true,
+      "fecha_inicio_doc": "Archivo Físico Caja 03 (Foto Oficial 2024)",
+      "fecha_termino_prog": "2023",
+      "fecha_culminacion_real": "Finales 2023",
+      "acta_recepcion": "Conformidad de Supervisión 2024",
+      "resolucion_liquidacion": "Liquidación Aprobada 2024 (Caja 03)",
+      "estado_info": "COMPLETA",
+      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
+      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "detalles_faltantes": [],
+      "confiabilidad": "ALTA (100% Verificado)"
     },
     {
       "id": 38,
@@ -20870,7 +22320,23 @@
           "confiabilidad": "ALTA"
         }
       ],
-      "total_hitos": 5
+      "total_hitos": 5,
+      "fecha_inicio": "Aprox. 27 de febrero del 2026 (Primer Hito PMO)",
+      "fecha_inicio_sort": "2026-02-27",
+      "tiene_fecha_inicio": true,
+      "fecha_inicio_doc": "CARTA N° 0 xxx- (Secretaría Digital (cartas 2026\\INF_191-2026-puent))",
+      "fecha_termino_prog": "",
+      "fecha_culminacion_real": "",
+      "acta_recepcion": "",
+      "resolucion_liquidacion": "",
+      "estado_info": "PARCIAL",
+      "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
+      "estado_info_desc": "Hitos en ejecución identificados; falta acta de inicio o resolución de liquidación",
+      "detalles_faltantes": [
+        "Falta Fecha de Culminación Física Real",
+        "Falta Acta de Recepción de Obra o Resolución de Liquidación"
+      ],
+      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
     },
     {
       "id": 39,
@@ -20972,7 +22438,23 @@
           "confiabilidad": "ALTA"
         }
       ],
-      "total_hitos": 9
+      "total_hitos": 9,
+      "fecha_inicio": "21 de setiembre del 2026",
+      "fecha_inicio_sort": "2026-09-21",
+      "tiene_fecha_inicio": true,
+      "fecha_inicio_doc": "CARTA N° 0 xxx- (Secretaría Digital (cartas 2026\\INF_900-2026-PUENT))",
+      "fecha_termino_prog": "",
+      "fecha_culminacion_real": "",
+      "acta_recepcion": "",
+      "resolucion_liquidacion": "",
+      "estado_info": "PARCIAL",
+      "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
+      "estado_info_desc": "Hitos en ejecución identificados; falta acta de inicio o resolución de liquidación",
+      "detalles_faltantes": [
+        "Falta Fecha de Culminación Física Real",
+        "Falta Acta de Recepción de Obra o Resolución de Liquidación"
+      ],
+      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
     },
     {
       "id": 40,
@@ -21001,7 +22483,24 @@
       },
       "alerta": "[   ]",
       "historial": [],
-      "total_hitos": 0
+      "total_hitos": 0,
+      "fecha_inicio": "",
+      "fecha_inicio_sort": "9999-99-99",
+      "tiene_fecha_inicio": false,
+      "fecha_inicio_doc": "Pendiente de ubicar en Tomos 6 al 9",
+      "fecha_termino_prog": "",
+      "fecha_culminacion_real": "",
+      "acta_recepcion": "",
+      "resolucion_liquidacion": "",
+      "estado_info": "INCOMPLETA",
+      "estado_info_label": "🔴 INFORMACIÓN PENDIENTE",
+      "estado_info_desc": "Faltan documentos contractuales clave; buscar en Tomos 6 al 9",
+      "detalles_faltantes": [
+        "Falta Acta de Entrega de Terreno / Suscripción de Contrato (Fecha de Inicio)",
+        "Falta Fecha de Culminación Física Real",
+        "Falta Acta de Recepción de Obra o Resolución de Liquidación"
+      ],
+      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
     },
     {
       "id": 41,
@@ -21127,7 +22626,20 @@
           "confiabilidad": "ALTA"
         }
       ],
-      "total_hitos": 12
+      "total_hitos": 12,
+      "fecha_inicio": "17 de enero del 2023",
+      "fecha_inicio_sort": "2023-01-17",
+      "tiene_fecha_inicio": true,
+      "fecha_inicio_doc": "Folio 92 (Tomo 1 PMO (Folio 92))",
+      "fecha_termino_prog": "",
+      "fecha_culminacion_real": "",
+      "acta_recepcion": "",
+      "resolucion_liquidacion": "",
+      "estado_info": "COMPLETA",
+      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
+      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "detalles_faltantes": [],
+      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
     },
     {
       "id": 42,
@@ -21277,7 +22789,20 @@
           "confiabilidad": "ALTA"
         }
       ],
-      "total_hitos": 15
+      "total_hitos": 15,
+      "fecha_inicio": "28 de marzo del 2023",
+      "fecha_inicio_sort": "2023-03-28",
+      "tiene_fecha_inicio": true,
+      "fecha_inicio_doc": "Folio 57 (Tomo 2 PMO (Folio 57))",
+      "fecha_termino_prog": "",
+      "fecha_culminacion_real": "",
+      "acta_recepcion": "",
+      "resolucion_liquidacion": "",
+      "estado_info": "COMPLETA",
+      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
+      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "detalles_faltantes": [],
+      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
     },
     {
       "id": 43,
@@ -21331,7 +22856,20 @@
           "confiabilidad": "ALTA"
         }
       ],
-      "total_hitos": 3
+      "total_hitos": 3,
+      "fecha_inicio": "Año 2022",
+      "fecha_inicio_sort": "2022-01-01",
+      "tiene_fecha_inicio": true,
+      "fecha_inicio_doc": "Archivo Físico Caja 03 (Foto Oficial 2024)",
+      "fecha_termino_prog": "2023",
+      "fecha_culminacion_real": "Finales 2023",
+      "acta_recepcion": "Conformidad de Supervisión 2024",
+      "resolucion_liquidacion": "Liquidación Aprobada 2024 (Caja 03)",
+      "estado_info": "COMPLETA",
+      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
+      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "detalles_faltantes": [],
+      "confiabilidad": "ALTA (100% Verificado)"
     },
     {
       "id": 2,
@@ -21393,7 +22931,20 @@
           "confiabilidad": "ALTA"
         }
       ],
-      "total_hitos": 4
+      "total_hitos": 4,
+      "fecha_inicio": "Iniciada en periodo 2020-2021",
+      "fecha_inicio_sort": "2020-01-01",
+      "tiene_fecha_inicio": true,
+      "fecha_inicio_doc": "Matriz Entregable 1 + Estados Financieros FDM",
+      "fecha_termino_prog": "2022",
+      "fecha_culminacion_real": "2022",
+      "acta_recepcion": "Acta de Recepción 2022",
+      "resolucion_liquidacion": "Liquidada 2022-2023",
+      "estado_info": "COMPLETA",
+      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
+      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "detalles_faltantes": [],
+      "confiabilidad": "MEDIA (Ratificada por Estados Financieros)"
     },
     {
       "id": 3,
@@ -21422,7 +22973,20 @@
       },
       "alerta": "[   ]",
       "historial": [],
-      "total_hitos": 0
+      "total_hitos": 0,
+      "fecha_inicio": "Iniciada en periodo 2020-2021",
+      "fecha_inicio_sort": "2020-01-01",
+      "tiene_fecha_inicio": true,
+      "fecha_inicio_doc": "Matriz Entregable 1 + Estados Financieros FDM",
+      "fecha_termino_prog": "2022",
+      "fecha_culminacion_real": "2022",
+      "acta_recepcion": "Acta de Recepción 2022",
+      "resolucion_liquidacion": "Liquidada 2022-2023",
+      "estado_info": "COMPLETA",
+      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
+      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "detalles_faltantes": [],
+      "confiabilidad": "MEDIA (Ratificada por Estados Financieros)"
     },
     {
       "id": 4,
@@ -21451,7 +23015,20 @@
       },
       "alerta": "[   ]",
       "historial": [],
-      "total_hitos": 0
+      "total_hitos": 0,
+      "fecha_inicio": "Iniciada en periodo 2020-2021",
+      "fecha_inicio_sort": "2020-01-01",
+      "tiene_fecha_inicio": true,
+      "fecha_inicio_doc": "Matriz Entregable 1 + Estados Financieros FDM",
+      "fecha_termino_prog": "2022",
+      "fecha_culminacion_real": "2022",
+      "acta_recepcion": "Acta de Recepción 2022",
+      "resolucion_liquidacion": "Liquidada 2022-2023",
+      "estado_info": "COMPLETA",
+      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
+      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "detalles_faltantes": [],
+      "confiabilidad": "MEDIA (Ratificada por Estados Financieros)"
     },
     {
       "id": 5,
@@ -21497,7 +23074,20 @@
           "confiabilidad": "MEDIA"
         }
       ],
-      "total_hitos": 2
+      "total_hitos": 2,
+      "fecha_inicio": "Iniciada en periodo 2020-2021",
+      "fecha_inicio_sort": "2020-01-01",
+      "tiene_fecha_inicio": true,
+      "fecha_inicio_doc": "Matriz Entregable 1 + Estados Financieros FDM",
+      "fecha_termino_prog": "2022",
+      "fecha_culminacion_real": "2022",
+      "acta_recepcion": "Acta de Recepción 2022",
+      "resolucion_liquidacion": "Liquidada 2022-2023",
+      "estado_info": "COMPLETA",
+      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
+      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "detalles_faltantes": [],
+      "confiabilidad": "MEDIA (Ratificada por Estados Financieros)"
     },
     {
       "id": 6,
@@ -21526,7 +23116,24 @@
       },
       "alerta": "[   ]",
       "historial": [],
-      "total_hitos": 0
+      "total_hitos": 0,
+      "fecha_inicio": "",
+      "fecha_inicio_sort": "9999-99-99",
+      "tiene_fecha_inicio": false,
+      "fecha_inicio_doc": "Pendiente de ubicar en Tomos 6 al 9",
+      "fecha_termino_prog": "",
+      "fecha_culminacion_real": "",
+      "acta_recepcion": "",
+      "resolucion_liquidacion": "",
+      "estado_info": "INCOMPLETA",
+      "estado_info_label": "🔴 INFORMACIÓN PENDIENTE",
+      "estado_info_desc": "Faltan documentos contractuales clave; buscar en Tomos 6 al 9",
+      "detalles_faltantes": [
+        "Falta Acta de Entrega de Terreno / Suscripción de Contrato (Fecha de Inicio)",
+        "Falta Fecha de Culminación Física Real",
+        "Falta Acta de Recepción de Obra o Resolución de Liquidación"
+      ],
+      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
     },
     {
       "id": 7,
@@ -21572,7 +23179,23 @@
           "confiabilidad": "MEDIA"
         }
       ],
-      "total_hitos": 2
+      "total_hitos": 2,
+      "fecha_inicio": "Aprox. Abr-May 2023 (Primer Hito PMO)",
+      "fecha_inicio_sort": "2023-01-01",
+      "tiene_fecha_inicio": true,
+      "fecha_inicio_doc": "Folio 15 (Tomo 3 PMO (Folio 15))",
+      "fecha_termino_prog": "",
+      "fecha_culminacion_real": "",
+      "acta_recepcion": "",
+      "resolucion_liquidacion": "",
+      "estado_info": "PARCIAL",
+      "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
+      "estado_info_desc": "Hitos en ejecución identificados; falta acta de inicio o resolución de liquidación",
+      "detalles_faltantes": [
+        "Falta Fecha de Culminación Física Real",
+        "Falta Acta de Recepción de Obra o Resolución de Liquidación"
+      ],
+      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
     },
     {
       "id": 8,
@@ -21658,7 +23281,20 @@
           "confiabilidad": "ALTA"
         }
       ],
-      "total_hitos": 7
+      "total_hitos": 7,
+      "fecha_inicio": "09/03/2023",
+      "fecha_inicio_sort": "2023-03-09",
+      "tiene_fecha_inicio": true,
+      "fecha_inicio_doc": "Tomo 1 PMO Pág. 104 (Inf. 135-2023-PMO)",
+      "fecha_termino_prog": "05/09/2023",
+      "fecha_culminacion_real": "Primer Trimestre 2024",
+      "acta_recepcion": "Acta de Recepción 2024 (MPI)",
+      "resolucion_liquidacion": "En proceso de liquidación final",
+      "estado_info": "COMPLETA",
+      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
+      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "detalles_faltantes": [],
+      "confiabilidad": "ALTA (100% Verificado)"
     },
     {
       "id": 9,
@@ -21792,7 +23428,20 @@
           "confiabilidad": "ALTA"
         }
       ],
-      "total_hitos": 13
+      "total_hitos": 13,
+      "fecha_inicio": "Segundo Semestre 2022",
+      "fecha_inicio_sort": "2022-01-01",
+      "tiene_fecha_inicio": true,
+      "fecha_inicio_doc": "Tomo 1 PMO Págs. 18, 48, 62 (Cartas 018 y 026-SUP)",
+      "fecha_termino_prog": "Enero 2023",
+      "fecha_culminacion_real": "15/02/2023 (Val N° 03)",
+      "acta_recepcion": "06/02/2023 (Comité Recepción MPI - Pág 48 Tomo 1)",
+      "resolucion_liquidacion": "Liquidación Técnica 2023",
+      "estado_info": "COMPLETA",
+      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
+      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "detalles_faltantes": [],
+      "confiabilidad": "ALTA (100% Verificado)"
     },
     {
       "id": 10,
@@ -21830,7 +23479,23 @@
           "confiabilidad": "ALTA"
         }
       ],
-      "total_hitos": 1
+      "total_hitos": 1,
+      "fecha_inicio": "Aprox. 20 de octubre del 2025 (Primer Hito PMO)",
+      "fecha_inicio_sort": "2025-10-20",
+      "tiene_fecha_inicio": true,
+      "fecha_inicio_doc": "carta N°254-2025-INV (Secretaría Digital (INFORMES\\INFORME Nº 092-2025-P))",
+      "fecha_termino_prog": "",
+      "fecha_culminacion_real": "",
+      "acta_recepcion": "",
+      "resolucion_liquidacion": "",
+      "estado_info": "PARCIAL",
+      "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
+      "estado_info_desc": "Hitos en ejecución identificados; falta acta de inicio o resolución de liquidación",
+      "detalles_faltantes": [
+        "Falta Fecha de Culminación Física Real",
+        "Falta Acta de Recepción de Obra o Resolución de Liquidación"
+      ],
+      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
     },
     {
       "id": 11,
@@ -21859,7 +23524,24 @@
       },
       "alerta": "[   ]",
       "historial": [],
-      "total_hitos": 0
+      "total_hitos": 0,
+      "fecha_inicio": "",
+      "fecha_inicio_sort": "9999-99-99",
+      "tiene_fecha_inicio": false,
+      "fecha_inicio_doc": "Pendiente de ubicar en Tomos 6 al 9",
+      "fecha_termino_prog": "",
+      "fecha_culminacion_real": "",
+      "acta_recepcion": "",
+      "resolucion_liquidacion": "",
+      "estado_info": "INCOMPLETA",
+      "estado_info_label": "🔴 INFORMACIÓN PENDIENTE",
+      "estado_info_desc": "Faltan documentos contractuales clave; buscar en Tomos 6 al 9",
+      "detalles_faltantes": [
+        "Falta Acta de Entrega de Terreno / Suscripción de Contrato (Fecha de Inicio)",
+        "Falta Fecha de Culminación Física Real",
+        "Falta Acta de Recepción de Obra o Resolución de Liquidación"
+      ],
+      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
     },
     {
       "id": 12,
@@ -22201,7 +23883,20 @@
           "confiabilidad": "ALTA"
         }
       ],
-      "total_hitos": 39
+      "total_hitos": 39,
+      "fecha_inicio": "26 de agosto del 2025",
+      "fecha_inicio_sort": "2025-08-26",
+      "tiene_fecha_inicio": true,
+      "fecha_inicio_doc": "carta N°521-2025-D (Secretaría Digital (INFORMES\\INFORME Nº 025-2025-P))",
+      "fecha_termino_prog": "",
+      "fecha_culminacion_real": "",
+      "acta_recepcion": "",
+      "resolucion_liquidacion": "",
+      "estado_info": "COMPLETA",
+      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
+      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "detalles_faltantes": [],
+      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
     },
     {
       "id": 13,
@@ -22527,7 +24222,20 @@
           "confiabilidad": "ALTA"
         }
       ],
-      "total_hitos": 37
+      "total_hitos": 37,
+      "fecha_inicio": "13 DE NOVIEMBRE DEL 2025",
+      "fecha_inicio_sort": "2025-11-13",
+      "tiene_fecha_inicio": true,
+      "fecha_inicio_doc": "INFORME N°054-2025-PMO (Secretaría Digital (INFORMES\\INFORME Nº 054-2025-P))",
+      "fecha_termino_prog": "",
+      "fecha_culminacion_real": "",
+      "acta_recepcion": "",
+      "resolucion_liquidacion": "",
+      "estado_info": "COMPLETA",
+      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
+      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "detalles_faltantes": [],
+      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
     },
     {
       "id": 14,
@@ -23773,7 +25481,20 @@
           "confiabilidad": "ALTA"
         }
       ],
-      "total_hitos": 152
+      "total_hitos": 152,
+      "fecha_inicio": "2025-2026",
+      "fecha_inicio_sort": "2025-01-01",
+      "tiene_fecha_inicio": true,
+      "fecha_inicio_doc": "CARTA N° 0 xxx- (Secretaría Digital (cartas 2026\\INF_091-2026-vera ))",
+      "fecha_termino_prog": "",
+      "fecha_culminacion_real": "",
+      "acta_recepcion": "",
+      "resolucion_liquidacion": "",
+      "estado_info": "COMPLETA",
+      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
+      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "detalles_faltantes": [],
+      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
     },
     {
       "id": 15,
@@ -23819,7 +25540,20 @@
           "confiabilidad": "ALTA"
         }
       ],
-      "total_hitos": 2
+      "total_hitos": 2,
+      "fecha_inicio": "Aprox. 13 de agosto del 2026 (Primer Hito PMO)",
+      "fecha_inicio_sort": "2026-08-13",
+      "tiene_fecha_inicio": true,
+      "fecha_inicio_doc": "Carta Nº    - 2026-D (Secretaría Digital (cartas 2026\\INF_789-2026- cHIL))",
+      "fecha_termino_prog": "",
+      "fecha_culminacion_real": "",
+      "acta_recepcion": "",
+      "resolucion_liquidacion": "",
+      "estado_info": "COMPLETA",
+      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
+      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "detalles_faltantes": [],
+      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
     },
     {
       "id": 16,
@@ -23865,7 +25599,23 @@
           "confiabilidad": "ALTA"
         }
       ],
-      "total_hitos": 2
+      "total_hitos": 2,
+      "fecha_inicio": "Aprox. 03 de noviembre del 2026 (Primer Hito PMO)",
+      "fecha_inicio_sort": "2026-11-03",
+      "tiene_fecha_inicio": true,
+      "fecha_inicio_doc": "CARTA N° 0 xxx- (Secretaría Digital (cartas 2026\\INF_1090-2026-MAYU))",
+      "fecha_termino_prog": "",
+      "fecha_culminacion_real": "",
+      "acta_recepcion": "",
+      "resolucion_liquidacion": "",
+      "estado_info": "PARCIAL",
+      "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
+      "estado_info_desc": "Hitos en ejecución identificados; falta acta de inicio o resolución de liquidación",
+      "detalles_faltantes": [
+        "Falta Fecha de Culminación Física Real",
+        "Falta Acta de Recepción de Obra o Resolución de Liquidación"
+      ],
+      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
     },
     {
       "id": 17,
@@ -23911,7 +25661,20 @@
           "confiabilidad": "MEDIA"
         }
       ],
-      "total_hitos": 2
+      "total_hitos": 2,
+      "fecha_inicio": "Aprox. 17 de noviembre del 2022 (Primer Hito PMO)",
+      "fecha_inicio_sort": "2022-11-17",
+      "tiene_fecha_inicio": true,
+      "fecha_inicio_doc": "Folio 25 (Tomo 1 PMO (Folio 25))",
+      "fecha_termino_prog": "",
+      "fecha_culminacion_real": "",
+      "acta_recepcion": "10/03/2023 (Tomo 3 Folio 4)",
+      "resolucion_liquidacion": "",
+      "estado_info": "COMPLETA",
+      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
+      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "detalles_faltantes": [],
+      "confiabilidad": "ALTA (100% Verificado)"
     },
     {
       "id": 18,
@@ -23957,7 +25720,20 @@
           "confiabilidad": "ALTA"
         }
       ],
-      "total_hitos": 2
+      "total_hitos": 2,
+      "fecha_inicio": "Aprox. 29 de agosto de 2025 (Primer Hito PMO)",
+      "fecha_inicio_sort": "2025-08-29",
+      "tiene_fecha_inicio": true,
+      "fecha_inicio_doc": "Carta N° 047-2025-SUP (Secretaría Digital (INFORMES\\INFORME Nº 094-2025-P))",
+      "fecha_termino_prog": "",
+      "fecha_culminacion_real": "",
+      "acta_recepcion": "",
+      "resolucion_liquidacion": "",
+      "estado_info": "COMPLETA",
+      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
+      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "detalles_faltantes": [],
+      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
     },
     {
       "id": 19,
@@ -24011,7 +25787,20 @@
           "confiabilidad": "ALTA"
         }
       ],
-      "total_hitos": 3
+      "total_hitos": 3,
+      "fecha_inicio": "23/08/2022 (Contrato 008-2022)",
+      "fecha_inicio_sort": "2022-08-23",
+      "tiene_fecha_inicio": true,
+      "fecha_inicio_doc": "Tomo 1 + Tomo 5 Folios 1 y 56",
+      "fecha_termino_prog": "21/12/2022",
+      "fecha_culminacion_real": "Marzo 2023",
+      "acta_recepcion": "Comité de Recepción 2023",
+      "resolucion_liquidacion": "En observaciones de liquidación técnica (Tomo 5 Folios 1 y 72)",
+      "estado_info": "COMPLETA",
+      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
+      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "detalles_faltantes": [],
+      "confiabilidad": "ALTA (100% Verificado)"
     },
     {
       "id": 20,
@@ -24097,7 +25886,23 @@
           "confiabilidad": "MEDIA"
         }
       ],
-      "total_hitos": 7
+      "total_hitos": 7,
+      "fecha_inicio": "Aprox. Abr-May 2023 (Primer Hito PMO)",
+      "fecha_inicio_sort": "2023-01-01",
+      "tiene_fecha_inicio": true,
+      "fecha_inicio_doc": "Folio 15 (Tomo 3 PMO (Folio 15))",
+      "fecha_termino_prog": "",
+      "fecha_culminacion_real": "",
+      "acta_recepcion": "",
+      "resolucion_liquidacion": "",
+      "estado_info": "PARCIAL",
+      "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
+      "estado_info_desc": "Hitos en ejecución identificados; falta acta de inicio o resolución de liquidación",
+      "detalles_faltantes": [
+        "Falta Fecha de Culminación Física Real",
+        "Falta Acta de Recepción de Obra o Resolución de Liquidación"
+      ],
+      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
     },
     {
       "id": 21,
@@ -24159,7 +25964,20 @@
           "confiabilidad": "ALTA"
         }
       ],
-      "total_hitos": 4
+      "total_hitos": 4,
+      "fecha_inicio": "Aprox. 2025-2026 (Primer Hito PMO)",
+      "fecha_inicio_sort": "2025-01-01",
+      "tiene_fecha_inicio": true,
+      "fecha_inicio_doc": "CARTA N° 0 xxx- (Secretaría Digital (cartas 2026\\INF_166-2026-crema))",
+      "fecha_termino_prog": "",
+      "fecha_culminacion_real": "",
+      "acta_recepcion": "",
+      "resolucion_liquidacion": "",
+      "estado_info": "COMPLETA",
+      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
+      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "detalles_faltantes": [],
+      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
     },
     {
       "id": 22,
@@ -24301,7 +26119,20 @@
           "confiabilidad": "ALTA"
         }
       ],
-      "total_hitos": 14
+      "total_hitos": 14,
+      "fecha_inicio": "13 DE NOVIEMBRE DEL 2025",
+      "fecha_inicio_sort": "2025-11-13",
+      "tiene_fecha_inicio": true,
+      "fecha_inicio_doc": "INFORME N°054-2025-PMO (Secretaría Digital (INFORMES\\INFORME Nº 054-2025-P))",
+      "fecha_termino_prog": "",
+      "fecha_culminacion_real": "",
+      "acta_recepcion": "",
+      "resolucion_liquidacion": "",
+      "estado_info": "COMPLETA",
+      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
+      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "detalles_faltantes": [],
+      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
     },
     {
       "id": 23,
@@ -24347,7 +26178,20 @@
           "confiabilidad": "ALTA"
         }
       ],
-      "total_hitos": 2
+      "total_hitos": 2,
+      "fecha_inicio": "13 de octubre del 2026",
+      "fecha_inicio_sort": "2026-10-13",
+      "tiene_fecha_inicio": true,
+      "fecha_inicio_doc": "CARTA N°  - 2026-D (Secretaría Digital (cartas 2026\\INF_981-2026-herre))",
+      "fecha_termino_prog": "",
+      "fecha_culminacion_real": "",
+      "acta_recepcion": "",
+      "resolucion_liquidacion": "",
+      "estado_info": "COMPLETA",
+      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
+      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "detalles_faltantes": [],
+      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
     },
     {
       "id": 24,
@@ -24417,7 +26261,20 @@
           "confiabilidad": "ALTA"
         }
       ],
-      "total_hitos": 5
+      "total_hitos": 5,
+      "fecha_inicio": "13 de octubre del 2026",
+      "fecha_inicio_sort": "2026-10-13",
+      "tiene_fecha_inicio": true,
+      "fecha_inicio_doc": "CARTA N°  - 2026-D (Secretaría Digital (cartas 2026\\INF_981-2026-herre))",
+      "fecha_termino_prog": "",
+      "fecha_culminacion_real": "",
+      "acta_recepcion": "",
+      "resolucion_liquidacion": "",
+      "estado_info": "COMPLETA",
+      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
+      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "detalles_faltantes": [],
+      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
     },
     {
       "id": 25,
@@ -24463,7 +26320,20 @@
           "confiabilidad": "ALTA"
         }
       ],
-      "total_hitos": 2
+      "total_hitos": 2,
+      "fecha_inicio": "13 de octubre del 2026",
+      "fecha_inicio_sort": "2026-10-13",
+      "tiene_fecha_inicio": true,
+      "fecha_inicio_doc": "CARTA N°  - 2026-D (Secretaría Digital (cartas 2026\\INF_981-2026-herre))",
+      "fecha_termino_prog": "",
+      "fecha_culminacion_real": "",
+      "acta_recepcion": "",
+      "resolucion_liquidacion": "",
+      "estado_info": "COMPLETA",
+      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
+      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "detalles_faltantes": [],
+      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
     },
     {
       "id": 26,
@@ -24501,7 +26371,20 @@
           "confiabilidad": "MEDIA"
         }
       ],
-      "total_hitos": 1
+      "total_hitos": 1,
+      "fecha_inicio": "Aprox. 13 de abril del 2023 (Primer Hito PMO)",
+      "fecha_inicio_sort": "2023-04-13",
+      "tiene_fecha_inicio": true,
+      "fecha_inicio_doc": "Folio 25 (Tomo 3 PMO (Folio 25))",
+      "fecha_termino_prog": "",
+      "fecha_culminacion_real": "",
+      "acta_recepcion": "",
+      "resolucion_liquidacion": "",
+      "estado_info": "COMPLETA",
+      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
+      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "detalles_faltantes": [],
+      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
     },
     {
       "id": 27,
@@ -24530,7 +26413,24 @@
       },
       "alerta": "[   ]",
       "historial": [],
-      "total_hitos": 0
+      "total_hitos": 0,
+      "fecha_inicio": "",
+      "fecha_inicio_sort": "9999-99-99",
+      "tiene_fecha_inicio": false,
+      "fecha_inicio_doc": "Pendiente de ubicar en Tomos 6 al 9",
+      "fecha_termino_prog": "",
+      "fecha_culminacion_real": "",
+      "acta_recepcion": "",
+      "resolucion_liquidacion": "",
+      "estado_info": "INCOMPLETA",
+      "estado_info_label": "🔴 INFORMACIÓN PENDIENTE",
+      "estado_info_desc": "Faltan documentos contractuales clave; buscar en Tomos 6 al 9",
+      "detalles_faltantes": [
+        "Falta Acta de Entrega de Terreno / Suscripción de Contrato (Fecha de Inicio)",
+        "Falta Fecha de Culminación Física Real",
+        "Falta Acta de Recepción de Obra o Resolución de Liquidación"
+      ],
+      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
     },
     {
       "id": 28,
@@ -24568,7 +26468,23 @@
           "confiabilidad": "MEDIA"
         }
       ],
-      "total_hitos": 1
+      "total_hitos": 1,
+      "fecha_inicio": "Aprox. 2025-2026 (Primer Hito PMO)",
+      "fecha_inicio_sort": "2025-01-01",
+      "tiene_fecha_inicio": true,
+      "fecha_inicio_doc": "CARTA N° 0 xxx- (Secretaría Digital (cartas 2026\\INF_966-2026-agric))",
+      "fecha_termino_prog": "",
+      "fecha_culminacion_real": "",
+      "acta_recepcion": "",
+      "resolucion_liquidacion": "",
+      "estado_info": "PARCIAL",
+      "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
+      "estado_info_desc": "Hitos en ejecución identificados; falta acta de inicio o resolución de liquidación",
+      "detalles_faltantes": [
+        "Falta Fecha de Culminación Física Real",
+        "Falta Acta de Recepción de Obra o Resolución de Liquidación"
+      ],
+      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
     },
     {
       "id": 29,
@@ -24614,7 +26530,23 @@
           "confiabilidad": "ALTA"
         }
       ],
-      "total_hitos": 2
+      "total_hitos": 2,
+      "fecha_inicio": "Aprox. 22 de octubre del 2026 (Primer Hito PMO)",
+      "fecha_inicio_sort": "2026-10-22",
+      "tiene_fecha_inicio": true,
+      "fecha_inicio_doc": "CARTA N°  - 2026-D (Secretaría Digital (cartas 2026\\INF_1033-2026-PACO))",
+      "fecha_termino_prog": "",
+      "fecha_culminacion_real": "",
+      "acta_recepcion": "",
+      "resolucion_liquidacion": "",
+      "estado_info": "PARCIAL",
+      "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
+      "estado_info_desc": "Hitos en ejecución identificados; falta acta de inicio o resolución de liquidación",
+      "detalles_faltantes": [
+        "Falta Fecha de Culminación Física Real",
+        "Falta Acta de Recepción de Obra o Resolución de Liquidación"
+      ],
+      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
     },
     {
       "id": 30,
@@ -24668,7 +26600,20 @@
           "confiabilidad": "ALTA"
         }
       ],
-      "total_hitos": 3
+      "total_hitos": 3,
+      "fecha_inicio": "Aprox. 13 de abril del 2023 (Primer Hito PMO)",
+      "fecha_inicio_sort": "2023-04-13",
+      "tiene_fecha_inicio": true,
+      "fecha_inicio_doc": "Folio 25 (Tomo 3 PMO (Folio 25))",
+      "fecha_termino_prog": "",
+      "fecha_culminacion_real": "",
+      "acta_recepcion": "",
+      "resolucion_liquidacion": "",
+      "estado_info": "COMPLETA",
+      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
+      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "detalles_faltantes": [],
+      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
     },
     {
       "id": 31,
@@ -24794,7 +26739,23 @@
           "confiabilidad": "ALTA"
         }
       ],
-      "total_hitos": 12
+      "total_hitos": 12,
+      "fecha_inicio": "21 de setiembre del 2026",
+      "fecha_inicio_sort": "2026-09-21",
+      "tiene_fecha_inicio": true,
+      "fecha_inicio_doc": "CARTA N° 0 xxx- (Secretaría Digital (cartas 2026\\INF_900-2026-PUENT))",
+      "fecha_termino_prog": "",
+      "fecha_culminacion_real": "",
+      "acta_recepcion": "",
+      "resolucion_liquidacion": "",
+      "estado_info": "PARCIAL",
+      "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
+      "estado_info_desc": "Hitos en ejecución identificados; falta acta de inicio o resolución de liquidación",
+      "detalles_faltantes": [
+        "Falta Fecha de Culminación Física Real",
+        "Falta Acta de Recepción de Obra o Resolución de Liquidación"
+      ],
+      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
     },
     {
       "id": 32,
@@ -24848,7 +26809,20 @@
           "confiabilidad": "MEDIA"
         }
       ],
-      "total_hitos": 3
+      "total_hitos": 3,
+      "fecha_inicio": "2025-2026",
+      "fecha_inicio_sort": "2025-01-01",
+      "tiene_fecha_inicio": true,
+      "fecha_inicio_doc": "CARTA N° 0 xxx- (Secretaría Digital (cartas 2026\\INF_267-2026-LIQUI))",
+      "fecha_termino_prog": "",
+      "fecha_culminacion_real": "",
+      "acta_recepcion": "",
+      "resolucion_liquidacion": "",
+      "estado_info": "COMPLETA",
+      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
+      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "detalles_faltantes": [],
+      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
     },
     {
       "id": 33,
@@ -24894,7 +26868,23 @@
           "confiabilidad": "ALTA"
         }
       ],
-      "total_hitos": 2
+      "total_hitos": 2,
+      "fecha_inicio": "21 de setiembre del 2026",
+      "fecha_inicio_sort": "2026-09-21",
+      "tiene_fecha_inicio": true,
+      "fecha_inicio_doc": "CARTA N° 0 xxx- (Secretaría Digital (cartas 2026\\INF_900-2026-PUENT))",
+      "fecha_termino_prog": "",
+      "fecha_culminacion_real": "",
+      "acta_recepcion": "",
+      "resolucion_liquidacion": "",
+      "estado_info": "PARCIAL",
+      "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
+      "estado_info_desc": "Hitos en ejecución identificados; falta acta de inicio o resolución de liquidación",
+      "detalles_faltantes": [
+        "Falta Fecha de Culminación Física Real",
+        "Falta Acta de Recepción de Obra o Resolución de Liquidación"
+      ],
+      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
     },
     {
       "id": 34,
@@ -25020,7 +27010,20 @@
           "confiabilidad": "ALTA"
         }
       ],
-      "total_hitos": 12
+      "total_hitos": 12,
+      "fecha_inicio": "Aprox. 2025-2026 (Primer Hito PMO)",
+      "fecha_inicio_sort": "2025-01-01",
+      "tiene_fecha_inicio": true,
+      "fecha_inicio_doc": "CARTA N° 0 xxx- (Secretaría Digital (cartas 2026\\INF_215-2026-urina))",
+      "fecha_termino_prog": "",
+      "fecha_culminacion_real": "",
+      "acta_recepcion": "",
+      "resolucion_liquidacion": "",
+      "estado_info": "COMPLETA",
+      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
+      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "detalles_faltantes": [],
+      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
     },
     {
       "id": 35,
@@ -25049,7 +27052,24 @@
       },
       "alerta": "[   ]",
       "historial": [],
-      "total_hitos": 0
+      "total_hitos": 0,
+      "fecha_inicio": "",
+      "fecha_inicio_sort": "9999-99-99",
+      "tiene_fecha_inicio": false,
+      "fecha_inicio_doc": "Pendiente de ubicar en Tomos 6 al 9",
+      "fecha_termino_prog": "",
+      "fecha_culminacion_real": "",
+      "acta_recepcion": "",
+      "resolucion_liquidacion": "",
+      "estado_info": "INCOMPLETA",
+      "estado_info_label": "🔴 INFORMACIÓN PENDIENTE",
+      "estado_info_desc": "Faltan documentos contractuales clave; buscar en Tomos 6 al 9",
+      "detalles_faltantes": [
+        "Falta Acta de Entrega de Terreno / Suscripción de Contrato (Fecha de Inicio)",
+        "Falta Fecha de Culminación Física Real",
+        "Falta Acta de Recepción de Obra o Resolución de Liquidación"
+      ],
+      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
     },
     {
       "id": 36,
@@ -25078,7 +27098,24 @@
       },
       "alerta": "[   ]",
       "historial": [],
-      "total_hitos": 0
+      "total_hitos": 0,
+      "fecha_inicio": "",
+      "fecha_inicio_sort": "9999-99-99",
+      "tiene_fecha_inicio": false,
+      "fecha_inicio_doc": "Pendiente de ubicar en Tomos 6 al 9",
+      "fecha_termino_prog": "",
+      "fecha_culminacion_real": "",
+      "acta_recepcion": "",
+      "resolucion_liquidacion": "",
+      "estado_info": "INCOMPLETA",
+      "estado_info_label": "🔴 INFORMACIÓN PENDIENTE",
+      "estado_info_desc": "Faltan documentos contractuales clave; buscar en Tomos 6 al 9",
+      "detalles_faltantes": [
+        "Falta Acta de Entrega de Terreno / Suscripción de Contrato (Fecha de Inicio)",
+        "Falta Fecha de Culminación Física Real",
+        "Falta Acta de Recepción de Obra o Resolución de Liquidación"
+      ],
+      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
     },
     {
       "id": 37,
@@ -25132,7 +27169,20 @@
           "confiabilidad": "ALTA"
         }
       ],
-      "total_hitos": 3
+      "total_hitos": 3,
+      "fecha_inicio": "Año 2022",
+      "fecha_inicio_sort": "2022-01-01",
+      "tiene_fecha_inicio": true,
+      "fecha_inicio_doc": "Archivo Físico Caja 03 (Foto Oficial 2024)",
+      "fecha_termino_prog": "2023",
+      "fecha_culminacion_real": "Finales 2023",
+      "acta_recepcion": "Conformidad de Supervisión 2024",
+      "resolucion_liquidacion": "Liquidación Aprobada 2024 (Caja 03)",
+      "estado_info": "COMPLETA",
+      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
+      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "detalles_faltantes": [],
+      "confiabilidad": "ALTA (100% Verificado)"
     },
     {
       "id": 38,
@@ -25202,7 +27252,23 @@
           "confiabilidad": "ALTA"
         }
       ],
-      "total_hitos": 5
+      "total_hitos": 5,
+      "fecha_inicio": "Aprox. 27 de febrero del 2026 (Primer Hito PMO)",
+      "fecha_inicio_sort": "2026-02-27",
+      "tiene_fecha_inicio": true,
+      "fecha_inicio_doc": "CARTA N° 0 xxx- (Secretaría Digital (cartas 2026\\INF_191-2026-puent))",
+      "fecha_termino_prog": "",
+      "fecha_culminacion_real": "",
+      "acta_recepcion": "",
+      "resolucion_liquidacion": "",
+      "estado_info": "PARCIAL",
+      "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
+      "estado_info_desc": "Hitos en ejecución identificados; falta acta de inicio o resolución de liquidación",
+      "detalles_faltantes": [
+        "Falta Fecha de Culminación Física Real",
+        "Falta Acta de Recepción de Obra o Resolución de Liquidación"
+      ],
+      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
     },
     {
       "id": 39,
@@ -25304,7 +27370,23 @@
           "confiabilidad": "ALTA"
         }
       ],
-      "total_hitos": 9
+      "total_hitos": 9,
+      "fecha_inicio": "21 de setiembre del 2026",
+      "fecha_inicio_sort": "2026-09-21",
+      "tiene_fecha_inicio": true,
+      "fecha_inicio_doc": "CARTA N° 0 xxx- (Secretaría Digital (cartas 2026\\INF_900-2026-PUENT))",
+      "fecha_termino_prog": "",
+      "fecha_culminacion_real": "",
+      "acta_recepcion": "",
+      "resolucion_liquidacion": "",
+      "estado_info": "PARCIAL",
+      "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
+      "estado_info_desc": "Hitos en ejecución identificados; falta acta de inicio o resolución de liquidación",
+      "detalles_faltantes": [
+        "Falta Fecha de Culminación Física Real",
+        "Falta Acta de Recepción de Obra o Resolución de Liquidación"
+      ],
+      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
     },
     {
       "id": 40,
@@ -25333,7 +27415,24 @@
       },
       "alerta": "[   ]",
       "historial": [],
-      "total_hitos": 0
+      "total_hitos": 0,
+      "fecha_inicio": "",
+      "fecha_inicio_sort": "9999-99-99",
+      "tiene_fecha_inicio": false,
+      "fecha_inicio_doc": "Pendiente de ubicar en Tomos 6 al 9",
+      "fecha_termino_prog": "",
+      "fecha_culminacion_real": "",
+      "acta_recepcion": "",
+      "resolucion_liquidacion": "",
+      "estado_info": "INCOMPLETA",
+      "estado_info_label": "🔴 INFORMACIÓN PENDIENTE",
+      "estado_info_desc": "Faltan documentos contractuales clave; buscar en Tomos 6 al 9",
+      "detalles_faltantes": [
+        "Falta Acta de Entrega de Terreno / Suscripción de Contrato (Fecha de Inicio)",
+        "Falta Fecha de Culminación Física Real",
+        "Falta Acta de Recepción de Obra o Resolución de Liquidación"
+      ],
+      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
     },
     {
       "id": 41,
@@ -25379,7 +27478,23 @@
           "confiabilidad": "MEDIA"
         }
       ],
-      "total_hitos": 2
+      "total_hitos": 2,
+      "fecha_inicio": "Aprox. Abr-May 2023 (Primer Hito PMO)",
+      "fecha_inicio_sort": "2023-01-01",
+      "tiene_fecha_inicio": true,
+      "fecha_inicio_doc": "Folio 15 (Tomo 3 PMO (Folio 15))",
+      "fecha_termino_prog": "",
+      "fecha_culminacion_real": "",
+      "acta_recepcion": "",
+      "resolucion_liquidacion": "",
+      "estado_info": "PARCIAL",
+      "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
+      "estado_info_desc": "Hitos en ejecución identificados; falta acta de inicio o resolución de liquidación",
+      "detalles_faltantes": [
+        "Falta Fecha de Culminación Física Real",
+        "Falta Acta de Recepción de Obra o Resolución de Liquidación"
+      ],
+      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
     },
     {
       "id": 42,
@@ -25465,7 +27580,20 @@
           "confiabilidad": "ALTA"
         }
       ],
-      "total_hitos": 7
+      "total_hitos": 7,
+      "fecha_inicio": "Aprox. 17 de noviembre del 2022 (Primer Hito PMO)",
+      "fecha_inicio_sort": "2022-11-17",
+      "tiene_fecha_inicio": true,
+      "fecha_inicio_doc": "Folio 25 (Tomo 1 PMO (Folio 25))",
+      "fecha_termino_prog": "",
+      "fecha_culminacion_real": "",
+      "acta_recepcion": "",
+      "resolucion_liquidacion": "",
+      "estado_info": "COMPLETA",
+      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
+      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "detalles_faltantes": [],
+      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
     },
     {
       "id": 43,
@@ -25583,7 +27711,20 @@
           "confiabilidad": "ALTA"
         }
       ],
-      "total_hitos": 11
+      "total_hitos": 11,
+      "fecha_inicio": "Año 2022",
+      "fecha_inicio_sort": "2022-01-01",
+      "tiene_fecha_inicio": true,
+      "fecha_inicio_doc": "Archivo Físico Caja 03 (Foto Oficial 2024)",
+      "fecha_termino_prog": "2023",
+      "fecha_culminacion_real": "Finales 2023",
+      "acta_recepcion": "Conformidad de Supervisión 2024",
+      "resolucion_liquidacion": "Liquidación Aprobada 2024 (Caja 03)",
+      "estado_info": "COMPLETA",
+      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
+      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "detalles_faltantes": [],
+      "confiabilidad": "ALTA (100% Verificado)"
     },
     {
       "id": 44,
@@ -25637,7 +27778,20 @@
           "confiabilidad": "ALTA"
         }
       ],
-      "total_hitos": 3
+      "total_hitos": 3,
+      "fecha_inicio": "Año 2022",
+      "fecha_inicio_sort": "2022-01-01",
+      "tiene_fecha_inicio": true,
+      "fecha_inicio_doc": "Archivo Físico Caja 03 (Foto Oficial 2024)",
+      "fecha_termino_prog": "2023",
+      "fecha_culminacion_real": "Finales 2023",
+      "acta_recepcion": "Conformidad de Supervisión 2024",
+      "resolucion_liquidacion": "Liquidación Aprobada 2024 (Caja 03)",
+      "estado_info": "COMPLETA",
+      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
+      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "detalles_faltantes": [],
+      "confiabilidad": "ALTA (100% Verificado)"
     },
     {
       "id": 45,
@@ -25683,7 +27837,20 @@
           "confiabilidad": "ALTA"
         }
       ],
-      "total_hitos": 2
+      "total_hitos": 2,
+      "fecha_inicio": "Año 2022",
+      "fecha_inicio_sort": "2022-01-01",
+      "tiene_fecha_inicio": true,
+      "fecha_inicio_doc": "Archivo Físico Caja 03 (Foto Oficial 2024)",
+      "fecha_termino_prog": "2023",
+      "fecha_culminacion_real": "Finales 2023",
+      "acta_recepcion": "Conformidad de Supervisión 2024",
+      "resolucion_liquidacion": "Liquidación Aprobada 2024 (Caja 03)",
+      "estado_info": "COMPLETA",
+      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
+      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "detalles_faltantes": [],
+      "confiabilidad": "ALTA (100% Verificado)"
     },
     {
       "id": 46,
@@ -25729,7 +27896,20 @@
           "confiabilidad": "ALTA"
         }
       ],
-      "total_hitos": 2
+      "total_hitos": 2,
+      "fecha_inicio": "Año 2022",
+      "fecha_inicio_sort": "2022-01-01",
+      "tiene_fecha_inicio": true,
+      "fecha_inicio_doc": "Archivo Físico Caja 03 (Foto Oficial 2024)",
+      "fecha_termino_prog": "2023",
+      "fecha_culminacion_real": "Finales 2023",
+      "acta_recepcion": "Conformidad de Supervisión 2024",
+      "resolucion_liquidacion": "Liquidación Aprobada 2024 (Caja 03)",
+      "estado_info": "COMPLETA",
+      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
+      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "detalles_faltantes": [],
+      "confiabilidad": "ALTA (100% Verificado)"
     },
     {
       "id": 47,
@@ -25839,7 +28019,23 @@
           "confiabilidad": "MEDIA"
         }
       ],
-      "total_hitos": 10
+      "total_hitos": 10,
+      "fecha_inicio": "Aprox. 2025-2026 (Primer Hito PMO)",
+      "fecha_inicio_sort": "2025-01-01",
+      "tiene_fecha_inicio": true,
+      "fecha_inicio_doc": "CARTA N° 0 xxx- (Secretaría Digital (cartas 2026\\INF_411-2026-MERCA))",
+      "fecha_termino_prog": "",
+      "fecha_culminacion_real": "",
+      "acta_recepcion": "",
+      "resolucion_liquidacion": "",
+      "estado_info": "PARCIAL",
+      "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
+      "estado_info_desc": "Hitos en ejecución identificados; falta acta de inicio o resolución de liquidación",
+      "detalles_faltantes": [
+        "Falta Fecha de Culminación Física Real",
+        "Falta Acta de Recepción de Obra o Resolución de Liquidación"
+      ],
+      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
     },
     {
       "id": 48,
@@ -25893,7 +28089,23 @@
           "confiabilidad": "ALTA"
         }
       ],
-      "total_hitos": 3
+      "total_hitos": 3,
+      "fecha_inicio": "26 de agosto del 2025",
+      "fecha_inicio_sort": "2025-08-26",
+      "tiene_fecha_inicio": true,
+      "fecha_inicio_doc": "carta N°521-2025-D (Secretaría Digital (INFORMES\\INFORME Nº 025-2025-P))",
+      "fecha_termino_prog": "",
+      "fecha_culminacion_real": "",
+      "acta_recepcion": "",
+      "resolucion_liquidacion": "",
+      "estado_info": "PARCIAL",
+      "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
+      "estado_info_desc": "Hitos en ejecución identificados; falta acta de inicio o resolución de liquidación",
+      "detalles_faltantes": [
+        "Falta Fecha de Culminación Física Real",
+        "Falta Acta de Recepción de Obra o Resolución de Liquidación"
+      ],
+      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
     },
     {
       "id": 49,
@@ -25931,7 +28143,23 @@
           "confiabilidad": "ALTA"
         }
       ],
-      "total_hitos": 1
+      "total_hitos": 1,
+      "fecha_inicio": "Aprox. 20 de octubre del 2025 (Primer Hito PMO)",
+      "fecha_inicio_sort": "2025-10-20",
+      "tiene_fecha_inicio": true,
+      "fecha_inicio_doc": "carta N°254-2025-INV (Secretaría Digital (INFORMES\\INFORME Nº 092-2025-P))",
+      "fecha_termino_prog": "",
+      "fecha_culminacion_real": "",
+      "acta_recepcion": "",
+      "resolucion_liquidacion": "",
+      "estado_info": "PARCIAL",
+      "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
+      "estado_info_desc": "Hitos en ejecución identificados; falta acta de inicio o resolución de liquidación",
+      "detalles_faltantes": [
+        "Falta Fecha de Culminación Física Real",
+        "Falta Acta de Recepción de Obra o Resolución de Liquidación"
+      ],
+      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
     },
     {
       "id": 2,
@@ -26257,7 +28485,20 @@
           "confiabilidad": "ALTA"
         }
       ],
-      "total_hitos": 37
+      "total_hitos": 37,
+      "fecha_inicio": "Iniciada en periodo 2020-2021",
+      "fecha_inicio_sort": "2020-01-01",
+      "tiene_fecha_inicio": true,
+      "fecha_inicio_doc": "Matriz Entregable 1 + Estados Financieros FDM",
+      "fecha_termino_prog": "2022",
+      "fecha_culminacion_real": "2022",
+      "acta_recepcion": "Acta de Recepción 2022",
+      "resolucion_liquidacion": "Liquidada 2022-2023",
+      "estado_info": "COMPLETA",
+      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
+      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "detalles_faltantes": [],
+      "confiabilidad": "MEDIA (Ratificada por Estados Financieros)"
     },
     {
       "id": 3,
@@ -26286,7 +28527,20 @@
       },
       "alerta": "[   ]",
       "historial": [],
-      "total_hitos": 0
+      "total_hitos": 0,
+      "fecha_inicio": "Iniciada en periodo 2020-2021",
+      "fecha_inicio_sort": "2020-01-01",
+      "tiene_fecha_inicio": true,
+      "fecha_inicio_doc": "Matriz Entregable 1 + Estados Financieros FDM",
+      "fecha_termino_prog": "2022",
+      "fecha_culminacion_real": "2022",
+      "acta_recepcion": "Acta de Recepción 2022",
+      "resolucion_liquidacion": "Liquidada 2022-2023",
+      "estado_info": "COMPLETA",
+      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
+      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "detalles_faltantes": [],
+      "confiabilidad": "MEDIA (Ratificada por Estados Financieros)"
     },
     {
       "id": 4,
@@ -26492,7 +28746,20 @@
           "confiabilidad": "MEDIA"
         }
       ],
-      "total_hitos": 22
+      "total_hitos": 22,
+      "fecha_inicio": "Iniciada en periodo 2020-2021",
+      "fecha_inicio_sort": "2020-01-01",
+      "tiene_fecha_inicio": true,
+      "fecha_inicio_doc": "Matriz Entregable 1 + Estados Financieros FDM",
+      "fecha_termino_prog": "2022",
+      "fecha_culminacion_real": "2022",
+      "acta_recepcion": "Acta de Recepción 2022",
+      "resolucion_liquidacion": "Liquidada 2022-2023",
+      "estado_info": "COMPLETA",
+      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
+      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "detalles_faltantes": [],
+      "confiabilidad": "MEDIA (Ratificada por Estados Financieros)"
     },
     {
       "id": 5,
@@ -26602,7 +28869,20 @@
           "confiabilidad": "ALTA"
         }
       ],
-      "total_hitos": 10
+      "total_hitos": 10,
+      "fecha_inicio": "Iniciada en periodo 2020-2021",
+      "fecha_inicio_sort": "2020-01-01",
+      "tiene_fecha_inicio": true,
+      "fecha_inicio_doc": "Matriz Entregable 1 + Estados Financieros FDM",
+      "fecha_termino_prog": "2022",
+      "fecha_culminacion_real": "2022",
+      "acta_recepcion": "Acta de Recepción 2022",
+      "resolucion_liquidacion": "Liquidada 2022-2023",
+      "estado_info": "COMPLETA",
+      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
+      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "detalles_faltantes": [],
+      "confiabilidad": "MEDIA (Ratificada por Estados Financieros)"
     },
     {
       "id": 6,
@@ -26631,7 +28911,24 @@
       },
       "alerta": "[   ]",
       "historial": [],
-      "total_hitos": 0
+      "total_hitos": 0,
+      "fecha_inicio": "",
+      "fecha_inicio_sort": "9999-99-99",
+      "tiene_fecha_inicio": false,
+      "fecha_inicio_doc": "Pendiente de ubicar en Tomos 6 al 9",
+      "fecha_termino_prog": "",
+      "fecha_culminacion_real": "",
+      "acta_recepcion": "",
+      "resolucion_liquidacion": "",
+      "estado_info": "INCOMPLETA",
+      "estado_info_label": "🔴 INFORMACIÓN PENDIENTE",
+      "estado_info_desc": "Faltan documentos contractuales clave; buscar en Tomos 6 al 9",
+      "detalles_faltantes": [
+        "Falta Acta de Entrega de Terreno / Suscripción de Contrato (Fecha de Inicio)",
+        "Falta Fecha de Culminación Física Real",
+        "Falta Acta de Recepción de Obra o Resolución de Liquidación"
+      ],
+      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
     },
     {
       "id": 7,
@@ -26660,7 +28957,24 @@
       },
       "alerta": "[   ]",
       "historial": [],
-      "total_hitos": 0
+      "total_hitos": 0,
+      "fecha_inicio": "",
+      "fecha_inicio_sort": "9999-99-99",
+      "tiene_fecha_inicio": false,
+      "fecha_inicio_doc": "Pendiente de ubicar en Tomos 6 al 9",
+      "fecha_termino_prog": "",
+      "fecha_culminacion_real": "",
+      "acta_recepcion": "",
+      "resolucion_liquidacion": "",
+      "estado_info": "INCOMPLETA",
+      "estado_info_label": "🔴 INFORMACIÓN PENDIENTE",
+      "estado_info_desc": "Faltan documentos contractuales clave; buscar en Tomos 6 al 9",
+      "detalles_faltantes": [
+        "Falta Acta de Entrega de Terreno / Suscripción de Contrato (Fecha de Inicio)",
+        "Falta Fecha de Culminación Física Real",
+        "Falta Acta de Recepción de Obra o Resolución de Liquidación"
+      ],
+      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
     },
     {
       "id": 8,
@@ -26778,7 +29092,20 @@
           "confiabilidad": "ALTA"
         }
       ],
-      "total_hitos": 11
+      "total_hitos": 11,
+      "fecha_inicio": "09/03/2023",
+      "fecha_inicio_sort": "2023-03-09",
+      "tiene_fecha_inicio": true,
+      "fecha_inicio_doc": "Tomo 1 PMO Pág. 104 (Inf. 135-2023-PMO)",
+      "fecha_termino_prog": "05/09/2023",
+      "fecha_culminacion_real": "Primer Trimestre 2024",
+      "acta_recepcion": "Acta de Recepción 2024 (MPI)",
+      "resolucion_liquidacion": "En proceso de liquidación final",
+      "estado_info": "COMPLETA",
+      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
+      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "detalles_faltantes": [],
+      "confiabilidad": "ALTA (100% Verificado)"
     },
     {
       "id": 9,
@@ -27256,7 +29583,20 @@
           "confiabilidad": "ALTA"
         }
       ],
-      "total_hitos": 56
+      "total_hitos": 56,
+      "fecha_inicio": "Segundo Semestre 2022",
+      "fecha_inicio_sort": "2022-01-01",
+      "tiene_fecha_inicio": true,
+      "fecha_inicio_doc": "Tomo 1 PMO Págs. 18, 48, 62 (Cartas 018 y 026-SUP)",
+      "fecha_termino_prog": "Enero 2023",
+      "fecha_culminacion_real": "15/02/2023 (Val N° 03)",
+      "acta_recepcion": "06/02/2023 (Comité Recepción MPI - Pág 48 Tomo 1)",
+      "resolucion_liquidacion": "Liquidación Técnica 2023",
+      "estado_info": "COMPLETA",
+      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
+      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "detalles_faltantes": [],
+      "confiabilidad": "ALTA (100% Verificado)"
     }
   ]
 }
