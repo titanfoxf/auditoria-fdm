@@ -614,11 +614,13 @@
         // Completeness Badge
         let badgeInfo = '';
         if (p.estado_info === 'COMPLETA') {
-          badgeInfo = `<span class="badge badge-green" title="Inicio y Cierre verificados">🟢 Completa</span>`;
+          badgeInfo = `<span class="badge badge-green" title="Expediente en Caja FDM o Inicio+Cierre verificado">🟢 Completa</span>`;
         } else if (p.estado_info === 'PARCIAL') {
-          badgeInfo = `<span class="badge badge-yellow" title="Hitos en proceso; falta inicio o liquidación">🟡 Parcial</span>`;
+          badgeInfo = `<span class="badge badge-yellow" title="Hitos en proceso; falta acta de inicio o liquidación">🟡 Parcial</span>`;
+        } else if (p.estado_info === 'NO_APLICA') {
+          badgeInfo = `<span class="badge badge-gray" title="Proyecto no ejecutado físicamente / Exp. Observado">⚪ No Aplica</span>`;
         } else {
-          badgeInfo = `<span class="badge badge-red" title="Faltan documentos contractuales; buscar en Tomos 6 al 9">🔴 Incompleta</span>`;
+          badgeInfo = `<span class="badge badge-red" title="Faltan documentos contractuales clave; buscar en Tomos">🔴 Incompleta</span>`;
         }
 
         return `
@@ -679,6 +681,11 @@
         estadoLabel.style.color = "#CA8A04";
         badgeConf.className = "badge badge-yellow";
         badgeConf.innerText = "Confiabilidad: MEDIA";
+      } else if (p.estado_info === 'NO_APLICA') {
+        estadoLabel.innerText = "⚪ NO APLICA (NO EJECUTADA)";
+        estadoLabel.style.color = "#64748B";
+        badgeConf.className = "badge badge-gray";
+        badgeConf.innerText = "Sin Obra Física";
       } else {
         estadoLabel.innerText = "🔴 INFORMACIÓN PENDIENTE";
         estadoLabel.style.color = "#DC2626";
@@ -689,35 +696,44 @@
       // Pillars
       const pillIni = document.getElementById('pillInicio');
       const pillIniVal = document.getElementById('pillInicioVal');
-      if (p.tiene_fecha_inicio) {
+      if (p.tiene_fecha_inicio && p.estado_info !== 'NO_APLICA') {
         pillIni.className = "milestone-pill ok";
         pillIniVal.innerText = p.fecha_inicio;
         pillIniVal.title = p.fecha_inicio_doc;
+      } else if (p.estado_info === 'NO_APLICA') {
+        pillIni.className = "milestone-pill gray";
+        pillIniVal.innerText = "No Aplica";
       } else {
         pillIni.className = "milestone-pill missing";
         pillIniVal.innerText = "⚠️ Falta Acta Inicio";
-        pillIniVal.title = "Buscar acta de entrega de terreno en Tomos 6 al 9";
+        pillIniVal.title = "Buscar acta de entrega de terreno en Tomos 7 al 9";
       }
 
       const pillPlazo = document.getElementById('pillPlazo');
       const pillPlazoVal = document.getElementById('pillPlazoVal');
-      pillPlazoVal.innerText = p.fecha_termino_prog ? p.fecha_termino_prog : (hist.length > 0 ? "Hitos en Tomos" : "Por verificar");
+      pillPlazoVal.innerText = p.fecha_termino_prog ? p.fecha_termino_prog : (hist.length > 0 ? "Hitos en Tomos" : (p.estado_info === 'NO_APLICA' ? "No Aplica" : "Por verificar"));
 
       const pillTerm = document.getElementById('pillTermino');
       const pillTermVal = document.getElementById('pillTerminoVal');
-      pillTermVal.innerText = p.fecha_culminacion_real ? p.fecha_culminacion_real : (p.estado_info === 'COMPLETA' ? "Verificada" : "Pendiente");
+      pillTermVal.innerText = p.fecha_culminacion_real ? p.fecha_culminacion_real : (p.estado_info === 'COMPLETA' ? "Verificada" : (p.estado_info === 'NO_APLICA' ? "No Aplica" : "Pendiente"));
 
       const pillCierre = document.getElementById('pillCierre');
       const pillCierreVal = document.getElementById('pillCierreVal');
-      if ((p.tiene_caja || '').toUpperCase().includes('CAJA')) {
+      const hasCaja = (p.tiene_caja || '').toUpperCase().includes('CAJA');
+      const hasCierreDoc = hist.some(h => (h.tipo || '').includes('Liquidación') || (h.tipo || '').includes('Recepción'));
+
+      if (hasCaja) {
         pillCierre.className = "milestone-pill ok";
         pillCierreVal.innerText = `Caja ${p.n_cajas}`;
-      } else if (p.acta_recepcion || p.resolucion_liquidacion) {
+      } else if (hasCierreDoc) {
         pillCierre.className = "milestone-pill ok";
-        pillCierreVal.innerText = "Con Acta/Resolución";
+        pillCierreVal.innerText = "Doc en Tomos";
+      } else if (p.estado_info === 'NO_APLICA') {
+        pillCierre.className = "milestone-pill gray";
+        pillCierreVal.innerText = "No Aplica";
       } else {
         pillCierre.className = "milestone-pill missing";
-        pillCierreVal.innerText = "❌ Falta Cierre";
+        pillCierreVal.innerText = "⚠️ Falta Cierre Físico";
       }
 
       // Missing Alert Box

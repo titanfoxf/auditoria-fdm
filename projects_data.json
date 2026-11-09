@@ -9,9 +9,10 @@
     "en_caja": 20,
     "con_fecha_inicio": 155,
     "sin_fecha_inicio": 12,
-    "info_completa": 126,
-    "info_parcial": 29,
-    "info_incompleta": 12
+    "info_completa": 67,
+    "info_parcial": 80,
+    "info_incompleta": 16,
+    "no_aplica": 4
   },
   "projects": [
     {
@@ -420,8 +421,8 @@
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
       "estado_info": "COMPLETA",
-      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
-      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "estado_info_label": "🟢 EXPEDIENTE EN CAJA FDM",
+      "estado_info_desc": "Expediente físico verificado en EN CAJA con liquidación técnica-financiera",
       "detalles_faltantes": [],
       "confiabilidad": "ALTA"
     },
@@ -839,10 +840,10 @@
       "acta_recepcion": "Acta de Recepción 2022",
       "resolucion_liquidacion": "Liquidada 2022-2023",
       "estado_info": "COMPLETA",
-      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
-      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "estado_info_label": "🟢 TRAZABILIDAD INTEGRAL",
+      "estado_info_desc": "Cuenta con documentos de inicio y recepción/liquidación en Tomos PMO escaneados",
       "detalles_faltantes": [],
-      "confiabilidad": "MEDIA (Ratificada por Estados Financieros)"
+      "confiabilidad": "ALTA"
     },
     {
       "id": 3,
@@ -880,11 +881,13 @@
       "fecha_culminacion_real": "2022",
       "acta_recepcion": "Acta de Recepción 2022",
       "resolucion_liquidacion": "Liquidada 2022-2023",
-      "estado_info": "COMPLETA",
-      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
-      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
-      "detalles_faltantes": [],
-      "confiabilidad": "MEDIA (Ratificada por Estados Financieros)"
+      "estado_info": "PARCIAL",
+      "estado_info_label": "🟡 REGISTRO HISTÓRICO",
+      "estado_info_desc": "Figura en matriz histórica 2020-2022; falta ubicar expediente físico en Tomos 7-9 o archivador",
+      "detalles_faltantes": [
+        "Falta ubicar expediente físico o Tomos de liquidación 2020-2022"
+      ],
+      "confiabilidad": "MEDIA"
     },
     {
       "id": 4,
@@ -922,11 +925,13 @@
       "fecha_culminacion_real": "2022",
       "acta_recepcion": "Acta de Recepción 2022",
       "resolucion_liquidacion": "Liquidada 2022-2023",
-      "estado_info": "COMPLETA",
-      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
-      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
-      "detalles_faltantes": [],
-      "confiabilidad": "MEDIA (Ratificada por Estados Financieros)"
+      "estado_info": "PARCIAL",
+      "estado_info_label": "🟡 REGISTRO HISTÓRICO",
+      "estado_info_desc": "Figura en matriz histórica 2020-2022; falta ubicar expediente físico en Tomos 7-9 o archivador",
+      "detalles_faltantes": [
+        "Falta ubicar expediente físico o Tomos de liquidación 2020-2022"
+      ],
+      "confiabilidad": "MEDIA"
     },
     {
       "id": 5,
@@ -964,11 +969,13 @@
       "fecha_culminacion_real": "2022",
       "acta_recepcion": "Acta de Recepción 2022",
       "resolucion_liquidacion": "Liquidada 2022-2023",
-      "estado_info": "COMPLETA",
-      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
-      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
-      "detalles_faltantes": [],
-      "confiabilidad": "MEDIA (Ratificada por Estados Financieros)"
+      "estado_info": "PARCIAL",
+      "estado_info_label": "🟡 REGISTRO HISTÓRICO",
+      "estado_info_desc": "Figura en matriz histórica 2020-2022; falta ubicar expediente físico en Tomos 7-9 o archivador",
+      "detalles_faltantes": [
+        "Falta ubicar expediente físico o Tomos de liquidación 2020-2022"
+      ],
+      "confiabilidad": "MEDIA"
     },
     {
       "id": 6,
@@ -1063,11 +1070,13 @@
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
-      "estado_info": "COMPLETA",
-      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
-      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
-      "detalles_faltantes": [],
-      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
+      "estado_info": "PARCIAL",
+      "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
+      "estado_info_desc": "Cuenta con hitos de ejecución y cierre; falta acta de inicio",
+      "detalles_faltantes": [
+        "Falta Acta de Inicio en Tomos"
+      ],
+      "confiabilidad": "MEDIA"
     },
     {
       "id": 7,
@@ -1105,10 +1114,12 @@
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
-      "estado_info": "COMPLETA",
-      "estado_info_label": "⚪ NO APLICA (EXP. OBSERVADO)",
-      "estado_info_desc": "No aplica fecha de inicio de obra física: Proyecto en formulación con Expediente Técnico Observado (S/ 0.00 ejecutado).",
-      "detalles_faltantes": [],
+      "estado_info": "NO_APLICA",
+      "estado_info_label": "⚪ NO APLICA (NO EJECUTADA)",
+      "estado_info_desc": "Expediente observado o cambio de proyecto en Directorio (S/ 0.00 ejecutado, sin obra física)",
+      "detalles_faltantes": [
+        "Sustento con Acta de Directorio / Acuerdo de Despriorización"
+      ],
       "confiabilidad": "ALTA"
     },
     {
@@ -1653,10 +1664,10 @@
       "acta_recepcion": "Acta de Recepción 2024 (MPI)",
       "resolucion_liquidacion": "En proceso de liquidación final",
       "estado_info": "COMPLETA",
-      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
-      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "estado_info_label": "🟢 EXPEDIENTE EN CAJA FDM",
+      "estado_info_desc": "Expediente físico verificado en EN CAJA con liquidación técnica-financiera",
       "detalles_faltantes": [],
-      "confiabilidad": "ALTA (100% Verificado)"
+      "confiabilidad": "ALTA"
     },
     {
       "id": 9,
@@ -2288,10 +2299,10 @@
       "acta_recepcion": "06/02/2023 (Comité Recepción MPI - Pág 48 Tomo 1)",
       "resolucion_liquidacion": "Liquidación Técnica 2023",
       "estado_info": "COMPLETA",
-      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
-      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "estado_info_label": "🟢 TRAZABILIDAD INTEGRAL",
+      "estado_info_desc": "Cuenta con documentos de inicio y recepción/liquidación en Tomos PMO escaneados",
       "detalles_faltantes": [],
-      "confiabilidad": "ALTA (100% Verificado)"
+      "confiabilidad": "ALTA"
     },
     {
       "id": 10,
@@ -2835,10 +2846,10 @@
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
       "estado_info": "COMPLETA",
-      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
-      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "estado_info_label": "🟢 TRAZABILIDAD INTEGRAL",
+      "estado_info_desc": "Cuenta con documentos de inicio y recepción/liquidación en Tomos PMO escaneados",
       "detalles_faltantes": [],
-      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
+      "confiabilidad": "ALTA"
     },
     {
       "id": 11,
@@ -2876,10 +2887,12 @@
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
-      "estado_info": "COMPLETA",
-      "estado_info_label": "⚪ NO APLICA (EXP. OBSERVADO)",
-      "estado_info_desc": "No aplica fecha de inicio de obra física: Expediente Técnico observado, sin inicio físico de obra (S/ 0.00 ejecutado).",
-      "detalles_faltantes": [],
+      "estado_info": "NO_APLICA",
+      "estado_info_label": "⚪ NO APLICA (NO EJECUTADA)",
+      "estado_info_desc": "Expediente observado o cambio de proyecto en Directorio (S/ 0.00 ejecutado, sin obra física)",
+      "detalles_faltantes": [
+        "Sustento con Acta de Directorio / Acuerdo de Despriorización"
+      ],
       "confiabilidad": "ALTA"
     },
     {
@@ -3512,10 +3525,10 @@
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
       "estado_info": "COMPLETA",
-      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
-      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "estado_info_label": "🟢 TRAZABILIDAD INTEGRAL",
+      "estado_info_desc": "Cuenta con documentos de inicio y recepción/liquidación en Tomos PMO escaneados",
       "detalles_faltantes": [],
-      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
+      "confiabilidad": "ALTA"
     },
     {
       "id": 13,
@@ -3859,10 +3872,10 @@
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
       "estado_info": "COMPLETA",
-      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
-      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "estado_info_label": "🟢 EXPEDIENTE EN CAJA FDM",
+      "estado_info_desc": "Expediente físico verificado en EN CAJA con liquidación técnica-financiera",
       "detalles_faltantes": [],
-      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
+      "confiabilidad": "ALTA"
     },
     {
       "id": 14,
@@ -5302,10 +5315,10 @@
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
       "estado_info": "COMPLETA",
-      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
-      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "estado_info_label": "🟢 TRAZABILIDAD INTEGRAL",
+      "estado_info_desc": "Cuenta con documentos de inicio y recepción/liquidación en Tomos PMO escaneados",
       "detalles_faltantes": [],
-      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
+      "confiabilidad": "ALTA"
     },
     {
       "id": 15,
@@ -5360,11 +5373,13 @@
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
-      "estado_info": "COMPLETA",
-      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
-      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
-      "detalles_faltantes": [],
-      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
+      "estado_info": "PARCIAL",
+      "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
+      "estado_info_desc": "Cuenta con hitos de ejecución y cierre; falta acta de inicio",
+      "detalles_faltantes": [
+        "Falta Acta de Inicio en Tomos"
+      ],
+      "confiabilidad": "MEDIA"
     },
     {
       "id": 16,
@@ -5628,10 +5643,10 @@
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
       "estado_info": "COMPLETA",
-      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
-      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "estado_info_label": "🟢 EXPEDIENTE EN CAJA FDM",
+      "estado_info_desc": "Expediente físico verificado en EN CAJA con liquidación técnica-financiera",
       "detalles_faltantes": [],
-      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
+      "confiabilidad": "ALTA"
     },
     {
       "id": 17,
@@ -5774,11 +5789,13 @@
       "fecha_culminacion_real": "",
       "acta_recepcion": "10/03/2023 (Tomo 3 Folio 4)",
       "resolucion_liquidacion": "",
-      "estado_info": "COMPLETA",
-      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
-      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
-      "detalles_faltantes": [],
-      "confiabilidad": "ALTA (100% Verificado)"
+      "estado_info": "PARCIAL",
+      "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
+      "estado_info_desc": "Cuenta con hitos de ejecución y cierre; falta acta de inicio",
+      "detalles_faltantes": [
+        "Falta Acta de Inicio en Tomos"
+      ],
+      "confiabilidad": "MEDIA"
     },
     {
       "id": 18,
@@ -5881,11 +5898,13 @@
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
-      "estado_info": "COMPLETA",
-      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
-      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
-      "detalles_faltantes": [],
-      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
+      "estado_info": "PARCIAL",
+      "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
+      "estado_info_desc": "Cuenta con hitos de ejecución y cierre; falta acta de inicio",
+      "detalles_faltantes": [
+        "Falta Acta de Inicio en Tomos"
+      ],
+      "confiabilidad": "MEDIA"
     },
     {
       "id": 19,
@@ -6821,10 +6840,10 @@
       "acta_recepcion": "Comité de Recepción 2023",
       "resolucion_liquidacion": "En observaciones de liquidación técnica (Tomo 5 Folios 1 y 72)",
       "estado_info": "COMPLETA",
-      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
-      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "estado_info_label": "🟢 TRAZABILIDAD INTEGRAL",
+      "estado_info_desc": "Cuenta con documentos de inicio y recepción/liquidación en Tomos PMO escaneados",
       "detalles_faltantes": [],
-      "confiabilidad": "ALTA (100% Verificado)"
+      "confiabilidad": "ALTA"
     },
     {
       "id": 20,
@@ -7055,11 +7074,13 @@
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
-      "estado_info": "COMPLETA",
-      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
-      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
-      "detalles_faltantes": [],
-      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
+      "estado_info": "PARCIAL",
+      "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
+      "estado_info_desc": "Cuenta con hitos de ejecución y cierre; falta acta de inicio",
+      "detalles_faltantes": [
+        "Falta Acta de Inicio en Tomos"
+      ],
+      "confiabilidad": "MEDIA"
     },
     {
       "id": 21,
@@ -7186,11 +7207,13 @@
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
-      "estado_info": "COMPLETA",
-      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
-      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
-      "detalles_faltantes": [],
-      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
+      "estado_info": "PARCIAL",
+      "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
+      "estado_info_desc": "Cuenta con hitos de ejecución y cierre; falta acta de inicio",
+      "detalles_faltantes": [
+        "Falta Acta de Inicio en Tomos"
+      ],
+      "confiabilidad": "MEDIA"
     },
     {
       "id": 22,
@@ -8238,10 +8261,10 @@
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
       "estado_info": "COMPLETA",
-      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
-      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "estado_info_label": "🟢 TRAZABILIDAD INTEGRAL",
+      "estado_info_desc": "Cuenta con documentos de inicio y recepción/liquidación en Tomos PMO escaneados",
       "detalles_faltantes": [],
-      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
+      "confiabilidad": "ALTA"
     },
     {
       "id": 23,
@@ -8593,10 +8616,10 @@
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
       "estado_info": "COMPLETA",
-      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
-      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "estado_info_label": "🟢 TRAZABILIDAD INTEGRAL",
+      "estado_info_desc": "Cuenta con documentos de inicio y recepción/liquidación en Tomos PMO escaneados",
       "detalles_faltantes": [],
-      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
+      "confiabilidad": "ALTA"
     },
     {
       "id": 24,
@@ -8948,10 +8971,10 @@
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
       "estado_info": "COMPLETA",
-      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
-      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "estado_info_label": "🟢 TRAZABILIDAD INTEGRAL",
+      "estado_info_desc": "Cuenta con documentos de inicio y recepción/liquidación en Tomos PMO escaneados",
       "detalles_faltantes": [],
-      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
+      "confiabilidad": "ALTA"
     },
     {
       "id": 25,
@@ -9303,10 +9326,10 @@
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
       "estado_info": "COMPLETA",
-      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
-      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "estado_info_label": "🟢 TRAZABILIDAD INTEGRAL",
+      "estado_info_desc": "Cuenta con documentos de inicio y recepción/liquidación en Tomos PMO escaneados",
       "detalles_faltantes": [],
-      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
+      "confiabilidad": "ALTA"
     },
     {
       "id": 26,
@@ -9362,10 +9385,10 @@
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
       "estado_info": "COMPLETA",
-      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
-      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "estado_info_label": "🟢 EXPEDIENTE EN CAJA FDM",
+      "estado_info_desc": "Expediente físico verificado en EN CAJA con liquidación técnica-financiera",
       "detalles_faltantes": [],
-      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
+      "confiabilidad": "ALTA"
     },
     {
       "id": 27,
@@ -9452,11 +9475,13 @@
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
-      "estado_info": "COMPLETA",
-      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
-      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
-      "detalles_faltantes": [],
-      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
+      "estado_info": "PARCIAL",
+      "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
+      "estado_info_desc": "Cuenta con hitos de ejecución y cierre; falta acta de inicio",
+      "detalles_faltantes": [
+        "Falta Acta de Inicio en Tomos"
+      ],
+      "confiabilidad": "MEDIA"
     },
     {
       "id": 28,
@@ -9504,10 +9529,10 @@
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
       "estado_info": "COMPLETA",
-      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
-      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "estado_info_label": "🟢 EXPEDIENTE EN CAJA FDM",
+      "estado_info_desc": "Expediente físico verificado en EN CAJA con liquidación técnica-financiera",
       "detalles_faltantes": [],
-      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
+      "confiabilidad": "ALTA"
     },
     {
       "id": 29,
@@ -9578,11 +9603,13 @@
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
-      "estado_info": "COMPLETA",
-      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
-      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
-      "detalles_faltantes": [],
-      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
+      "estado_info": "PARCIAL",
+      "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
+      "estado_info_desc": "Cuenta con hitos de ejecución y cierre; falta acta de inicio",
+      "detalles_faltantes": [
+        "Falta Acta de Inicio en Tomos"
+      ],
+      "confiabilidad": "MEDIA"
     },
     {
       "id": 30,
@@ -9734,10 +9761,10 @@
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
       "estado_info": "COMPLETA",
-      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
-      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "estado_info_label": "🟢 TRAZABILIDAD INTEGRAL",
+      "estado_info_desc": "Cuenta con documentos de inicio y recepción/liquidación en Tomos PMO escaneados",
       "detalles_faltantes": [],
-      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
+      "confiabilidad": "ALTA"
     },
     {
       "id": 31,
@@ -10129,10 +10156,10 @@
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
       "estado_info": "COMPLETA",
-      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
-      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "estado_info_label": "🟢 TRAZABILIDAD INTEGRAL",
+      "estado_info_desc": "Cuenta con documentos de inicio y recepción/liquidación en Tomos PMO escaneados",
       "detalles_faltantes": [],
-      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
+      "confiabilidad": "ALTA"
     },
     {
       "id": 32,
@@ -10180,10 +10207,10 @@
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
       "estado_info": "COMPLETA",
-      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
-      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "estado_info_label": "🟢 EXPEDIENTE EN CAJA FDM",
+      "estado_info_desc": "Expediente físico verificado en EN CAJA con liquidación técnica-financiera",
       "detalles_faltantes": [],
-      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
+      "confiabilidad": "ALTA"
     },
     {
       "id": 33,
@@ -10240,12 +10267,11 @@
       "resolucion_liquidacion": "",
       "estado_info": "PARCIAL",
       "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
-      "estado_info_desc": "Hitos en ejecución identificados en Tomos PMO",
+      "estado_info_desc": "Obra con inicio registrado; falta recepción o liquidación final en Tomos",
       "detalles_faltantes": [
-        "Falta Fecha de Culminación Física Real",
-        "Falta Acta de Recepción de Obra o Resolución de Liquidación"
+        "Falta Acta de Recepción o Liquidación Final"
       ],
-      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
+      "confiabilidad": "MEDIA"
     },
     {
       "id": 34,
@@ -10405,10 +10431,10 @@
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
       "estado_info": "COMPLETA",
-      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
-      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "estado_info_label": "🟢 TRAZABILIDAD INTEGRAL",
+      "estado_info_desc": "Cuenta con documentos de inicio y recepción/liquidación en Tomos PMO escaneados",
       "detalles_faltantes": [],
-      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
+      "confiabilidad": "ALTA"
     },
     {
       "id": 35,
@@ -10446,11 +10472,15 @@
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
-      "estado_info": "COMPLETA",
-      "estado_info_label": "🟢 TRANSFERIDO A MUNICIPIO",
-      "estado_info_desc": "Ejecución por Convenio Específico transferido a la Municipalidad Distrital de La Capilla (Convenio 100 MLL).",
-      "detalles_faltantes": [],
-      "confiabilidad": "ALTA"
+      "estado_info": "INCOMPLETA",
+      "estado_info_label": "🔴 INFORMACIÓN PENDIENTE",
+      "estado_info_desc": "Sin documentos en Tomos 1 al 6 ni caja identificada; requiere búsqueda prioritaria",
+      "detalles_faltantes": [
+        "Falta ubicar expediente completo",
+        "Falta Acta de Inicio",
+        "Falta Liquidación"
+      ],
+      "confiabilidad": "BAJA"
     },
     {
       "id": 36,
@@ -10497,11 +10527,13 @@
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
-      "estado_info": "COMPLETA",
-      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
-      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
-      "detalles_faltantes": [],
-      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
+      "estado_info": "PARCIAL",
+      "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
+      "estado_info_desc": "Cuenta con hitos de ejecución y cierre; falta acta de inicio",
+      "detalles_faltantes": [
+        "Falta Acta de Inicio en Tomos"
+      ],
+      "confiabilidad": "MEDIA"
     },
     {
       "id": 37,
@@ -10669,10 +10701,10 @@
       "acta_recepcion": "Conformidad de Supervisión 2024",
       "resolucion_liquidacion": "Liquidación Aprobada 2024 (Caja 03)",
       "estado_info": "COMPLETA",
-      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
-      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "estado_info_label": "🟢 EXPEDIENTE EN CAJA FDM",
+      "estado_info_desc": "Expediente físico verificado en EN CAJA con liquidación técnica-financiera",
       "detalles_faltantes": [],
-      "confiabilidad": "ALTA (100% Verificado)"
+      "confiabilidad": "ALTA"
     },
     {
       "id": 38,
@@ -10848,10 +10880,10 @@
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
       "estado_info": "COMPLETA",
-      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
-      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "estado_info_label": "🟢 TRAZABILIDAD INTEGRAL",
+      "estado_info_desc": "Cuenta con documentos de inicio y recepción/liquidación en Tomos PMO escaneados",
       "detalles_faltantes": [],
-      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
+      "confiabilidad": "ALTA"
     },
     {
       "id": 39,
@@ -11115,10 +11147,10 @@
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
       "estado_info": "COMPLETA",
-      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
-      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "estado_info_label": "🟢 TRAZABILIDAD INTEGRAL",
+      "estado_info_desc": "Cuenta con documentos de inicio y recepción/liquidación en Tomos PMO escaneados",
       "detalles_faltantes": [],
-      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
+      "confiabilidad": "ALTA"
     },
     {
       "id": 40,
@@ -11156,10 +11188,12 @@
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
-      "estado_info": "COMPLETA",
-      "estado_info_label": "⚪ NO APLICA (CAMBIO PROYECTO)",
-      "estado_info_desc": "No aplica fecha de inicio: Proyecto clasificado en Directorio como \"Evaluar Cambio de Proyecto\" (S/ 0.00 ejecutado).",
-      "detalles_faltantes": [],
+      "estado_info": "NO_APLICA",
+      "estado_info_label": "⚪ NO APLICA (NO EJECUTADA)",
+      "estado_info_desc": "Expediente observado o cambio de proyecto en Directorio (S/ 0.00 ejecutado, sin obra física)",
+      "detalles_faltantes": [
+        "Sustento con Acta de Directorio / Acuerdo de Despriorización"
+      ],
       "confiabilidad": "ALTA"
     },
     {
@@ -11198,10 +11232,12 @@
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
-      "estado_info": "COMPLETA",
-      "estado_info_label": "⚪ NO APLICA (CAMBIO PROYECTO)",
-      "estado_info_desc": "No aplica fecha de inicio: Proyecto clasificado en Directorio como \"Evaluar Cambio de Proyecto\" (S/ 0.00 ejecutado).",
-      "detalles_faltantes": [],
+      "estado_info": "NO_APLICA",
+      "estado_info_label": "⚪ NO APLICA (NO EJECUTADA)",
+      "estado_info_desc": "Expediente observado o cambio de proyecto en Directorio (S/ 0.00 ejecutado, sin obra física)",
+      "detalles_faltantes": [
+        "Sustento con Acta de Directorio / Acuerdo de Despriorización"
+      ],
       "confiabilidad": "ALTA"
     },
     {
@@ -11434,10 +11470,10 @@
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
       "estado_info": "COMPLETA",
-      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
-      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "estado_info_label": "🟢 EXPEDIENTE EN CAJA FDM",
+      "estado_info_desc": "Expediente físico verificado en EN CAJA con liquidación técnica-financiera",
       "detalles_faltantes": [],
-      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
+      "confiabilidad": "ALTA"
     },
     {
       "id": 43,
@@ -11853,10 +11889,10 @@
       "acta_recepcion": "Conformidad de Supervisión 2024",
       "resolucion_liquidacion": "Liquidación Aprobada 2024 (Caja 03)",
       "estado_info": "COMPLETA",
-      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
-      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "estado_info_label": "🟢 TRAZABILIDAD INTEGRAL",
+      "estado_info_desc": "Cuenta con documentos de inicio y recepción/liquidación en Tomos PMO escaneados",
       "detalles_faltantes": [],
-      "confiabilidad": "ALTA (100% Verificado)"
+      "confiabilidad": "ALTA"
     },
     {
       "id": 44,
@@ -12272,10 +12308,10 @@
       "acta_recepcion": "Conformidad de Supervisión 2024",
       "resolucion_liquidacion": "Liquidación Aprobada 2024 (Caja 03)",
       "estado_info": "COMPLETA",
-      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
-      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "estado_info_label": "🟢 EXPEDIENTE EN CAJA FDM",
+      "estado_info_desc": "Expediente físico verificado en EN CAJA con liquidación técnica-financiera",
       "detalles_faltantes": [],
-      "confiabilidad": "ALTA (100% Verificado)"
+      "confiabilidad": "ALTA"
     },
     {
       "id": 45,
@@ -12683,10 +12719,10 @@
       "acta_recepcion": "Conformidad de Supervisión 2024",
       "resolucion_liquidacion": "Liquidación Aprobada 2024 (Caja 03)",
       "estado_info": "COMPLETA",
-      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
-      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "estado_info_label": "🟢 TRAZABILIDAD INTEGRAL",
+      "estado_info_desc": "Cuenta con documentos de inicio y recepción/liquidación en Tomos PMO escaneados",
       "detalles_faltantes": [],
-      "confiabilidad": "ALTA (100% Verificado)"
+      "confiabilidad": "ALTA"
     },
     {
       "id": 46,
@@ -13094,10 +13130,10 @@
       "acta_recepcion": "Conformidad de Supervisión 2024",
       "resolucion_liquidacion": "Liquidación Aprobada 2024 (Caja 03)",
       "estado_info": "COMPLETA",
-      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
-      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "estado_info_label": "🟢 TRAZABILIDAD INTEGRAL",
+      "estado_info_desc": "Cuenta con documentos de inicio y recepción/liquidación en Tomos PMO escaneados",
       "detalles_faltantes": [],
-      "confiabilidad": "ALTA (100% Verificado)"
+      "confiabilidad": "ALTA"
     },
     {
       "id": 47,
@@ -13360,11 +13396,13 @@
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
-      "estado_info": "COMPLETA",
-      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
-      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
-      "detalles_faltantes": [],
-      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
+      "estado_info": "PARCIAL",
+      "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
+      "estado_info_desc": "Cuenta con hitos de ejecución y cierre; falta acta de inicio",
+      "detalles_faltantes": [
+        "Falta Acta de Inicio en Tomos"
+      ],
+      "confiabilidad": "MEDIA"
     },
     {
       "id": 48,
@@ -13804,10 +13842,10 @@
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
       "estado_info": "COMPLETA",
-      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
-      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "estado_info_label": "🟢 EXPEDIENTE EN CAJA FDM",
+      "estado_info_desc": "Expediente físico verificado en EN CAJA con liquidación técnica-financiera",
       "detalles_faltantes": [],
-      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
+      "confiabilidad": "ALTA"
     },
     {
       "id": 49,
@@ -14039,10 +14077,10 @@
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
       "estado_info": "COMPLETA",
-      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
-      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "estado_info_label": "🟢 EXPEDIENTE EN CAJA FDM",
+      "estado_info_desc": "Expediente físico verificado en EN CAJA con liquidación técnica-financiera",
       "detalles_faltantes": [],
-      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
+      "confiabilidad": "ALTA"
     },
     {
       "id": 50,
@@ -14306,10 +14344,10 @@
       "acta_recepcion": "Acta de Transferencia 04/09/2026",
       "resolucion_liquidacion": "Actas de Conciliación Financiera PERPG-FDM 2026",
       "estado_info": "COMPLETA",
-      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
-      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "estado_info_label": "🟢 TRAZABILIDAD INTEGRAL",
+      "estado_info_desc": "Cuenta con documentos de inicio y recepción/liquidación en Tomos PMO escaneados",
       "detalles_faltantes": [],
-      "confiabilidad": "ALTA (100% Verificado)"
+      "confiabilidad": "ALTA"
     },
     {
       "id": 51,
@@ -14541,10 +14579,10 @@
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
       "estado_info": "COMPLETA",
-      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
-      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "estado_info_label": "🟢 EXPEDIENTE EN CAJA FDM",
+      "estado_info_desc": "Expediente físico verificado en EN CAJA con liquidación técnica-financiera",
       "detalles_faltantes": [],
-      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
+      "confiabilidad": "ALTA"
     },
     {
       "id": 52,
@@ -15128,10 +15166,10 @@
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
       "estado_info": "COMPLETA",
-      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
-      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "estado_info_label": "🟢 EXPEDIENTE EN CAJA FDM",
+      "estado_info_desc": "Expediente físico verificado en EN CAJA con liquidación técnica-financiera",
       "detalles_faltantes": [],
-      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
+      "confiabilidad": "ALTA"
     },
     {
       "id": 53,
@@ -16003,10 +16041,10 @@
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
       "estado_info": "COMPLETA",
-      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
-      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "estado_info_label": "🟢 TRAZABILIDAD INTEGRAL",
+      "estado_info_desc": "Cuenta con documentos de inicio y recepción/liquidación en Tomos PMO escaneados",
       "detalles_faltantes": [],
-      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
+      "confiabilidad": "ALTA"
     },
     {
       "id": 54,
@@ -16270,10 +16308,10 @@
       "acta_recepcion": "Acta de Transferencia 04/09/2026",
       "resolucion_liquidacion": "Actas de Conciliación Financiera PERPG-FDM 2026",
       "estado_info": "COMPLETA",
-      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
-      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "estado_info_label": "🟢 TRAZABILIDAD INTEGRAL",
+      "estado_info_desc": "Cuenta con documentos de inicio y recepción/liquidación en Tomos PMO escaneados",
       "detalles_faltantes": [],
-      "confiabilidad": "ALTA (100% Verificado)"
+      "confiabilidad": "ALTA"
     },
     {
       "id": 55,
@@ -16344,11 +16382,13 @@
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
-      "estado_info": "COMPLETA",
-      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
-      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
-      "detalles_faltantes": [],
-      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
+      "estado_info": "PARCIAL",
+      "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
+      "estado_info_desc": "Cuenta con hitos de ejecución y cierre; falta acta de inicio",
+      "detalles_faltantes": [
+        "Falta Acta de Inicio en Tomos"
+      ],
+      "confiabilidad": "MEDIA"
     },
     {
       "id": 56,
@@ -16635,11 +16675,13 @@
       "fecha_culminacion_real": "En ejecución reprogramada 2026",
       "acta_recepcion": "Pendiente ejecución",
       "resolucion_liquidacion": "Pendiente",
-      "estado_info": "COMPLETA",
-      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
-      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
-      "detalles_faltantes": [],
-      "confiabilidad": "ALTA (100% Verificado)"
+      "estado_info": "PARCIAL",
+      "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
+      "estado_info_desc": "Obra con inicio registrado; falta recepción o liquidación final en Tomos",
+      "detalles_faltantes": [
+        "Falta Acta de Recepción o Liquidación Final"
+      ],
+      "confiabilidad": "MEDIA"
     },
     {
       "id": 57,
@@ -16677,11 +16719,15 @@
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
-      "estado_info": "PARCIAL",
-      "estado_info_label": "🟡 SALDO POR EJECUTAR",
-      "estado_info_desc": "Saldo de obra por ejecutar del Convenio E.O. / CEBA San Francisco (Presupuesto asignado S/ 20,823.36).",
-      "detalles_faltantes": [],
-      "confiabilidad": "ALTA"
+      "estado_info": "INCOMPLETA",
+      "estado_info_label": "🔴 INFORMACIÓN PENDIENTE",
+      "estado_info_desc": "Sin documentos en Tomos 1 al 6 ni caja identificada; requiere búsqueda prioritaria",
+      "detalles_faltantes": [
+        "Falta ubicar expediente completo",
+        "Falta Acta de Inicio",
+        "Falta Liquidación"
+      ],
+      "confiabilidad": "BAJA"
     },
     {
       "id": 58,
@@ -16730,12 +16776,12 @@
       "resolucion_liquidacion": "",
       "estado_info": "PARCIAL",
       "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
-      "estado_info_desc": "Hitos en ejecución identificados en Tomos PMO",
+      "estado_info_desc": "Hitos de ejecución identificados; faltan acta de inicio y liquidación final",
       "detalles_faltantes": [
-        "Falta Fecha de Culminación Física Real",
-        "Falta Acta de Recepción de Obra o Resolución de Liquidación"
+        "Falta Acta de Inicio en Tomos",
+        "Falta Acta de Recepción o Liquidación Final"
       ],
-      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
+      "confiabilidad": "MEDIA"
     },
     {
       "id": 59,
@@ -17022,11 +17068,13 @@
       "fecha_culminacion_real": "En ejecución (Val 05 - INF 007-2026)",
       "acta_recepcion": "Pendiente",
       "resolucion_liquidacion": "Pendiente",
-      "estado_info": "COMPLETA",
-      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
-      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
-      "detalles_faltantes": [],
-      "confiabilidad": "ALTA (100% Verificado)"
+      "estado_info": "PARCIAL",
+      "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
+      "estado_info_desc": "Cuenta con hitos de ejecución y cierre; falta acta de inicio",
+      "detalles_faltantes": [
+        "Falta Acta de Inicio en Tomos"
+      ],
+      "confiabilidad": "MEDIA"
     },
     {
       "id": 60,
@@ -17274,10 +17322,10 @@
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
       "estado_info": "COMPLETA",
-      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
-      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "estado_info_label": "🟢 EXPEDIENTE EN CAJA FDM",
+      "estado_info_desc": "Expediente físico verificado en EN CAJA con liquidación técnica-financiera",
       "detalles_faltantes": [],
-      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
+      "confiabilidad": "ALTA"
     },
     {
       "id": 61,
@@ -17589,10 +17637,10 @@
       "acta_recepcion": "Pendiente",
       "resolucion_liquidacion": "Pendiente",
       "estado_info": "COMPLETA",
-      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
-      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "estado_info_label": "🟢 EXPEDIENTE EN CAJA FDM",
+      "estado_info_desc": "Expediente físico verificado en EN CAJA con liquidación técnica-financiera",
       "detalles_faltantes": [],
-      "confiabilidad": "ALTA (100% Verificado)"
+      "confiabilidad": "ALTA"
     },
     {
       "id": 62,
@@ -17823,11 +17871,13 @@
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
-      "estado_info": "COMPLETA",
-      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
-      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
-      "detalles_faltantes": [],
-      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
+      "estado_info": "PARCIAL",
+      "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
+      "estado_info_desc": "Cuenta con hitos de ejecución y cierre; falta acta de inicio",
+      "detalles_faltantes": [
+        "Falta Acta de Inicio en Tomos"
+      ],
+      "confiabilidad": "MEDIA"
     },
     {
       "id": 63,
@@ -18283,10 +18333,10 @@
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
       "estado_info": "COMPLETA",
-      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
-      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "estado_info_label": "🟢 TRAZABILIDAD INTEGRAL",
+      "estado_info_desc": "Cuenta con documentos de inicio y recepción/liquidación en Tomos PMO escaneados",
       "detalles_faltantes": [],
-      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
+      "confiabilidad": "ALTA"
     },
     {
       "id": 64,
@@ -18558,10 +18608,10 @@
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
       "estado_info": "COMPLETA",
-      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
-      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "estado_info_label": "🟢 EXPEDIENTE EN CAJA FDM",
+      "estado_info_desc": "Expediente físico verificado en EN CAJA con liquidación técnica-financiera",
       "detalles_faltantes": [],
-      "confiabilidad": "ALTA (100% Verificado)"
+      "confiabilidad": "ALTA"
     },
     {
       "id": 65,
@@ -18610,12 +18660,11 @@
       "resolucion_liquidacion": "",
       "estado_info": "PARCIAL",
       "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
-      "estado_info_desc": "Hitos en ejecución identificados en Tomos PMO",
+      "estado_info_desc": "Obra con inicio registrado; falta recepción o liquidación final en Tomos",
       "detalles_faltantes": [
-        "Falta Fecha de Culminación Física Real",
-        "Falta Acta de Recepción de Obra o Resolución de Liquidación"
+        "Falta Acta de Recepción o Liquidación Final"
       ],
-      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
+      "confiabilidad": "MEDIA"
     },
     {
       "id": 66,
@@ -18903,10 +18952,10 @@
       "acta_recepcion": "Conformidad de Supervisión 2024",
       "resolucion_liquidacion": "Liquidación Aprobada 2024 (Caja 03)",
       "estado_info": "COMPLETA",
-      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
-      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "estado_info_label": "🟢 TRAZABILIDAD INTEGRAL",
+      "estado_info_desc": "Cuenta con documentos de inicio y recepción/liquidación en Tomos PMO escaneados",
       "detalles_faltantes": [],
-      "confiabilidad": "ALTA (100% Verificado)"
+      "confiabilidad": "ALTA"
     },
     {
       "id": 67,
@@ -18954,10 +19003,10 @@
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
       "estado_info": "COMPLETA",
-      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
-      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "estado_info_label": "🟢 EXPEDIENTE EN CAJA FDM",
+      "estado_info_desc": "Expediente físico verificado en EN CAJA con liquidación técnica-financiera",
       "detalles_faltantes": [],
-      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
+      "confiabilidad": "ALTA"
     },
     {
       "id": 68,
@@ -19229,10 +19278,10 @@
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
       "estado_info": "COMPLETA",
-      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
-      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "estado_info_label": "🟢 EXPEDIENTE EN CAJA FDM",
+      "estado_info_desc": "Expediente físico verificado en EN CAJA con liquidación técnica-financiera",
       "detalles_faltantes": [],
-      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
+      "confiabilidad": "ALTA"
     },
     {
       "id": 69,
@@ -19504,10 +19553,10 @@
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
       "estado_info": "COMPLETA",
-      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
-      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "estado_info_label": "🟢 TRAZABILIDAD INTEGRAL",
+      "estado_info_desc": "Cuenta con documentos de inicio y recepción/liquidación en Tomos PMO escaneados",
       "detalles_faltantes": [],
-      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
+      "confiabilidad": "ALTA"
     },
     {
       "id": 2,
@@ -19575,10 +19624,10 @@
       "acta_recepcion": "Acta de Recepción 2022",
       "resolucion_liquidacion": "Liquidada 2022-2023",
       "estado_info": "COMPLETA",
-      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
-      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "estado_info_label": "🟢 TRAZABILIDAD INTEGRAL",
+      "estado_info_desc": "Cuenta con documentos de inicio y recepción/liquidación en Tomos PMO escaneados",
       "detalles_faltantes": [],
-      "confiabilidad": "MEDIA (Ratificada por Estados Financieros)"
+      "confiabilidad": "ALTA"
     },
     {
       "id": 3,
@@ -19621,11 +19670,13 @@
       "fecha_culminacion_real": "2022",
       "acta_recepcion": "Acta de Recepción 2022",
       "resolucion_liquidacion": "Liquidada 2022-2023",
-      "estado_info": "COMPLETA",
-      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
-      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
-      "detalles_faltantes": [],
-      "confiabilidad": "MEDIA (Ratificada por Estados Financieros)"
+      "estado_info": "PARCIAL",
+      "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
+      "estado_info_desc": "Cuenta con hitos de ejecución y cierre; falta acta de inicio",
+      "detalles_faltantes": [
+        "Falta Acta de Inicio en Tomos"
+      ],
+      "confiabilidad": "MEDIA"
     },
     {
       "id": 4,
@@ -19684,11 +19735,13 @@
       "fecha_culminacion_real": "2022",
       "acta_recepcion": "Acta de Recepción 2022",
       "resolucion_liquidacion": "Liquidada 2022-2023",
-      "estado_info": "COMPLETA",
-      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
-      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
-      "detalles_faltantes": [],
-      "confiabilidad": "MEDIA (Ratificada por Estados Financieros)"
+      "estado_info": "PARCIAL",
+      "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
+      "estado_info_desc": "Cuenta con hitos de ejecución y cierre; falta acta de inicio",
+      "detalles_faltantes": [
+        "Falta Acta de Inicio en Tomos"
+      ],
+      "confiabilidad": "MEDIA"
     },
     {
       "id": 5,
@@ -19772,10 +19825,10 @@
       "acta_recepcion": "Acta de Recepción 2022",
       "resolucion_liquidacion": "Liquidada 2022-2023",
       "estado_info": "COMPLETA",
-      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
-      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "estado_info_label": "🟢 TRAZABILIDAD INTEGRAL",
+      "estado_info_desc": "Cuenta con documentos de inicio y recepción/liquidación en Tomos PMO escaneados",
       "detalles_faltantes": [],
-      "confiabilidad": "MEDIA (Ratificada por Estados Financieros)"
+      "confiabilidad": "ALTA"
     },
     {
       "id": 6,
@@ -20203,10 +20256,10 @@
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
       "estado_info": "COMPLETA",
-      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
-      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "estado_info_label": "🟢 TRAZABILIDAD INTEGRAL",
+      "estado_info_desc": "Cuenta con documentos de inicio y recepción/liquidación en Tomos PMO escaneados",
       "detalles_faltantes": [],
-      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
+      "confiabilidad": "ALTA"
     },
     {
       "id": 7,
@@ -20234,13 +20287,13 @@
       "resolucion_liquidacion": "",
       "estado_info": "INCOMPLETA",
       "estado_info_label": "🔴 INFORMACIÓN PENDIENTE",
-      "estado_info_desc": "Faltan documentos contractuales clave; buscar en Tomos 7 al 9",
+      "estado_info_desc": "Sin documentos en Tomos 1 al 6 ni caja identificada; requiere búsqueda prioritaria",
       "detalles_faltantes": [
-        "Falta Acta de Entrega de Terreno / Suscripción de Contrato (Fecha de Inicio)",
-        "Falta Fecha de Culminación Física Real",
-        "Falta Acta de Recepción de Obra o Resolución de Liquidación"
+        "Falta ubicar expediente completo",
+        "Falta Acta de Inicio",
+        "Falta Liquidación"
       ],
-      "confiabilidad": "ALTA"
+      "confiabilidad": "BAJA"
     },
     {
       "id": 8,
@@ -20308,10 +20361,10 @@
       "acta_recepcion": "Acta de Recepción 2024 (MPI)",
       "resolucion_liquidacion": "En proceso de liquidación final",
       "estado_info": "COMPLETA",
-      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
-      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "estado_info_label": "🟢 TRAZABILIDAD INTEGRAL",
+      "estado_info_desc": "Cuenta con documentos de inicio y recepción/liquidación en Tomos PMO escaneados",
       "detalles_faltantes": [],
-      "confiabilidad": "ALTA (100% Verificado)"
+      "confiabilidad": "ALTA"
     },
     {
       "id": 9,
@@ -20442,11 +20495,14 @@
       "fecha_culminacion_real": "15/02/2023 (Val N° 03)",
       "acta_recepcion": "06/02/2023 (Comité Recepción MPI - Pág 48 Tomo 1)",
       "resolucion_liquidacion": "Liquidación Técnica 2023",
-      "estado_info": "COMPLETA",
-      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
-      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
-      "detalles_faltantes": [],
-      "confiabilidad": "ALTA (100% Verificado)"
+      "estado_info": "PARCIAL",
+      "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
+      "estado_info_desc": "Hitos de ejecución identificados; faltan acta de inicio y liquidación final",
+      "detalles_faltantes": [
+        "Falta Acta de Inicio en Tomos",
+        "Falta Acta de Recepción o Liquidación Final"
+      ],
+      "confiabilidad": "MEDIA"
     },
     {
       "id": 10,
@@ -20513,11 +20569,13 @@
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
-      "estado_info": "COMPLETA",
-      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
-      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
-      "detalles_faltantes": [],
-      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
+      "estado_info": "PARCIAL",
+      "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
+      "estado_info_desc": "Cuenta con hitos de ejecución y cierre; falta acta de inicio",
+      "detalles_faltantes": [
+        "Falta Acta de Inicio en Tomos"
+      ],
+      "confiabilidad": "MEDIA"
     },
     {
       "id": 11,
@@ -20545,13 +20603,13 @@
       "resolucion_liquidacion": "",
       "estado_info": "INCOMPLETA",
       "estado_info_label": "🔴 INFORMACIÓN PENDIENTE",
-      "estado_info_desc": "Faltan documentos contractuales clave; buscar en Tomos 7 al 9",
+      "estado_info_desc": "Sin documentos en Tomos 1 al 6 ni caja identificada; requiere búsqueda prioritaria",
       "detalles_faltantes": [
-        "Falta Acta de Entrega de Terreno / Suscripción de Contrato (Fecha de Inicio)",
-        "Falta Fecha de Culminación Física Real",
-        "Falta Acta de Recepción de Obra o Resolución de Liquidación"
+        "Falta ubicar expediente completo",
+        "Falta Acta de Inicio",
+        "Falta Liquidación"
       ],
-      "confiabilidad": "ALTA"
+      "confiabilidad": "BAJA"
     },
     {
       "id": 12,
@@ -20867,10 +20925,10 @@
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
       "estado_info": "COMPLETA",
-      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
-      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "estado_info_label": "🟢 TRAZABILIDAD INTEGRAL",
+      "estado_info_desc": "Cuenta con documentos de inicio y recepción/liquidación en Tomos PMO escaneados",
       "detalles_faltantes": [],
-      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
+      "confiabilidad": "ALTA"
     },
     {
       "id": 13,
@@ -21242,10 +21300,10 @@
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
       "estado_info": "COMPLETA",
-      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
-      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "estado_info_label": "🟢 TRAZABILIDAD INTEGRAL",
+      "estado_info_desc": "Cuenta con documentos de inicio y recepción/liquidación en Tomos PMO escaneados",
       "detalles_faltantes": [],
-      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
+      "confiabilidad": "ALTA"
     },
     {
       "id": 14,
@@ -22649,10 +22707,10 @@
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
       "estado_info": "COMPLETA",
-      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
-      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "estado_info_label": "🟢 EXPEDIENTE EN CAJA FDM",
+      "estado_info_desc": "Expediente físico verificado en EN CAJA con liquidación técnica-financiera",
       "detalles_faltantes": [],
-      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
+      "confiabilidad": "ALTA"
     },
     {
       "id": 15,
@@ -22855,11 +22913,13 @@
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
-      "estado_info": "COMPLETA",
-      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
-      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
-      "detalles_faltantes": [],
-      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
+      "estado_info": "PARCIAL",
+      "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
+      "estado_info_desc": "Cuenta con hitos de ejecución y cierre; falta acta de inicio",
+      "detalles_faltantes": [
+        "Falta Acta de Inicio en Tomos"
+      ],
+      "confiabilidad": "MEDIA"
     },
     {
       "id": 16,
@@ -22904,12 +22964,12 @@
       "resolucion_liquidacion": "",
       "estado_info": "PARCIAL",
       "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
-      "estado_info_desc": "Hitos en ejecución identificados en Tomos PMO",
+      "estado_info_desc": "Hitos de ejecución identificados; faltan acta de inicio y liquidación final",
       "detalles_faltantes": [
-        "Falta Fecha de Culminación Física Real",
-        "Falta Acta de Recepción de Obra o Resolución de Liquidación"
+        "Falta Acta de Inicio en Tomos",
+        "Falta Acta de Recepción o Liquidación Final"
       ],
-      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
+      "confiabilidad": "MEDIA"
     },
     {
       "id": 17,
@@ -23161,10 +23221,10 @@
       "acta_recepcion": "10/03/2023 (Tomo 3 Folio 4)",
       "resolucion_liquidacion": "",
       "estado_info": "COMPLETA",
-      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
-      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "estado_info_label": "🟢 TRAZABILIDAD INTEGRAL",
+      "estado_info_desc": "Cuenta con documentos de inicio y recepción/liquidación en Tomos PMO escaneados",
       "detalles_faltantes": [],
-      "confiabilidad": "ALTA (100% Verificado)"
+      "confiabilidad": "ALTA"
     },
     {
       "id": 18,
@@ -23264,10 +23324,10 @@
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
       "estado_info": "COMPLETA",
-      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
-      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "estado_info_label": "🟢 TRAZABILIDAD INTEGRAL",
+      "estado_info_desc": "Cuenta con documentos de inicio y recepción/liquidación en Tomos PMO escaneados",
       "detalles_faltantes": [],
-      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
+      "confiabilidad": "ALTA"
     },
     {
       "id": 19,
@@ -23302,11 +23362,14 @@
       "fecha_culminacion_real": "Marzo 2023",
       "acta_recepcion": "Comité de Recepción 2023",
       "resolucion_liquidacion": "En observaciones de liquidación técnica (Tomo 5 Folios 1 y 72)",
-      "estado_info": "COMPLETA",
-      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
-      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
-      "detalles_faltantes": [],
-      "confiabilidad": "ALTA (100% Verificado)"
+      "estado_info": "PARCIAL",
+      "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
+      "estado_info_desc": "Hitos de ejecución identificados; faltan acta de inicio y liquidación final",
+      "detalles_faltantes": [
+        "Falta Acta de Inicio en Tomos",
+        "Falta Acta de Recepción o Liquidación Final"
+      ],
+      "confiabilidad": "MEDIA"
     },
     {
       "id": 20,
@@ -23375,12 +23438,12 @@
       "resolucion_liquidacion": "",
       "estado_info": "PARCIAL",
       "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
-      "estado_info_desc": "Hitos en ejecución identificados en Tomos PMO",
+      "estado_info_desc": "Hitos de ejecución identificados; faltan acta de inicio y liquidación final",
       "detalles_faltantes": [
-        "Falta Fecha de Culminación Física Real",
-        "Falta Acta de Recepción de Obra o Resolución de Liquidación"
+        "Falta Acta de Inicio en Tomos",
+        "Falta Acta de Recepción o Liquidación Final"
       ],
-      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
+      "confiabilidad": "MEDIA"
     },
     {
       "id": 21,
@@ -23455,11 +23518,13 @@
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
-      "estado_info": "COMPLETA",
-      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
-      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
-      "detalles_faltantes": [],
-      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
+      "estado_info": "PARCIAL",
+      "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
+      "estado_info_desc": "Cuenta con hitos de ejecución y cierre; falta acta de inicio",
+      "detalles_faltantes": [
+        "Falta Acta de Inicio en Tomos"
+      ],
+      "confiabilidad": "MEDIA"
     },
     {
       "id": 22,
@@ -23623,10 +23688,10 @@
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
       "estado_info": "COMPLETA",
-      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
-      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "estado_info_label": "🟢 TRAZABILIDAD INTEGRAL",
+      "estado_info_desc": "Cuenta con documentos de inicio y recepción/liquidación en Tomos PMO escaneados",
       "detalles_faltantes": [],
-      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
+      "confiabilidad": "ALTA"
     },
     {
       "id": 23,
@@ -23685,11 +23750,13 @@
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
-      "estado_info": "COMPLETA",
-      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
-      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
-      "detalles_faltantes": [],
-      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
+      "estado_info": "PARCIAL",
+      "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
+      "estado_info_desc": "Cuenta con hitos de ejecución y cierre; falta acta de inicio",
+      "detalles_faltantes": [
+        "Falta Acta de Inicio en Tomos"
+      ],
+      "confiabilidad": "MEDIA"
     },
     {
       "id": 24,
@@ -23748,11 +23815,13 @@
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
-      "estado_info": "COMPLETA",
-      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
-      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
-      "detalles_faltantes": [],
-      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
+      "estado_info": "PARCIAL",
+      "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
+      "estado_info_desc": "Cuenta con hitos de ejecución y cierre; falta acta de inicio",
+      "detalles_faltantes": [
+        "Falta Acta de Inicio en Tomos"
+      ],
+      "confiabilidad": "MEDIA"
     },
     {
       "id": 25,
@@ -23803,11 +23872,13 @@
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
-      "estado_info": "COMPLETA",
-      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
-      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
-      "detalles_faltantes": [],
-      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
+      "estado_info": "PARCIAL",
+      "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
+      "estado_info_desc": "Cuenta con hitos de ejecución y cierre; falta acta de inicio",
+      "detalles_faltantes": [
+        "Falta Acta de Inicio en Tomos"
+      ],
+      "confiabilidad": "MEDIA"
     },
     {
       "id": 26,
@@ -23835,13 +23906,13 @@
       "resolucion_liquidacion": "",
       "estado_info": "INCOMPLETA",
       "estado_info_label": "🔴 INFORMACIÓN PENDIENTE",
-      "estado_info_desc": "Faltan documentos contractuales clave; buscar en Tomos 7 al 9",
+      "estado_info_desc": "Sin documentos en Tomos 1 al 6 ni caja identificada; requiere búsqueda prioritaria",
       "detalles_faltantes": [
-        "Falta Acta de Entrega de Terreno / Suscripción de Contrato (Fecha de Inicio)",
-        "Falta Fecha de Culminación Física Real",
-        "Falta Acta de Recepción de Obra o Resolución de Liquidación"
+        "Falta ubicar expediente completo",
+        "Falta Acta de Inicio",
+        "Falta Liquidación"
       ],
-      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
+      "confiabilidad": "BAJA"
     },
     {
       "id": 27,
@@ -23894,12 +23965,12 @@
       "resolucion_liquidacion": "",
       "estado_info": "PARCIAL",
       "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
-      "estado_info_desc": "Hitos en ejecución identificados en Tomos PMO",
+      "estado_info_desc": "Hitos de ejecución identificados; faltan acta de inicio y liquidación final",
       "detalles_faltantes": [
-        "Falta Fecha de Culminación Física Real",
-        "Falta Acta de Recepción de Obra o Resolución de Liquidación"
+        "Falta Acta de Inicio en Tomos",
+        "Falta Acta de Recepción o Liquidación Final"
       ],
-      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
+      "confiabilidad": "MEDIA"
     },
     {
       "id": 28,
@@ -23936,12 +24007,12 @@
       "resolucion_liquidacion": "",
       "estado_info": "PARCIAL",
       "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
-      "estado_info_desc": "Hitos en ejecución identificados en Tomos PMO",
+      "estado_info_desc": "Hitos de ejecución identificados; faltan acta de inicio y liquidación final",
       "detalles_faltantes": [
-        "Falta Fecha de Culminación Física Real",
-        "Falta Acta de Recepción de Obra o Resolución de Liquidación"
+        "Falta Acta de Inicio en Tomos",
+        "Falta Acta de Recepción o Liquidación Final"
       ],
-      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
+      "confiabilidad": "MEDIA"
     },
     {
       "id": 29,
@@ -23994,12 +24065,12 @@
       "resolucion_liquidacion": "",
       "estado_info": "PARCIAL",
       "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
-      "estado_info_desc": "Hitos en ejecución identificados en Tomos PMO",
+      "estado_info_desc": "Hitos de ejecución identificados; faltan acta de inicio y liquidación final",
       "detalles_faltantes": [
-        "Falta Fecha de Culminación Física Real",
-        "Falta Acta de Recepción de Obra o Resolución de Liquidación"
+        "Falta Acta de Inicio en Tomos",
+        "Falta Acta de Recepción o Liquidación Final"
       ],
-      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
+      "confiabilidad": "MEDIA"
     },
     {
       "id": 30,
@@ -24044,12 +24115,12 @@
       "resolucion_liquidacion": "",
       "estado_info": "PARCIAL",
       "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
-      "estado_info_desc": "Hitos en ejecución identificados en Tomos PMO",
+      "estado_info_desc": "Hitos de ejecución identificados; faltan acta de inicio y liquidación final",
       "detalles_faltantes": [
-        "Falta Fecha de Culminación Física Real",
-        "Falta Acta de Recepción de Obra o Resolución de Liquidación"
+        "Falta Acta de Inicio en Tomos",
+        "Falta Acta de Recepción o Liquidación Final"
       ],
-      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
+      "confiabilidad": "MEDIA"
     },
     {
       "id": 31,
@@ -24126,12 +24197,11 @@
       "resolucion_liquidacion": "",
       "estado_info": "PARCIAL",
       "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
-      "estado_info_desc": "Hitos en ejecución identificados en Tomos PMO",
+      "estado_info_desc": "Obra con inicio registrado; falta recepción o liquidación final en Tomos",
       "detalles_faltantes": [
-        "Falta Fecha de Culminación Física Real",
-        "Falta Acta de Recepción de Obra o Resolución de Liquidación"
+        "Falta Acta de Recepción o Liquidación Final"
       ],
-      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
+      "confiabilidad": "MEDIA"
     },
     {
       "id": 32,
@@ -24166,11 +24236,13 @@
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
-      "estado_info": "COMPLETA",
-      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
-      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
-      "detalles_faltantes": [],
-      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
+      "estado_info": "PARCIAL",
+      "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
+      "estado_info_desc": "Cuenta con hitos de ejecución y cierre; falta acta de inicio",
+      "detalles_faltantes": [
+        "Falta Acta de Inicio en Tomos"
+      ],
+      "confiabilidad": "MEDIA"
     },
     {
       "id": 33,
@@ -24215,12 +24287,11 @@
       "resolucion_liquidacion": "",
       "estado_info": "PARCIAL",
       "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
-      "estado_info_desc": "Hitos en ejecución identificados en Tomos PMO",
+      "estado_info_desc": "Obra con inicio registrado; falta recepción o liquidación final en Tomos",
       "detalles_faltantes": [
-        "Falta Fecha de Culminación Física Real",
-        "Falta Acta de Recepción de Obra o Resolución de Liquidación"
+        "Falta Acta de Recepción o Liquidación Final"
       ],
-      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
+      "confiabilidad": "MEDIA"
     },
     {
       "id": 34,
@@ -24343,11 +24414,13 @@
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
-      "estado_info": "COMPLETA",
-      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
-      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
-      "detalles_faltantes": [],
-      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
+      "estado_info": "PARCIAL",
+      "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
+      "estado_info_desc": "Cuenta con hitos de ejecución y cierre; falta acta de inicio",
+      "detalles_faltantes": [
+        "Falta Acta de Inicio en Tomos"
+      ],
+      "confiabilidad": "MEDIA"
     },
     {
       "id": 35,
@@ -24373,14 +24446,15 @@
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
-      "estado_info": "PARCIAL",
-      "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
-      "estado_info_desc": "Hitos en ejecución identificados en Tomos PMO",
+      "estado_info": "INCOMPLETA",
+      "estado_info_label": "🔴 INFORMACIÓN PENDIENTE",
+      "estado_info_desc": "Sin documentos en Tomos 1 al 6 ni caja identificada; requiere búsqueda prioritaria",
       "detalles_faltantes": [
-        "Falta Fecha de Culminación Física Real",
-        "Falta Acta de Recepción de Obra o Resolución de Liquidación"
+        "Falta ubicar expediente completo",
+        "Falta Acta de Inicio",
+        "Falta Liquidación"
       ],
-      "confiabilidad": "ALTA"
+      "confiabilidad": "BAJA"
     },
     {
       "id": 36,
@@ -24408,13 +24482,13 @@
       "resolucion_liquidacion": "",
       "estado_info": "INCOMPLETA",
       "estado_info_label": "🔴 INFORMACIÓN PENDIENTE",
-      "estado_info_desc": "Faltan documentos contractuales clave; buscar en Tomos 7 al 9",
+      "estado_info_desc": "Sin documentos en Tomos 1 al 6 ni caja identificada; requiere búsqueda prioritaria",
       "detalles_faltantes": [
-        "Falta Acta de Entrega de Terreno / Suscripción de Contrato (Fecha de Inicio)",
-        "Falta Fecha de Culminación Física Real",
-        "Falta Acta de Recepción de Obra o Resolución de Liquidación"
+        "Falta ubicar expediente completo",
+        "Falta Acta de Inicio",
+        "Falta Liquidación"
       ],
-      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
+      "confiabilidad": "BAJA"
     },
     {
       "id": 37,
@@ -24465,11 +24539,13 @@
       "fecha_culminacion_real": "Finales 2023",
       "acta_recepcion": "Conformidad de Supervisión 2024",
       "resolucion_liquidacion": "Liquidación Aprobada 2024 (Caja 03)",
-      "estado_info": "COMPLETA",
-      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
-      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
-      "detalles_faltantes": [],
-      "confiabilidad": "ALTA (100% Verificado)"
+      "estado_info": "PARCIAL",
+      "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
+      "estado_info_desc": "Cuenta con hitos de ejecución y cierre; falta acta de inicio",
+      "detalles_faltantes": [
+        "Falta Acta de Inicio en Tomos"
+      ],
+      "confiabilidad": "MEDIA"
     },
     {
       "id": 38,
@@ -24538,12 +24614,12 @@
       "resolucion_liquidacion": "",
       "estado_info": "PARCIAL",
       "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
-      "estado_info_desc": "Hitos en ejecución identificados en Tomos PMO",
+      "estado_info_desc": "Hitos de ejecución identificados; faltan acta de inicio y liquidación final",
       "detalles_faltantes": [
-        "Falta Fecha de Culminación Física Real",
-        "Falta Acta de Recepción de Obra o Resolución de Liquidación"
+        "Falta Acta de Inicio en Tomos",
+        "Falta Acta de Recepción o Liquidación Final"
       ],
-      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
+      "confiabilidad": "MEDIA"
     },
     {
       "id": 39,
@@ -24644,12 +24720,11 @@
       "resolucion_liquidacion": "",
       "estado_info": "PARCIAL",
       "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
-      "estado_info_desc": "Hitos en ejecución identificados en Tomos PMO",
+      "estado_info_desc": "Obra con inicio registrado; falta recepción o liquidación final en Tomos",
       "detalles_faltantes": [
-        "Falta Fecha de Culminación Física Real",
-        "Falta Acta de Recepción de Obra o Resolución de Liquidación"
+        "Falta Acta de Recepción o Liquidación Final"
       ],
-      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
+      "confiabilidad": "MEDIA"
     },
     {
       "id": 40,
@@ -24677,13 +24752,13 @@
       "resolucion_liquidacion": "",
       "estado_info": "INCOMPLETA",
       "estado_info_label": "🔴 INFORMACIÓN PENDIENTE",
-      "estado_info_desc": "Faltan documentos contractuales clave; buscar en Tomos 7 al 9",
+      "estado_info_desc": "Sin documentos en Tomos 1 al 6 ni caja identificada; requiere búsqueda prioritaria",
       "detalles_faltantes": [
-        "Falta Acta de Entrega de Terreno / Suscripción de Contrato (Fecha de Inicio)",
-        "Falta Fecha de Culminación Física Real",
-        "Falta Acta de Recepción de Obra o Resolución de Liquidación"
+        "Falta ubicar expediente completo",
+        "Falta Acta de Inicio",
+        "Falta Liquidación"
       ],
-      "confiabilidad": "ALTA"
+      "confiabilidad": "BAJA"
     },
     {
       "id": 41,
@@ -24903,8 +24978,8 @@
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
       "estado_info": "COMPLETA",
-      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
-      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "estado_info_label": "🟢 TRAZABILIDAD INTEGRAL",
+      "estado_info_desc": "Cuenta con documentos de inicio y recepción/liquidación en Tomos PMO escaneados",
       "detalles_faltantes": [],
       "confiabilidad": "ALTA"
     },
@@ -25157,11 +25232,13 @@
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
-      "estado_info": "COMPLETA",
-      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
-      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
-      "detalles_faltantes": [],
-      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
+      "estado_info": "PARCIAL",
+      "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
+      "estado_info_desc": "Cuenta con hitos de ejecución y cierre; falta acta de inicio",
+      "detalles_faltantes": [
+        "Falta Acta de Inicio en Tomos"
+      ],
+      "confiabilidad": "MEDIA"
     },
     {
       "id": 43,
@@ -25213,10 +25290,10 @@
       "acta_recepcion": "Conformidad de Supervisión 2024",
       "resolucion_liquidacion": "Liquidación Aprobada 2024 (Caja 03)",
       "estado_info": "COMPLETA",
-      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
-      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "estado_info_label": "🟢 TRAZABILIDAD INTEGRAL",
+      "estado_info_desc": "Cuenta con documentos de inicio y recepción/liquidación en Tomos PMO escaneados",
       "detalles_faltantes": [],
-      "confiabilidad": "ALTA (100% Verificado)"
+      "confiabilidad": "ALTA"
     },
     {
       "id": 2,
@@ -25275,11 +25352,13 @@
       "fecha_culminacion_real": "2022",
       "acta_recepcion": "Acta de Recepción 2022",
       "resolucion_liquidacion": "Liquidada 2022-2023",
-      "estado_info": "COMPLETA",
-      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
-      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
-      "detalles_faltantes": [],
-      "confiabilidad": "MEDIA (Ratificada por Estados Financieros)"
+      "estado_info": "PARCIAL",
+      "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
+      "estado_info_desc": "Cuenta con hitos de ejecución y cierre; falta acta de inicio",
+      "detalles_faltantes": [
+        "Falta Acta de Inicio en Tomos"
+      ],
+      "confiabilidad": "MEDIA"
     },
     {
       "id": 3,
@@ -25305,11 +25384,13 @@
       "fecha_culminacion_real": "2022",
       "acta_recepcion": "Acta de Recepción 2022",
       "resolucion_liquidacion": "Liquidada 2022-2023",
-      "estado_info": "COMPLETA",
-      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
-      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
-      "detalles_faltantes": [],
-      "confiabilidad": "MEDIA (Ratificada por Estados Financieros)"
+      "estado_info": "PARCIAL",
+      "estado_info_label": "🟡 REGISTRO HISTÓRICO",
+      "estado_info_desc": "Figura en matriz histórica 2020-2022; falta ubicar expediente físico en Tomos 7-9 o archivador",
+      "detalles_faltantes": [
+        "Falta ubicar expediente físico o Tomos de liquidación 2020-2022"
+      ],
+      "confiabilidad": "MEDIA"
     },
     {
       "id": 4,
@@ -25335,11 +25416,13 @@
       "fecha_culminacion_real": "2022",
       "acta_recepcion": "Acta de Recepción 2022",
       "resolucion_liquidacion": "Liquidada 2022-2023",
-      "estado_info": "COMPLETA",
-      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
-      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
-      "detalles_faltantes": [],
-      "confiabilidad": "MEDIA (Ratificada por Estados Financieros)"
+      "estado_info": "PARCIAL",
+      "estado_info_label": "🟡 REGISTRO HISTÓRICO",
+      "estado_info_desc": "Figura en matriz histórica 2020-2022; falta ubicar expediente físico en Tomos 7-9 o archivador",
+      "detalles_faltantes": [
+        "Falta ubicar expediente físico o Tomos de liquidación 2020-2022"
+      ],
+      "confiabilidad": "MEDIA"
     },
     {
       "id": 5,
@@ -25382,11 +25465,13 @@
       "fecha_culminacion_real": "2022",
       "acta_recepcion": "Acta de Recepción 2022",
       "resolucion_liquidacion": "Liquidada 2022-2023",
-      "estado_info": "COMPLETA",
-      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
-      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
-      "detalles_faltantes": [],
-      "confiabilidad": "MEDIA (Ratificada por Estados Financieros)"
+      "estado_info": "PARCIAL",
+      "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
+      "estado_info_desc": "Cuenta con hitos de ejecución y cierre; falta acta de inicio",
+      "detalles_faltantes": [
+        "Falta Acta de Inicio en Tomos"
+      ],
+      "confiabilidad": "MEDIA"
     },
     {
       "id": 6,
@@ -25414,13 +25499,13 @@
       "resolucion_liquidacion": "",
       "estado_info": "INCOMPLETA",
       "estado_info_label": "🔴 INFORMACIÓN PENDIENTE",
-      "estado_info_desc": "Faltan documentos contractuales clave; buscar en Tomos 7 al 9",
+      "estado_info_desc": "Sin documentos en Tomos 1 al 6 ni caja identificada; requiere búsqueda prioritaria",
       "detalles_faltantes": [
-        "Falta Acta de Entrega de Terreno / Suscripción de Contrato (Fecha de Inicio)",
-        "Falta Fecha de Culminación Física Real",
-        "Falta Acta de Recepción de Obra o Resolución de Liquidación"
+        "Falta ubicar expediente completo",
+        "Falta Acta de Inicio",
+        "Falta Liquidación"
       ],
-      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
+      "confiabilidad": "BAJA"
     },
     {
       "id": 7,
@@ -25465,12 +25550,12 @@
       "resolucion_liquidacion": "",
       "estado_info": "PARCIAL",
       "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
-      "estado_info_desc": "Hitos en ejecución identificados en Tomos PMO",
+      "estado_info_desc": "Hitos de ejecución identificados; faltan acta de inicio y liquidación final",
       "detalles_faltantes": [
-        "Falta Fecha de Culminación Física Real",
-        "Falta Acta de Recepción de Obra o Resolución de Liquidación"
+        "Falta Acta de Inicio en Tomos",
+        "Falta Acta de Recepción o Liquidación Final"
       ],
-      "confiabilidad": "ALTA"
+      "confiabilidad": "MEDIA"
     },
     {
       "id": 8,
@@ -25554,10 +25639,10 @@
       "acta_recepcion": "Acta de Recepción 2024 (MPI)",
       "resolucion_liquidacion": "En proceso de liquidación final",
       "estado_info": "COMPLETA",
-      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
-      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "estado_info_label": "🟢 TRAZABILIDAD INTEGRAL",
+      "estado_info_desc": "Cuenta con documentos de inicio y recepción/liquidación en Tomos PMO escaneados",
       "detalles_faltantes": [],
-      "confiabilidad": "ALTA (100% Verificado)"
+      "confiabilidad": "ALTA"
     },
     {
       "id": 9,
@@ -25688,11 +25773,14 @@
       "fecha_culminacion_real": "15/02/2023 (Val N° 03)",
       "acta_recepcion": "06/02/2023 (Comité Recepción MPI - Pág 48 Tomo 1)",
       "resolucion_liquidacion": "Liquidación Técnica 2023",
-      "estado_info": "COMPLETA",
-      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
-      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
-      "detalles_faltantes": [],
-      "confiabilidad": "ALTA (100% Verificado)"
+      "estado_info": "PARCIAL",
+      "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
+      "estado_info_desc": "Hitos de ejecución identificados; faltan acta de inicio y liquidación final",
+      "detalles_faltantes": [
+        "Falta Acta de Inicio en Tomos",
+        "Falta Acta de Recepción o Liquidación Final"
+      ],
+      "confiabilidad": "MEDIA"
     },
     {
       "id": 10,
@@ -25729,12 +25817,12 @@
       "resolucion_liquidacion": "",
       "estado_info": "PARCIAL",
       "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
-      "estado_info_desc": "Hitos en ejecución identificados en Tomos PMO",
+      "estado_info_desc": "Hitos de ejecución identificados; faltan acta de inicio y liquidación final",
       "detalles_faltantes": [
-        "Falta Fecha de Culminación Física Real",
-        "Falta Acta de Recepción de Obra o Resolución de Liquidación"
+        "Falta Acta de Inicio en Tomos",
+        "Falta Acta de Recepción o Liquidación Final"
       ],
-      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
+      "confiabilidad": "MEDIA"
     },
     {
       "id": 11,
@@ -25762,13 +25850,13 @@
       "resolucion_liquidacion": "",
       "estado_info": "INCOMPLETA",
       "estado_info_label": "🔴 INFORMACIÓN PENDIENTE",
-      "estado_info_desc": "Faltan documentos contractuales clave; buscar en Tomos 7 al 9",
+      "estado_info_desc": "Sin documentos en Tomos 1 al 6 ni caja identificada; requiere búsqueda prioritaria",
       "detalles_faltantes": [
-        "Falta Acta de Entrega de Terreno / Suscripción de Contrato (Fecha de Inicio)",
-        "Falta Fecha de Culminación Física Real",
-        "Falta Acta de Recepción de Obra o Resolución de Liquidación"
+        "Falta ubicar expediente completo",
+        "Falta Acta de Inicio",
+        "Falta Liquidación"
       ],
-      "confiabilidad": "ALTA"
+      "confiabilidad": "BAJA"
     },
     {
       "id": 12,
@@ -26108,10 +26196,10 @@
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
       "estado_info": "COMPLETA",
-      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
-      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "estado_info_label": "🟢 TRAZABILIDAD INTEGRAL",
+      "estado_info_desc": "Cuenta con documentos de inicio y recepción/liquidación en Tomos PMO escaneados",
       "detalles_faltantes": [],
-      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
+      "confiabilidad": "ALTA"
     },
     {
       "id": 13,
@@ -26435,10 +26523,10 @@
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
       "estado_info": "COMPLETA",
-      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
-      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "estado_info_label": "🟢 TRAZABILIDAD INTEGRAL",
+      "estado_info_desc": "Cuenta con documentos de inicio y recepción/liquidación en Tomos PMO escaneados",
       "detalles_faltantes": [],
-      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
+      "confiabilidad": "ALTA"
     },
     {
       "id": 14,
@@ -27682,10 +27770,10 @@
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
       "estado_info": "COMPLETA",
-      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
-      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "estado_info_label": "🟢 TRAZABILIDAD INTEGRAL",
+      "estado_info_desc": "Cuenta con documentos de inicio y recepción/liquidación en Tomos PMO escaneados",
       "detalles_faltantes": [],
-      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
+      "confiabilidad": "ALTA"
     },
     {
       "id": 15,
@@ -27728,11 +27816,13 @@
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
-      "estado_info": "COMPLETA",
-      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
-      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
-      "detalles_faltantes": [],
-      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
+      "estado_info": "PARCIAL",
+      "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
+      "estado_info_desc": "Cuenta con hitos de ejecución y cierre; falta acta de inicio",
+      "detalles_faltantes": [
+        "Falta Acta de Inicio en Tomos"
+      ],
+      "confiabilidad": "MEDIA"
     },
     {
       "id": 16,
@@ -27777,12 +27867,12 @@
       "resolucion_liquidacion": "",
       "estado_info": "PARCIAL",
       "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
-      "estado_info_desc": "Hitos en ejecución identificados en Tomos PMO",
+      "estado_info_desc": "Hitos de ejecución identificados; faltan acta de inicio y liquidación final",
       "detalles_faltantes": [
-        "Falta Fecha de Culminación Física Real",
-        "Falta Acta de Recepción de Obra o Resolución de Liquidación"
+        "Falta Acta de Inicio en Tomos",
+        "Falta Acta de Recepción o Liquidación Final"
       ],
-      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
+      "confiabilidad": "MEDIA"
     },
     {
       "id": 17,
@@ -27825,11 +27915,13 @@
       "fecha_culminacion_real": "",
       "acta_recepcion": "10/03/2023 (Tomo 3 Folio 4)",
       "resolucion_liquidacion": "",
-      "estado_info": "COMPLETA",
-      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
-      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
-      "detalles_faltantes": [],
-      "confiabilidad": "ALTA (100% Verificado)"
+      "estado_info": "PARCIAL",
+      "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
+      "estado_info_desc": "Cuenta con hitos de ejecución y cierre; falta acta de inicio",
+      "detalles_faltantes": [
+        "Falta Acta de Inicio en Tomos"
+      ],
+      "confiabilidad": "MEDIA"
     },
     {
       "id": 18,
@@ -27872,11 +27964,13 @@
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
-      "estado_info": "COMPLETA",
-      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
-      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
-      "detalles_faltantes": [],
-      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
+      "estado_info": "PARCIAL",
+      "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
+      "estado_info_desc": "Cuenta con hitos de ejecución y cierre; falta acta de inicio",
+      "detalles_faltantes": [
+        "Falta Acta de Inicio en Tomos"
+      ],
+      "confiabilidad": "MEDIA"
     },
     {
       "id": 19,
@@ -27927,11 +28021,14 @@
       "fecha_culminacion_real": "Marzo 2023",
       "acta_recepcion": "Comité de Recepción 2023",
       "resolucion_liquidacion": "En observaciones de liquidación técnica (Tomo 5 Folios 1 y 72)",
-      "estado_info": "COMPLETA",
-      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
-      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
-      "detalles_faltantes": [],
-      "confiabilidad": "ALTA (100% Verificado)"
+      "estado_info": "PARCIAL",
+      "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
+      "estado_info_desc": "Hitos de ejecución identificados; faltan acta de inicio y liquidación final",
+      "detalles_faltantes": [
+        "Falta Acta de Inicio en Tomos",
+        "Falta Acta de Recepción o Liquidación Final"
+      ],
+      "confiabilidad": "MEDIA"
     },
     {
       "id": 20,
@@ -28016,12 +28113,12 @@
       "resolucion_liquidacion": "",
       "estado_info": "PARCIAL",
       "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
-      "estado_info_desc": "Hitos en ejecución identificados en Tomos PMO",
+      "estado_info_desc": "Hitos de ejecución identificados; faltan acta de inicio y liquidación final",
       "detalles_faltantes": [
-        "Falta Fecha de Culminación Física Real",
-        "Falta Acta de Recepción de Obra o Resolución de Liquidación"
+        "Falta Acta de Inicio en Tomos",
+        "Falta Acta de Recepción o Liquidación Final"
       ],
-      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
+      "confiabilidad": "MEDIA"
     },
     {
       "id": 21,
@@ -28080,11 +28177,13 @@
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
-      "estado_info": "COMPLETA",
-      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
-      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
-      "detalles_faltantes": [],
-      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
+      "estado_info": "PARCIAL",
+      "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
+      "estado_info_desc": "Cuenta con hitos de ejecución y cierre; falta acta de inicio",
+      "detalles_faltantes": [
+        "Falta Acta de Inicio en Tomos"
+      ],
+      "confiabilidad": "MEDIA"
     },
     {
       "id": 22,
@@ -28223,11 +28322,13 @@
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
-      "estado_info": "COMPLETA",
-      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
-      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
-      "detalles_faltantes": [],
-      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
+      "estado_info": "PARCIAL",
+      "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
+      "estado_info_desc": "Cuenta con hitos de ejecución y cierre; falta acta de inicio",
+      "detalles_faltantes": [
+        "Falta Acta de Inicio en Tomos"
+      ],
+      "confiabilidad": "MEDIA"
     },
     {
       "id": 23,
@@ -28270,11 +28371,13 @@
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
-      "estado_info": "COMPLETA",
-      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
-      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
-      "detalles_faltantes": [],
-      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
+      "estado_info": "PARCIAL",
+      "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
+      "estado_info_desc": "Cuenta con hitos de ejecución y cierre; falta acta de inicio",
+      "detalles_faltantes": [
+        "Falta Acta de Inicio en Tomos"
+      ],
+      "confiabilidad": "MEDIA"
     },
     {
       "id": 24,
@@ -28366,10 +28469,10 @@
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
       "estado_info": "COMPLETA",
-      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
-      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "estado_info_label": "🟢 TRAZABILIDAD INTEGRAL",
+      "estado_info_desc": "Cuenta con documentos de inicio y recepción/liquidación en Tomos PMO escaneados",
       "detalles_faltantes": [],
-      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
+      "confiabilidad": "ALTA"
     },
     {
       "id": 25,
@@ -28412,11 +28515,13 @@
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
-      "estado_info": "COMPLETA",
-      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
-      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
-      "detalles_faltantes": [],
-      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
+      "estado_info": "PARCIAL",
+      "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
+      "estado_info_desc": "Cuenta con hitos de ejecución y cierre; falta acta de inicio",
+      "detalles_faltantes": [
+        "Falta Acta de Inicio en Tomos"
+      ],
+      "confiabilidad": "MEDIA"
     },
     {
       "id": 26,
@@ -28451,11 +28556,13 @@
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
-      "estado_info": "COMPLETA",
-      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
-      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
-      "detalles_faltantes": [],
-      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
+      "estado_info": "PARCIAL",
+      "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
+      "estado_info_desc": "Cuenta con hitos de ejecución y cierre; falta acta de inicio",
+      "detalles_faltantes": [
+        "Falta Acta de Inicio en Tomos"
+      ],
+      "confiabilidad": "MEDIA"
     },
     {
       "id": 27,
@@ -28483,13 +28590,13 @@
       "resolucion_liquidacion": "",
       "estado_info": "INCOMPLETA",
       "estado_info_label": "🔴 INFORMACIÓN PENDIENTE",
-      "estado_info_desc": "Faltan documentos contractuales clave; buscar en Tomos 7 al 9",
+      "estado_info_desc": "Sin documentos en Tomos 1 al 6 ni caja identificada; requiere búsqueda prioritaria",
       "detalles_faltantes": [
-        "Falta Acta de Entrega de Terreno / Suscripción de Contrato (Fecha de Inicio)",
-        "Falta Fecha de Culminación Física Real",
-        "Falta Acta de Recepción de Obra o Resolución de Liquidación"
+        "Falta ubicar expediente completo",
+        "Falta Acta de Inicio",
+        "Falta Liquidación"
       ],
-      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
+      "confiabilidad": "BAJA"
     },
     {
       "id": 28,
@@ -28526,12 +28633,12 @@
       "resolucion_liquidacion": "",
       "estado_info": "PARCIAL",
       "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
-      "estado_info_desc": "Hitos en ejecución identificados en Tomos PMO",
+      "estado_info_desc": "Hitos de ejecución identificados; faltan acta de inicio y liquidación final",
       "detalles_faltantes": [
-        "Falta Fecha de Culminación Física Real",
-        "Falta Acta de Recepción de Obra o Resolución de Liquidación"
+        "Falta Acta de Inicio en Tomos",
+        "Falta Acta de Recepción o Liquidación Final"
       ],
-      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
+      "confiabilidad": "MEDIA"
     },
     {
       "id": 29,
@@ -28576,12 +28683,12 @@
       "resolucion_liquidacion": "",
       "estado_info": "PARCIAL",
       "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
-      "estado_info_desc": "Hitos en ejecución identificados en Tomos PMO",
+      "estado_info_desc": "Hitos de ejecución identificados; faltan acta de inicio y liquidación final",
       "detalles_faltantes": [
-        "Falta Fecha de Culminación Física Real",
-        "Falta Acta de Recepción de Obra o Resolución de Liquidación"
+        "Falta Acta de Inicio en Tomos",
+        "Falta Acta de Recepción o Liquidación Final"
       ],
-      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
+      "confiabilidad": "MEDIA"
     },
     {
       "id": 30,
@@ -28632,11 +28739,13 @@
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
-      "estado_info": "COMPLETA",
-      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
-      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
-      "detalles_faltantes": [],
-      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
+      "estado_info": "PARCIAL",
+      "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
+      "estado_info_desc": "Cuenta con hitos de ejecución y cierre; falta acta de inicio",
+      "detalles_faltantes": [
+        "Falta Acta de Inicio en Tomos"
+      ],
+      "confiabilidad": "MEDIA"
     },
     {
       "id": 31,
@@ -28784,10 +28893,10 @@
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
       "estado_info": "COMPLETA",
-      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
-      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "estado_info_label": "🟢 TRAZABILIDAD INTEGRAL",
+      "estado_info_desc": "Cuenta con documentos de inicio y recepción/liquidación en Tomos PMO escaneados",
       "detalles_faltantes": [],
-      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
+      "confiabilidad": "ALTA"
     },
     {
       "id": 32,
@@ -28838,11 +28947,13 @@
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
-      "estado_info": "COMPLETA",
-      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
-      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
-      "detalles_faltantes": [],
-      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
+      "estado_info": "PARCIAL",
+      "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
+      "estado_info_desc": "Cuenta con hitos de ejecución y cierre; falta acta de inicio",
+      "detalles_faltantes": [
+        "Falta Acta de Inicio en Tomos"
+      ],
+      "confiabilidad": "MEDIA"
     },
     {
       "id": 33,
@@ -28887,12 +28998,11 @@
       "resolucion_liquidacion": "",
       "estado_info": "PARCIAL",
       "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
-      "estado_info_desc": "Hitos en ejecución identificados en Tomos PMO",
+      "estado_info_desc": "Obra con inicio registrado; falta recepción o liquidación final en Tomos",
       "detalles_faltantes": [
-        "Falta Fecha de Culminación Física Real",
-        "Falta Acta de Recepción de Obra o Resolución de Liquidación"
+        "Falta Acta de Recepción o Liquidación Final"
       ],
-      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
+      "confiabilidad": "MEDIA"
     },
     {
       "id": 34,
@@ -29015,11 +29125,13 @@
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
-      "estado_info": "COMPLETA",
-      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
-      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
-      "detalles_faltantes": [],
-      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
+      "estado_info": "PARCIAL",
+      "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
+      "estado_info_desc": "Cuenta con hitos de ejecución y cierre; falta acta de inicio",
+      "detalles_faltantes": [
+        "Falta Acta de Inicio en Tomos"
+      ],
+      "confiabilidad": "MEDIA"
     },
     {
       "id": 35,
@@ -29045,14 +29157,15 @@
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
-      "estado_info": "PARCIAL",
-      "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
-      "estado_info_desc": "Hitos en ejecución identificados en Tomos PMO",
+      "estado_info": "INCOMPLETA",
+      "estado_info_label": "🔴 INFORMACIÓN PENDIENTE",
+      "estado_info_desc": "Sin documentos en Tomos 1 al 6 ni caja identificada; requiere búsqueda prioritaria",
       "detalles_faltantes": [
-        "Falta Fecha de Culminación Física Real",
-        "Falta Acta de Recepción de Obra o Resolución de Liquidación"
+        "Falta ubicar expediente completo",
+        "Falta Acta de Inicio",
+        "Falta Liquidación"
       ],
-      "confiabilidad": "ALTA"
+      "confiabilidad": "BAJA"
     },
     {
       "id": 36,
@@ -29080,13 +29193,13 @@
       "resolucion_liquidacion": "",
       "estado_info": "INCOMPLETA",
       "estado_info_label": "🔴 INFORMACIÓN PENDIENTE",
-      "estado_info_desc": "Faltan documentos contractuales clave; buscar en Tomos 7 al 9",
+      "estado_info_desc": "Sin documentos en Tomos 1 al 6 ni caja identificada; requiere búsqueda prioritaria",
       "detalles_faltantes": [
-        "Falta Acta de Entrega de Terreno / Suscripción de Contrato (Fecha de Inicio)",
-        "Falta Fecha de Culminación Física Real",
-        "Falta Acta de Recepción de Obra o Resolución de Liquidación"
+        "Falta ubicar expediente completo",
+        "Falta Acta de Inicio",
+        "Falta Liquidación"
       ],
-      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
+      "confiabilidad": "BAJA"
     },
     {
       "id": 37,
@@ -29137,11 +29250,13 @@
       "fecha_culminacion_real": "Finales 2023",
       "acta_recepcion": "Conformidad de Supervisión 2024",
       "resolucion_liquidacion": "Liquidación Aprobada 2024 (Caja 03)",
-      "estado_info": "COMPLETA",
-      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
-      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
-      "detalles_faltantes": [],
-      "confiabilidad": "ALTA (100% Verificado)"
+      "estado_info": "PARCIAL",
+      "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
+      "estado_info_desc": "Cuenta con hitos de ejecución y cierre; falta acta de inicio",
+      "detalles_faltantes": [
+        "Falta Acta de Inicio en Tomos"
+      ],
+      "confiabilidad": "MEDIA"
     },
     {
       "id": 38,
@@ -29210,12 +29325,12 @@
       "resolucion_liquidacion": "",
       "estado_info": "PARCIAL",
       "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
-      "estado_info_desc": "Hitos en ejecución identificados en Tomos PMO",
+      "estado_info_desc": "Hitos de ejecución identificados; faltan acta de inicio y liquidación final",
       "detalles_faltantes": [
-        "Falta Fecha de Culminación Física Real",
-        "Falta Acta de Recepción de Obra o Resolución de Liquidación"
+        "Falta Acta de Inicio en Tomos",
+        "Falta Acta de Recepción o Liquidación Final"
       ],
-      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
+      "confiabilidad": "MEDIA"
     },
     {
       "id": 39,
@@ -29316,12 +29431,11 @@
       "resolucion_liquidacion": "",
       "estado_info": "PARCIAL",
       "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
-      "estado_info_desc": "Hitos en ejecución identificados en Tomos PMO",
+      "estado_info_desc": "Obra con inicio registrado; falta recepción o liquidación final en Tomos",
       "detalles_faltantes": [
-        "Falta Fecha de Culminación Física Real",
-        "Falta Acta de Recepción de Obra o Resolución de Liquidación"
+        "Falta Acta de Recepción o Liquidación Final"
       ],
-      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
+      "confiabilidad": "MEDIA"
     },
     {
       "id": 40,
@@ -29349,13 +29463,13 @@
       "resolucion_liquidacion": "",
       "estado_info": "INCOMPLETA",
       "estado_info_label": "🔴 INFORMACIÓN PENDIENTE",
-      "estado_info_desc": "Faltan documentos contractuales clave; buscar en Tomos 7 al 9",
+      "estado_info_desc": "Sin documentos en Tomos 1 al 6 ni caja identificada; requiere búsqueda prioritaria",
       "detalles_faltantes": [
-        "Falta Acta de Entrega de Terreno / Suscripción de Contrato (Fecha de Inicio)",
-        "Falta Fecha de Culminación Física Real",
-        "Falta Acta de Recepción de Obra o Resolución de Liquidación"
+        "Falta ubicar expediente completo",
+        "Falta Acta de Inicio",
+        "Falta Liquidación"
       ],
-      "confiabilidad": "ALTA"
+      "confiabilidad": "BAJA"
     },
     {
       "id": 41,
@@ -29400,12 +29514,12 @@
       "resolucion_liquidacion": "",
       "estado_info": "PARCIAL",
       "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
-      "estado_info_desc": "Hitos en ejecución identificados en Tomos PMO",
+      "estado_info_desc": "Hitos de ejecución identificados; faltan acta de inicio y liquidación final",
       "detalles_faltantes": [
-        "Falta Fecha de Culminación Física Real",
-        "Falta Acta de Recepción de Obra o Resolución de Liquidación"
+        "Falta Acta de Inicio en Tomos",
+        "Falta Acta de Recepción o Liquidación Final"
       ],
-      "confiabilidad": "ALTA"
+      "confiabilidad": "MEDIA"
     },
     {
       "id": 42,
@@ -29488,11 +29602,13 @@
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
-      "estado_info": "COMPLETA",
-      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
-      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
-      "detalles_faltantes": [],
-      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
+      "estado_info": "PARCIAL",
+      "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
+      "estado_info_desc": "Cuenta con hitos de ejecución y cierre; falta acta de inicio",
+      "detalles_faltantes": [
+        "Falta Acta de Inicio en Tomos"
+      ],
+      "confiabilidad": "MEDIA"
     },
     {
       "id": 43,
@@ -29608,10 +29724,10 @@
       "acta_recepcion": "Conformidad de Supervisión 2024",
       "resolucion_liquidacion": "Liquidación Aprobada 2024 (Caja 03)",
       "estado_info": "COMPLETA",
-      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
-      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "estado_info_label": "🟢 TRAZABILIDAD INTEGRAL",
+      "estado_info_desc": "Cuenta con documentos de inicio y recepción/liquidación en Tomos PMO escaneados",
       "detalles_faltantes": [],
-      "confiabilidad": "ALTA (100% Verificado)"
+      "confiabilidad": "ALTA"
     },
     {
       "id": 44,
@@ -29663,10 +29779,10 @@
       "acta_recepcion": "Conformidad de Supervisión 2024",
       "resolucion_liquidacion": "Liquidación Aprobada 2024 (Caja 03)",
       "estado_info": "COMPLETA",
-      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
-      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "estado_info_label": "🟢 TRAZABILIDAD INTEGRAL",
+      "estado_info_desc": "Cuenta con documentos de inicio y recepción/liquidación en Tomos PMO escaneados",
       "detalles_faltantes": [],
-      "confiabilidad": "ALTA (100% Verificado)"
+      "confiabilidad": "ALTA"
     },
     {
       "id": 45,
@@ -29709,11 +29825,13 @@
       "fecha_culminacion_real": "Finales 2023",
       "acta_recepcion": "Conformidad de Supervisión 2024",
       "resolucion_liquidacion": "Liquidación Aprobada 2024 (Caja 03)",
-      "estado_info": "COMPLETA",
-      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
-      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
-      "detalles_faltantes": [],
-      "confiabilidad": "ALTA (100% Verificado)"
+      "estado_info": "PARCIAL",
+      "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
+      "estado_info_desc": "Cuenta con hitos de ejecución y cierre; falta acta de inicio",
+      "detalles_faltantes": [
+        "Falta Acta de Inicio en Tomos"
+      ],
+      "confiabilidad": "MEDIA"
     },
     {
       "id": 46,
@@ -29756,11 +29874,13 @@
       "fecha_culminacion_real": "Finales 2023",
       "acta_recepcion": "Conformidad de Supervisión 2024",
       "resolucion_liquidacion": "Liquidación Aprobada 2024 (Caja 03)",
-      "estado_info": "COMPLETA",
-      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
-      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
-      "detalles_faltantes": [],
-      "confiabilidad": "ALTA (100% Verificado)"
+      "estado_info": "PARCIAL",
+      "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
+      "estado_info_desc": "Cuenta con hitos de ejecución y cierre; falta acta de inicio",
+      "detalles_faltantes": [
+        "Falta Acta de Inicio en Tomos"
+      ],
+      "confiabilidad": "MEDIA"
     },
     {
       "id": 47,
@@ -29869,12 +29989,12 @@
       "resolucion_liquidacion": "",
       "estado_info": "PARCIAL",
       "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
-      "estado_info_desc": "Hitos en ejecución identificados en Tomos PMO",
+      "estado_info_desc": "Hitos de ejecución identificados; faltan acta de inicio y liquidación final",
       "detalles_faltantes": [
-        "Falta Fecha de Culminación Física Real",
-        "Falta Acta de Recepción de Obra o Resolución de Liquidación"
+        "Falta Acta de Inicio en Tomos",
+        "Falta Acta de Recepción o Liquidación Final"
       ],
-      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
+      "confiabilidad": "MEDIA"
     },
     {
       "id": 48,
@@ -29927,12 +30047,12 @@
       "resolucion_liquidacion": "",
       "estado_info": "PARCIAL",
       "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
-      "estado_info_desc": "Hitos en ejecución identificados en Tomos PMO",
+      "estado_info_desc": "Hitos de ejecución identificados; faltan acta de inicio y liquidación final",
       "detalles_faltantes": [
-        "Falta Fecha de Culminación Física Real",
-        "Falta Acta de Recepción de Obra o Resolución de Liquidación"
+        "Falta Acta de Inicio en Tomos",
+        "Falta Acta de Recepción o Liquidación Final"
       ],
-      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
+      "confiabilidad": "MEDIA"
     },
     {
       "id": 49,
@@ -29969,12 +30089,12 @@
       "resolucion_liquidacion": "",
       "estado_info": "PARCIAL",
       "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
-      "estado_info_desc": "Hitos en ejecución identificados en Tomos PMO",
+      "estado_info_desc": "Hitos de ejecución identificados; faltan acta de inicio y liquidación final",
       "detalles_faltantes": [
-        "Falta Fecha de Culminación Física Real",
-        "Falta Acta de Recepción de Obra o Resolución de Liquidación"
+        "Falta Acta de Inicio en Tomos",
+        "Falta Acta de Recepción o Liquidación Final"
       ],
-      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
+      "confiabilidad": "MEDIA"
     },
     {
       "id": 2,
@@ -30354,10 +30474,10 @@
       "acta_recepcion": "Acta de Recepción 2022",
       "resolucion_liquidacion": "Liquidada 2022-2023",
       "estado_info": "COMPLETA",
-      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
-      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "estado_info_label": "🟢 TRAZABILIDAD INTEGRAL",
+      "estado_info_desc": "Cuenta con documentos de inicio y recepción/liquidación en Tomos PMO escaneados",
       "detalles_faltantes": [],
-      "confiabilidad": "MEDIA (Ratificada por Estados Financieros)"
+      "confiabilidad": "ALTA"
     },
     {
       "id": 3,
@@ -30383,11 +30503,13 @@
       "fecha_culminacion_real": "2022",
       "acta_recepcion": "Acta de Recepción 2022",
       "resolucion_liquidacion": "Liquidada 2022-2023",
-      "estado_info": "COMPLETA",
-      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
-      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
-      "detalles_faltantes": [],
-      "confiabilidad": "MEDIA (Ratificada por Estados Financieros)"
+      "estado_info": "PARCIAL",
+      "estado_info_label": "🟡 REGISTRO HISTÓRICO",
+      "estado_info_desc": "Figura en matriz histórica 2020-2022; falta ubicar expediente físico en Tomos 7-9 o archivador",
+      "detalles_faltantes": [
+        "Falta ubicar expediente físico o Tomos de liquidación 2020-2022"
+      ],
+      "confiabilidad": "MEDIA"
     },
     {
       "id": 4,
@@ -30590,11 +30712,13 @@
       "fecha_culminacion_real": "2022",
       "acta_recepcion": "Acta de Recepción 2022",
       "resolucion_liquidacion": "Liquidada 2022-2023",
-      "estado_info": "COMPLETA",
-      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
-      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
-      "detalles_faltantes": [],
-      "confiabilidad": "MEDIA (Ratificada por Estados Financieros)"
+      "estado_info": "PARCIAL",
+      "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
+      "estado_info_desc": "Cuenta con hitos de ejecución y cierre; falta acta de inicio",
+      "detalles_faltantes": [
+        "Falta Acta de Inicio en Tomos"
+      ],
+      "confiabilidad": "MEDIA"
     },
     {
       "id": 5,
@@ -30750,10 +30874,10 @@
       "acta_recepcion": "Acta de Recepción 2022",
       "resolucion_liquidacion": "Liquidada 2022-2023",
       "estado_info": "COMPLETA",
-      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
-      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "estado_info_label": "🟢 TRAZABILIDAD INTEGRAL",
+      "estado_info_desc": "Cuenta con documentos de inicio y recepción/liquidación en Tomos PMO escaneados",
       "detalles_faltantes": [],
-      "confiabilidad": "MEDIA (Ratificada por Estados Financieros)"
+      "confiabilidad": "ALTA"
     },
     {
       "id": 6,
@@ -30781,13 +30905,13 @@
       "resolucion_liquidacion": "",
       "estado_info": "INCOMPLETA",
       "estado_info_label": "🔴 INFORMACIÓN PENDIENTE",
-      "estado_info_desc": "Faltan documentos contractuales clave; buscar en Tomos 7 al 9",
+      "estado_info_desc": "Sin documentos en Tomos 1 al 6 ni caja identificada; requiere búsqueda prioritaria",
       "detalles_faltantes": [
-        "Falta Acta de Entrega de Terreno / Suscripción de Contrato (Fecha de Inicio)",
-        "Falta Fecha de Culminación Física Real",
-        "Falta Acta de Recepción de Obra o Resolución de Liquidación"
+        "Falta ubicar expediente completo",
+        "Falta Acta de Inicio",
+        "Falta Liquidación"
       ],
-      "confiabilidad": "EN REVISIÓN (Pendiente Tomos 2-9)"
+      "confiabilidad": "BAJA"
     },
     {
       "id": 7,
@@ -30815,13 +30939,13 @@
       "resolucion_liquidacion": "",
       "estado_info": "INCOMPLETA",
       "estado_info_label": "🔴 INFORMACIÓN PENDIENTE",
-      "estado_info_desc": "Faltan documentos contractuales clave; buscar en Tomos 7 al 9",
+      "estado_info_desc": "Sin documentos en Tomos 1 al 6 ni caja identificada; requiere búsqueda prioritaria",
       "detalles_faltantes": [
-        "Falta Acta de Entrega de Terreno / Suscripción de Contrato (Fecha de Inicio)",
-        "Falta Fecha de Culminación Física Real",
-        "Falta Acta de Recepción de Obra o Resolución de Liquidación"
+        "Falta ubicar expediente completo",
+        "Falta Acta de Inicio",
+        "Falta Liquidación"
       ],
-      "confiabilidad": "ALTA"
+      "confiabilidad": "BAJA"
     },
     {
       "id": 8,
@@ -30945,10 +31069,10 @@
       "acta_recepcion": "Acta de Recepción 2024 (MPI)",
       "resolucion_liquidacion": "En proceso de liquidación final",
       "estado_info": "COMPLETA",
-      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
-      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "estado_info_label": "🟢 TRAZABILIDAD INTEGRAL",
+      "estado_info_desc": "Cuenta con documentos de inicio y recepción/liquidación en Tomos PMO escaneados",
       "detalles_faltantes": [],
-      "confiabilidad": "ALTA (100% Verificado)"
+      "confiabilidad": "ALTA"
     },
     {
       "id": 9,
@@ -31504,10 +31628,10 @@
       "acta_recepcion": "06/02/2023 (Comité Recepción MPI - Pág 48 Tomo 1)",
       "resolucion_liquidacion": "Liquidación Técnica 2023",
       "estado_info": "COMPLETA",
-      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
-      "estado_info_desc": "Lista para sustento ante auditoría (Inicio + Término/Caja verificados)",
+      "estado_info_label": "🟢 TRAZABILIDAD INTEGRAL",
+      "estado_info_desc": "Cuenta con documentos de inicio y recepción/liquidación en Tomos PMO escaneados",
       "detalles_faltantes": [],
-      "confiabilidad": "ALTA (100% Verificado)"
+      "confiabilidad": "ALTA"
     }
   ]
 }
