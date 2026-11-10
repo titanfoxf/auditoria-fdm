@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>FDM - Módulo de Inspección en Archivo</title>
+  <script src="jszip.min.js"></script>
+  <style>
+    :root {
+      --primary: #0F172A;
+      --primary-accent: #2563EB;
+      --success: #16A34A;
+      --warning: #CA8A04;
+      --danger: #DC2626;
+      --bg: #F8FAFC;
+      --card-bg: #FFFFFF;
+      --border: #E2E8F0;
+      --text: #0F172A;
+      --text-muted: #64748B;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background: var(--bg); color: var(--text); padding-bottom: 85px; }
+
+    /* Sticky Header */
+    .top-header { position: sticky; top: 0; z-index: 40; background: #0F172A; color: white; padding: 0.75rem 1rem; box-shadow: 0 2px 8px rgba(0,0,0,0.15); }
+    .header-top { display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; }
+    .header-title { font-size: 0.95rem; font-weight: 700; display: flex; align-items: center; gap: 0.4rem; }
+    .header-sub { font-size: 0.7rem; color: #94A3B8; margin-top: 2px; }
+    .header-actions { display: flex; gap: 0.4rem; }
+    .btn-action { background: #1E293B; border: 1px solid #334155; color: white; padding: 0.35rem 0.65rem; border-radius: 8px; font-size: 0.75rem; font-weight: 600; text-decoration: none; display: inline-flex; align-items: center; gap: 0.3rem; cursor: pointer; }
+    .btn-action.green { background: #16A34A; border-color: #15803D; }
+
+    /* Search & Filter Bar */
+    .search-box { padding: 0.75rem 1rem; background: white; border-bottom: 1px solid var(--border); position: sticky; top: 56px; z-index: 30; }
+    .search-input-wrap { position: relative; }
+    .search-input { width: 100%; padding: 0.65rem 0.85rem 0.65rem 2.2rem; border-radius: 10px; border: 1px solid var(--border); font-size: 0.9rem; outline: none; background: #F1F5F9; }
+    .search-input:focus { background: white; border-color: var(--primary-accent); }
+    .search-icon { position: absolute; left: 0.75rem; top: 50%; transform: translateY(-50%); color: var(--text-muted); font-size: 0.9rem; }
+    
+    /* Chips */
+    .chips-bar { display: flex; gap: 0.4rem; overflow-x: auto; padding: 0.5rem 0 0.2rem 0; scrollbar-width: none; }
+    .chips-bar::-webkit-scrollbar { display: none; }
+    .chip { padding: 0.3rem 0.65rem; border-radius: 9999px; font-size: 0.73rem; font-weight: 600; white-space: nowrap; background: #E2E8F0; color: #475569; border: none; cursor: pointer; }
+    .chip.active { background: #0F172A; color: white; }
+    .chip.alert.active { background: #CA8A04; }
+    .chip.green.active { background: #16A34A; }
+
+    /* Counter bar */
+    .count-bar { padding: 0.4rem 1rem; font-size: 0.75rem; color: var(--text-muted); display: flex; justify-content: space-between; align-items: center; }
+
+    /* Project Cards List */
+    .project-list { padding: 0.5rem 1rem; display: flex; flex-direction: column; gap: 0.65rem; }
+    .card { background: var(--card-bg); border-radius: 12px; border: 1px solid var(--border); padding: 0.85rem; box-shadow: 0 1px 3px rgba(0,0,0,0.03); cursor: pointer; transition: transform 0.1s, border-color 0.15s; }
+    .card:active { transform: scale(0.99); }
+    .card.has-data { border-left: 4px solid var(--primary-accent); }
+    .card.has-photos { border-left: 4px solid var(--success); }
+    .card.missing-start { border-left: 4px solid var(--danger); }
+    
+    .card-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 0.5rem; margin-bottom: 0.35rem; }
+    .card-badge-id { background: #0F172A; color: white; font-size: 0.72rem; font-weight: 800; padding: 0.15rem 0.45rem; border-radius: 6px; }
+    .card-badges { display: flex; gap: 0.3rem; flex-wrap: wrap; }
+    .badge { font-size: 0.68rem; font-weight: 600; padding: 0.15rem 0.45rem; border-radius: 9999px; }
+    .badge-blue { background: #DBEAFE; color: #1E40AF; }
+    .badge-yellow { background: #FEF9C3; color: #854D0E; }
+    .badge-green { background: #DCFCE7; color: #166534; }
+    .badge-red { background: #FEE2E2; color: #991B1B; }
+    .badge-gray { background: #F1F5F9; color: #475569; }
+
+    .card-title { font-size: 0.86rem; font-weight: 700; color: var(--text); line-height: 1.35; margin-bottom: 0.4rem; }
+    .card-meta { display: grid; grid-template-columns: 1fr 1fr; gap: 0.3rem; font-size: 0.72rem; color: var(--text-muted); background: #F8FAFC; padding: 0.45rem 0.6rem; border-radius: 8px; margin-top: 0.4rem; }
+    .card-photos-count { display: inline-flex; align-items: center; gap: 0.25rem; font-size: 0.72rem; font-weight: 700; color: var(--success); }
+
+    /* Modal / Drawer */
+    .drawer-backdrop { position: fixed; inset: 0; background: rgba(15, 23, 42, 0.75); backdrop-filter: blur(4px); z-index: 50; display: none; align-items: flex-end; justify-content: center; }
+    .drawer-backdrop.open { display: flex; }
+    .drawer { background: white; width: 100%; max-width: 600px; height: 92vh; border-radius: 20px 20px 0 0; display: flex; flex-direction: column; overflow: hidden; animation: slideUp 0.25s ease-out; }
+    @keyframes slideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
+
+    .drawer-header { padding: 1rem; background: #0F172A; color: white; display: flex; justify-content: space-between; align-items: center; }
+    .drawer-header h3 { font-size: 0.95rem; font-weight: 700; }
+    .drawer-close { background: #1E293B; border: none; color: white; width: 32px; height: 32px; border-radius: 50%; font-size: 1rem; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+
+    .drawer-body { padding: 1rem; overflow-y: auto; flex: 1; display: flex; flex-direction: column; gap: 1rem; }
+    
+    .field-group { background: #F8FAFC; border: 1px solid var(--border); border-radius: 12px; padding: 0.85rem; }
+    .field-title { font-size: 0.78rem; font-weight: 700; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.4rem; display: flex; align-items: center; justify-content: space-between; }
+    .field-input { width: 100%; padding: 0.6rem; border-radius: 8px; border: 1px solid var(--border); font-size: 0.88rem; outline: none; background: white; margin-top: 0.25rem; }
+    .field-input:focus { border-color: var(--primary-accent); }
+
+    .preset-chips { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-top: 0.4rem; }
+    .preset-chip { font-size: 0.7rem; background: white; border: 1px solid var(--border); padding: 0.25rem 0.5rem; border-radius: 6px; cursor: pointer; color: #334155; }
+    .preset-chip:active { background: #0F172A; color: white; }
+
+    /* Photo Slot Cards */
+    .photo-slot { background: white; border: 1px dashed #CBD5E1; border-radius: 12px; padding: 0.75rem; display: flex; flex-direction: column; gap: 0.5rem; }
+    .slot-hdr { display: flex; justify-content: space-between; align-items: center; font-size: 0.78rem; font-weight: 700; color: #1E293B; }
+    .slot-actions { display: flex; gap: 0.4rem; }
+    .btn-camera { background: var(--primary-accent); color: white; border: none; padding: 0.5rem 0.8rem; border-radius: 8px; font-size: 0.78rem; font-weight: 600; display: inline-flex; align-items: center; gap: 0.35rem; cursor: pointer; flex: 1; justify-content: center; }
+    .btn-camera:active { background: #1D4ED8; }
+
+    /* Photo Thumbnail Grid */
+    .thumb-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(80px, 1fr)); gap: 0.5rem; margin-top: 0.4rem; }
+    .thumb-wrap { position: relative; width: 100%; padding-top: 100%; border-radius: 8px; overflow: hidden; border: 1px solid var(--border); background: #000; }
+    .thumb-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; cursor: pointer; }
+    .thumb-del { position: absolute; top: 3px; right: 3px; background: rgba(220, 38, 38, 0.85); color: white; border: none; width: 22px; height: 22px; border-radius: 50%; font-size: 0.7rem; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+
+    /* Sticky Bottom Bar */
+    .drawer-footer { padding: 0.75rem 1rem; background: white; border-top: 1px solid var(--border); display: flex; gap: 0.5rem; }
+    .btn-save { background: var(--success); color: white; border: none; padding: 0.75rem 1.25rem; border-radius: 10px; font-size: 0.9rem; font-weight: 700; flex: 1; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 0.4rem; }
+    .btn-nav { background: #F1F5F9; border: 1px solid var(--border); color: #0F172A; padding: 0.75rem 1rem; border-radius: 10px; font-weight: 700; cursor: pointer; }
+
+    /* Toast */
+    .toast { position: fixed; bottom: 95px; left: 50%; transform: translateX(-50%); background: #0F172A; color: white; padding: 0.6rem 1.2rem; border-radius: 9999px; font-size: 0.82rem; font-weight: 600; display: none; z-index: 100; box-shadow: 0 4px 12px rgba(0,0,0,0.2); }
+    .toast.show { display: block; animation: fadeIn 0.2s; }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+    /* Image Lightbox */
+    .lightbox { position: fixed; inset: 0; background: rgba(0,0,0,0.95); z-index: 110; display: none; align-items: center; justify-content: center; padding: 1rem; }
+    .lightbox.open { display: flex; }
+    .lightbox img { max-width: 100%; max-height: 90vh; object-fit: contain; border-radius: 6px; }
+    .lightbox-close { position: absolute; top: 1rem; right: 1rem; background: rgba(255,255,255,0.2); border: none; color: white; font-size: 1.5rem; width: 44px; height: 44px; border-radius: 50%; cursor: pointer; }
+  </style>
+</head>
+<body>
+
+  <!-- Top Header -->
+  <header class="top-header">
+    <div class="header-top">
+      <div>
+        <div class="header-title">📱 FDM Scanner de Archivo</div>
+        <div class="header-sub">Levantamiento de Evidencias Físicas y Fotos Offline</div>
+      </div>
+      <div class="header-actions">
+        <button class="btn-action green" onclick="exportZipPackage()">📦 ZIP</button>
+        <a href="index.html" class="btn-action">🖥️ Web</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Sticky Search & Chips -->
+  <div class="search-box">
+    <div class="search-input-wrap">
+      <span class="search-icon">🔍</span>
+      <input type="text" id="searchInput" class="search-input" placeholder="Buscar por N°, nombre, CUI o lugar..." oninput="filterList()">
+    </div>
+    <div class="chips-bar">
+      <button class="chip active" onclick="setFilter('ALL', this)">Todas (69)</button>
+      <button class="chip alert" onclick="setFilter('MISSING', this)">⚠️ Faltan Datos (<span id="countMissing">0</span>)</button>
+      <button class="chip green" onclick="setFilter('WITH_PHOTOS', this)">📸 Con Fotos (<span id="countWithPhotos">0</span>)</button>
+      <button class="chip" onclick="setFilter('ILO', this)">⚓ Ilo (20)</button>
+      <button class="chip" onclick="setFilter('MN', this)">🏛️ Mariscal Nieto (12)</button>
+      <button class="chip" onclick="setFilter('GSC', this)">🌾 Sánchez Cerro (37)</button>
+    </div>
+  </div>
+
+  <!-- Counter -->
+  <div class="count-bar">
+    <span id="labelTotalVisible">Mostrando 69 obras</span>
+    <span id="labelPhotosSaved" style="color: var(--success); font-weight: 700;">📸 0 fotos guardadas</span>
+  </div>
+
+  <!-- Projects List -->
+  <main class="project-list" id="projectsContainer">
+    <!-- Rendered dynamically -->
+  </main>
+
+  <!-- Drawer Modal -->
+  <div class="drawer-backdrop" id="drawerBackdrop" onclick="closeDrawerOutside(event)">
+    <div class="drawer" onclick="event.stopPropagation()">
+      <div class="drawer-header">
+        <div>
+          <span id="drawerObraNum" style="font-size: 0.75rem; background: #2563EB; padding: 0.15rem 0.5rem; border-radius: 4px; font-weight: 700;">OBRA N° 01</span>
+          <h3 id="drawerTitle" style="margin-top: 4px; line-height: 1.25;">Nombre de la Obra</h3>
+        </div>
+        <button class="drawer-close" onclick="closeDrawer()">✕</button>
+      </div>
+
+      <div class="drawer-body">
+        <!-- Resumen Inicial de Obra -->
+        <div style="font-size: 0.75rem; color: var(--text-muted); display: flex; gap: 0.5rem; flex-wrap: wrap;">
+          <span id="drawerCui">CUI: —</span> • <span id="drawerProv">Provincia</span> • <span id="drawerConv">100 MLL</span>
+        </div>
+
+        <!-- Campos de Validación en Campo -->
+        <div class="field-group">
+          <div class="field-title">
+            <span>📅 Fecha de Inicio Real</span>
+            <span id="statusInicioBadge" class="badge badge-yellow">Verificar</span>
+          </div>
+          <input type="text" id="inputFechaInicio" class="field-input" placeholder="Ej: 14/01/2022 o 14 de enero del 2022">
+          <div class="preset-chips">
+            <span class="preset-chip" onclick="setPresetDate('inputFechaInicio', '01/06/2021')">01/06/2021</span>
+            <span class="preset-chip" onclick="setPresetDate('inputFechaInicio', '15/01/2022')">15/01/2022</span>
+            <span class="preset-chip" onclick="setPresetDate('inputFechaInicio', '01/07/2023')">01/07/2023</span>
+            <span class="preset-chip" onclick="setPresetDate('inputFechaInicio', '15/05/2024')">15/05/2024</span>
+          </div>
+        </div>
+
+        <div class="field-group">
+          <div class="field-title">
+            <span>🏁 Fecha de Culminación Real / Recepción</span>
+          </div>
+          <input type="text" id="inputFechaCulm" class="field-input" placeholder="Ej: 11/09/2022 o Acta del 23/12/2022">
+        </div>
+
+        <div class="field-group">
+          <div class="field-title">
+            <span>📍 Ubicación Física del Expediente</span>
+            <span style="font-size: 0.7rem; color: #2563EB;">Obligatorio para Auditoría</span>
+          </div>
+          <input type="text" id="inputUbicacion" class="field-input" placeholder="Ej: Caja 03, Archivador Azul N° 2, Estante 4...">
+          <div class="preset-chips">
+            <span class="preset-chip" onclick="appendUbicacion('Archivador Palanca ')">📁 Archivador Palanca</span>
+            <span class="preset-chip" onclick="appendUbicacion('Caja ')">📦 Caja</span>
+            <span class="preset-chip" onclick="appendUbicacion('Estante ')">🗄️ Estante</span>
+            <span class="preset-chip" onclick="appendUbicacion('Archivo Central ')">🏛️ Archivo Central</span>
+            <span class="preset-chip" onclick="appendUbicacion('Gerencia PMO ')">🏢 Gerencia PMO</span>
+          </div>
+        </div>
+
+        <div class="field-group">
+          <div class="field-title">
+            <span>📝 Notas y Hallazgos en el Archivador</span>
+          </div>
+          <textarea id="inputNotas" class="field-input" style="height: 65px; resize: none;" placeholder="Ej: Se encontró contrato original N° 004-2021, falta resolución de liquidación..."></textarea>
+        </div>
+
+        <!-- Ranuras de Fotos Directas -->
+        <div style="font-weight: 700; font-size: 0.85rem; color: var(--text); margin-top: 0.5rem; display: flex; align-items: center; justify-content: space-between;">
+          <span>📸 FOTOS Y EVIDENCIAS DE CAMPO</span>
+          <span id="drawerTotalFotos" style="color: var(--success); font-size: 0.75rem;">0 fotos</span>
+        </div>
+
+        <!-- Slot 1: Lomo / Ubicación -->
+        <div class="photo-slot">
+          <div class="slot-hdr">
+            <span>🏷️ 1. Lomo de Archivador / Rótulo de Caja</span>
+            <span id="slotCount_rotulo" class="badge badge-gray">0</span>
+          </div>
+          <button class="btn-camera" onclick="triggerCamera('rotulo')">📸 Tomar Foto Lomo / Rótulo</button>
+          <input type="file" accept="image/*" capture="environment" id="file_rotulo" style="display:none;" onchange="handlePhotoUpload('rotulo', this)">
+          <div class="thumb-grid" id="grid_rotulo"></div>
+        </div>
+
+        <!-- Slot 2: Acta Inicio -->
+        <div class="photo-slot">
+          <div class="slot-hdr">
+            <span>📜 2. Acta de Entrega de Terreno / Inicio</span>
+            <span id="slotCount_inicio" class="badge badge-gray">0</span>
+          </div>
+          <button class="btn-camera" onclick="triggerCamera('inicio')">📸 Tomar Foto Acta de Inicio</button>
+          <input type="file" accept="image/*" capture="environment" id="file_inicio" style="display:none;" onchange="handlePhotoUpload('inicio', this)">
+          <div class="thumb-grid" id="grid_inicio"></div>
+        </div>
+
+        <!-- Slot 3: Contrato de Obra -->
+        <div class="photo-slot">
+          <div class="slot-hdr">
+            <span>📝 3. Contrato de Obra / Adendas</span>
+            <span id="slotCount_contrato" class="badge badge-gray">0</span>
+          </div>
+          <button class="btn-camera" onclick="triggerCamera('contrato')">📸 Tomar Foto Contrato / Adenda</button>
+          <input type="file" accept="image/*" capture="environment" id="file_contrato" style="display:none;" onchange="handlePhotoUpload('contrato', this)">
+          <div class="thumb-grid" id="grid_contrato"></div>
+        </div>
+
+        <!-- Slot 4: Cuaderno de Obra -->
+        <div class="photo-slot">
+          <div class="slot-hdr">
+            <span>📖 4. Cuaderno de Obra (Asientos Inicio / Fin)</span>
+            <span id="slotCount_cuaderno" class="badge badge-gray">0</span>
+          </div>
+          <button class="btn-camera" onclick="triggerCamera('cuaderno')">📸 Tomar Foto Cuaderno de Obra</button>
+          <input type="file" accept="image/*" capture="environment" id="file_cuaderno" style="display:none;" onchange="handlePhotoUpload('cuaderno', this)">
+          <div class="thumb-grid" id="grid_cuaderno"></div>
+        </div>
+
+        <!-- Slot 5: Acta Recepción -->
+        <div class="photo-slot">
+          <div class="slot-hdr">
+            <span>🏁 5. Acta de Recepción / Culminación</span>
+            <span id="slotCount_recepcion" class="badge badge-gray">0</span>
+          </div>
+          <button class="btn-camera" onclick="triggerCamera('recepcion')">📸 Tomar Foto Acta Recepción</button>
+          <input type="file" accept="image/*" capture="environment" id="file_recepcion" style="display:none;" onchange="handlePhotoUpload('recepcion', this)">
+          <div class="thumb-grid" id="grid_recepcion"></div>
+        </div>
+
+        <!-- Slot 6: Liquidación -->
+        <div class="photo-slot">
+          <div class="slot-hdr">
+            <span>⚖️ 6. Resolución de Liquidación Técnica</span>
+            <span id="slotCount_liquidacion" class="badge badge-gray">0</span>
+          </div>
+          <button class="btn-camera" onclick="triggerCamera('liquidacion')">📸 Tomar Foto Liquidación</button>
+          <input type="file" accept="image/*" capture="environment" id="file_liquidacion" style="display:none;" onchange="handlePhotoUpload('liquidacion', this)">
+          <div class="thumb-grid" id="grid_liquidacion"></div>
+        </div>
+
+        <!-- Slot 7: Extra / Otros -->
+        <div class="photo-slot">
+          <div class="slot-hdr">
+            <span>➕ 7. Otra Evidencia / Documentos Varios</span>
+            <span id="slotCount_otros" class="badge badge-gray">0</span>
+          </div>
+          <button class="btn-camera" onclick="triggerCamera('otros')">📸 Tomar Foto Adicional</button>
+          <input type="file" accept="image/*" capture="environment" id="file_otros" style="display:none;" onchange="handlePhotoUpload('otros', this)">
+          <div class="thumb-grid" id="grid_otros"></div>
+        </div>
+
+      </div>
+
+      <div class="drawer-footer">
+        <button class="btn-nav" onclick="navigateObra(-1)">◀ Ant.</button>
+        <button class="btn-save" onclick="saveCurrentObra()">💾 Guardar Avance</button>
+        <button class="btn-nav" onclick="navigateObra(1)">Sig. ▶</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+    <button class="lightbox-close">✕</button>
+    <img id="lightboxImg" src="" onclick="event.stopPropagation()">
+  </div>
+
+  <!-- Toast -->
+  <div class="toast" id="toast">✅ Guardado correctamente</div>
+
+  <script>
+    // Global State
+    let projects = [];
+    let currentFilter = 'ALL';
+    let activeObraId = null;
+    let fieldData = {}; // obra_id -> { fecha_inicio, fecha_culm, ubicacion, notas, fotos: [] }
+
+    // IndexedDB Setup
+    const DB_NAME = 'FDM_Field_Audit_DB';
+    const DB_VERSION = 1;
+    let db = null;
+
+    function initDB() {
+      return new Promise((resolve, reject) => {
+        const req = indexedDB.open(DB_NAME, DB_VERSION);
+        req.onupgradeneeded = (e) => {
+          const dbInstance = e.target.result;
+          if (!dbInstance.objectStoreNames.contains('obras_campo')) {
+            dbInstance.createObjectStore('obras_campo', { keyPath: 'id' });
+          }
+        };
+        req.onsuccess = (e) => {
+          db = e.target.result;
+          resolve(db);
+        };
+        req.onerror = (e) => reject(e);
+      });
+    }
+
+    async function loadAllFromDB() {
+      if (!db) return;
+      return new Promise((resolve) => {
+        const tx = db.transaction('obras_campo', 'readonly');
+        const store = tx.objectStore('obras_campo');
+        const req = store.getAll();
+        req.onsuccess = () => {
+          (req.result || []).forEach(item => {
+            fieldData[item.id] = item;
+          });
+          resolve();
+        };
+        req.onerror = () => resolve();
+      });
+    }
+
+    async function saveObraToDB(item) {
+      if (!db) return;
+      return new Promise((resolve, reject) => {
+        const tx = db.transaction('obras_campo', 'readwrite');
+        const store = tx.objectStore('obras_campo');
+        store.put(item);
+        tx.oncomplete = () => resolve();
+        tx.onerror = (e) => reject(e);
+      });
+    }
+
+    // App Initialization
+    window.addEventListener('DOMContentLoaded', async () => {
+      await initDB();
+      await loadProjectsData();
+      await loadAllFromDB();
+      updateGlobalCounters();
+      renderList();
+    });
+
+    async function loadProjectsData() {
+      try {
+        const res = await fetch('./projects_data.json?v=' + Date.now());
+        const json = await res.json();
+        projects = json.projects || [];
+      } catch (e) {
+        console.warn("Cargando desde fallback local:", e);
+      }
+    }
+
+    function updateGlobalCounters() {
+      let missingCount = 0;
+      let withPhotosCount = 0;
+      let totalPhotos = 0;
+
+      projects.forEach(p => {
+        const d = fieldData[p.id] || {};
+        const hasStart = (d.fecha_inicio || p.fecha_inicio);
+        const hasUbicacion = (d.ubicacion || (p.tiene_caja && p.tiene_caja !== 'NO - ARCHIVADOR'));
+        if ((!hasStart || !hasUbicacion) && p.estado_info !== 'NO_APLICA') {
+          missingCount++;
+        }
+        const photosCount = (d.fotos || []).length;
+        if (photosCount > 0) withPhotosCount++;
+        totalPhotos += photosCount;
+      });
+
+      document.getElementById('countMissing').innerText = missingCount;
+      document.getElementById('countWithPhotos').innerText = withPhotosCount;
+      document.getElementById('labelPhotosSaved').innerText = `📸 ${totalPhotos} fotos guardadas`;
+    }
+
+    function setFilter(filter, btn) {
+      currentFilter = filter;
+      document.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
+      btn.classList.add('active');
+      filterList();
+    }
+
+    function filterList() {
+      const q = document.getElementById('searchInput').value.toLowerCase().trim();
+
+      const filtered = projects.filter(p => {
+        const d = fieldData[p.id] || {};
+        const hasPhotos = (d.fotos || []).length > 0;
+        const hasStart = (d.fecha_inicio || p.fecha_inicio);
+        const hasUbicacion = (d.ubicacion || (p.tiene_caja && p.tiene_caja !== 'NO - ARCHIVADOR'));
+
+        if (currentFilter === 'MISSING') {
+          return (!hasStart || !hasUbicacion) && p.estado_info !== 'NO_APLICA';
+        }
+        if (currentFilter === 'WITH_PHOTOS') {
+          return hasPhotos;
+        }
+        if (currentFilter === 'ILO') return (p.provincia || '').toUpperCase().includes('ILO');
+        if (currentFilter === 'MN') return (p.provincia || '').toUpperCase().includes('MARISCAL') || p.provincia === 'M.N.';
+        if (currentFilter === 'GSC') return (p.provincia || '').toUpperCase().includes('SANCHEZ') || p.provincia === 'G.S.C.';
+        return true;
+      }).filter(p => {
+        if (!q) return true;
+        const d = fieldData[p.id] || {};
+        const text = `${p.id} ${p.desc} ${p.cui} ${p.provincia} ${d.ubicacion || ''} ${d.notas || ''}`.toLowerCase();
+        return text.includes(q);
+      });
+
+      renderProjects(filtered);
+    }
+
+    function renderList() {
+      filterList();
+    }
+
+    function renderProjects(list) {
+      const container = document.getElementById('projectsContainer');
+      document.getElementById('labelTotalVisible').innerText = `Mostrando ${list.length} de ${projects.length} obras`;
+
+      if (list.length === 0) {
+        container.innerHTML = `<div style="text-align: center; padding: 3rem 1rem; color: var(--text-muted); font-size: 0.9rem;">No se encontraron obras con ese criterio.</div>`;
+        return;
+      }
+
+      container.innerHTML = list.map(p => {
+        const d = fieldData[p.id] || {};
+        const photosCount = (d.fotos || []).length;
+        const fechaIni = d.fecha_inicio || p.fecha_inicio;
+        const ubicacion = d.ubicacion || (p.tiene_caja && p.tiene_caja !== 'NO - ARCHIVADOR' ? p.tiene_caja : 'Por ubicar');
+        const isMissingStart = !fechaIni && p.estado_info !== 'NO_APLICA';
+
+        let cardClass = 'card';
+        if (photosCount > 0) cardClass += ' has-photos';
+        else if (isMissingStart) cardClass += ' missing-start';
+        else cardClass += ' has-data';
+
+        return `
+          <div class="${cardClass}" onclick="openDrawer(${p.id})">
+            <div class="card-top">
+              <span class="card-badge-id">OBRA N° ${String(p.id).padStart(2, '0')}</span>
+              <div class="card-badges">
+                ${p.cui && p.cui !== 'N/D' ? `<span class="badge badge-gray">CUI: ${p.cui}</span>` : ''}
+                ${fechaIni ? `<span class="badge badge-blue">📅 ${fechaIni.substring(0, 10)}</span>` : `<span class="badge badge-red">⚠️ Sin Inicio</span>`}
+                ${photosCount > 0 ? `<span class="badge badge-green">📸 ${photosCount}</span>` : ''}
+              </div>
+            </div>
+            <div class="card-title">${p.desc}</div>
+            <div class="card-meta">
+              <div>📍 <strong>${ubicacion}</strong></div>
+              <div>🏛️ ${p.provincia} (${p.convenio})</div>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    // Modal Drawer
+    function openDrawer(id) {
+      activeObraId = id;
+      const p = projects.find(x => x.id === id);
+      if (!p) return;
+
+      const d = fieldData[id] || { fotos: [] };
+
+      document.getElementById('drawerObraNum').innerText = `OBRA CIVIL N° ${String(p.id).padStart(2, '0')}`;
+      document.getElementById('drawerTitle').innerText = p.desc;
+      document.getElementById('drawerCui').innerText = p.cui !== 'N/D' ? `CUI: ${p.cui}` : 'CUI: S/N';
+      document.getElementById('drawerProv').innerText = p.provincia;
+      document.getElementById('drawerConv').innerText = p.convenio;
+
+      document.getElementById('inputFechaInicio').value = d.fecha_inicio || p.fecha_inicio || '';
+      document.getElementById('inputFechaCulm').value = d.fecha_culm || p.fecha_culminacion_real || '';
+      document.getElementById('inputUbicacion').value = d.ubicacion || (p.tiene_caja !== 'NO - ARCHIVADOR' ? p.tiene_caja : '');
+      document.getElementById('inputNotas').value = d.notas || '';
+
+      const badgeIni = document.getElementById('statusInicioBadge');
+      if (d.fecha_inicio || p.fecha_inicio) {
+        badgeIni.className = 'badge badge-green';
+        badgeIni.innerText = 'Comprobada';
+      } else {
+        badgeIni.className = 'badge badge-red';
+        badgeIni.innerText = 'Falta Inicio';
+      }
+
+      renderDrawerPhotos();
+      document.getElementById('drawerBackdrop').classList.add('open');
+    }
+
+    function closeDrawer() {
+      document.getElementById('drawerBackdrop').classList.remove('open');
+      activeObraId = null;
+    }
+
+    function closeDrawerOutside(e) {
+      if (e.target.id === 'drawerBackdrop') closeDrawer();
+    }
+
+    function navigateObra(delta) {
+      saveCurrentObra(false);
+      const currIdx = projects.findIndex(p => p.id === activeObraId);
+      if (currIdx === -1) return;
+      const nextIdx = (currIdx + delta + projects.length) % projects.length;
+      openDrawer(projects[nextIdx].id);
+    }
+
+    function setPresetDate(inputId, val) {
+      document.getElementById(inputId).value = val;
+    }
+
+    function appendUbicacion(val) {
+      const input = document.getElementById('inputUbicacion');
+      input.value = (input.value ? input.value + ', ' : '') + val;
+      input.focus();
+    }
+
+    // Photo Handling & Compression
+    function triggerCamera(slotKey) {
+      const input = document.getElementById(`file_${slotKey}`);
+      if (input) input.click();
+    }
+
+    async function handlePhotoUpload(slotKey, fileInput) {
+      if (!fileInput.files || fileInput.files.length === 0) return;
+      const file = fileInput.files[0];
+      
+      showToast("Comprimiendo y guardando...");
+      const compressedDataUrl = await compressImage(file, 1600, 0.82);
+
+      if (!fieldData[activeObraId]) {
+        fieldData[activeObraId] = { id: activeObraId, fotos: [] };
+      }
+      if (!fieldData[activeObraId].fotos) {
+        fieldData[activeObraId].fotos = [];
+      }
+
+      const p = projects.find(x => x.id === activeObraId);
+      const photoObj = {
+        id: 'foto_' + Date.now(),
+        slot: slotKey,
+        nombre: `OBRA_${String(activeObraId).padStart(2, '0')}_${slotKey.toUpperCase()}_${Date.now()}.jpg`,
+        dataUrl: compressedDataUrl,
+        timestamp: new Date().toLocaleString()
+      };
+
+      fieldData[activeObraId].fotos.push(photoObj);
+      await saveObraToDB(fieldData[activeObraId]);
+
+      fileInput.value = ''; // Reset input
+      renderDrawerPhotos();
+      updateGlobalCounters();
+      renderList();
+      showToast("📸 Foto guardada exitosamente");
+    }
+
+    function compressImage(file, maxDimension, quality) {
+      return new Promise((resolve) => {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          const img = new Image();
+          img.onload = () => {
+            let width = img.width;
+            let height = img.height;
+
+            if (width > height) {
+              if (width > maxDimension) {
+                height = Math.round((height * maxDimension) / width);
+                width = maxDimension;
+              }
+            } else {
+              if (height > maxDimension) {
+                width = Math.round((width * maxDimension) / height);
+                height = maxDimension;
+              }
+            }
+
+            const canvas = document.createElement('canvas');
+            canvas.width = width;
+            canvas.height = height;
+            const ctx = canvas.getContext('2d');
+            ctx.drawImage(img, 0, 0, width, height);
+            resolve(canvas.toDataURL('image/jpeg', quality));
+          };
+          img.src = e.target.result;
+        };
+        reader.readAsDataURL(file);
+      });
+    }
+
+    function renderDrawerPhotos() {
+      const slots = ['rotulo', 'inicio', 'contrato', 'cuaderno', 'recepcion', 'liquidacion', 'otros'];
+      const d = fieldData[activeObraId] || { fotos: [] };
+      const fotos = d.fotos || [];
+
+      document.getElementById('drawerTotalFotos').innerText = `${fotos.length} fotos guardadas`;
+
+      slots.forEach(slotKey => {
+        const slotFotos = fotos.filter(f => f.slot === slotKey);
+        const countBadge = document.getElementById(`slotCount_${slotKey}`);
+        if (countBadge) {
+          countBadge.innerText = slotFotos.length;
+          countBadge.className = slotFotos.length > 0 ? 'badge badge-green' : 'badge badge-gray';
+        }
+
+        const grid = document.getElementById(`grid_${slotKey}`);
+        if (!grid) return;
+
+        grid.innerHTML = slotFotos.map(f => `
+          <div class="thumb-wrap">
+            <img src="${f.dataUrl}" class="thumb-img" onclick="openLightbox('${f.dataUrl}')">
+            <button class="thumb-del" onclick="deletePhoto('${f.id}')" title="Eliminar foto">✕</button>
+          </div>
+        `).join('');
+      });
+    }
+
+    async function deletePhoto(photoId) {
+      if (!confirm("¿Deseas eliminar esta foto?")) return;
+      const d = fieldData[activeObraId];
+      if (!d || !d.fotos) return;
+      d.fotos = d.fotos.filter(f => f.id !== photoId);
+      await saveObraToDB(d);
+      renderDrawerPhotos();
+      updateGlobalCounters();
+      renderList();
+      showToast("Foto eliminada");
+    }
+
+    async function saveCurrentObra(showFeedback = true) {
+      if (!activeObraId) return;
+
+      if (!fieldData[activeObraId]) {
+        fieldData[activeObraId] = { id: activeObraId, fotos: [] };
+      }
+
+      const d = fieldData[activeObraId];
+      d.fecha_inicio = document.getElementById('inputFechaInicio').value.trim();
+      d.fecha_culm = document.getElementById('inputFechaCulm').value.trim();
+      d.ubicacion = document.getElementById('inputUbicacion').value.trim();
+      d.notas = document.getElementById('inputNotas').value.trim();
+      d.updated_at = new Date().toISOString();
+
+      await saveObraToDB(d);
+      updateGlobalCounters();
+      renderList();
+
+      if (showFeedback) {
+        showToast("💾 Datos de Obra N° " + activeObraId + " guardados");
+      }
+    }
+
+    // Export ZIP Package
+    async function exportZipPackage() {
+      const keys = Object.keys(fieldData);
+      let totalFotos = 0;
+      keys.forEach(k => { totalFotos += (fieldData[k].fotos || []).length; });
+
+      if (keys.length === 0 && totalFotos === 0) {
+        alert("Aún no tienes fotos ni notas capturadas en campo.");
+        return;
+      }
+
+      showToast("Generando archivo ZIP de evidencias...");
+      const zip = new JSZip();
+
+      // Folder per Obra
+      const manifest = [];
+
+      for (const k of keys) {
+        const item = fieldData[k];
+        const p = projects.find(x => x.id === parseInt(k)) || {};
+        const safeName = (p.desc || `OBRA_${k}`).replace(/[^a-zA-Z0-9_-]/g, '_').substring(0, 35);
+        const folderName = `OBRA_${String(k).padStart(2, '0')}_${safeName}`;
+        const folder = zip.folder(folderName);
+
+        manifest.push({
+          id: item.id,
+          desc: p.desc,
+          cui: p.cui,
+          provincia: p.provincia,
+          fecha_inicio_campo: item.fecha_inicio || '',
+          fecha_culm_campo: item.fecha_culm || '',
+          ubicacion_fisica_campo: item.ubicacion || '',
+          notas_campo: item.notas || '',
+          total_fotos: (item.fotos || []).length,
+          updated_at: item.updated_at || ''
+        });
+
+        if (item.fotos && item.fotos.length > 0) {
+          item.fotos.forEach(f => {
+            const base64Data = f.dataUrl.split(',')[1];
+            folder.file(f.nombre, base64Data, { base64: true });
+          });
+        }
+      }
+
+      // Add manifest.json and CSV
+      zip.file("REPORTE_CAMPO_FDM.json", JSON.stringify(manifest, null, 2));
+
+      // CSV Generation
+      let csvContent = "\uFEFFN°,DESCRIPCION,CUI,PROVINCIA,FECHA_INICIO_CAMPO,FECHA_CULMINACION_CAMPO,UBICACION_FISICA,NOTAS,TOTAL_FOTOS\n";
+      manifest.forEach(m => {
+        csvContent += `"${m.id}","${(m.desc||'').replace(/"/g, '""')}","${m.cui||''}","${m.provincia||''}","${m.fecha_inicio_campo||''}","${m.fecha_culm_campo||''}","${(m.ubicacion_fisica_campo||'').replace(/"/g, '""')}","${(m.notas_campo||'').replace(/"/g, '""')}","${m.total_fotos}"\n`;
+      });
+      zip.file("REPORTE_CAMPO_FDM.csv", csvContent);
+
+      const content = await zip.generateAsync({ type: "blob" });
+      const a = document.createElement("a");
+      a.href = URL.createObjectURL(content);
+      a.download = `EVIDENCIAS_CAMPO_FDM_${new Date().toISOString().slice(0,10)}.zip`;
+      a.click();
+      showToast("📦 ZIP descargado exitosamente");
+    }
+
+    // Lightbox
+    function openLightbox(src) {
+      document.getElementById('lightboxImg').src = src;
+      document.getElementById('lightbox').classList.add('open');
+    }
+
+    function closeLightbox() {
+      document.getElementById('lightbox').classList.remove('open');
+      document.getElementById('lightboxImg').src = '';
+    }
+
+    function showToast(msg) {
+      const t = document.getElementById('toast');
+      t.innerText = msg;
+      t.classList.add('show');
+      setTimeout(() => t.classList.remove('show'), 2200);
+    }
+  </script>
+</body>
+</html>
