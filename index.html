@@ -453,6 +453,7 @@
           <div style="font-size: 0.78rem; opacity: 0.85;">
             <span id="drawerTipologia">OBRAS CIVILES</span> | Monto Priorizado: <strong id="drawerMontoPriorizado">S/ 0.00</strong>
           </div>
+          <div id="drawerContractInfo" style="font-size: 0.78rem; opacity: 0.95; margin-top: 3px; color: #E0E7FF; display: none;"></div>
         </div>
         <button class="close-btn" onclick="closeDrawer()">&times;</button>
       </div>
@@ -906,12 +907,23 @@
         badgeConf.innerText = "Faltan Documentos";
       }
 
+      // Contract details in header
+      const contractInfo = document.getElementById('drawerContractInfo');
+      if (contractInfo) {
+        let parts = [];
+        if (p.contrato) parts.push(`Contrato: <strong>${p.contrato}</strong>`);
+        if (p.contratista) parts.push(`Contratista: <strong>${p.contratista}</strong>`);
+        contractInfo.innerHTML = parts.join(' • ');
+        contractInfo.style.display = parts.length > 0 ? 'block' : 'none';
+      }
+
       // Pillars
       const pillIni = document.getElementById('pillInicio');
       const pillIniVal = document.getElementById('pillInicioVal');
       if (p.tiene_fecha_inicio && p.estado_info !== 'NO_APLICA') {
         pillIni.className = "milestone-pill ok";
-        pillIniVal.innerText = p.fecha_inicio;
+        let subText = p.entrega_terreno ? `<div style="font-size: 0.72rem; color: #166534; margin-top: 2px;">Terreno: ${p.entrega_terreno}</div>` : '';
+        pillIniVal.innerHTML = `<div>${p.fecha_inicio}</div>${subText}`;
         pillIniVal.title = p.fecha_inicio_doc;
       } else if (p.estado_info === 'NO_APLICA') {
         pillIni.className = "milestone-pill gray";
@@ -924,7 +936,12 @@
 
       const pillPlazo = document.getElementById('pillPlazo');
       const pillPlazoVal = document.getElementById('pillPlazoVal');
-      pillPlazoVal.innerText = p.fecha_termino_prog ? p.fecha_termino_prog : (hist.length > 0 ? "Hitos en Tomos" : (p.estado_info === 'NO_APLICA' ? "No Aplica" : "Por verificar"));
+      if (p.fecha_termino_prog) {
+        let subPlz = p.plazo ? `<div style="font-size: 0.72rem; color: #1E40AF; margin-top: 2px;">Plazo: ${p.plazo}</div>` : '';
+        pillPlazoVal.innerHTML = `<div>${p.fecha_termino_prog}</div>${subPlz}`;
+      } else {
+        pillPlazoVal.innerText = hist.length > 0 ? "Hitos en Tomos" : (p.estado_info === 'NO_APLICA' ? "No Aplica" : "Por verificar");
+      }
 
       const pillTerm = document.getElementById('pillTermino');
       const pillTermVal = document.getElementById('pillTerminoVal');
@@ -963,17 +980,17 @@
 
       // Set checklist
       const checks = p.checks || {};
-      document.getElementById('chk_exp').checked = !!checks.exp;
-      document.getElementById('chk_cont').checked = !!checks.cont;
-      document.getElementById('chk_acta_ent').checked = !!checks.acta_ent;
-      document.getElementById('chk_cuad').checked = !!checks.cuad;
-      document.getElementById('chk_val').checked = !!checks.val;
-      document.getElementById('chk_adic').checked = !!checks.adic;
-      document.getElementById('chk_sup').checked = !!checks.sup;
-      document.getElementById('chk_rec').checked = !!checks.rec;
-      document.getElementById('chk_liq').checked = !!checks.liq;
-      document.getElementById('chk_res').checked = !!checks.res;
-      document.getElementById('chk_transf').checked = !!checks.transf;
+      document.getElementById('chk_exp').checked = !!checks.exp || (p.estado_info === 'COMPLETA');
+      document.getElementById('chk_cont').checked = !!checks.cont || !!p.contrato || p.tiene_fecha_inicio;
+      document.getElementById('chk_acta_ent').checked = !!checks.acta_ent || !!p.entrega_terreno || p.tiene_fecha_inicio;
+      document.getElementById('chk_cuad').checked = !!checks.cuad || hist.length > 0;
+      document.getElementById('chk_val').checked = !!checks.val || hist.some(h => (h.tipo || '').includes('Valoriz'));
+      document.getElementById('chk_adic').checked = !!checks.adic || hist.some(h => (h.asunto_razon || '').includes('Adicional'));
+      document.getElementById('chk_sup').checked = !!checks.sup || hist.length > 0;
+      document.getElementById('chk_rec').checked = !!checks.rec || !!p.acta_recepcion || hist.some(h => (h.tipo || '').includes('Recep'));
+      document.getElementById('chk_liq').checked = !!checks.liq || !!p.resolucion_liquidacion || hist.some(h => (h.tipo || '').includes('Liquid'));
+      document.getElementById('chk_res').checked = !!checks.res || !!p.resolucion_liquidacion;
+      document.getElementById('chk_transf').checked = !!checks.transf || (p.alerta || '').includes('transferencia');
 
       // Tab 3
       document.getElementById('drawerUbicacion').value = p.n_cajas || '';

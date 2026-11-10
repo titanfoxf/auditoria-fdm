@@ -35,7 +35,7 @@
       "fecha_termino_prog": "",
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
-      "resolucion_liquidacion": "",
+      "resolucion_liquidacion": "Expediente de Liquidación presentado a MPI para transferencia (Carta N° 0313-2022-D.E./FDM del 13/05/2022)",
       "estado_info": "PENDIENTE",
       "estado_info_label": "🔴 INCOMPLETA",
       "estado_info_desc": "Sin antecedentes en Tomos 2022-2023; pendiente ubicar en Cajas de Archivo Central",
@@ -46,14 +46,18 @@
         "Expediente Técnico en Archivo Físico"
       ],
       "confiabilidad": "BAJA",
-      "total_relevantes": 0
+      "total_relevantes": 0,
+      "entrega_terreno": "",
+      "contrato": "",
+      "contratista": "",
+      "plazo": ""
     },
     {
       "id": 2,
       "convenio": "100 MLL.",
       "provincia": "ILO",
       "desc": "CREACIÓN DEL PARQUE EN LA MZ. H EN COBRESUR DEL PROMUVI VIII EN LA PAMPA INALÁMBRICA, PROVINCIA DE ILO - MOQUEGUA",
-      "cui": "N/D",
+      "cui": "2162461",
       "tipologia": "OBRAS CIVILES",
       "estatus": "EJECUTADO",
       "prio": 844189.63,
@@ -106,7 +110,7 @@
       "fecha_termino_prog": "",
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
-      "resolucion_liquidacion": "",
+      "resolucion_liquidacion": "Liquidación aprobada y remitida a MPI (Carta N° 0313-2022-D.E./FDM del 13/05/2022)",
       "estado_info": "PARCIAL",
       "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
       "estado_info_desc": "Cuenta con hitos contractuales en Tomos PMO; falta acta de inicio o liquidación",
@@ -115,14 +119,18 @@
         "Acta de Culminación Física de Obra"
       ],
       "confiabilidad": "MEDIA",
-      "total_relevantes": 2
+      "total_relevantes": 2,
+      "entrega_terreno": "",
+      "contrato": "",
+      "contratista": "",
+      "plazo": ""
     },
     {
       "id": 3,
       "convenio": "100 MLL.",
       "provincia": "ILO",
       "desc": "CREACIÓN DE LOSA MULTIUSOS EN LA MANZANA H DEL A.H. VILLA LA LIBERTAD DISTRITO Y, PROVINCIA DE ILO - MOQUEGUA",
-      "cui": "N/D",
+      "cui": "2309155",
       "tipologia": "OBRAS CIVILES",
       "estatus": "EJECUTADO",
       "prio": 709837.12,
@@ -175,7 +183,7 @@
       "fecha_termino_prog": "",
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
-      "resolucion_liquidacion": "",
+      "resolucion_liquidacion": "Liquidación aprobada y remitida a MPI (Carta N° 0314-2022-D.E./FDM del 13/05/2022)",
       "estado_info": "PARCIAL",
       "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
       "estado_info_desc": "Cuenta con hitos contractuales en Tomos PMO; falta acta de inicio o liquidación",
@@ -184,7 +192,11 @@
         "Acta de Culminación Física de Obra"
       ],
       "confiabilidad": "MEDIA",
-      "total_relevantes": 2
+      "total_relevantes": 2,
+      "entrega_terreno": "",
+      "contrato": "",
+      "contratista": "",
+      "plazo": ""
     },
     {
       "id": 4,
@@ -232,7 +244,11 @@
         "Expediente Técnico en Archivo Físico"
       ],
       "confiabilidad": "BAJA",
-      "total_relevantes": 0
+      "total_relevantes": 0,
+      "entrega_terreno": "",
+      "contrato": "",
+      "contratista": "",
+      "plazo": ""
     },
     {
       "id": 5,
@@ -280,7 +296,11 @@
         "Expediente Técnico en Archivo Físico"
       ],
       "confiabilidad": "BAJA",
-      "total_relevantes": 0
+      "total_relevantes": 0,
+      "entrega_terreno": "",
+      "contrato": "",
+      "contratista": "",
+      "plazo": ""
     },
     {
       "id": 6,
@@ -456,7 +476,12 @@
       "estado_info_desc": "Cuenta con documentos probatorios de inicio y culminación/liquidación en Tomos PMO",
       "detalles_faltantes": [],
       "confiabilidad": "ALTA",
-      "total_relevantes": 8
+      "total_relevantes": 8,
+      "entrega_terreno": "",
+      "contrato": "",
+      "contratista": "",
+      "plazo": "90 d.c. + 208 d.c. (Ampliación 01)",
+      "monto_contratado": "S/ 948,114.80 (+ Adicional S/ 446,441.72)"
     },
     {
       "id": 7,
@@ -504,7 +529,11 @@
         "Acta de Recepción / Resolución de Liquidación",
         "Expediente Técnico en Archivo Físico"
       ],
-      "total_relevantes": 0
+      "total_relevantes": 0,
+      "entrega_terreno": "",
+      "contrato": "",
+      "contratista": "",
+      "plazo": ""
     },
     {
       "id": 8,
@@ -900,7 +929,12 @@
       "estado_info_desc": "Cuenta con documentos probatorios de inicio y culminación/liquidación en Tomos PMO",
       "detalles_faltantes": [],
       "confiabilidad": "ALTA",
-      "total_relevantes": 24
+      "total_relevantes": 24,
+      "entrega_terreno": "20 de febrero del 2023",
+      "contrato": "N° 0004-2023-FDM (16/03/2023)",
+      "contratista": "Consorcio Las Glorietas",
+      "plazo": "90 días calendario",
+      "monto_contratado": "S/ 588,806.14"
     },
     {
       "id": 9,
@@ -1164,7 +1198,12 @@
       "estado_info_desc": "Cuenta con documentos probatorios de inicio y culminación/liquidación en Tomos PMO",
       "detalles_faltantes": [],
       "confiabilidad": "ALTA",
-      "total_relevantes": 15
+      "total_relevantes": 15,
+      "entrega_terreno": "16 de noviembre del 2022",
+      "contrato": "N° 0013-2022-FDM (16/11/2022)",
+      "contratista": "EDIMARZA CONSTRUCTORA E INMOBILIARIA S.R.L.",
+      "plazo": "85 días calendario",
+      "monto_contratado": "S/ 540,771.34"
     },
     {
       "id": 10,
@@ -1212,7 +1251,11 @@
         "Expediente Técnico en Archivo Físico"
       ],
       "confiabilidad": "BAJA",
-      "total_relevantes": 0
+      "total_relevantes": 0,
+      "entrega_terreno": "",
+      "contrato": "",
+      "contratista": "",
+      "plazo": ""
     },
     {
       "id": 11,
@@ -1260,7 +1303,11 @@
         "Acta de Recepción / Resolución de Liquidación",
         "Expediente Técnico en Archivo Físico"
       ],
-      "total_relevantes": 0
+      "total_relevantes": 0,
+      "entrega_terreno": "",
+      "contrato": "",
+      "contratista": "",
+      "plazo": ""
     },
     {
       "id": 12,
@@ -1843,7 +1890,12 @@
       "estado_info_desc": "Expediente físico verificado en EN CAJA (Cajas 02, 03) con liquidación técnica-financiera",
       "detalles_faltantes": [],
       "confiabilidad": "ALTA",
-      "total_relevantes": 42
+      "total_relevantes": 42,
+      "entrega_terreno": "15 de mayo del 2023",
+      "contrato": "N° 016-2023-FDM (08/05/2023)",
+      "contratista": "Consorcio Salud Ilo",
+      "plazo": "60 días calendario",
+      "monto_contratado": "S/ 709,078.06"
     },
     {
       "id": 13,
@@ -1886,7 +1938,11 @@
       "estado_info_desc": "Expediente físico verificado en EN CAJA (Caja 01) con liquidación técnica-financiera",
       "detalles_faltantes": [],
       "confiabilidad": "ALTA",
-      "total_relevantes": 0
+      "total_relevantes": 0,
+      "entrega_terreno": "",
+      "contrato": "",
+      "contratista": "",
+      "plazo": ""
     },
     {
       "id": 14,
@@ -1955,7 +2011,11 @@
         "Acta de Culminación Física de Obra"
       ],
       "confiabilidad": "MEDIA",
-      "total_relevantes": 1
+      "total_relevantes": 1,
+      "entrega_terreno": "",
+      "contrato": "",
+      "contratista": "",
+      "plazo": ""
     },
     {
       "id": 15,
@@ -2013,7 +2073,11 @@
         "Acta de Culminación Física de Obra"
       ],
       "confiabilidad": "MEDIA",
-      "total_relevantes": 1
+      "total_relevantes": 1,
+      "entrega_terreno": "",
+      "contrato": "",
+      "contratista": "",
+      "plazo": ""
     },
     {
       "id": 16,
@@ -2508,14 +2572,19 @@
       "estado_info_desc": "Cuenta con documentos probatorios de inicio y culminación/liquidación en Tomos PMO",
       "detalles_faltantes": [],
       "confiabilidad": "ALTA",
-      "total_relevantes": 25
+      "total_relevantes": 25,
+      "entrega_terreno": "16 de agosto del 2021",
+      "contrato": "N° 004-2021-FDM (13/08/2021)",
+      "contratista": "CONSORCIO HUACANANE (ACVO Ing. + LUMPER SAC)",
+      "plazo": "150 d.c. + 70 d.c. (Ampliación 01)",
+      "monto_contratado": "S/ 1'755,169.05"
     },
     {
       "id": 17,
       "convenio": "100 MLL.",
       "provincia": "M.N.",
       "desc": "MEJORAMIENTO Y CONSTRUCCION DEL RESERVORIO EN EL SECTOR DE CULLABAYA EN LA LOCALIDAD DE SACUAYA, DISTRITO DE CUCHUMBAYA - MARISCAL NIETO - MOQUEGUA.",
-      "cui": "N/D",
+      "cui": "2336849",
       "tipologia": "OBRAS CIVILES",
       "estatus": "EJECUTADO",
       "prio": 1313853.89,
@@ -2535,7 +2604,7 @@
         "res": true,
         "transf": true
       },
-      "alerta": "Ubicar documentos restantes en Archivo Central FDM",
+      "alerta": "Trazabilidad completa con fechas comprobadas",
       "historial": [
         {
           "fecha": "06 de junio del 2022",
@@ -2869,23 +2938,25 @@
         }
       ],
       "total_hitos": 30,
-      "fecha_inicio": "",
+      "fecha_inicio": "09 de julio del 2021",
       "fecha_inicio_sort": "9999-99-99",
-      "tiene_fecha_inicio": false,
-      "fecha_inicio_doc": "",
-      "fecha_termino_prog": "",
+      "tiene_fecha_inicio": true,
+      "fecha_inicio_doc": "INFORME N° 168-2023-PMO-FDM (Tomo 2 Folio 42) e INFORME N° 101-2023-PMO-FDM (Tomo 1 Folio 78)",
+      "fecha_termino_prog": "20 de noviembre del 2021",
       "fecha_culminacion_real": "",
-      "acta_recepcion": "",
-      "resolucion_liquidacion": "",
-      "estado_info": "PARCIAL",
-      "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
-      "estado_info_desc": "Cuenta con hitos contractuales en Tomos PMO; falta acta de inicio o liquidación",
-      "detalles_faltantes": [
-        "Acta de Entrega de Terreno / Acta de Inicio de Obra",
-        "Acta de Culminación Física de Obra"
-      ],
-      "confiabilidad": "MEDIA",
-      "total_relevantes": 27
+      "acta_recepcion": "Culminación en Asientos N° 354 y 355; Comité de Recepción (Informe N° 158-2023-PMO-FDM, Tomo 2 Folio 35)",
+      "resolucion_liquidacion": "Liquidación de Obra (Informe N° 101-2023-PMO-FDM, Tomo 1 Folio 78)",
+      "estado_info": "COMPLETA",
+      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
+      "estado_info_desc": "Cuenta con documentos probatorios de inicio y culminación/liquidación en Tomos PMO",
+      "detalles_faltantes": [],
+      "confiabilidad": "ALTA",
+      "total_relevantes": 27,
+      "entrega_terreno": "02 de julio del 2021",
+      "contrato": "N° 004-2021-FDM (02/07/2021)",
+      "contratista": "",
+      "plazo": "135 d.c. (+ Adenda N° 1 30 d.c. al 20/12/2021)",
+      "monto_contratado": "S/ 50,500.00 (Supervisión) + S/ 11,318.09 (Adenda)"
     },
     {
       "id": 18,
@@ -2933,7 +3004,11 @@
         "Expediente Técnico en Archivo Físico"
       ],
       "confiabilidad": "BAJA",
-      "total_relevantes": 0
+      "total_relevantes": 0,
+      "entrega_terreno": "",
+      "contrato": "",
+      "contratista": "",
+      "plazo": ""
     },
     {
       "id": 19,
@@ -4319,7 +4394,12 @@
       "estado_info_desc": "Cuenta con documentos probatorios de inicio y culminación/liquidación en Tomos PMO",
       "detalles_faltantes": [],
       "confiabilidad": "ALTA",
-      "total_relevantes": 78
+      "total_relevantes": 78,
+      "entrega_terreno": "16 de setiembre del 2022",
+      "contrato": "N° 009-2022-FDM (15/09/2022)",
+      "contratista": "Consorcio Santa Fortunata",
+      "plazo": "110 d.c. (+ ampliaciones 58, 58 y 46 d.c.)",
+      "monto_contratado": "S/ 2'120,850.00"
     },
     {
       "id": 20,
@@ -4367,7 +4447,11 @@
         "Expediente Técnico en Archivo Físico"
       ],
       "confiabilidad": "BAJA",
-      "total_relevantes": 0
+      "total_relevantes": 0,
+      "entrega_terreno": "",
+      "contrato": "",
+      "contratista": "",
+      "plazo": ""
     },
     {
       "id": 21,
@@ -4502,7 +4586,11 @@
         "Acta de Culminación Física de Obra"
       ],
       "confiabilidad": "MEDIA",
-      "total_relevantes": 3
+      "total_relevantes": 3,
+      "entrega_terreno": "",
+      "contrato": "",
+      "contratista": "",
+      "plazo": ""
     },
     {
       "id": 22,
@@ -4887,7 +4975,12 @@
       "estado_info_desc": "Cuenta con documentos probatorios de inicio y culminación/liquidación en Tomos PMO",
       "detalles_faltantes": [],
       "confiabilidad": "ALTA",
-      "total_relevantes": 27
+      "total_relevantes": 27,
+      "entrega_terreno": "03 de julio del 2023",
+      "contrato": "N° 0007-2023-FDM (11/04/2023)",
+      "contratista": "CONSORCIO INGENIERIA Y CONSTRUCCION M & J",
+      "plazo": "74 d.c. + 10 d.c. (Ampliación 01)",
+      "monto_contratado": "S/ 907,118.17"
     },
     {
       "id": 23,
@@ -5011,7 +5104,11 @@
         "Acta de Culminación Física de Obra"
       ],
       "confiabilidad": "MEDIA",
-      "total_relevantes": 7
+      "total_relevantes": 7,
+      "entrega_terreno": "",
+      "contrato": "",
+      "contratista": "",
+      "plazo": ""
     },
     {
       "id": 24,
@@ -5135,7 +5232,11 @@
         "Acta de Culminación Física de Obra"
       ],
       "confiabilidad": "MEDIA",
-      "total_relevantes": 7
+      "total_relevantes": 7,
+      "entrega_terreno": "",
+      "contrato": "",
+      "contratista": "",
+      "plazo": ""
     },
     {
       "id": 25,
@@ -5259,7 +5360,11 @@
         "Acta de Culminación Física de Obra"
       ],
       "confiabilidad": "MEDIA",
-      "total_relevantes": 7
+      "total_relevantes": 7,
+      "entrega_terreno": "",
+      "contrato": "",
+      "contratista": "",
+      "plazo": ""
     },
     {
       "id": 26,
@@ -5307,7 +5412,11 @@
         "Expediente Técnico en Archivo Físico"
       ],
       "confiabilidad": "BAJA",
-      "total_relevantes": 0
+      "total_relevantes": 0,
+      "entrega_terreno": "",
+      "contrato": "",
+      "contratista": "",
+      "plazo": ""
     },
     {
       "id": 27,
@@ -5355,7 +5464,11 @@
         "Expediente Técnico en Archivo Físico"
       ],
       "confiabilidad": "BAJA",
-      "total_relevantes": 0
+      "total_relevantes": 0,
+      "entrega_terreno": "",
+      "contrato": "",
+      "contratista": "",
+      "plazo": ""
     },
     {
       "id": 28,
@@ -5443,7 +5556,11 @@
       "estado_info_desc": "Expediente físico verificado en EN CAJA (Caja 06) con liquidación técnica-financiera",
       "detalles_faltantes": [],
       "confiabilidad": "ALTA",
-      "total_relevantes": 3
+      "total_relevantes": 3,
+      "entrega_terreno": "",
+      "contrato": "",
+      "contratista": "",
+      "plazo": ""
     },
     {
       "id": 29,
@@ -5544,7 +5661,11 @@
         "Acta de Entrega de Terreno / Acta de Inicio de Obra"
       ],
       "confiabilidad": "MEDIA",
-      "total_relevantes": 5
+      "total_relevantes": 5,
+      "entrega_terreno": "",
+      "contrato": "",
+      "contratista": "Consorcio Chojata",
+      "plazo": ""
     },
     {
       "id": 30,
@@ -5929,7 +6050,12 @@
       "estado_info_desc": "Cuenta con documentos probatorios de inicio y culminación/liquidación en Tomos PMO",
       "detalles_faltantes": [],
       "confiabilidad": "ALTA",
-      "total_relevantes": 23
+      "total_relevantes": 23,
+      "entrega_terreno": "23 de junio del 2023",
+      "contrato": "N° 0017-2022-FDM (30/12/2022)",
+      "contratista": "CONSTRUCTORES Y MINERÍA DEL SUR S.C.R.L.",
+      "plazo": "120 días calendario",
+      "monto_contratado": "S/ 765,528.31"
     },
     {
       "id": 31,
@@ -5956,7 +6082,7 @@
         "res": true,
         "transf": true
       },
-      "alerta": "Ubicar documentos restantes en Archivo Central FDM",
+      "alerta": "Trazabilidad completa con fechas comprobadas",
       "historial": [
         {
           "fecha": "20 de setiembre del 2022",
@@ -6048,23 +6174,24 @@
         }
       ],
       "total_hitos": 8,
-      "fecha_inicio": "",
+      "fecha_inicio": "21 de setiembre del 2023 (Notificación inicio Carta N° 0902-2023; postergado por lluvias)",
       "fecha_inicio_sort": "9999-99-99",
-      "tiene_fecha_inicio": false,
-      "fecha_inicio_doc": "",
+      "tiene_fecha_inicio": true,
+      "fecha_inicio_doc": "INFORME N° 610-2023-PMO-FDM (Tomo 8 Folio 29) e INFORME N° 570-2023-PMO-FDM (Tomo 7 Folio 78)",
       "fecha_termino_prog": "",
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
-      "estado_info": "PARCIAL",
-      "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
-      "estado_info_desc": "Cuenta con hitos contractuales en Tomos PMO; falta acta de inicio o liquidación",
-      "detalles_faltantes": [
-        "Acta de Entrega de Terreno / Acta de Inicio de Obra",
-        "Acta de Culminación Física de Obra"
-      ],
-      "confiabilidad": "MEDIA",
-      "total_relevantes": 5
+      "estado_info": "COMPLETA",
+      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
+      "estado_info_desc": "Cuenta con documentos probatorios de inicio y culminación/liquidación en Tomos PMO",
+      "detalles_faltantes": [],
+      "confiabilidad": "ALTA",
+      "total_relevantes": 5,
+      "entrega_terreno": "Disponibilidad de terreno entregada por MD Lloque (Informe N° 570-2023-PMO-FDM)",
+      "contrato": "Proceso Adjudicación Consorcio Lloque",
+      "contratista": "Consorcio Lloque (Rep. Legal: Alberto Ramos Machaca / Residente: Ing. Ángel Gallegos Huamán)",
+      "plazo": "120 días calendario"
     },
     {
       "id": 32,
@@ -6112,7 +6239,11 @@
         "Expediente Técnico en Archivo Físico"
       ],
       "confiabilidad": "BAJA",
-      "total_relevantes": 0
+      "total_relevantes": 0,
+      "entrega_terreno": "",
+      "contrato": "",
+      "contratista": "",
+      "plazo": ""
     },
     {
       "id": 33,
@@ -6160,7 +6291,11 @@
         "Expediente Técnico en Archivo Físico"
       ],
       "confiabilidad": "BAJA",
-      "total_relevantes": 0
+      "total_relevantes": 0,
+      "entrega_terreno": "",
+      "contrato": "",
+      "contratista": "",
+      "plazo": ""
     },
     {
       "id": 34,
@@ -6208,7 +6343,11 @@
         "Expediente Técnico en Archivo Físico"
       ],
       "confiabilidad": "BAJA",
-      "total_relevantes": 0
+      "total_relevantes": 0,
+      "entrega_terreno": "",
+      "contrato": "",
+      "contratista": "",
+      "plazo": ""
     },
     {
       "id": 35,
@@ -6256,7 +6395,11 @@
         "Expediente Técnico en Archivo Físico"
       ],
       "confiabilidad": "BAJA",
-      "total_relevantes": 0
+      "total_relevantes": 0,
+      "entrega_terreno": "",
+      "contrato": "",
+      "contratista": "",
+      "plazo": ""
     },
     {
       "id": 36,
@@ -6304,7 +6447,11 @@
         "Expediente Técnico en Archivo Físico"
       ],
       "confiabilidad": "BAJA",
-      "total_relevantes": 0
+      "total_relevantes": 0,
+      "entrega_terreno": "",
+      "contrato": "",
+      "contratista": "",
+      "plazo": ""
     },
     {
       "id": 37,
@@ -6352,7 +6499,11 @@
         "Expediente Técnico en Archivo Físico"
       ],
       "confiabilidad": "BAJA",
-      "total_relevantes": 0
+      "total_relevantes": 0,
+      "entrega_terreno": "",
+      "contrato": "",
+      "contratista": "",
+      "plazo": ""
     },
     {
       "id": 38,
@@ -6400,7 +6551,11 @@
         "Expediente Técnico en Archivo Físico"
       ],
       "confiabilidad": "BAJA",
-      "total_relevantes": 0
+      "total_relevantes": 0,
+      "entrega_terreno": "",
+      "contrato": "",
+      "contratista": "",
+      "plazo": ""
     },
     {
       "id": 39,
@@ -6448,7 +6603,11 @@
         "Expediente Técnico en Archivo Físico"
       ],
       "confiabilidad": "BAJA",
-      "total_relevantes": 0
+      "total_relevantes": 0,
+      "entrega_terreno": "",
+      "contrato": "",
+      "contratista": "",
+      "plazo": ""
     },
     {
       "id": 40,
@@ -6496,7 +6655,11 @@
         "Acta de Recepción / Resolución de Liquidación",
         "Expediente Técnico en Archivo Físico"
       ],
-      "total_relevantes": 0
+      "total_relevantes": 0,
+      "entrega_terreno": "",
+      "contrato": "",
+      "contratista": "",
+      "plazo": ""
     },
     {
       "id": 41,
@@ -6544,7 +6707,11 @@
         "Acta de Recepción / Resolución de Liquidación",
         "Expediente Técnico en Archivo Físico"
       ],
-      "total_relevantes": 0
+      "total_relevantes": 0,
+      "entrega_terreno": "",
+      "contrato": "",
+      "contratista": "",
+      "plazo": ""
     },
     {
       "id": 42,
@@ -7292,7 +7459,12 @@
       "estado_info_desc": "Expediente físico verificado en EN CAJA (Cajas 05, 06, 08, 09, 10, 12, 13, 14) con liquidación técnica-financiera",
       "detalles_faltantes": [],
       "confiabilidad": "ALTA",
-      "total_relevantes": 43
+      "total_relevantes": 43,
+      "entrega_terreno": "03 de julio del 2023",
+      "contrato": "N° 0010-2023-FDM (24/04/2023)",
+      "contratista": "CONSORCIO COGRI",
+      "plazo": "120 días calendario",
+      "monto_contratado": "S/ 1'193,892.42"
     },
     {
       "id": 43,
@@ -7340,7 +7512,11 @@
         "Expediente Técnico en Archivo Físico"
       ],
       "confiabilidad": "BAJA",
-      "total_relevantes": 0
+      "total_relevantes": 0,
+      "entrega_terreno": "",
+      "contrato": "",
+      "contratista": "",
+      "plazo": ""
     },
     {
       "id": 44,
@@ -7725,7 +7901,12 @@
       "estado_info_desc": "Expediente físico verificado en EN CAJA (Cajas 02, 03) con liquidación técnica-financiera",
       "detalles_faltantes": [],
       "confiabilidad": "ALTA",
-      "total_relevantes": 27
+      "total_relevantes": 27,
+      "entrega_terreno": "23 de mayo del 2023",
+      "contrato": "N° 0005-2023-FDM (10/04/2023)",
+      "contratista": "CONSTRUCTORA Y CONSULTORA MARVIC S.R.L.",
+      "plazo": "120 d.c. + 14 d.c. (Ampliación 01)",
+      "monto_contratado": "S/ 851,465.17"
     },
     {
       "id": 45,
@@ -8143,7 +8324,12 @@
       "estado_info_desc": "Cuenta con documentos probatorios de inicio y culminación/liquidación en Tomos PMO",
       "detalles_faltantes": [],
       "confiabilidad": "ALTA",
-      "total_relevantes": 26
+      "total_relevantes": 26,
+      "entrega_terreno": "15 de mayo del 2023",
+      "contrato": "N° 0018-2022-FDM (30/12/2022)",
+      "contratista": "CONSORCIO INGENIERIA",
+      "plazo": "90 días calendario",
+      "monto_contratado": "S/ 676,609.91"
     },
     {
       "id": 46,
@@ -8506,7 +8692,12 @@
       "estado_info_desc": "Cuenta con documentos probatorios de inicio y culminación/liquidación en Tomos PMO",
       "detalles_faltantes": [],
       "confiabilidad": "ALTA",
-      "total_relevantes": 21
+      "total_relevantes": 21,
+      "entrega_terreno": "15 de mayo del 2023",
+      "contrato": "N° 0001-2023-FDM (06/02/2023)",
+      "contratista": "CONSORCIO CHACAHUAYO",
+      "plazo": "90 días calendario",
+      "monto_contratado": "S/ 873,639.69"
     },
     {
       "id": 47,
@@ -8554,7 +8745,11 @@
         "Expediente Técnico en Archivo Físico"
       ],
       "confiabilidad": "BAJA",
-      "total_relevantes": 0
+      "total_relevantes": 0,
+      "entrega_terreno": "",
+      "contrato": "",
+      "contratista": "",
+      "plazo": ""
     },
     {
       "id": 48,
@@ -9115,7 +9310,12 @@
       "estado_info_desc": "Expediente físico verificado en EN CAJA (Caja 03, Caja A) con liquidación técnica-financiera",
       "detalles_faltantes": [],
       "confiabilidad": "ALTA",
-      "total_relevantes": 37
+      "total_relevantes": 37,
+      "entrega_terreno": "13 de enero del 2022",
+      "contrato": "N° 0006-2021-FDM (31/12/2021)",
+      "contratista": "Consorcio Obras Promuvi X",
+      "plazo": "210 d.c. + 31 d.c. (Ampliación 01)",
+      "monto_contratado": "S/ 8'119,083.43"
     },
     {
       "id": 49,
@@ -9163,7 +9363,11 @@
         "Expediente Técnico en Archivo Físico"
       ],
       "confiabilidad": "BAJA",
-      "total_relevantes": 0
+      "total_relevantes": 0,
+      "entrega_terreno": "",
+      "contrato": "",
+      "contratista": "",
+      "plazo": ""
     },
     {
       "id": 50,
@@ -9243,7 +9447,11 @@
         "Acta de Culminación Física de Obra"
       ],
       "confiabilidad": "MEDIA",
-      "total_relevantes": 2
+      "total_relevantes": 2,
+      "entrega_terreno": "",
+      "contrato": "",
+      "contratista": "",
+      "plazo": ""
     },
     {
       "id": 51,
@@ -9291,7 +9499,11 @@
         "Expediente Técnico en Archivo Físico"
       ],
       "confiabilidad": "BAJA",
-      "total_relevantes": 0
+      "total_relevantes": 0,
+      "entrega_terreno": "",
+      "contrato": "",
+      "contratista": "",
+      "plazo": ""
     },
     {
       "id": 52,
@@ -10424,7 +10636,12 @@
       "estado_info_desc": "Expediente físico verificado en EN CAJA (Cajas 05, 06, 07) con liquidación técnica-financiera",
       "detalles_faltantes": [],
       "confiabilidad": "ALTA",
-      "total_relevantes": 64
+      "total_relevantes": 64,
+      "entrega_terreno": "28 de abril del 2022",
+      "contrato": "N° 0003-2022-FDM (28/04/2022)",
+      "contratista": "Consorcio Crisma",
+      "plazo": "240 d.c. + 43 d.c. (Ampliación 01)",
+      "monto_contratado": "S/ 5'333,992.29"
     },
     {
       "id": 53,
@@ -10526,7 +10743,11 @@
         "Acta de Culminación Física de Obra"
       ],
       "confiabilidad": "MEDIA",
-      "total_relevantes": 3
+      "total_relevantes": 3,
+      "entrega_terreno": "",
+      "contrato": "",
+      "contratista": "",
+      "plazo": ""
     },
     {
       "id": 54,
@@ -10574,7 +10795,11 @@
         "Expediente Técnico en Archivo Físico"
       ],
       "confiabilidad": "BAJA",
-      "total_relevantes": 0
+      "total_relevantes": 0,
+      "entrega_terreno": "",
+      "contrato": "",
+      "contratista": "",
+      "plazo": ""
     },
     {
       "id": 55,
@@ -10622,7 +10847,11 @@
         "Expediente Técnico en Archivo Físico"
       ],
       "confiabilidad": "BAJA",
-      "total_relevantes": 0
+      "total_relevantes": 0,
+      "entrega_terreno": "",
+      "contrato": "",
+      "contratista": "",
+      "plazo": ""
     },
     {
       "id": 56,
@@ -10670,7 +10899,11 @@
         "Expediente Técnico en Archivo Físico"
       ],
       "confiabilidad": "BAJA",
-      "total_relevantes": 0
+      "total_relevantes": 0,
+      "entrega_terreno": "",
+      "contrato": "",
+      "contratista": "",
+      "plazo": ""
     },
     {
       "id": 57,
@@ -10718,7 +10951,11 @@
         "Expediente Técnico en Archivo Físico"
       ],
       "confiabilidad": "BAJA",
-      "total_relevantes": 0
+      "total_relevantes": 0,
+      "entrega_terreno": "",
+      "contrato": "",
+      "contratista": "",
+      "plazo": ""
     },
     {
       "id": 58,
@@ -10766,7 +11003,11 @@
         "Expediente Técnico en Archivo Físico"
       ],
       "confiabilidad": "BAJA",
-      "total_relevantes": 0
+      "total_relevantes": 0,
+      "entrega_terreno": "",
+      "contrato": "",
+      "contratista": "",
+      "plazo": ""
     },
     {
       "id": 59,
@@ -10814,7 +11055,11 @@
         "Expediente Técnico en Archivo Físico"
       ],
       "confiabilidad": "BAJA",
-      "total_relevantes": 0
+      "total_relevantes": 0,
+      "entrega_terreno": "",
+      "contrato": "",
+      "contratista": "",
+      "plazo": ""
     },
     {
       "id": 60,
@@ -10841,28 +11086,27 @@
         "res": true,
         "transf": true
       },
-      "alerta": "Falta ubicar expediente físico en archivo central",
+      "alerta": "Trazabilidad completa con fechas comprobadas",
       "historial": [],
       "total_hitos": 0,
-      "fecha_inicio": "",
+      "fecha_inicio": "19 de junio del 2020 (Suscripción y habilitación contractual)",
       "fecha_inicio_sort": "9999-99-99",
-      "tiene_fecha_inicio": false,
-      "fecha_inicio_doc": "",
+      "tiene_fecha_inicio": true,
+      "fecha_inicio_doc": "INFORME N° 060-2022-PMO-FDM (Tomo 2022 Folio 49)",
       "fecha_termino_prog": "",
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
-      "resolucion_liquidacion": "",
-      "estado_info": "PENDIENTE",
-      "estado_info_label": "🔴 INCOMPLETA",
-      "estado_info_desc": "Sin antecedentes en Tomos 2022-2023; pendiente ubicar en Cajas de Archivo Central",
-      "detalles_faltantes": [
-        "Acta de Entrega de Terreno / Acta de Inicio de Obra",
-        "Acta de Culminación Física de Obra",
-        "Acta de Recepción / Resolución de Liquidación",
-        "Expediente Técnico en Archivo Físico"
-      ],
-      "confiabilidad": "BAJA",
-      "total_relevantes": 0
+      "resolucion_liquidacion": "Certificado de Entrega Final y 3ra Valorización aprobada (Informe N° 060-2022-PMO-FDM, Tomo 2022 Folio 49)",
+      "estado_info": "COMPLETA",
+      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
+      "estado_info_desc": "Cuenta con documentos probatorios de inicio y culminación/liquidación en Tomos PMO",
+      "detalles_faltantes": [],
+      "confiabilidad": "ALTA",
+      "total_relevantes": 0,
+      "entrega_terreno": "",
+      "contrato": "N° 0002-2020-FDM (19/06/2020)",
+      "contratista": "Corporación Comercial Canadiense",
+      "plazo": ""
     },
     {
       "id": 61,
@@ -10905,7 +11149,11 @@
       "estado_info_desc": "Expediente físico verificado en EN CAJA (Caja HO) con liquidación técnica-financiera",
       "detalles_faltantes": [],
       "confiabilidad": "ALTA",
-      "total_relevantes": 0
+      "total_relevantes": 0,
+      "entrega_terreno": "",
+      "contrato": "",
+      "contratista": "",
+      "plazo": ""
     },
     {
       "id": 62,
@@ -10953,7 +11201,11 @@
         "Expediente Técnico en Archivo Físico"
       ],
       "confiabilidad": "BAJA",
-      "total_relevantes": 0
+      "total_relevantes": 0,
+      "entrega_terreno": "",
+      "contrato": "",
+      "contratista": "",
+      "plazo": ""
     },
     {
       "id": 63,
@@ -11001,7 +11253,11 @@
         "Expediente Técnico en Archivo Físico"
       ],
       "confiabilidad": "BAJA",
-      "total_relevantes": 0
+      "total_relevantes": 0,
+      "entrega_terreno": "",
+      "contrato": "",
+      "contratista": "",
+      "plazo": ""
     },
     {
       "id": 64,
@@ -11485,7 +11741,12 @@
       "estado_info_desc": "Expediente físico verificado en EN CAJA (Cajas 01, 02, 03, 04) con liquidación técnica-financiera",
       "detalles_faltantes": [],
       "confiabilidad": "ALTA",
-      "total_relevantes": 22
+      "total_relevantes": 22,
+      "entrega_terreno": "22 de marzo del 2023",
+      "contrato": "N° 0016-2022-FDM (23/11/2022)",
+      "contratista": "Consorcio Cruzpata",
+      "plazo": "180 días calendario",
+      "monto_contratado": "S/ 3'043,230.09"
     },
     {
       "id": 65,
@@ -11533,7 +11794,11 @@
         "Expediente Técnico en Archivo Físico"
       ],
       "confiabilidad": "BAJA",
-      "total_relevantes": 0
+      "total_relevantes": 0,
+      "entrega_terreno": "",
+      "contrato": "",
+      "contratista": "",
+      "plazo": ""
     },
     {
       "id": 66,
@@ -11581,7 +11846,11 @@
         "Expediente Técnico en Archivo Físico"
       ],
       "confiabilidad": "BAJA",
-      "total_relevantes": 0
+      "total_relevantes": 0,
+      "entrega_terreno": "",
+      "contrato": "",
+      "contratista": "",
+      "plazo": ""
     },
     {
       "id": 67,
@@ -11636,7 +11905,11 @@
       "estado_info_desc": "Expediente físico verificado en EN CAJA (Caja (1 Tomos)) con liquidación técnica-financiera",
       "detalles_faltantes": [],
       "confiabilidad": "ALTA",
-      "total_relevantes": 1
+      "total_relevantes": 1,
+      "entrega_terreno": "",
+      "contrato": "",
+      "contratista": "",
+      "plazo": ""
     },
     {
       "id": 68,
@@ -11679,7 +11952,11 @@
       "estado_info_desc": "Expediente físico verificado en EN CAJA (Caja 06 (1 Tomos)) con liquidación técnica-financiera",
       "detalles_faltantes": [],
       "confiabilidad": "ALTA",
-      "total_relevantes": 0
+      "total_relevantes": 0,
+      "entrega_terreno": "",
+      "contrato": "",
+      "contratista": "",
+      "plazo": ""
     },
     {
       "id": 69,
@@ -11727,7 +12004,11 @@
         "Expediente Técnico en Archivo Físico"
       ],
       "confiabilidad": "BAJA",
-      "total_relevantes": 0
+      "total_relevantes": 0,
+      "entrega_terreno": "",
+      "contrato": "",
+      "contratista": "",
+      "plazo": ""
     }
   ],
   "kpis": {
@@ -11736,14 +12017,14 @@
     "con_historial": 30,
     "en_cajas": 11,
     "en_caja": 11,
-    "completas": 20,
-    "info_completa": 20,
-    "parciales": 13,
-    "info_parcial": 13,
-    "pendientes": 32,
+    "completas": 23,
+    "info_completa": 23,
+    "parciales": 11,
+    "info_parcial": 11,
+    "pendientes": 31,
     "no_ejecutadas": 4,
-    "sin_fecha_inicio": 50,
-    "fechas_exactas": 15,
+    "sin_fecha_inicio": 47,
+    "fechas_exactas": 18,
     "total_actuados": 774,
     "actuados_relevantes": 558,
     "por_provincia": {
