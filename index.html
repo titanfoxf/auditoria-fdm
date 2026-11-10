@@ -418,15 +418,15 @@
       <table>
         <thead>
           <tr>
-            <th style="width: 45px;" class="sortable" onclick="toggleSort('ID')">N° ⇕</th>
-            <th style="width: 90px;">CONVENIO</th>
-            <th style="width: 100px;">PROVINCIA</th>
+            <th style="width: 45px; text-align: center;" class="sortable" onclick="toggleSort('ID')">N° ⇕</th>
+            <th style="width: 80px; text-align: center;">CONVENIO</th>
+            <th style="width: 85px;">PROVINCIA</th>
             <th>DESCRIPCIÓN DEL PROYECTO / OBRA CIVIL</th>
-            <th style="width: 90px; text-align: center;">CUI</th>
-            <th style="width: 140px; text-align: center;" class="sortable" onclick="toggleSort('DATE')">FECHA INICIO ⇕</th>
-            <th style="width: 130px; text-align: center;">ESTADO DOC.</th>
+            <th style="width: 85px; text-align: center;">CUI</th>
+            <th style="width: 105px; text-align: center;" class="sortable" onclick="toggleSort('DATE')">FECHA INICIO ⇕</th>
+            <th style="width: 105px; text-align: center;">ESTADO DOC.</th>
             <th style="width: 110px; text-align: right;">COSTO EJEC.</th>
-            <th style="width: 120px; text-align: center;">UBICACIÓN FDM</th>
+            <th style="width: 115px; text-align: center;">UBICACIÓN FDM</th>
           </tr>
         </thead>
         <tbody id="projectsTableBody">
@@ -790,6 +790,26 @@
       renderRows(filtered);
     }
 
+    function formatCompactDate(dStr) {
+      if (!dStr) return '';
+      const months = {
+        enero: '01', febrero: '02', marzo: '03', abril: '04', mayo: '05', junio: '06',
+        julio: '07', agosto: '08', setiembre: '09', septiembre: '09', octubre: '10',
+        noviembre: '11', diciembre: '12'
+      };
+      const match = dStr.match(/(\d{1,2})\s+de\s+([a-zA-Z]+)\s+del?\s+(\d{4})/i);
+      if (match) {
+        const day = match[1].padStart(2, '0');
+        const mon = months[match[2].toLowerCase()] || '??';
+        const year = match[3];
+        const hasExtra = dStr.includes('(') ? '*' : '';
+        return `${day}/${mon}/${year}${hasExtra}`;
+      }
+      const matchSlash = dStr.match(/(\d{1,2}\/\d{1,2}\/\d{4})/);
+      if (matchSlash) return matchSlash[1];
+      return dStr.length > 10 ? dStr.substring(0, 10) : dStr;
+    }
+
     function renderRows(list) {
       const tbody = document.getElementById('projectsTableBody');
       tbody.innerHTML = '';
@@ -809,42 +829,43 @@
           badgeCaja = `<span class="badge badge-green" title="Expediente en Caja FDM">📦 ${p.tiene_caja}</span>`;
         }
 
-        // Start Date Badge
+        // Start Date Badge (Formato compacto para optimizar visualización en tabla)
         let badgeInicio = '';
         if (p.tiene_fecha_inicio) {
-          badgeInicio = `<span class="badge badge-blue" style="font-size: 0.73rem;" title="${p.fecha_inicio_doc || 'Fecha verificada'}">📅 ${p.fecha_inicio}</span>`;
+          const compact = formatCompactDate(p.fecha_inicio);
+          badgeInicio = `<span class="badge badge-blue" style="font-size: 0.73rem; font-family: monospace; font-weight: 700; padding: 0.18rem 0.45rem;" title="${p.fecha_inicio}${p.fecha_inicio_doc ? ' | ' + p.fecha_inicio_doc : ''}">📅 ${compact}</span>`;
         } else if (p.estado_info === 'NO_APLICA') {
-          badgeInicio = `<span class="badge badge-gray" style="font-size: 0.7rem;">⚪ No Aplica</span>`;
+          badgeInicio = `<span class="badge badge-gray" style="font-size: 0.68rem; padding: 0.15rem 0.4rem;">⚪ No Aplica</span>`;
         } else {
-          badgeInicio = `<span class="badge badge-red" style="font-size: 0.7rem;" title="Pendiente de ubicar acta original">⚠️ Sin Fecha Inicio</span>`;
+          badgeInicio = `<span class="badge badge-red" style="font-size: 0.68rem; padding: 0.15rem 0.4rem;" title="Pendiente de ubicar acta original">⚠️ Sin Inicio</span>`;
         }
 
         // Completeness Badge
         let badgeInfo = '';
         if (p.estado_info === 'COMPLETA') {
-          badgeInfo = `<span class="badge badge-green" title="Expediente en Caja FDM o Inicio+Cierre verificado">🟢 Completa</span>`;
+          badgeInfo = `<span class="badge badge-green" style="font-size: 0.7rem; padding: 0.18rem 0.45rem;" title="Expediente en Caja FDM o Inicio+Cierre verificado">🟢 Completa</span>`;
         } else if (p.estado_info === 'PARCIAL') {
-          badgeInfo = `<span class="badge badge-yellow" title="Hitos en proceso; falta acta de inicio o liquidación">🟡 Parcial</span>`;
+          badgeInfo = `<span class="badge badge-yellow" style="font-size: 0.7rem; padding: 0.18rem 0.45rem;" title="Hitos en proceso; falta acta de inicio o liquidación">🟡 Parcial</span>`;
         } else if (p.estado_info === 'NO_APLICA') {
-          badgeInfo = `<span class="badge badge-gray" title="Proyecto no ejecutado físicamente / Exp. Observado">⚪ No Aplica</span>`;
+          badgeInfo = `<span class="badge badge-gray" style="font-size: 0.68rem; padding: 0.15rem 0.4rem;" title="Proyecto no ejecutado físicamente / Exp. Observado">⚪ No Aplica</span>`;
         } else {
-          badgeInfo = `<span class="badge badge-red" title="Faltan documentos contractuales clave; buscar en Tomos">🔴 Incompleta</span>`;
+          badgeInfo = `<span class="badge badge-red" style="font-size: 0.7rem; padding: 0.18rem 0.45rem;" title="Faltan documentos contractuales clave; buscar en Tomos">🔴 Incompleta</span>`;
         }
 
         return `
           <tr onclick="openDrawer(${p.id})">
             <td style="font-weight: 700; text-align: center; color: var(--text-muted);">${p.id}</td>
-            <td><span class="badge badge-gray">${p.convenio}</span></td>
+            <td style="text-align: center;"><span class="badge badge-gray" style="font-size: 0.68rem; padding: 0.15rem 0.4rem;">${p.convenio}</span></td>
             <td><strong>${p.provincia}</strong></td>
             <td>
               <div style="font-weight: 600; color: var(--text); line-height: 1.35;">${p.desc}</div>
               <div style="font-size: 0.72rem; color: var(--text-muted); margin-top: 0.2rem;">${p.tipologia}</div>
             </td>
             <td style="text-align: center; font-family: monospace; font-size: 0.8rem; font-weight: 600;">${p.cui !== 'N/D' ? p.cui : '—'}</td>
-            <td style="text-align: center;">${badgeInicio}</td>
-            <td style="text-align: center;">${badgeInfo}</td>
-            <td style="text-align: right; font-weight: 600; font-family: monospace;">${costoFmt}</td>
-            <td style="text-align: center;">${badgeCaja}</td>
+            <td style="text-align: center; white-space: nowrap;">${badgeInicio}</td>
+            <td style="text-align: center; white-space: nowrap;">${badgeInfo}</td>
+            <td style="text-align: right; font-weight: 600; font-family: monospace; white-space: nowrap;">${costoFmt}</td>
+            <td style="text-align: center; white-space: nowrap;">${badgeCaja}</td>
           </tr>
         `;
       }).join('');
