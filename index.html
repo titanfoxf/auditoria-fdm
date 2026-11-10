@@ -242,7 +242,7 @@
     </div>
     <div class="header-actions">
       <div class="badge-sync" title="Base de Datos Procesada">
-        📘 Tomos 2022-2023 (10 Tomos - 853 Folios OCR) + Digital 2025-2026
+        📗 Tomos 2022-2024 (19 Tomos PMO) + Digital 2025-2026
       </div>
       <a href="campo.html" class="btn-campo" style="background: #2563EB; color: white; border: none; padding: 0.65rem 1.1rem; border-radius: 8px; font-weight: 700; font-size: 0.85rem; text-decoration: none; display: inline-flex; align-items: center; gap: 0.4rem; box-shadow: 0 2px 5px rgba(37,99,235,0.3);">
         📱 Modo Campo / Escáner
@@ -264,22 +264,22 @@
       </div>
       <div class="metric-card green" onclick="setFilter('COMPLETA', document.getElementById('btnTabCompleta'))">
         <div class="title">Información Completa <span>🟢</span></div>
-        <div class="value" id="kpi-completa" style="color: #16A34A;">20</div>
+        <div class="value" id="kpi-completa" style="color: #16A34A;">29</div>
         <div class="desc">En Caja FDM o Inicio+Cierre probado</div>
       </div>
       <div class="metric-card yellow" onclick="setFilter('PARCIAL', document.getElementById('btnTabParcial'))">
         <div class="title">Trazabilidad Parcial <span>🟡</span></div>
-        <div class="value" id="kpi-parcial" style="color: #CA8A04;">13</div>
+        <div class="value" id="kpi-parcial" style="color: #CA8A04;">10</div>
         <div class="desc">Hitos en tomos; falta inicio o liq.</div>
       </div>
       <div class="metric-card red" onclick="setFilter('SIN_INICIO', document.getElementById('btnTabSinInicio'))">
         <div class="title">⚠️ Sin Fecha Inicio <span>🚨</span></div>
-        <div class="value" id="kpi-sin-inicio" style="color: #DC2626;">32</div>
+        <div class="value" id="kpi-sin-inicio" style="color: #DC2626;">38</div>
         <div class="desc">Pendiente ubicar en Archivo Central</div>
       </div>
       <div class="metric-card purple" onclick="setFilter('CAJAS', document.getElementById('btnTabCajas'))">
         <div class="title">En Cajas Rotuladas <span>📦</span></div>
-        <div class="value" id="kpi-cajas" style="color: #9333EA;">11</div>
+        <div class="value" id="kpi-cajas" style="color: #9333EA;">10</div>
         <div class="desc">Expedientes físicos en custodia</div>
       </div>
     </div>
@@ -290,30 +290,30 @@
       <div class="analytics-card">
         <div class="analytics-title">
           <span>📊 Estado Documental de Auditoría</span>
-          <span id="readinessPercent">29.0% Completo</span>
+          <span id="readinessPercent">42.0% Completo</span>
         </div>
         <div class="progress-bar-container">
           <div class="progress-label">
-            <span style="color: #16A34A;">🟢 Completas (<span id="statComp">20</span>)</span>
-            <span style="color: #CA8A04;">🟡 Parciales (<span id="statParc">13</span>)</span>
-            <span style="color: #DC2626;">🔴 Pendientes (<span id="statPend">32</span>)</span>
+            <span style="color: #16A34A;">🟢 Completas (<span id="statComp">29</span>)</span>
+            <span style="color: #CA8A04;">🟡 Parciales (<span id="statParc">10</span>)</span>
+            <span style="color: #DC2626;">🔴 Pendientes (<span id="statPend">26</span>)</span>
             <span style="color: #64748B;">⚪ No Aplica (<span id="statNoAp">4</span>)</span>
           </div>
           <div class="progress-track">
-            <div id="progFillComp" class="progress-fill" style="width: 29.0%; background: #16A34A;"></div>
-            <div id="progFillParc" class="progress-fill" style="width: 18.8%; background: #EAB308;"></div>
-            <div id="progFillPend" class="progress-fill" style="width: 46.4%; background: #DC2626;"></div>
+            <div id="progFillComp" class="progress-fill" style="width: 42.0%; background: #16A34A;"></div>
+            <div id="progFillParc" class="progress-fill" style="width: 14.5%; background: #EAB308;"></div>
+            <div id="progFillPend" class="progress-fill" style="width: 37.7%; background: #DC2626;"></div>
             <div id="progFillNoAp" class="progress-fill" style="width: 5.8%; background: #94A3B8;"></div>
           </div>
         </div>
         <div class="stats-pill-grid" style="margin-top: 1rem;">
           <div class="stat-mini-pill" onclick="setFilter('COMPLETA', document.getElementById('btnTabCompleta'))" style="cursor: pointer;">
             <div class="lbl">Sustento Pleno</div>
-            <div class="num" style="color: #16A34A;">20 obras</div>
+            <div class="num" style="color: #16A34A;" id="miniSustento">29 obras</div>
           </div>
           <div class="stat-mini-pill" onclick="setFilter('PARCIAL', document.getElementById('btnTabParcial'))" style="cursor: pointer;">
             <div class="lbl">En Trazabilidad</div>
-            <div class="num" style="color: #CA8A04;">13 obras</div>
+            <div class="num" style="color: #CA8A04;" id="miniTrazabilidad">10 obras</div>
           </div>
         </div>
       </div>
@@ -359,24 +359,24 @@
       <div class="analytics-card">
         <div class="analytics-title">
           <span>📚 Acervo Documentario Procesado</span>
-          <span>10 Tomos 2022-2023 (853 Folios)</span>
+          <span>19 Tomos PMO (2022-2024)</span>
         </div>
         <div class="stats-pill-grid">
           <div class="stat-mini-pill">
             <div class="lbl">Folios Físicos OCR</div>
-            <div class="num" style="color: #2563EB;">853 Folios</div>
+            <div class="num" style="color: #2563EB;">1,600+ Folios</div>
           </div>
           <div class="stat-mini-pill">
             <div class="lbl">Periodo Analizado</div>
-            <div class="num" style="font-size: 0.95rem; color: #0F172A;">Mayo 2022 - Dic 2023</div>
+            <div class="num" style="font-size: 0.95rem; color: #0F172A;">2022 - 2026 (Auditoría)</div>
           </div>
           <div class="stat-mini-pill">
             <div class="lbl">Hitos Vinculados</div>
-            <div class="num" style="color: #0D9488;">147 Proy.</div>
+            <div class="num" style="color: #0D9488;">776 Actuados</div>
           </div>
           <div class="stat-mini-pill">
             <div class="lbl">Cajas en Custodia</div>
-            <div class="num" style="color: #9333EA;">20 Cajas</div>
+            <div class="num" style="color: #9333EA;">10 Cajas</div>
           </div>
         </div>
       </div>
@@ -404,10 +404,10 @@
 
       <div class="filter-tabs">
         <button class="tab-btn active" onclick="setFilter('ALL', this)" id="btnTabAll">Todas las Obras (69)</button>
-        <button class="tab-btn green" onclick="setFilter('COMPLETA', this)" id="btnTabCompleta">🟢 Info Completa (20)</button>
-        <button class="tab-btn alert" onclick="setFilter('PARCIAL', this)" id="btnTabParcial">🟡 Trazabilidad Parcial (13)</button>
-        <button class="tab-btn red" onclick="setFilter('SIN_INICIO', this)" id="btnTabSinInicio">⚠️ Sin Fecha Inicio (32)</button>
-        <button class="tab-btn" onclick="setFilter('CAJAS', this)" id="btnTabCajas">📦 En Cajas FDM (11)</button>
+        <button class="tab-btn green" onclick="setFilter('COMPLETA', this)" id="btnTabCompleta">🟢 Info Completa (29)</button>
+        <button class="tab-btn alert" onclick="setFilter('PARCIAL', this)" id="btnTabParcial">🟡 Trazabilidad Parcial (10)</button>
+        <button class="tab-btn red" onclick="setFilter('SIN_INICIO', this)" id="btnTabSinInicio">⚠️ Sin Fecha Inicio (38)</button>
+        <button class="tab-btn" onclick="setFilter('CAJAS', this)" id="btnTabCajas">📦 En Cajas FDM (10)</button>
         <button class="tab-btn" onclick="setFilter('NO_APLICA', this)" id="btnTabNoAplica">⚪ No Aplica (4)</button>
         <span style="border-left: 1px solid var(--border); margin: 0 0.35rem;"></span>
         <button class="tab-btn" onclick="setFilter('PROV_ILO', this)">⚓ Ilo (20)</button>
@@ -716,6 +716,27 @@
       if (elMN) elMN.innerText = `${mn} obras`;
       const elGSC = document.getElementById('provGSCCount');
       if (elGSC) elGSC.innerText = `${gsc} obras`;
+
+      const sin_inicio = projectsData.filter(p => !p.tiene_fecha_inicio && p.estado_info !== 'NO_APLICA').length;
+      const cajas = projectsData.filter(p => (p.tiene_caja || '').toUpperCase().includes('CAJA')).length;
+
+      const btnAll = document.getElementById('btnTabAll');
+      if (btnAll) btnAll.innerText = `Todas las Obras (${total})`;
+      const btnComp = document.getElementById('btnTabCompleta');
+      if (btnComp) btnComp.innerText = `🟢 Info Completa (${comp})`;
+      const btnParc = document.getElementById('btnTabParcial');
+      if (btnParc) btnParc.innerText = `🟡 Trazabilidad Parcial (${parc})`;
+      const btnSinIni = document.getElementById('btnTabSinInicio');
+      if (btnSinIni) btnSinIni.innerText = `⚠️ Sin Fecha Inicio (${sin_inicio})`;
+      const btnCajas = document.getElementById('btnTabCajas');
+      if (btnCajas) btnCajas.innerText = `📦 En Cajas FDM (${cajas})`;
+      const btnNoAp = document.getElementById('btnTabNoAplica');
+      if (btnNoAp) btnNoAp.innerText = `⚪ No Aplica (${noap})`;
+
+      const elMiniSust = document.getElementById('miniSustento');
+      if (elMiniSust) elMiniSust.innerText = `${comp} obras`;
+      const elMiniTraz = document.getElementById('miniTrazabilidad');
+      if (elMiniTraz) elMiniTraz.innerText = `${parc} obras`;
     }
 
     function setFilter(filter, btn) {
