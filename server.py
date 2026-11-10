@@ -6,7 +6,7 @@ import os
 import openpyxl
 
 PORT = 8050
-EXCEL_PATH = r"D:\ANTIGRAVITACION\ESP_PROYECTOS_ELABORACION\ENTREGABLE_1_MATRIZ_CONTROL_AUDITORIA_2021_2022.xlsx"
+EXCEL_PATH = r"D:\ANTIGRAVITACION\ESP_PROYECTOS_ELABORACION\PUNTO_61_MATRIZ_OBRAS_INICIADAS_Y_TERMINADAS_2022_2025.xlsx"
 STATIC_DIR = os.path.dirname(os.path.abspath(__file__))
 
 def get_projects_from_excel():
@@ -93,65 +93,7 @@ def get_projects_from_excel():
             'confiabilidad': ext.get('confiabilidad', 'MEDIA')
         })
 
-    # 2. Read other sheets for full coverage
-    other_sheets = [
-        ('02_ADQUISICIONES_EQUIPOS', 'ADQUISICIONES Y EQUIPAMIENTO'),
-        ('03_EMERGENCIAS_SERVICIOS', 'EMERGENCIAS Y SERVICIOS'),
-        ('04_CONSULTORIAS_EXPEDIENTES', 'CONSULTORÍAS Y EXPEDIENTES')
-    ]
-
-    for sheet_name, tipo in other_sheets:
-        if sheet_name not in wb.sheetnames:
-            continue
-        ws_sub = wb[sheet_name]
-        for r in range(6, ws_sub.max_row + 1):
-            c_id = ws_sub.cell(r, 1).value
-            if c_id is None or not str(c_id).isdigit():
-                continue
-            gid = int(c_id)
-            conv = ws_sub.cell(r, 2).value or ''
-            prov = ws_sub.cell(r, 3).value or ''
-            desc = ws_sub.cell(r, 4).value or ''
-            cui = str(ws_sub.cell(r, 5).value or 'N/D').strip()
-            est = ws_sub.cell(r, 6).value or ''
-            prio = ws_sub.cell(r, 7).value or 0.0
-            ejec = ws_sub.cell(r, 8).value or 0.0
-            n_cajas = str(ws_sub.cell(r, 9).value or '')
-            alerta = ws_sub.cell(r, 10).value or ''
-
-            ext = extra_map.get(gid, {})
-
-            projects.append({
-                'id': gid,
-                'convenio': conv,
-                'provincia': prov,
-                'desc': desc,
-                'cui': cui,
-                'tipologia': tipo,
-                'estatus': est,
-                'prio': prio,
-                'costo_ejec': ejec,
-                'tiene_caja': 'NO - ARCHIVADOR',
-                'n_cajas': n_cajas,
-                'checks': {k: False for k in ['exp','cont','acta_ent','cuad','val','adic','sup','rec','liq','res','transf']},
-                'alerta': alerta,
-                'excel_sheet': sheet_name,
-                'excel_row': r,
-                'historial': ext.get('historial', []),
-                'fecha_inicio': ext.get('fecha_inicio', ''),
-                'fecha_inicio_sort': ext.get('fecha_inicio_sort', '9999-99-99'),
-                'tiene_fecha_inicio': ext.get('tiene_fecha_inicio', False),
-                'fecha_inicio_doc': ext.get('fecha_inicio_doc', ''),
-                'fecha_termino_prog': ext.get('fecha_termino_prog', ''),
-                'fecha_culminacion_real': ext.get('fecha_culminacion_real', ''),
-                'acta_recepcion': ext.get('acta_recepcion', ''),
-                'resolucion_liquidacion': ext.get('resolucion_liquidacion', ''),
-                'estado_info': ext.get('estado_info', 'COMPLETA'),
-                'estado_info_label': ext.get('estado_info_label', ''),
-                'detalles_faltantes': ext.get('detalles_faltantes', []),
-                'confiabilidad': ext.get('confiabilidad', 'MEDIA')
-            })
-
+    # Solo Obras Civiles (69 proyectos estrictos del Punto 61)
     kpis = cached_kpis if cached_kpis else {
         'total': len(projects),
         'obras': len([p for p in projects if p['tipologia'] == 'OBRAS CIVILES']),
