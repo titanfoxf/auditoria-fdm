@@ -3,21 +3,7 @@
  * SISTEMA CENTRALIZADO DE AUDITORÍA FDM - BACKEND GOOGLE DRIVE & SHEETS
  * ==============================================================================
  * 
- * INSTRUCCIONES DE INSTALACIÓN (5 MINUTOS):
- * 1. Entra a https://sheets.new para crear una nueva Hoja de Cálculo en Google Drive.
- *    Nómbrala: "AUDITORIA_FDM_REGISTRO_CENTRAL"
- * 2. En el menú superior de la hoja, haz clic en:
- *    Extensiones > Apps Script
- * 3. Borra todo el código que aparezca y pega este código completo.
- * 4. Arriba a la derecha, haz clic en el botón azul: "Implementar" > "Nueva implementación".
- * 5. Configura:
- *    - Tipo: Aplicación web
- *    - Descripción: Backend Auditoría FDM
- *    - Ejecutar como: "Yo" (tu cuenta)
- *    - Quién tiene acceso: "Cualquier usuario" (Anyone)  <--- ¡MUY IMPORTANTE!
- * 6. Haz clic en "Implementar", autoriza los permisos de Google.
- * 7. Copia la "URL de la aplicación web" (termina en /exec) y pégala en el chat.
- * ==============================================================================
+ * Versión 2.0: Con soporte para guardado, sincronización y BORRADO en Drive/Sheets.
  */
 
 const FOLDER_NAME = "AUDITORIA_FDM_EVIDENCIAS_2022_2025";
@@ -32,7 +18,6 @@ function doGet(e) {
     }
 
     const data = sheet.getDataRange().getValues();
-    const headers = data[0];
     const records = [];
 
     for (let i = 1; i < data.length; i++) {
@@ -79,6 +64,78 @@ function doPost(e) {
       sheet = initSheet(ss);
     }
 
+    // ==========================================
+    // CASO 1: ACCIÓN DE BORRADO DE REGISTRO Y FOTO
+    // ==========================================
+    if (payload.action === "delete_record") {
+      const obraId = parseInt(payload.obra_id);
+      const codigoCaja = String(payload.codigo_caja || "").trim();
+      const driveUrl = String(payload.drive_url || "").trim();
+      let fileId = payload.file_id || "";
+
+      if (!fileId && driveUrl) {
+        const m = driveUrl.match(/[-\w]{25,}/);
+        if (m) fileId = m[0];
+      }
+
+      // 1. Borrar archivo de Google Drive (mover a papelera)
+      let fileDeleted = false;
+      if (fileId) {
+        try {
+          const file = DriveApp.getFileById(fileId);
+          if (file) {
+            file.setTrashed(true);
+            fileDeleted = true;
+          }
+        } catch (e) {
+          // Ignorar si el archivo ya no existe
+        }
+      }
+
+      // 2. Borrar la fila correspondiente en Google Sheets
+      const data = sheet.getDataRange().getValues();
+      let rowDeleted = false;
+
+      for (let i = data.length - 1; i >= 1; i--) {
+        const row = data[i];
+        const rowObraId = parseInt(row[1]);
+        const rowCod = String(row[4] || "").trim();
+        const rowUrl = String(row[7] || "").trim();
+
+        const matchObra = (rowObraId === obraId);
+        const matchCod = codigoCaja && (rowCod === codigoCaja);
+        const matchUrl = driveUrl && (rowUrl === driveUrl);
+
+        if (matchObra && (matchCod || matchUrl)) {
+          if (!fileDeleted && rowUrl) {
+            const m = rowUrl.match(/[-\w]{25,}/);
+            if (m) {
+              try {
+                DriveApp.getFileById(m[0]).setTrashed(true);
+                fileDeleted = true;
+              } catch (e) {}
+            }
+          }
+          sheet.deleteRow(i + 1);
+          rowDeleted = true;
+          break; // Borrar el registro más reciente que coincida
+        }
+      }
+
+      return ContentService.createTextOutput(JSON.stringify({
+        status: "success",
+        action: "delete_record",
+        obra_id: obraId,
+        codigo_caja: codigoCaja,
+        row_deleted: rowDeleted,
+        file_deleted: fileDeleted,
+        message: "Registro eliminado de Google Sheets y Drive"
+      })).setMimeType(ContentService.MimeType.JSON);
+    }
+
+    // ==========================================
+    // CASO 2: GUARDADO NORMAL DE REGISTRO Y FOTO
+    // ==========================================
     const obraId = payload.obra_id;
     const desc = payload.desc || "";
     const cui = payload.cui || "";

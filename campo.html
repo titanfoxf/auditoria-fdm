@@ -666,8 +666,9 @@
         }).then(res => res.json()).then(result => {
           if (result && result.status === 'success') {
             showToast(`☁️ Guardado en Google Drive (${payload.codigo_caja || 'Obra ' + obraId})`);
-            if (photoObj && result.drive_url) {
-              photoObj.drive_url = result.drive_url;
+            if (photoObj) {
+              if (result.drive_url) photoObj.drive_url = result.drive_url;
+              if (result.file_id) photoObj.file_id = result.file_id;
               saveObraToDB(d);
             }
           }
@@ -676,6 +677,35 @@
         });
       } catch (e) {
         console.warn("Fallo fetch a Google Apps Script:", e);
+      }
+    }
+
+    async function deleteRecordFromCloud(obraId, photoObj) {
+      const url = getGasUrl();
+      if (!url || !photoObj) return;
+
+      const payload = {
+        action: "delete_record",
+        obra_id: obraId,
+        codigo_caja: photoObj.codigo_caja || photoObj.nota || "",
+        drive_url: photoObj.drive_url || (photoObj.isDriveLink ? photoObj.dataUrl : ""),
+        file_id: photoObj.file_id || ""
+      };
+
+      try {
+        fetch(url, {
+          method: 'POST',
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+          body: JSON.stringify(payload)
+        }).then(res => res.json()).then(res => {
+          if (res && res.status === 'success') {
+            showToast(`🗑️ Borrado de Google Drive y Sheets (${payload.codigo_caja})`);
+          }
+        }).catch(err => {
+          console.warn("Fallo borrado en la nube:", err);
+        });
+      } catch (err) {
+        console.warn("Fallo fetch deleteRecordFromCloud:", err);
       }
     }
 
@@ -1401,9 +1431,16 @@
       if (!confirm("¿Deseas eliminar esta foto?")) return;
       const d = fieldData[activeObraId];
       if (!d || !d.fotos) return;
+      
+      const photoToDelete = d.fotos.find(f => f.id === photoId);
       d.fotos = d.fotos.filter(f => f.id !== photoId);
       autoCompileUbicacion(activeObraId);
       await saveObraToDB(d);
+
+      // Si tenemos conexión a Google Drive/Sheets, borrar allá también
+      if (photoToDelete) {
+        deleteRecordFromCloud(activeObraId, photoToDelete);
+      }
       
       // Al borrar una foto, recalcular el primer número disponible y refrescar
       currentCajaSeq = getFirstAvailableCajaSeq(activeObraId);
@@ -1415,7 +1452,7 @@
       updateGlobalCounters();
       renderList();
       renderCajaSeqChips();
-      showToast("Foto eliminada. Número de caja liberado");
+      showToast("Foto eliminada localmente y en proceso de borrado en nube");
     }
 
     async function saveCurrentObra(showFeedback = true) {
