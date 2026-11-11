@@ -178,12 +178,14 @@
     </div>
 
     <div class="chips-bar">
-      <button class="chip active" onclick="setFilter('ALL', this)">Todas (69)</button>
+      <button class="chip active" onclick="setFilter('ALL', this)">Todas (<span id="countTotal">153</span>)</button>
+      <button class="chip alert" onclick="setFilter('AUDITORIA_69', this)" style="border-color: #2563EB; font-weight: 800;">📋 Muestra Auditoría (69)</button>
       <button class="chip alert" onclick="setFilter('MISSING', this)">⚠️ Faltan Datos (<span id="countMissing">0</span>)</button>
       <button class="chip green" onclick="setFilter('WITH_PHOTOS', this)">📸 Con Fotos (<span id="countWithPhotos">0</span>)</button>
-      <button class="chip" onclick="setFilter('ILO', this)">⚓ Ilo (20)</button>
-      <button class="chip" onclick="setFilter('MN', this)">🏛️ Mariscal Nieto (12)</button>
-      <button class="chip" onclick="setFilter('GSC', this)">🌾 Sánchez Cerro (37)</button>
+      <button class="chip" onclick="setFilter('ILO', this)">⚓ Ilo (<span id="countIlo">0</span>)</button>
+      <button class="chip" onclick="setFilter('MN', this)">🏛️ Mariscal Nieto (<span id="countMN">0</span>)</button>
+      <button class="chip" onclick="setFilter('GSC', this)">🌾 Sánchez Cerro (<span id="countGSC">0</span>)</button>
+      <button class="chip" onclick="setFilter('MAESTRO_ADIC', this)">⚪ Maestro Adicionales</button>
     </div>
   </div>
 
@@ -1041,6 +1043,9 @@
       let missingCount = 0;
       let withPhotosCount = 0;
       let totalPhotos = 0;
+      let countIlo = 0;
+      let countMN = 0;
+      let countGSC = 0;
 
       projects.forEach(p => {
         const d = fieldData[p.id] || {};
@@ -1052,11 +1057,20 @@
         const photosCount = (d.fotos || []).length;
         if (photosCount > 0) withPhotosCount++;
         totalPhotos += photosCount;
+
+        const prov = (p.provincia || '').toUpperCase();
+        if (prov.includes('ILO')) countIlo++;
+        else if (prov.includes('MARISCAL') || prov === 'M.N.') countMN++;
+        else if (prov.includes('SANCHEZ') || prov === 'G.S.C.') countGSC++;
       });
 
-      document.getElementById('countMissing').innerText = missingCount;
-      document.getElementById('countWithPhotos').innerText = withPhotosCount;
-      document.getElementById('labelPhotosSaved').innerText = `📸 ${totalPhotos} fotos guardadas`;
+      if (document.getElementById('countTotal')) document.getElementById('countTotal').innerText = projects.length;
+      if (document.getElementById('countMissing')) document.getElementById('countMissing').innerText = missingCount;
+      if (document.getElementById('countWithPhotos')) document.getElementById('countWithPhotos').innerText = withPhotosCount;
+      if (document.getElementById('countIlo')) document.getElementById('countIlo').innerText = countIlo;
+      if (document.getElementById('countMN')) document.getElementById('countMN').innerText = countMN;
+      if (document.getElementById('countGSC')) document.getElementById('countGSC').innerText = countGSC;
+      if (document.getElementById('labelPhotosSaved')) document.getElementById('labelPhotosSaved').innerText = `📸 ${totalPhotos} fotos guardadas`;
     }
 
     function setFilter(filter, btn) {
@@ -1075,6 +1089,12 @@
         const hasStart = (d.fecha_inicio || p.fecha_inicio);
         const hasUbicacion = (d.ubicacion || (p.tiene_caja && p.tiene_caja !== 'NO - ARCHIVADOR'));
 
+        if (currentFilter === 'AUDITORIA_69') {
+          return p.es_auditoria_2022_2025 === true || p.id <= 69;
+        }
+        if (currentFilter === 'MAESTRO_ADIC') {
+          return p.es_auditoria_2022_2025 === false || p.id > 69;
+        }
         if (currentFilter === 'MISSING') {
           return (!hasStart || !hasUbicacion) && p.estado_info !== 'NO_APLICA';
         }
@@ -1120,11 +1140,14 @@
         else if (isMissingStart) cardClass += ' missing-start';
         else cardClass += ' has-data';
 
+        const isAuditoria = p.es_auditoria_2022_2025 !== false && p.id <= 69;
+
         return `
           <div class="${cardClass}" onclick="openDrawer(${p.id})">
             <div class="card-top">
-              <span class="card-badge-id">OBRA N° ${String(p.id).padStart(2, '0')}</span>
+              <span class="card-badge-id">${isAuditoria ? `OBRA N° ${String(p.id).padStart(2, '0')}` : `REG. N° ${String(p.id).padStart(2, '0')}`}</span>
               <div class="card-badges">
+                ${!isAuditoria ? `<span class="badge badge-gray" style="background: #E2E8F0; color: #475569; font-weight: 700;">⚪ MAESTRO FDM</span>` : ''}
                 ${p.cui && p.cui !== 'N/D' ? `<span class="badge badge-gray">CUI: ${p.cui}</span>` : ''}
                 ${fechaIni ? `<span class="badge badge-blue">📅 ${fechaIni.substring(0, 10)}</span>` : `<span class="badge badge-red">⚠️ Sin Inicio</span>`}
                 ${photosCount > 0 ? `<span class="badge badge-green">📸 ${photosCount}</span>` : ''}
