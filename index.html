@@ -489,7 +489,7 @@
           📋 Checklist de Expediente
         </div>
         <div class="nav-tab" onclick="switchDrawerTab('UBICACION')" id="tabNavUbicacion">
-          📍 Ubicación y Observaciones
+          📦 Evidencias Físicas y Fotos (<span id="drawerCountFotosCajas">0</span>)
         </div>
       </div>
 
@@ -603,16 +603,21 @@
           </div>
         </div>
 
-        <!-- Tab 3: Ubicación y Observaciones -->
+        <!-- Tab 3: Evidencias de Campo y Fotos de Cajas -->
         <div id="drawerTabContentUbicacion" style="display: none;">
-          <div style="margin-bottom: 1.25rem;">
-            <label style="display: block; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.35rem;">Ubicación Física donde se encontró (Caja o Archivador)</label>
-            <input type="text" id="drawerUbicacion" class="input-field" readonly style="background: #F8FAFC; color: #334155; font-weight: 600;" placeholder="Ej: Archivador N° 04 - Estante A / Caja N° 08">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem; background: #F8FAFC; border: 1px solid #E2E8F0; padding: 0.6rem 0.8rem; border-radius: 8px;">
+            <div>
+              <span style="font-size: 0.72rem; font-weight: 700; text-transform: uppercase; color: var(--text-muted);">Trazabilidad Física de Archivo:</span>
+              <div id="drawerResumenUbicacionText" style="font-size: 0.95rem; font-weight: 800; color: #2563EB;">Por ubicar en campo</div>
+            </div>
+            <a href="campo.html" target="_blank" style="background: #0284C7; color: white; text-decoration: none; font-size: 0.78rem; font-weight: 700; padding: 0.4rem 0.75rem; border-radius: 6px; display: inline-flex; align-items: center; gap: 0.3rem;">
+              📸 Ir al Escáner ➔
+            </a>
           </div>
 
-          <div style="margin-bottom: 1.25rem;">
-            <label style="display: block; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.35rem;">Observaciones / Documentos Faltantes a Requerir</label>
-            <textarea id="drawerObservaciones" class="input-field" readonly style="background: #F8FAFC; color: #334155; font-weight: 500;" placeholder="Ej: Falta ubicar resolución de liquidación en Presidencia; valorizaciones 1 a 6 completas."></textarea>
+          <!-- Contenedor dinámico de cajas y fotos -->
+          <div id="drawerCajasContainer" class="cajas-grid-container">
+            <!-- Renderizado dinámico -->
           </div>
         </div>
 
@@ -643,7 +648,8 @@
     let fieldPhotosMap = {}; // obra_id -> { fotos: [], ubicacion: '', notas: '' }
 
     async function loadFieldAuditData() {
-      return new Promise((resolve) => {
+      // 1. Cargar desde IndexedDB local
+      await new Promise((resolve) => {
         try {
           const req = indexedDB.open('FDM_Field_Audit_DB', 1);
           req.onsuccess = (e) => {
@@ -669,6 +675,48 @@
           resolve();
         }
       });
+
+      // 2. Si hay conexión a Google Apps Script, sincronizar fotos en vivo de la nube
+      const gasUrl = localStorage.getItem('fdm_gas_url');
+      if (gasUrl) {
+        try {
+          const res = await fetch(gasUrl);
+          const cloudData = await res.json();
+          if (cloudData && cloudData.status === 'success') {
+            const listaCajas = cloudData.cajas || cloudData.records || [];
+            listaCajas.forEach(r => {
+              const oId = r.obra_id;
+              if (!oId) return;
+              if (!fieldPhotosMap[oId]) {
+                fieldPhotosMap[oId] = { id: oId, fotos: [], ubicacion: '' };
+              }
+              if (!fieldPhotosMap[oId].fotos) fieldPhotosMap[oId].fotos = [];
+
+              const exists = fieldPhotosMap[oId].fotos.some(f => 
+                (f.drive_url && f.drive_url === r.drive_url) || (f.file_id && f.file_id === r.file_id)
+              );
+              if (!exists && r.drive_url) {
+                fieldPhotosMap[oId].fotos.push({
+                  id: 'cloud_' + (r.file_id || Date.now()),
+                  codigo_caja: r.codigo_caja,
+                  sub_codigo: r.sub_codigo || r.codigo_caja,
+                  tipo_foto: r.tipo_foto || 'Rótulo de Caja',
+                  dataUrl: r.drive_url,
+                  drive_url: r.drive_url,
+                  file_id: r.file_id,
+                  ubicacion: r.ambiente || '',
+                  nota: r.contenido_caja || r.codigo_caja
+                });
+              }
+              if (r.ambiente && !fieldPhotosMap[oId].ubicacion) {
+                fieldPhotosMap[oId].ubicacion = r.ambiente;
+              }
+            });
+          }
+        } catch (e) {
+          console.warn("Sincronización en segundo plano con nube:", e);
+        }
+      }
     }
 
     function renderCajasEnDrawer(obraId) {
