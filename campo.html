@@ -249,23 +249,26 @@
             <option value="CUSTOM">➕ Agregar Sub-zona / Otro...</option>
           </select>
 
-          <div style="margin-top: 0.65rem;">
-            <div style="font-size: 0.72rem; font-weight: 700; color: #64748B; margin-bottom: 0.25rem;">📦 N° DE CAJA O DETALLE:</div>
-            <input type="text" id="inputCajaNum" class="field-input" placeholder="Ej: Caja 01, Caja 02, Estante B..." oninput="updateFullUbicacion()">
-            <div class="preset-chips" style="margin-top: 0.35rem;">
-              <span class="preset-chip" onclick="setCajaNum('Caja 01')">Caja 01</span>
-              <span class="preset-chip" onclick="setCajaNum('Caja 02')">Caja 02</span>
-              <span class="preset-chip" onclick="setCajaNum('Caja 03')">Caja 03</span>
-              <span class="preset-chip" onclick="setCajaNum('Caja 04')">Caja 04</span>
-              <span class="preset-chip" onclick="setCajaNum('Caja 05')">Caja 05</span>
-              <span class="preset-chip" onclick="setCajaNum('Caja 06')">Caja 06</span>
+          <!-- Tarjeta de Código de Trazabilidad Único -->
+          <div style="margin-top: 0.75rem; background: #0F172A; border-radius: 10px; padding: 0.75rem; color: white; display: flex; flex-direction: column; gap: 0.4rem; box-shadow: 0 2px 6px rgba(0,0,0,0.15);">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <span style="font-size: 0.72rem; font-weight: 700; text-transform: uppercase; color: #94A3B8; letter-spacing: 0.5px;">🏷️ CÓDIGO ÚNICO DE CAJA (Escribe en la caja):</span>
+              <button type="button" onclick="generarSiguienteCodigoCaja()" style="background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3); color: white; padding: 2px 8px; border-radius: 4px; font-size: 0.7rem; font-weight: 700; cursor: pointer;">Siguiente (+)</button>
+            </div>
+            <div style="display: flex; align-items: center; gap: 0.5rem;">
+              <input type="text" id="inputCodigoCaja" class="field-input" style="background: #1E293B; border: 1.5px solid #38BDF8; color: #38BDF8; font-size: 1.25rem; font-weight: 800; letter-spacing: 1.5px; text-align: center; margin: 0; padding: 0.5rem; text-transform: uppercase;" placeholder="B1-01-C1" oninput="onCustomCodigoChange()">
+            </div>
+            <div style="font-size: 0.68rem; color: #CBD5E1; display: flex; justify-content: space-between; align-items: center;">
+              <span>Ambiente: <strong id="lblAmbCode">B1</strong> | Obra: <strong id="lblObraCode">01</strong> | Secuencia: <strong id="lblCajaSeq">C1</strong></span>
+              <span style="color: #4ADE80; font-weight: 700;">✓ Marca con plumón</span>
             </div>
           </div>
 
           <!-- Input oculto para compatibilidad y resumen visual -->
           <input type="hidden" id="inputUbicacion">
+          <input type="hidden" id="inputCajaNum">
           <div id="ubicacionResumenDisplay" style="margin-top: 0.5rem; font-size: 0.78rem; color: #1E293B; background: #EEF2FF; padding: 0.4rem 0.6rem; border-radius: 6px; border: 1px solid #C7D2FE; font-weight: 600;">
-            📍 Ubicación consolidada: <span id="ubicacionResumenText" style="color: #2563EB;">BAÑO1-PMO</span>
+            📍 Trazabilidad: <span id="ubicacionResumenText" style="color: #2563EB;">BAÑO1-PMO [B1-01-C1]</span>
           </div>
         </div>
 
@@ -533,24 +536,97 @@
       if (selD) selD.value = val;
     }
 
-    function setCajaNum(cajaVal) {
-      const input = document.getElementById('inputCajaNum');
-      if (input) {
-        input.value = cajaVal;
-        updateFullUbicacion();
+    const AMBIENTE_PREFIXES = {
+      'BAÑO1-PMO': 'B1',
+      'BAÑO2-PMO': 'B2',
+      'BAÑO3-PMO': 'B3',
+      'OFICINA1-PMO': 'OF1',
+      'OFICINA2-PMO': 'OF2',
+      'OFICINA3-PMO': 'OF3',
+      'PASADIZO-ESCALERA': 'PAS',
+      'SECRETARIA-PMO': 'SEC',
+      'ALMACEN-TECHO': 'ALT',
+      'ARMARIO-1ERPISO': 'ARM1',
+      'OTROS': 'OTR'
+    };
+
+    let manualCajaSeqOffset = 0;
+
+    function getAmbientePrefix(amb) {
+      if (!amb) return 'B1';
+      if (AMBIENTE_PREFIXES[amb]) return AMBIENTE_PREFIXES[amb];
+      const clean = amb.replace(/[^a-zA-Z0-9]/g, '_');
+      const parts = clean.split('_').filter(Boolean);
+      if (parts.length >= 2) return (parts[0].substring(0, 3) + '_' + parts[1].substring(0, 3)).toUpperCase();
+      return amb.substring(0, 4).toUpperCase();
+    }
+
+    function autoGenerarCodigoCaja(increment = 0) {
+      if (!activeObraId) return { code: 'B1-01-C1', pref: 'B1', obraStr: '01', seq: 'C1' };
+      const amb = getActiveAmbiente();
+      const pref = getAmbientePrefix(amb);
+      const obraStr = String(activeObraId).padStart(2, '0');
+      
+      const d = fieldData[activeObraId] || { fotos: [] };
+      const fotosDeEstaObra = (d.fotos || []);
+      const seqNum = fotosDeEstaObra.length + 1 + increment + manualCajaSeqOffset;
+      const seq = `C${seqNum}`;
+      const code = `${pref}-${obraStr}-${seq}`;
+      return { code, pref, obraStr, seq };
+    }
+
+    function updateCodigoDisplay() {
+      const { code, pref, obraStr, seq } = autoGenerarCodigoCaja();
+      const input = document.getElementById('inputCodigoCaja');
+      if (input && !input.dataset.userEdited) {
+        input.value = code;
       }
+      
+      const lblA = document.getElementById('lblAmbCode');
+      if (lblA) lblA.innerText = pref;
+      const lblO = document.getElementById('lblObraCode');
+      if (lblO) lblO.innerText = obraStr;
+      const lblS = document.getElementById('lblCajaSeq');
+      if (lblS) lblS.innerText = seq;
+      
+      updateFullUbicacion();
+    }
+
+    function generarSiguienteCodigoCaja() {
+      manualCajaSeqOffset++;
+      const input = document.getElementById('inputCodigoCaja');
+      if (input) input.dataset.userEdited = "";
+      updateCodigoDisplay();
+      showToast("🏷️ Siguiente código preparado: " + (input ? input.value : ''));
+    }
+
+    function onCustomCodigoChange() {
+      const input = document.getElementById('inputCodigoCaja');
+      if (input) input.dataset.userEdited = "true";
+      updateFullUbicacion();
     }
 
     function updateFullUbicacion() {
       const amb = getActiveAmbiente();
-      const caja = (document.getElementById('inputCajaNum')?.value || '').trim();
-      const full = caja ? `${amb} - ${caja}` : amb;
+      const cod = (document.getElementById('inputCodigoCaja')?.value || '').trim();
+      const full = cod ? `${amb} [${cod}]` : amb;
       
       const inputHidden = document.getElementById('inputUbicacion');
       if (inputHidden) inputHidden.value = full;
       
       const resText = document.getElementById('ubicacionResumenText');
       if (resText) resText.innerText = full;
+    }
+
+    function setCajaNum(cajaVal) {
+      const input = document.getElementById('inputCodigoCaja');
+      if (input) {
+        const pref = getAmbientePrefix(getActiveAmbiente());
+        const obraStr = String(activeObraId || 1).padStart(2, '0');
+        input.value = `${pref}-${obraStr}-${cajaVal.replace(/\s+/g, '')}`;
+        input.dataset.userEdited = "true";
+        updateFullUbicacion();
+      }
     }
 
     async function loadProjectsData() {
@@ -708,8 +784,12 @@
       }
 
       if (selD) selD.value = parsedAmb;
-      if (inputCaja) inputCaja.value = parsedCaja;
-      updateFullUbicacion();
+      
+      // Inicializar y mostrar código de caja sugerido
+      manualCajaSeqOffset = 0;
+      const inputCod = document.getElementById('inputCodigoCaja');
+      if (inputCod) inputCod.dataset.userEdited = "";
+      updateCodigoDisplay();
 
       const badgeIni = document.getElementById('statusInicioBadge');
       if (d.fecha_inicio || p.fecha_inicio) {
@@ -773,26 +853,34 @@
 
       const p = projects.find(x => x.id === activeObraId);
       const currentAmb = getActiveAmbiente();
+      const currentCodigo = (document.getElementById('inputCodigoCaja')?.value || '').trim() || autoGenerarCodigoCaja().code;
       
       const photoObj = {
         id: 'foto_' + Date.now(),
         slot: slotKey,
-        nombre: `OBRA_${String(activeObraId).padStart(2, '0')}_${slotKey.toUpperCase()}_${Date.now()}.jpg`,
+        codigo_caja: currentCodigo,
+        nombre: `OBRA_${String(activeObraId).padStart(2, '0')}_${slotKey.toUpperCase()}_${currentCodigo}_${Date.now()}.jpg`,
         dataUrl: compressedDataUrl,
         timestamp: new Date().toLocaleString(),
         ubicacion: currentAmb,
-        nota: ''
+        nota: currentCodigo
       };
 
       fieldData[activeObraId].fotos.push(photoObj);
       autoCompileUbicacion(activeObraId);
       await saveObraToDB(fieldData[activeObraId]);
 
+      // Incrementar automáticamente para la siguiente caja
+      manualCajaSeqOffset++;
+      const inputCod = document.getElementById('inputCodigoCaja');
+      if (inputCod) inputCod.dataset.userEdited = "";
+      updateCodigoDisplay();
+
       fileInput.value = ''; // Reset input
       renderDrawerPhotos();
       updateGlobalCounters();
       renderList();
-      showToast(`📸 Foto guardada en ${currentAmb}`);
+      showToast(`📸 Guardada. Escribe en la caja: ${currentCodigo}`);
     }
 
     function autoCompileUbicacion(obraId) {
@@ -841,11 +929,11 @@
             </div>
             <div class="thumb-meta">
               <div class="thumb-amb">
-                <span title="${f.ubicacion || 'Ambiente'}">📍 ${f.ubicacion || 'Ambiente'}</span>
-                <span onclick="editPhotoCaption('${f.id}')" style="cursor: pointer; padding: 0 3px;" title="Editar ambiente o detalle de caja">✏️</span>
+                <span style="font-weight: 800; color: #2563EB;">🏷️ ${f.codigo_caja || f.nota || 'Caja'}</span>
+                <span onclick="editPhotoCaption('${f.id}')" style="cursor: pointer; padding: 0 3px;" title="Editar código o ambiente">✏️</span>
               </div>
-              <div class="thumb-note" onclick="editPhotoCaption('${f.id}')" title="${f.nota || 'Tocar para agregar detalle de caja'}">
-                ${f.nota ? '📝 ' + f.nota : '<span style="color: #94A3B8; font-style: italic;">+ Detalle caja</span>'}
+              <div class="thumb-note" onclick="editPhotoCaption('${f.id}')" title="${f.ubicacion}">
+                📍 ${f.ubicacion || 'Ambiente'}
               </div>
             </div>
           </div>
@@ -859,17 +947,20 @@
       const f = d.fotos.find(x => x.id === photoId);
       if (!f) return;
 
+      const newCod = prompt("🏷️ Código escrito en la caja (ej: B1-01-C1):", f.codigo_caja || f.nota || "");
+      if (newCod !== null && newCod.trim()) {
+        f.codigo_caja = newCod.trim().toUpperCase();
+        f.nota = f.codigo_caja;
+      }
+
       const newAmb = prompt("📍 Ambiente donde se encuentra esta caja:", f.ubicacion || getActiveAmbiente());
       if (newAmb !== null && newAmb.trim()) f.ubicacion = newAmb.trim();
-
-      const newNota = prompt("📝 Detalle / N° de esta caja (ej: Caja 01 - Exp. Técnico / Tomo II):", f.nota || "");
-      if (newNota !== null) f.nota = newNota.trim();
 
       autoCompileUbicacion(activeObraId);
       saveObraToDB(d);
       renderDrawerPhotos();
       renderList();
-      showToast("Detalle de caja actualizado");
+      showToast("Código y ubicación actualizados");
     }
 
     async function deletePhoto(photoId) {
@@ -945,6 +1036,7 @@
           fotos_detalle: (item.fotos || []).map(f => ({
             nombre: f.nombre,
             slot: f.slot,
+            codigo_caja: f.codigo_caja || f.nota || '',
             ubicacion: f.ubicacion || '',
             nota: f.nota || '',
             timestamp: f.timestamp || ''
@@ -963,10 +1055,10 @@
       zip.file("REPORTE_CAMPO_FDM.json", JSON.stringify(manifest, null, 2));
 
       // CSV Generation with box location detail
-      let csvContent = "\uFEFFN°,DESCRIPCION,CUI,PROVINCIA,UBICACION_FISICA,TOTAL_FOTOS,DETALLE_CAJAS_FOTOS,NOTAS\n";
+      let csvContent = "\uFEFFN°,DESCRIPCION,CUI,PROVINCIA,UBICACION_FISICA,TOTAL_FOTOS,CODIGOS_CAJAS,NOTAS\n";
       manifest.forEach(m => {
-        const fotosResumen = (m.fotos_detalle || []).map((f, i) => `Foto ${i+1} [${f.ubicacion || 'Ambiente'}]: ${f.nota || f.slot}`).join(' ; ');
-        csvContent += `"${m.id}","${(m.desc||'').replace(/"/g, '""')}","${m.cui||''}","${m.provincia||''}","${(m.ubicacion_fisica_campo||'').replace(/"/g, '""')}","${m.total_fotos}","${fotosResumen.replace(/"/g, '""')}","${(m.notas_campo||'').replace(/"/g, '""')}"\n`;
+        const codigosList = (m.fotos_detalle || []).map(f => `${f.codigo_caja || 'CAJA'} [${f.ubicacion}]`).join(' ; ');
+        csvContent += `"${m.id}","${(m.desc||'').replace(/"/g, '""')}","${m.cui||''}","${m.provincia||''}","${(m.ubicacion_fisica_campo||'').replace(/"/g, '""')}","${m.total_fotos}","${codigosList.replace(/"/g, '""')}","${(m.notas_campo||'').replace(/"/g, '""')}"\n`;
       });
       zip.file("REPORTE_CAMPO_FDM.csv", csvContent);
 
