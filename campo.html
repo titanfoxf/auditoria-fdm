@@ -309,6 +309,17 @@
             <input type="file" accept="image/*" capture="environment" id="file_rotulo" style="display:none;" onchange="handlePhotoUpload('rotulo', this)">
             <div class="thumb-grid" id="grid_rotulo" style="margin-top: 0.6rem;"></div>
           </div>
+
+          <!-- Foto Adicional de la Caja / Contenido -->
+          <div class="photo-slot" style="margin-top: 0.75rem; border: 1.5px dashed #64748B; background: #F8FAFC;">
+            <div class="slot-hdr">
+              <span style="font-size: 0.85rem; font-weight: 800; color: #1E293B;">➕ Foto Adicional de la Caja / Contenido</span>
+              <span id="slotCount_otros" class="badge badge-gray">0</span>
+            </div>
+            <button type="button" class="btn-camera" onclick="triggerCamera('otros')" style="padding: 0.65rem; font-size: 0.85rem; font-weight: 700; background: #0284C7;">📸 Tomar Foto Adicional (+)</button>
+            <input type="file" accept="image/*" capture="environment" id="file_otros" style="display:none;" onchange="handlePhotoUpload('otros', this)">
+            <div class="thumb-grid" id="grid_otros" style="margin-top: 0.6rem;"></div>
+          </div>
         </div>
 
         <!-- PANEL 2: REVISIÓN DOCUMENTAL Y CHECKLIST (Auditoría de Contenido) -->
@@ -417,17 +428,14 @@
             <div class="thumb-grid" id="grid_liquidacion"></div>
           </div>
 
-        </div>
-
-        <!-- Slot 7: Extra / Otros -->
-        <div class="photo-slot">
-          <div class="slot-hdr">
-            <span>➕ 7. Otra Evidencia / Documentos Varios</span>
-            <span id="slotCount_otros" class="badge badge-gray">0</span>
+          <!-- Observaciones de Auditoría de la Obra -->
+          <div class="field-group" style="margin-top: 0.75rem;">
+            <div class="field-title">
+              <span>📝 Observaciones de Auditoría de la Obra</span>
+            </div>
+            <textarea id="inputNotasAuditoria" class="field-input" style="height: 60px; resize: none;" placeholder="Observaciones contractuales, tomos revisados o estado legal..."></textarea>
           </div>
-          <button class="btn-camera" onclick="triggerCamera('otros')">📸 Tomar Foto Adicional</button>
-          <input type="file" accept="image/*" capture="environment" id="file_otros" style="display:none;" onchange="handlePhotoUpload('otros', this)">
-          <div class="thumb-grid" id="grid_otros"></div>
+
         </div>
 
       </div>
@@ -644,16 +652,18 @@
 
       const d = fieldData[obraId];
       const p = projects.find(x => x.id === obraId) || {};
+      const contenidoCaja = photoObj.nota || (document.getElementById('inputNotas')?.value || '').trim();
+      const tipoFoto = (photoObj.slot === 'rotulo' ? 'Rótulo de Caja' : 'Foto Adicional');
 
       const payload = {
         action: "save_box_photo",
         obra_id: obraId,
         desc: p.desc || '',
         cui: p.cui || '',
-        codigo_caja: photoObj.codigo_caja || photoObj.nota || '',
-        ubicacion: photoObj.ubicacion || (d ? d.ubicacion : getActiveAmbiente()),
-        nota: photoObj.nota || (d ? d.notas : ''),
-        slot: photoObj.slot || 'rotulo',
+        codigo_caja: photoObj.codigo_caja || '',
+        ambiente: photoObj.ubicacion || getActiveAmbiente(),
+        contenido_caja: contenidoCaja,
+        tipo_foto: tipoFoto,
         photo: {
           base64: photoObj.dataUrl,
           filename: photoObj.nombre || `OBRA_${obraId}_${photoObj.codigo_caja}.jpg`,
@@ -668,7 +678,7 @@
           body: JSON.stringify(payload)
         }).then(res => res.json()).then(result => {
           if (result && result.status === 'success') {
-            showToast(`☁️ Foto guardada en Google Drive (${payload.codigo_caja})`);
+            showToast(`☁️ Guardado en CENSO_CAJAS_FOTOS (${payload.codigo_caja})`);
             if (photoObj) {
               if (result.drive_url) photoObj.drive_url = result.drive_url;
               if (result.file_id) photoObj.file_id = result.file_id;
@@ -699,8 +709,7 @@
         provincia: p.provincia || '',
         fecha_inicio: d.fecha_inicio || '',
         fecha_culm: d.fecha_culm || '',
-        ubicacion: d.ubicacion || '',
-        notas: d.notas || '',
+        notas_auditoria: (document.getElementById('inputNotasAuditoria')?.value || d.notas_auditoria || '').trim(),
         checks: d.checks || {}
       };
 
@@ -711,7 +720,7 @@
           body: JSON.stringify(payload)
         }).then(res => res.json()).then(result => {
           if (result && result.status === 'success') {
-            showToast(`☁️ Checklist actualizado en Matriz 69 Obras`);
+            showToast(`☁️ Ficha actualizada en MATRIZ_69_OBRAS`);
           }
         }).catch(e => {
           console.warn("Actualización de checks en segundo plano pendiente:", e);
@@ -1181,6 +1190,8 @@
         if (elCulm) elCulm.value = d.fecha_culm || p.fecha_culminacion_real || '';
         const elNotas = document.getElementById('inputNotas');
         if (elNotas) elNotas.value = d.notas || '';
+        const elNotasAud = document.getElementById('inputNotasAuditoria');
+        if (elNotasAud) elNotasAud.value = d.notas_auditoria || '';
 
         // Cargar checkboxes del checklist documental
         const savedChecks = d.checks || {};
@@ -1347,6 +1358,7 @@
 
         const currentAmb = getActiveAmbiente();
         const currentCodigo = (document.getElementById('inputCodigoCaja')?.value || '').trim() || autoGenerarCodigoCaja().code;
+        const currentContenido = (document.getElementById('inputNotas')?.value || '').trim();
         
         const photoObj = {
           id: 'foto_' + Date.now(),
@@ -1356,7 +1368,7 @@
           dataUrl: compressedDataUrl,
           timestamp: new Date().toLocaleString(),
           ubicacion: currentAmb,
-          nota: currentCodigo
+          nota: currentContenido || currentCodigo
         };
 
         fieldData[activeObraId].fotos.push(photoObj);
@@ -1507,7 +1519,8 @@
       d.fecha_inicio = document.getElementById('inputFechaInicio').value.trim();
       d.fecha_culm = document.getElementById('inputFechaCulm').value.trim();
       d.ubicacion = document.getElementById('inputUbicacion').value.trim();
-      d.notas = document.getElementById('inputNotas').value.trim();
+      d.notas = document.getElementById('inputNotas') ? document.getElementById('inputNotas').value.trim() : '';
+      d.notas_auditoria = document.getElementById('inputNotasAuditoria') ? document.getElementById('inputNotasAuditoria').value.trim() : '';
       d.updated_at = new Date().toISOString();
 
       // Guardar estado de checks
