@@ -153,12 +153,18 @@
     <div style="background: #F8FAFC; border: 1px solid #CBD5E1; padding: 0.4rem 0.6rem; border-radius: 8px; margin-top: 0.4rem; display: flex; align-items: center; justify-content: space-between; gap: 0.4rem;">
       <span style="font-size: 0.72rem; font-weight: 700; color: #475569; white-space: nowrap;">📍 AMBIENTE ACTUAL:</span>
       <select id="selectAmbienteGlobal" onchange="cambiarAmbienteGlobal(this.value)" style="font-size: 0.75rem; padding: 0.25rem 0.4rem; border-radius: 6px; border: 1px solid #94A3B8; background: white; font-weight: 700; color: #0F172A; outline: none; width: 100%; max-width: 220px; cursor: pointer;">
-        <option value="🚽 Baño / Amb. Auxiliar">🚽 Baño / Amb. Auxiliar</option>
-        <option value="🏢 Oficina PMO">🏢 Oficina PMO</option>
-        <option value="🚪 Depósito / Almacén">🚪 Depósito / Almacén</option>
-        <option value="🚶 Pasillo / Estante">🚶 Pasillo / Estante</option>
-        <option value="🏛️ Archivo Central">🏛️ Archivo Central</option>
-        <option value="OTRO">✏️ Otro ambiente...</option>
+        <option value="BAÑO1-PMO">🚽 BAÑO1-PMO</option>
+        <option value="BAÑO2-PMO">🚽 BAÑO2-PMO</option>
+        <option value="BAÑO3-PMO">🚽 BAÑO3-PMO</option>
+        <option value="OFICINA1-PMO">🏢 OFICINA1-PMO</option>
+        <option value="OFICINA2-PMO">🏢 OFICINA2-PMO</option>
+        <option value="OFICINA3-PMO">🏢 OFICINA3-PMO</option>
+        <option value="PASADIZO-ESCALERA">🚶 PASADIZO-ESCALERA</option>
+        <option value="SECRETARIA-PMO">📑 SECRETARIA-PMO</option>
+        <option value="ALMACEN-TECHO">📦 ALMACEN-TECHO</option>
+        <option value="ARMARIO-1ERPISO">🗄️ ARMARIO-1ERPISO</option>
+        <option value="OTROS">📍 OTROS</option>
+        <option value="CUSTOM">➕ Agregar Sub-zona / Otro...</option>
       </select>
     </div>
 
@@ -230,11 +236,16 @@
           <input type="text" id="inputUbicacion" class="field-input" placeholder="Ej: Caja 03, Archivador Azul N° 2, Estante 4...">
           <div class="preset-chips">
             <span class="preset-chip" onclick="appendUbicacion('Caja N° ')">📦 Caja N°</span>
-            <span class="preset-chip" onclick="appendUbicacion('Oficina PMO ')">🏢 Ofic. PMO</span>
-            <span class="preset-chip" onclick="appendUbicacion('Archivo Central ')">🏛️ Arch. Central</span>
-            <span class="preset-chip" onclick="appendUbicacion('Depósito / Almacén ')">🚪 Depósito/Almacén</span>
-            <span class="preset-chip" onclick="appendUbicacion('Estante ')">🗄️ Estante</span>
-            <span class="preset-chip" onclick="appendUbicacion('Ambiente Baño/Dep. ')">🚽 Ambiente Aux.</span>
+            <span class="preset-chip" onclick="appendUbicacion('BAÑO1-PMO ')">🚽 BAÑO1</span>
+            <span class="preset-chip" onclick="appendUbicacion('BAÑO2-PMO ')">🚽 BAÑO2</span>
+            <span class="preset-chip" onclick="appendUbicacion('BAÑO3-PMO ')">🚽 BAÑO3</span>
+            <span class="preset-chip" onclick="appendUbicacion('OFICINA1-PMO ')">🏢 OFIC1</span>
+            <span class="preset-chip" onclick="appendUbicacion('OFICINA2-PMO ')">🏢 OFIC2</span>
+            <span class="preset-chip" onclick="appendUbicacion('OFICINA3-PMO ')">🏢 OFIC3</span>
+            <span class="preset-chip" onclick="appendUbicacion('PASADIZO-ESCALERA ')">🚶 PASADIZO</span>
+            <span class="preset-chip" onclick="appendUbicacion('SECRETARIA-PMO ')">📑 SECRETARIA</span>
+            <span class="preset-chip" onclick="appendUbicacion('ALMACEN-TECHO ')">📦 ALMACEN-TECHO</span>
+            <span class="preset-chip" onclick="appendUbicacion('ARMARIO-1ERPISO ')">🗄️ ARMARIO-1ER</span>
           </div>
         </div>
 
@@ -414,29 +425,55 @@
     });
 
     function initAmbienteSelector() {
-      const savedAmb = localStorage.getItem('fdm_active_amb') || '🚽 Baño / Amb. Auxiliar';
       const sel = document.getElementById('selectAmbienteGlobal');
-      if (sel) sel.value = savedAmb;
+      if (!sel) return;
+      
+      // Cargar ambientes personalizados previos
+      try {
+        const customs = JSON.parse(localStorage.getItem('fdm_custom_ambientes') || '[]');
+        customs.forEach(c => {
+          if (![...sel.options].some(o => o.value === c)) {
+            const opt = document.createElement('option');
+            opt.value = c;
+            opt.innerText = "📍 " + c;
+            sel.insertBefore(opt, sel.lastElementChild);
+          }
+        });
+      } catch (e) {}
+
+      const savedAmb = localStorage.getItem('fdm_active_amb') || 'BAÑO1-PMO';
+      if ([...sel.options].some(o => o.value === savedAmb)) {
+        sel.value = savedAmb;
+      }
     }
 
     function getActiveAmbiente() {
       const sel = document.getElementById('selectAmbienteGlobal');
-      return (sel && sel.value !== 'OTRO' ? sel.value : localStorage.getItem('fdm_active_amb') || '🚽 Baño / Amb. Auxiliar');
+      return (sel && sel.value !== 'CUSTOM' ? sel.value : localStorage.getItem('fdm_active_amb') || 'BAÑO1-PMO');
     }
 
     function cambiarAmbienteGlobal(val) {
-      if (val === 'OTRO') {
-        const pers = prompt("Escribe el nombre del nuevo ambiente (ej: Pasadizo 2do Piso, Oficina Técnica):", "");
+      if (val === 'CUSTOM') {
+        const pers = prompt("Escribe el nombre del nuevo ambiente o sub-zona\n(Ej: ALMACEN-TECHO_parte_frontal, BAÑO1_detras_puerta):", "");
         if (pers && pers.trim()) {
-          val = pers.trim();
+          val = pers.trim().toUpperCase();
           const sel = document.getElementById('selectAmbienteGlobal');
-          const opt = document.createElement('option');
-          opt.value = val;
-          opt.innerText = "📍 " + val;
-          opt.selected = true;
-          sel.insertBefore(opt, sel.firstChild);
+          if (![...sel.options].some(o => o.value === val)) {
+            const opt = document.createElement('option');
+            opt.value = val;
+            opt.innerText = "📍 " + val;
+            sel.insertBefore(opt, sel.lastElementChild);
+            
+            // Guardar en lista de personalizados
+            try {
+              const customs = JSON.parse(localStorage.getItem('fdm_custom_ambientes') || '[]');
+              if (!customs.includes(val)) customs.push(val);
+              localStorage.setItem('fdm_custom_ambientes', JSON.stringify(customs));
+            } catch (e) {}
+          }
+          sel.value = val;
         } else {
-          document.getElementById('selectAmbienteGlobal').value = localStorage.getItem('fdm_active_amb') || '🚽 Baño / Amb. Auxiliar';
+          document.getElementById('selectAmbienteGlobal').value = localStorage.getItem('fdm_active_amb') || 'BAÑO1-PMO';
           return;
         }
       }
