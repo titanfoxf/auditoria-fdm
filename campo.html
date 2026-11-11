@@ -566,20 +566,18 @@
         const res = await fetch(url);
         const data = await res.json();
 
-        if (data && data.status === 'success' && Array.isArray(data.records)) {
+        if (data && data.status === 'success') {
           let mergedCount = 0;
-          data.records.forEach(r => {
+
+          // 1. Sincronizar Cajas y Fotos
+          const listaCajas = data.cajas || data.records || [];
+          listaCajas.forEach(r => {
             const obraId = r.obra_id;
             if (!obraId) return;
 
-            if (!fieldData[obraId]) {
-              fieldData[obraId] = { id: obraId, fotos: [] };
-            }
-            if (!fieldData[obraId].fotos) {
-              fieldData[obraId].fotos = [];
-            }
+            if (!fieldData[obraId]) fieldData[obraId] = { id: obraId, fotos: [] };
+            if (!fieldData[obraId].fotos) fieldData[obraId].fotos = [];
 
-            // Si hay foto registrada y no existe localmente
             if (r.codigo_caja) {
               const exists = fieldData[obraId].fotos.some(f => 
                 (f.codigo_caja && f.codigo_caja === r.codigo_caja) || (f.drive_url && f.drive_url === r.drive_url)
@@ -592,6 +590,7 @@
                   nombre: `DRIVE_${r.codigo_caja}.jpg`,
                   dataUrl: r.drive_url || '',
                   drive_url: r.drive_url || '',
+                  file_id: r.file_id || '',
                   isDriveLink: !!r.drive_url,
                   timestamp: r.timestamp || '',
                   ubicacion: r.ubicacion || '',
@@ -600,16 +599,26 @@
                 mergedCount++;
               }
             }
-
-            if (r.fecha_inicio && !fieldData[obraId].fecha_inicio) fieldData[obraId].fecha_inicio = r.fecha_inicio;
-            if (r.fecha_culm && !fieldData[obraId].fecha_culm) fieldData[obraId].fecha_culm = r.fecha_culm;
-            if (r.checks && Object.keys(r.checks).length > 0) {
-              fieldData[obraId].checks = Object.assign(fieldData[obraId].checks || {}, r.checks);
-            }
-
             autoCompileUbicacion(obraId);
             saveObraToDB(fieldData[obraId]);
           });
+
+          // 2. Sincronizar Checklist y Fechas de Obras
+          if (data.obras && typeof data.obras === 'object') {
+            Object.keys(data.obras).forEach(oKey => {
+              const oData = data.obras[oKey];
+              const oId = parseInt(oKey);
+              if (!oId) return;
+
+              if (!fieldData[oId]) fieldData[oId] = { id: oId, fotos: [] };
+              if (oData.fecha_inicio && !fieldData[oId].fecha_inicio) fieldData[oId].fecha_inicio = oData.fecha_inicio;
+              if (oData.fecha_culm && !fieldData[oId].fecha_culm) fieldData[oId].fecha_culm = oData.fecha_culm;
+              if (oData.checks && Object.keys(oData.checks).length > 0) {
+                fieldData[oId].checks = Object.assign(fieldData[oId].checks || {}, oData.checks);
+              }
+              saveObraToDB(fieldData[oId]);
+            });
+          }
 
           updateGlobalCounters();
           renderList();
@@ -618,7 +627,7 @@
             renderCajaSeqChips();
           }
           if (mergedCount > 0) {
-            showToast(`☁️ ${mergedCount} registros sincronizados de otros equipos`);
+            showToast(`☁️ ${mergedCount} cajas sincronizadas desde Google Drive`);
           }
         }
       } catch (err) {
@@ -629,34 +638,28 @@
       }
     }
 
-    async function uploadRecordToCloud(obraId, photoObj = null) {
+    async function uploadBoxPhotoToCloud(obraId, photoObj) {
       const url = getGasUrl();
-      if (!url) return;
+      if (!url || !photoObj) return;
 
       const d = fieldData[obraId];
-      if (!d) return;
       const p = projects.find(x => x.id === obraId) || {};
 
       const payload = {
+        action: "save_box_photo",
         obra_id: obraId,
         desc: p.desc || '',
         cui: p.cui || '',
-        codigo_caja: photoObj ? (photoObj.codigo_caja || photoObj.nota || '') : (document.getElementById('inputCodigoCaja')?.value || ''),
-        ubicacion: photoObj ? (photoObj.ubicacion || '') : (d.ubicacion || getActiveAmbiente()),
-        nota: d.notas || '',
-        slot: photoObj ? photoObj.slot : 'general',
-        fecha_inicio: d.fecha_inicio || '',
-        fecha_culm: d.fecha_culm || '',
-        checks: d.checks || {}
-      };
-
-      if (photoObj && photoObj.dataUrl && photoObj.dataUrl.startsWith('data:image')) {
-        payload.photo = {
+        codigo_caja: photoObj.codigo_caja || photoObj.nota || '',
+        ubicacion: photoObj.ubicacion || (d ? d.ubicacion : getActiveAmbiente()),
+        nota: photoObj.nota || (d ? d.notas : ''),
+        slot: photoObj.slot || 'rotulo',
+        photo: {
           base64: photoObj.dataUrl,
-          filename: photoObj.nombre || `OBRA_${obraId}_${payload.codigo_caja}.jpg`,
+          filename: photoObj.nombre || `OBRA_${obraId}_${photoObj.codigo_caja}.jpg`,
           slot: photoObj.slot
-        };
-      }
+        }
+      };
 
       try {
         fetch(url, {
@@ -665,18 +668,56 @@
           body: JSON.stringify(payload)
         }).then(res => res.json()).then(result => {
           if (result && result.status === 'success') {
-            showToast(`☁️ Guardado en Google Drive (${payload.codigo_caja || 'Obra ' + obraId})`);
+            showToast(`☁️ Foto guardada en Google Drive (${payload.codigo_caja})`);
             if (photoObj) {
               if (result.drive_url) photoObj.drive_url = result.drive_url;
               if (result.file_id) photoObj.file_id = result.file_id;
-              saveObraToDB(d);
+              if (d) saveObraToDB(d);
             }
           }
         }).catch(e => {
-          console.warn("Subida en segundo plano pendiente:", e);
+          console.warn("Subida de foto en segundo plano pendiente:", e);
         });
       } catch (e) {
-        console.warn("Fallo fetch a Google Apps Script:", e);
+        console.warn("Fallo fetch uploadBoxPhotoToCloud:", e);
+      }
+    }
+
+    async function uploadObraChecksToCloud(obraId) {
+      const url = getGasUrl();
+      if (!url) return;
+
+      const d = fieldData[obraId];
+      if (!d) return;
+      const p = projects.find(x => x.id === obraId) || {};
+
+      const payload = {
+        action: "save_obra_checks",
+        obra_id: obraId,
+        desc: p.desc || '',
+        cui: p.cui || '',
+        provincia: p.provincia || '',
+        fecha_inicio: d.fecha_inicio || '',
+        fecha_culm: d.fecha_culm || '',
+        ubicacion: d.ubicacion || '',
+        notas: d.notas || '',
+        checks: d.checks || {}
+      };
+
+      try {
+        fetch(url, {
+          method: 'POST',
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+          body: JSON.stringify(payload)
+        }).then(res => res.json()).then(result => {
+          if (result && result.status === 'success') {
+            showToast(`☁️ Checklist actualizado en Matriz 69 Obras`);
+          }
+        }).catch(e => {
+          console.warn("Actualización de checks en segundo plano pendiente:", e);
+        });
+      } catch (e) {
+        console.warn("Fallo fetch uploadObraChecksToCloud:", e);
       }
     }
 
@@ -1332,7 +1373,7 @@
         renderDrawerPhotos();
         updateGlobalCounters();
         renderList();
-        uploadRecordToCloud(activeObraId, photoObj);
+        uploadBoxPhotoToCloud(activeObraId, photoObj);
         showToast(`📸 Guardada. Escribe en la caja: ${currentCodigo}`);
       } catch (err) {
         console.error("Error al procesar foto:", err);
@@ -1479,7 +1520,7 @@
       await saveObraToDB(d);
       updateGlobalCounters();
       renderList();
-      uploadRecordToCloud(activeObraId, null);
+      uploadObraChecksToCloud(activeObraId);
 
       if (showFeedback) {
         showToast("💾 Datos de Obra N° " + activeObraId + " guardados");
