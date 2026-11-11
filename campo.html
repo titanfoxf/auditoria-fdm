@@ -320,6 +320,16 @@
             <input type="file" accept="image/*" capture="environment" id="file_otros" style="display:none;" onchange="handlePhotoUpload('otros', this)">
             <div class="thumb-grid" id="grid_otros" style="margin-top: 0.6rem;"></div>
           </div>
+
+          <!-- Botón para Concluir Caja y Pasar a Siguiente -->
+          <div style="margin-top: 1rem; margin-bottom: 0.5rem;">
+            <button type="button" onclick="pasarASiguienteCaja()" style="width: 100%; background: linear-gradient(135deg, #16A34A, #15803D); color: white; border: none; border-radius: 12px; padding: 0.95rem 1rem; font-size: 0.95rem; font-weight: 800; cursor: pointer; box-shadow: 0 4px 12px rgba(22, 163, 74, 0.35); display: flex; align-items: center; justify-content: center; gap: 0.5rem;">
+              <span>📦 Terminar Caja Actual y Pasar a Siguiente Caja ➔</span>
+            </button>
+            <div style="font-size: 0.68rem; color: #64748B; text-align: center; margin-top: 0.35rem;">
+              Presiona aquí únicamente al terminar todas las fotos de esta caja para limpiar el contenido y avanzar al siguiente número.
+            </div>
+          </div>
         </div>
 
         <!-- PANEL 2: REVISIÓN DOCUMENTAL Y CHECKLIST (Auditoría de Contenido) -->
@@ -588,21 +598,24 @@
 
             if (r.codigo_caja) {
               const exists = fieldData[obraId].fotos.some(f => 
-                (f.codigo_caja && f.codigo_caja === r.codigo_caja) || (f.drive_url && f.drive_url === r.drive_url)
+                (f.drive_url && f.drive_url === r.drive_url) || (f.file_id && f.file_id === r.file_id)
               );
               if (!exists) {
+                const isRotulo = !r.tipo_foto || r.tipo_foto === 'Rótulo de Caja';
                 fieldData[obraId].fotos.push({
                   id: 'cloud_' + Date.now() + '_' + Math.random().toString(36).substring(2, 6),
-                  slot: r.slot || 'rotulo',
+                  slot: isRotulo ? 'rotulo' : 'otros',
                   codigo_caja: r.codigo_caja,
+                  sub_codigo: r.sub_codigo || (isRotulo ? r.codigo_caja : `${r.codigo_caja}-ADIC`),
+                  tipo_foto: r.tipo_foto || (isRotulo ? 'Rótulo de Caja' : 'Foto Adicional'),
                   nombre: `DRIVE_${r.codigo_caja}.jpg`,
                   dataUrl: r.drive_url || '',
                   drive_url: r.drive_url || '',
                   file_id: r.file_id || '',
                   isDriveLink: !!r.drive_url,
                   timestamp: r.timestamp || '',
-                  ubicacion: r.ubicacion || '',
-                  nota: r.nota || r.codigo_caja
+                  ubicacion: r.ambiente || r.ubicacion || '',
+                  nota: r.contenido_caja || r.nota || r.codigo_caja
                 });
                 mergedCount++;
               }
@@ -653,7 +666,7 @@
       const d = fieldData[obraId];
       const p = projects.find(x => x.id === obraId) || {};
       const contenidoCaja = photoObj.nota || (document.getElementById('inputNotas')?.value || '').trim();
-      const tipoFoto = (photoObj.slot === 'rotulo' ? 'Rótulo de Caja' : 'Foto Adicional');
+      const tipoFoto = photoObj.tipo_foto || (photoObj.slot === 'rotulo' ? 'Rótulo de Caja' : 'Foto Adicional');
 
       const payload = {
         action: "save_box_photo",
@@ -661,6 +674,7 @@
         desc: p.desc || '',
         cui: p.cui || '',
         codigo_caja: photoObj.codigo_caja || '',
+        sub_codigo: photoObj.sub_codigo || photoObj.codigo_caja || '',
         ambiente: photoObj.ubicacion || getActiveAmbiente(),
         contenido_caja: contenidoCaja,
         tipo_foto: tipoFoto,
@@ -678,7 +692,7 @@
           body: JSON.stringify(payload)
         }).then(res => res.json()).then(result => {
           if (result && result.status === 'success') {
-            showToast(`☁️ Guardado en CENSO_CAJAS_FOTOS (${payload.codigo_caja})`);
+            showToast(`☁️ Guardado en CENSO_CAJAS_FOTOS (${payload.sub_codigo || payload.codigo_caja})`);
             if (photoObj) {
               if (result.drive_url) photoObj.drive_url = result.drive_url;
               if (result.file_id) photoObj.file_id = result.file_id;
@@ -1360,11 +1374,26 @@
         const currentCodigo = (document.getElementById('inputCodigoCaja')?.value || '').trim() || autoGenerarCodigoCaja().code;
         const currentContenido = (document.getElementById('inputNotas')?.value || '').trim();
         
+        // Calcular sufijo de foto adicional para mantener siempre el mismo código_caja
+        let subCodigo = currentCodigo;
+        let tipoFoto = "Rótulo de Caja";
+        let filenameSuffix = "ROTULO";
+
+        if (slotKey === 'otros') {
+          const adicCount = fieldData[activeObraId].fotos.filter(f => f.codigo_caja === currentCodigo && f.slot === 'otros').length + 1;
+          const adicSuffix = 'ADIC_' + String(adicCount).padStart(2, '0');
+          subCodigo = `${currentCodigo}-${adicSuffix}`;
+          tipoFoto = `Foto Adicional (${adicSuffix})`;
+          filenameSuffix = adicSuffix;
+        }
+
         const photoObj = {
           id: 'foto_' + Date.now(),
           slot: slotKey,
           codigo_caja: currentCodigo,
-          nombre: `OBRA_${String(activeObraId).padStart(2, '0')}_${slotKey.toUpperCase()}_${currentCodigo}_${Date.now()}.jpg`,
+          sub_codigo: subCodigo,
+          tipo_foto: tipoFoto,
+          nombre: `OBRA_${String(activeObraId).padStart(2, '0')}_${currentCodigo}_${filenameSuffix}.jpg`,
           dataUrl: compressedDataUrl,
           timestamp: new Date().toLocaleString(),
           ubicacion: currentAmb,
@@ -1375,35 +1404,61 @@
         autoCompileUbicacion(activeObraId);
         await saveObraToDB(fieldData[activeObraId]);
 
-        // Avanzar automáticamente a la siguiente caja desocupada
-        currentCajaSeq = getFirstAvailableCajaSeq(activeObraId);
-        const inputCod = document.getElementById('inputCodigoCaja');
-        if (inputCod) inputCod.dataset.userEdited = "";
+        // Nota: NO incrementamos el código de caja automáticamente para permitir fotos adicionales de la misma caja.
+        // El usuario presionará "Terminar Caja Actual y Pasar a Siguiente Caja" cuando la caja física esté lista.
         updateCodigoDisplay();
 
         fileInput.value = ''; // Reset input
         renderDrawerPhotos();
         updateGlobalCounters();
         renderList();
+        renderCajaSeqChips();
         uploadBoxPhotoToCloud(activeObraId, photoObj);
-        showToast(`📸 Guardada. Escribe en la caja: ${currentCodigo}`);
+        showToast(`📸 Foto guardada en ${subCodigo}`);
       } catch (err) {
         console.error("Error al procesar foto:", err);
         alert("Error guardando foto: " + err.message);
       }
     }
 
+    function pasarASiguienteCaja() {
+      if (!activeObraId) return;
+
+      // Calcular el siguiente número de caja disponible
+      currentCajaSeq = getFirstAvailableCajaSeq(activeObraId);
+      const inputCod = document.getElementById('inputCodigoCaja');
+      if (inputCod) inputCod.dataset.userEdited = "";
+
+      // Limpiar el campo de contenido del rótulo para la nueva caja
+      const inputCont = document.getElementById('inputNotas');
+      if (inputCont) inputCont.value = "";
+
+      // Actualizar datos de la obra
+      if (fieldData[activeObraId]) {
+        fieldData[activeObraId].notas = "";
+        saveObraToDB(fieldData[activeObraId]);
+      }
+
+      updateCodigoDisplay();
+      renderCajaSeqChips();
+      showToast(`📦 Lista para llenar Nueva Caja C${currentCajaSeq}`);
+    }
+
     function autoCompileUbicacion(obraId) {
       const d = fieldData[obraId];
       if (!d || !d.fotos || d.fotos.length === 0) return;
 
-      const counts = {};
+      const ambMap = {};
       d.fotos.forEach(f => {
         const amb = f.ubicacion || 'Ambiente';
-        counts[amb] = (counts[amb] || 0) + 1;
+        if (!ambMap[amb]) ambMap[amb] = new Set();
+        ambMap[amb].add(f.codigo_caja || f.nota || 'Caja');
       });
 
-      const summaryList = Object.keys(counts).map(amb => `${amb} (${counts[amb]} ${counts[amb] === 1 ? 'caja' : 'cajas'})`);
+      const summaryList = Object.keys(ambMap).map(amb => {
+        const count = ambMap[amb].size;
+        return `${amb} (${count} ${count === 1 ? 'caja' : 'cajas'})`;
+      });
       const compiled = summaryList.join(' | ');
 
       d.ubicacion = compiled;
@@ -1445,11 +1500,11 @@
             </div>
             <div class="thumb-meta">
               <div class="thumb-amb">
-                <span style="font-weight: 800; color: #2563EB;">🏷️ ${f.codigo_caja || f.nota || 'Caja'}</span>
+                <span style="font-weight: 800; color: #2563EB;">🏷️ ${f.sub_codigo || f.codigo_caja || f.nota || 'Caja'}</span>
                 <span onclick="editPhotoCaption('${f.id}')" style="cursor: pointer; padding: 0 3px;" title="Editar código o ambiente">✏️</span>
               </div>
               <div class="thumb-note" onclick="editPhotoCaption('${f.id}')" title="${f.ubicacion}">
-                📍 ${f.ubicacion || 'Ambiente'}
+                📍 ${f.ubicacion || 'Ambiente'} ${f.tipo_foto && f.tipo_foto !== 'Rótulo de Caja' ? `• ${f.tipo_foto}` : ''}
               </div>
             </div>
           </div>
@@ -1495,12 +1550,8 @@
         deleteRecordFromCloud(activeObraId, photoToDelete);
       }
       
-      // Al borrar una foto, recalcular el primer número disponible y refrescar
-      currentCajaSeq = getFirstAvailableCajaSeq(activeObraId);
-      const inputCod = document.getElementById('inputCodigoCaja');
-      if (inputCod) inputCod.dataset.userEdited = "";
+      // Mantener la visualización y chips de cajas actualizados
       updateCodigoDisplay();
-
       renderDrawerPhotos();
       updateGlobalCounters();
       renderList();

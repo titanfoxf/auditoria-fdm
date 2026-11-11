@@ -1,6 +1,6 @@
 /**
  * ==============================================================================
- * SISTEMA CENTRALIZADO DE AUDITORÍA FDM - BACKEND GOOGLE DRIVE & SHEETS v3.1
+ * SISTEMA CENTRALIZADO DE AUDITORÍA FDM - BACKEND GOOGLE DRIVE & SHEETS v3.2
  * ==============================================================================
  * TABLA 1: "CENSO_CAJAS_FOTOS" (Inventario de cada caja física, ambiente, contenido y fotos)
  * TABLA 2: "MATRIZ_69_OBRAS"   (Ficha contractual del proyecto: Fechas y 11 Checks de Auditoría)
@@ -128,7 +128,7 @@ function doPost(e) {
 
         const base64Data = payload.photo.base64.replace(/^data:image\/\w+;base64,/, "");
         const decodedBytes = Utilities.base64Decode(base64Data);
-        const filename = payload.photo.filename || `OBRA_${obraId}_${codigoCaja}_${tipoFoto}.jpg`;
+        const filename = payload.photo.filename || `OBRA_${obraId}_${codigoCaja}.jpg`;
         const blob = Utilities.newBlob(decodedBytes, "image/jpeg", filename);
         
         const file = obraFolder.createFile(blob);
@@ -154,13 +154,12 @@ function doPost(e) {
         obra_id: obraId,
         codigo_caja: codigoCaja,
         drive_url: driveUrl,
-        file_id: fileId,
-        message: "Caja y foto registradas en CENSO_CAJAS_FOTOS"
+        file_id: fileId
       })).setMimeType(ContentService.MimeType.JSON);
     }
 
     // ==============================================================
-    // CASO 3: BORRAR CAJA Y FOTO (CENSO_CAJAS_FOTOS)
+    // CASO 3: BORRAR CAJA O FOTO ESPECÍFICA (CENSO_CAJAS_FOTOS)
     // ==============================================================
     if (action === "delete_record") {
       const sheetCajas = getOrCreateSheetCajas(ss);
@@ -190,8 +189,14 @@ function doPost(e) {
         const rowObraId = parseInt(row[1]);
         const rowCod = String(row[2] || "").trim();
         const rowUrl = String(row[6] || "").trim();
+        const rowFileId = String(row[7] || "").trim();
 
-        if (rowObraId === obraId && (rowCod === codigoCaja || (driveUrl && rowUrl === driveUrl))) {
+        const matchObra = (rowObraId === obraId);
+        const matchFile = (fileId && rowFileId === fileId) || (driveUrl && rowUrl === driveUrl);
+        const matchCod = (codigoCaja && rowCod === codigoCaja);
+
+        // Si se provee link de archivo, borrar exactamente esa foto
+        if (matchObra && (matchFile || (!driveUrl && matchCod))) {
           sheetCajas.deleteRow(i + 1);
           rowDeleted = true;
           break;
