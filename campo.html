@@ -202,7 +202,10 @@
     <div class="drawer" onclick="event.stopPropagation()">
       <div class="drawer-header">
         <div>
-          <span id="drawerObraNum" style="font-size: 0.75rem; background: #2563EB; padding: 0.15rem 0.5rem; border-radius: 4px; font-weight: 700;">OBRA N° 01</span>
+          <div style="display: flex; align-items: center; gap: 0.5rem;">
+            <span id="drawerObraNum" style="font-size: 0.75rem; background: #2563EB; padding: 0.15rem 0.5rem; border-radius: 4px; font-weight: 700;">OBRA N° 01</span>
+            <span id="drawerTotalFotos" style="font-size: 0.75rem; background: #059669; padding: 0.15rem 0.5rem; border-radius: 4px; font-weight: 700;">0 fotos</span>
+          </div>
           <h3 id="drawerTitle" style="margin-top: 4px; line-height: 1.25;">Nombre de la Obra</h3>
         </div>
         <button class="drawer-close" onclick="closeDrawer()">✕</button>
@@ -833,50 +836,56 @@
     }
 
     function openDrawer(id) {
-      activeObraId = id;
-      const p = projects.find(x => x.id === id);
-      if (!p) return;
+      try {
+        activeObraId = id;
+        const p = projects.find(x => x.id === id);
+        if (!p) return;
 
-      const d = fieldData[id] || { fotos: [] };
+        const d = fieldData[id] || { fotos: [] };
 
-      document.getElementById('drawerObraNum').innerText = `OBRA CIVIL N° ${String(p.id).padStart(2, '0')}`;
-      document.getElementById('drawerTitle').innerText = p.desc;
-      document.getElementById('drawerCui').innerText = p.cui !== 'N/D' ? `CUI: ${p.cui}` : 'CUI: S/N';
-      document.getElementById('drawerProv').innerText = p.provincia;
-      document.getElementById('drawerConv').innerText = p.convenio;
+        const elNum = document.getElementById('drawerObraNum');
+        if (elNum) elNum.innerText = `OBRA CIVIL N° ${String(p.id).padStart(2, '0')}`;
+        const elTitle = document.getElementById('drawerTitle');
+        if (elTitle) elTitle.innerText = p.desc;
+        const elCui = document.getElementById('drawerCui');
+        if (elCui) elCui.innerText = p.cui !== 'N/D' ? `CUI: ${p.cui}` : 'CUI: S/N';
+        const elProv = document.getElementById('drawerProv');
+        if (elProv) elProv.innerText = p.provincia;
+        const elConv = document.getElementById('drawerConv');
+        if (elConv) elConv.innerText = p.convenio;
 
-      document.getElementById('inputFechaInicio').value = d.fecha_inicio || p.fecha_inicio || '';
-      document.getElementById('inputFechaCulm').value = d.fecha_culm || p.fecha_culminacion_real || '';
-      document.getElementById('inputNotas').value = d.notas || '';
+        const elIni = document.getElementById('inputFechaInicio');
+        if (elIni) elIni.value = d.fecha_inicio || p.fecha_inicio || '';
+        const elCulm = document.getElementById('inputFechaCulm');
+        if (elCulm) elCulm.value = d.fecha_culm || p.fecha_culminacion_real || '';
+        const elNotas = document.getElementById('inputNotas');
+        if (elNotas) elNotas.value = d.notas || '';
 
-      // Cargar checkboxes del checklist documental
-      const savedChecks = d.checks || {};
-      CHECK_KEYS.forEach(k => {
-        const el = document.getElementById(k);
-        if (el) {
-          el.checked = !!savedChecks[k];
-          el.onchange = () => {
-            if (!fieldData[activeObraId]) fieldData[activeObraId] = { id: activeObraId, fotos: [] };
-            if (!fieldData[activeObraId].checks) fieldData[activeObraId].checks = {};
-            fieldData[activeObraId].checks[k] = el.checked;
-            saveObraToDB(fieldData[activeObraId]);
-            showToast(el.checked ? "✓ Check marcado" : "✕ Check desmarcado");
-          };
-        }
-      });
+        // Cargar checkboxes del checklist documental
+        const savedChecks = d.checks || {};
+        CHECK_KEYS.forEach(k => {
+          const el = document.getElementById(k);
+          if (el) {
+            el.checked = !!savedChecks[k];
+            el.onchange = () => {
+              if (!fieldData[activeObraId]) fieldData[activeObraId] = { id: activeObraId, fotos: [] };
+              if (!fieldData[activeObraId].checks) fieldData[activeObraId].checks = {};
+              fieldData[activeObraId].checks[k] = el.checked;
+              saveObraToDB(fieldData[activeObraId]);
+              showToast(el.checked ? "✓ Check marcado" : "✕ Check desmarcado");
+            };
+          }
+        });
 
-      // Configurar Ambiente y N° de Caja en el Drawer
-      syncAmbienteDropdowns();
-      const currAmb = localStorage.getItem('fdm_active_amb') || 'BAÑO1-PMO';
-      const selD = document.getElementById('drawerAmbienteSelect');
-      const inputCaja = document.getElementById('inputCajaNum');
-      
-      let initialUbicacion = d.ubicacion || (p.tiene_caja !== 'NO - ARCHIVADOR' ? p.tiene_caja : '');
-      let parsedAmb = currAmb;
-      let parsedCaja = '';
-      
-      if (initialUbicacion) {
-        if (selD) {
+        // Configurar Ambiente y N° de Caja en el Drawer
+        syncAmbienteDropdowns();
+        const currAmb = localStorage.getItem('fdm_active_amb') || 'BAÑO1-PMO';
+        const selD = document.getElementById('drawerAmbienteSelect');
+        
+        let initialUbicacion = d.ubicacion || (p.tiene_caja !== 'NO - ARCHIVADOR' ? p.tiene_caja : '');
+        let parsedAmb = currAmb;
+        
+        if (initialUbicacion && selD) {
           for (const opt of selD.options) {
             if (opt.value !== 'CUSTOM' && initialUbicacion.toUpperCase().includes(opt.value)) {
               parsedAmb = opt.value;
@@ -884,32 +893,36 @@
             }
           }
         }
-        const mCaja = initialUbicacion.match(/Caja\s*\d+/i);
-        if (mCaja) parsedCaja = mCaja[0];
+
+        if (selD) selD.value = parsedAmb;
+        
+        // Inicializar y mostrar código de caja sugerido
+        manualCajaSeqOffset = 0;
+        const inputCod = document.getElementById('inputCodigoCaja');
+        if (inputCod) inputCod.dataset.userEdited = "";
+        updateCodigoDisplay();
+
+        const badgeIni = document.getElementById('statusInicioBadge');
+        if (badgeIni) {
+          if (d.fecha_inicio || p.fecha_inicio) {
+            badgeIni.className = 'badge badge-green';
+            badgeIni.innerText = 'Comprobada';
+          } else {
+            badgeIni.className = 'badge badge-red';
+            badgeIni.innerText = 'Falta Inicio';
+          }
+        }
+
+        // Por defecto siempre aterrizar en la Pestaña 1: Censo de Cajas
+        switchDrawerTab('CAJAS');
+
+        renderDrawerPhotos();
+        
+        const backdrop = document.getElementById('drawerBackdrop');
+        if (backdrop) backdrop.classList.add('open');
+      } catch (err) {
+        console.error("Error al abrir obra:", err);
       }
-
-      if (selD) selD.value = parsedAmb;
-      
-      // Inicializar y mostrar código de caja sugerido
-      manualCajaSeqOffset = 0;
-      const inputCod = document.getElementById('inputCodigoCaja');
-      if (inputCod) inputCod.dataset.userEdited = "";
-      updateCodigoDisplay();
-
-      const badgeIni = document.getElementById('statusInicioBadge');
-      if (d.fecha_inicio || p.fecha_inicio) {
-        badgeIni.className = 'badge badge-green';
-        badgeIni.innerText = 'Comprobada';
-      } else {
-        badgeIni.className = 'badge badge-red';
-        badgeIni.innerText = 'Falta Inicio';
-      }
-
-      // Por defecto siempre aterrizar en la Pestaña 1: Censo de Cajas
-      switchDrawerTab('CAJAS');
-
-      renderDrawerPhotos();
-      document.getElementById('drawerBackdrop').classList.add('open');
     }
 
     function closeDrawer() {
@@ -1016,7 +1029,8 @@
       const d = fieldData[activeObraId] || { fotos: [] };
       const fotos = d.fotos || [];
 
-      document.getElementById('drawerTotalFotos').innerText = `${fotos.length} fotos guardadas`;
+      const elTotal = document.getElementById('drawerTotalFotos');
+      if (elTotal) elTotal.innerText = `${fotos.length} fotos`;
 
       const docsSlots = ['inicio', 'contrato', 'cuaderno', 'recepcion', 'liquidacion'];
       const docsFotosCount = fotos.filter(f => docsSlots.includes(f.slot)).length;
