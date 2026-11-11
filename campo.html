@@ -81,6 +81,14 @@
     .drawer-header h3 { font-size: 0.95rem; font-weight: 700; }
     .drawer-close { background: #1E293B; border: none; color: white; width: 32px; height: 32px; border-radius: 50%; font-size: 1rem; cursor: pointer; display: flex; align-items: center; justify-content: center; }
 
+    .drawer-tabs { display: flex; background: #0F172A; border-bottom: 2px solid #334155; padding: 0 0.5rem; gap: 0.5rem; }
+    .drawer-tab { flex: 1; padding: 0.65rem 0.5rem; font-size: 0.82rem; font-weight: 700; color: #94A3B8; border: none; background: transparent; cursor: pointer; border-bottom: 3px solid transparent; transition: all 0.15s; text-align: center; }
+    .drawer-tab.active { color: #38BDF8; border-bottom-color: #38BDF8; }
+
+    .check-list-grid { display: grid; grid-template-columns: 1fr; gap: 0.45rem; margin-top: 0.5rem; }
+    .check-item-box { display: flex; align-items: center; gap: 0.6rem; background: white; border: 1px solid #CBD5E1; padding: 0.5rem 0.75rem; border-radius: 8px; font-size: 0.8rem; font-weight: 600; color: #1E293B; cursor: pointer; }
+    .check-item-box input[type="checkbox"] { width: 18px; height: 18px; accent-color: #2563EB; cursor: pointer; }
+
     .drawer-body { padding: 1rem; overflow-y: auto; flex: 1; display: flex; flex-direction: column; gap: 1rem; }
     
     .field-group { background: #F8FAFC; border: 1px solid var(--border); border-radius: 12px; padding: 0.85rem; }
@@ -200,155 +208,198 @@
         <button class="drawer-close" onclick="closeDrawer()">✕</button>
       </div>
 
+      <!-- Pestañas Modulares de Trabajo -->
+      <div class="drawer-tabs">
+        <button type="button" class="drawer-tab active" id="tabBtnCajas" onclick="switchDrawerTab('CAJAS')">📦 1. Censo de Cajas</button>
+        <button type="button" class="drawer-tab" id="tabBtnDocs" onclick="switchDrawerTab('DOCS')">📑 2. Checklist & Actas</button>
+      </div>
+
       <div class="drawer-body">
         <!-- Resumen Inicial de Obra -->
         <div style="font-size: 0.75rem; color: var(--text-muted); display: flex; gap: 0.5rem; flex-wrap: wrap;">
           <span id="drawerCui">CUI: —</span> • <span id="drawerProv">Provincia</span> • <span id="drawerConv">100 MLL</span>
         </div>
 
-        <!-- Campos de Validación en Campo -->
-        <div class="field-group">
-          <div class="field-title">
-            <span>📅 Fecha de Inicio Real</span>
-            <span id="statusInicioBadge" class="badge badge-yellow">Verificar</span>
+        <!-- PANEL 1: CENSO RÁPIDO DE CAJAS (Barrido Topográfico) -->
+        <div id="panelTabCajas">
+          <div class="field-group">
+            <div class="field-title">
+              <span>📍 AMBIENTE DONDE SE ENCUENTRA LA CAJA</span>
+              <span style="font-size: 0.7rem; color: #2563EB;">Obligatorio para Auditoría</span>
+            </div>
+            
+            <select id="drawerAmbienteSelect" class="field-input" onchange="onDrawerAmbienteChange(this.value)" style="font-weight: 700; color: #0F172A; background: #FFF; font-size: 0.92rem; border: 1.5px solid #2563EB; cursor: pointer; padding: 0.65rem;">
+              <option value="BAÑO1-PMO">🚽 BAÑO1-PMO</option>
+              <option value="BAÑO2-PMO">🚽 BAÑO2-PMO</option>
+              <option value="BAÑO3-PMO">🚽 BAÑO3-PMO</option>
+              <option value="OFICINA1-PMO">🏢 OFICINA1-PMO</option>
+              <option value="OFICINA2-PMO">🏢 OFICINA2-PMO</option>
+              <option value="OFICINA3-PMO">🏢 OFICINA3-PMO</option>
+              <option value="PASADIZO-ESCALERA">🚶 PASADIZO-ESCALERA</option>
+              <option value="SECRETARIA-PMO">📑 SECRETARIA-PMO</option>
+              <option value="ALMACEN-TECHO">📦 ALMACEN-TECHO</option>
+              <option value="ARMARIO-1ERPISO">🗄️ ARMARIO-1ERPISO</option>
+              <option value="OTROS">📍 OTROS</option>
+              <option value="CUSTOM">➕ Agregar Sub-zona / Otro...</option>
+            </select>
+
+            <!-- Tarjeta de Código de Trazabilidad Único -->
+            <div style="margin-top: 0.75rem; background: #0F172A; border-radius: 10px; padding: 0.75rem; color: white; display: flex; flex-direction: column; gap: 0.4rem; box-shadow: 0 2px 6px rgba(0,0,0,0.15);">
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <span style="font-size: 0.72rem; font-weight: 700; text-transform: uppercase; color: #94A3B8; letter-spacing: 0.5px;">🏷️ CÓDIGO ÚNICO DE CAJA (Escribe en la caja):</span>
+                <button type="button" onclick="generarSiguienteCodigoCaja()" style="background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3); color: white; padding: 2px 8px; border-radius: 4px; font-size: 0.7rem; font-weight: 700; cursor: pointer;">Siguiente (+)</button>
+              </div>
+              <div style="display: flex; align-items: center; gap: 0.5rem;">
+                <input type="text" id="inputCodigoCaja" class="field-input" style="background: #1E293B; border: 1.5px solid #38BDF8; color: #38BDF8; font-size: 1.25rem; font-weight: 800; letter-spacing: 1.5px; text-align: center; margin: 0; padding: 0.5rem; text-transform: uppercase;" placeholder="B1-01-C1" oninput="onCustomCodigoChange()">
+              </div>
+              <div style="font-size: 0.68rem; color: #CBD5E1; display: flex; justify-content: space-between; align-items: center;">
+                <span>Ambiente: <strong id="lblAmbCode">B1</strong> | Obra: <strong id="lblObraCode">01</strong> | Secuencia: <strong id="lblCajaSeq">C1</strong></span>
+                <span style="color: #4ADE80; font-weight: 700;">✓ Marca con plumón</span>
+              </div>
+            </div>
+
+            <input type="hidden" id="inputUbicacion">
+            <input type="hidden" id="inputCajaNum">
+            <div id="ubicacionResumenDisplay" style="margin-top: 0.5rem; font-size: 0.78rem; color: #1E293B; background: #EEF2FF; padding: 0.4rem 0.6rem; border-radius: 6px; border: 1px solid #C7D2FE; font-weight: 600;">
+              📍 Trazabilidad: <span id="ubicacionResumenText" style="color: #2563EB;">BAÑO1-PMO [B1-01-C1]</span>
+            </div>
           </div>
-          <input type="text" id="inputFechaInicio" class="field-input" placeholder="Ej: 14/01/2022 o 14 de enero del 2022">
-          <div class="preset-chips">
-            <span class="preset-chip" onclick="setPresetDate('inputFechaInicio', '01/06/2021')">01/06/2021</span>
-            <span class="preset-chip" onclick="setPresetDate('inputFechaInicio', '15/01/2022')">15/01/2022</span>
-            <span class="preset-chip" onclick="setPresetDate('inputFechaInicio', '01/07/2023')">01/07/2023</span>
-            <span class="preset-chip" onclick="setPresetDate('inputFechaInicio', '15/05/2024')">15/05/2024</span>
+
+          <!-- Qué contiene la caja según su rótulo -->
+          <div class="field-group">
+            <div class="field-title">
+              <span>📦 ¿Qué contiene esta caja? (Marca lo que dice el rótulo)</span>
+            </div>
+            <div class="preset-chips" style="margin-top: 0.2rem;">
+              <span class="preset-chip" onclick="appendContenido('Exp. Técnico')">📁 Exp. Técnico</span>
+              <span class="preset-chip" onclick="appendContenido('Valorizaciones')">📊 Valorizaciones</span>
+              <span class="preset-chip" onclick="appendContenido('Cuadernos de Obra')">📖 Cuadernos</span>
+              <span class="preset-chip" onclick="appendContenido('Liquidación')">⚖️ Liquidación</span>
+              <span class="preset-chip" onclick="appendContenido('Contrato y Bases')">📜 Contrato/Bases</span>
+              <span class="preset-chip" onclick="appendContenido('Adicionales/Ampliaciones')">➕ Adicionales</span>
+              <span class="preset-chip" onclick="appendContenido('Supervisión')">👷 Supervisión</span>
+            </div>
+            <textarea id="inputNotas" class="field-input" style="height: 55px; resize: none; margin-top: 0.5rem;" placeholder="Ej: Caja contiene Valorizaciones 1 a 6 y Cuaderno de Obra N° 01..."></textarea>
+          </div>
+
+          <!-- Foto del Rótulo de la Caja -->
+          <div class="photo-slot" style="border: 2px dashed #2563EB; background: #F8FAFC;">
+            <div class="slot-hdr">
+              <span style="font-size: 0.85rem; font-weight: 800; color: #1E293B;">📸 Foto del Rótulo de la Caja</span>
+              <span id="slotCount_rotulo" class="badge badge-gray">0</span>
+            </div>
+            <button type="button" class="btn-camera" onclick="triggerCamera('rotulo')" style="padding: 0.75rem; font-size: 0.9rem; font-weight: 700;">📸 Tomar Foto a Rótulo de Caja (+)</button>
+            <input type="file" accept="image/*" capture="environment" id="file_rotulo" style="display:none;" onchange="handlePhotoUpload('rotulo', this)">
+            <div class="thumb-grid" id="grid_rotulo" style="margin-top: 0.6rem;"></div>
           </div>
         </div>
 
-        <div class="field-group">
-          <div class="field-title">
-            <span>🏁 Fecha de Culminación Real / Recepción</span>
-          </div>
-          <input type="text" id="inputFechaCulm" class="field-input" placeholder="Ej: 11/09/2022 o Acta del 23/12/2022">
-        </div>
-
-        <div class="field-group">
-          <div class="field-title">
-            <span>📍 AMBIENTE DONDE SE ENCUENTRA LA CAJA</span>
-            <span style="font-size: 0.7rem; color: #2563EB;">Obligatorio para Auditoría</span>
-          </div>
+        <!-- PANEL 2: REVISIÓN DOCUMENTAL Y CHECKLIST (Auditoría de Contenido) -->
+        <div id="panelTabDocs" style="display: none;">
           
-          <select id="drawerAmbienteSelect" class="field-input" onchange="onDrawerAmbienteChange(this.value)" style="font-weight: 700; color: #0F172A; background: #FFF; font-size: 0.92rem; border: 1.5px solid #2563EB; cursor: pointer; padding: 0.65rem;">
-            <option value="BAÑO1-PMO">🚽 BAÑO1-PMO</option>
-            <option value="BAÑO2-PMO">🚽 BAÑO2-PMO</option>
-            <option value="BAÑO3-PMO">🚽 BAÑO3-PMO</option>
-            <option value="OFICINA1-PMO">🏢 OFICINA1-PMO</option>
-            <option value="OFICINA2-PMO">🏢 OFICINA2-PMO</option>
-            <option value="OFICINA3-PMO">🏢 OFICINA3-PMO</option>
-            <option value="PASADIZO-ESCALERA">🚶 PASADIZO-ESCALERA</option>
-            <option value="SECRETARIA-PMO">📑 SECRETARIA-PMO</option>
-            <option value="ALMACEN-TECHO">📦 ALMACEN-TECHO</option>
-            <option value="ARMARIO-1ERPISO">🗄️ ARMARIO-1ERPISO</option>
-            <option value="OTROS">📍 OTROS</option>
-            <option value="CUSTOM">➕ Agregar Sub-zona / Otro...</option>
-          </select>
-
-          <!-- Tarjeta de Código de Trazabilidad Único -->
-          <div style="margin-top: 0.75rem; background: #0F172A; border-radius: 10px; padding: 0.75rem; color: white; display: flex; flex-direction: column; gap: 0.4rem; box-shadow: 0 2px 6px rgba(0,0,0,0.15);">
-            <div style="display: flex; justify-content: space-between; align-items: center;">
-              <span style="font-size: 0.72rem; font-weight: 700; text-transform: uppercase; color: #94A3B8; letter-spacing: 0.5px;">🏷️ CÓDIGO ÚNICO DE CAJA (Escribe en la caja):</span>
-              <button type="button" onclick="generarSiguienteCodigoCaja()" style="background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3); color: white; padding: 2px 8px; border-radius: 4px; font-size: 0.7rem; font-weight: 700; cursor: pointer;">Siguiente (+)</button>
+          <!-- Fechas Contractuales Comprobadas -->
+          <div class="field-group">
+            <div class="field-title">
+              <span>📅 Fecha de Inicio Real</span>
+              <span id="statusInicioBadge" class="badge badge-yellow">Verificar</span>
             </div>
-            <div style="display: flex; align-items: center; gap: 0.5rem;">
-              <input type="text" id="inputCodigoCaja" class="field-input" style="background: #1E293B; border: 1.5px solid #38BDF8; color: #38BDF8; font-size: 1.25rem; font-weight: 800; letter-spacing: 1.5px; text-align: center; margin: 0; padding: 0.5rem; text-transform: uppercase;" placeholder="B1-01-C1" oninput="onCustomCodigoChange()">
-            </div>
-            <div style="font-size: 0.68rem; color: #CBD5E1; display: flex; justify-content: space-between; align-items: center;">
-              <span>Ambiente: <strong id="lblAmbCode">B1</strong> | Obra: <strong id="lblObraCode">01</strong> | Secuencia: <strong id="lblCajaSeq">C1</strong></span>
-              <span style="color: #4ADE80; font-weight: 700;">✓ Marca con plumón</span>
+            <input type="text" id="inputFechaInicio" class="field-input" placeholder="Ej: 14/01/2022 o 14 de enero del 2022">
+            <div class="preset-chips">
+              <span class="preset-chip" onclick="setPresetDate('inputFechaInicio', '01/06/2021')">01/06/2021</span>
+              <span class="preset-chip" onclick="setPresetDate('inputFechaInicio', '15/01/2022')">15/01/2022</span>
+              <span class="preset-chip" onclick="setPresetDate('inputFechaInicio', '01/07/2023')">01/07/2023</span>
+              <span class="preset-chip" onclick="setPresetDate('inputFechaInicio', '15/05/2024')">15/05/2024</span>
             </div>
           </div>
 
-          <!-- Input oculto para compatibilidad y resumen visual -->
-          <input type="hidden" id="inputUbicacion">
-          <input type="hidden" id="inputCajaNum">
-          <div id="ubicacionResumenDisplay" style="margin-top: 0.5rem; font-size: 0.78rem; color: #1E293B; background: #EEF2FF; padding: 0.4rem 0.6rem; border-radius: 6px; border: 1px solid #C7D2FE; font-weight: 600;">
-            📍 Trazabilidad: <span id="ubicacionResumenText" style="color: #2563EB;">BAÑO1-PMO [B1-01-C1]</span>
+          <div class="field-group">
+            <div class="field-title">
+              <span>🏁 Fecha de Culminación Real / Recepción</span>
+            </div>
+            <input type="text" id="inputFechaCulm" class="field-input" placeholder="Ej: 11/09/2022 o Acta del 23/12/2022">
           </div>
-        </div>
 
-        <div class="field-group">
-          <div class="field-title">
-            <span>📝 Notas y Hallazgos en el Archivador</span>
+          <!-- Checklist Documental de Obra (11 Checks Oficiales) -->
+          <div class="field-group">
+            <div class="field-title">
+              <span>📑 Checklist Documental FDM (Punto 61)</span>
+              <span style="font-size: 0.7rem; color: #2563EB;">Marca lo verificado en físico</span>
+            </div>
+            <div class="check-list-grid">
+              <label class="check-item-box"><input type="checkbox" id="chk_exp"> 1. Expediente Técnico Aprobado</label>
+              <label class="check-item-box"><input type="checkbox" id="chk_cont"> 2. Contrato Principal y Fianzas</label>
+              <label class="check-item-box"><input type="checkbox" id="chk_acta_ent"> 3. Acta de Entrega de Terreno / Inicio</label>
+              <label class="check-item-box"><input type="checkbox" id="chk_cuad"> 4. Cuaderno de Obra Completo</label>
+              <label class="check-item-box"><input type="checkbox" id="chk_val"> 5. Valorizaciones Mensuales (1 a N)</label>
+              <label class="check-item-box"><input type="checkbox" id="chk_adic"> 6. Adicionales / Ampliaciones de Plazo</label>
+              <label class="check-item-box"><input type="checkbox" id="chk_sup"> 7. Informes Mensuales de Supervisión</label>
+              <label class="check-item-box"><input type="checkbox" id="chk_rec"> 8. Acta de Recepción de Obra</label>
+              <label class="check-item-box"><input type="checkbox" id="chk_liq"> 9. Liquidación de Contrato de Obra</label>
+              <label class="check-item-box"><input type="checkbox" id="chk_res"> 10. Resolución de Liquidación FDM</label>
+              <label class="check-item-box"><input type="checkbox" id="chk_transf"> 11. Acta de Transferencia a Entidad</label>
+            </div>
           </div>
-          <textarea id="inputNotas" class="field-input" style="height: 65px; resize: none;" placeholder="Ej: Se encontró contrato original N° 004-2021, falta resolución de liquidación..."></textarea>
-        </div>
 
-        <!-- Ranuras de Fotos Directas -->
-        <div style="font-weight: 700; font-size: 0.85rem; color: var(--text); margin-top: 0.5rem; display: flex; align-items: center; justify-content: space-between;">
-          <span>📸 FOTOS Y EVIDENCIAS DE CAMPO</span>
-          <span id="drawerTotalFotos" style="color: var(--success); font-size: 0.75rem;">0 fotos</span>
-        </div>
-
-        <!-- Slot 1: Lomo / Ubicación -->
-        <div class="photo-slot">
-          <div class="slot-hdr">
-            <span>🏷️ 1. Rótulos de Cajas (Toma foto a cada caja: 1, 2, 3...)</span>
-            <span id="slotCount_rotulo" class="badge badge-gray">0</span>
+          <div style="font-weight: 700; font-size: 0.85rem; color: var(--text); margin-top: 0.5rem; display: flex; align-items: center; justify-content: space-between;">
+            <span>📸 EVIDENCIAS DE ACTAS Y CONTRATOS (OPCIONAL)</span>
+            <span id="drawerTotalFotosDocs" style="color: var(--success); font-size: 0.75rem;">0 fotos</span>
           </div>
-          <button class="btn-camera" onclick="triggerCamera('rotulo')">📸 Tomar Foto a Rótulo de Caja (+)</button>
-          <input type="file" accept="image/*" capture="environment" id="file_rotulo" style="display:none;" onchange="handlePhotoUpload('rotulo', this)">
-          <div class="thumb-grid" id="grid_rotulo"></div>
-        </div>
 
-        <!-- Slot 2: Acta Inicio -->
-        <div class="photo-slot">
-          <div class="slot-hdr">
-            <span>📜 2. Acta de Entrega de Terreno / Inicio</span>
-            <span id="slotCount_inicio" class="badge badge-gray">0</span>
+          <!-- Slot 2: Acta Inicio -->
+          <div class="photo-slot">
+            <div class="slot-hdr">
+              <span>📜 Acta de Entrega de Terreno / Inicio</span>
+              <span id="slotCount_inicio" class="badge badge-gray">0</span>
+            </div>
+            <button type="button" class="btn-camera" onclick="triggerCamera('inicio')">📸 Foto Acta de Inicio</button>
+            <input type="file" accept="image/*" capture="environment" id="file_inicio" style="display:none;" onchange="handlePhotoUpload('inicio', this)">
+            <div class="thumb-grid" id="grid_inicio"></div>
           </div>
-          <button class="btn-camera" onclick="triggerCamera('inicio')">📸 Tomar Foto Acta de Inicio</button>
-          <input type="file" accept="image/*" capture="environment" id="file_inicio" style="display:none;" onchange="handlePhotoUpload('inicio', this)">
-          <div class="thumb-grid" id="grid_inicio"></div>
-        </div>
 
-        <!-- Slot 3: Contrato de Obra -->
-        <div class="photo-slot">
-          <div class="slot-hdr">
-            <span>📝 3. Contrato de Obra / Adendas</span>
-            <span id="slotCount_contrato" class="badge badge-gray">0</span>
+          <!-- Slot 3: Contrato de Obra -->
+          <div class="photo-slot">
+            <div class="slot-hdr">
+              <span>📝 Contrato de Obra / Adendas</span>
+              <span id="slotCount_contrato" class="badge badge-gray">0</span>
+            </div>
+            <button type="button" class="btn-camera" onclick="triggerCamera('contrato')">📸 Foto Contrato / Adenda</button>
+            <input type="file" accept="image/*" capture="environment" id="file_contrato" style="display:none;" onchange="handlePhotoUpload('contrato', this)">
+            <div class="thumb-grid" id="grid_contrato"></div>
           </div>
-          <button class="btn-camera" onclick="triggerCamera('contrato')">📸 Tomar Foto Contrato / Adenda</button>
-          <input type="file" accept="image/*" capture="environment" id="file_contrato" style="display:none;" onchange="handlePhotoUpload('contrato', this)">
-          <div class="thumb-grid" id="grid_contrato"></div>
-        </div>
 
-        <!-- Slot 4: Cuaderno de Obra -->
-        <div class="photo-slot">
-          <div class="slot-hdr">
-            <span>📖 4. Cuaderno de Obra (Asientos Inicio / Fin)</span>
-            <span id="slotCount_cuaderno" class="badge badge-gray">0</span>
+          <!-- Slot 4: Cuaderno de Obra -->
+          <div class="photo-slot">
+            <div class="slot-hdr">
+              <span>📖 Cuaderno de Obra (Asientos)</span>
+              <span id="slotCount_cuaderno" class="badge badge-gray">0</span>
+            </div>
+            <button type="button" class="btn-camera" onclick="triggerCamera('cuaderno')">📸 Foto Cuaderno de Obra</button>
+            <input type="file" accept="image/*" capture="environment" id="file_cuaderno" style="display:none;" onchange="handlePhotoUpload('cuaderno', this)">
+            <div class="thumb-grid" id="grid_cuaderno"></div>
           </div>
-          <button class="btn-camera" onclick="triggerCamera('cuaderno')">📸 Tomar Foto Cuaderno de Obra</button>
-          <input type="file" accept="image/*" capture="environment" id="file_cuaderno" style="display:none;" onchange="handlePhotoUpload('cuaderno', this)">
-          <div class="thumb-grid" id="grid_cuaderno"></div>
-        </div>
 
-        <!-- Slot 5: Acta Recepción -->
-        <div class="photo-slot">
-          <div class="slot-hdr">
-            <span>🏁 5. Acta de Recepción / Culminación</span>
-            <span id="slotCount_recepcion" class="badge badge-gray">0</span>
+          <!-- Slot 5: Acta Recepción -->
+          <div class="photo-slot">
+            <div class="slot-hdr">
+              <span>🏁 Acta de Recepción / Culminación</span>
+              <span id="slotCount_recepcion" class="badge badge-gray">0</span>
+            </div>
+            <button type="button" class="btn-camera" onclick="triggerCamera('recepcion')">📸 Foto Acta Recepción</button>
+            <input type="file" accept="image/*" capture="environment" id="file_recepcion" style="display:none;" onchange="handlePhotoUpload('recepcion', this)">
+            <div class="thumb-grid" id="grid_recepcion"></div>
           </div>
-          <button class="btn-camera" onclick="triggerCamera('recepcion')">📸 Tomar Foto Acta Recepción</button>
-          <input type="file" accept="image/*" capture="environment" id="file_recepcion" style="display:none;" onchange="handlePhotoUpload('recepcion', this)">
-          <div class="thumb-grid" id="grid_recepcion"></div>
-        </div>
 
-        <!-- Slot 6: Liquidación -->
-        <div class="photo-slot">
-          <div class="slot-hdr">
-            <span>⚖️ 6. Resolución de Liquidación Técnica</span>
-            <span id="slotCount_liquidacion" class="badge badge-gray">0</span>
+          <!-- Slot 6: Liquidación -->
+          <div class="photo-slot">
+            <div class="slot-hdr">
+              <span>⚖️ Resolución de Liquidación Técnica</span>
+              <span id="slotCount_liquidacion" class="badge badge-gray">0</span>
+            </div>
+            <button type="button" class="btn-camera" onclick="triggerCamera('liquidacion')">📸 Foto Liquidación</button>
+            <input type="file" accept="image/*" capture="environment" id="file_liquidacion" style="display:none;" onchange="handlePhotoUpload('liquidacion', this)">
+            <div class="thumb-grid" id="grid_liquidacion"></div>
           </div>
-          <button class="btn-camera" onclick="triggerCamera('liquidacion')">📸 Tomar Foto Liquidación</button>
-          <input type="file" accept="image/*" capture="environment" id="file_liquidacion" style="display:none;" onchange="handlePhotoUpload('liquidacion', this)">
-          <div class="thumb-grid" id="grid_liquidacion"></div>
+
         </div>
 
         <!-- Slot 7: Extra / Otros -->
@@ -743,6 +794,44 @@
     }
 
     // Modal Drawer
+    const CHECK_KEYS = [
+      'chk_exp', 'chk_cont', 'chk_acta_ent', 'chk_cuad', 
+      'chk_val', 'chk_adic', 'chk_sup', 'chk_rec', 
+      'chk_liq', 'chk_res', 'chk_transf'
+    ];
+
+    function switchDrawerTab(tabName) {
+      const tabCajas = document.getElementById('panelTabCajas');
+      const tabDocs = document.getElementById('panelTabDocs');
+      const btnCajas = document.getElementById('tabBtnCajas');
+      const btnDocs = document.getElementById('tabBtnDocs');
+
+      if (tabName === 'CAJAS') {
+        if (tabCajas) tabCajas.style.display = 'block';
+        if (tabDocs) tabDocs.style.display = 'none';
+        if (btnCajas) btnCajas.classList.add('active');
+        if (btnDocs) btnDocs.classList.remove('active');
+      } else {
+        if (tabCajas) tabCajas.style.display = 'none';
+        if (tabDocs) tabDocs.style.display = 'block';
+        if (btnCajas) btnCajas.classList.remove('active');
+        if (btnDocs) btnDocs.classList.add('active');
+      }
+    }
+
+    function appendContenido(tag) {
+      const txt = document.getElementById('inputNotas');
+      if (!txt) return;
+      const curr = txt.value.trim();
+      if (curr.includes(tag)) {
+        showToast("Ya incluido: " + tag);
+        return;
+      }
+      txt.value = curr ? `${curr}, ${tag}` : tag;
+      saveCurrentObra(false);
+      showToast("➕ Agregado: " + tag);
+    }
+
     function openDrawer(id) {
       activeObraId = id;
       const p = projects.find(x => x.id === id);
@@ -759,6 +848,22 @@
       document.getElementById('inputFechaInicio').value = d.fecha_inicio || p.fecha_inicio || '';
       document.getElementById('inputFechaCulm').value = d.fecha_culm || p.fecha_culminacion_real || '';
       document.getElementById('inputNotas').value = d.notas || '';
+
+      // Cargar checkboxes del checklist documental
+      const savedChecks = d.checks || {};
+      CHECK_KEYS.forEach(k => {
+        const el = document.getElementById(k);
+        if (el) {
+          el.checked = !!savedChecks[k];
+          el.onchange = () => {
+            if (!fieldData[activeObraId]) fieldData[activeObraId] = { id: activeObraId, fotos: [] };
+            if (!fieldData[activeObraId].checks) fieldData[activeObraId].checks = {};
+            fieldData[activeObraId].checks[k] = el.checked;
+            saveObraToDB(fieldData[activeObraId]);
+            showToast(el.checked ? "✓ Check marcado" : "✕ Check desmarcado");
+          };
+        }
+      });
 
       // Configurar Ambiente y N° de Caja en el Drawer
       syncAmbienteDropdowns();
@@ -799,6 +904,9 @@
         badgeIni.className = 'badge badge-red';
         badgeIni.innerText = 'Falta Inicio';
       }
+
+      // Por defecto siempre aterrizar en la Pestaña 1: Censo de Cajas
+      switchDrawerTab('CAJAS');
 
       renderDrawerPhotos();
       document.getElementById('drawerBackdrop').classList.add('open');
@@ -910,6 +1018,11 @@
 
       document.getElementById('drawerTotalFotos').innerText = `${fotos.length} fotos guardadas`;
 
+      const docsSlots = ['inicio', 'contrato', 'cuaderno', 'recepcion', 'liquidacion'];
+      const docsFotosCount = fotos.filter(f => docsSlots.includes(f.slot)).length;
+      const elDocsCount = document.getElementById('drawerTotalFotosDocs');
+      if (elDocsCount) elDocsCount.innerText = `${docsFotosCount} fotos`;
+
       slots.forEach(slotKey => {
         const slotFotos = fotos.filter(f => f.slot === slotKey);
         const countBadge = document.getElementById(`slotCount_${slotKey}`);
@@ -989,6 +1102,13 @@
       d.notas = document.getElementById('inputNotas').value.trim();
       d.updated_at = new Date().toISOString();
 
+      // Guardar estado de checks
+      d.checks = {};
+      CHECK_KEYS.forEach(k => {
+        const el = document.getElementById(k);
+        if (el) d.checks[k] = el.checked;
+      });
+
       await saveObraToDB(d);
       updateGlobalCounters();
       renderList();
@@ -1031,6 +1151,7 @@
           fecha_culm_campo: item.fecha_culm || '',
           ubicacion_fisica_campo: item.ubicacion || '',
           notas_campo: item.notas || '',
+          checks: item.checks || {},
           total_fotos: (item.fotos || []).length,
           updated_at: item.updated_at || '',
           fotos_detalle: (item.fotos || []).map(f => ({
@@ -1055,10 +1176,11 @@
       zip.file("REPORTE_CAMPO_FDM.json", JSON.stringify(manifest, null, 2));
 
       // CSV Generation with box location detail
-      let csvContent = "\uFEFFN°,DESCRIPCION,CUI,PROVINCIA,UBICACION_FISICA,TOTAL_FOTOS,CODIGOS_CAJAS,NOTAS\n";
+      let csvContent = "\uFEFFN°,DESCRIPCION,CUI,PROVINCIA,UBICACION_FISICA,TOTAL_FOTOS,CODIGOS_CAJAS,CHECKLIST_VERIFICADOS,NOTAS\n";
       manifest.forEach(m => {
         const codigosList = (m.fotos_detalle || []).map(f => `${f.codigo_caja || 'CAJA'} [${f.ubicacion}]`).join(' ; ');
-        csvContent += `"${m.id}","${(m.desc||'').replace(/"/g, '""')}","${m.cui||''}","${m.provincia||''}","${(m.ubicacion_fisica_campo||'').replace(/"/g, '""')}","${m.total_fotos}","${codigosList.replace(/"/g, '""')}","${(m.notas_campo||'').replace(/"/g, '""')}"\n`;
+        const chkNames = Object.entries(m.checks || {}).filter(([k, v]) => v).map(([k]) => k.replace('chk_', '')).join(';');
+        csvContent += `"${m.id}","${(m.desc||'').replace(/"/g, '""')}","${m.cui||''}","${m.provincia||''}","${(m.ubicacion_fisica_campo||'').replace(/"/g, '""')}","${m.total_fotos}","${codigosList.replace(/"/g, '""')}","${chkNames}","${(m.notas_campo||'').replace(/"/g, '""')}"\n`;
       });
       zip.file("REPORTE_CAMPO_FDM.csv", csvContent);
 
