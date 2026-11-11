@@ -264,6 +264,9 @@
       <div class="badge-sync" title="Base de Datos Procesada">
         📗 Tomos 2022-2024 (19 Tomos PMO) + Digital 2025-2026
       </div>
+      <button class="btn-cloud" onclick="openCloudSyncPrompt()" style="background: rgba(255,255,255,0.15); color: white; border: 1px solid rgba(255,255,255,0.25); padding: 0.65rem 0.9rem; border-radius: 8px; font-weight: 600; font-size: 0.82rem; cursor: pointer; display: inline-flex; align-items: center; gap: 0.4rem; transition: background 0.2s;">
+        ☁️ Nube Drive
+      </button>
       <a href="campo.html" class="btn-campo" style="background: #2563EB; color: white; border: none; padding: 0.65rem 1.1rem; border-radius: 8px; font-weight: 700; font-size: 0.85rem; text-decoration: none; display: inline-flex; align-items: center; gap: 0.4rem; box-shadow: 0 2px 5px rgba(37,99,235,0.3);">
         📷 Ir a Modo Campo / Censo de Cajas ➔
       </a>
@@ -715,6 +718,24 @@
           }
         } catch (e) {
           console.warn("Sincronización en segundo plano con nube:", e);
+        }
+      }
+    }
+
+    function openCloudSyncPrompt() {
+      const current = localStorage.getItem('fdm_gas_url') || '';
+      const url = prompt("Pega la URL del Web App de Google Apps Script para sincronizar fotos de Google Drive en este equipo:", current);
+      if (url !== null) {
+        if (url.trim()) {
+          localStorage.setItem('fdm_gas_url', url.trim());
+          showToast("Conectando con Google Drive...");
+          loadFieldAuditData().then(() => {
+            showToast("¡Fotos sincronizadas desde Google Drive!");
+            if (selectedProjectId) renderCajasEnDrawer(selectedProjectId);
+          });
+        } else {
+          localStorage.removeItem('fdm_gas_url');
+          showToast("Desconectado de la nube");
         }
       }
     }
@@ -1224,17 +1245,29 @@
       document.getElementById('chk_res').checked = !!checks.res || !!p.resolucion_liquidacion;
       document.getElementById('chk_transf').checked = !!checks.transf || (p.alerta || '').includes('transferencia');
 
-      // Tab 3
-      document.getElementById('drawerUbicacion').value = p.n_cajas || '';
-      document.getElementById('drawerObservaciones').value = p.alerta || '';
+      // Tab 3: Evidencias y Cajas de Campo
+      const elUbic = document.getElementById('drawerUbicacion');
+      if (elUbic) elUbic.value = p.n_cajas || '';
+      const elObs = document.getElementById('drawerObservaciones');
+      if (elObs) elObs.value = p.alerta || '';
 
       // Render Timeline / Tree View
       currentTimelineFilter = 'ALL';
-      renderDrawerActuados(p);
+      try {
+        renderDrawerActuados(p);
+      } catch (errAct) {
+        console.warn("Aviso al renderizar actuados:", errAct);
+      }
 
-      renderCajasEnDrawer(id);
+      try {
+        renderCajasEnDrawer(id);
+      } catch (errCaj) {
+        console.warn("Aviso al renderizar cajas en drawer:", errCaj);
+      }
+
       switchDrawerTab('HISTORIAL');
-      document.getElementById('modalBackdrop').classList.add('open');
+      const mb = document.getElementById('modalBackdrop');
+      if (mb) mb.classList.add('open');
     }
 
     function setTimelineView(view) {
@@ -1493,8 +1526,10 @@
         transf: document.getElementById('chk_transf').checked
       };
 
-      const updatedUbicacion = document.getElementById('drawerUbicacion').value;
-      const updatedObservaciones = document.getElementById('drawerObservaciones').value;
+      const elUbic = document.getElementById('drawerUbicacion');
+      const updatedUbicacion = elUbic ? elUbic.value : '';
+      const elObs = document.getElementById('drawerObservaciones');
+      const updatedObservaciones = elObs ? elObs.value : '';
 
       const p = projectsData.find(item => item.id === selectedProjectId);
       if (p) {
