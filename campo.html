@@ -250,12 +250,25 @@
             <div style="margin-top: 0.75rem; background: #0F172A; border-radius: 10px; padding: 0.75rem; color: white; display: flex; flex-direction: column; gap: 0.4rem; box-shadow: 0 2px 6px rgba(0,0,0,0.15);">
               <div style="display: flex; justify-content: space-between; align-items: center;">
                 <span style="font-size: 0.72rem; font-weight: 700; text-transform: uppercase; color: #94A3B8; letter-spacing: 0.5px;">🏷️ CÓDIGO ÚNICO DE CAJA (Escribe en la caja):</span>
-                <button type="button" onclick="generarSiguienteCodigoCaja()" style="background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3); color: white; padding: 2px 8px; border-radius: 4px; font-size: 0.7rem; font-weight: 700; cursor: pointer;">Siguiente (+)</button>
+                <span style="font-size: 0.68rem; color: #38BDF8; font-weight: 700;">Secuencia de Caja</span>
               </div>
-              <div style="display: flex; align-items: center; gap: 0.5rem;">
-                <input type="text" id="inputCodigoCaja" class="field-input" style="background: #1E293B; border: 1.5px solid #38BDF8; color: #38BDF8; font-size: 1.25rem; font-weight: 800; letter-spacing: 1.5px; text-align: center; margin: 0; padding: 0.5rem; text-transform: uppercase;" placeholder="B1-01-C1" oninput="onCustomCodigoChange()">
+              
+              <!-- Control Stepper: Menos, Código Grande, Más -->
+              <div style="display: flex; align-items: center; gap: 0.4rem;">
+                <button type="button" onclick="cambiarCajaSeqDelta(-1)" style="background: #334155; border: 1px solid #475569; color: white; width: 44px; height: 44px; border-radius: 8px; font-size: 1.3rem; font-weight: 900; cursor: pointer; display: flex; align-items: center; justify-content: center;" title="Caja anterior (−)">−</button>
+                <input type="text" id="inputCodigoCaja" class="field-input" style="flex: 1; background: #1E293B; border: 1.5px solid #38BDF8; color: #38BDF8; font-size: 1.3rem; font-weight: 800; letter-spacing: 1.5px; text-align: center; margin: 0; padding: 0.5rem; text-transform: uppercase;" placeholder="B1-01-C1" oninput="onCustomCodigoChange()">
+                <button type="button" onclick="cambiarCajaSeqDelta(1)" style="background: #2563EB; border: 1px solid #3B82F6; color: white; width: 44px; height: 44px; border-radius: 8px; font-size: 1.3rem; font-weight: 900; cursor: pointer; display: flex; align-items: center; justify-content: center;" title="Caja siguiente (+)">+</button>
               </div>
-              <div style="font-size: 0.68rem; color: #CBD5E1; display: flex; justify-content: space-between; align-items: center;">
+
+              <!-- Selector Rápido de Cajas (C1, C2, C3...) -->
+              <div style="margin-top: 0.2rem;">
+                <div style="font-size: 0.65rem; color: #94A3B8; margin-bottom: 0.25rem;">Toca para seleccionar o reutilizar caja:</div>
+                <div id="cajaSeqChipsContainer" style="display: flex; gap: 0.35rem; overflow-x: auto; padding-bottom: 0.25rem;">
+                  <!-- Renderizado dinámico -->
+                </div>
+              </div>
+
+              <div style="font-size: 0.68rem; color: #CBD5E1; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #1E293B; padding-top: 0.3rem;">
                 <span>Ambiente: <strong id="lblAmbCode">B1</strong> | Obra: <strong id="lblObraCode">01</strong> | Secuencia: <strong id="lblCajaSeq">C1</strong></span>
                 <span style="color: #4ADE80; font-weight: 700;">✓ Marca con plumón</span>
               </div>
@@ -604,7 +617,7 @@
       'OTROS': 'OTR'
     };
 
-    let manualCajaSeqOffset = 0;
+    let currentCajaSeq = 1;
 
     function getAmbientePrefix(amb) {
       if (!amb) return 'B1';
@@ -615,18 +628,53 @@
       return amb.substring(0, 4).toUpperCase();
     }
 
-    function autoGenerarCodigoCaja(increment = 0) {
+    function getUsedCajaSeqs(obraId) {
+      const d = fieldData[obraId];
+      if (!d || !d.fotos) return new Set();
+      const used = new Set();
+      d.fotos.forEach(f => {
+        const cod = f.codigo_caja || f.nota || '';
+        const m = cod.match(/C(?:AJA)?[-_]?(\d+)/i);
+        if (m) {
+          used.add(parseInt(m[1]));
+        }
+      });
+      return used;
+    }
+
+    function getFirstAvailableCajaSeq(obraId) {
+      const used = getUsedCajaSeqs(obraId);
+      let seq = 1;
+      while (used.has(seq)) {
+        seq++;
+      }
+      return seq;
+    }
+
+    function autoGenerarCodigoCaja() {
       if (!activeObraId) return { code: 'B1-01-C1', pref: 'B1', obraStr: '01', seq: 'C1' };
       const amb = getActiveAmbiente();
       const pref = getAmbientePrefix(amb);
       const obraStr = String(activeObraId).padStart(2, '0');
-      
-      const d = fieldData[activeObraId] || { fotos: [] };
-      const fotosDeEstaObra = (d.fotos || []);
-      const seqNum = fotosDeEstaObra.length + 1 + increment + manualCajaSeqOffset;
-      const seq = `C${seqNum}`;
+      const seq = `C${currentCajaSeq}`;
       const code = `${pref}-${obraStr}-${seq}`;
       return { code, pref, obraStr, seq };
+    }
+
+    function setCajaSeq(seq) {
+      currentCajaSeq = Math.max(1, seq);
+      const input = document.getElementById('inputCodigoCaja');
+      if (input) input.dataset.userEdited = "";
+      updateCodigoDisplay();
+      showToast(`🏷️ Seleccionada Caja C${currentCajaSeq}`);
+    }
+
+    function cambiarCajaSeqDelta(delta) {
+      currentCajaSeq = Math.max(1, currentCajaSeq + delta);
+      const input = document.getElementById('inputCodigoCaja');
+      if (input) input.dataset.userEdited = "";
+      updateCodigoDisplay();
+      showToast(`🏷️ Caja C${currentCajaSeq}`);
     }
 
     function updateCodigoDisplay() {
@@ -644,19 +692,48 @@
       if (lblS) lblS.innerText = seq;
       
       updateFullUbicacion();
+      renderCajaSeqChips();
     }
 
-    function generarSiguienteCodigoCaja() {
-      manualCajaSeqOffset++;
-      const input = document.getElementById('inputCodigoCaja');
-      if (input) input.dataset.userEdited = "";
-      updateCodigoDisplay();
-      showToast("🏷️ Siguiente código preparado: " + (input ? input.value : ''));
+    function renderCajaSeqChips() {
+      const cont = document.getElementById('cajaSeqChipsContainer');
+      if (!cont || !activeObraId) return;
+
+      const used = getUsedCajaSeqs(activeObraId);
+      const maxShown = Math.max(8, currentCajaSeq + 2, ...Array.from(used));
+
+      let html = '';
+      for (let i = 1; i <= maxShown; i++) {
+        const isUsed = used.has(i);
+        const isSelected = (i === currentCajaSeq);
+        
+        let chipStyle = "padding: 4px 10px; border-radius: 6px; font-size: 0.75rem; font-weight: 700; cursor: pointer; white-space: nowrap;";
+        if (isSelected) {
+          chipStyle += " background: #0284C7; color: white; border: 1.5px solid #38BDF8; box-shadow: 0 0 8px rgba(56,189,248,0.5);";
+        } else if (isUsed) {
+          chipStyle += " background: #14532D; color: #4ADE80; border: 1px solid #22C55E;";
+        } else {
+          chipStyle += " background: #1E293B; color: #94A3B8; border: 1px solid #334155;";
+        }
+
+        const label = isUsed ? `C${i} ✓` : `C${i}`;
+        html += `<button type="button" onclick="setCajaSeq(${i})" style="${chipStyle}" title="${isUsed ? 'Caja ya fotografiada' : 'Caja disponible'}">${label}</button>`;
+      }
+      cont.innerHTML = html;
     }
 
     function onCustomCodigoChange() {
       const input = document.getElementById('inputCodigoCaja');
-      if (input) input.dataset.userEdited = "true";
+      if (input) {
+        input.dataset.userEdited = "true";
+        const m = input.value.match(/C(?:AJA)?[-_]?(\d+)/i);
+        if (m) {
+          currentCajaSeq = parseInt(m[1]);
+          const lblS = document.getElementById('lblCajaSeq');
+          if (lblS) lblS.innerText = `C${currentCajaSeq}`;
+          renderCajaSeqChips();
+        }
+      }
       updateFullUbicacion();
     }
 
@@ -673,13 +750,9 @@
     }
 
     function setCajaNum(cajaVal) {
-      const input = document.getElementById('inputCodigoCaja');
-      if (input) {
-        const pref = getAmbientePrefix(getActiveAmbiente());
-        const obraStr = String(activeObraId || 1).padStart(2, '0');
-        input.value = `${pref}-${obraStr}-${cajaVal.replace(/\s+/g, '')}`;
-        input.dataset.userEdited = "true";
-        updateFullUbicacion();
+      const m = cajaVal.match(/\d+/);
+      if (m) {
+        setCajaSeq(parseInt(m[0]));
       }
     }
 
@@ -896,8 +969,8 @@
 
         if (selD) selD.value = parsedAmb;
         
-        // Inicializar y mostrar código de caja sugerido
-        manualCajaSeqOffset = 0;
+        // Inicializar y mostrar código de caja sugerido (primer número desocupado)
+        currentCajaSeq = getFirstAvailableCajaSeq(id);
         const inputCod = document.getElementById('inputCodigoCaja');
         if (inputCod) inputCod.dataset.userEdited = "";
         updateCodigoDisplay();
@@ -1042,8 +1115,8 @@
         autoCompileUbicacion(activeObraId);
         await saveObraToDB(fieldData[activeObraId]);
 
-        // Incrementar automáticamente para la siguiente caja
-        manualCajaSeqOffset++;
+        // Avanzar automáticamente a la siguiente caja desocupada
+        currentCajaSeq = getFirstAvailableCajaSeq(activeObraId);
         const inputCod = document.getElementById('inputCodigoCaja');
         if (inputCod) inputCod.dataset.userEdited = "";
         updateCodigoDisplay();
@@ -1142,6 +1215,7 @@
       saveObraToDB(d);
       renderDrawerPhotos();
       renderList();
+      renderCajaSeqChips();
       showToast("Código y ubicación actualizados");
     }
 
@@ -1150,11 +1224,20 @@
       const d = fieldData[activeObraId];
       if (!d || !d.fotos) return;
       d.fotos = d.fotos.filter(f => f.id !== photoId);
+      autoCompileUbicacion(activeObraId);
       await saveObraToDB(d);
+      
+      // Al borrar una foto, recalcular el primer número disponible y refrescar
+      currentCajaSeq = getFirstAvailableCajaSeq(activeObraId);
+      const inputCod = document.getElementById('inputCodigoCaja');
+      if (inputCod) inputCod.dataset.userEdited = "";
+      updateCodigoDisplay();
+
       renderDrawerPhotos();
       updateGlobalCounters();
       renderList();
-      showToast("Foto eliminada");
+      renderCajaSeqChips();
+      showToast("Foto eliminada. Número de caja liberado");
     }
 
     async function saveCurrentObra(showFeedback = true) {
