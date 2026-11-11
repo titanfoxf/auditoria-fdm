@@ -2,1350 +2,1687 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-  <meta http-equiv="Pragma" content="no-cache">
-  <meta http-equiv="Expires" content="0">
-  <title>FDM - Control y Auditoría de Expedientes con Trazabilidad y Fechas</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>FDM - Módulo de Inspección en Archivo</title>
+  <script src="jszip.min.js"></script>
   <style>
     :root {
-      --primary: #1B365D;
-      --primary-light: #2563EB;
-      --secondary: #0D9488;
+      --primary: #0F172A;
+      --primary-accent: #2563EB;
+      --success: #16A34A;
+      --warning: #CA8A04;
+      --danger: #DC2626;
       --bg: #F8FAFC;
       --card-bg: #FFFFFF;
+      --border: #E2E8F0;
       --text: #0F172A;
       --text-muted: #64748B;
-      --border: #E2E8F0;
-      --green-bg: #DCFCE7;
-      --green-text: #166534;
-      --yellow-bg: #FEF9C3;
-      --yellow-text: #854D0E;
-      --red-bg: #FEE2E2;
-      --red-text: #991B1B;
-      --blue-bg: #E0F2FE;
-      --blue-text: #075985;
-      --purple-bg: #F3E8FF;
-      --purple-text: #6B21A8;
-      --orange-bg: #FFEDD5;
-      --orange-text: #9A3412;
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
-    body { background-color: var(--bg); color: var(--text); min-height: 100vh; display: flex; flex-direction: column; }
+    * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background: var(--bg); color: var(--text); padding-bottom: 85px; }
 
-    /* Header */
-    header {
-      background: linear-gradient(135deg, #0F172A, #1E293B);
-      color: white;
-      padding: 1.1rem 2rem;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      position: sticky;
-      top: 0;
-      z-index: 40;
-    }
+    /* Sticky Header */
+    .top-header { position: sticky; top: 0; z-index: 40; background: #0F172A; color: white; padding: 0.75rem 1rem; box-shadow: 0 2px 8px rgba(0,0,0,0.15); }
+    .header-top { display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; }
+    .header-title { font-size: 0.95rem; font-weight: 700; display: flex; align-items: center; gap: 0.4rem; }
+    .header-sub { font-size: 0.7rem; color: #94A3B8; margin-top: 2px; }
+    .header-actions { display: flex; gap: 0.4rem; }
+    .btn-action { background: #1E293B; border: 1px solid #334155; color: white; padding: 0.35rem 0.65rem; border-radius: 8px; font-size: 0.75rem; font-weight: 600; text-decoration: none; display: inline-flex; align-items: center; gap: 0.3rem; cursor: pointer; }
+    .btn-action.green { background: #16A34A; border-color: #15803D; }
 
-    .brand h1 { font-size: 1.25rem; font-weight: 800; letter-spacing: -0.02em; display: flex; align-items: center; gap: 0.5rem; }
-    .brand p { font-size: 0.8rem; opacity: 0.85; margin-top: 0.2rem; }
+    /* Search & Filter Bar */
+    .search-box { padding: 0.75rem 1rem; background: white; border-bottom: 1px solid var(--border); position: sticky; top: 56px; z-index: 30; }
+    .search-input-wrap { position: relative; }
+    .search-input { width: 100%; padding: 0.65rem 0.85rem 0.65rem 2.2rem; border-radius: 10px; border: 1px solid var(--border); font-size: 0.9rem; outline: none; background: #F1F5F9; }
+    .search-input:focus { background: white; border-color: var(--primary-accent); }
+    .search-icon { position: absolute; left: 0.75rem; top: 50%; transform: translateY(-50%); color: var(--text-muted); font-size: 0.9rem; }
+    
+    /* Chips */
+    .chips-bar { display: flex; gap: 0.4rem; overflow-x: auto; padding: 0.5rem 0 0.2rem 0; scrollbar-width: none; }
+    .chips-bar::-webkit-scrollbar { display: none; }
+    .chip { padding: 0.3rem 0.65rem; border-radius: 9999px; font-size: 0.73rem; font-weight: 600; white-space: nowrap; background: #E2E8F0; color: #475569; border: none; cursor: pointer; }
+    .chip.active { background: #0F172A; color: white; }
+    .chip.alert.active { background: #CA8A04; }
+    .chip.green.active { background: #16A34A; }
 
-    .header-actions { display: flex; gap: 0.75rem; align-items: center; }
-    .badge-sync { background: rgba(255, 255, 255, 0.12); padding: 0.35rem 0.85rem; border-radius: 9999px; font-size: 0.78rem; font-weight: 500; display: flex; align-items: center; gap: 0.4rem; border: 1px solid rgba(255,255,255,0.15); }
-    .badge-sync::before { content: ""; width: 8px; height: 8px; background: #4ADE80; border-radius: 50%; display: inline-block; }
+    /* Counter bar */
+    .count-bar { padding: 0.4rem 1rem; font-size: 0.75rem; color: var(--text-muted); display: flex; justify-content: space-between; align-items: center; }
 
-    .btn-excel { background: #16A34A; color: white; border: none; padding: 0.5rem 1rem; border-radius: 8px; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 0.4rem; font-size: 0.85rem; box-shadow: 0 2px 4px rgba(0,0,0,0.2); transition: background 0.15s; }
-    .btn-excel:hover { background: #15803D; }
-
-    /* Container */
-    .container { max-width: 1460px; margin: 1.5rem auto; padding: 0 1.5rem; flex: 1; width: 100%; }
-
-    /* Metrics Grid */
-    .metrics-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 1rem; margin-bottom: 1.5rem; }
-    .metric-card { background: var(--card-bg); border-radius: 12px; padding: 1.15rem; border: 1px solid var(--border); box-shadow: 0 1px 3px rgba(0,0,0,0.04); position: relative; overflow: hidden; cursor: pointer; transition: transform 0.15s, box-shadow 0.15s; }
-    .metric-card:hover { transform: translateY(-2px); box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); }
-    .metric-card::before { content: ""; position: absolute; top: 0; left: 0; width: 4px; height: 100%; }
-    .metric-card.blue::before { background: var(--primary-light); }
-    .metric-card.green::before { background: #16A34A; }
-    .metric-card.yellow::before { background: #EAB308; }
-    .metric-card.purple::before { background: #9333EA; }
-    .metric-card.red::before { background: #DC2626; }
-
-    .metric-card .title { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); display: flex; justify-content: space-between; }
-    .metric-card .value { font-size: 1.85rem; font-weight: 800; color: var(--text); margin: 0.35rem 0 0.15rem; }
-    .metric-card .desc { font-size: 0.75rem; color: var(--text-muted); }
-
-    /* Analytics Dashboard */
-    .analytics-panel { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1rem; margin-bottom: 1.5rem; }
-    .analytics-card { background: white; border: 1px solid var(--border); border-radius: 12px; padding: 1.2rem; box-shadow: 0 1px 3px rgba(0,0,0,0.04); }
-    .analytics-title { font-size: 0.85rem; font-weight: 700; color: #0F172A; margin-bottom: 1rem; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #F1F5F9; padding-bottom: 0.5rem; }
-    .analytics-title span { font-size: 0.75rem; color: var(--text-muted); font-weight: 500; }
-
-    /* Progress bar styles */
-    .progress-bar-container { margin-bottom: 0.75rem; }
-    .progress-label { display: flex; justify-content: space-between; font-size: 0.78rem; font-weight: 600; margin-bottom: 0.3rem; }
-    .progress-track { width: 100%; height: 10px; background: #F1F5F9; border-radius: 9999px; overflow: hidden; display: flex; }
-    .progress-fill { height: 100%; transition: width 0.3s ease; }
-
-    /* Mini stats list */
-    .stats-pill-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.6rem; }
-    .stat-mini-pill { background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 8px; padding: 0.6rem 0.8rem; }
-    .stat-mini-pill .lbl { font-size: 0.7rem; color: var(--text-muted); font-weight: 600; text-transform: uppercase; }
-    .stat-mini-pill .num { font-size: 1.15rem; font-weight: 800; color: #0F172A; margin-top: 0.15rem; }
-
-    /* Controls Bar */
-    .controls-card { background: var(--card-bg); border-radius: 12px; border: 1px solid var(--border); box-shadow: 0 1px 3px rgba(0,0,0,0.04); margin-bottom: 1.5rem; }
-    .controls-top { padding: 1.25rem 1.25rem 0.75rem 1.25rem; display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; }
-    .search-input { position: relative; flex: 1; min-width: 260px; }
-    .search-input input { width: 100%; padding: 0.65rem 1rem 0.65rem 2.4rem; border: 1px solid var(--border); border-radius: 8px; font-size: 0.9rem; outline: none; transition: border-color 0.15s; }
-    .search-input input:focus { border-color: var(--primary-light); }
-    .search-input svg { position: absolute; left: 0.8rem; top: 50%; transform: translateY(-50%); width: 16px; height: 16px; color: var(--text-muted); }
-
-    .sort-controls { display: flex; align-items: center; gap: 0.5rem; }
-    .sort-label { font-size: 0.82rem; font-weight: 600; color: var(--text-muted); }
-    .sort-select { padding: 0.55rem 0.85rem; border: 1px solid var(--border); border-radius: 8px; font-size: 0.85rem; background: white; color: var(--text); cursor: pointer; outline: none; font-weight: 500; }
-
-    .filter-tabs { display: flex; gap: 0.5rem; overflow-x: auto; padding: 0 1.25rem 1rem 1.25rem; border-top: 1px solid #F1F5F9; padding-top: 0.75rem; }
-    .tab-btn { background: none; border: 1px solid transparent; padding: 0.45rem 0.85rem; font-size: 0.8rem; font-weight: 600; border-radius: 6px; cursor: pointer; white-space: nowrap; color: var(--text-muted); transition: all 0.15s; }
-    .tab-btn:hover { background: #F1F5F9; color: var(--text); }
-    .tab-btn.active { background: #0F172A; color: white; }
-    .tab-btn.green.active { background: #16A34A; }
-    .tab-btn.alert.active { background: #CA8A04; }
-    .tab-btn.red.active { background: #DC2626; }
-
-    /* Table */
-    .table-container { background: var(--card-bg); border-radius: 12px; border: 1px solid var(--border); box-shadow: 0 1px 3px rgba(0,0,0,0.04); overflow-x: auto; }
-    table { width: 100%; border-collapse: collapse; text-align: left; font-size: 0.85rem; }
-    th { background: #F8FAFC; color: var(--text-muted); font-weight: 600; text-transform: uppercase; font-size: 0.72rem; letter-spacing: 0.05em; padding: 0.85rem 1rem; border-bottom: 1px solid var(--border); white-space: nowrap; }
-    th.sortable { cursor: pointer; user-select: none; }
-    th.sortable:hover { color: var(--text); background: #F1F5F9; }
-    td { padding: 0.9rem 1rem; border-bottom: 1px solid var(--border); vertical-align: middle; }
-    tr:last-child td { border-bottom: none; }
-    tbody tr { cursor: pointer; transition: background-color 0.1s; }
-    tbody tr:hover { background-color: #F8FAFC; }
-
-    /* Badges */
-    .badge { display: inline-flex; align-items: center; gap: 0.3rem; padding: 0.25rem 0.6rem; border-radius: 9999px; font-size: 0.72rem; font-weight: 600; white-space: nowrap; }
-    .badge-green { background: var(--green-bg); color: var(--green-text); }
-    .badge-yellow { background: var(--yellow-bg); color: var(--yellow-text); }
-    .badge-blue { background: var(--blue-bg); color: var(--blue-text); }
-    .badge-purple { background: var(--purple-bg); color: var(--purple-text); }
-    .badge-orange { background: var(--orange-bg); color: var(--orange-text); }
-    .badge-red { background: var(--red-bg); color: var(--red-text); }
+    /* Project Cards List */
+    .project-list { padding: 0.5rem 1rem; display: flex; flex-direction: column; gap: 0.65rem; }
+    .card { background: var(--card-bg); border-radius: 12px; border: 1px solid var(--border); padding: 0.85rem; box-shadow: 0 1px 3px rgba(0,0,0,0.03); cursor: pointer; transition: transform 0.1s, border-color 0.15s; }
+    .card:active { transform: scale(0.99); }
+    .card.has-data { border-left: 4px solid var(--primary-accent); }
+    .card.has-photos { border-left: 4px solid var(--success); }
+    .card.missing-start { border-left: 4px solid var(--danger); }
+    
+    .card-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 0.5rem; margin-bottom: 0.35rem; }
+    .card-badge-id { background: #0F172A; color: white; font-size: 0.72rem; font-weight: 800; padding: 0.15rem 0.45rem; border-radius: 6px; }
+    .card-badges { display: flex; gap: 0.3rem; flex-wrap: wrap; }
+    .badge { font-size: 0.68rem; font-weight: 600; padding: 0.15rem 0.45rem; border-radius: 9999px; }
+    .badge-blue { background: #DBEAFE; color: #1E40AF; }
+    .badge-yellow { background: #FEF9C3; color: #854D0E; }
+    .badge-green { background: #DCFCE7; color: #166534; }
+    .badge-red { background: #FEE2E2; color: #991B1B; }
     .badge-gray { background: #F1F5F9; color: #475569; }
 
-    /* Drawer / Modal */
-    .modal-backdrop { position: fixed; inset: 0; background: rgba(15, 23, 42, 0.65); display: none; justify-content: flex-end; z-index: 50; backdrop-filter: blur(3px); }
-    .modal-backdrop.open { display: flex; }
-    .drawer { width: 100%; max-width: 880px; background: white; height: 100vh; overflow-y: auto; display: flex; flex-direction: column; box-shadow: -8px 0 25px rgba(0,0,0,0.25); animation: slideLeft 0.22s cubic-bezier(0.16, 1, 0.3, 1); }
-    @keyframes slideLeft { from { transform: translateX(100%); } to { transform: translateX(0); } }
+    .card-title { font-size: 0.86rem; font-weight: 700; color: var(--text); line-height: 1.35; margin-bottom: 0.4rem; }
+    .card-meta { display: grid; grid-template-columns: 1fr 1fr; gap: 0.3rem; font-size: 0.72rem; color: var(--text-muted); background: #F8FAFC; padding: 0.45rem 0.6rem; border-radius: 8px; margin-top: 0.4rem; }
+    .card-photos-count { display: inline-flex; align-items: center; gap: 0.25rem; font-size: 0.72rem; font-weight: 700; color: var(--success); }
 
-    .drawer-header { padding: 1.5rem; background: linear-gradient(135deg, #0F172A, #1E293B); color: white; position: sticky; top: 0; z-index: 10; display: flex; justify-content: space-between; align-items: flex-start; }
-    .drawer-header h2 { font-size: 1.15rem; font-weight: 700; line-height: 1.35; margin-bottom: 0.35rem; }
-    .close-btn { background: none; border: none; color: white; cursor: pointer; font-size: 1.6rem; padding: 0.2rem 0.6rem; opacity: 0.8; border-radius: 6px; }
-    .close-btn:hover { opacity: 1; background: rgba(255,255,255,0.1); }
+    /* Modal / Drawer */
+    .drawer-backdrop { position: fixed; inset: 0; background: rgba(15, 23, 42, 0.75); backdrop-filter: blur(4px); z-index: 50; display: none; align-items: flex-end; justify-content: center; }
+    .drawer-backdrop.open { display: flex; }
+    .drawer { background: white; width: 100%; max-width: 600px; height: 92vh; border-radius: 20px 20px 0 0; display: flex; flex-direction: column; overflow: hidden; animation: slideUp 0.25s ease-out; }
+    @keyframes slideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
 
-    .drawer-nav { display: flex; background: #F1F5F9; border-bottom: 1px solid var(--border); padding: 0 1.5rem; position: sticky; top: 96px; z-index: 9; }
-    .nav-tab { padding: 0.8rem 1.1rem; font-size: 0.85rem; font-weight: 700; color: var(--text-muted); cursor: pointer; border-bottom: 2px solid transparent; transition: all 0.15s; }
-    .nav-tab:hover { color: var(--text); }
-    .nav-tab.active { color: var(--primary-light); border-bottom-color: var(--primary-light); background: white; }
+    .drawer-header { padding: 1rem; background: #0F172A; color: white; display: flex; justify-content: space-between; align-items: center; }
+    .drawer-header h3 { font-size: 0.95rem; font-weight: 700; }
+    .drawer-close { background: #1E293B; border: none; color: white; width: 32px; height: 32px; border-radius: 50%; font-size: 1rem; cursor: pointer; display: flex; align-items: center; justify-content: center; }
 
-    .drawer-body { padding: 1.5rem; flex: 1; }
+    .drawer-tabs { display: flex; background: #0F172A; border-bottom: 2px solid #334155; padding: 0 0.5rem; gap: 0.5rem; }
+    .drawer-tab { flex: 1; padding: 0.65rem 0.5rem; font-size: 0.82rem; font-weight: 700; color: #94A3B8; border: none; background: transparent; cursor: pointer; border-bottom: 3px solid transparent; transition: all 0.15s; text-align: center; }
+    .drawer-tab.active { color: #38BDF8; border-bottom-color: #38BDF8; }
 
-    /* Completeness Status Card */
-    .status-summary-card { background: #F8FAFC; border: 1px solid var(--border); border-radius: 12px; padding: 1.1rem; margin-bottom: 1.25rem; }
-    .status-summary-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem; flex-wrap: wrap; gap: 0.4rem; }
-    .checklist-milestones { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 0.5rem; }
-    .milestone-pill { background: white; border: 1px solid var(--border); border-radius: 8px; padding: 0.55rem 0.75rem; font-size: 0.75rem; display: flex; flex-direction: column; gap: 0.15rem; }
-    .milestone-pill.ok { border-left: 3px solid #16A34A; }
-    .milestone-pill.missing { border-left: 3px solid #DC2626; background: #FFF5F5; }
-    .milestone-pill.gray { border-left: 3px solid #94A3B8; background: #F8FAFC; }
-    .milestone-label { font-weight: 700; color: var(--text-muted); font-size: 0.68rem; text-transform: uppercase; }
-    .milestone-val { font-weight: 700; color: var(--text); font-size: 0.8rem; }
+    .check-list-grid { display: grid; grid-template-columns: 1fr; gap: 0.45rem; margin-top: 0.5rem; }
+    .check-item-box { display: flex; align-items: center; gap: 0.6rem; background: white; border: 1px solid #CBD5E1; padding: 0.5rem 0.75rem; border-radius: 8px; font-size: 0.8rem; font-weight: 600; color: #1E293B; cursor: pointer; }
+    .check-item-box input[type="checkbox"] { width: 18px; height: 18px; accent-color: #2563EB; cursor: pointer; }
 
-    /* Timeline & Tree Controls Bar inside Drawer */
-    .drawer-view-controls { display: flex; justify-content: space-between; align-items: center; background: #F1F5F9; padding: 0.5rem 0.75rem; border-radius: 8px; margin-bottom: 1rem; flex-wrap: wrap; gap: 0.5rem; }
-    .view-toggle-group { display: flex; gap: 0.3rem; background: white; padding: 0.2rem; border-radius: 6px; border: 1px solid var(--border); }
-    .btn-view-toggle { border: none; background: transparent; padding: 0.35rem 0.75rem; border-radius: 5px; font-size: 0.75rem; font-weight: 700; cursor: pointer; color: var(--text-muted); transition: all 0.15s; }
-    .btn-view-toggle.active { background: #0F172A; color: white; }
-
-    .btn-order-sort { background: white; border: 1px solid var(--border); border-radius: 6px; padding: 0.35rem 0.75rem; font-size: 0.75rem; font-weight: 600; cursor: pointer; color: var(--text); display: flex; align-items: center; gap: 0.35rem; }
-    .btn-order-sort:hover { background: #F8FAFC; }
-
-    /* Timeline Styling */
-    .timeline { position: relative; margin: 1rem 0; padding-left: 2rem; border-left: 2px solid #E2E8F0; }
-    .timeline-item { position: relative; margin-bottom: 1.5rem; }
-    .timeline-item:last-child { margin-bottom: 0; }
-    .timeline-dot { position: absolute; left: -2.45rem; top: 0.25rem; width: 14px; height: 14px; border-radius: 50%; background: #2563EB; border: 3px solid white; box-shadow: 0 0 0 2px #E2E8F0; }
+    .drawer-body { padding: 1rem; overflow-y: auto; flex: 1; display: flex; flex-direction: column; gap: 1rem; }
     
-    .timeline-card { background: white; border: 1px solid var(--border); border-radius: 10px; padding: 1rem; box-shadow: 0 1px 3px rgba(0,0,0,0.04); transition: transform 0.1s, border-color 0.1s; }
-    .timeline-card:hover { border-color: #94A3B8; transform: translateY(-1px); }
-    .timeline-card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.4rem; flex-wrap: wrap; gap: 0.4rem; }
-    .timeline-date { font-size: 0.85rem; font-weight: 700; color: #0F172A; display: flex; align-items: center; gap: 0.35rem; }
-    .timeline-doc { font-size: 0.9rem; font-weight: 800; color: var(--primary-light); margin-bottom: 0.35rem; display: flex; align-items: center; gap: 0.3rem; }
-    .timeline-reason { font-size: 0.85rem; color: #334155; line-height: 1.45; margin-bottom: 0.5rem; }
-    .timeline-meta { display: flex; gap: 0.5rem; font-size: 0.75rem; color: var(--text-muted); flex-wrap: wrap; align-items: center; border-top: 1px dashed #EEF2F6; padding-top: 0.5rem; }
+    .field-group { background: #F8FAFC; border: 1px solid var(--border); border-radius: 12px; padding: 0.85rem; }
+    .field-title { font-size: 0.78rem; font-weight: 700; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.4rem; display: flex; align-items: center; justify-content: space-between; }
+    .field-input { width: 100%; padding: 0.6rem; border-radius: 8px; border: 1px solid var(--border); font-size: 0.88rem; outline: none; background: white; margin-top: 0.25rem; }
+    .field-input:focus { border-color: var(--primary-accent); }
 
-    /* Tree View Styling */
-    .tree-view { display: flex; flex-direction: column; gap: 1.25rem; margin-top: 0.75rem; }
-    .tree-phase-card { background: white; border: 1px solid var(--border); border-radius: 10px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.03); }
-    .tree-phase-header { background: #F8FAFC; padding: 0.75rem 1rem; font-size: 0.85rem; font-weight: 700; color: #0F172A; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border); }
-    .tree-phase-header .phase-title { display: flex; align-items: center; gap: 0.45rem; }
-    .tree-phase-badge { background: #E2E8F0; color: #334155; font-size: 0.72rem; padding: 0.2rem 0.55rem; border-radius: 9999px; font-weight: 700; }
-    
-    .tree-nodes-list { padding: 0.75rem 1rem; display: flex; flex-direction: column; gap: 0.65rem; }
-    .tree-node-item { display: flex; gap: 0.75rem; align-items: flex-start; padding: 0.5rem 0.65rem; border-radius: 6px; background: #FAFAFA; border: 1px solid #F1F5F9; }
-    .tree-node-item:hover { background: #F1F5F9; border-color: #E2E8F0; }
-    .tree-node-bullet { font-size: 1rem; line-height: 1.2; }
-    .tree-node-content { flex: 1; }
-    .tree-node-title { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.25rem; flex-wrap: wrap; gap: 0.35rem; }
-    .tree-doc-code { font-weight: 800; font-size: 0.85rem; color: #1E3A8A; background: #DBEAFE; padding: 0.15rem 0.45rem; border-radius: 4px; }
-    .tree-doc-date { font-weight: 600; font-size: 0.78rem; color: #475569; }
-    .tree-doc-reason { font-size: 0.82rem; color: #334155; line-height: 1.4; margin-bottom: 0.25rem; }
-    .tree-doc-citation { font-size: 0.72rem; color: #64748B; font-weight: 500; }
+    .preset-chips { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-top: 0.4rem; }
+    .preset-chip { font-size: 0.7rem; background: white; border: 1px solid var(--border); padding: 0.25rem 0.5rem; border-radius: 6px; cursor: pointer; color: #334155; }
+    .preset-chip:active { background: #0F172A; color: white; }
 
-    /* Checklist Section */
-    .checklist-section { background: #F8FAFC; border: 1px solid var(--border); border-radius: 10px; padding: 1rem; margin-bottom: 1.25rem; }
-    .check-item { display: flex; align-items: center; justify-content: space-between; padding: 0.5rem 0.4rem; border-bottom: 1px solid #EEF2F6; }
-    .check-item:last-child { border-bottom: none; }
-    .check-item label { font-size: 0.85rem; color: var(--text); cursor: pointer; flex: 1; display: flex; align-items: center; gap: 0.6rem; }
-    .check-item input[type="checkbox"] { width: 18px; height: 18px; accent-color: var(--secondary); cursor: pointer; }
+    /* Photo Slot Cards */
+    .photo-slot { background: white; border: 1px dashed #CBD5E1; border-radius: 12px; padding: 0.75rem; display: flex; flex-direction: column; gap: 0.5rem; }
+    .slot-hdr { display: flex; justify-content: space-between; align-items: center; font-size: 0.78rem; font-weight: 700; color: #1E293B; }
+    .slot-actions { display: flex; gap: 0.4rem; }
+    .btn-camera { background: var(--primary-accent); color: white; border: none; padding: 0.5rem 0.8rem; border-radius: 8px; font-size: 0.78rem; font-weight: 600; display: inline-flex; align-items: center; gap: 0.35rem; cursor: pointer; flex: 1; justify-content: center; }
+    .btn-camera:active { background: #1D4ED8; }
 
-    .input-field { width: 100%; padding: 0.65rem 0.85rem; border: 1px solid var(--border); border-radius: 8px; font-size: 0.9rem; outline: none; }
-    .input-field:focus { border-color: var(--primary-light); }
-    textarea.input-field { min-height: 80px; resize: vertical; }
+    /* Photo Thumbnail Grid with Location Badge */
+    .thumb-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(105px, 1fr)); gap: 0.5rem; margin-top: 0.4rem; }
+    .thumb-card { background: white; border: 1px solid #CBD5E1; border-radius: 8px; overflow: hidden; display: flex; flex-direction: column; box-shadow: 0 1px 3px rgba(0,0,0,0.06); }
+    .thumb-wrap { position: relative; width: 100%; height: 90px; background: #0F172A; }
+    .thumb-img { width: 100%; height: 100%; object-fit: cover; cursor: pointer; display: block; }
+    .thumb-del { position: absolute; top: 3px; right: 3px; background: rgba(220, 38, 38, 0.9); color: white; border: none; width: 22px; height: 22px; border-radius: 50%; font-size: 0.7rem; cursor: pointer; display: flex; align-items: center; justify-content: center; z-index: 2; }
+    .thumb-meta { padding: 4px 6px; font-size: 0.68rem; background: #F8FAFC; border-top: 1px solid #E2E8F0; }
+    .thumb-amb { font-weight: 700; color: #1E293B; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; display: flex; align-items: center; justify-content: space-between; }
+    .thumb-note { color: #2563EB; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-top: 2px; cursor: pointer; }
 
-    .drawer-footer { padding: 1.25rem 1.5rem; border-top: 1px solid var(--border); background: #F8FAFC; display: flex; gap: 0.75rem; justify-content: flex-end; position: sticky; bottom: 0; }
-    .btn { padding: 0.65rem 1.25rem; border-radius: 8px; font-size: 0.9rem; font-weight: 600; cursor: pointer; border: none; transition: all 0.15s; }
-    .btn-primary { background: var(--secondary); color: white; }
-    .btn-primary:hover { background: #0F766E; }
-    .btn-secondary { background: #E2E8F0; color: var(--text); }
-    .btn-secondary:hover { background: #CBD5E1; }
+    /* Sticky Bottom Bar */
+    .drawer-footer { padding: 0.75rem 1rem; background: white; border-top: 1px solid var(--border); display: flex; gap: 0.5rem; }
+    .btn-save { background: var(--success); color: white; border: none; padding: 0.75rem 1.25rem; border-radius: 10px; font-size: 0.9rem; font-weight: 700; flex: 1; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 0.4rem; }
+    .btn-nav { background: #F1F5F9; border: 1px solid var(--border); color: #0F172A; padding: 0.75rem 1rem; border-radius: 10px; font-weight: 700; cursor: pointer; }
 
     /* Toast */
-    .toast { position: fixed; bottom: 1.5rem; right: 1.5rem; background: #0F172A; color: white; padding: 0.85rem 1.4rem; border-radius: 8px; font-size: 0.9rem; font-weight: 500; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.2); transform: translateY(100px); opacity: 0; transition: all 0.25s; z-index: 100; display: flex; align-items: center; gap: 0.5rem; }
-    .toast.show { transform: translateY(0); opacity: 1; }
-    .toast.success::before { content: "✓"; color: #4ADE80; font-weight: bold; }
+    .toast { position: fixed; bottom: 95px; left: 50%; transform: translateX(-50%); background: #0F172A; color: white; padding: 0.6rem 1.2rem; border-radius: 9999px; font-size: 0.82rem; font-weight: 600; display: none; z-index: 100; box-shadow: 0 4px 12px rgba(0,0,0,0.2); }
+    .toast.show { display: block; animation: fadeIn 0.2s; }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+    /* Image Lightbox */
+    .lightbox { position: fixed; inset: 0; background: rgba(0,0,0,0.95); z-index: 110; display: none; align-items: center; justify-content: center; padding: 1rem; }
+    .lightbox.open { display: flex; }
+    .lightbox img { max-width: 100%; max-height: 90vh; object-fit: contain; border-radius: 6px; }
+    .lightbox-close { position: absolute; top: 1rem; right: 1rem; background: rgba(255,255,255,0.2); border: none; color: white; font-size: 1.5rem; width: 44px; height: 44px; border-radius: 50%; cursor: pointer; }
   </style>
 </head>
 <body>
 
-  <header>
-    <div class="brand">
-      <h1>🏛️ Fondo de Desarrollo Moquegua (FDM)</h1>
-      <p>Sistema Integral de Control Documentario y Trazabilidad Contractual (Auditoría 2022-2025)</p>
-    </div>
-    <div class="header-actions">
-      <div class="badge-sync" title="Base de Datos Procesada">
-        📗 Tomos 2022-2024 (19 Tomos PMO) + Digital 2025-2026
+  <!-- Top Header -->
+  <header class="top-header">
+    <div class="header-top">
+      <div>
+        <div class="header-title">📱 FDM Scanner de Archivo</div>
+        <div class="header-sub">Levantamiento de Evidencias Físicas y Fotos Offline</div>
       </div>
-      <a href="campo.html" class="btn-campo" style="background: #2563EB; color: white; border: none; padding: 0.65rem 1.1rem; border-radius: 8px; font-weight: 700; font-size: 0.85rem; text-decoration: none; display: inline-flex; align-items: center; gap: 0.4rem; box-shadow: 0 2px 5px rgba(37,99,235,0.3);">
-        📱 Modo Campo / Escáner
-      </a>
-      <button class="btn-excel" onclick="exportToExcel()">
-        📥 Descargar Excel Oficial
-      </button>
+      <div class="header-actions">
+        <button id="btnCloudSync" class="btn-action" onclick="toggleCloudConfig()" style="background: #475569;" title="Configurar sincronización en tiempo real">☁️ Conectar</button>
+        <button class="btn-action green" onclick="exportZipPackage()">📦 ZIP</button>
+        <a href="index.html" class="btn-action">🖥️ Web</a>
+      </div>
     </div>
   </header>
 
-  <div class="container">
+  <!-- Sticky Search & Chips -->
+  <div class="search-box">
+    <div class="search-input-wrap">
+      <span class="search-icon">🔍</span>
+      <input type="text" id="searchInput" class="search-input" placeholder="Buscar por N°, nombre, CUI o lugar..." oninput="filterList()">
+    </div>
     
-    <!-- Metrics Grid -->
-    <div class="metrics-grid">
-      <div class="metric-card blue" onclick="setFilter('ALL', document.getElementById('btnTabAll'))">
-        <div class="title">Total Obras Civiles <span>🏗️</span></div>
-        <div class="value" id="kpi-total">69</div>
-        <div class="desc">100% Cartera Auditada FDM</div>
-      </div>
-      <div class="metric-card green" onclick="setFilter('COMPLETA', document.getElementById('btnTabCompleta'))">
-        <div class="title">Información Completa <span>🟢</span></div>
-        <div class="value" id="kpi-completa" style="color: #16A34A;">29</div>
-        <div class="desc">En Caja FDM o Inicio+Cierre probado</div>
-      </div>
-      <div class="metric-card yellow" onclick="setFilter('PARCIAL', document.getElementById('btnTabParcial'))">
-        <div class="title">Trazabilidad Parcial <span>🟡</span></div>
-        <div class="value" id="kpi-parcial" style="color: #CA8A04;">10</div>
-        <div class="desc">Hitos en tomos; falta inicio o liq.</div>
-      </div>
-      <div class="metric-card red" onclick="setFilter('SIN_INICIO', document.getElementById('btnTabSinInicio'))">
-        <div class="title">⚠️ Sin Fecha Inicio <span>🚨</span></div>
-        <div class="value" id="kpi-sin-inicio" style="color: #DC2626;">38</div>
-        <div class="desc">Pendiente ubicar en Archivo Central</div>
-      </div>
-      <div class="metric-card purple" onclick="setFilter('CAJAS', document.getElementById('btnTabCajas'))">
-        <div class="title">En Cajas Rotuladas <span>📦</span></div>
-        <div class="value" id="kpi-cajas" style="color: #9333EA;">10</div>
-        <div class="desc">Expedientes físicos en custodia</div>
-      </div>
+    <!-- Selector de Ambiente de Trabajo Activo -->
+    <div style="background: #F8FAFC; border: 1px solid #CBD5E1; padding: 0.4rem 0.6rem; border-radius: 8px; margin-top: 0.4rem; display: flex; align-items: center; justify-content: space-between; gap: 0.4rem;">
+      <span style="font-size: 0.72rem; font-weight: 700; color: #475569; white-space: nowrap;">📍 AMBIENTE ACTUAL:</span>
+      <select id="selectAmbienteGlobal" onchange="cambiarAmbienteGlobal(this.value)" style="font-size: 0.75rem; padding: 0.25rem 0.4rem; border-radius: 6px; border: 1px solid #94A3B8; background: white; font-weight: 700; color: #0F172A; outline: none; width: 100%; max-width: 220px; cursor: pointer;">
+        <option value="BAÑO1-PMO">🚽 BAÑO1-PMO</option>
+        <option value="BAÑO2-PMO">🚽 BAÑO2-PMO</option>
+        <option value="BAÑO3-PMO">🚽 BAÑO3-PMO</option>
+        <option value="OFICINA1-PMO">🏢 OFICINA1-PMO</option>
+        <option value="OFICINA2-PMO">🏢 OFICINA2-PMO</option>
+        <option value="OFICINA3-PMO">🏢 OFICINA3-PMO</option>
+        <option value="PASADIZO-ESCALERA">🚶 PASADIZO-ESCALERA</option>
+        <option value="SECRETARIA-PMO">📑 SECRETARIA-PMO</option>
+        <option value="ALMACEN-TECHO">📦 ALMACEN-TECHO</option>
+        <option value="ARMARIO-1ERPISO">🗄️ ARMARIO-1ERPISO</option>
+        <option value="OTROS">📍 OTROS</option>
+        <option value="CUSTOM">➕ Agregar Sub-zona / Otro...</option>
+      </select>
     </div>
 
-    <!-- Analytics Dashboard Panels -->
-    <div class="analytics-panel">
-      <!-- Widget 1: Estado de Auditoría (Audit Readiness) -->
-      <div class="analytics-card">
-        <div class="analytics-title">
-          <span>📊 Estado Documental de Auditoría</span>
-          <span id="readinessPercent">42.0% Completo</span>
-        </div>
-        <div class="progress-bar-container">
-          <div class="progress-label">
-            <span style="color: #16A34A;">🟢 Completas (<span id="statComp">29</span>)</span>
-            <span style="color: #CA8A04;">🟡 Parciales (<span id="statParc">10</span>)</span>
-            <span style="color: #DC2626;">🔴 Pendientes (<span id="statPend">26</span>)</span>
-            <span style="color: #64748B;">⚪ No Aplica (<span id="statNoAp">4</span>)</span>
-          </div>
-          <div class="progress-track">
-            <div id="progFillComp" class="progress-fill" style="width: 42.0%; background: #16A34A;"></div>
-            <div id="progFillParc" class="progress-fill" style="width: 14.5%; background: #EAB308;"></div>
-            <div id="progFillPend" class="progress-fill" style="width: 37.7%; background: #DC2626;"></div>
-            <div id="progFillNoAp" class="progress-fill" style="width: 5.8%; background: #94A3B8;"></div>
-          </div>
-        </div>
-        <div class="stats-pill-grid" style="margin-top: 1rem;">
-          <div class="stat-mini-pill" onclick="setFilter('COMPLETA', document.getElementById('btnTabCompleta'))" style="cursor: pointer;">
-            <div class="lbl">Sustento Pleno</div>
-            <div class="num" style="color: #16A34A;" id="miniSustento">29 obras</div>
-          </div>
-          <div class="stat-mini-pill" onclick="setFilter('PARCIAL', document.getElementById('btnTabParcial'))" style="cursor: pointer;">
-            <div class="lbl">En Trazabilidad</div>
-            <div class="num" style="color: #CA8A04;" id="miniTrazabilidad">10 obras</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Widget 2: Distribución por Provincia -->
-      <div class="analytics-card">
-        <div class="analytics-title">
-          <span>📍 Distribución Territorial</span>
-          <span>69 Obras Civiles</span>
-        </div>
-        <div style="display: flex; flex-direction: column; gap: 0.6rem;">
-          <div>
-            <div class="progress-label">
-              <span>⚓ Provincia de Ilo</span>
-              <span id="provIloCount">20 obras</span>
-            </div>
-            <div class="progress-track">
-              <div class="progress-fill" style="width: 29.0%; background: #2563EB;"></div>
-            </div>
-          </div>
-          <div>
-            <div class="progress-label">
-              <span>🏛️ Provincia Mariscal Nieto</span>
-              <span id="provMNCount">12 obras</span>
-            </div>
-            <div class="progress-track">
-              <div class="progress-fill" style="width: 17.4%; background: #0D9488;"></div>
-            </div>
-          </div>
-          <div>
-            <div class="progress-label">
-              <span>🌾 General Sánchez Cerro</span>
-              <span id="provGSCCount">37 obras</span>
-            </div>
-            <div class="progress-track">
-              <div class="progress-fill" style="width: 53.6%; background: #8B5CF6;"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Widget 3: Avance Acumulado de Tomos Auditados -->
-      <div class="analytics-card">
-        <div class="analytics-title">
-          <span>📚 Acervo Documentario Procesado</span>
-          <span>19 Tomos PMO (2022-2024)</span>
-        </div>
-        <div class="stats-pill-grid">
-          <div class="stat-mini-pill">
-            <div class="lbl">Folios Físicos OCR</div>
-            <div class="num" style="color: #2563EB;">1,600+ Folios</div>
-          </div>
-          <div class="stat-mini-pill">
-            <div class="lbl">Periodo Analizado</div>
-            <div class="num" style="font-size: 0.95rem; color: #0F172A;">2022 - 2026 (Auditoría)</div>
-          </div>
-          <div class="stat-mini-pill">
-            <div class="lbl">Hitos Vinculados</div>
-            <div class="num" style="color: #0D9488;">776 Actuados</div>
-          </div>
-          <div class="stat-mini-pill">
-            <div class="lbl">Cajas en Custodia</div>
-            <div class="num" style="color: #9333EA;">10 Cajas</div>
-          </div>
-        </div>
-      </div>
+    <div class="chips-bar">
+      <button class="chip active" onclick="setFilter('ALL', this)">Todas (69)</button>
+      <button class="chip alert" onclick="setFilter('MISSING', this)">⚠️ Faltan Datos (<span id="countMissing">0</span>)</button>
+      <button class="chip green" onclick="setFilter('WITH_PHOTOS', this)">📸 Con Fotos (<span id="countWithPhotos">0</span>)</button>
+      <button class="chip" onclick="setFilter('ILO', this)">⚓ Ilo (20)</button>
+      <button class="chip" onclick="setFilter('MN', this)">🏛️ Mariscal Nieto (12)</button>
+      <button class="chip" onclick="setFilter('GSC', this)">🌾 Sánchez Cerro (37)</button>
     </div>
-
-    <!-- Controls Bar -->
-    <div class="controls-card">
-      <div class="controls-top">
-        <div class="search-input">
-          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
-          <input type="text" id="searchInput" placeholder="Buscar por nombre, CUI, provincia, fecha de inicio, documento o razón..." oninput="filterTable()">
-        </div>
-        <div class="sort-controls">
-          <span class="sort-label">Ordenar:</span>
-          <select id="sortSelect" class="sort-select" onchange="changeSort(this.value)">
-            <option value="ID_ASC">N° Obra Civil (1 a 69)</option>
-            <option value="DATE_ASC">📅 Fecha de Inicio (Más antiguas primero)</option>
-            <option value="DATE_DESC">📅 Fecha de Inicio (Más recientes primero)</option>
-            <option value="MISSING_FIRST">⚠️ Obras sin Fecha Inicio primero</option>
-            <option value="STATUS_ALERT">🚨 Estado de Información (Incompletas primero)</option>
-            <option value="COST_DESC">💰 Mayor Costo Ejecutado</option>
-          </select>
-        </div>
-      </div>
-
-      <div class="filter-tabs">
-        <button class="tab-btn active" onclick="setFilter('ALL', this)" id="btnTabAll">Todas las Obras (69)</button>
-        <button class="tab-btn green" onclick="setFilter('COMPLETA', this)" id="btnTabCompleta">🟢 Info Completa (29)</button>
-        <button class="tab-btn alert" onclick="setFilter('PARCIAL', this)" id="btnTabParcial">🟡 Trazabilidad Parcial (10)</button>
-        <button class="tab-btn red" onclick="setFilter('SIN_INICIO', this)" id="btnTabSinInicio">⚠️ Sin Fecha Inicio (38)</button>
-        <button class="tab-btn" onclick="setFilter('CAJAS', this)" id="btnTabCajas">📦 En Cajas FDM (10)</button>
-        <button class="tab-btn" onclick="setFilter('NO_APLICA', this)" id="btnTabNoAplica">⚪ No Aplica (4)</button>
-        <span style="border-left: 1px solid var(--border); margin: 0 0.35rem;"></span>
-        <button class="tab-btn" onclick="setFilter('PROV_ILO', this)">⚓ Ilo (20)</button>
-        <button class="tab-btn" onclick="setFilter('PROV_MN', this)">🏛️ Mariscal Nieto (12)</button>
-        <button class="tab-btn" onclick="setFilter('PROV_GSC', this)">🌾 Sánchez Cerro (37)</button>
-      </div>
-    </div>
-
-    <!-- Table -->
-    <div class="table-container">
-      <table>
-        <thead>
-          <tr>
-            <th style="width: 45px; text-align: center;" class="sortable" onclick="toggleSort('ID')">N° ⇕</th>
-            <th style="width: 80px; text-align: center;">CONVENIO</th>
-            <th style="width: 85px;">PROVINCIA</th>
-            <th>DESCRIPCIÓN DEL PROYECTO / OBRA CIVIL</th>
-            <th style="width: 85px; text-align: center;">CUI</th>
-            <th style="width: 105px; text-align: center;" class="sortable" onclick="toggleSort('DATE')">FECHA INICIO ⇕</th>
-            <th style="width: 105px; text-align: center;">ESTADO DOC.</th>
-            <th style="width: 110px; text-align: right;">COSTO EJEC.</th>
-            <th style="width: 115px; text-align: center;">UBICACIÓN FDM</th>
-          </tr>
-        </thead>
-        <tbody id="projectsTableBody">
-          <!-- Rows rendered dynamically -->
-        </tbody>
-      </table>
-    </div>
-
   </div>
 
-  <!-- Modal Drawer: Historial, Checklist y Ubicación -->
-  <div class="modal-backdrop" id="modalBackdrop" onclick="handleBackdropClick(event)">
-    <div class="drawer" id="projectDrawer">
-      
+  <!-- Counter -->
+  <div class="count-bar">
+    <span id="labelTotalVisible">Mostrando 69 obras</span>
+    <span id="labelPhotosSaved" style="color: var(--success); font-weight: 700;">📸 0 fotos guardadas</span>
+  </div>
+
+  <!-- Projects List -->
+  <main class="project-list" id="projectsContainer">
+    <!-- Rendered dynamically -->
+  </main>
+
+  <!-- Drawer Modal -->
+  <div class="drawer-backdrop" id="drawerBackdrop" onclick="closeDrawerOutside(event)">
+    <div class="drawer" onclick="event.stopPropagation()">
       <div class="drawer-header">
         <div>
-          <div style="display: flex; gap: 0.5rem; margin-bottom: 0.4rem; align-items: center; flex-wrap: wrap;">
-            <span class="badge" style="background: rgba(255,255,255,0.22); color: #FFF; font-weight: 800; border: 1px solid rgba(255,255,255,0.35);" id="drawerObraId">OBRA N° 01</span>
-            <span class="badge badge-purple" id="drawerConvenio">100 MLL.</span>
-            <span class="badge badge-blue" id="drawerProvincia">ILO</span>
-            <span class="badge badge-gray" id="drawerCui">CUI: 2525252</span>
+          <div style="display: flex; align-items: center; gap: 0.5rem;">
+            <span id="drawerObraNum" style="font-size: 0.75rem; background: #2563EB; padding: 0.15rem 0.5rem; border-radius: 4px; font-weight: 700;">OBRA N° 01</span>
+            <span id="drawerTotalFotos" style="font-size: 0.75rem; background: #059669; padding: 0.15rem 0.5rem; border-radius: 4px; font-weight: 700;">0 fotos</span>
           </div>
-          <h2 id="drawerProjectName">Nombre del Proyecto</h2>
-          <div style="font-size: 0.78rem; opacity: 0.85;">
-            <span id="drawerTipologia">OBRAS CIVILES</span> | Monto Priorizado: <strong id="drawerMontoPriorizado">S/ 0.00</strong>
-          </div>
-          <div id="drawerContractInfo" style="font-size: 0.78rem; opacity: 0.95; margin-top: 3px; color: #E0E7FF; display: none;"></div>
+          <h3 id="drawerTitle" style="margin-top: 4px; line-height: 1.25;">Nombre de la Obra</h3>
         </div>
-        <button class="close-btn" onclick="closeDrawer()">&times;</button>
+        <button class="drawer-close" onclick="closeDrawer()">✕</button>
       </div>
 
-      <div class="drawer-nav">
-        <div class="nav-tab active" onclick="switchDrawerTab('HISTORIAL')" id="tabNavHistorial">
-          📑 Historial y Trazabilidad (<span id="drawerCountHitos">0</span>)
-        </div>
-        <div class="nav-tab" onclick="switchDrawerTab('CHECKLIST')" id="tabNavChecklist">
-          📋 Checklist de Expediente
-        </div>
-        <div class="nav-tab" onclick="switchDrawerTab('UBICACION')" id="tabNavUbicacion">
-          📍 Ubicación y Observaciones
-        </div>
+      <!-- Pestañas Modulares de Trabajo -->
+      <div class="drawer-tabs">
+        <button type="button" class="drawer-tab active" id="tabBtnCajas" onclick="switchDrawerTab('CAJAS')">📦 1. Censo de Cajas</button>
+        <button type="button" class="drawer-tab" id="tabBtnDocs" onclick="switchDrawerTab('DOCS')">📑 2. Checklist & Actas</button>
       </div>
 
       <div class="drawer-body">
-        
-        <!-- Tab 1: Historial y Trazabilidad Contractual PMO -->
-        <div id="drawerTabContentHistorial">
-          
-          <!-- Estado de Información Summary -->
-          <div class="status-summary-card">
-            <div class="status-summary-header">
-              <div>
-                <span style="font-size: 0.72rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase;">Estado de Información</span>
-                <div style="font-size: 1.05rem; font-weight: 800;" id="drawerEstadoInfoLabel">🟢 INFORMACIÓN COMPLETA</div>
-              </div>
-              <span class="badge badge-green" id="drawerBadgeConfiabilidad">Confiabilidad: ALTA</span>
-            </div>
-
-            <!-- Milestone Pillars -->
-            <div class="checklist-milestones">
-              <div class="milestone-pill" id="pillInicio">
-                <span class="milestone-label">Fecha Inicio</span>
-                <span class="milestone-val" id="pillInicioVal">27/02/2023</span>
-              </div>
-              <div class="milestone-pill" id="pillPlazo">
-                <span class="milestone-label">Plazo / Ampliac.</span>
-                <span class="milestone-val" id="pillPlazoVal">180 DC (Adenda)</span>
-              </div>
-              <div class="milestone-pill" id="pillTermino">
-                <span class="milestone-label">Culminación</span>
-                <span class="milestone-val" id="pillTerminoVal">Verificada</span>
-              </div>
-              <div class="milestone-pill" id="pillCierre">
-                <span class="milestone-label">Recepción / Liq.</span>
-                <span class="milestone-val" id="pillCierreVal">Caja 08</span>
-              </div>
-            </div>
-
-            <!-- Alert Box for Missing Items -->
-            <div id="drawerMissingAlertBox" style="margin-top: 0.75rem; background: #FEF2F2; border: 1px solid #FECACA; border-radius: 8px; padding: 0.65rem 0.85rem; font-size: 0.8rem; color: #991B1B; display: none;">
-              <strong style="display: block; margin-bottom: 0.2rem;">⚠️ Información que falta ubicar para sustento pleno:</strong>
-              <ul id="drawerMissingList" style="padding-left: 1.2rem; line-height: 1.4;"></ul>
-              <div style="margin-top: 0.4rem; font-size: 0.75rem; color: #7F1D1D; font-style: italic;">
-                🔍 Buscar en expedientes físicos de 2024 o Archivo Central.
-              </div>
-            </div>
-          </div>
-
-          <!-- Controls Bar for Timeline / Tree View inside Modal -->
-          <div class="drawer-view-controls" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.75rem;">
-            <div class="view-toggle-group">
-              <button class="btn-view-toggle active" id="btnViewTimeline" onclick="setTimelineView('TIMELINE')">
-                📅 Línea de Tiempo
-              </button>
-              <button class="btn-view-toggle" id="btnViewTree" onclick="setTimelineView('TREE')">
-                🌳 Árbol de Actuados
-              </button>
-            </div>
-
-            <div style="display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;">
-              <label style="display: flex; align-items: center; gap: 0.35rem; font-size: 0.76rem; font-weight: 600; color: #1E293B; cursor: pointer; background: #EFF6FF; border: 1px solid #BFDBFE; padding: 0.35rem 0.65rem; border-radius: 6px;">
-                <input type="checkbox" id="chkOnlyRelevant" checked onchange="toggleAuditRelevantOnly(this.checked)" style="accent-color: #2563EB; cursor: pointer;">
-                <span>🎯 Solo Actuados Relevantes de Auditoría</span>
-              </label>
-
-              <button class="btn-order-sort" id="btnSortOrder" onclick="toggleTimelineSortOrder()">
-                ⬇️ Más antiguo primero
-              </button>
-            </div>
-          </div>
-
-          <!-- Timeline Filter Buttons -->
-          <div style="display: flex; gap: 0.4rem; overflow-x: auto; margin-bottom: 1rem; padding-bottom: 0.2rem;">
-            <button class="tab-btn active" style="font-size: 0.75rem; padding: 0.35rem 0.7rem;" onclick="filterTimeline('ALL', this)">Todos (<span id="countTimelineAll">0</span>)</button>
-            <button class="tab-btn" style="font-size: 0.75rem; padding: 0.35rem 0.7rem;" onclick="filterTimeline('INICIO', this)">🚀 Inicio & Contrato</button>
-            <button class="tab-btn" style="font-size: 0.75rem; padding: 0.35rem 0.7rem;" onclick="filterTimeline('VALORIZACION', this)">📈 Valorizaciones</button>
-            <button class="tab-btn" style="font-size: 0.75rem; padding: 0.35rem 0.7rem;" onclick="filterTimeline('AMPLIACION', this)">⚠️ Ampliaciones & Plazos</button>
-            <button class="tab-btn" style="font-size: 0.75rem; padding: 0.35rem 0.7rem;" onclick="filterTimeline('TERMINO', this)">🏁 Recepción & Liq.</button>
-          </div>
-
-          <!-- Dynamic Container: Timeline View OR Tree View -->
-          <div id="timelineContainer" class="timeline">
-            <!-- Items rendered dynamically -->
-          </div>
-
-          <div id="treeContainer" class="tree-view" style="display: none;">
-            <!-- Tree view rendered dynamically -->
-          </div>
-
+        <!-- Resumen Inicial de Obra -->
+        <div style="font-size: 0.75rem; color: var(--text-muted); display: flex; gap: 0.5rem; flex-wrap: wrap;">
+          <span id="drawerCui">CUI: —</span> • <span id="drawerProv">Provincia</span> • <span id="drawerConv">100 MLL</span>
         </div>
 
-        <!-- Tab 2: Checklist Documental de Obra -->
-        <div id="drawerTabContentChecklist" style="display: none;">
-          <div class="checklist-section">
-            <div style="font-size: 0.85rem; font-weight: 700; color: var(--primary); margin-bottom: 0.75rem; display: flex; justify-content: space-between;">
-              <span>Checklist Documental de Obra Civil (11 Puntos)</span>
-              <span style="font-size: 0.75rem; font-weight: normal; color: var(--text-muted);">Marca lo verificado en físico</span>
+        <!-- PANEL 1: CENSO RÁPIDO DE CAJAS (Barrido Topográfico) -->
+        <div id="panelTabCajas">
+          <div class="field-group">
+            <div class="field-title">
+              <span>📍 AMBIENTE DONDE SE ENCUENTRA LA CAJA</span>
+              <span style="font-size: 0.7rem; color: #2563EB;">Obligatorio para Auditoría</span>
             </div>
             
-            <div class="check-item"><label><input type="checkbox" id="chk_exp"> 1. Expediente Técnico Aprobado</label></div>
-            <div class="check-item"><label><input type="checkbox" id="chk_cont"> 2. Contrato Principal y Cartas Fianza</label></div>
-            <div class="check-item"><label><input type="checkbox" id="chk_acta_ent"> 3. Acta de Entrega de Terreno / Inicio</label></div>
-            <div class="check-item"><label><input type="checkbox" id="chk_cuad"> 4. Cuaderno de Obra Completo</label></div>
-            <div class="check-item"><label><input type="checkbox" id="chk_val"> 5. Valorizaciones Mensuales (1 a N) con Ensayos</label></div>
-            <div class="check-item"><label><input type="checkbox" id="chk_adic"> 6. Adicionales de Obra / Ampliaciones de Plazo</label></div>
-            <div class="check-item"><label><input type="checkbox" id="chk_sup"> 7. Informes Mensuales de Supervisión</label></div>
-            <div class="check-item"><label><input type="checkbox" id="chk_rec"> 8. Acta de Recepción de Obra Definitiva</label></div>
-            <div class="check-item"><label><input type="checkbox" id="chk_liq"> 9. Liquidación de Contrato de Obra</label></div>
-            <div class="check-item"><label><input type="checkbox" id="chk_res"> 10. Resolución de Liquidación FDM</label></div>
-            <div class="check-item"><label><input type="checkbox" id="chk_transf"> 11. Acta de Transferencia a Entidad Receptora</label></div>
+            <select id="drawerAmbienteSelect" class="field-input" onchange="onDrawerAmbienteChange(this.value)" style="font-weight: 700; color: #0F172A; background: #FFF; font-size: 0.92rem; border: 1.5px solid #2563EB; cursor: pointer; padding: 0.65rem;">
+              <option value="BAÑO1-PMO">🚽 BAÑO1-PMO</option>
+              <option value="BAÑO2-PMO">🚽 BAÑO2-PMO</option>
+              <option value="BAÑO3-PMO">🚽 BAÑO3-PMO</option>
+              <option value="OFICINA1-PMO">🏢 OFICINA1-PMO</option>
+              <option value="OFICINA2-PMO">🏢 OFICINA2-PMO</option>
+              <option value="OFICINA3-PMO">🏢 OFICINA3-PMO</option>
+              <option value="PASADIZO-ESCALERA">🚶 PASADIZO-ESCALERA</option>
+              <option value="SECRETARIA-PMO">📑 SECRETARIA-PMO</option>
+              <option value="ALMACEN-TECHO">📦 ALMACEN-TECHO</option>
+              <option value="ARMARIO-1ERPISO">🗄️ ARMARIO-1ERPISO</option>
+              <option value="OTROS">📍 OTROS</option>
+              <option value="CUSTOM">➕ Agregar Sub-zona / Otro...</option>
+            </select>
+
+            <!-- Tarjeta de Código de Trazabilidad Único -->
+            <div style="margin-top: 0.75rem; background: #0F172A; border-radius: 10px; padding: 0.75rem; color: white; display: flex; flex-direction: column; gap: 0.4rem; box-shadow: 0 2px 6px rgba(0,0,0,0.15);">
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <span style="font-size: 0.72rem; font-weight: 700; text-transform: uppercase; color: #94A3B8; letter-spacing: 0.5px;">🏷️ CÓDIGO ÚNICO DE CAJA (Escribe en la caja):</span>
+                <span style="font-size: 0.68rem; color: #38BDF8; font-weight: 700;">Secuencia de Caja</span>
+              </div>
+              
+              <!-- Control Stepper: Menos, Código Grande, Más -->
+              <div style="display: flex; align-items: center; gap: 0.4rem;">
+                <button type="button" onclick="cambiarCajaSeqDelta(-1)" style="background: #334155; border: 1px solid #475569; color: white; width: 44px; height: 44px; border-radius: 8px; font-size: 1.3rem; font-weight: 900; cursor: pointer; display: flex; align-items: center; justify-content: center;" title="Caja anterior (−)">−</button>
+                <input type="text" id="inputCodigoCaja" class="field-input" style="flex: 1; background: #1E293B; border: 1.5px solid #38BDF8; color: #38BDF8; font-size: 1.3rem; font-weight: 800; letter-spacing: 1.5px; text-align: center; margin: 0; padding: 0.5rem; text-transform: uppercase;" placeholder="B1-01-C1" oninput="onCustomCodigoChange()">
+                <button type="button" onclick="cambiarCajaSeqDelta(1)" style="background: #2563EB; border: 1px solid #3B82F6; color: white; width: 44px; height: 44px; border-radius: 8px; font-size: 1.3rem; font-weight: 900; cursor: pointer; display: flex; align-items: center; justify-content: center;" title="Caja siguiente (+)">+</button>
+              </div>
+
+              <!-- Selector Rápido de Cajas (C1, C2, C3...) -->
+              <div style="margin-top: 0.2rem;">
+                <div style="font-size: 0.65rem; color: #94A3B8; margin-bottom: 0.25rem;">Toca para seleccionar o reutilizar caja:</div>
+                <div id="cajaSeqChipsContainer" style="display: flex; gap: 0.35rem; overflow-x: auto; padding-bottom: 0.25rem;">
+                  <!-- Renderizado dinámico -->
+                </div>
+              </div>
+
+              <div style="font-size: 0.68rem; color: #CBD5E1; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #1E293B; padding-top: 0.3rem;">
+                <span>Ambiente: <strong id="lblAmbCode">B1</strong> | Obra: <strong id="lblObraCode">01</strong> | Secuencia: <strong id="lblCajaSeq">C1</strong></span>
+                <span style="color: #4ADE80; font-weight: 700;">✓ Marca con plumón</span>
+              </div>
+            </div>
+
+            <input type="hidden" id="inputUbicacion">
+            <input type="hidden" id="inputCajaNum">
+            <div id="ubicacionResumenDisplay" style="margin-top: 0.5rem; font-size: 0.78rem; color: #1E293B; background: #EEF2FF; padding: 0.4rem 0.6rem; border-radius: 6px; border: 1px solid #C7D2FE; font-weight: 600;">
+              📍 Trazabilidad: <span id="ubicacionResumenText" style="color: #2563EB;">BAÑO1-PMO [B1-01-C1]</span>
+            </div>
+          </div>
+
+          <!-- Qué contiene la caja según su rótulo -->
+          <div class="field-group">
+            <div class="field-title">
+              <span>📦 ¿Qué contiene esta caja? (Marca lo que dice el rótulo)</span>
+            </div>
+            <div class="preset-chips" style="margin-top: 0.2rem;">
+              <span class="preset-chip" onclick="appendContenido('Exp. Técnico')">📁 Exp. Técnico</span>
+              <span class="preset-chip" onclick="appendContenido('Valorizaciones')">📊 Valorizaciones</span>
+              <span class="preset-chip" onclick="appendContenido('Cuadernos de Obra')">📖 Cuadernos</span>
+              <span class="preset-chip" onclick="appendContenido('Liquidación')">⚖️ Liquidación</span>
+              <span class="preset-chip" onclick="appendContenido('Contrato y Bases')">📜 Contrato/Bases</span>
+              <span class="preset-chip" onclick="appendContenido('Adicionales/Ampliaciones')">➕ Adicionales</span>
+              <span class="preset-chip" onclick="appendContenido('Supervisión')">👷 Supervisión</span>
+            </div>
+            <textarea id="inputNotas" class="field-input" style="height: 55px; resize: none; margin-top: 0.5rem;" placeholder="Ej: Caja contiene Valorizaciones 1 a 6 y Cuaderno de Obra N° 01..."></textarea>
+          </div>
+
+          <!-- Foto del Rótulo de la Caja -->
+          <div class="photo-slot" style="border: 2px dashed #2563EB; background: #F8FAFC;">
+            <div class="slot-hdr">
+              <span style="font-size: 0.85rem; font-weight: 800; color: #1E293B;">📸 Foto del Rótulo de la Caja</span>
+              <span id="slotCount_rotulo" class="badge badge-gray">0</span>
+            </div>
+            <button type="button" class="btn-camera" onclick="triggerCamera('rotulo')" style="padding: 0.75rem; font-size: 0.9rem; font-weight: 700;">📸 Tomar Foto a Rótulo de Caja (+)</button>
+            <input type="file" accept="image/*" capture="environment" id="file_rotulo" style="display:none;" onchange="handlePhotoUpload('rotulo', this)">
+            <div class="thumb-grid" id="grid_rotulo" style="margin-top: 0.6rem;"></div>
+          </div>
+
+          <!-- Foto Adicional de la Caja / Contenido -->
+          <div class="photo-slot" style="margin-top: 0.75rem; border: 1.5px dashed #64748B; background: #F8FAFC;">
+            <div class="slot-hdr">
+              <span style="font-size: 0.85rem; font-weight: 800; color: #1E293B;">➕ Foto Adicional de la Caja / Contenido</span>
+              <span id="slotCount_otros" class="badge badge-gray">0</span>
+            </div>
+            <button type="button" class="btn-camera" onclick="triggerCamera('otros')" style="padding: 0.65rem; font-size: 0.85rem; font-weight: 700; background: #0284C7;">📸 Tomar Foto Adicional (+)</button>
+            <input type="file" accept="image/*" capture="environment" id="file_otros" style="display:none;" onchange="handlePhotoUpload('otros', this)">
+            <div class="thumb-grid" id="grid_otros" style="margin-top: 0.6rem;"></div>
+          </div>
+
+          <!-- Botón para Concluir Caja y Pasar a Siguiente -->
+          <div style="margin-top: 1rem; margin-bottom: 0.5rem;">
+            <button type="button" onclick="pasarASiguienteCaja()" style="width: 100%; background: linear-gradient(135deg, #16A34A, #15803D); color: white; border: none; border-radius: 12px; padding: 0.95rem 1rem; font-size: 0.95rem; font-weight: 800; cursor: pointer; box-shadow: 0 4px 12px rgba(22, 163, 74, 0.35); display: flex; align-items: center; justify-content: center; gap: 0.5rem;">
+              <span>📦 Terminar Caja Actual y Pasar a Siguiente Caja ➔</span>
+            </button>
+            <div style="font-size: 0.68rem; color: #64748B; text-align: center; margin-top: 0.35rem;">
+              Presiona aquí únicamente al terminar todas las fotos de esta caja para limpiar el contenido y avanzar al siguiente número.
+            </div>
           </div>
         </div>
 
-        <!-- Tab 3: Ubicación y Observaciones -->
-        <div id="drawerTabContentUbicacion" style="display: none;">
-          <div style="margin-bottom: 1.25rem;">
-            <label style="display: block; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.35rem;">Ubicación Física donde se encontró (Caja o Archivador)</label>
-            <input type="text" id="drawerUbicacion" class="input-field" placeholder="Ej: Archivador N° 04 - Estante A / Caja N° 08">
+        <!-- PANEL 2: REVISIÓN DOCUMENTAL Y CHECKLIST (Auditoría de Contenido) -->
+        <div id="panelTabDocs" style="display: none;">
+          
+          <!-- Fechas Contractuales Comprobadas -->
+          <div class="field-group">
+            <div class="field-title">
+              <span>📅 Fecha de Inicio Real</span>
+              <span id="statusInicioBadge" class="badge badge-yellow">Verificar</span>
+            </div>
+            <input type="text" id="inputFechaInicio" class="field-input" placeholder="Ej: 14/01/2022 o 14 de enero del 2022">
+            <div class="preset-chips">
+              <span class="preset-chip" onclick="setPresetDate('inputFechaInicio', '01/06/2021')">01/06/2021</span>
+              <span class="preset-chip" onclick="setPresetDate('inputFechaInicio', '15/01/2022')">15/01/2022</span>
+              <span class="preset-chip" onclick="setPresetDate('inputFechaInicio', '01/07/2023')">01/07/2023</span>
+              <span class="preset-chip" onclick="setPresetDate('inputFechaInicio', '15/05/2024')">15/05/2024</span>
+            </div>
           </div>
 
-          <div style="margin-bottom: 1.25rem;">
-            <label style="display: block; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.35rem;">Observaciones / Documentos Faltantes a Requerir</label>
-            <textarea id="drawerObservaciones" class="input-field" placeholder="Ej: Falta ubicar resolución de liquidación en Presidencia; valorizaciones 1 a 6 completas."></textarea>
+          <div class="field-group">
+            <div class="field-title">
+              <span>🏁 Fecha de Culminación Real / Recepción</span>
+            </div>
+            <input type="text" id="inputFechaCulm" class="field-input" placeholder="Ej: 11/09/2022 o Acta del 23/12/2022">
           </div>
+
+          <!-- Checklist Documental de Obra (11 Checks Oficiales) -->
+          <div class="field-group">
+            <div class="field-title">
+              <span>📑 Checklist Documental FDM (Punto 61)</span>
+              <span style="font-size: 0.7rem; color: #2563EB;">Marca lo verificado en físico</span>
+            </div>
+            <div class="check-list-grid">
+              <label class="check-item-box"><input type="checkbox" id="chk_exp"> 1. Expediente Técnico Aprobado</label>
+              <label class="check-item-box"><input type="checkbox" id="chk_cont"> 2. Contrato Principal y Fianzas</label>
+              <label class="check-item-box"><input type="checkbox" id="chk_acta_ent"> 3. Acta de Entrega de Terreno / Inicio</label>
+              <label class="check-item-box"><input type="checkbox" id="chk_cuad"> 4. Cuaderno de Obra Completo</label>
+              <label class="check-item-box"><input type="checkbox" id="chk_val"> 5. Valorizaciones Mensuales (1 a N)</label>
+              <label class="check-item-box"><input type="checkbox" id="chk_adic"> 6. Adicionales / Ampliaciones de Plazo</label>
+              <label class="check-item-box"><input type="checkbox" id="chk_sup"> 7. Informes Mensuales de Supervisión</label>
+              <label class="check-item-box"><input type="checkbox" id="chk_rec"> 8. Acta de Recepción de Obra</label>
+              <label class="check-item-box"><input type="checkbox" id="chk_liq"> 9. Liquidación de Contrato de Obra</label>
+              <label class="check-item-box"><input type="checkbox" id="chk_res"> 10. Resolución de Liquidación FDM</label>
+              <label class="check-item-box"><input type="checkbox" id="chk_transf"> 11. Acta de Transferencia a Entidad</label>
+            </div>
+          </div>
+
+          <div style="font-weight: 700; font-size: 0.85rem; color: var(--text); margin-top: 0.5rem; display: flex; align-items: center; justify-content: space-between;">
+            <span>📸 EVIDENCIAS DE ACTAS Y CONTRATOS (OPCIONAL)</span>
+            <span id="drawerTotalFotosDocs" style="color: var(--success); font-size: 0.75rem;">0 fotos</span>
+          </div>
+
+          <!-- Slot 2: Acta Inicio -->
+          <div class="photo-slot">
+            <div class="slot-hdr">
+              <span>📜 Acta de Entrega de Terreno / Inicio</span>
+              <span id="slotCount_inicio" class="badge badge-gray">0</span>
+            </div>
+            <button type="button" class="btn-camera" onclick="triggerCamera('inicio')">📸 Foto Acta de Inicio</button>
+            <input type="file" accept="image/*" capture="environment" id="file_inicio" style="display:none;" onchange="handlePhotoUpload('inicio', this)">
+            <div class="thumb-grid" id="grid_inicio"></div>
+          </div>
+
+          <!-- Slot 3: Contrato de Obra -->
+          <div class="photo-slot">
+            <div class="slot-hdr">
+              <span>📝 Contrato de Obra / Adendas</span>
+              <span id="slotCount_contrato" class="badge badge-gray">0</span>
+            </div>
+            <button type="button" class="btn-camera" onclick="triggerCamera('contrato')">📸 Foto Contrato / Adenda</button>
+            <input type="file" accept="image/*" capture="environment" id="file_contrato" style="display:none;" onchange="handlePhotoUpload('contrato', this)">
+            <div class="thumb-grid" id="grid_contrato"></div>
+          </div>
+
+          <!-- Slot 4: Cuaderno de Obra -->
+          <div class="photo-slot">
+            <div class="slot-hdr">
+              <span>📖 Cuaderno de Obra (Asientos)</span>
+              <span id="slotCount_cuaderno" class="badge badge-gray">0</span>
+            </div>
+            <button type="button" class="btn-camera" onclick="triggerCamera('cuaderno')">📸 Foto Cuaderno de Obra</button>
+            <input type="file" accept="image/*" capture="environment" id="file_cuaderno" style="display:none;" onchange="handlePhotoUpload('cuaderno', this)">
+            <div class="thumb-grid" id="grid_cuaderno"></div>
+          </div>
+
+          <!-- Slot 5: Acta Recepción -->
+          <div class="photo-slot">
+            <div class="slot-hdr">
+              <span>🏁 Acta de Recepción / Culminación</span>
+              <span id="slotCount_recepcion" class="badge badge-gray">0</span>
+            </div>
+            <button type="button" class="btn-camera" onclick="triggerCamera('recepcion')">📸 Foto Acta Recepción</button>
+            <input type="file" accept="image/*" capture="environment" id="file_recepcion" style="display:none;" onchange="handlePhotoUpload('recepcion', this)">
+            <div class="thumb-grid" id="grid_recepcion"></div>
+          </div>
+
+          <!-- Slot 6: Liquidación -->
+          <div class="photo-slot">
+            <div class="slot-hdr">
+              <span>⚖️ Resolución de Liquidación Técnica</span>
+              <span id="slotCount_liquidacion" class="badge badge-gray">0</span>
+            </div>
+            <button type="button" class="btn-camera" onclick="triggerCamera('liquidacion')">📸 Foto Liquidación</button>
+            <input type="file" accept="image/*" capture="environment" id="file_liquidacion" style="display:none;" onchange="handlePhotoUpload('liquidacion', this)">
+            <div class="thumb-grid" id="grid_liquidacion"></div>
+          </div>
+
+          <!-- Observaciones de Auditoría de la Obra -->
+          <div class="field-group" style="margin-top: 0.75rem;">
+            <div class="field-title">
+              <span>📝 Observaciones de Auditoría de la Obra</span>
+            </div>
+            <textarea id="inputNotasAuditoria" class="field-input" style="height: 60px; resize: none;" placeholder="Observaciones contractuales, tomos revisados o estado legal..."></textarea>
+          </div>
+
         </div>
 
       </div>
 
       <div class="drawer-footer">
-        <button class="btn btn-secondary" onclick="closeDrawer()">Cerrar</button>
-        <button class="btn btn-primary" onclick="saveProjectChanges()">💾 Guardar Cambios</button>
+        <button class="btn-nav" onclick="navigateObra(-1)">◀ Ant.</button>
+        <button class="btn-save" onclick="saveCurrentObra()">💾 Guardar Avance</button>
+        <button class="btn-nav" onclick="navigateObra(1)">Sig. ▶</button>
       </div>
-
     </div>
   </div>
 
-  <div class="toast" id="toast">Cambios guardados correctamente</div>
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+    <button class="lightbox-close">✕</button>
+    <img id="lightboxImg" src="" onclick="event.stopPropagation()">
+  </div>
+
+  <!-- Toast -->
+  <div class="toast" id="toast">✅ Guardado correctamente</div>
 
   <script>
-    let projectsData = [];
+    // Global State
+    let projects = [];
     let currentFilter = 'ALL';
-    let currentSort = 'ID_ASC';
-    let selectedProjectId = null;
-    let currentTimelineFilter = 'ALL';
-    let currentTimelineView = 'TIMELINE'; // 'TIMELINE' or 'TREE'
-    let currentTimelineSortOrder = 'ASC'; // 'ASC' (oldest first) or 'DESC' (newest first)
-    let isLocalServer = false;
+    let activeObraId = null;
+    let fieldData = {}; // obra_id -> { fecha_inicio, fecha_culm, ubicacion, notas, fotos: [] }
 
-    async function loadProjects() {
-      try {
-        const res = await fetch('/api/projects');
-        if (!res.ok) throw new Error("API not active");
-        const data = await res.json();
-        projectsData = data.projects;
-        isLocalServer = true;
-        renderKPIs(data.kpis);
-      } catch (err) {
-        console.warn("Cargando projects_data.json estático:", err);
-        try {
-          const resStatic = await fetch('./projects_data.json?v=' + Date.now());
-          const dataStatic = await resStatic.json();
-          projectsData = dataStatic.projects;
-          isLocalServer = false;
-          renderKPIs(dataStatic.kpis);
-        } catch (e2) {
-          console.error("Error al cargar datos:", e2);
+    // IndexedDB Setup
+    const DB_NAME = 'FDM_Field_Audit_DB';
+    const DB_VERSION = 1;
+    let db = null;
+
+    function initDB() {
+      return new Promise((resolve, reject) => {
+        const req = indexedDB.open(DB_NAME, DB_VERSION);
+        req.onupgradeneeded = (e) => {
+          const dbInstance = e.target.result;
+          if (!dbInstance.objectStoreNames.contains('obras_campo')) {
+            dbInstance.createObjectStore('obras_campo', { keyPath: 'id' });
+          }
+        };
+        req.onsuccess = (e) => {
+          db = e.target.result;
+          resolve(db);
+        };
+        req.onerror = (e) => reject(e);
+      });
+    }
+
+    async function loadAllFromDB() {
+      if (!db) return;
+      return new Promise((resolve) => {
+        const tx = db.transaction('obras_campo', 'readonly');
+        const store = tx.objectStore('obras_campo');
+        const req = store.getAll();
+        req.onsuccess = () => {
+          (req.result || []).forEach(item => {
+            fieldData[item.id] = item;
+          });
+          resolve();
+        };
+        req.onerror = () => resolve();
+      });
+    }
+
+    async function saveObraToDB(item) {
+      if (!db) return;
+      return new Promise((resolve, reject) => {
+        const tx = db.transaction('obras_campo', 'readwrite');
+        const store = tx.objectStore('obras_campo');
+        store.put(item);
+        tx.oncomplete = () => resolve();
+        tx.onerror = (e) => reject(e);
+      });
+    }
+
+    // ==========================================
+    // SINCRONIZACIÓN EN TIEMPO REAL (GOOGLE DRIVE / SHEETS)
+    // ==========================================
+    const GAS_URL_KEY = 'fdm_gas_url';
+    let isSyncingCloud = false;
+
+    function getGasUrl() {
+      return localStorage.getItem(GAS_URL_KEY) || "";
+    }
+
+    function toggleCloudConfig() {
+      const current = getGasUrl();
+      const input = prompt(
+        "☁️ CONEXIÓN CENTRALIZADA CON GOOGLE DRIVE & SHEETS\n\n" +
+        "Pega aquí la URL de la aplicación web de Google Apps Script (termina en /exec):\n" +
+        "(O déjalo en blanco para desconectar y trabajar solo offline)",
+        current
+      );
+
+      if (input !== null) {
+        const trimmed = input.trim();
+        if (trimmed) {
+          localStorage.setItem(GAS_URL_KEY, trimmed);
+          updateCloudButtonState();
+          showToast("☁️ Conectando con Google Drive...");
+          syncFromCloud();
+        } else {
+          localStorage.removeItem(GAS_URL_KEY);
+          updateCloudButtonState();
+          showToast("Modo solo local / offline activado");
         }
       }
-
-      applySavedChangesFromStorage();
-      renderTable();
-      renderAnalyticsDashboard();
     }
 
-    function applySavedChangesFromStorage() {
-      try {
-        const saved = JSON.parse(localStorage.getItem('fdm_audit_changes') || '{}');
-        Object.keys(saved).forEach(id => {
-          const p = projectsData.find(item => String(item.id) === String(id));
-          if (p) {
-            const entry = saved[id];
-            if (entry.checks) p.checks = { ...p.checks, ...entry.checks };
-            if (entry.ubicacion) {
-              p.n_cajas = entry.ubicacion;
-              p.tiene_caja = entry.ubicacion.toUpperCase().includes('CAJA') ? 'EN CAJA' : 'ARCHIVADOR';
-            }
-            if (entry.observaciones) p.alerta = entry.observaciones;
-          }
-        });
-      } catch (e) {
-        console.error("Error reading localStorage:", e);
+    function updateCloudButtonState() {
+      const btn = document.getElementById('btnCloudSync');
+      if (!btn) return;
+      const url = getGasUrl();
+      if (url) {
+        btn.style.background = "#059669";
+        btn.innerHTML = "☁️ Nube Activa";
+        btn.title = "Conectado a Google Drive y Sheets centralizado";
+      } else {
+        btn.style.background = "#475569";
+        btn.innerHTML = "☁️ Conectar";
+        btn.title = "Configurar sincronización en Google Drive";
       }
     }
 
-    function renderKPIs(kpis) {
-      if (!kpis) return;
-      document.getElementById('kpi-total').innerText = kpis.total || projectsData.length;
-      document.getElementById('kpi-completa').innerText = kpis.info_completa || kpis.completas || 20;
-      document.getElementById('kpi-parcial').innerText = kpis.info_parcial || kpis.parciales || 13;
-      document.getElementById('kpi-sin-inicio').innerText = kpis.sin_fecha_inicio || kpis.pendientes || 32;
-      document.getElementById('kpi-cajas').innerText = kpis.en_caja || kpis.en_cajas || 11;
+    async function syncFromCloud() {
+      const url = getGasUrl();
+      if (!url || isSyncingCloud) return;
+
+      isSyncingCloud = true;
+      const btn = document.getElementById('btnCloudSync');
+      if (btn) btn.innerHTML = "🔄 Nube...";
+
+      try {
+        const res = await fetch(url);
+        const data = await res.json();
+
+        if (data && data.status === 'success') {
+          let mergedCount = 0;
+
+          // 1. Sincronizar Cajas y Fotos
+          const listaCajas = data.cajas || data.records || [];
+          listaCajas.forEach(r => {
+            const obraId = r.obra_id;
+            if (!obraId) return;
+
+            if (!fieldData[obraId]) fieldData[obraId] = { id: obraId, fotos: [] };
+            if (!fieldData[obraId].fotos) fieldData[obraId].fotos = [];
+
+            if (r.codigo_caja) {
+              const exists = fieldData[obraId].fotos.some(f => 
+                (f.drive_url && f.drive_url === r.drive_url) || (f.file_id && f.file_id === r.file_id)
+              );
+              if (!exists) {
+                const isRotulo = !r.tipo_foto || r.tipo_foto === 'Rótulo de Caja';
+                fieldData[obraId].fotos.push({
+                  id: 'cloud_' + Date.now() + '_' + Math.random().toString(36).substring(2, 6),
+                  slot: isRotulo ? 'rotulo' : 'otros',
+                  codigo_caja: r.codigo_caja,
+                  sub_codigo: r.sub_codigo || (isRotulo ? r.codigo_caja : `${r.codigo_caja}-ADIC`),
+                  tipo_foto: r.tipo_foto || (isRotulo ? 'Rótulo de Caja' : 'Foto Adicional'),
+                  nombre: `DRIVE_${r.codigo_caja}.jpg`,
+                  dataUrl: r.drive_url || '',
+                  drive_url: r.drive_url || '',
+                  file_id: r.file_id || '',
+                  isDriveLink: !!r.drive_url,
+                  timestamp: r.timestamp || '',
+                  ubicacion: r.ambiente || r.ubicacion || '',
+                  nota: r.contenido_caja || r.nota || r.codigo_caja
+                });
+                mergedCount++;
+              }
+            }
+            autoCompileUbicacion(obraId);
+            saveObraToDB(fieldData[obraId]);
+          });
+
+          // 2. Sincronizar Checklist y Fechas de Obras
+          if (data.obras && typeof data.obras === 'object') {
+            Object.keys(data.obras).forEach(oKey => {
+              const oData = data.obras[oKey];
+              const oId = parseInt(oKey);
+              if (!oId) return;
+
+              if (!fieldData[oId]) fieldData[oId] = { id: oId, fotos: [] };
+              if (oData.fecha_inicio && !fieldData[oId].fecha_inicio) fieldData[oId].fecha_inicio = oData.fecha_inicio;
+              if (oData.fecha_culm && !fieldData[oId].fecha_culm) fieldData[oId].fecha_culm = oData.fecha_culm;
+              if (oData.checks && Object.keys(oData.checks).length > 0) {
+                fieldData[oId].checks = Object.assign(fieldData[oId].checks || {}, oData.checks);
+              }
+              saveObraToDB(fieldData[oId]);
+            });
+          }
+
+          updateGlobalCounters();
+          renderList();
+          if (activeObraId) {
+            renderDrawerPhotos();
+            renderCajaSeqChips();
+          }
+          if (mergedCount > 0) {
+            showToast(`☁️ ${mergedCount} cajas sincronizadas desde Google Drive`);
+          }
+        }
+      } catch (err) {
+        console.warn("Fallo temporal sincronizando con Google Apps Script:", err);
+      } finally {
+        isSyncingCloud = false;
+        updateCloudButtonState();
+      }
     }
 
-    function renderAnalyticsDashboard() {
-      const total = projectsData.length || 69;
-      const comp = projectsData.filter(p => p.estado_info === 'COMPLETA').length;
-      const parc = projectsData.filter(p => p.estado_info === 'PARCIAL').length;
-      const pend = projectsData.filter(p => p.estado_info === 'PENDIENTE').length;
-      const noap = projectsData.filter(p => p.estado_info === 'NO_APLICA').length;
+    async function uploadBoxPhotoToCloud(obraId, photoObj) {
+      const url = getGasUrl();
+      if (!url || !photoObj) return;
 
-      const pComp = ((comp / total) * 100).toFixed(1);
-      const pParc = ((parc / total) * 100).toFixed(1);
-      const pPend = ((pend / total) * 100).toFixed(1);
-      const pNoap = ((noap / total) * 100).toFixed(1);
+      const d = fieldData[obraId];
+      const p = projects.find(x => x.id === obraId) || {};
+      const contenidoCaja = photoObj.nota || (document.getElementById('inputNotas')?.value || '').trim();
+      const tipoFoto = photoObj.tipo_foto || (photoObj.slot === 'rotulo' ? 'Rótulo de Caja' : 'Foto Adicional');
 
-      const elReadiness = document.getElementById('readinessPercent');
-      if (elReadiness) elReadiness.innerText = `${pComp}% Completo`;
+      const payload = {
+        action: "save_box_photo",
+        obra_id: obraId,
+        desc: p.desc || '',
+        cui: p.cui || '',
+        codigo_caja: photoObj.codigo_caja || '',
+        sub_codigo: photoObj.sub_codigo || photoObj.codigo_caja || '',
+        ambiente: photoObj.ubicacion || getActiveAmbiente(),
+        contenido_caja: contenidoCaja,
+        tipo_foto: tipoFoto,
+        photo: {
+          base64: photoObj.dataUrl,
+          filename: photoObj.nombre || `OBRA_${obraId}_${photoObj.codigo_caja}.jpg`,
+          slot: photoObj.slot
+        }
+      };
 
-      const elStatComp = document.getElementById('statComp');
-      if (elStatComp) elStatComp.innerText = comp;
-      const elStatParc = document.getElementById('statParc');
-      if (elStatParc) elStatParc.innerText = parc;
-      const elStatPend = document.getElementById('statPend');
-      if (elStatPend) elStatPend.innerText = pend;
-      const elStatNoAp = document.getElementById('statNoAp');
-      if (elStatNoAp) elStatNoAp.innerText = noap;
+      try {
+        fetch(url, {
+          method: 'POST',
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+          body: JSON.stringify(payload)
+        }).then(res => res.json()).then(result => {
+          if (result && result.status === 'success') {
+            showToast(`☁️ Guardado en CENSO_CAJAS_FOTOS (${payload.sub_codigo || payload.codigo_caja})`);
+            if (photoObj) {
+              if (result.drive_url) photoObj.drive_url = result.drive_url;
+              if (result.file_id) photoObj.file_id = result.file_id;
+              if (d) saveObraToDB(d);
+            }
+          }
+        }).catch(e => {
+          console.warn("Subida de foto en segundo plano pendiente:", e);
+        });
+      } catch (e) {
+        console.warn("Fallo fetch uploadBoxPhotoToCloud:", e);
+      }
+    }
 
-      const fComp = document.getElementById('progFillComp');
-      if (fComp) fComp.style.width = `${pComp}%`;
-      const fParc = document.getElementById('progFillParc');
-      if (fParc) fParc.style.width = `${pParc}%`;
-      const fPend = document.getElementById('progFillPend');
-      if (fPend) fPend.style.width = `${pPend}%`;
-      const fNoap = document.getElementById('progFillNoAp');
-      if (fNoap) fNoap.style.width = `${pNoap}%`;
+    async function uploadObraChecksToCloud(obraId) {
+      const url = getGasUrl();
+      if (!url) return;
 
-      const ilo = projectsData.filter(p => (p.provincia || '').toUpperCase().includes('ILO')).length;
-      const mn = projectsData.filter(p => (p.provincia || '').toUpperCase().includes('MARISCAL') || (p.provincia || '').toUpperCase() === 'M.N.').length;
-      const gsc = projectsData.filter(p => (p.provincia || '').toUpperCase().includes('SANCHEZ') || (p.provincia || '').toUpperCase() === 'G.S.C.').length;
+      const d = fieldData[obraId];
+      if (!d) return;
+      const p = projects.find(x => x.id === obraId) || {};
 
-      const elIlo = document.getElementById('provIloCount');
-      if (elIlo) elIlo.innerText = `${ilo} obras`;
-      const elMN = document.getElementById('provMNCount');
-      if (elMN) elMN.innerText = `${mn} obras`;
-      const elGSC = document.getElementById('provGSCCount');
-      if (elGSC) elGSC.innerText = `${gsc} obras`;
+      const payload = {
+        action: "save_obra_checks",
+        obra_id: obraId,
+        desc: p.desc || '',
+        cui: p.cui || '',
+        provincia: p.provincia || '',
+        fecha_inicio: d.fecha_inicio || '',
+        fecha_culm: d.fecha_culm || '',
+        notas_auditoria: (document.getElementById('inputNotasAuditoria')?.value || d.notas_auditoria || '').trim(),
+        checks: d.checks || {}
+      };
 
-      const sin_inicio = projectsData.filter(p => !p.tiene_fecha_inicio && p.estado_info !== 'NO_APLICA').length;
-      const cajas = projectsData.filter(p => (p.tiene_caja || '').toUpperCase().includes('CAJA')).length;
+      try {
+        fetch(url, {
+          method: 'POST',
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+          body: JSON.stringify(payload)
+        }).then(res => res.json()).then(result => {
+          if (result && result.status === 'success') {
+            showToast(`☁️ Ficha actualizada en MATRIZ_69_OBRAS`);
+          }
+        }).catch(e => {
+          console.warn("Actualización de checks en segundo plano pendiente:", e);
+        });
+      } catch (e) {
+        console.warn("Fallo fetch uploadObraChecksToCloud:", e);
+      }
+    }
 
-      const btnAll = document.getElementById('btnTabAll');
-      if (btnAll) btnAll.innerText = `Todas las Obras (${total})`;
-      const btnComp = document.getElementById('btnTabCompleta');
-      if (btnComp) btnComp.innerText = `🟢 Info Completa (${comp})`;
-      const btnParc = document.getElementById('btnTabParcial');
-      if (btnParc) btnParc.innerText = `🟡 Trazabilidad Parcial (${parc})`;
-      const btnSinIni = document.getElementById('btnTabSinInicio');
-      if (btnSinIni) btnSinIni.innerText = `⚠️ Sin Fecha Inicio (${sin_inicio})`;
-      const btnCajas = document.getElementById('btnTabCajas');
-      if (btnCajas) btnCajas.innerText = `📦 En Cajas FDM (${cajas})`;
-      const btnNoAp = document.getElementById('btnTabNoAplica');
-      if (btnNoAp) btnNoAp.innerText = `⚪ No Aplica (${noap})`;
+    async function deleteRecordFromCloud(obraId, photoObj) {
+      const url = getGasUrl();
+      if (!url || !photoObj) return;
 
-      const elMiniSust = document.getElementById('miniSustento');
-      if (elMiniSust) elMiniSust.innerText = `${comp} obras`;
-      const elMiniTraz = document.getElementById('miniTrazabilidad');
-      if (elMiniTraz) elMiniTraz.innerText = `${parc} obras`;
+      const payload = {
+        action: "delete_record",
+        obra_id: obraId,
+        codigo_caja: photoObj.codigo_caja || photoObj.nota || "",
+        drive_url: photoObj.drive_url || (photoObj.isDriveLink ? photoObj.dataUrl : ""),
+        file_id: photoObj.file_id || ""
+      };
+
+      try {
+        fetch(url, {
+          method: 'POST',
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+          body: JSON.stringify(payload)
+        }).then(res => res.json()).then(res => {
+          if (res && res.status === 'success') {
+            showToast(`🗑️ Borrado de Google Drive y Sheets (${payload.codigo_caja})`);
+          }
+        }).catch(err => {
+          console.warn("Fallo borrado en la nube:", err);
+        });
+      } catch (err) {
+        console.warn("Fallo fetch deleteRecordFromCloud:", err);
+      }
+    }
+
+    // App Initialization
+    window.addEventListener('DOMContentLoaded', async () => {
+      initAmbienteSelector();
+      await initDB();
+      await loadProjectsData();
+      await loadAllFromDB();
+      updateGlobalCounters();
+      renderList();
+      updateCloudButtonState();
+      syncFromCloud();
+    });
+
+    function initAmbienteSelector() {
+      syncAmbienteDropdowns();
+      const savedAmb = localStorage.getItem('fdm_active_amb') || 'BAÑO1-PMO';
+      const selG = document.getElementById('selectAmbienteGlobal');
+      if (selG && [...selG.options].some(o => o.value === savedAmb)) {
+        selG.value = savedAmb;
+      }
+      const selD = document.getElementById('drawerAmbienteSelect');
+      if (selD && [...selD.options].some(o => o.value === savedAmb)) {
+        selD.value = savedAmb;
+      }
+    }
+
+    function syncAmbienteDropdowns() {
+      let customs = [];
+      try {
+        customs = JSON.parse(localStorage.getItem('fdm_custom_ambientes') || '[]');
+      } catch (e) {}
+      
+      const dropdowns = [document.getElementById('selectAmbienteGlobal'), document.getElementById('drawerAmbienteSelect')];
+      dropdowns.forEach(sel => {
+        if (!sel) return;
+        customs.forEach(c => {
+          if (![...sel.options].some(o => o.value === c)) {
+            const opt = document.createElement('option');
+            opt.value = c;
+            opt.innerText = "📍 " + c;
+            sel.insertBefore(opt, sel.lastElementChild);
+          }
+        });
+      });
+    }
+
+    function getActiveAmbiente() {
+      const selD = document.getElementById('drawerAmbienteSelect');
+      if (selD && selD.value && selD.value !== 'CUSTOM') return selD.value;
+      const selG = document.getElementById('selectAmbienteGlobal');
+      return (selG && selG.value !== 'CUSTOM' ? selG.value : localStorage.getItem('fdm_active_amb') || 'BAÑO1-PMO');
+    }
+
+    function onDrawerAmbienteChange(val) {
+      if (val === 'CUSTOM') {
+        const pers = prompt("Escribe el nombre del nuevo ambiente o sub-zona\n(Ej: ALMACEN-TECHO_PARTE_FRONTAL, BAÑO1_DETRAS_PUERTA):", "");
+        if (pers && pers.trim()) {
+          val = pers.trim().toUpperCase();
+          saveNewCustomAmbiente(val);
+        } else {
+          document.getElementById('drawerAmbienteSelect').value = localStorage.getItem('fdm_active_amb') || 'BAÑO1-PMO';
+          return;
+        }
+      }
+      localStorage.setItem('fdm_active_amb', val);
+      const selG = document.getElementById('selectAmbienteGlobal');
+      if (selG) selG.value = val;
+      updateFullUbicacion();
+      showToast("📍 Ambiente: " + val);
+    }
+
+    function cambiarAmbienteGlobal(val) {
+      if (val === 'CUSTOM') {
+        const pers = prompt("Escribe el nombre del nuevo ambiente o sub-zona\n(Ej: ALMACEN-TECHO_PARTE_FRONTAL, BAÑO1_DETRAS_PUERTA):", "");
+        if (pers && pers.trim()) {
+          val = pers.trim().toUpperCase();
+          saveNewCustomAmbiente(val);
+        } else {
+          document.getElementById('selectAmbienteGlobal').value = localStorage.getItem('fdm_active_amb') || 'BAÑO1-PMO';
+          return;
+        }
+      }
+      localStorage.setItem('fdm_active_amb', val);
+      const selD = document.getElementById('drawerAmbienteSelect');
+      if (selD) selD.value = val;
+      updateFullUbicacion();
+      showToast("📍 Ambiente activo: " + val);
+    }
+
+    function saveNewCustomAmbiente(val) {
+      try {
+        const customs = JSON.parse(localStorage.getItem('fdm_custom_ambientes') || '[]');
+        if (!customs.includes(val)) customs.push(val);
+        localStorage.setItem('fdm_custom_ambientes', JSON.stringify(customs));
+      } catch (e) {}
+      syncAmbienteDropdowns();
+      const selG = document.getElementById('selectAmbienteGlobal');
+      if (selG) selG.value = val;
+      const selD = document.getElementById('drawerAmbienteSelect');
+      if (selD) selD.value = val;
+    }
+
+    const AMBIENTE_PREFIXES = {
+      'BAÑO1-PMO': 'B1',
+      'BAÑO2-PMO': 'B2',
+      'BAÑO3-PMO': 'B3',
+      'OFICINA1-PMO': 'OF1',
+      'OFICINA2-PMO': 'OF2',
+      'OFICINA3-PMO': 'OF3',
+      'PASADIZO-ESCALERA': 'PAS',
+      'SECRETARIA-PMO': 'SEC',
+      'ALMACEN-TECHO': 'ALT',
+      'ARMARIO-1ERPISO': 'ARM1',
+      'OTROS': 'OTR'
+    };
+
+    let currentCajaSeq = 1;
+
+    function getAmbientePrefix(amb) {
+      if (!amb) return 'B1';
+      if (AMBIENTE_PREFIXES[amb]) return AMBIENTE_PREFIXES[amb];
+      const clean = amb.replace(/[^a-zA-Z0-9]/g, '_');
+      const parts = clean.split('_').filter(Boolean);
+      if (parts.length >= 2) return (parts[0].substring(0, 3) + '_' + parts[1].substring(0, 3)).toUpperCase();
+      return amb.substring(0, 4).toUpperCase();
+    }
+
+    function getUsedCajaSeqs(obraId) {
+      const d = fieldData[obraId];
+      if (!d || !d.fotos) return new Set();
+      const used = new Set();
+      d.fotos.forEach(f => {
+        const cod = f.codigo_caja || f.nota || '';
+        const m = cod.match(/C(?:AJA)?[-_]?(\d+)/i);
+        if (m) {
+          used.add(parseInt(m[1]));
+        }
+      });
+      return used;
+    }
+
+    function getFirstAvailableCajaSeq(obraId) {
+      const used = getUsedCajaSeqs(obraId);
+      let seq = 1;
+      while (used.has(seq)) {
+        seq++;
+      }
+      return seq;
+    }
+
+    function autoGenerarCodigoCaja() {
+      if (!activeObraId) return { code: 'B1-01-C1', pref: 'B1', obraStr: '01', seq: 'C1' };
+      const amb = getActiveAmbiente();
+      const pref = getAmbientePrefix(amb);
+      const obraStr = String(activeObraId).padStart(2, '0');
+      const seq = `C${currentCajaSeq}`;
+      const code = `${pref}-${obraStr}-${seq}`;
+      return { code, pref, obraStr, seq };
+    }
+
+    function setCajaSeq(seq) {
+      currentCajaSeq = Math.max(1, seq);
+      const input = document.getElementById('inputCodigoCaja');
+      if (input) input.dataset.userEdited = "";
+      updateCodigoDisplay();
+      showToast(`🏷️ Seleccionada Caja C${currentCajaSeq}`);
+    }
+
+    function cambiarCajaSeqDelta(delta) {
+      currentCajaSeq = Math.max(1, currentCajaSeq + delta);
+      const input = document.getElementById('inputCodigoCaja');
+      if (input) input.dataset.userEdited = "";
+      updateCodigoDisplay();
+      showToast(`🏷️ Caja C${currentCajaSeq}`);
+    }
+
+    function updateCodigoDisplay() {
+      const { code, pref, obraStr, seq } = autoGenerarCodigoCaja();
+      const input = document.getElementById('inputCodigoCaja');
+      if (input && !input.dataset.userEdited) {
+        input.value = code;
+      }
+      
+      const lblA = document.getElementById('lblAmbCode');
+      if (lblA) lblA.innerText = pref;
+      const lblO = document.getElementById('lblObraCode');
+      if (lblO) lblO.innerText = obraStr;
+      const lblS = document.getElementById('lblCajaSeq');
+      if (lblS) lblS.innerText = seq;
+      
+      updateFullUbicacion();
+      renderCajaSeqChips();
+    }
+
+    function renderCajaSeqChips() {
+      const cont = document.getElementById('cajaSeqChipsContainer');
+      if (!cont || !activeObraId) return;
+
+      const used = getUsedCajaSeqs(activeObraId);
+      const maxShown = Math.max(8, currentCajaSeq + 2, ...Array.from(used));
+
+      let html = '';
+      for (let i = 1; i <= maxShown; i++) {
+        const isUsed = used.has(i);
+        const isSelected = (i === currentCajaSeq);
+        
+        let chipStyle = "padding: 4px 10px; border-radius: 6px; font-size: 0.75rem; font-weight: 700; cursor: pointer; white-space: nowrap;";
+        if (isSelected) {
+          chipStyle += " background: #0284C7; color: white; border: 1.5px solid #38BDF8; box-shadow: 0 0 8px rgba(56,189,248,0.5);";
+        } else if (isUsed) {
+          chipStyle += " background: #14532D; color: #4ADE80; border: 1px solid #22C55E;";
+        } else {
+          chipStyle += " background: #1E293B; color: #94A3B8; border: 1px solid #334155;";
+        }
+
+        const label = isUsed ? `C${i} ✓` : `C${i}`;
+        html += `<button type="button" onclick="setCajaSeq(${i})" style="${chipStyle}" title="${isUsed ? 'Caja ya fotografiada' : 'Caja disponible'}">${label}</button>`;
+      }
+      cont.innerHTML = html;
+    }
+
+    function onCustomCodigoChange() {
+      const input = document.getElementById('inputCodigoCaja');
+      if (input) {
+        input.dataset.userEdited = "true";
+        const m = input.value.match(/C(?:AJA)?[-_]?(\d+)/i);
+        if (m) {
+          currentCajaSeq = parseInt(m[1]);
+          const lblS = document.getElementById('lblCajaSeq');
+          if (lblS) lblS.innerText = `C${currentCajaSeq}`;
+          renderCajaSeqChips();
+        }
+      }
+      updateFullUbicacion();
+    }
+
+    function updateFullUbicacion() {
+      const amb = getActiveAmbiente();
+      const cod = (document.getElementById('inputCodigoCaja')?.value || '').trim();
+      const full = cod ? `${amb} [${cod}]` : amb;
+      
+      const inputHidden = document.getElementById('inputUbicacion');
+      if (inputHidden) inputHidden.value = full;
+      
+      const resText = document.getElementById('ubicacionResumenText');
+      if (resText) resText.innerText = full;
+    }
+
+    function setCajaNum(cajaVal) {
+      const m = cajaVal.match(/\d+/);
+      if (m) {
+        setCajaSeq(parseInt(m[0]));
+      }
+    }
+
+    async function loadProjectsData() {
+      try {
+        const res = await fetch('./projects_data.json?v=' + Date.now());
+        const json = await res.json();
+        projects = json.projects || [];
+      } catch (e) {
+        console.warn("Cargando desde fallback local:", e);
+      }
+    }
+
+    function updateGlobalCounters() {
+      let missingCount = 0;
+      let withPhotosCount = 0;
+      let totalPhotos = 0;
+
+      projects.forEach(p => {
+        const d = fieldData[p.id] || {};
+        const hasStart = (d.fecha_inicio || p.fecha_inicio);
+        const hasUbicacion = (d.ubicacion || (p.tiene_caja && p.tiene_caja !== 'NO - ARCHIVADOR'));
+        if ((!hasStart || !hasUbicacion) && p.estado_info !== 'NO_APLICA') {
+          missingCount++;
+        }
+        const photosCount = (d.fotos || []).length;
+        if (photosCount > 0) withPhotosCount++;
+        totalPhotos += photosCount;
+      });
+
+      document.getElementById('countMissing').innerText = missingCount;
+      document.getElementById('countWithPhotos').innerText = withPhotosCount;
+      document.getElementById('labelPhotosSaved').innerText = `📸 ${totalPhotos} fotos guardadas`;
     }
 
     function setFilter(filter, btn) {
       currentFilter = filter;
-      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-      if (btn) btn.classList.add('active');
-      filterTable();
+      document.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
+      btn.classList.add('active');
+      filterList();
     }
 
-    function changeSort(sortVal) {
-      currentSort = sortVal;
-      filterTable();
-    }
-
-    function toggleSort(col) {
-      if (col === 'DATE') {
-        currentSort = (currentSort === 'DATE_ASC') ? 'DATE_DESC' : 'DATE_ASC';
-      } else if (col === 'ID') {
-        currentSort = (currentSort === 'ID_ASC') ? 'ID_DESC' : 'ID_ASC';
-      }
-      document.getElementById('sortSelect').value = currentSort;
-      filterTable();
-    }
-
-    function filterTable() {
+    function filterList() {
       const q = document.getElementById('searchInput').value.toLowerCase().trim();
 
-      const filtered = projectsData.filter(p => {
-        if (currentFilter === 'COMPLETA') return p.estado_info === 'COMPLETA';
-        if (currentFilter === 'PARCIAL') return p.estado_info === 'PARCIAL';
-        if (currentFilter === 'SIN_INICIO') return !p.tiene_fecha_inicio && p.estado_info !== 'NO_APLICA';
-        if (currentFilter === 'CAJAS') return (p.tiene_caja || '').toUpperCase().includes('CAJA');
-        if (currentFilter === 'NO_APLICA') return p.estado_info === 'NO_APLICA';
-        if (currentFilter === 'PROV_ILO') return (p.provincia || '').toUpperCase().includes('ILO');
-        if (currentFilter === 'PROV_MN') return (p.provincia || '').toUpperCase().includes('MARISCAL') || (p.provincia || '').toUpperCase() === 'M.N.';
-        if (currentFilter === 'PROV_GSC') return (p.provincia || '').toUpperCase().includes('SANCHEZ') || (p.provincia || '').toUpperCase() === 'G.S.C.';
+      const filtered = projects.filter(p => {
+        const d = fieldData[p.id] || {};
+        const hasPhotos = (d.fotos || []).length > 0;
+        const hasStart = (d.fecha_inicio || p.fecha_inicio);
+        const hasUbicacion = (d.ubicacion || (p.tiene_caja && p.tiene_caja !== 'NO - ARCHIVADOR'));
+
+        if (currentFilter === 'MISSING') {
+          return (!hasStart || !hasUbicacion) && p.estado_info !== 'NO_APLICA';
+        }
+        if (currentFilter === 'WITH_PHOTOS') {
+          return hasPhotos;
+        }
+        if (currentFilter === 'ILO') return (p.provincia || '').toUpperCase().includes('ILO');
+        if (currentFilter === 'MN') return (p.provincia || '').toUpperCase().includes('MARISCAL') || p.provincia === 'M.N.';
+        if (currentFilter === 'GSC') return (p.provincia || '').toUpperCase().includes('SANCHEZ') || p.provincia === 'G.S.C.';
         return true;
       }).filter(p => {
         if (!q) return true;
-        const h_text = (p.historial || []).map(h => `${h.documento} ${h.asunto_razon} ${h.fecha}`).join(' ').toLowerCase();
-        return p.desc.toLowerCase().includes(q) ||
-               p.provincia.toLowerCase().includes(q) ||
-               p.convenio.toLowerCase().includes(q) ||
-               (p.cui && p.cui.toLowerCase().includes(q)) ||
-               (p.tiene_caja && p.tiene_caja.toLowerCase().includes(q)) ||
-               (p.fecha_inicio && p.fecha_inicio.toLowerCase().includes(q)) ||
-               h_text.includes(q);
+        const d = fieldData[p.id] || {};
+        const text = `${p.id} ${p.desc} ${p.cui} ${p.provincia} ${d.ubicacion || ''} ${d.notas || ''}`.toLowerCase();
+        return text.includes(q);
       });
 
-      // Sorting
-      filtered.sort((a, b) => {
-        if (currentSort === 'ID_ASC') return a.id - b.id;
-        if (currentSort === 'ID_DESC') return b.id - a.id;
-        if (currentSort === 'DATE_ASC') {
-          return (a.fecha_inicio_sort || '9999-99-99').localeCompare(b.fecha_inicio_sort || '9999-99-99') || (a.id - b.id);
-        }
-        if (currentSort === 'DATE_DESC') {
-          const dA = a.fecha_inicio_sort || '0000-00-00';
-          const dB = b.fecha_inicio_sort || '0000-00-00';
-          return dB.localeCompare(dA) || (a.id - b.id);
-        }
-        if (currentSort === 'MISSING_FIRST') {
-          if (!a.tiene_fecha_inicio && b.tiene_fecha_inicio) return -1;
-          if (a.tiene_fecha_inicio && !b.tiene_fecha_inicio) return 1;
-          return a.id - b.id;
-        }
-        if (currentSort === 'STATUS_ALERT') {
-          const weights = { 'INCOMPLETA': 1, 'PARCIAL': 2, 'COMPLETA': 3, 'NO_APLICA': 4 };
-          return (weights[a.estado_info] || 9) - (weights[b.estado_info] || 9);
-        }
-        if (currentSort === 'COST_DESC') return b.costo_ejec - a.costo_ejec;
-        return a.id - b.id;
-      });
-
-      renderRows(filtered);
+      renderProjects(filtered);
     }
 
-    function formatCompactDate(dStr) {
-      if (!dStr) return '';
-      const months = {
-        enero: '01', febrero: '02', marzo: '03', abril: '04', mayo: '05', junio: '06',
-        julio: '07', agosto: '08', setiembre: '09', septiembre: '09', octubre: '10',
-        noviembre: '11', diciembre: '12'
-      };
-      const match = dStr.match(/(\d{1,2})\s+de\s+([a-zA-Z]+)\s+del?\s+(\d{4})/i);
-      if (match) {
-        const day = match[1].padStart(2, '0');
-        const mon = months[match[2].toLowerCase()] || '??';
-        const year = match[3];
-        const hasExtra = dStr.includes('(') ? '*' : '';
-        return `${day}/${mon}/${year}${hasExtra}`;
-      }
-      const matchSlash = dStr.match(/(\d{1,2}\/\d{1,2}\/\d{4})/);
-      if (matchSlash) return matchSlash[1];
-      return dStr.length > 10 ? dStr.substring(0, 10) : dStr;
+    function renderList() {
+      filterList();
     }
 
-    function renderRows(list) {
-      const tbody = document.getElementById('projectsTableBody');
-      tbody.innerHTML = '';
+    function renderProjects(list) {
+      const container = document.getElementById('projectsContainer');
+      document.getElementById('labelTotalVisible').innerText = `Mostrando ${list.length} de ${projects.length} obras`;
 
       if (list.length === 0) {
-        tbody.innerHTML = `<tr><td colspan="9" style="text-align: center; padding: 2rem; color: var(--text-muted);">No se encontraron proyectos con los criterios de búsqueda.</td></tr>`;
+        container.innerHTML = `<div style="text-align: center; padding: 3rem 1rem; color: var(--text-muted); font-size: 0.9rem;">No se encontraron obras con ese criterio.</div>`;
         return;
       }
 
-      const rowsHtml = list.map(p => {
-        const costoFmt = p.costo_ejec > 0 
-          ? `S/ ${p.costo_ejec.toLocaleString('es-PE', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`
-          : 'S/ 0.00';
+      container.innerHTML = list.map(p => {
+        const d = fieldData[p.id] || {};
+        const photosCount = (d.fotos || []).length;
+        const fechaIni = d.fecha_inicio || p.fecha_inicio;
+        const ubicacion = d.ubicacion || (p.tiene_caja && p.tiene_caja !== 'NO - ARCHIVADOR' ? p.tiene_caja : 'Por ubicar');
+        const isMissingStart = !fechaIni && p.estado_info !== 'NO_APLICA';
 
-        let badgeCaja = `<span class="badge badge-yellow" title="En Archivador de Secretaría">📁 ARCHIVADOR</span>`;
-        if ((p.tiene_caja || '').toUpperCase().includes('CAJA')) {
-          badgeCaja = `<span class="badge badge-green" title="Expediente en Caja FDM">📦 ${p.tiene_caja}</span>`;
-        }
-
-        // Start Date Badge (Formato compacto para optimizar visualización en tabla)
-        let badgeInicio = '';
-        if (p.tiene_fecha_inicio) {
-          const compact = formatCompactDate(p.fecha_inicio);
-          badgeInicio = `<span class="badge badge-blue" style="font-size: 0.73rem; font-family: monospace; font-weight: 700; padding: 0.18rem 0.45rem;" title="${p.fecha_inicio}${p.fecha_inicio_doc ? ' | ' + p.fecha_inicio_doc : ''}">📅 ${compact}</span>`;
-        } else if (p.estado_info === 'NO_APLICA') {
-          badgeInicio = `<span class="badge badge-gray" style="font-size: 0.68rem; padding: 0.15rem 0.4rem;">⚪ No Aplica</span>`;
-        } else {
-          badgeInicio = `<span class="badge badge-red" style="font-size: 0.68rem; padding: 0.15rem 0.4rem;" title="Pendiente de ubicar acta original">⚠️ Sin Inicio</span>`;
-        }
-
-        // Completeness Badge
-        let badgeInfo = '';
-        if (p.estado_info === 'COMPLETA') {
-          badgeInfo = `<span class="badge badge-green" style="font-size: 0.7rem; padding: 0.18rem 0.45rem;" title="Expediente en Caja FDM o Inicio+Cierre verificado">🟢 Completa</span>`;
-        } else if (p.estado_info === 'PARCIAL') {
-          badgeInfo = `<span class="badge badge-yellow" style="font-size: 0.7rem; padding: 0.18rem 0.45rem;" title="Hitos en proceso; falta acta de inicio o liquidación">🟡 Parcial</span>`;
-        } else if (p.estado_info === 'NO_APLICA') {
-          badgeInfo = `<span class="badge badge-gray" style="font-size: 0.68rem; padding: 0.15rem 0.4rem;" title="Proyecto no ejecutado físicamente / Exp. Observado">⚪ No Aplica</span>`;
-        } else {
-          badgeInfo = `<span class="badge badge-red" style="font-size: 0.7rem; padding: 0.18rem 0.45rem;" title="Faltan documentos contractuales clave; buscar en Tomos">🔴 Incompleta</span>`;
-        }
+        let cardClass = 'card';
+        if (photosCount > 0) cardClass += ' has-photos';
+        else if (isMissingStart) cardClass += ' missing-start';
+        else cardClass += ' has-data';
 
         return `
-          <tr onclick="openDrawer(${p.id})">
-            <td style="font-weight: 700; text-align: center; color: var(--text-muted);">${p.id}</td>
-            <td style="text-align: center;"><span class="badge badge-gray" style="font-size: 0.68rem; padding: 0.15rem 0.4rem;">${p.convenio}</span></td>
-            <td><strong>${p.provincia}</strong></td>
-            <td>
-              <div style="font-weight: 600; color: var(--text); line-height: 1.35;">${p.desc}</div>
-              <div style="font-size: 0.72rem; color: var(--text-muted); margin-top: 0.2rem;">${p.tipologia}</div>
-            </td>
-            <td style="text-align: center; font-family: monospace; font-size: 0.8rem; font-weight: 600;">${p.cui !== 'N/D' ? p.cui : '—'}</td>
-            <td style="text-align: center; white-space: nowrap;">${badgeInicio}</td>
-            <td style="text-align: center; white-space: nowrap;">${badgeInfo}</td>
-            <td style="text-align: right; font-weight: 600; font-family: monospace; white-space: nowrap;">${costoFmt}</td>
-            <td style="text-align: center; white-space: nowrap;">${badgeCaja}</td>
-          </tr>
+          <div class="${cardClass}" onclick="openDrawer(${p.id})">
+            <div class="card-top">
+              <span class="card-badge-id">OBRA N° ${String(p.id).padStart(2, '0')}</span>
+              <div class="card-badges">
+                ${p.cui && p.cui !== 'N/D' ? `<span class="badge badge-gray">CUI: ${p.cui}</span>` : ''}
+                ${fechaIni ? `<span class="badge badge-blue">📅 ${fechaIni.substring(0, 10)}</span>` : `<span class="badge badge-red">⚠️ Sin Inicio</span>`}
+                ${photosCount > 0 ? `<span class="badge badge-green">📸 ${photosCount}</span>` : ''}
+              </div>
+            </div>
+            <div class="card-title">${p.desc}</div>
+            <div class="card-meta">
+              <div>📍 <strong>${ubicacion}</strong></div>
+              <div>🏛️ ${p.provincia} (${p.convenio})</div>
+            </div>
+          </div>
         `;
       }).join('');
-
-      tbody.innerHTML = rowsHtml;
     }
 
-    function renderTable() {
-      filterTable();
+    // Modal Drawer
+    const CHECK_KEYS = [
+      'chk_exp', 'chk_cont', 'chk_acta_ent', 'chk_cuad', 
+      'chk_val', 'chk_adic', 'chk_sup', 'chk_rec', 
+      'chk_liq', 'chk_res', 'chk_transf'
+    ];
+
+    function switchDrawerTab(tabName) {
+      const tabCajas = document.getElementById('panelTabCajas');
+      const tabDocs = document.getElementById('panelTabDocs');
+      const btnCajas = document.getElementById('tabBtnCajas');
+      const btnDocs = document.getElementById('tabBtnDocs');
+
+      if (tabName === 'CAJAS') {
+        if (tabCajas) tabCajas.style.display = 'block';
+        if (tabDocs) tabDocs.style.display = 'none';
+        if (btnCajas) btnCajas.classList.add('active');
+        if (btnDocs) btnDocs.classList.remove('active');
+      } else {
+        if (tabCajas) tabCajas.style.display = 'none';
+        if (tabDocs) tabDocs.style.display = 'block';
+        if (btnCajas) btnCajas.classList.remove('active');
+        if (btnDocs) btnDocs.classList.add('active');
+      }
     }
 
-    // Modal Drawer logic
+    function appendContenido(tag) {
+      const txt = document.getElementById('inputNotas');
+      if (!txt) return;
+      const curr = txt.value.trim();
+      if (curr.includes(tag)) {
+        showToast("Ya incluido: " + tag);
+        return;
+      }
+      txt.value = curr ? `${curr}, ${tag}` : tag;
+      saveCurrentObra(false);
+      showToast("➕ Agregado: " + tag);
+    }
+
     function openDrawer(id) {
-      selectedProjectId = id;
-      const p = projectsData.find(item => item.id === id);
-      if (!p) return;
+      try {
+        activeObraId = id;
+        const p = projects.find(x => x.id === id);
+        if (!p) return;
 
-      const obraIdLabel = document.getElementById('drawerObraId');
-      if (obraIdLabel) obraIdLabel.innerText = `OBRA CIVIL N° ${String(p.id).padStart(2, '0')}`;
+        const d = fieldData[id] || { fotos: [] };
 
-      document.getElementById('drawerProjectName').innerText = p.desc;
-      document.getElementById('drawerConvenio').innerText = p.convenio;
-      document.getElementById('drawerProvincia').innerText = p.provincia;
-      document.getElementById('drawerCui').innerText = p.cui !== 'N/D' ? `CUI: ${p.cui}` : 'CUI: S/N';
-      document.getElementById('drawerTipologia').innerText = p.tipologia;
-      
-      const prioFmt = p.prio > 0 
-        ? `S/ ${p.prio.toLocaleString('es-PE', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`
-        : 'S/ 0.00';
-      document.getElementById('drawerMontoPriorizado').innerText = prioFmt;
+        const elNum = document.getElementById('drawerObraNum');
+        if (elNum) elNum.innerText = `OBRA CIVIL N° ${String(p.id).padStart(2, '0')}`;
+        const elTitle = document.getElementById('drawerTitle');
+        if (elTitle) elTitle.innerText = p.desc;
+        const elCui = document.getElementById('drawerCui');
+        if (elCui) elCui.innerText = p.cui !== 'N/D' ? `CUI: ${p.cui}` : 'CUI: S/N';
+        const elProv = document.getElementById('drawerProv');
+        if (elProv) elProv.innerText = p.provincia;
+        const elConv = document.getElementById('drawerConv');
+        if (elConv) elConv.innerText = p.convenio;
 
-      const hist = p.historial || [];
-      const relCount = hist.filter(h => h.es_relevante_auditoria !== false).length;
-      document.getElementById('drawerCountHitos').innerText = currentOnlyRelevant ? `${relCount}` : `${hist.length}`;
-      document.getElementById('countTimelineAll').innerText = currentOnlyRelevant ? `${relCount}` : `${hist.length}`;
+        const elIni = document.getElementById('inputFechaInicio');
+        if (elIni) elIni.value = d.fecha_inicio || p.fecha_inicio || '';
+        const elCulm = document.getElementById('inputFechaCulm');
+        if (elCulm) elCulm.value = d.fecha_culm || p.fecha_culminacion_real || '';
+        const elNotas = document.getElementById('inputNotas');
+        if (elNotas) elNotas.value = d.notas || '';
+        const elNotasAud = document.getElementById('inputNotasAuditoria');
+        if (elNotasAud) elNotasAud.value = d.notas_auditoria || '';
 
-      // Status Summary Card
-      const estadoLabel = document.getElementById('drawerEstadoInfoLabel');
-      const badgeConf = document.getElementById('drawerBadgeConfiabilidad');
+        // Cargar checkboxes del checklist documental
+        const savedChecks = d.checks || {};
+        CHECK_KEYS.forEach(k => {
+          const el = document.getElementById(k);
+          if (el) {
+            el.checked = !!savedChecks[k];
+            el.onchange = () => {
+              if (!fieldData[activeObraId]) fieldData[activeObraId] = { id: activeObraId, fotos: [] };
+              if (!fieldData[activeObraId].checks) fieldData[activeObraId].checks = {};
+              fieldData[activeObraId].checks[k] = el.checked;
+              saveObraToDB(fieldData[activeObraId]);
+              showToast(el.checked ? "✓ Check marcado" : "✕ Check desmarcado");
+            };
+          }
+        });
 
-      if (p.estado_info === 'COMPLETA') {
-        estadoLabel.innerText = "🟢 INFORMACIÓN COMPLETA";
-        estadoLabel.style.color = "#16A34A";
-        badgeConf.className = "badge badge-green";
-        badgeConf.innerText = "Confiabilidad: ALTA";
-      } else if (p.estado_info === 'PARCIAL') {
-        estadoLabel.innerText = "🟡 TRAZABILIDAD PARCIAL";
-        estadoLabel.style.color = "#CA8A04";
-        badgeConf.className = "badge badge-yellow";
-        badgeConf.innerText = "Confiabilidad: MEDIA";
-      } else if (p.estado_info === 'NO_APLICA') {
-        estadoLabel.innerText = "⚪ NO APLICA (NO EJECUTADA)";
-        estadoLabel.style.color = "#64748B";
-        badgeConf.className = "badge badge-gray";
-        badgeConf.innerText = "Sin Obra Física";
-      } else {
-        estadoLabel.innerText = "🔴 INFORMACIÓN PENDIENTE";
-        estadoLabel.style.color = "#DC2626";
-        badgeConf.className = "badge badge-red";
-        badgeConf.innerText = "Faltan Documentos";
-      }
-
-      // Contract details in header
-      const contractInfo = document.getElementById('drawerContractInfo');
-      if (contractInfo) {
-        let parts = [];
-        if (p.contrato) parts.push(`Contrato: <strong>${p.contrato}</strong>`);
-        if (p.contratista) parts.push(`Contratista: <strong>${p.contratista}</strong>`);
-        contractInfo.innerHTML = parts.join(' • ');
-        contractInfo.style.display = parts.length > 0 ? 'block' : 'none';
-      }
-
-      // Pillars
-      const pillIni = document.getElementById('pillInicio');
-      const pillIniVal = document.getElementById('pillInicioVal');
-      if (p.tiene_fecha_inicio && p.estado_info !== 'NO_APLICA') {
-        pillIni.className = "milestone-pill ok";
-        let subText = p.entrega_terreno ? `<div style="font-size: 0.72rem; color: #166534; margin-top: 2px;">Terreno: ${p.entrega_terreno}</div>` : '';
-        pillIniVal.innerHTML = `<div>${p.fecha_inicio}</div>${subText}`;
-        pillIniVal.title = p.fecha_inicio_doc;
-      } else if (p.estado_info === 'NO_APLICA') {
-        pillIni.className = "milestone-pill gray";
-        pillIniVal.innerText = "No Aplica";
-      } else {
-        pillIni.className = "milestone-pill missing";
-        pillIniVal.innerText = "⚠️ Falta Acta Inicio";
-        pillIniVal.title = "Buscar acta de entrega de terreno en expedientes 2024 o archivo central";
-      }
-
-      const pillPlazo = document.getElementById('pillPlazo');
-      const pillPlazoVal = document.getElementById('pillPlazoVal');
-      if (p.fecha_termino_prog) {
-        let subPlz = p.plazo ? `<div style="font-size: 0.72rem; color: #1E40AF; margin-top: 2px;">Plazo: ${p.plazo}</div>` : '';
-        pillPlazoVal.innerHTML = `<div>${p.fecha_termino_prog}</div>${subPlz}`;
-      } else {
-        pillPlazoVal.innerText = hist.length > 0 ? "Hitos en Tomos" : (p.estado_info === 'NO_APLICA' ? "No Aplica" : "Por verificar");
-      }
-
-      const pillTerm = document.getElementById('pillTermino');
-      const pillTermVal = document.getElementById('pillTerminoVal');
-      pillTermVal.innerText = p.fecha_culminacion_real ? p.fecha_culminacion_real : (p.estado_info === 'COMPLETA' ? "Verificada" : (p.estado_info === 'NO_APLICA' ? "No Aplica" : "Pendiente"));
-
-      const pillCierre = document.getElementById('pillCierre');
-      const pillCierreVal = document.getElementById('pillCierreVal');
-      const hasCaja = (p.tiene_caja || '').toUpperCase().includes('CAJA');
-      const hasCierreDoc = hist.some(h => (h.tipo || '').includes('Liquidación') || (h.tipo || '').includes('Recepción'));
-
-      if (hasCaja) {
-        pillCierre.className = "milestone-pill ok";
-        pillCierreVal.innerText = `Caja ${p.n_cajas}`;
-      } else if (hasCierreDoc) {
-        pillCierre.className = "milestone-pill ok";
-        pillCierreVal.innerText = "Doc en Tomos";
-      } else if (p.estado_info === 'NO_APLICA') {
-        pillCierre.className = "milestone-pill gray";
-        pillCierreVal.innerText = "No Aplica";
-      } else {
-        pillCierre.className = "milestone-pill missing";
-        pillCierreVal.innerText = "⚠️ Falta Cierre Físico";
-      }
-
-      // Missing Alert Box
-      const alertBox = document.getElementById('drawerMissingAlertBox');
-      const alertList = document.getElementById('drawerMissingList');
-      const faltantes = p.detalles_faltantes || [];
-
-      if (faltantes.length > 0) {
-        alertList.innerHTML = faltantes.map(f => `<li>${f}</li>`).join('');
-        alertBox.style.display = 'block';
-      } else {
-        alertBox.style.display = 'none';
-      }
-
-      // Set checklist
-      const checks = p.checks || {};
-      document.getElementById('chk_exp').checked = !!checks.exp || (p.estado_info === 'COMPLETA');
-      document.getElementById('chk_cont').checked = !!checks.cont || !!p.contrato || p.tiene_fecha_inicio;
-      document.getElementById('chk_acta_ent').checked = !!checks.acta_ent || !!p.entrega_terreno || p.tiene_fecha_inicio;
-      document.getElementById('chk_cuad').checked = !!checks.cuad || hist.length > 0;
-      document.getElementById('chk_val').checked = !!checks.val || hist.some(h => (h.tipo || '').includes('Valoriz'));
-      document.getElementById('chk_adic').checked = !!checks.adic || hist.some(h => (h.asunto_razon || '').includes('Adicional'));
-      document.getElementById('chk_sup').checked = !!checks.sup || hist.length > 0;
-      document.getElementById('chk_rec').checked = !!checks.rec || !!p.acta_recepcion || hist.some(h => (h.tipo || '').includes('Recep'));
-      document.getElementById('chk_liq').checked = !!checks.liq || !!p.resolucion_liquidacion || hist.some(h => (h.tipo || '').includes('Liquid'));
-      document.getElementById('chk_res').checked = !!checks.res || !!p.resolucion_liquidacion;
-      document.getElementById('chk_transf').checked = !!checks.transf || (p.alerta || '').includes('transferencia');
-
-      // Tab 3
-      document.getElementById('drawerUbicacion').value = p.n_cajas || '';
-      document.getElementById('drawerObservaciones').value = p.alerta || '';
-
-      // Render Timeline / Tree View
-      currentTimelineFilter = 'ALL';
-      renderDrawerActuados(p);
-
-      switchDrawerTab('HISTORIAL');
-      document.getElementById('modalBackdrop').classList.add('open');
-    }
-
-    function setTimelineView(view) {
-      currentTimelineView = view;
-      document.getElementById('btnViewTimeline').classList.toggle('active', view === 'TIMELINE');
-      document.getElementById('btnViewTree').classList.toggle('active', view === 'TREE');
-      document.getElementById('timelineContainer').style.display = view === 'TIMELINE' ? 'block' : 'none';
-      document.getElementById('treeContainer').style.display = view === 'TREE' ? 'flex' : 'none';
-
-      const p = projectsData.find(item => item.id === selectedProjectId);
-      if (p) renderDrawerActuados(p);
-    }
-
-    function toggleTimelineSortOrder() {
-      currentTimelineSortOrder = (currentTimelineSortOrder === 'ASC') ? 'DESC' : 'ASC';
-      const btn = document.getElementById('btnSortOrder');
-      if (btn) {
-        btn.innerText = currentTimelineSortOrder === 'ASC' 
-          ? "⬇️ Más antiguo primero" 
-          : "⬆️ Más reciente primero";
-      }
-      const p = projectsData.find(item => item.id === selectedProjectId);
-      if (p) renderDrawerActuados(p);
-    }
-
-    let currentOnlyRelevant = true;
-
-    function toggleAuditRelevantOnly(checked) {
-      currentOnlyRelevant = checked;
-      const p = projectsData.find(item => item.id === selectedProjectId);
-      if (p) {
-        const hist = p.historial || [];
-        const relCount = hist.filter(h => h.es_relevante_auditoria !== false).length;
-        document.getElementById('drawerCountHitos').innerText = currentOnlyRelevant ? `${relCount}` : `${hist.length}`;
-        document.getElementById('countTimelineAll').innerText = currentOnlyRelevant ? `${relCount}` : `${hist.length}`;
-        renderDrawerActuados(p);
-      }
-    }
-
-    function filterTimeline(filter, btn) {
-      currentTimelineFilter = filter;
-      btn.parentElement.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      const p = projectsData.find(item => item.id === selectedProjectId);
-      if (p) renderDrawerActuados(p);
-    }
-
-    function getSortedAndFilteredEvents(p) {
-      const hist = p.historial || [];
-
-      // Filter by Audit Relevance if enabled
-      let events = hist;
-      if (currentOnlyRelevant) {
-        events = events.filter(h => h.es_relevante_auditoria !== false);
-      }
-
-      // Filter by Phase / Type
-      const filtered = events.filter(h => {
-        if (currentTimelineFilter === 'ALL') return true;
-        if (currentTimelineFilter === 'INICIO') return h.tipo === 'Inicio / Contrato';
-        if (currentTimelineFilter === 'VALORIZACION') return h.tipo === 'Valorización / Avance Mensual' || (h.asunto_razon || '').toUpperCase().includes('VALORIZACI');
-        if (currentTimelineFilter === 'AMPLIACION') return h.tipo === 'Ampliación de Plazo' || (h.asunto_razon || '').toUpperCase().includes('AMPLIACI');
-        if (currentTimelineFilter === 'TERMINO') return h.tipo === 'Recepción de Obra' || h.tipo === 'Liquidación Técnica-Financiera' || (h.tipo || '').includes('Cierre');
-        return true;
-      });
-
-      // Strict Chronological Sort by fecha_sort
-      filtered.sort((a, b) => {
-        const dA = a.fecha_sort || '9999-99-99';
-        const dB = b.fecha_sort || '9999-99-99';
-        if (currentTimelineSortOrder === 'ASC') {
-          return dA.localeCompare(dB) || (a.fecha || '').localeCompare(b.fecha || '');
-        } else {
-          return dB.localeCompare(dA) || (b.fecha || '').localeCompare(a.fecha || '');
-        }
-      });
-
-      return filtered;
-    }
-
-    function renderDrawerActuados(p) {
-      if (currentTimelineView === 'TIMELINE') {
-        renderTimeline(p);
-      } else {
-        renderTreeView(p);
-      }
-    }
-
-    function renderTimeline(p) {
-      const container = document.getElementById('timelineContainer');
-      const hist = p.historial || [];
-
-      if (hist.length === 0) {
-        container.innerHTML = `
-          <div style="text-align: center; padding: 2.2rem; background: #F8FAFC; border: 1px dashed var(--border); border-radius: 12px; color: var(--text-muted);">
-            <div style="font-size: 2.2rem; margin-bottom: 0.5rem;">📂</div>
-            <div style="font-weight: 700; font-size: 1rem; color: #0F172A; margin-bottom: 0.35rem;">Documentos no ubicados en Tomos 2022-2023 (853 Folios)</div>
-            <div style="font-size: 0.85rem; max-width: 460px; margin: 0 auto; line-height: 1.45;">
-              Los antecedentes contractuales, acta de inicio y liquidación de esta obra se encuentran en los expedientes de 2024 o en Cajas de Archivo Central.
-            </div>
-          </div>
-        `;
-        return;
-      }
-
-      const events = getSortedAndFilteredEvents(p);
-
-      if (events.length === 0) {
-        container.innerHTML = `<div style="text-align: center; padding: 1.5rem; color: var(--text-muted); font-size: 0.85rem;">No hay actuados con el filtro seleccionado.</div>`;
-        return;
-      }
-
-      container.innerHTML = events.map(h => {
-        let badgeClass = 'badge-blue';
-        let dotColor = '#2563EB';
-
-        if (h.tipo === 'Ampliación de Plazo') { badgeClass = 'badge-orange'; dotColor = '#EA580C'; }
-        else if (h.tipo === 'Suspensión / Paralización') { badgeClass = 'badge-yellow'; dotColor = '#CA8A04'; }
-        else if (h.tipo === 'Recepción de Obra' || h.tipo === 'Liquidación Técnica-Financiera') { badgeClass = 'badge-green'; dotColor = '#16A34A'; }
-        else if (h.tipo === 'Inicio / Contrato') { badgeClass = 'badge-purple'; dotColor = '#9333EA'; }
-
-        return `
-          <div class="timeline-item">
-            <div class="timeline-dot" style="background: ${dotColor};"></div>
-            <div class="timeline-card">
-              <div class="timeline-card-header">
-                <div class="timeline-date">
-                  📅 ${h.fecha}
-                </div>
-                <span class="badge ${badgeClass}">${h.tipo}</span>
-              </div>
-              <div class="timeline-doc">
-                📄 <span>${h.documento}</span>
-              </div>
-              <div class="timeline-reason">
-                <strong>Actuado / Causal:</strong> ${h.asunto_razon}
-              </div>
-              <div class="timeline-meta">
-                <span>🏛️ <strong>Ubicación Oficial:</strong> ${h.fuente}</span>
-                <span>•</span>
-                <span>🛡️ <strong>Confiabilidad:</strong> ${h.confiabilidad}</span>
-              </div>
-            </div>
-          </div>
-        `;
-      }).join('');
-    }
-
-    function renderTreeView(p) {
-      const container = document.getElementById('treeContainer');
-      const hist = p.historial || [];
-
-      if (hist.length === 0) {
-        container.innerHTML = `
-          <div style="text-align: center; padding: 2rem; background: #F8FAFC; border: 1px dashed var(--border); border-radius: 12px; color: var(--text-muted);">
-            <div style="font-size: 2rem; margin-bottom: 0.4rem;">🌳</div>
-            <div style="font-weight: 700; color: #0F172A;">Árbol de Actuados sin antecedentes en Tomos 2022-2023</div>
-            <div style="font-size: 0.8rem; margin-top: 0.25rem;">Buscar expedientes en Cajas de Archivo Central o informes 2024.</div>
-          </div>
-        `;
-        return;
-      }
-
-      const events = getSortedAndFilteredEvents(p);
-
-      // Group into 5 standard engineering phases
-      const phases = [
-        { id: '1. INICIO Y HABILITACIÓN CONTRACTUAL', title: '1. Inicio y Habilitación Contractual', icon: '🚀' },
-        { id: '2. EJECUCIÓN Y VALORIZACIONES MENSUALES', title: '2. Ejecución Física y Valorizaciones', icon: '📈' },
-        { id: '3. MODIFICACIONES, PLAZOS E INCIDENCIAS', title: '3. Modificaciones, Plazos e Incidencias', icon: '⚠️' },
-        { id: '4. CULMINACIÓN Y RECEPCIÓN DE OBRA', title: '4. Culminación Física y Recepción de Obra', icon: '🏁' },
-        { id: '5. LIQUIDACIÓN Y CIERRE FINANCIERO', title: '5. Liquidación Técnico-Financiera y Cierre', icon: '📑' }
-      ];
-
-      const html = phases.map(ph => {
-        const phEvents = events.filter(e => (e.fase || '').startsWith(ph.id.substring(0, 2)));
-
-        if (phEvents.length === 0) {
-          return `
-            <div class="tree-phase-card" style="opacity: 0.65;">
-              <div class="tree-phase-header">
-                <div class="phase-title"><span>${ph.icon}</span> <span>${ph.title}</span></div>
-                <span class="tree-phase-badge">0 actuados</span>
-              </div>
-              <div style="padding: 0.65rem 1rem; font-size: 0.78rem; color: var(--text-muted); font-style: italic;">
-                Pendiente de ubicar en tomos físicos o archivo.
-              </div>
-            </div>
-          `;
+        // Configurar Ambiente y N° de Caja en el Drawer
+        syncAmbienteDropdowns();
+        const currAmb = localStorage.getItem('fdm_active_amb') || 'BAÑO1-PMO';
+        const selD = document.getElementById('drawerAmbienteSelect');
+        
+        let initialUbicacion = d.ubicacion || (p.tiene_caja !== 'NO - ARCHIVADOR' ? p.tiene_caja : '');
+        let parsedAmb = currAmb;
+        
+        if (initialUbicacion && selD) {
+          for (const opt of selD.options) {
+            if (opt.value !== 'CUSTOM' && initialUbicacion.toUpperCase().includes(opt.value)) {
+              parsedAmb = opt.value;
+              break;
+            }
+          }
         }
 
-        const nodesHtml = phEvents.map(e => `
-          <div class="tree-node-item">
-            <div class="tree-node-bullet">${ph.icon}</div>
-            <div class="tree-node-content">
-              <div class="tree-node-title">
-                <span class="tree-doc-code">${e.documento}</span>
-                <span class="tree-doc-date">📅 ${e.fecha}</span>
+        if (selD) selD.value = parsedAmb;
+        
+        // Inicializar y mostrar código de caja sugerido (primer número desocupado)
+        currentCajaSeq = getFirstAvailableCajaSeq(id);
+        const inputCod = document.getElementById('inputCodigoCaja');
+        if (inputCod) inputCod.dataset.userEdited = "";
+        updateCodigoDisplay();
+
+        const badgeIni = document.getElementById('statusInicioBadge');
+        if (badgeIni) {
+          if (d.fecha_inicio || p.fecha_inicio) {
+            badgeIni.className = 'badge badge-green';
+            badgeIni.innerText = 'Comprobada';
+          } else {
+            badgeIni.className = 'badge badge-red';
+            badgeIni.innerText = 'Falta Inicio';
+          }
+        }
+
+        // Por defecto siempre aterrizar en la Pestaña 1: Censo de Cajas
+        switchDrawerTab('CAJAS');
+
+        renderDrawerPhotos();
+        
+        const backdrop = document.getElementById('drawerBackdrop');
+        if (backdrop) backdrop.classList.add('open');
+      } catch (err) {
+        console.error("Error al abrir obra:", err);
+      }
+    }
+
+    function closeDrawer() {
+      document.getElementById('drawerBackdrop').classList.remove('open');
+      activeObraId = null;
+    }
+
+    function closeDrawerOutside(e) {
+      if (e.target.id === 'drawerBackdrop') closeDrawer();
+    }
+
+    function navigateObra(delta) {
+      saveCurrentObra(false);
+      const currIdx = projects.findIndex(p => p.id === activeObraId);
+      if (currIdx === -1) return;
+      const nextIdx = (currIdx + delta + projects.length) % projects.length;
+      openDrawer(projects[nextIdx].id);
+    }
+
+    function setPresetDate(inputId, val) {
+      document.getElementById(inputId).value = val;
+    }
+
+    function appendUbicacion(val) {
+      const input = document.getElementById('inputUbicacion');
+      input.value = (input.value ? input.value + ', ' : '') + val;
+      input.focus();
+    }
+
+    // Photo Handling & Compression
+    function triggerCamera(slotKey) {
+      const input = document.getElementById(`file_${slotKey}`);
+      if (input) input.click();
+    }
+
+    function compressImage(file, maxWidth = 1600, quality = 0.82) {
+      return new Promise((resolve) => {
+        try {
+          const reader = new FileReader();
+          reader.onload = (e) => {
+            const rawDataUrl = e.target.result;
+            const img = new Image();
+            img.onload = () => {
+              try {
+                let width = img.width;
+                let height = img.height;
+
+                if (width > maxWidth || height > maxWidth) {
+                  if (width > height) {
+                    height = Math.round((height * maxWidth) / width);
+                    width = maxWidth;
+                  } else {
+                    width = Math.round((width * maxWidth) / height);
+                    height = maxWidth;
+                  }
+                }
+
+                const canvas = document.createElement('canvas');
+                canvas.width = width;
+                canvas.height = height;
+                const ctx = canvas.getContext('2d');
+                ctx.drawImage(img, 0, 0, width, height);
+
+                const dataUrl = canvas.toDataURL('image/jpeg', quality);
+                resolve(dataUrl);
+              } catch (canvasErr) {
+                console.warn("Fallo canvas al comprimir, usando original:", canvasErr);
+                resolve(rawDataUrl);
+              }
+            };
+            img.onerror = () => resolve(rawDataUrl);
+            img.src = rawDataUrl;
+          };
+          reader.onerror = () => resolve(null);
+          reader.readAsDataURL(file);
+        } catch (err) {
+          console.warn("Error en FileReader, omitiendo compresión:", err);
+          resolve(null);
+        }
+      });
+    }
+
+    async function handlePhotoUpload(slotKey, fileInput) {
+      try {
+        if (!fileInput.files || fileInput.files.length === 0) return;
+        const file = fileInput.files[0];
+        
+        showToast("Comprimiendo y guardando...");
+        const compressedDataUrl = await compressImage(file, 1600, 0.82);
+        if (!compressedDataUrl) {
+          alert("No se pudo leer la imagen capturada.");
+          return;
+        }
+
+        if (!fieldData[activeObraId]) {
+          fieldData[activeObraId] = { id: activeObraId, fotos: [] };
+        }
+        if (!fieldData[activeObraId].fotos) {
+          fieldData[activeObraId].fotos = [];
+        }
+
+        const currentAmb = getActiveAmbiente();
+        const currentCodigo = (document.getElementById('inputCodigoCaja')?.value || '').trim() || autoGenerarCodigoCaja().code;
+        const currentContenido = (document.getElementById('inputNotas')?.value || '').trim();
+        
+        // Calcular sufijo de foto adicional para mantener siempre el mismo código_caja
+        let subCodigo = currentCodigo;
+        let tipoFoto = "Rótulo de Caja";
+        let filenameSuffix = "ROTULO";
+
+        if (slotKey === 'otros') {
+          const adicCount = fieldData[activeObraId].fotos.filter(f => f.codigo_caja === currentCodigo && f.slot === 'otros').length + 1;
+          const adicSuffix = 'ADIC_' + String(adicCount).padStart(2, '0');
+          subCodigo = `${currentCodigo}-${adicSuffix}`;
+          tipoFoto = `Foto Adicional (${adicSuffix})`;
+          filenameSuffix = adicSuffix;
+        }
+
+        const photoObj = {
+          id: 'foto_' + Date.now(),
+          slot: slotKey,
+          codigo_caja: currentCodigo,
+          sub_codigo: subCodigo,
+          tipo_foto: tipoFoto,
+          nombre: `OBRA_${String(activeObraId).padStart(2, '0')}_${currentCodigo}_${filenameSuffix}.jpg`,
+          dataUrl: compressedDataUrl,
+          timestamp: new Date().toLocaleString(),
+          ubicacion: currentAmb,
+          nota: currentContenido || currentCodigo
+        };
+
+        fieldData[activeObraId].fotos.push(photoObj);
+        autoCompileUbicacion(activeObraId);
+        await saveObraToDB(fieldData[activeObraId]);
+
+        // Nota: NO incrementamos el código de caja automáticamente para permitir fotos adicionales de la misma caja.
+        // El usuario presionará "Terminar Caja Actual y Pasar a Siguiente Caja" cuando la caja física esté lista.
+        updateCodigoDisplay();
+
+        fileInput.value = ''; // Reset input
+        renderDrawerPhotos();
+        updateGlobalCounters();
+        renderList();
+        renderCajaSeqChips();
+        uploadBoxPhotoToCloud(activeObraId, photoObj);
+        showToast(`📸 Foto guardada en ${subCodigo}`);
+      } catch (err) {
+        console.error("Error al procesar foto:", err);
+        alert("Error guardando foto: " + err.message);
+      }
+    }
+
+    function pasarASiguienteCaja() {
+      if (!activeObraId) return;
+
+      // Calcular el siguiente número de caja disponible
+      currentCajaSeq = getFirstAvailableCajaSeq(activeObraId);
+      const inputCod = document.getElementById('inputCodigoCaja');
+      if (inputCod) inputCod.dataset.userEdited = "";
+
+      // Limpiar el campo de contenido del rótulo para la nueva caja
+      const inputCont = document.getElementById('inputNotas');
+      if (inputCont) inputCont.value = "";
+
+      // Actualizar datos de la obra
+      if (fieldData[activeObraId]) {
+        fieldData[activeObraId].notas = "";
+        saveObraToDB(fieldData[activeObraId]);
+      }
+
+      updateCodigoDisplay();
+      renderCajaSeqChips();
+      showToast(`📦 Lista para llenar Nueva Caja C${currentCajaSeq}`);
+    }
+
+    function autoCompileUbicacion(obraId) {
+      const d = fieldData[obraId];
+      if (!d || !d.fotos || d.fotos.length === 0) return;
+
+      const ambMap = {};
+      d.fotos.forEach(f => {
+        const amb = f.ubicacion || 'Ambiente';
+        if (!ambMap[amb]) ambMap[amb] = new Set();
+        ambMap[amb].add(f.codigo_caja || f.nota || 'Caja');
+      });
+
+      const summaryList = Object.keys(ambMap).map(amb => {
+        const count = ambMap[amb].size;
+        return `${amb} (${count} ${count === 1 ? 'caja' : 'cajas'})`;
+      });
+      const compiled = summaryList.join(' | ');
+
+      d.ubicacion = compiled;
+      const input = document.getElementById('inputUbicacion');
+      if (input && activeObraId === obraId) {
+        input.value = compiled;
+      }
+    }
+
+    function renderDrawerPhotos() {
+      const slots = ['rotulo', 'inicio', 'contrato', 'cuaderno', 'recepcion', 'liquidacion', 'otros'];
+      const d = fieldData[activeObraId] || { fotos: [] };
+      const fotos = d.fotos || [];
+
+      const elTotal = document.getElementById('drawerTotalFotos');
+      if (elTotal) elTotal.innerText = `${fotos.length} fotos`;
+
+      const docsSlots = ['inicio', 'contrato', 'cuaderno', 'recepcion', 'liquidacion'];
+      const docsFotosCount = fotos.filter(f => docsSlots.includes(f.slot)).length;
+      const elDocsCount = document.getElementById('drawerTotalFotosDocs');
+      if (elDocsCount) elDocsCount.innerText = `${docsFotosCount} fotos`;
+
+      slots.forEach(slotKey => {
+        const slotFotos = fotos.filter(f => f.slot === slotKey);
+        const countBadge = document.getElementById(`slotCount_${slotKey}`);
+        if (countBadge) {
+          countBadge.innerText = slotFotos.length;
+          countBadge.className = slotFotos.length > 0 ? 'badge badge-green' : 'badge badge-gray';
+        }
+
+        const grid = document.getElementById(`grid_${slotKey}`);
+        if (!grid) return;
+
+        grid.innerHTML = slotFotos.map(f => `
+          <div class="thumb-card">
+            <div class="thumb-wrap">
+              <img src="${f.dataUrl}" class="thumb-img" onclick="openLightbox('${f.dataUrl}')">
+              <button class="thumb-del" onclick="deletePhoto('${f.id}')" title="Eliminar foto">✕</button>
+            </div>
+            <div class="thumb-meta">
+              <div class="thumb-amb">
+                <span style="font-weight: 800; color: #2563EB;">🏷️ ${f.sub_codigo || f.codigo_caja || f.nota || 'Caja'}</span>
+                <span onclick="editPhotoCaption('${f.id}')" style="cursor: pointer; padding: 0 3px;" title="Editar código o ambiente">✏️</span>
               </div>
-              <div class="tree-doc-reason">${e.asunto_razon}</div>
-              <div class="tree-doc-citation">
-                🏛️ Fuente probatoria: <strong>${e.fuente}</strong> (${e.confiabilidad})
+              <div class="thumb-note" onclick="editPhotoCaption('${f.id}')" title="${f.ubicacion}">
+                📍 ${f.ubicacion || 'Ambiente'} ${f.tipo_foto && f.tipo_foto !== 'Rótulo de Caja' ? `• ${f.tipo_foto}` : ''}
               </div>
             </div>
           </div>
         `).join('');
-
-        return `
-          <div class="tree-phase-card">
-            <div class="tree-phase-header">
-              <div class="phase-title"><span>${ph.icon}</span> <span>${ph.title}</span></div>
-              <span class="tree-phase-badge" style="background: #DBEAFE; color: #1E40AF;">${phEvents.length} actuados</span>
-            </div>
-            <div class="tree-nodes-list">
-              ${nodesHtml}
-            </div>
-          </div>
-        `;
-      }).join('');
-
-      container.innerHTML = html;
+      });
     }
 
-    function switchDrawerTab(tab) {
-      document.getElementById('tabNavHistorial').classList.toggle('active', tab === 'HISTORIAL');
-      document.getElementById('tabNavChecklist').classList.toggle('active', tab === 'CHECKLIST');
-      document.getElementById('tabNavUbicacion').classList.toggle('active', tab === 'UBICACION');
+    function editPhotoCaption(photoId) {
+      const d = fieldData[activeObraId];
+      if (!d || !d.fotos) return;
+      const f = d.fotos.find(x => x.id === photoId);
+      if (!f) return;
 
-      document.getElementById('drawerTabContentHistorial').style.display = tab === 'HISTORIAL' ? 'block' : 'none';
-      document.getElementById('drawerTabContentChecklist').style.display = tab === 'CHECKLIST' ? 'block' : 'none';
-      document.getElementById('drawerTabContentUbicacion').style.display = tab === 'UBICACION' ? 'block' : 'none';
-    }
-
-    function closeDrawer() {
-      document.getElementById('modalBackdrop').classList.remove('open');
-    }
-
-    function handleBackdropClick(e) {
-      if (e.target.id === 'modalBackdrop') closeDrawer();
-    }
-
-    async function saveProjectChanges() {
-      if (!selectedProjectId) return;
-
-      const updatedChecks = {
-        exp: document.getElementById('chk_exp').checked,
-        cont: document.getElementById('chk_cont').checked,
-        acta_ent: document.getElementById('chk_acta_ent').checked,
-        cuad: document.getElementById('chk_cuad').checked,
-        val: document.getElementById('chk_val').checked,
-        adic: document.getElementById('chk_adic').checked,
-        sup: document.getElementById('chk_sup').checked,
-        rec: document.getElementById('chk_rec').checked,
-        liq: document.getElementById('chk_liq').checked,
-        res: document.getElementById('chk_res').checked,
-        transf: document.getElementById('chk_transf').checked
-      };
-
-      const updatedUbicacion = document.getElementById('drawerUbicacion').value;
-      const updatedObservaciones = document.getElementById('drawerObservaciones').value;
-
-      const p = projectsData.find(item => item.id === selectedProjectId);
-      if (p) {
-        p.checks = updatedChecks;
-        p.n_cajas = updatedUbicacion;
-        p.tiene_caja = updatedUbicacion.toUpperCase().includes('CAJA') ? 'EN CAJA' : 'ARCHIVADOR';
-        p.alerta = updatedObservaciones;
+      const newCod = prompt("🏷️ Código escrito en la caja (ej: B1-01-C1):", f.codigo_caja || f.nota || "");
+      if (newCod !== null && newCod.trim()) {
+        f.codigo_caja = newCod.trim().toUpperCase();
+        f.nota = f.codigo_caja;
       }
 
-      try {
-        const saved = JSON.parse(localStorage.getItem('fdm_audit_changes') || '{}');
-        saved[selectedProjectId] = {
-          checks: updatedChecks,
-          ubicacion: updatedUbicacion,
-          observaciones: updatedObservaciones
-        };
-        localStorage.setItem('fdm_audit_changes', JSON.stringify(saved));
-      } catch (e) {
-        console.error("Error writing localStorage:", e);
+      const newAmb = prompt("📍 Ambiente donde se encuentra esta caja:", f.ubicacion || getActiveAmbiente());
+      if (newAmb !== null && newAmb.trim()) f.ubicacion = newAmb.trim();
+
+      autoCompileUbicacion(activeObraId);
+      saveObraToDB(d);
+      renderDrawerPhotos();
+      renderList();
+      renderCajaSeqChips();
+      showToast("Código y ubicación actualizados");
+    }
+
+    async function deletePhoto(photoId) {
+      if (!confirm("¿Deseas eliminar esta foto?")) return;
+      const d = fieldData[activeObraId];
+      if (!d || !d.fotos) return;
+      
+      const photoToDelete = d.fotos.find(f => f.id === photoId);
+      d.fotos = d.fotos.filter(f => f.id !== photoId);
+      autoCompileUbicacion(activeObraId);
+      await saveObraToDB(d);
+
+      // Si tenemos conexión a Google Drive/Sheets, borrar allá también
+      if (photoToDelete) {
+        deleteRecordFromCloud(activeObraId, photoToDelete);
+      }
+      
+      // Mantener la visualización y chips de cajas actualizados
+      updateCodigoDisplay();
+      renderDrawerPhotos();
+      updateGlobalCounters();
+      renderList();
+      renderCajaSeqChips();
+      showToast("Foto eliminada localmente y en proceso de borrado en nube");
+    }
+
+    async function saveCurrentObra(showFeedback = true) {
+      if (!activeObraId) return;
+
+      if (!fieldData[activeObraId]) {
+        fieldData[activeObraId] = { id: activeObraId, fotos: [] };
       }
 
-      showToast("Cambios guardados en memoria correctamente");
-      filterTable();
+      const d = fieldData[activeObraId];
+      d.fecha_inicio = document.getElementById('inputFechaInicio').value.trim();
+      d.fecha_culm = document.getElementById('inputFechaCulm').value.trim();
+      d.ubicacion = document.getElementById('inputUbicacion').value.trim();
+      d.notas = document.getElementById('inputNotas') ? document.getElementById('inputNotas').value.trim() : '';
+      d.notas_auditoria = document.getElementById('inputNotasAuditoria') ? document.getElementById('inputNotasAuditoria').value.trim() : '';
+      d.updated_at = new Date().toISOString();
+
+      // Guardar estado de checks
+      d.checks = {};
+      CHECK_KEYS.forEach(k => {
+        const el = document.getElementById(k);
+        if (el) d.checks[k] = el.checked;
+      });
+
+      await saveObraToDB(d);
+      updateGlobalCounters();
+      renderList();
+      uploadObraChecksToCloud(activeObraId);
+
+      if (showFeedback) {
+        showToast("💾 Datos de Obra N° " + activeObraId + " guardados");
+      }
+    }
+
+    // Export ZIP Package
+    async function exportZipPackage() {
+      const keys = Object.keys(fieldData);
+      let totalFotos = 0;
+      keys.forEach(k => { totalFotos += (fieldData[k].fotos || []).length; });
+
+      if (keys.length === 0 && totalFotos === 0) {
+        alert("Aún no tienes fotos ni notas capturadas en campo.");
+        return;
+      }
+
+      showToast("Generando archivo ZIP de evidencias...");
+      const zip = new JSZip();
+
+      // Folder per Obra
+      const manifest = [];
+
+      for (const k of keys) {
+        const item = fieldData[k];
+        const p = projects.find(x => x.id === parseInt(k)) || {};
+        const safeName = (p.desc || `OBRA_${k}`).replace(/[^a-zA-Z0-9_-]/g, '_').substring(0, 35);
+        const folderName = `OBRA_${String(k).padStart(2, '0')}_${safeName}`;
+        const folder = zip.folder(folderName);
+
+        manifest.push({
+          id: item.id,
+          desc: p.desc,
+          cui: p.cui,
+          provincia: p.provincia,
+          fecha_inicio_campo: item.fecha_inicio || '',
+          fecha_culm_campo: item.fecha_culm || '',
+          ubicacion_fisica_campo: item.ubicacion || '',
+          notas_campo: item.notas || '',
+          checks: item.checks || {},
+          total_fotos: (item.fotos || []).length,
+          updated_at: item.updated_at || '',
+          fotos_detalle: (item.fotos || []).map(f => ({
+            nombre: f.nombre,
+            slot: f.slot,
+            codigo_caja: f.codigo_caja || f.nota || '',
+            ubicacion: f.ubicacion || '',
+            nota: f.nota || '',
+            timestamp: f.timestamp || ''
+          }))
+        });
+
+        if (item.fotos && item.fotos.length > 0) {
+          item.fotos.forEach(f => {
+            const base64Data = f.dataUrl.split(',')[1];
+            folder.file(f.nombre, base64Data, { base64: true });
+          });
+        }
+      }
+
+      // Add manifest.json and CSV
+      zip.file("REPORTE_CAMPO_FDM.json", JSON.stringify(manifest, null, 2));
+
+      // CSV Generation with box location detail
+      let csvContent = "\uFEFFN°,DESCRIPCION,CUI,PROVINCIA,UBICACION_FISICA,TOTAL_FOTOS,CODIGOS_CAJAS,CHECKLIST_VERIFICADOS,NOTAS\n";
+      manifest.forEach(m => {
+        const codigosList = (m.fotos_detalle || []).map(f => `${f.codigo_caja || 'CAJA'} [${f.ubicacion}]`).join(' ; ');
+        const chkNames = Object.entries(m.checks || {}).filter(([k, v]) => v).map(([k]) => k.replace('chk_', '')).join(';');
+        csvContent += `"${m.id}","${(m.desc||'').replace(/"/g, '""')}","${m.cui||''}","${m.provincia||''}","${(m.ubicacion_fisica_campo||'').replace(/"/g, '""')}","${m.total_fotos}","${codigosList.replace(/"/g, '""')}","${chkNames}","${(m.notas_campo||'').replace(/"/g, '""')}"\n`;
+      });
+      zip.file("REPORTE_CAMPO_FDM.csv", csvContent);
+
+      const content = await zip.generateAsync({ type: "blob" });
+      const a = document.createElement("a");
+      a.href = URL.createObjectURL(content);
+      a.download = `EVIDENCIAS_CAMPO_FDM_${new Date().toISOString().slice(0,10)}.zip`;
+      a.click();
+      showToast("📦 ZIP descargado exitosamente");
+    }
+
+    // Lightbox
+    function openLightbox(src) {
+      document.getElementById('lightboxImg').src = src;
+      document.getElementById('lightbox').classList.add('open');
+    }
+
+    function closeLightbox() {
+      document.getElementById('lightbox').classList.remove('open');
+      document.getElementById('lightboxImg').src = '';
     }
 
     function showToast(msg) {
-      const toast = document.getElementById('toast');
-      toast.innerText = msg;
-      toast.className = 'toast success show';
-      setTimeout(() => toast.classList.remove('show'), 2600);
+      const t = document.getElementById('toast');
+      t.innerText = msg;
+      t.classList.add('show');
+      setTimeout(() => t.classList.remove('show'), 2200);
     }
-
-    function exportToExcel() {
-      window.location.href = './PUNTO_61_MATRIZ_OBRAS_INICIADAS_Y_TERMINADAS_2022_2025.xlsx';
-    }
-
-    // Initialize
-    window.addEventListener('DOMContentLoaded', loadProjects);
   </script>
-
 </body>
 </html>
+
