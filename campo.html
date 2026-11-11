@@ -144,6 +144,7 @@
         <div class="header-sub">Levantamiento de Evidencias Físicas y Fotos Offline</div>
       </div>
       <div class="header-actions">
+        <button id="btnCloudSync" class="btn-action" onclick="toggleCloudConfig()" style="background: #475569;" title="Configurar sincronización en tiempo real">☁️ Conectar</button>
         <button class="btn-action green" onclick="exportZipPackage()">📦 ZIP</button>
         <a href="index.html" class="btn-action">🖥️ Web</a>
       </div>
@@ -504,6 +505,180 @@
       });
     }
 
+    // ==========================================
+    // SINCRONIZACIÓN EN TIEMPO REAL (GOOGLE DRIVE / SHEETS)
+    // ==========================================
+    const GAS_URL_KEY = 'fdm_gas_url';
+    let isSyncingCloud = false;
+
+    function getGasUrl() {
+      return localStorage.getItem(GAS_URL_KEY) || "";
+    }
+
+    function toggleCloudConfig() {
+      const current = getGasUrl();
+      const input = prompt(
+        "☁️ CONEXIÓN CENTRALIZADA CON GOOGLE DRIVE & SHEETS\n\n" +
+        "Pega aquí la URL de la aplicación web de Google Apps Script (termina en /exec):\n" +
+        "(O déjalo en blanco para desconectar y trabajar solo offline)",
+        current
+      );
+
+      if (input !== null) {
+        const trimmed = input.trim();
+        if (trimmed) {
+          localStorage.setItem(GAS_URL_KEY, trimmed);
+          updateCloudButtonState();
+          showToast("☁️ Conectando con Google Drive...");
+          syncFromCloud();
+        } else {
+          localStorage.removeItem(GAS_URL_KEY);
+          updateCloudButtonState();
+          showToast("Modo solo local / offline activado");
+        }
+      }
+    }
+
+    function updateCloudButtonState() {
+      const btn = document.getElementById('btnCloudSync');
+      if (!btn) return;
+      const url = getGasUrl();
+      if (url) {
+        btn.style.background = "#059669";
+        btn.innerHTML = "☁️ Nube Activa";
+        btn.title = "Conectado a Google Drive y Sheets centralizado";
+      } else {
+        btn.style.background = "#475569";
+        btn.innerHTML = "☁️ Conectar";
+        btn.title = "Configurar sincronización en Google Drive";
+      }
+    }
+
+    async function syncFromCloud() {
+      const url = getGasUrl();
+      if (!url || isSyncingCloud) return;
+
+      isSyncingCloud = true;
+      const btn = document.getElementById('btnCloudSync');
+      if (btn) btn.innerHTML = "🔄 Nube...";
+
+      try {
+        const res = await fetch(url);
+        const data = await res.json();
+
+        if (data && data.status === 'success' && Array.isArray(data.records)) {
+          let mergedCount = 0;
+          data.records.forEach(r => {
+            const obraId = r.obra_id;
+            if (!obraId) return;
+
+            if (!fieldData[obraId]) {
+              fieldData[obraId] = { id: obraId, fotos: [] };
+            }
+            if (!fieldData[obraId].fotos) {
+              fieldData[obraId].fotos = [];
+            }
+
+            // Si hay foto registrada y no existe localmente
+            if (r.codigo_caja) {
+              const exists = fieldData[obraId].fotos.some(f => 
+                (f.codigo_caja && f.codigo_caja === r.codigo_caja) || (f.drive_url && f.drive_url === r.drive_url)
+              );
+              if (!exists) {
+                fieldData[obraId].fotos.push({
+                  id: 'cloud_' + Date.now() + '_' + Math.random().toString(36).substring(2, 6),
+                  slot: r.slot || 'rotulo',
+                  codigo_caja: r.codigo_caja,
+                  nombre: `DRIVE_${r.codigo_caja}.jpg`,
+                  dataUrl: r.drive_url || '',
+                  drive_url: r.drive_url || '',
+                  isDriveLink: !!r.drive_url,
+                  timestamp: r.timestamp || '',
+                  ubicacion: r.ubicacion || '',
+                  nota: r.nota || r.codigo_caja
+                });
+                mergedCount++;
+              }
+            }
+
+            if (r.fecha_inicio && !fieldData[obraId].fecha_inicio) fieldData[obraId].fecha_inicio = r.fecha_inicio;
+            if (r.fecha_culm && !fieldData[obraId].fecha_culm) fieldData[obraId].fecha_culm = r.fecha_culm;
+            if (r.checks && Object.keys(r.checks).length > 0) {
+              fieldData[obraId].checks = Object.assign(fieldData[obraId].checks || {}, r.checks);
+            }
+
+            autoCompileUbicacion(obraId);
+            saveObraToDB(fieldData[obraId]);
+          });
+
+          updateGlobalCounters();
+          renderList();
+          if (activeObraId) {
+            renderDrawerPhotos();
+            renderCajaSeqChips();
+          }
+          if (mergedCount > 0) {
+            showToast(`☁️ ${mergedCount} registros sincronizados de otros equipos`);
+          }
+        }
+      } catch (err) {
+        console.warn("Fallo temporal sincronizando con Google Apps Script:", err);
+      } finally {
+        isSyncingCloud = false;
+        updateCloudButtonState();
+      }
+    }
+
+    async function uploadRecordToCloud(obraId, photoObj = null) {
+      const url = getGasUrl();
+      if (!url) return;
+
+      const d = fieldData[obraId];
+      if (!d) return;
+      const p = projects.find(x => x.id === obraId) || {};
+
+      const payload = {
+        obra_id: obraId,
+        desc: p.desc || '',
+        cui: p.cui || '',
+        codigo_caja: photoObj ? (photoObj.codigo_caja || photoObj.nota || '') : (document.getElementById('inputCodigoCaja')?.value || ''),
+        ubicacion: photoObj ? (photoObj.ubicacion || '') : (d.ubicacion || getActiveAmbiente()),
+        nota: d.notas || '',
+        slot: photoObj ? photoObj.slot : 'general',
+        fecha_inicio: d.fecha_inicio || '',
+        fecha_culm: d.fecha_culm || '',
+        checks: d.checks || {}
+      };
+
+      if (photoObj && photoObj.dataUrl && photoObj.dataUrl.startsWith('data:image')) {
+        payload.photo = {
+          base64: photoObj.dataUrl,
+          filename: photoObj.nombre || `OBRA_${obraId}_${payload.codigo_caja}.jpg`,
+          slot: photoObj.slot
+        };
+      }
+
+      try {
+        fetch(url, {
+          method: 'POST',
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+          body: JSON.stringify(payload)
+        }).then(res => res.json()).then(result => {
+          if (result && result.status === 'success') {
+            showToast(`☁️ Guardado en Google Drive (${payload.codigo_caja || 'Obra ' + obraId})`);
+            if (photoObj && result.drive_url) {
+              photoObj.drive_url = result.drive_url;
+              saveObraToDB(d);
+            }
+          }
+        }).catch(e => {
+          console.warn("Subida en segundo plano pendiente:", e);
+        });
+      } catch (e) {
+        console.warn("Fallo fetch a Google Apps Script:", e);
+      }
+    }
+
     // App Initialization
     window.addEventListener('DOMContentLoaded', async () => {
       initAmbienteSelector();
@@ -512,6 +687,8 @@
       await loadAllFromDB();
       updateGlobalCounters();
       renderList();
+      updateCloudButtonState();
+      syncFromCloud();
     });
 
     function initAmbienteSelector() {
@@ -1125,6 +1302,7 @@
         renderDrawerPhotos();
         updateGlobalCounters();
         renderList();
+        uploadRecordToCloud(activeObraId, photoObj);
         showToast(`📸 Guardada. Escribe en la caja: ${currentCodigo}`);
       } catch (err) {
         console.error("Error al procesar foto:", err);
@@ -1264,6 +1442,7 @@
       await saveObraToDB(d);
       updateGlobalCounters();
       renderList();
+      uploadRecordToCloud(activeObraId, null);
 
       if (showFeedback) {
         showToast("💾 Datos de Obra N° " + activeObraId + " guardados");
