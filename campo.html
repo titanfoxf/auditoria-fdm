@@ -99,11 +99,15 @@
     .btn-camera { background: var(--primary-accent); color: white; border: none; padding: 0.5rem 0.8rem; border-radius: 8px; font-size: 0.78rem; font-weight: 600; display: inline-flex; align-items: center; gap: 0.35rem; cursor: pointer; flex: 1; justify-content: center; }
     .btn-camera:active { background: #1D4ED8; }
 
-    /* Photo Thumbnail Grid */
-    .thumb-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(80px, 1fr)); gap: 0.5rem; margin-top: 0.4rem; }
-    .thumb-wrap { position: relative; width: 100%; padding-top: 100%; border-radius: 8px; overflow: hidden; border: 1px solid var(--border); background: #000; }
-    .thumb-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; cursor: pointer; }
-    .thumb-del { position: absolute; top: 3px; right: 3px; background: rgba(220, 38, 38, 0.85); color: white; border: none; width: 22px; height: 22px; border-radius: 50%; font-size: 0.7rem; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+    /* Photo Thumbnail Grid with Location Badge */
+    .thumb-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(105px, 1fr)); gap: 0.5rem; margin-top: 0.4rem; }
+    .thumb-card { background: white; border: 1px solid #CBD5E1; border-radius: 8px; overflow: hidden; display: flex; flex-direction: column; box-shadow: 0 1px 3px rgba(0,0,0,0.06); }
+    .thumb-wrap { position: relative; width: 100%; height: 90px; background: #0F172A; }
+    .thumb-img { width: 100%; height: 100%; object-fit: cover; cursor: pointer; display: block; }
+    .thumb-del { position: absolute; top: 3px; right: 3px; background: rgba(220, 38, 38, 0.9); color: white; border: none; width: 22px; height: 22px; border-radius: 50%; font-size: 0.7rem; cursor: pointer; display: flex; align-items: center; justify-content: center; z-index: 2; }
+    .thumb-meta { padding: 4px 6px; font-size: 0.68rem; background: #F8FAFC; border-top: 1px solid #E2E8F0; }
+    .thumb-amb { font-weight: 700; color: #1E293B; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; display: flex; align-items: center; justify-content: space-between; }
+    .thumb-note { color: #2563EB; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-top: 2px; cursor: pointer; }
 
     /* Sticky Bottom Bar */
     .drawer-footer { padding: 0.75rem 1rem; background: white; border-top: 1px solid var(--border); display: flex; gap: 0.5rem; }
@@ -144,6 +148,20 @@
       <span class="search-icon">🔍</span>
       <input type="text" id="searchInput" class="search-input" placeholder="Buscar por N°, nombre, CUI o lugar..." oninput="filterList()">
     </div>
+    
+    <!-- Selector de Ambiente de Trabajo Activo -->
+    <div style="background: #F8FAFC; border: 1px solid #CBD5E1; padding: 0.4rem 0.6rem; border-radius: 8px; margin-top: 0.4rem; display: flex; align-items: center; justify-content: space-between; gap: 0.4rem;">
+      <span style="font-size: 0.72rem; font-weight: 700; color: #475569; white-space: nowrap;">📍 AMBIENTE ACTUAL:</span>
+      <select id="selectAmbienteGlobal" onchange="cambiarAmbienteGlobal(this.value)" style="font-size: 0.75rem; padding: 0.25rem 0.4rem; border-radius: 6px; border: 1px solid #94A3B8; background: white; font-weight: 700; color: #0F172A; outline: none; width: 100%; max-width: 220px; cursor: pointer;">
+        <option value="🚽 Baño / Amb. Auxiliar">🚽 Baño / Amb. Auxiliar</option>
+        <option value="🏢 Oficina PMO">🏢 Oficina PMO</option>
+        <option value="🚪 Depósito / Almacén">🚪 Depósito / Almacén</option>
+        <option value="🚶 Pasillo / Estante">🚶 Pasillo / Estante</option>
+        <option value="🏛️ Archivo Central">🏛️ Archivo Central</option>
+        <option value="OTRO">✏️ Otro ambiente...</option>
+      </select>
+    </div>
+
     <div class="chips-bar">
       <button class="chip active" onclick="setFilter('ALL', this)">Todas (69)</button>
       <button class="chip alert" onclick="setFilter('MISSING', this)">⚠️ Faltan Datos (<span id="countMissing">0</span>)</button>
@@ -387,12 +405,44 @@
 
     // App Initialization
     window.addEventListener('DOMContentLoaded', async () => {
+      initAmbienteSelector();
       await initDB();
       await loadProjectsData();
       await loadAllFromDB();
       updateGlobalCounters();
       renderList();
     });
+
+    function initAmbienteSelector() {
+      const savedAmb = localStorage.getItem('fdm_active_amb') || '🚽 Baño / Amb. Auxiliar';
+      const sel = document.getElementById('selectAmbienteGlobal');
+      if (sel) sel.value = savedAmb;
+    }
+
+    function getActiveAmbiente() {
+      const sel = document.getElementById('selectAmbienteGlobal');
+      return (sel && sel.value !== 'OTRO' ? sel.value : localStorage.getItem('fdm_active_amb') || '🚽 Baño / Amb. Auxiliar');
+    }
+
+    function cambiarAmbienteGlobal(val) {
+      if (val === 'OTRO') {
+        const pers = prompt("Escribe el nombre del nuevo ambiente (ej: Pasadizo 2do Piso, Oficina Técnica):", "");
+        if (pers && pers.trim()) {
+          val = pers.trim();
+          const sel = document.getElementById('selectAmbienteGlobal');
+          const opt = document.createElement('option');
+          opt.value = val;
+          opt.innerText = "📍 " + val;
+          opt.selected = true;
+          sel.insertBefore(opt, sel.firstChild);
+        } else {
+          document.getElementById('selectAmbienteGlobal').value = localStorage.getItem('fdm_active_amb') || '🚽 Baño / Amb. Auxiliar';
+          return;
+        }
+      }
+      localStorage.setItem('fdm_active_amb', val);
+      showToast("📍 Ambiente activo: " + val);
+    }
 
     async function loadProjectsData() {
       try {
@@ -587,56 +637,47 @@
       }
 
       const p = projects.find(x => x.id === activeObraId);
+      const currentAmb = getActiveAmbiente();
+      
       const photoObj = {
         id: 'foto_' + Date.now(),
         slot: slotKey,
         nombre: `OBRA_${String(activeObraId).padStart(2, '0')}_${slotKey.toUpperCase()}_${Date.now()}.jpg`,
         dataUrl: compressedDataUrl,
-        timestamp: new Date().toLocaleString()
+        timestamp: new Date().toLocaleString(),
+        ubicacion: currentAmb,
+        nota: ''
       };
 
       fieldData[activeObraId].fotos.push(photoObj);
+      autoCompileUbicacion(activeObraId);
       await saveObraToDB(fieldData[activeObraId]);
 
       fileInput.value = ''; // Reset input
       renderDrawerPhotos();
       updateGlobalCounters();
       renderList();
-      showToast("📸 Foto guardada exitosamente");
+      showToast(`📸 Foto guardada en ${currentAmb}`);
     }
 
-    function compressImage(file, maxDimension, quality) {
-      return new Promise((resolve) => {
-        const reader = new FileReader();
-        reader.onload = (e) => {
-          const img = new Image();
-          img.onload = () => {
-            let width = img.width;
-            let height = img.height;
+    function autoCompileUbicacion(obraId) {
+      const d = fieldData[obraId];
+      if (!d || !d.fotos || d.fotos.length === 0) return;
 
-            if (width > height) {
-              if (width > maxDimension) {
-                height = Math.round((height * maxDimension) / width);
-                width = maxDimension;
-              }
-            } else {
-              if (height > maxDimension) {
-                width = Math.round((width * maxDimension) / height);
-                height = maxDimension;
-              }
-            }
-
-            const canvas = document.createElement('canvas');
-            canvas.width = width;
-            canvas.height = height;
-            const ctx = canvas.getContext('2d');
-            ctx.drawImage(img, 0, 0, width, height);
-            resolve(canvas.toDataURL('image/jpeg', quality));
-          };
-          img.src = e.target.result;
-        };
-        reader.readAsDataURL(file);
+      const counts = {};
+      d.fotos.forEach(f => {
+        const amb = f.ubicacion || 'Ambiente';
+        counts[amb] = (counts[amb] || 0) + 1;
       });
+
+      const summaryList = Object.keys(counts).map(amb => `${amb} (${counts[amb]} ${counts[amb] === 1 ? 'caja' : 'cajas'})`);
+      const compiled = summaryList.join(' | ');
+
+      d.ubicacion = compiled;
+      const input = document.getElementById('inputUbicacion');
+      if (input && activeObraId === obraId) {
+        input.value = compiled;
+      }
     }
 
     function renderDrawerPhotos() {
@@ -658,12 +699,42 @@
         if (!grid) return;
 
         grid.innerHTML = slotFotos.map(f => `
-          <div class="thumb-wrap">
-            <img src="${f.dataUrl}" class="thumb-img" onclick="openLightbox('${f.dataUrl}')">
-            <button class="thumb-del" onclick="deletePhoto('${f.id}')" title="Eliminar foto">✕</button>
+          <div class="thumb-card">
+            <div class="thumb-wrap">
+              <img src="${f.dataUrl}" class="thumb-img" onclick="openLightbox('${f.dataUrl}')">
+              <button class="thumb-del" onclick="deletePhoto('${f.id}')" title="Eliminar foto">✕</button>
+            </div>
+            <div class="thumb-meta">
+              <div class="thumb-amb">
+                <span title="${f.ubicacion || 'Ambiente'}">📍 ${f.ubicacion || 'Ambiente'}</span>
+                <span onclick="editPhotoCaption('${f.id}')" style="cursor: pointer; padding: 0 3px;" title="Editar ambiente o detalle de caja">✏️</span>
+              </div>
+              <div class="thumb-note" onclick="editPhotoCaption('${f.id}')" title="${f.nota || 'Tocar para agregar detalle de caja'}">
+                ${f.nota ? '📝 ' + f.nota : '<span style="color: #94A3B8; font-style: italic;">+ Detalle caja</span>'}
+              </div>
+            </div>
           </div>
         `).join('');
       });
+    }
+
+    function editPhotoCaption(photoId) {
+      const d = fieldData[activeObraId];
+      if (!d || !d.fotos) return;
+      const f = d.fotos.find(x => x.id === photoId);
+      if (!f) return;
+
+      const newAmb = prompt("📍 Ambiente donde se encuentra esta caja:", f.ubicacion || getActiveAmbiente());
+      if (newAmb !== null && newAmb.trim()) f.ubicacion = newAmb.trim();
+
+      const newNota = prompt("📝 Detalle / N° de esta caja (ej: Caja 01 - Exp. Técnico / Tomo II):", f.nota || "");
+      if (newNota !== null) f.nota = newNota.trim();
+
+      autoCompileUbicacion(activeObraId);
+      saveObraToDB(d);
+      renderDrawerPhotos();
+      renderList();
+      showToast("Detalle de caja actualizado");
     }
 
     async function deletePhoto(photoId) {
@@ -735,7 +806,14 @@
           ubicacion_fisica_campo: item.ubicacion || '',
           notas_campo: item.notas || '',
           total_fotos: (item.fotos || []).length,
-          updated_at: item.updated_at || ''
+          updated_at: item.updated_at || '',
+          fotos_detalle: (item.fotos || []).map(f => ({
+            nombre: f.nombre,
+            slot: f.slot,
+            ubicacion: f.ubicacion || '',
+            nota: f.nota || '',
+            timestamp: f.timestamp || ''
+          }))
         });
 
         if (item.fotos && item.fotos.length > 0) {
@@ -749,10 +827,11 @@
       // Add manifest.json and CSV
       zip.file("REPORTE_CAMPO_FDM.json", JSON.stringify(manifest, null, 2));
 
-      // CSV Generation
-      let csvContent = "\uFEFFN°,DESCRIPCION,CUI,PROVINCIA,FECHA_INICIO_CAMPO,FECHA_CULMINACION_CAMPO,UBICACION_FISICA,NOTAS,TOTAL_FOTOS\n";
+      // CSV Generation with box location detail
+      let csvContent = "\uFEFFN°,DESCRIPCION,CUI,PROVINCIA,UBICACION_FISICA,TOTAL_FOTOS,DETALLE_CAJAS_FOTOS,NOTAS\n";
       manifest.forEach(m => {
-        csvContent += `"${m.id}","${(m.desc||'').replace(/"/g, '""')}","${m.cui||''}","${m.provincia||''}","${m.fecha_inicio_campo||''}","${m.fecha_culm_campo||''}","${(m.ubicacion_fisica_campo||'').replace(/"/g, '""')}","${(m.notas_campo||'').replace(/"/g, '""')}","${m.total_fotos}"\n`;
+        const fotosResumen = (m.fotos_detalle || []).map((f, i) => `Foto ${i+1} [${f.ubicacion || 'Ambiente'}]: ${f.nota || f.slot}`).join(' ; ');
+        csvContent += `"${m.id}","${(m.desc||'').replace(/"/g, '""')}","${m.cui||''}","${m.provincia||''}","${(m.ubicacion_fisica_campo||'').replace(/"/g, '""')}","${m.total_fotos}","${fotosResumen.replace(/"/g, '""')}","${(m.notas_campo||'').replace(/"/g, '""')}"\n`;
       });
       zip.file("REPORTE_CAMPO_FDM.csv", csvContent);
 
