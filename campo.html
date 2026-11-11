@@ -230,22 +230,42 @@
 
         <div class="field-group">
           <div class="field-title">
-            <span>📍 Ubicación Física del Expediente</span>
+            <span>📍 AMBIENTE DONDE SE ENCUENTRA LA CAJA</span>
             <span style="font-size: 0.7rem; color: #2563EB;">Obligatorio para Auditoría</span>
           </div>
-          <input type="text" id="inputUbicacion" class="field-input" placeholder="Ej: Caja 03, Archivador Azul N° 2, Estante 4...">
-          <div class="preset-chips">
-            <span class="preset-chip" onclick="appendUbicacion('Caja N° ')">📦 Caja N°</span>
-            <span class="preset-chip" onclick="appendUbicacion('BAÑO1-PMO ')">🚽 BAÑO1</span>
-            <span class="preset-chip" onclick="appendUbicacion('BAÑO2-PMO ')">🚽 BAÑO2</span>
-            <span class="preset-chip" onclick="appendUbicacion('BAÑO3-PMO ')">🚽 BAÑO3</span>
-            <span class="preset-chip" onclick="appendUbicacion('OFICINA1-PMO ')">🏢 OFIC1</span>
-            <span class="preset-chip" onclick="appendUbicacion('OFICINA2-PMO ')">🏢 OFIC2</span>
-            <span class="preset-chip" onclick="appendUbicacion('OFICINA3-PMO ')">🏢 OFIC3</span>
-            <span class="preset-chip" onclick="appendUbicacion('PASADIZO-ESCALERA ')">🚶 PASADIZO</span>
-            <span class="preset-chip" onclick="appendUbicacion('SECRETARIA-PMO ')">📑 SECRETARIA</span>
-            <span class="preset-chip" onclick="appendUbicacion('ALMACEN-TECHO ')">📦 ALMACEN-TECHO</span>
-            <span class="preset-chip" onclick="appendUbicacion('ARMARIO-1ERPISO ')">🗄️ ARMARIO-1ER</span>
+          
+          <select id="drawerAmbienteSelect" class="field-input" onchange="onDrawerAmbienteChange(this.value)" style="font-weight: 700; color: #0F172A; background: #FFF; font-size: 0.92rem; border: 1.5px solid #2563EB; cursor: pointer; padding: 0.65rem;">
+            <option value="BAÑO1-PMO">🚽 BAÑO1-PMO</option>
+            <option value="BAÑO2-PMO">🚽 BAÑO2-PMO</option>
+            <option value="BAÑO3-PMO">🚽 BAÑO3-PMO</option>
+            <option value="OFICINA1-PMO">🏢 OFICINA1-PMO</option>
+            <option value="OFICINA2-PMO">🏢 OFICINA2-PMO</option>
+            <option value="OFICINA3-PMO">🏢 OFICINA3-PMO</option>
+            <option value="PASADIZO-ESCALERA">🚶 PASADIZO-ESCALERA</option>
+            <option value="SECRETARIA-PMO">📑 SECRETARIA-PMO</option>
+            <option value="ALMACEN-TECHO">📦 ALMACEN-TECHO</option>
+            <option value="ARMARIO-1ERPISO">🗄️ ARMARIO-1ERPISO</option>
+            <option value="OTROS">📍 OTROS</option>
+            <option value="CUSTOM">➕ Agregar Sub-zona / Otro...</option>
+          </select>
+
+          <div style="margin-top: 0.65rem;">
+            <div style="font-size: 0.72rem; font-weight: 700; color: #64748B; margin-bottom: 0.25rem;">📦 N° DE CAJA O DETALLE:</div>
+            <input type="text" id="inputCajaNum" class="field-input" placeholder="Ej: Caja 01, Caja 02, Estante B..." oninput="updateFullUbicacion()">
+            <div class="preset-chips" style="margin-top: 0.35rem;">
+              <span class="preset-chip" onclick="setCajaNum('Caja 01')">Caja 01</span>
+              <span class="preset-chip" onclick="setCajaNum('Caja 02')">Caja 02</span>
+              <span class="preset-chip" onclick="setCajaNum('Caja 03')">Caja 03</span>
+              <span class="preset-chip" onclick="setCajaNum('Caja 04')">Caja 04</span>
+              <span class="preset-chip" onclick="setCajaNum('Caja 05')">Caja 05</span>
+              <span class="preset-chip" onclick="setCajaNum('Caja 06')">Caja 06</span>
+            </div>
+          </div>
+
+          <!-- Input oculto para compatibilidad y resumen visual -->
+          <input type="hidden" id="inputUbicacion">
+          <div id="ubicacionResumenDisplay" style="margin-top: 0.5rem; font-size: 0.78rem; color: #1E293B; background: #EEF2FF; padding: 0.4rem 0.6rem; border-radius: 6px; border: 1px solid #C7D2FE; font-weight: 600;">
+            📍 Ubicación consolidada: <span id="ubicacionResumenText" style="color: #2563EB;">BAÑO1-PMO</span>
           </div>
         </div>
 
@@ -425,12 +445,27 @@
     });
 
     function initAmbienteSelector() {
-      const sel = document.getElementById('selectAmbienteGlobal');
-      if (!sel) return;
-      
-      // Cargar ambientes personalizados previos
+      syncAmbienteDropdowns();
+      const savedAmb = localStorage.getItem('fdm_active_amb') || 'BAÑO1-PMO';
+      const selG = document.getElementById('selectAmbienteGlobal');
+      if (selG && [...selG.options].some(o => o.value === savedAmb)) {
+        selG.value = savedAmb;
+      }
+      const selD = document.getElementById('drawerAmbienteSelect');
+      if (selD && [...selD.options].some(o => o.value === savedAmb)) {
+        selD.value = savedAmb;
+      }
+    }
+
+    function syncAmbienteDropdowns() {
+      let customs = [];
       try {
-        const customs = JSON.parse(localStorage.getItem('fdm_custom_ambientes') || '[]');
+        customs = JSON.parse(localStorage.getItem('fdm_custom_ambientes') || '[]');
+      } catch (e) {}
+      
+      const dropdowns = [document.getElementById('selectAmbienteGlobal'), document.getElementById('drawerAmbienteSelect')];
+      dropdowns.forEach(sel => {
+        if (!sel) return;
         customs.forEach(c => {
           if (![...sel.options].some(o => o.value === c)) {
             const opt = document.createElement('option');
@@ -439,46 +474,83 @@
             sel.insertBefore(opt, sel.lastElementChild);
           }
         });
-      } catch (e) {}
-
-      const savedAmb = localStorage.getItem('fdm_active_amb') || 'BAÑO1-PMO';
-      if ([...sel.options].some(o => o.value === savedAmb)) {
-        sel.value = savedAmb;
-      }
+      });
     }
 
     function getActiveAmbiente() {
-      const sel = document.getElementById('selectAmbienteGlobal');
-      return (sel && sel.value !== 'CUSTOM' ? sel.value : localStorage.getItem('fdm_active_amb') || 'BAÑO1-PMO');
+      const selD = document.getElementById('drawerAmbienteSelect');
+      if (selD && selD.value && selD.value !== 'CUSTOM') return selD.value;
+      const selG = document.getElementById('selectAmbienteGlobal');
+      return (selG && selG.value !== 'CUSTOM' ? selG.value : localStorage.getItem('fdm_active_amb') || 'BAÑO1-PMO');
+    }
+
+    function onDrawerAmbienteChange(val) {
+      if (val === 'CUSTOM') {
+        const pers = prompt("Escribe el nombre del nuevo ambiente o sub-zona\n(Ej: ALMACEN-TECHO_PARTE_FRONTAL, BAÑO1_DETRAS_PUERTA):", "");
+        if (pers && pers.trim()) {
+          val = pers.trim().toUpperCase();
+          saveNewCustomAmbiente(val);
+        } else {
+          document.getElementById('drawerAmbienteSelect').value = localStorage.getItem('fdm_active_amb') || 'BAÑO1-PMO';
+          return;
+        }
+      }
+      localStorage.setItem('fdm_active_amb', val);
+      const selG = document.getElementById('selectAmbienteGlobal');
+      if (selG) selG.value = val;
+      updateFullUbicacion();
+      showToast("📍 Ambiente: " + val);
     }
 
     function cambiarAmbienteGlobal(val) {
       if (val === 'CUSTOM') {
-        const pers = prompt("Escribe el nombre del nuevo ambiente o sub-zona\n(Ej: ALMACEN-TECHO_parte_frontal, BAÑO1_detras_puerta):", "");
+        const pers = prompt("Escribe el nombre del nuevo ambiente o sub-zona\n(Ej: ALMACEN-TECHO_PARTE_FRONTAL, BAÑO1_DETRAS_PUERTA):", "");
         if (pers && pers.trim()) {
           val = pers.trim().toUpperCase();
-          const sel = document.getElementById('selectAmbienteGlobal');
-          if (![...sel.options].some(o => o.value === val)) {
-            const opt = document.createElement('option');
-            opt.value = val;
-            opt.innerText = "📍 " + val;
-            sel.insertBefore(opt, sel.lastElementChild);
-            
-            // Guardar en lista de personalizados
-            try {
-              const customs = JSON.parse(localStorage.getItem('fdm_custom_ambientes') || '[]');
-              if (!customs.includes(val)) customs.push(val);
-              localStorage.setItem('fdm_custom_ambientes', JSON.stringify(customs));
-            } catch (e) {}
-          }
-          sel.value = val;
+          saveNewCustomAmbiente(val);
         } else {
           document.getElementById('selectAmbienteGlobal').value = localStorage.getItem('fdm_active_amb') || 'BAÑO1-PMO';
           return;
         }
       }
       localStorage.setItem('fdm_active_amb', val);
+      const selD = document.getElementById('drawerAmbienteSelect');
+      if (selD) selD.value = val;
+      updateFullUbicacion();
       showToast("📍 Ambiente activo: " + val);
+    }
+
+    function saveNewCustomAmbiente(val) {
+      try {
+        const customs = JSON.parse(localStorage.getItem('fdm_custom_ambientes') || '[]');
+        if (!customs.includes(val)) customs.push(val);
+        localStorage.setItem('fdm_custom_ambientes', JSON.stringify(customs));
+      } catch (e) {}
+      syncAmbienteDropdowns();
+      const selG = document.getElementById('selectAmbienteGlobal');
+      if (selG) selG.value = val;
+      const selD = document.getElementById('drawerAmbienteSelect');
+      if (selD) selD.value = val;
+    }
+
+    function setCajaNum(cajaVal) {
+      const input = document.getElementById('inputCajaNum');
+      if (input) {
+        input.value = cajaVal;
+        updateFullUbicacion();
+      }
+    }
+
+    function updateFullUbicacion() {
+      const amb = getActiveAmbiente();
+      const caja = (document.getElementById('inputCajaNum')?.value || '').trim();
+      const full = caja ? `${amb} - ${caja}` : amb;
+      
+      const inputHidden = document.getElementById('inputUbicacion');
+      if (inputHidden) inputHidden.value = full;
+      
+      const resText = document.getElementById('ubicacionResumenText');
+      if (resText) resText.innerText = full;
     }
 
     async function loadProjectsData() {
@@ -610,8 +682,34 @@
 
       document.getElementById('inputFechaInicio').value = d.fecha_inicio || p.fecha_inicio || '';
       document.getElementById('inputFechaCulm').value = d.fecha_culm || p.fecha_culminacion_real || '';
-      document.getElementById('inputUbicacion').value = d.ubicacion || (p.tiene_caja !== 'NO - ARCHIVADOR' ? p.tiene_caja : '');
       document.getElementById('inputNotas').value = d.notas || '';
+
+      // Configurar Ambiente y N° de Caja en el Drawer
+      syncAmbienteDropdowns();
+      const currAmb = localStorage.getItem('fdm_active_amb') || 'BAÑO1-PMO';
+      const selD = document.getElementById('drawerAmbienteSelect');
+      const inputCaja = document.getElementById('inputCajaNum');
+      
+      let initialUbicacion = d.ubicacion || (p.tiene_caja !== 'NO - ARCHIVADOR' ? p.tiene_caja : '');
+      let parsedAmb = currAmb;
+      let parsedCaja = '';
+      
+      if (initialUbicacion) {
+        if (selD) {
+          for (const opt of selD.options) {
+            if (opt.value !== 'CUSTOM' && initialUbicacion.toUpperCase().includes(opt.value)) {
+              parsedAmb = opt.value;
+              break;
+            }
+          }
+        }
+        const mCaja = initialUbicacion.match(/Caja\s*\d+/i);
+        if (mCaja) parsedCaja = mCaja[0];
+      }
+
+      if (selD) selD.value = parsedAmb;
+      if (inputCaja) inputCaja.value = parsedCaja;
+      updateFullUbicacion();
 
       const badgeIni = document.getElementById('statusInicioBadge');
       if (d.fecha_inicio || p.fecha_inicio) {
