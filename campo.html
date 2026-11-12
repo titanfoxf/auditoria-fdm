@@ -250,6 +250,15 @@
               <option value="CUSTOM">➕ Agregar Sub-zona / Otro...</option>
             </select>
 
+            <!-- Banner informativo si esta obra tiene cajas censadas en otros ambientes -->
+            <div id="drawerMultiAmbientesSummary" style="display: none; background: #EFF6FF; border: 1.5px solid #93C5FD; border-radius: 8px; padding: 0.5rem 0.75rem; margin-top: 0.5rem;">
+              <div style="font-size: 0.72rem; font-weight: 800; color: #1E40AF; display: flex; justify-content: space-between; align-items: center;">
+                <span>📦 Cajas previas censadas en otros ambientes:</span>
+                <span id="drawerMultiAmbientesBadge" class="badge badge-blue" style="font-size: 0.65rem;">0 fotos</span>
+              </div>
+              <div id="drawerMultiAmbientesList" style="font-size: 0.76rem; color: #1E3A8A; margin-top: 0.25rem; font-weight: 600; line-height: 1.4;"></div>
+            </div>
+
             <!-- Tarjeta de Código de Trazabilidad Único -->
             <div style="margin-top: 0.75rem; background: #0F172A; border-radius: 10px; padding: 0.75rem; color: white; display: flex; flex-direction: column; gap: 0.4rem; box-shadow: 0 2px 6px rgba(0,0,0,0.15);">
               <div style="display: flex; justify-content: space-between; align-items: center;">
@@ -877,7 +886,13 @@
       localStorage.setItem('fdm_active_amb', val);
       const selG = document.getElementById('selectAmbienteGlobal');
       if (selG) selG.value = val;
-      updateFullUbicacion();
+      
+      // Limpiar flag de edición manual para que el código tome de inmediato el nuevo prefijo del ambiente
+      const inputCod = document.getElementById('inputCodigoCaja');
+      if (inputCod) inputCod.dataset.userEdited = "";
+      
+      updateCodigoDisplay();
+      renderMultiAmbientesSummary();
       showToast("📍 Ambiente: " + val);
     }
 
@@ -895,7 +910,14 @@
       localStorage.setItem('fdm_active_amb', val);
       const selD = document.getElementById('drawerAmbienteSelect');
       if (selD) selD.value = val;
-      updateFullUbicacion();
+      
+      if (activeObraId) {
+        const inputCod = document.getElementById('inputCodigoCaja');
+        if (inputCod) inputCod.dataset.userEdited = "";
+        updateCodigoDisplay();
+        renderMultiAmbientesSummary();
+      }
+      renderCards();
       showToast("📍 Ambiente activo: " + val);
     }
 
@@ -910,6 +932,56 @@
       if (selG) selG.value = val;
       const selD = document.getElementById('drawerAmbienteSelect');
       if (selD) selD.value = val;
+      if (activeObraId) {
+        const inputCod = document.getElementById('inputCodigoCaja');
+        if (inputCod) inputCod.dataset.userEdited = "";
+        updateCodigoDisplay();
+        renderMultiAmbientesSummary();
+      }
+    }
+
+    // Renderiza el banner de resumen si la obra tiene cajas en otros ambientes
+    function renderMultiAmbientesSummary() {
+      const banner = document.getElementById('drawerMultiAmbientesSummary');
+      const badge = document.getElementById('drawerMultiAmbientesBadge');
+      const list = document.getElementById('drawerMultiAmbientesList');
+      if (!banner || !badge || !list || !activeObraId) return;
+
+      const d = fieldData[activeObraId];
+      if (!d || !d.fotos || d.fotos.length === 0) {
+        banner.style.display = 'none';
+        return;
+      }
+
+      const currAmb = getActiveAmbiente();
+      const otherAmbMap = {};
+      let otherPhotosCount = 0;
+
+      d.fotos.forEach(f => {
+        const amb = (f.ubicacion || 'Ambiente').trim();
+        if (amb !== currAmb) {
+          otherPhotosCount++;
+          if (!otherAmbMap[amb]) otherAmbMap[amb] = new Set();
+          const cod = f.codigo_caja || f.nota || 'Caja';
+          otherAmbMap[amb].add(cod);
+        }
+      });
+
+      const otherAmbs = Object.keys(otherAmbMap);
+      if (otherAmbs.length === 0) {
+        banner.style.display = 'none';
+        return;
+      }
+
+      banner.style.display = 'block';
+      badge.innerText = `${otherPhotosCount} ${otherPhotosCount === 1 ? 'foto' : 'fotos'} previa${otherPhotosCount === 1 ? '' : 's'}`;
+
+      const itemsHtml = otherAmbs.map(amb => {
+        const cajas = Array.from(otherAmbMap[amb]).join(', ');
+        return `<div>📍 <strong>${amb}:</strong> ${cajas}</div>`;
+      }).join('');
+
+      list.innerHTML = itemsHtml;
     }
 
     const AMBIENTE_PREFIXES = {
@@ -930,11 +1002,25 @@
 
     function getAmbientePrefix(amb) {
       if (!amb) return 'B1';
-      if (AMBIENTE_PREFIXES[amb]) return AMBIENTE_PREFIXES[amb];
-      const clean = amb.replace(/[^a-zA-Z0-9]/g, '_');
+      const cleanAmb = amb.trim().toUpperCase();
+      if (AMBIENTE_PREFIXES[cleanAmb]) return AMBIENTE_PREFIXES[cleanAmb];
+      
+      // Coincidencias inteligentes
+      if (cleanAmb.includes('BAÑO 1') || cleanAmb.includes('BANO 1') || cleanAmb.includes('BAÑO1') || cleanAmb.includes('BANO1')) return 'B1';
+      if (cleanAmb.includes('BAÑO 2') || cleanAmb.includes('BANO 2') || cleanAmb.includes('BAÑO2') || cleanAmb.includes('BANO2')) return 'B2';
+      if (cleanAmb.includes('BAÑO 3') || cleanAmb.includes('BANO 3') || cleanAmb.includes('BAÑO3') || cleanAmb.includes('BANO3')) return 'B3';
+      if (cleanAmb.includes('OFICINA 1') || cleanAmb.includes('OFICINA1')) return 'OF1';
+      if (cleanAmb.includes('OFICINA 2') || cleanAmb.includes('OFICINA2')) return 'OF2';
+      if (cleanAmb.includes('OFICINA 3') || cleanAmb.includes('OFICINA3')) return 'OF3';
+      if (cleanAmb.includes('PASADIZO') || cleanAmb.includes('ESCALERA')) return 'PAS';
+      if (cleanAmb.includes('SECRETAR')) return 'SEC';
+      if (cleanAmb.includes('ALMACEN') || cleanAmb.includes('TECHO')) return 'ALT';
+      if (cleanAmb.includes('ARMARIO')) return 'ARM1';
+
+      const clean = cleanAmb.replace(/[^A-Z0-9]/g, '_');
       const parts = clean.split('_').filter(Boolean);
       if (parts.length >= 2) return (parts[0].substring(0, 3) + '_' + parts[1].substring(0, 3)).toUpperCase();
-      return amb.substring(0, 4).toUpperCase();
+      return cleanAmb.substring(0, 4).toUpperCase();
     }
 
     function getUsedCajaSeqs(obraId) {
@@ -1009,7 +1095,24 @@
       const cont = document.getElementById('cajaSeqChipsContainer');
       if (!cont || !activeObraId) return;
 
+      const d = fieldData[activeObraId];
       const used = getUsedCajaSeqs(activeObraId);
+      
+      // Mapear cada caja usada con el ambiente donde fue tomada
+      const seqAmbMap = {};
+      if (d && d.fotos) {
+        d.fotos.forEach(f => {
+          const cod = f.codigo_caja || f.nota || '';
+          const m = cod.match(/C(?:AJA)?[-_]?(\d+)/i);
+          if (m) {
+            const num = parseInt(m[1]);
+            const pref = getAmbientePrefix(f.ubicacion || '');
+            if (!seqAmbMap[num]) seqAmbMap[num] = new Set();
+            if (pref) seqAmbMap[num].add(pref);
+          }
+        });
+      }
+
       const maxShown = Math.max(8, currentCajaSeq + 2, ...Array.from(used));
 
       let html = '';
@@ -1026,8 +1129,15 @@
           chipStyle += " background: #1E293B; color: #94A3B8; border: 1px solid #334155;";
         }
 
-        const label = isUsed ? `C${i} ✓` : `C${i}`;
-        html += `<button type="button" onclick="setCajaSeq(${i})" style="${chipStyle}" title="${isUsed ? 'Caja ya fotografiada' : 'Caja disponible'}">${label}</button>`;
+        let label = `C${i}`;
+        let title = 'Caja disponible';
+        if (isUsed) {
+          const ambs = seqAmbMap[i] ? Array.from(seqAmbMap[i]).join('/') : '';
+          label = ambs ? `C${i} ✓ (${ambs})` : `C${i} ✓`;
+          title = `Caja C${i} ya fotografiada${ambs ? ' en ' + ambs : ''}`;
+        }
+
+        html += `<button type="button" onclick="setCajaSeq(${i})" style="${chipStyle}" title="${title}">${label}</button>`;
       }
       cont.innerHTML = html;
     }
@@ -1317,26 +1427,14 @@
         syncAmbienteDropdowns();
         const currAmb = localStorage.getItem('fdm_active_amb') || 'BAÑO1-PMO';
         const selD = document.getElementById('drawerAmbienteSelect');
-        
-        let initialUbicacion = d.ubicacion || '';
-        let parsedAmb = currAmb;
-        
-        if (initialUbicacion && selD) {
-          for (const opt of selD.options) {
-            if (opt.value !== 'CUSTOM' && initialUbicacion.toUpperCase().includes(opt.value)) {
-              parsedAmb = opt.value;
-              break;
-            }
-          }
-        }
-
-        if (selD) selD.value = parsedAmb;
+        if (selD) selD.value = currAmb;
         
         // Inicializar y mostrar código de caja sugerido (primer número desocupado)
         currentCajaSeq = getFirstAvailableCajaSeq(id);
         const inputCod = document.getElementById('inputCodigoCaja');
         if (inputCod) inputCod.dataset.userEdited = "";
         updateCodigoDisplay();
+        renderMultiAmbientesSummary();
 
         const badgeIni = document.getElementById('statusInicioBadge');
         if (badgeIni) {
@@ -1626,6 +1724,7 @@
       renderDrawerPhotos();
       renderList();
       renderCajaSeqChips();
+      renderMultiAmbientesSummary();
       showToast("Código y ubicación actualizados");
     }
 
@@ -1650,6 +1749,7 @@
       updateGlobalCounters();
       renderList();
       renderCajaSeqChips();
+      renderMultiAmbientesSummary();
       showToast("Foto eliminada localmente y en proceso de borrado en nube");
     }
 
@@ -1663,7 +1763,11 @@
       const d = fieldData[activeObraId];
       d.fecha_inicio = document.getElementById('inputFechaInicio').value.trim();
       d.fecha_culm = document.getElementById('inputFechaCulm').value.trim();
-      d.ubicacion = document.getElementById('inputUbicacion').value.trim();
+      if (d.fotos && d.fotos.length > 0) {
+        autoCompileUbicacion(activeObraId);
+      } else {
+        d.ubicacion = document.getElementById('inputUbicacion').value.trim();
+      }
       d.notas = document.getElementById('inputNotas') ? document.getElementById('inputNotas').value.trim() : '';
       d.notas_auditoria = document.getElementById('inputNotasAuditoria') ? document.getElementById('inputNotasAuditoria').value.trim() : '';
       d.updated_at = new Date().toISOString();
