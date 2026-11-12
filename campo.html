@@ -316,6 +316,18 @@
               <span class="preset-chip" onclick="appendContenido('Adicionales/Ampliaciones')">➕ Adicionales</span>
               <span class="preset-chip" onclick="appendContenido('Supervisión')">👷 Supervisión</span>
             </div>
+
+            <div style="font-size: 0.7rem; font-weight: 700; color: #2563EB; margin-top: 0.45rem; display: flex; align-items: center; gap: 0.3rem;">
+              <span>🧭 Ubicación física dentro del ambiente:</span>
+            </div>
+            <div class="preset-chips" style="margin-top: 0.2rem;">
+              <span class="preset-chip" onclick="appendContenido('Entrando a la derecha')" style="background: #F0FDF4; border-color: #86EFAC; color: #166534; font-weight: 700;">👉 Entrando a la derecha</span>
+              <span class="preset-chip" onclick="appendContenido('Entrando a la izquierda')" style="background: #F0FDF4; border-color: #86EFAC; color: #166534; font-weight: 700;">👈 Entrando a la izquierda</span>
+              <span class="preset-chip" onclick="appendContenido('Al frente')" style="background: #F0FDF4; border-color: #86EFAC; color: #166534; font-weight: 700;">⬆️ Al frente</span>
+              <span class="preset-chip" onclick="appendContenido('En armario')" style="background: #FEF3C7; border-color: #FCD34D; color: #92400E; font-weight: 700;">🗄️ En Armario</span>
+              <span class="preset-chip" onclick="appendContenido('En el piso')" style="background: #FEE2E2; border-color: #FCA5A5; color: #991B1B; font-weight: 700;">⬇️ En el piso</span>
+              <span class="preset-chip" onclick="appendContenido('Encima de cajas')" style="background: #E0E7FF; border-color: #A5B4FC; color: #3730A3; font-weight: 700;">📦 Encima de cajas</span>
+            </div>
             <textarea id="inputNotas" class="field-input" style="height: 55px; resize: none; margin-top: 0.5rem;" placeholder="Ej: Caja contiene Valorizaciones 1 a 6 y Cuaderno de Obra N° 01..."></textarea>
           </div>
 
@@ -433,7 +445,20 @@
               <span class="preset-chip" onclick="appendSueltoNota('Valorizaciones')">📑 Valorizaciones</span>
               <span class="preset-chip" onclick="appendSueltoNota('Liquidación de Obra')">⚖️ Liquidación</span>
             </div>
-            <textarea id="inputNotasSuelto" class="field-input" style="height: 55px; resize: none; margin-top: 0.5rem;" placeholder="Ej: Archivador de palanca con Informes de Supervisión 1 a 5, o Cuaderno de Obra Tomo 2 en anaquel..."></textarea>
+
+            <div style="font-size: 0.7rem; font-weight: 700; color: #0284C7; margin-top: 0.45rem; display: flex; align-items: center; gap: 0.3rem;">
+              <span>🧭 Ubicación física dentro del ambiente:</span>
+            </div>
+            <div class="preset-chips" style="margin-top: 0.2rem;">
+              <span class="preset-chip" onclick="appendSueltoNota('Entrando a la derecha')" style="background: #F0FDF4; border-color: #86EFAC; color: #166534; font-weight: 700;">👉 Entrando a la derecha</span>
+              <span class="preset-chip" onclick="appendSueltoNota('Entrando a la izquierda')" style="background: #F0FDF4; border-color: #86EFAC; color: #166534; font-weight: 700;">👈 Entrando a la izquierda</span>
+              <span class="preset-chip" onclick="appendSueltoNota('Al frente')" style="background: #F0FDF4; border-color: #86EFAC; color: #166534; font-weight: 700;">⬆️ Al frente</span>
+              <span class="preset-chip" onclick="appendSueltoNota('En armario')" style="background: #FEF3C7; border-color: #FCD34D; color: #92400E; font-weight: 700;">🗄️ En Armario</span>
+              <span class="preset-chip" onclick="appendSueltoNota('En el piso')" style="background: #FEE2E2; border-color: #FCA5A5; color: #991B1B; font-weight: 700;">⬇️ En el piso</span>
+              <span class="preset-chip" onclick="appendSueltoNota('Encima de cajas')" style="background: #E0E7FF; border-color: #A5B4FC; color: #3730A3; font-weight: 700;">📦 Encima de cajas</span>
+            </div>
+
+            <textarea id="inputNotasSuelto" class="field-input" style="height: 55px; resize: none; margin-top: 0.5rem;" placeholder="Ej: Archivador de palanca con Valorizaciones, Entrando a la derecha, en Armario..."></textarea>
           </div>
 
           <!-- Foto del Documento Suelto -->
