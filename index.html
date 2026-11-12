@@ -760,7 +760,7 @@
       }
     }
 
-    // Compila los ambientes reales censados en campo con número de cajas
+    // Compila los ambientes reales censados en campo con número de cajas y docs sueltos
     function compileUbicacionCajas(obraId) {
       const fData = fieldPhotosMap[obraId];
       if (!fData || !fData.fotos || fData.fotos.length === 0) {
@@ -770,14 +770,22 @@
       const ambMap = {};
       fData.fotos.forEach(f => {
         const amb = (f.ubicacion || fData.ubicacion || 'Ambiente').trim();
-        const cod = (f.codigo_caja || f.nota || 'Caja').trim();
-        if (!ambMap[amb]) ambMap[amb] = new Set();
-        ambMap[amb].add(cod);
+        if (!ambMap[amb]) ambMap[amb] = { cajas: new Set(), sueltos: new Set() };
+        const cod = (f.codigo_caja || f.nota || '').trim();
+        if (f.slot === 'suelto' || cod.includes('SUELTO')) {
+          ambMap[amb].sueltos.add(cod || 'Doc. Suelto');
+        } else {
+          ambMap[amb].cajas.add(cod || 'Caja');
+        }
       });
 
-      const parts = Object.entries(ambMap).map(([amb, setCajas]) => {
-        const n = setCajas.size;
-        return `${amb} (${n} ${n === 1 ? 'caja' : 'cajas'})`;
+      const parts = Object.entries(ambMap).map(([amb, info]) => {
+        const cCount = info.cajas.size;
+        const sCount = info.sueltos.size;
+        const details = [];
+        if (cCount > 0) details.push(`${cCount} ${cCount === 1 ? 'caja' : 'cajas'}`);
+        if (sCount > 0) details.push(`${sCount} doc. ${sCount === 1 ? 'suelto' : 'sueltos'}`);
+        return `${amb} (${details.join(', ') || 'censado'})`;
       });
 
       return parts.join(' | ') || null;
@@ -849,10 +857,14 @@
         const amb = first.ubicacion || 'Ambiente';
         const contenido = first.nota && first.nota !== cod ? first.nota : 'Contenido no especificado';
 
+        const isSuelto = cod.includes('SUELTO');
+        const tagIcon = isSuelto ? '📁' : '🏷️';
+        const tagStyle = isSuelto ? 'background: #0284C7;' : '';
+
         html += `
           <div class="caja-group-card">
             <div class="caja-group-header">
-              <span class="caja-tag">🏷️ ${cod}</span>
+              <span class="caja-tag" style="${tagStyle}">${tagIcon} ${cod}</span>
               <span class="caja-amb">📍 ${amb}</span>
             </div>
             <div class="caja-content-box">
