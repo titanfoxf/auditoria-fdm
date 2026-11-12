@@ -233,19 +233,21 @@
     .toast.success::before { content: "✓"; color: #4ADE80; font-weight: bold; }
   
     /* Galería de Cajas y Fotos en Dashboard */
-    .cajas-grid-container { display: flex; flex-direction: column; gap: 1rem; margin-top: 0.5rem; }
-    .caja-group-card { background: #FFFFFF; border: 1.5px solid #E2E8F0; border-radius: 10px; padding: 0.85rem; box-shadow: 0 1px 4px rgba(0,0,0,0.04); }
-    .caja-group-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #F1F5F9; padding-bottom: 0.45rem; margin-bottom: 0.6rem; }
-    .caja-tag { background: #1E293B; color: #38BDF8; font-weight: 800; font-family: monospace; font-size: 0.85rem; padding: 0.2rem 0.55rem; border-radius: 6px; }
-    .caja-amb { font-size: 0.78rem; font-weight: 700; color: #2563EB; }
-    .caja-content-box { font-size: 0.8rem; color: #334155; background: #F8FAFC; border-left: 3px solid #0D9488; padding: 0.4rem 0.6rem; border-radius: 0 6px 6px 0; margin-bottom: 0.6rem; }
+    .cajas-grid-container { display: flex; flex-direction: column; gap: 1.2rem; margin-top: 0.75rem; }
+    .caja-group-card { background: #FFFFFF; border: 1.5px solid #CBD5E1; border-radius: 12px; padding: 1rem; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+    .caja-group-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1.5px solid #F1F5F9; padding-bottom: 0.5rem; margin-bottom: 0.75rem; }
+    .caja-tag { background: #1E293B; color: #38BDF8; font-weight: 800; font-family: monospace; font-size: 0.95rem; padding: 0.25rem 0.65rem; border-radius: 6px; letter-spacing: 0.5px; }
+    .caja-amb { font-size: 0.82rem; font-weight: 800; color: #2563EB; background: #EFF6FF; padding: 0.25rem 0.6rem; border-radius: 6px; border: 1px solid #DBEAFE; }
+    .caja-content-box { font-size: 0.85rem; color: #334155; background: #F8FAFC; border-left: 4px solid #0D9488; padding: 0.5rem 0.75rem; border-radius: 0 8px 8px 0; margin-bottom: 0.65rem; line-height: 1.4; }
+    .caja-ocr-box { font-size: 0.82rem; color: #0F766E; background: #F0FDFA; border-left: 4px solid #14B8A6; padding: 0.5rem 0.75rem; border-radius: 0 8px 8px 0; margin-bottom: 0.75rem; line-height: 1.45; }
     
-    .caja-photos-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 0.6rem; }
-    .caja-photo-card { border: 1px solid #E2E8F0; border-radius: 8px; overflow: hidden; background: #F8FAFC; text-align: center; }
-    .caja-photo-img { width: 100%; height: 95px; object-fit: cover; display: block; cursor: pointer; transition: transform 0.2s; }
-    .caja-photo-img:hover { transform: scale(1.03); }
-    .caja-photo-label { font-size: 0.68rem; font-weight: 700; color: #0F172A; padding: 0.25rem 0.3rem; background: white; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; border-top: 1px solid #EEF2F6; display: flex; justify-content: space-between; align-items: center; gap: 0.2rem; }
-    .drive-link { font-size: 0.65rem; color: #2563EB; text-decoration: none; font-weight: 700; padding: 0.1rem 0.3rem; background: #EFF6FF; border-radius: 4px; border: 1px solid #DBEAFE; flex-shrink: 0; }
+    .caja-photos-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1rem; }
+    .caja-photo-card { border: 1.5px solid #E2E8F0; border-radius: 10px; overflow: hidden; background: #FFFFFF; text-align: center; box-shadow: 0 2px 6px rgba(0,0,0,0.05); transition: all 0.2s; }
+    .caja-photo-card:hover { transform: translateY(-3px); box-shadow: 0 8px 18px rgba(0,0,0,0.12); border-color: #38BDF8; }
+    .caja-photo-img { width: 100%; height: 200px; object-fit: cover; display: block; cursor: pointer; transition: transform 0.2s; background: #0F172A; }
+    .caja-photo-img:hover { transform: scale(1.02); }
+    .caja-photo-label { font-size: 0.76rem; font-weight: 700; color: #0F172A; padding: 0.45rem 0.6rem; background: white; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; border-top: 1px solid #F1F5F9; display: flex; justify-content: space-between; align-items: center; gap: 0.3rem; }
+    .drive-link { font-size: 0.72rem; color: #1D4ED8; text-decoration: none; font-weight: 800; padding: 0.2rem 0.5rem; background: #EFF6FF; border-radius: 5px; border: 1px solid #BFDBFE; flex-shrink: 0; }
     .drive-link:hover { text-decoration: underline; background: #DBEAFE; }
     
     /* Lightbox Modal */
@@ -611,14 +613,19 @@
 
         <!-- Tab 3: Evidencias de Campo y Fotos de Cajas -->
         <div id="drawerTabContentUbicacion" style="display: none;">
-          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem; background: #F8FAFC; border: 1px solid #E2E8F0; padding: 0.6rem 0.8rem; border-radius: 8px;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem; background: #F8FAFC; border: 1px solid #CBD5E1; padding: 0.65rem 0.85rem; border-radius: 8px; flex-wrap: wrap; gap: 0.5rem;">
             <div>
               <span style="font-size: 0.72rem; font-weight: 700; text-transform: uppercase; color: var(--text-muted);">Trazabilidad Física de Archivo:</span>
               <div id="drawerResumenUbicacionText" style="font-size: 0.95rem; font-weight: 800; color: #2563EB;">Por ubicar en campo</div>
             </div>
-            <a href="campo.html" target="_blank" style="background: #0284C7; color: white; text-decoration: none; font-size: 0.78rem; font-weight: 700; padding: 0.4rem 0.75rem; border-radius: 6px; display: inline-flex; align-items: center; gap: 0.3rem;">
-              📸 Ir al Escáner ➔
-            </a>
+            <div style="display: flex; gap: 0.4rem; align-items: center;">
+              <button id="btnEjecutarOcrObra" type="button" onclick="ejecutarOcrObraActual()" style="background: #0F766E; border: 1px solid #14B8A6; color: white; font-size: 0.76rem; font-weight: 700; padding: 0.4rem 0.75rem; border-radius: 6px; display: inline-flex; align-items: center; gap: 0.3rem; cursor: pointer;" title="Escanear fotos con OCR en Google Drive">
+                ⚡ Re-escanear OCR
+              </button>
+              <a href="campo.html" target="_blank" style="background: #0284C7; color: white; text-decoration: none; font-size: 0.76rem; font-weight: 700; padding: 0.4rem 0.75rem; border-radius: 6px; display: inline-flex; align-items: center; gap: 0.3rem;">
+                📸 Ir al Escáner ➔
+              </a>
+            </div>
           </div>
 
           <!-- Card de Acervo Documental Fila tras Fila -->
@@ -755,10 +762,15 @@
               }
               if (!fieldPhotosMap[oId].fotos) fieldPhotosMap[oId].fotos = [];
 
-              const exists = fieldPhotosMap[oId].fotos.some(f => 
+              const existing = fieldPhotosMap[oId].fotos.find(f => 
                 (f.drive_url && f.drive_url === r.drive_url) || (f.file_id && f.file_id === r.file_id)
               );
-              if (!exists && r.drive_url) {
+              if (existing) {
+                if (r.ocr_acervo) existing.ocr_acervo = r.ocr_acervo;
+                if (r.ocr_raw) existing.ocr_raw = r.ocr_raw;
+                if (r.contenido_caja && (!existing.nota || existing.nota === existing.codigo_caja)) existing.nota = r.contenido_caja;
+                if (r.ambiente && !existing.ubicacion) existing.ubicacion = r.ambiente;
+              } else if (r.drive_url) {
                 const directImg = resolveDirectImageUrl(r.drive_url, r.file_id);
                 fieldPhotosMap[oId].fotos.push({
                   id: 'cloud_' + (r.file_id || Date.now()),
@@ -769,7 +781,9 @@
                   drive_url: r.drive_url,
                   file_id: r.file_id,
                   ubicacion: r.ambiente || '',
-                  nota: r.contenido_caja || r.codigo_caja
+                  nota: r.contenido_caja || r.codigo_caja,
+                  ocr_acervo: r.ocr_acervo || '',
+                  ocr_raw: r.ocr_raw || ''
                 });
               }
               if (r.ambiente && !fieldPhotosMap[oId].ubicacion) {
@@ -835,65 +849,118 @@
     }
 
     function compileAcervoConsolidadoText(obraId) {
-      const fData = fieldPhotosMap[obraId];
-      if (!fData || !fData.fotos || fData.fotos.length === 0) {
-        return "Aún no se han registrado cajas ni documentos sueltos para esta obra.";
-      }
+      try {
+        const fData = fieldPhotosMap[obraId];
+        if (!fData || !fData.fotos || fData.fotos.length === 0) {
+          return "Aún no se han registrado cajas ni documentos sueltos para esta obra.";
+        }
 
-      const p = projects.find(x => x.id === obraId);
-      const lines = [];
-      const numLabel = obraId === 999 ? "MULTI-PROYECTO" : `OBRA N° ${String(obraId).padStart(2, '0')}`;
-      lines.push(`${numLabel}: ${p ? p.desc : 'PROYECTO'}`);
-      lines.push(`Ubicación Física: ${compileUbicacionCajas(obraId) || 'Censado en campo'}`);
-      lines.push('─'.repeat(60));
+        const p = (projectsData || []).find(x => x.id === obraId) || {};
+        const lines = [];
+        const numLabel = obraId === 999 ? "MULTI-PROYECTO" : `OBRA N° ${String(obraId).padStart(2, '0')}`;
+        lines.push(`======================================================================`);
+        lines.push(`${numLabel}: ${p.desc || 'PROYECTO'}`);
+        lines.push(`Ubicación Física: ${compileUbicacionCajas(obraId) || fData.ubicacion || 'Censado en campo'}`);
+        lines.push(`======================================================================`);
 
-      const groups = {};
-      fData.fotos.forEach(f => {
-        const cod = f.codigo_caja || f.nota || 'SIN_CODIGO';
-        if (!groups[cod]) groups[cod] = [];
-        groups[cod].push(f);
-      });
+        const groups = {};
+        fData.fotos.forEach(f => {
+          const cod = f.codigo_caja || f.nota || 'SIN_CODIGO';
+          if (!groups[cod]) groups[cod] = [];
+          groups[cod].push(f);
+        });
 
-      Object.keys(groups).forEach(cod => {
-        const itemFotos = groups[cod];
-        const first = itemFotos[0] || {};
-        const amb = first.ubicacion || 'Ambiente';
-        const isSuelto = cod.includes('SUELTO');
-        const icon = isSuelto ? '📁' : '📦';
-        const tipoLabel = isSuelto ? 'DOC. SUELTO' : 'CAJA';
+        Object.keys(groups).forEach(cod => {
+          const itemFotos = groups[cod];
+          const first = itemFotos[0] || {};
+          const amb = first.ubicacion || fData.ubicacion || 'Ambiente';
+          const isSuelto = cod.includes('SUELTO');
+          const icon = isSuelto ? '📁' : '📦';
+          const tipoLabel = isSuelto ? 'DOC. SUELTO' : 'CAJA';
 
-        lines.push(`${icon} ${tipoLabel} ${cod} [${amb}]:`);
+          lines.push(`\n${icon} ${tipoLabel} ${cod} [${amb}]:`);
 
-        const items = new Set();
-        itemFotos.forEach(f => {
-          if (f.ocr_acervo) {
-            f.ocr_acervo.split('|').forEach(part => {
-              const s = part.trim();
-              if (s) items.add(s);
-            });
-          }
-          if (f.nota && f.nota !== cod && !f.nota.startsWith('OBRA_')) {
-            f.nota.split(',').forEach(part => {
-              const s = part.trim();
-              if (s) items.add(s);
+          const items = new Set();
+          itemFotos.forEach(f => {
+            if (f.ocr_acervo) {
+              f.ocr_acervo.split('|').forEach(part => {
+                const s = part.trim();
+                if (s) items.add(s);
+              });
+            }
+            if (f.nota && f.nota !== cod && !f.nota.startsWith('OBRA_')) {
+              f.nota.split(',').forEach(part => {
+                const s = part.trim();
+                if (s) items.add(s);
+              });
+            }
+          });
+
+          if (items.size === 0) {
+            lines.push('  • Contenido general / Archivo de obra (Pendiente de procesar OCR)');
+          } else {
+            items.forEach(it => {
+              lines.push(`  • ${it}`);
             });
           }
         });
 
-        if (items.size === 0) {
-          lines.push('  • Contenido general / Archivo de obra');
+        lines.push(`\n======================================================================`);
+        lines.push(`TOTAL: ${Object.keys(groups).length} unidades físicas (${fData.fotos.length} fotos con respaldo en Drive)`);
+
+        return lines.join('\n');
+      } catch (err) {
+        console.error("Error al compilar acervo consolidado:", err);
+        return "Error compilando acervo: " + err.message;
+      }
+    }
+
+    async function ejecutarOcrObraActual() {
+      if (!selectedProjectId) return;
+      const gasUrl = localStorage.getItem('fdm_gas_url');
+      if (!gasUrl) {
+        alert("Primero conecta la Nube de Google Drive / Apps Script en el botón superior (☁️ Nube Drive).");
+        return;
+      }
+
+      const btn = document.getElementById('btnEjecutarOcrObra');
+      const originalText = btn ? btn.innerHTML : '⚡ Re-escanear OCR';
+      if (btn) {
+        btn.disabled = true;
+        btn.innerHTML = '⏳ Escaneando OCR en Drive...';
+      }
+
+      showToast("⏳ Ejecutando OCR en Google Drive para esta obra...");
+
+      try {
+        const res = await fetch(gasUrl, {
+          method: 'POST',
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+          body: JSON.stringify({
+            action: 'run_batch_ocr',
+            obra_id: selectedProjectId,
+            force: true
+          })
+        });
+
+        const data = await res.json();
+        if (data && data.status === 'success') {
+          showToast(`✓ ${data.message || 'OCR completado'}`);
+          // Recargar fotos desde la nube para actualizar acervo y fotos
+          await loadFieldPhotosFromCloud();
+          renderCajasEnDrawer(selectedProjectId);
         } else {
-          items.forEach(it => {
-            lines.push(`  • ${it}`);
-          });
+          showToast("Aviso: " + (data.message || "No se detectaron nuevas fotos para OCR"));
         }
-        lines.push('');
-      });
-
-      lines.push('─'.repeat(60));
-      lines.push(`TOTAL: ${Object.keys(groups).length} unidades físicas (${fData.fotos.length} fotos con respaldo en Drive)`);
-
-      return lines.join('\n');
+      } catch (err) {
+        console.error("Error al ejecutar OCR:", err);
+        showToast("Error ejecutando OCR: " + err.message);
+      } finally {
+        if (btn) {
+          btn.disabled = false;
+          btn.innerHTML = originalText;
+        }
+      }
     }
 
     function copiarAcervoAlPortapapeles() {
@@ -965,12 +1032,30 @@
       Object.keys(groups).forEach(cod => {
         const cajaFotos = groups[cod];
         const first = cajaFotos[0] || {};
-        const amb = first.ubicacion || 'Ambiente';
+        const amb = first.ubicacion || fData.ubicacion || 'Ambiente';
         const contenido = first.nota && first.nota !== cod ? first.nota : 'Contenido no especificado';
 
         const isSuelto = cod.includes('SUELTO');
         const tagIcon = isSuelto ? '📁' : '🏷️';
         const tagStyle = isSuelto ? 'background: #0284C7;' : '';
+
+        // Extraer acervo OCR detectado en este grupo
+        const ocrItems = new Set();
+        cajaFotos.forEach(f => {
+          if (f.ocr_acervo) {
+            f.ocr_acervo.split('|').forEach(part => {
+              const s = part.trim();
+              if (s) ocrItems.add(s);
+            });
+          }
+        });
+
+        const ocrHtml = ocrItems.size > 0 
+          ? `<div class="caja-ocr-box">
+              <span style="font-weight: 800; color: #0D9488; flex-shrink: 0;">🔍 Acervo OCR Detectado:</span>
+              <span style="font-weight: 600;">${Array.from(ocrItems).join(' • ')}</span>
+            </div>`
+          : '';
 
         html += `
           <div class="caja-group-card">
@@ -979,12 +1064,14 @@
               <span class="caja-amb">📍 ${amb}</span>
             </div>
             <div class="caja-content-box">
-              <strong>Contenido:</strong> ${contenido}
+              <strong>Contenido / Rótulo:</strong> ${contenido}
             </div>
+            ${ocrHtml}
             <div class="caja-photos-grid">
               ${cajaFotos.map(f => {
                 const directUrl = resolveDirectImageUrl(f.dataUrl, f.file_id || f.drive_url);
                 const driveLink = f.drive_url ? `<a href="${f.drive_url}" target="_blank" class="drive-link" onclick="event.stopPropagation()" title="Abrir en Google Drive">🔗 Drive</a>` : '';
+                const ocrPhotoBadge = f.ocr_acervo ? `<div style="font-size: 0.65rem; color: #0D9488; font-weight: 700; padding: 0.25rem 0.45rem; background: #F0FDFA; border-top: 1px solid #CCFBF1; text-align: left; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;" title="${f.ocr_acervo}">📄 OCR: ${f.ocr_acervo.replace(/\|/g, ', ')}</div>` : '';
                 return `
                 <div class="caja-photo-card">
                   <img src="${directUrl}" class="caja-photo-img" onclick="openDashboardLightbox('${directUrl}')" onerror="handleDriveImgError(this, '${f.file_id || f.drive_url || ''}')" alt="${f.tipo_foto || 'Foto'}">
@@ -992,6 +1079,7 @@
                     <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${f.tipo_foto || 'Foto'}</span>
                     ${driveLink}
                   </div>
+                  ${ocrPhotoBadge}
                 </div>
               `;}).join('')}
             </div>

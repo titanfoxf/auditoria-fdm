@@ -182,17 +182,29 @@ function doPost(e) {
     if (action === "run_batch_ocr") {
       const sheetCajas = getOrCreateSheetCajas(ss);
       const targetObraId = payload.obra_id ? parseInt(payload.obra_id) : null;
+      const forceAll = payload.force === true;
       const data = sheetCajas.getDataRange().getValues();
       let processed = 0;
 
       for (let i = 1; i < data.length; i++) {
         const row = data[i];
         const rowObraId = parseInt(row[1]);
-        const fileId = String(row[7] || "").trim();
+        let fileId = String(row[7] || "").trim();
         const existingOcr = String(row[8] || "").trim();
 
         if (targetObraId && rowObraId !== targetObraId) continue;
-        if (!fileId || existingOcr) continue; // Ya tiene OCR o no tiene archivo
+
+        // Si no tiene fileId en col 8 pero tiene URL de Drive en col 7, extraer fileId
+        if (!fileId && row[6]) {
+          const m = String(row[6]).match(/[-\w]{25,}/);
+          if (m) {
+            fileId = m[0];
+            sheetCajas.getRange(i + 1, 8).setValue(fileId);
+          }
+        }
+
+        if (!fileId) continue;
+        if (existingOcr && !forceAll) continue; // Si ya tiene OCR y no forzamos, omitir
 
         try {
           const ocrRes = extraerTextoOcrDeArchivo(fileId);
@@ -430,23 +442,23 @@ function filtrarAcervoAuditoria(rawText) {
   const DOCUMENT_PATTERNS = [
     {
       tipo: "Expediente Técnico",
-      regex: /(?:expediente\s+t[eé]cnico|exp\.?\s*t[eé]c\.?)(?:\s*(?:aprobado|original|copia))?(?:\s*[-–:]?\s*(?:tomo\s*[0-9ivx]+|volumen\s*[0-9ivx]+|[a-z0-9\s,-]+))?/i
+      regex: /(?:(?:tomo|volumen|vol\.?|item|n[°o]?)\s*[0-9ivx\.-]+\s*[-–:]?\s*)?(?:expediente\s+t[eé]cnico|exp\.?\s*t[eé]c\.?)(?:\s*(?:aprobado|original|copia))?(?:\s*[-–:]?\s*(?:tomo\s*[0-9ivx]+|volumen\s*[0-9ivx]+|[a-z0-9\s,-]+))?/i
     },
     {
       tipo: "Valorizaciones de Obra",
-      regex: /(?:valorizaci[oó]n(?:es)?\s*(?:de\s*obra|principal)?|val\.?\s*(?:de\s*obra|n[°o]))(?:\s*(?:n[°o]?\s*[0-9]+(?:\s*(?:al?|[-–])\s*[0-9]+)?|[0-9ivx\s,-]+))?/i
+      regex: /(?:(?:tomo|volumen|vol\.?|item|n[°o]?)\s*[0-9ivx\.-]+\s*[-–:]?\s*)?(?:valorizaci[oó]n(?:es)?\s*(?:de\s*obra|principal)?|val\.?\s*(?:de\s*obra|n[°o]))(?:\s*(?:n[°o]?\s*[0-9]+(?:\s*(?:al?|[-–])\s*[0-9]+)?|[0-9ivx\s,-]+))?/i
     },
     {
       tipo: "Valorizaciones de Supervisión",
-      regex: /(?:valorizaci[oó]n(?:es)?\s*(?:de\s*)?supervisi[oó]n|val\.?\s*superv\.?)(?:\s*(?:n[°o]?\s*[0-9]+(?:\s*(?:al?|[-–])\s*[0-9]+)?|[0-9ivx\s,-]+))?/i
+      regex: /(?:(?:tomo|volumen|vol\.?|item|n[°o]?)\s*[0-9ivx\.-]+\s*[-–:]?\s*)?(?:valorizaci[oó]n(?:es)?\s*(?:de\s*)?supervisi[oó]n|val\.?\s*superv\.?)(?:\s*(?:n[°o]?\s*[0-9]+(?:\s*(?:al?|[-–])\s*[0-9]+)?|[0-9ivx\s,-]+))?/i
     },
     {
       tipo: "Cuaderno de Obra",
-      regex: /(?:cuaderno\s*de\s*obra|c\.?\s*de\s*obra)(?:\s*(?:n[°o]?\s*[0-9]+|tomo\s*[0-9ivx]+|original|copia|asientos?\s*[0-9\s–-]+))?/i
+      regex: /(?:(?:tomo|volumen|vol\.?|item|n[°o]?)\s*[0-9ivx\.-]+\s*[-–:]?\s*)?(?:cuaderno\s*de\s*obra|c\.?\s*de\s*obra)(?:\s*(?:n[°o]?\s*[0-9]+|tomo\s*[0-9ivx]+|original|copia|asientos?\s*[0-9\s–-]+))?/i
     },
     {
       tipo: "Informes Mensuales",
-      regex: /(?:informe(?:s)?\s*mensual(?:es)?|inf\.?\s*mensual)(?:\s*(?:de\s*supervisi[oó]n|de\s*residencia|n[°o]?\s*[0-9]+|[a-z0-9\s,-]+))?/i
+      regex: /(?:(?:tomo|volumen|vol\.?|item|n[°o]?)\s*[0-9ivx\.-]+\s*[-–:]?\s*)?(?:informe(?:s)?\s*mensual(?:es)?|inf\.?\s*mensual)(?:\s*(?:de\s*supervisi[oó]n|de\s*residencia|n[°o]?\s*[0-9]+|[a-z0-9\s,-]+))?/i
     },
     {
       tipo: "Reportes Semanales",
@@ -458,7 +470,7 @@ function filtrarAcervoAuditoria(rawText) {
     },
     {
       tipo: "Liquidación Técnica / Financiera",
-      regex: /(?:liquidaci[oó]n\s*(?:t[eé]cnica(?:\s*y\s*financiera)?|financiera|de\s*obra|de\s*contrato))/i
+      regex: /(?:(?:tomo|volumen|vol\.?|item|n[°o]?)\s*[0-9ivx\.-]+\s*[-–:]?\s*)?(?:liquidaci[oó]n\s*(?:t[eé]cnica(?:\s*y\s*financiera)?|financiera|de\s*obra|de\s*contrato)?)(?:\s*[-–:]?\s*(?:tomo\s*[0-9ivx]+|[a-z0-9\s,-]+))?/i
     },
     {
       tipo: "Contrato y Bases",
@@ -488,7 +500,7 @@ function filtrarAcervoAuditoria(rawText) {
 
   lines.forEach(line => {
     const cleanLine = line.replace(/\s+/g, ' ').trim();
-    if (cleanLine.length < 5 || cleanLine.length > 90) return;
+    if (cleanLine.length < 4 || cleanLine.length > 100) return;
 
     DOCUMENT_PATTERNS.forEach(pat => {
       const match = cleanLine.match(pat.regex);
@@ -503,6 +515,21 @@ function filtrarAcervoAuditoria(rawText) {
       }
     });
   });
+
+  // Si no coincidió ningún patrón específico pero hay líneas con contenido documental de obra
+  if (foundItems.length === 0) {
+    const fallbackKeywords = /(?:tomo|volumen|expediente|cuaderno|valorizaci|informe|liquidaci|contrato|acta|adicional|obra|archivo)/i;
+    lines.forEach(line => {
+      const cleanLine = line.replace(/\s+/g, ' ').trim();
+      if (cleanLine.length >= 6 && cleanLine.length <= 80 && fallbackKeywords.test(cleanLine)) {
+        const normKey = cleanLine.toLowerCase().replace(/[^a-z0-9]/g, '');
+        if (!seenPatterns.has(normKey) && foundItems.length < 5) {
+          seenPatterns.add(normKey);
+          foundItems.push(cleanLine);
+        }
+      }
+    });
+  }
 
   return foundItems.join(' | ');
 }
