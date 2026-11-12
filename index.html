@@ -621,6 +621,29 @@
             </a>
           </div>
 
+          <!-- Card de Acervo Documental Fila tras Fila -->
+          <div id="boxAcervoConsolidado" style="display: none; background: #0B132B; border: 1.5px solid #1E293B; border-radius: 12px; padding: 0.9rem; color: white; margin-bottom: 1rem; box-shadow: 0 4px 14px rgba(0,0,0,0.15);">
+            <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #1E293B; padding-bottom: 0.5rem; margin-bottom: 0.5rem;">
+              <div style="display: flex; align-items: center; gap: 0.4rem;">
+                <span style="font-size: 1.1rem;">📋</span>
+                <div>
+                  <div style="font-size: 0.8rem; font-weight: 800; color: #38BDF8; text-transform: uppercase; letter-spacing: 0.5px;">Acervo Documental Identificado en Campo</div>
+                  <div style="font-size: 0.65rem; color: #94A3B8;">Inventario consolidado fila tras fila de cajas y documentos sueltos (OCR + Rótulos)</div>
+                </div>
+              </div>
+              <button type="button" onclick="copiarAcervoAlPortapapeles()" style="background: #0284C7; border: 1px solid #38BDF8; color: white; font-size: 0.72rem; font-weight: 800; padding: 0.35rem 0.75rem; border-radius: 6px; cursor: pointer; display: flex; align-items: center; gap: 0.3rem;" title="Copiar al portapapeles">
+                📋 Copiar Acervo
+              </button>
+            </div>
+
+            <textarea id="txtAcervoConsolidado" readonly style="width: 100%; height: 125px; background: #0F172A; border: 1px solid #334155; border-radius: 8px; color: #F1F5F9; font-family: 'Consolas', monospace; font-size: 0.78rem; line-height: 1.45; padding: 0.6rem; resize: vertical; box-sizing: border-box; outline: none;"></textarea>
+
+            <div style="font-size: 0.68rem; color: #64748B; margin-top: 0.35rem; display: flex; justify-content: space-between; align-items: center;">
+              <span>✓ Incluye Exp. Técnicos, Valorizaciones, Cuadernos, Liquidaciones, etc.</span>
+              <span id="badgeTotalDocsIdentificados" style="color: #4ADE80; font-weight: 700;">0 unidades físicas</span>
+            </div>
+          </div>
+
           <!-- Contenedor dinámico de cajas y fotos -->
           <div id="drawerCajasContainer" class="cajas-grid-container">
             <!-- Renderizado dinámico -->
@@ -811,10 +834,87 @@
       }
     }
 
+    function compileAcervoConsolidadoText(obraId) {
+      const fData = fieldPhotosMap[obraId];
+      if (!fData || !fData.fotos || fData.fotos.length === 0) {
+        return "Aún no se han registrado cajas ni documentos sueltos para esta obra.";
+      }
+
+      const p = projects.find(x => x.id === obraId);
+      const lines = [];
+      const numLabel = obraId === 999 ? "MULTI-PROYECTO" : `OBRA N° ${String(obraId).padStart(2, '0')}`;
+      lines.push(`${numLabel}: ${p ? p.desc : 'PROYECTO'}`);
+      lines.push(`Ubicación Física: ${compileUbicacionCajas(obraId) || 'Censado en campo'}`);
+      lines.push('─'.repeat(60));
+
+      const groups = {};
+      fData.fotos.forEach(f => {
+        const cod = f.codigo_caja || f.nota || 'SIN_CODIGO';
+        if (!groups[cod]) groups[cod] = [];
+        groups[cod].push(f);
+      });
+
+      Object.keys(groups).forEach(cod => {
+        const itemFotos = groups[cod];
+        const first = itemFotos[0] || {};
+        const amb = first.ubicacion || 'Ambiente';
+        const isSuelto = cod.includes('SUELTO');
+        const icon = isSuelto ? '📁' : '📦';
+        const tipoLabel = isSuelto ? 'DOC. SUELTO' : 'CAJA';
+
+        lines.push(`${icon} ${tipoLabel} ${cod} [${amb}]:`);
+
+        const items = new Set();
+        itemFotos.forEach(f => {
+          if (f.ocr_acervo) {
+            f.ocr_acervo.split('|').forEach(part => {
+              const s = part.trim();
+              if (s) items.add(s);
+            });
+          }
+          if (f.nota && f.nota !== cod && !f.nota.startsWith('OBRA_')) {
+            f.nota.split(',').forEach(part => {
+              const s = part.trim();
+              if (s) items.add(s);
+            });
+          }
+        });
+
+        if (items.size === 0) {
+          lines.push('  • Contenido general / Archivo de obra');
+        } else {
+          items.forEach(it => {
+            lines.push(`  • ${it}`);
+          });
+        }
+        lines.push('');
+      });
+
+      lines.push('─'.repeat(60));
+      lines.push(`TOTAL: ${Object.keys(groups).length} unidades físicas (${fData.fotos.length} fotos con respaldo en Drive)`);
+
+      return lines.join('\n');
+    }
+
+    function copiarAcervoAlPortapapeles() {
+      const txt = document.getElementById('txtAcervoConsolidado');
+      if (!txt || !txt.value) return;
+      navigator.clipboard.writeText(txt.value).then(() => {
+        showToast("📋 Acervo copiado al portapapeles");
+      }).catch(() => {
+        txt.select();
+        document.execCommand('copy');
+        showToast("📋 Acervo copiado");
+      });
+    }
+
     function renderCajasEnDrawer(obraId) {
       const container = document.getElementById('drawerCajasContainer');
       const countBadge = document.getElementById('drawerCountFotosCajas');
       const ubicText = document.getElementById('drawerResumenUbicacionText');
+      const boxAcervo = document.getElementById('boxAcervoConsolidado');
+      const txtAcervo = document.getElementById('txtAcervoConsolidado');
+      const badgeAcervo = document.getElementById('badgeTotalDocsIdentificados');
       if (!container) return;
 
       const fData = fieldPhotosMap[obraId] || { fotos: [] };
@@ -827,6 +927,7 @@
       }
 
       if (fotos.length === 0) {
+        if (boxAcervo) boxAcervo.style.display = 'none';
         container.innerHTML = `
           <div style="text-align: center; padding: 2.5rem 1rem; background: #F8FAFC; border: 1.5px dashed #CBD5E1; border-radius: 10px; color: var(--text-muted);">
             <div style="font-size: 2.2rem; margin-bottom: 0.4rem;">📦</div>
@@ -840,6 +941,16 @@
           </div>
         `;
         return;
+      }
+
+      // Mostrar y compilar Acervo Documental Fila tras Fila
+      if (boxAcervo) {
+        boxAcervo.style.display = 'block';
+        if (txtAcervo) txtAcervo.value = compileAcervoConsolidadoText(obraId);
+        if (badgeAcervo) {
+          const uniqueUnits = new Set(fotos.map(f => f.codigo_caja || f.nota || 'Caja')).size;
+          badgeAcervo.innerText = `${uniqueUnits} ${uniqueUnits === 1 ? 'unidad física' : 'unidades físicas'}`;
+        }
       }
 
       // Agrupar fotos por Código de Caja

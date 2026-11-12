@@ -37,7 +37,9 @@ function doGet(e) {
         contenido_caja: row[4],
         tipo_foto: row[5],
         drive_url: row[6],
-        file_id: row[7] || ""
+        file_id: row[7] || "",
+        ocr_acervo: row[8] || "",
+        ocr_raw: row[9] || ""
       });
     }
 
@@ -137,6 +139,19 @@ function doPost(e) {
         fileId = file.getId();
       }
 
+      // OCR Automático en la Nube sobre la imagen guardada
+      let ocrAcervo = "";
+      let ocrRaw = "";
+      if (fileId) {
+        try {
+          const ocrRes = extraerTextoOcrDeArchivo(fileId);
+          ocrAcervo = ocrRes.limpio || "";
+          ocrRaw = ocrRes.raw || "";
+        } catch (ocrErr) {
+          Logger.log("Error OCR automático: " + ocrErr);
+        }
+      }
+
       sheetCajas.appendRow([
         new Date().toLocaleString(),
         obraId,
@@ -145,7 +160,9 @@ function doPost(e) {
         contenidoCaja,
         tipoFoto,
         driveUrl,
-        fileId
+        fileId,
+        ocrAcervo,
+        ocrRaw
       ]);
 
       return ContentService.createTextOutput(JSON.stringify({
@@ -154,7 +171,47 @@ function doPost(e) {
         obra_id: obraId,
         codigo_caja: codigoCaja,
         drive_url: driveUrl,
-        file_id: fileId
+        file_id: fileId,
+        ocr_acervo: ocrAcervo
+      })).setMimeType(ContentService.MimeType.JSON);
+    }
+
+    // ==============================================================
+    // CASO 2.B: EJECUTAR OCR POR LOTES SOBRE FOTOS YA SUBIDAS
+    // ==============================================================
+    if (action === "run_batch_ocr") {
+      const sheetCajas = getOrCreateSheetCajas(ss);
+      const targetObraId = payload.obra_id ? parseInt(payload.obra_id) : null;
+      const data = sheetCajas.getDataRange().getValues();
+      let processed = 0;
+
+      for (let i = 1; i < data.length; i++) {
+        const row = data[i];
+        const rowObraId = parseInt(row[1]);
+        const fileId = String(row[7] || "").trim();
+        const existingOcr = String(row[8] || "").trim();
+
+        if (targetObraId && rowObraId !== targetObraId) continue;
+        if (!fileId || existingOcr) continue; // Ya tiene OCR o no tiene archivo
+
+        try {
+          const ocrRes = extraerTextoOcrDeArchivo(fileId);
+          if (ocrRes.limpio || ocrRes.raw) {
+            sheetCajas.getRange(i + 1, 9).setValue(ocrRes.limpio);
+            sheetCajas.getRange(i + 1, 10).setValue(ocrRes.raw);
+            processed++;
+          }
+        } catch (err) {
+          Logger.log("Error procesando lote fila " + (i + 1) + ": " + err);
+        }
+      }
+
+      return ContentService.createTextOutput(JSON.stringify({
+        status: "success",
+        action: "run_batch_ocr",
+        obra_id: targetObraId,
+        total_procesados: processed,
+        message: `OCR completado para ${processed} fotos`
       })).setMimeType(ContentService.MimeType.JSON);
     }
 
@@ -263,11 +320,19 @@ function getOrCreateSheetCajas(ss) {
     sheet = ss.insertSheet(SHEET_CAJAS, 0);
     const headers = [
       "TIMESTAMP", "OBRA_ID", "CODIGO_CAJA", "AMBIENTE", 
-      "CONTENIDO_DE_ESTA_CAJA", "TIPO_FOTO", "ENLACE_FOTO_DRIVE", "FILE_ID_DRIVE"
+      "CONTENIDO_DE_ESTA_CAJA", "TIPO_FOTO", "ENLACE_FOTO_DRIVE", "FILE_ID_DRIVE",
+      "ACERVO_DETECTADO_OCR", "TEXTO_COMPLETO_OCR"
     ];
     sheet.getRange(1, 1, 1, headers.length).setValues([headers]);
     sheet.getRange(1, 1, 1, headers.length).setBackground("#0F766E").setFontColor("#FFFFFF").setFontWeight("bold");
     sheet.setFrozenRows(1);
+  } else {
+    // Si la hoja ya existe pero no tiene las columnas OCR, agregarlas
+    const lastCol = sheet.getLastColumn();
+    if (lastCol <= 8) {
+      sheet.getRange(1, 9).setValue("ACERVO_DETECTADO_OCR").setBackground("#0F766E").setFontColor("#FFFFFF").setFontWeight("bold");
+      sheet.getRange(1, 10).setValue("TEXTO_COMPLETO_OCR").setBackground("#0F766E").setFontColor("#FFFFFF").setFontWeight("bold");
+    }
   }
   return sheet;
 }
@@ -299,4 +364,145 @@ function getOrCreateFolder(folderName) {
 function getOrCreateSubFolder(parentFolder, subFolderName) {
   const folders = parentFolder.getFoldersByName(subFolderName);
   return folders.hasNext() ? folders.next() : parentFolder.createFolder(subFolderName);
+}
+
+// ==========================================
+// MOTOR DE OCR NATIVO DE GOOGLE DRIVE Y FILTRO
+// ==========================================
+
+/**
+ * Realiza OCR nativo en Google Drive y extrae solo elementos físicos clave de auditoría.
+ */
+function extraerTextoOcrDeArchivo(fileId) {
+  if (!fileId) return { limpio: "", raw: "" };
+
+  try {
+    const url = "https://www.googleapis.com/drive/v2/files/" + fileId + "/copy?ocr=true&ocrLanguage=es";
+    const res = UrlFetchApp.fetch(url, {
+      method: "post",
+      headers: {
+        "Authorization": "Bearer " + ScriptApp.getOAuthToken()
+      },
+      contentType: "application/json",
+      payload: JSON.stringify({
+        title: "TEMP_OCR_" + fileId
+      }),
+      muteHttpExceptions: true
+    });
+
+    if (res.getResponseCode() !== 200) {
+      Logger.log("Drive OCR API code: " + res.getResponseCode());
+      return { limpio: "", raw: "" };
+    }
+
+    const json = JSON.parse(res.getContentText());
+    const tempDocId = json.id;
+    if (!tempDocId) return { limpio: "", raw: "" };
+
+    const doc = DocumentApp.openById(tempDocId);
+    const rawText = doc.getBody().getText() || "";
+
+    // Eliminar el archivo Google Doc temporal para mantener limpio Drive
+    try {
+      DriveApp.getFileById(tempDocId).setTrashed(true);
+    } catch (e) {}
+
+    const limpio = filtrarAcervoAuditoria(rawText);
+    return { limpio: limpio, raw: rawText };
+
+  } catch (err) {
+    Logger.log("Error en extraerTextoOcrDeArchivo: " + err);
+    return { limpio: "", raw: "" };
+  }
+}
+
+/**
+ * Filtra el texto detectado por OCR para omitir ruido y extraer únicamente
+ * archivos físicos relevantes de auditoría (Expedientes, Valorizaciones, Cuadernos, Liquidaciones, etc.)
+ */
+function filtrarAcervoAuditoria(rawText) {
+  if (!rawText) return "";
+
+  const lines = rawText.split(/\r?\n/).map(l => l.trim()).filter(l => l.length > 3);
+  const foundItems = [];
+  const seenPatterns = new Set();
+
+  const DOCUMENT_PATTERNS = [
+    {
+      tipo: "Expediente Técnico",
+      regex: /(?:expediente\s+t[eé]cnico|exp\.?\s*t[eé]c\.?)(?:\s*(?:aprobado|original|copia))?(?:\s*[-–:]?\s*(?:tomo\s*[0-9ivx]+|volumen\s*[0-9ivx]+|[a-z0-9\s,-]+))?/i
+    },
+    {
+      tipo: "Valorizaciones de Obra",
+      regex: /(?:valorizaci[oó]n(?:es)?\s*(?:de\s*obra|principal)?|val\.?\s*(?:de\s*obra|n[°o]))(?:\s*(?:n[°o]?\s*[0-9]+(?:\s*(?:al?|[-–])\s*[0-9]+)?|[0-9ivx\s,-]+))?/i
+    },
+    {
+      tipo: "Valorizaciones de Supervisión",
+      regex: /(?:valorizaci[oó]n(?:es)?\s*(?:de\s*)?supervisi[oó]n|val\.?\s*superv\.?)(?:\s*(?:n[°o]?\s*[0-9]+(?:\s*(?:al?|[-–])\s*[0-9]+)?|[0-9ivx\s,-]+))?/i
+    },
+    {
+      tipo: "Cuaderno de Obra",
+      regex: /(?:cuaderno\s*de\s*obra|c\.?\s*de\s*obra)(?:\s*(?:n[°o]?\s*[0-9]+|tomo\s*[0-9ivx]+|original|copia|asientos?\s*[0-9\s–-]+))?/i
+    },
+    {
+      tipo: "Informes Mensuales",
+      regex: /(?:informe(?:s)?\s*mensual(?:es)?|inf\.?\s*mensual)(?:\s*(?:de\s*supervisi[oó]n|de\s*residencia|n[°o]?\s*[0-9]+|[a-z0-9\s,-]+))?/i
+    },
+    {
+      tipo: "Reportes Semanales",
+      regex: /(?:reporte(?:s)?\s*semanal(?:es)?|informe(?:s)?\s*semanal(?:es)?)(?:\s*(?:n[°o]?\s*[0-9]+|[a-z0-9\s,-]+))?/i
+    },
+    {
+      tipo: "Informe Final / Pre-liquidación",
+      regex: /(?:informe\s*final(?:\s*de\s*obra)?|pre\s*[-–]?\s*liquidaci[oó]n)/i
+    },
+    {
+      tipo: "Liquidación Técnica / Financiera",
+      regex: /(?:liquidaci[oó]n\s*(?:t[eé]cnica(?:\s*y\s*financiera)?|financiera|de\s*obra|de\s*contrato))/i
+    },
+    {
+      tipo: "Contrato y Bases",
+      regex: /(?:contrato(?:\s*de\s*obra|\s*n[°o]\s*[0-9-]+)?|bases\s*integradas|adenda\s*n[°o]?\s*[0-9]+)/i
+    },
+    {
+      tipo: "Adicionales / Ampliaciones de Plazo",
+      regex: /(?:adicional\s*(?:de\s*obra)?\s*n[°o]?\s*[0-9]+|ampliaci[oó]n\s*de\s*plazo\s*n[°o]?\s*[0-9]+|deductivo)/i
+    },
+    {
+      tipo: "Kárdex / Almacén / Guías",
+      regex: /(?:k[aá]rdex(?:\s*de\s*almac[eé]n)?|gu[ií]as?\s*de\s*remisi[oó]n|pecoas?|orden(?:es)?\s*de\s*compra)/i
+    },
+    {
+      tipo: "Actas de Obra",
+      regex: /(?:acta\s*de\s*entrega\s*(?:de\s*terreno)?|acta\s*de\s*recepci[oó]n(?:\s*de\s*obra)?|acta\s*de\s*constataci[oó]n)/i
+    },
+    {
+      tipo: "Pruebas de Calidad / Ensayos",
+      regex: /(?:ensayos?\s*de\s*laboratorio|roturas?\s*de\s*probetas?|densidad\s*de\s*campo|control\s*de\s*calidad)/i
+    },
+    {
+      tipo: "Planos de Replanteo",
+      regex: /(?:planos?\s*de\s*replanteo|planos?\s*post\s*construcci[oó]n|as\s*[-–]?\s*built)/i
+    }
+  ];
+
+  lines.forEach(line => {
+    const cleanLine = line.replace(/\s+/g, ' ').trim();
+    if (cleanLine.length < 5 || cleanLine.length > 90) return;
+
+    DOCUMENT_PATTERNS.forEach(pat => {
+      const match = cleanLine.match(pat.regex);
+      if (match) {
+        let extracted = match[0].trim();
+        extracted = extracted.charAt(0).toUpperCase() + extracted.slice(1);
+        const normKey = extracted.toLowerCase().replace(/[^a-z0-9]/g, '');
+        if (!seenPatterns.has(normKey)) {
+          seenPatterns.add(normKey);
+          foundItems.push(extracted);
+        }
+      }
+    });
+  });
+
+  return foundItems.join(' | ');
 }

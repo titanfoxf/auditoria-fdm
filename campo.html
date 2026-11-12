@@ -234,6 +234,29 @@
           <span id="drawerCui">CUI: —</span> • <span id="drawerProv">Provincia</span> • <span id="drawerConv">100 MLL</span>
         </div>
 
+        <!-- ACERVO DOCUMENTAL IDENTIFICADO (INVENTARIO FÍSICO) -->
+        <div style="background: #0B132B; border: 1.5px solid #1E293B; border-radius: 10px; padding: 0.75rem; color: white; margin: 0.6rem 0; box-shadow: 0 4px 10px rgba(0,0,0,0.15);">
+          <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #1E293B; padding-bottom: 0.4rem; margin-bottom: 0.4rem;">
+            <div style="display: flex; align-items: center; gap: 0.4rem;">
+              <span style="font-size: 1rem;">📋</span>
+              <div>
+                <div style="font-size: 0.75rem; font-weight: 800; color: #38BDF8; text-transform: uppercase;">Acervo Documental Identificado</div>
+                <div style="font-size: 0.62rem; color: #94A3B8;">Inventario consolidado fila tras fila de lo hallado (OCR + Rótulos)</div>
+              </div>
+            </div>
+            <button type="button" onclick="copiarAcervoAlPortapapeles()" style="background: #0284C7; border: 1px solid #38BDF8; color: white; font-size: 0.7rem; font-weight: 800; padding: 0.25rem 0.6rem; border-radius: 5px; cursor: pointer;" title="Copiar al portapapeles">
+              📋 Copiar
+            </button>
+          </div>
+
+          <textarea id="txtAcervoConsolidado" readonly style="width: 100%; height: 95px; background: #0F172A; border: 1px solid #334155; border-radius: 6px; color: #F1F5F9; font-family: monospace, Consolas; font-size: 0.74rem; line-height: 1.4; padding: 0.45rem; resize: vertical; box-sizing: border-box; outline: none;" placeholder="Al registrar fotos de cajas o documentos sueltos, aquí se compilará fila tras fila todo lo hallado..."></textarea>
+
+          <div style="font-size: 0.64rem; color: #64748B; margin-top: 0.25rem; display: flex; justify-content: space-between; align-items: center;">
+            <span>✓ Exp. Técnicos, Cuadernos, Valorizaciones, Liquidaciones</span>
+            <span id="badgeTotalDocsIdentificados" style="color: #4ADE80; font-weight: 700;">0 ítems</span>
+          </div>
+        </div>
+
         <!-- PANEL 1: CENSO RÁPIDO DE CAJAS (Barrido Topográfico) -->
         <div id="panelTabCajas">
           <div class="field-group">
@@ -1063,6 +1086,7 @@
         updateCodigoDisplay();
         if (typeof updateSueltoDisplay === 'function') updateSueltoDisplay();
         renderMultiAmbientesSummary();
+        updateAcervoConsolidadoDisplay();
       }
       renderCards();
       showToast("📍 Ambiente activo: " + val);
@@ -1087,6 +1111,7 @@
         updateCodigoDisplay();
         if (typeof updateSueltoDisplay === 'function') updateSueltoDisplay();
         renderMultiAmbientesSummary();
+        updateAcervoConsolidadoDisplay();
       }
     }
 
@@ -1460,6 +1485,104 @@
       showToast("➕ Agregado: " + tag);
     }
 
+    // ==========================================
+    // CONSOLIDACIÓN DE ACERVO DOCUMENTAL (OCR + FÍSICO)
+    // ==========================================
+    function compileAcervoConsolidadoText(obraId) {
+      const d = fieldData[obraId];
+      if (!d || !d.fotos || d.fotos.length === 0) {
+        return "Aún no se han registrado cajas ni documentos sueltos para esta obra.";
+      }
+
+      const p = projects.find(x => x.id === obraId);
+      const lines = [];
+      const numLabel = obraId === 999 ? "MULTI-PROYECTO" : `OBRA N° ${String(obraId).padStart(2, '0')}`;
+      lines.push(`${numLabel}: ${p ? p.desc : 'PROYECTO'}`);
+      lines.push(`Ubicación(es): ${d.ubicacion || getActiveAmbiente()}`);
+      lines.push('─'.repeat(55));
+
+      // Agrupar fotos por Código de Caja / Suelto
+      const groups = {};
+      d.fotos.forEach(f => {
+        const cod = f.codigo_caja || f.nota || 'SIN_CODIGO';
+        if (!groups[cod]) groups[cod] = [];
+        groups[cod].push(f);
+      });
+
+      Object.keys(groups).forEach(cod => {
+        const itemFotos = groups[cod];
+        const first = itemFotos[0] || {};
+        const amb = first.ubicacion || 'Ambiente';
+        const isSuelto = cod.includes('SUELTO');
+        const icon = isSuelto ? '📁' : '📦';
+        const tipoLabel = isSuelto ? 'DOC. SUELTO' : 'CAJA';
+
+        lines.push(`${icon} ${tipoLabel} ${cod} [${amb}]:`);
+
+        // Extraer elementos clave de la caja/suelto
+        const items = new Set();
+        itemFotos.forEach(f => {
+          if (f.ocr_acervo) {
+            f.ocr_acervo.split('|').forEach(part => {
+              const s = part.trim();
+              if (s) items.add(s);
+            });
+          }
+          if (f.nota && f.nota !== cod && !f.nota.startsWith('OBRA_')) {
+            f.nota.split(',').forEach(part => {
+              const s = part.trim();
+              if (s) items.add(s);
+            });
+          }
+        });
+
+        if (items.size === 0) {
+          lines.push('  • Contenido general / Archivo de obra');
+        } else {
+          items.forEach(it => {
+            lines.push(`  • ${it}`);
+          });
+        }
+        lines.push('');
+      });
+
+      lines.push('─'.repeat(55));
+      lines.push(`TOTAL: ${Object.keys(groups).length} unidades físicas censadas (${d.fotos.length} fotos con respaldo en Drive)`);
+
+      return lines.join('\n');
+    }
+
+    function updateAcervoConsolidadoDisplay() {
+      const txt = document.getElementById('txtAcervoConsolidado');
+      const badge = document.getElementById('badgeTotalDocsIdentificados');
+      if (!txt || !activeObraId) return;
+
+      const d = fieldData[activeObraId];
+      if (!d || !d.fotos || d.fotos.length === 0) {
+        txt.value = "Aún no se han fotografiado cajas ni documentos sueltos para esta obra.\nToma fotos del rótulo o de los documentos sueltos para compilar automáticamente el inventario fila tras fila.";
+        if (badge) badge.innerText = "0 ítems";
+        return;
+      }
+
+      const text = compileAcervoConsolidadoText(activeObraId);
+      txt.value = text;
+
+      const uniqueUnits = new Set(d.fotos.map(f => f.codigo_caja || f.nota || 'Caja')).size;
+      if (badge) badge.innerText = `${uniqueUnits} ${uniqueUnits === 1 ? 'unidad física' : 'unidades físicas'}`;
+    }
+
+    function copiarAcervoAlPortapapeles() {
+      const txt = document.getElementById('txtAcervoConsolidado');
+      if (!txt || !txt.value) return;
+      navigator.clipboard.writeText(txt.value).then(() => {
+        showToast("📋 Acervo copiado al portapapeles");
+      }).catch(() => {
+        txt.select();
+        document.execCommand('copy');
+        showToast("📋 Acervo copiado");
+      });
+    }
+
     async function loadProjectsData() {
       try {
         const res = await fetch('./projects_data.json?v=' + Date.now());
@@ -1639,9 +1762,11 @@
       if (tabName === 'SUELTOS') {
         updateSueltoDisplay();
         renderMultiAmbientesSummary();
+        updateAcervoConsolidadoDisplay();
       } else if (tabName === 'CAJAS') {
         updateCodigoDisplay();
         renderMultiAmbientesSummary();
+        updateAcervoConsolidadoDisplay();
       }
     }
 
@@ -1732,6 +1857,7 @@
         updateSueltoDisplay();
 
         renderMultiAmbientesSummary();
+        updateAcervoConsolidadoDisplay();
 
         const badgeIni = document.getElementById('statusInicioBadge');
         if (badgeIni) {
@@ -1922,6 +2048,7 @@
         updateGlobalCounters();
         renderList();
         renderMultiAmbientesSummary();
+        updateAcervoConsolidadoDisplay();
         uploadBoxPhotoToCloud(activeObraId, photoObj);
       } catch (err) {
         console.error("Error al procesar foto:", err);
