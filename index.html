@@ -244,7 +244,9 @@
     .caja-photo-card { border: 1px solid #E2E8F0; border-radius: 8px; overflow: hidden; background: #F8FAFC; text-align: center; }
     .caja-photo-img { width: 100%; height: 95px; object-fit: cover; display: block; cursor: pointer; transition: transform 0.2s; }
     .caja-photo-img:hover { transform: scale(1.03); }
-    .caja-photo-label { font-size: 0.68rem; font-weight: 700; color: #0F172A; padding: 0.25rem 0.3rem; background: white; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; border-top: 1px solid #EEF2F6; }
+    .caja-photo-label { font-size: 0.68rem; font-weight: 700; color: #0F172A; padding: 0.25rem 0.3rem; background: white; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; border-top: 1px solid #EEF2F6; display: flex; justify-content: space-between; align-items: center; gap: 0.2rem; }
+    .drive-link { font-size: 0.65rem; color: #2563EB; text-decoration: none; font-weight: 700; padding: 0.1rem 0.3rem; background: #EFF6FF; border-radius: 4px; border: 1px solid #DBEAFE; flex-shrink: 0; }
+    .drive-link:hover { text-decoration: underline; background: #DBEAFE; }
     
     /* Lightbox Modal */
     .lightbox-modal { position: fixed; inset: 0; background: rgba(15, 23, 42, 0.95); z-index: 200; display: none; align-items: center; justify-content: center; padding: 1.5rem; }
@@ -651,6 +653,33 @@
     // Sincronización con Datos de Campo (IndexedDB y Cache Cloud)
     let fieldPhotosMap = {}; // obra_id -> { fotos: [], ubicacion: '', notas: '' }
 
+    // Conversor inteligente de URLs de Google Drive a imágenes directas para navegador
+    function resolveDirectImageUrl(url, fileId) {
+      if (!url && !fileId) return '';
+      if (url && (url.startsWith('data:image/') || url.startsWith('blob:'))) return url;
+      let id = fileId || '';
+      if (!id && url) {
+        const m = url.match(/[-\w]{25,}/);
+        if (m) id = m[0];
+      }
+      if (!id) return url || '';
+      // Retorna endpoint de thumbnail optimizado de Google (alta resolución, CORS habilitado)
+      return `https://drive.google.com/thumbnail?id=${id}&sz=w1200`;
+    }
+
+    function handleDriveImgError(img, idOrUrl) {
+      if (!img || img.dataset.errorHandled) return;
+      let id = idOrUrl;
+      if (!id || id.length < 25) {
+        const m = (img.src || '').match(/id=([-\w]{25,})/);
+        if (m) id = m[1];
+      }
+      if (id && id.length >= 25) {
+        img.dataset.errorHandled = "1";
+        img.src = `https://lh3.googleusercontent.com/d/${id}=w1200`;
+      }
+    }
+
     async function loadFieldAuditData() {
       // 1. Cargar desde IndexedDB local
       await new Promise((resolve) => {
@@ -667,6 +696,13 @@
             const getReq = store.getAll();
             getReq.onsuccess = () => {
               (getReq.result || []).forEach(item => {
+                if (item && item.fotos) {
+                  item.fotos.forEach(f => {
+                    if (f.dataUrl && !f.dataUrl.startsWith('data:')) {
+                      f.dataUrl = resolveDirectImageUrl(f.dataUrl, f.file_id || f.drive_url);
+                    }
+                  });
+                }
                 fieldPhotosMap[item.id] = item;
               });
               resolve();
@@ -700,12 +736,13 @@
                 (f.drive_url && f.drive_url === r.drive_url) || (f.file_id && f.file_id === r.file_id)
               );
               if (!exists && r.drive_url) {
+                const directImg = resolveDirectImageUrl(r.drive_url, r.file_id);
                 fieldPhotosMap[oId].fotos.push({
                   id: 'cloud_' + (r.file_id || Date.now()),
                   codigo_caja: r.codigo_caja,
                   sub_codigo: r.sub_codigo || r.codigo_caja,
                   tipo_foto: r.tipo_foto || 'Rótulo de Caja',
-                  dataUrl: r.drive_url,
+                  dataUrl: directImg,
                   drive_url: r.drive_url,
                   file_id: r.file_id,
                   ubicacion: r.ambiente || '',
@@ -796,14 +833,18 @@
               <strong>Contenido:</strong> ${contenido}
             </div>
             <div class="caja-photos-grid">
-              ${cajaFotos.map(f => `
+              ${cajaFotos.map(f => {
+                const directUrl = resolveDirectImageUrl(f.dataUrl, f.file_id || f.drive_url);
+                const driveLink = f.drive_url ? `<a href="${f.drive_url}" target="_blank" class="drive-link" onclick="event.stopPropagation()" title="Abrir en Google Drive">🔗 Drive</a>` : '';
+                return `
                 <div class="caja-photo-card">
-                  <img src="${f.dataUrl}" class="caja-photo-img" onclick="openDashboardLightbox('${f.dataUrl}')" alt="${f.tipo_foto || 'Foto'}">
+                  <img src="${directUrl}" class="caja-photo-img" onclick="openDashboardLightbox('${directUrl}')" onerror="handleDriveImgError(this, '${f.file_id || f.drive_url || ''}')" alt="${f.tipo_foto || 'Foto'}">
                   <div class="caja-photo-label" title="${f.sub_codigo || f.tipo_foto || cod}">
-                    ${f.tipo_foto || 'Foto'}
+                    <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${f.tipo_foto || 'Foto'}</span>
+                    ${driveLink}
                   </div>
                 </div>
-              `).join('')}
+              `;}).join('')}
             </div>
           </div>
         `;
@@ -816,7 +857,7 @@
       const box = document.getElementById('dashboardLightbox');
       const img = document.getElementById('dashboardLightboxImg');
       if (box && img) {
-        img.src = src;
+        img.src = resolveDirectImageUrl(src);
         box.classList.add('open');
       }
     }

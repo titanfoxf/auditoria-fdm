@@ -500,6 +500,33 @@
       });
     }
 
+    // Conversor inteligente de URLs de Google Drive a imágenes directas para navegador
+    function resolveDirectImageUrl(url, fileId) {
+      if (!url && !fileId) return '';
+      if (url && (url.startsWith('data:image/') || url.startsWith('blob:'))) return url;
+      let id = fileId || '';
+      if (!id && url) {
+        const m = url.match(/[-\w]{25,}/);
+        if (m) id = m[0];
+      }
+      if (!id) return url || '';
+      // Retorna endpoint de thumbnail optimizado de Google (alta resolución, CORS habilitado)
+      return `https://drive.google.com/thumbnail?id=${id}&sz=w1200`;
+    }
+
+    function handleDriveImgError(img, idOrUrl) {
+      if (!img || img.dataset.errorHandled) return;
+      let id = idOrUrl;
+      if (!id || id.length < 25) {
+        const m = (img.src || '').match(/id=([-\w]{25,})/);
+        if (m) id = m[1];
+      }
+      if (id && id.length >= 25) {
+        img.dataset.errorHandled = "1";
+        img.src = `https://lh3.googleusercontent.com/d/${id}=w1200`;
+      }
+    }
+
     async function loadAllFromDB() {
       if (!db) return;
       return new Promise((resolve) => {
@@ -508,6 +535,13 @@
         const req = store.getAll();
         req.onsuccess = () => {
           (req.result || []).forEach(item => {
+            if (item && item.fotos) {
+              item.fotos.forEach(f => {
+                if (f.dataUrl && !f.dataUrl.startsWith('data:')) {
+                  f.dataUrl = resolveDirectImageUrl(f.dataUrl, f.file_id || f.drive_url);
+                }
+              });
+            }
             fieldData[item.id] = item;
           });
           resolve();
@@ -613,7 +647,7 @@
                   sub_codigo: r.sub_codigo || (isRotulo ? r.codigo_caja : `${r.codigo_caja}-ADIC`),
                   tipo_foto: r.tipo_foto || (isRotulo ? 'Rótulo de Caja' : 'Foto Adicional'),
                   nombre: `DRIVE_${r.codigo_caja}.jpg`,
-                  dataUrl: r.drive_url || '',
+                  dataUrl: resolveDirectImageUrl(r.drive_url, r.file_id),
                   drive_url: r.drive_url || '',
                   file_id: r.file_id || '',
                   isDriveLink: !!r.drive_url,
@@ -1548,23 +1582,27 @@
         const grid = document.getElementById(`grid_${slotKey}`);
         if (!grid) return;
 
-        grid.innerHTML = slotFotos.map(f => `
+        grid.innerHTML = slotFotos.map(f => {
+          const directUrl = resolveDirectImageUrl(f.dataUrl, f.file_id || f.drive_url);
+          const driveLink = f.drive_url ? `<a href="${f.drive_url}" target="_blank" style="font-size: 0.65rem; color: #2563EB; text-decoration: none; font-weight: 700; margin-left: 0.3rem;" onclick="event.stopPropagation()">🔗 Drive</a>` : '';
+          return `
           <div class="thumb-card">
             <div class="thumb-wrap">
-              <img src="${f.dataUrl}" class="thumb-img" onclick="openLightbox('${f.dataUrl}')">
+              <img src="${directUrl}" class="thumb-img" onclick="openLightbox('${directUrl}')" onerror="handleDriveImgError(this, '${f.file_id || f.drive_url || ''}')">
               <button class="thumb-del" onclick="deletePhoto('${f.id}')" title="Eliminar foto">✕</button>
             </div>
             <div class="thumb-meta">
               <div class="thumb-amb">
                 <span style="font-weight: 800; color: #2563EB;">🏷️ ${f.sub_codigo || f.codigo_caja || f.nota || 'Caja'}</span>
                 <span onclick="editPhotoCaption('${f.id}')" style="cursor: pointer; padding: 0 3px;" title="Editar código o ambiente">✏️</span>
+                ${driveLink}
               </div>
               <div class="thumb-note" onclick="editPhotoCaption('${f.id}')" title="${f.ubicacion}">
                 📍 ${f.ubicacion || 'Ambiente'} ${f.tipo_foto && f.tipo_foto !== 'Rótulo de Caja' ? `• ${f.tipo_foto}` : ''}
               </div>
             </div>
           </div>
-        `).join('');
+        `;}).join('');
       });
     }
 
@@ -1723,7 +1761,7 @@
 
     // Lightbox
     function openLightbox(src) {
-      document.getElementById('lightboxImg').src = src;
+      document.getElementById('lightboxImg').src = resolveDirectImageUrl(src);
       document.getElementById('lightbox').classList.add('open');
     }
 
