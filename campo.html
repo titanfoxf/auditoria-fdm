@@ -178,8 +178,9 @@
     </div>
 
     <div class="chips-bar">
-      <button class="chip active" onclick="setFilter('ALL', this)">Todas (<span id="countTotal">153</span>)</button>
+      <button class="chip active" onclick="setFilter('ALL', this)">Todas (<span id="countTotal">154</span>)</button>
       <button class="chip alert" onclick="setFilter('AUDITORIA_69', this)" style="border-color: #2563EB; font-weight: 800;">📋 Muestra Auditoría (69)</button>
+      <button class="chip" onclick="setFilter('MULTI_OBRA', this)" style="background: #F3E8FF; color: #7E22CE; border-color: #D8B4FE; font-weight: 700;">🔀 Cajas Mixtas (<span id="countMulti">1</span>)</button>
       <button class="chip alert" onclick="setFilter('MISSING', this)">⚠️ Faltan Datos (<span id="countMissing">0</span>)</button>
       <button class="chip green" onclick="setFilter('WITH_PHOTOS', this)">📸 Con Fotos (<span id="countWithPhotos">0</span>)</button>
       <button class="chip" onclick="setFilter('ILO', this)">⚓ Ilo (<span id="countIlo">0</span>)</button>
@@ -293,6 +294,7 @@
               <span class="preset-chip" onclick="appendContenido('Exp. Técnico')">📁 Exp. Técnico</span>
               <span class="preset-chip" onclick="appendContenido('Valorizaciones')">📊 Valorizaciones</span>
               <span class="preset-chip" onclick="appendContenido('Cuadernos de Obra')">📖 Cuadernos</span>
+              <span class="preset-chip" onclick="appendContenido('Cuadernos de Obra Multi-Proyecto: ')" style="background: #F3E8FF; border-color: #C084FC; color: #7E22CE; font-weight: 700;">🔀 Cuadernos Multi-Obra</span>
               <span class="preset-chip" onclick="appendContenido('Liquidación')">⚖️ Liquidación</span>
               <span class="preset-chip" onclick="appendContenido('Contrato y Bases')">📜 Contrato/Bases</span>
               <span class="preset-chip" onclick="appendContenido('Adicionales/Ampliaciones')">➕ Adicionales</span>
@@ -928,7 +930,8 @@
       if (!activeObraId) return { code: 'B1-01-C1', pref: 'B1', obraStr: '01', seq: 'C1' };
       const amb = getActiveAmbiente();
       const pref = getAmbientePrefix(amb);
-      const obraStr = String(activeObraId).padStart(2, '0');
+      let obraStr = String(activeObraId).padStart(2, '0');
+      if (activeObraId === 999) obraStr = 'MIX';
       const seq = `C${currentCajaSeq}`;
       const code = `${pref}-${obraStr}-${seq}`;
       return { code, pref, obraStr, seq };
@@ -1046,12 +1049,16 @@
       let countIlo = 0;
       let countMN = 0;
       let countGSC = 0;
+      let countMulti = 0;
 
       projects.forEach(p => {
+        const isMulti = p.id === 999 || p.es_multiproyecto;
+        if (isMulti) countMulti++;
+
         const d = fieldData[p.id] || {};
         const hasStart = (d.fecha_inicio || p.fecha_inicio);
         const hasUbicacion = (d.ubicacion || (p.tiene_caja && p.tiene_caja !== 'NO - ARCHIVADOR'));
-        if ((!hasStart || !hasUbicacion) && p.estado_info !== 'NO_APLICA') {
+        if (!isMulti && (!hasStart || !hasUbicacion) && p.estado_info !== 'NO_APLICA') {
           missingCount++;
         }
         const photosCount = (d.fotos || []).length;
@@ -1065,6 +1072,7 @@
       });
 
       if (document.getElementById('countTotal')) document.getElementById('countTotal').innerText = projects.length;
+      if (document.getElementById('countMulti')) document.getElementById('countMulti').innerText = countMulti;
       if (document.getElementById('countMissing')) document.getElementById('countMissing').innerText = missingCount;
       if (document.getElementById('countWithPhotos')) document.getElementById('countWithPhotos').innerText = withPhotosCount;
       if (document.getElementById('countIlo')) document.getElementById('countIlo').innerText = countIlo;
@@ -1088,15 +1096,19 @@
         const hasPhotos = (d.fotos || []).length > 0;
         const hasStart = (d.fecha_inicio || p.fecha_inicio);
         const hasUbicacion = (d.ubicacion || (p.tiene_caja && p.tiene_caja !== 'NO - ARCHIVADOR'));
+        const isMulti = p.id === 999 || p.es_multiproyecto;
 
+        if (currentFilter === 'MULTI_OBRA') {
+          return isMulti;
+        }
         if (currentFilter === 'AUDITORIA_69') {
-          return p.es_auditoria_2022_2025 === true || p.id <= 69;
+          return !isMulti && (p.es_auditoria_2022_2025 === true || p.id <= 69);
         }
         if (currentFilter === 'MAESTRO_ADIC') {
-          return p.es_auditoria_2022_2025 === false || p.id > 69;
+          return !isMulti && (p.es_auditoria_2022_2025 === false || p.id > 69);
         }
         if (currentFilter === 'MISSING') {
-          return (!hasStart || !hasUbicacion) && p.estado_info !== 'NO_APLICA';
+          return !isMulti && (!hasStart || !hasUbicacion) && p.estado_info !== 'NO_APLICA';
         }
         if (currentFilter === 'WITH_PHOTOS') {
           return hasPhotos;
@@ -1133,23 +1145,33 @@
         const photosCount = (d.fotos || []).length;
         const fechaIni = d.fecha_inicio || p.fecha_inicio;
         const ubicacion = d.ubicacion || (p.tiene_caja && p.tiene_caja !== 'NO - ARCHIVADOR' ? p.tiene_caja : 'Por ubicar');
-        const isMissingStart = !fechaIni && p.estado_info !== 'NO_APLICA';
+        const isMulti = p.id === 999 || p.es_multiproyecto;
+        const isMissingStart = !isMulti && !fechaIni && p.estado_info !== 'NO_APLICA';
 
         let cardClass = 'card';
         if (photosCount > 0) cardClass += ' has-photos';
         else if (isMissingStart) cardClass += ' missing-start';
         else cardClass += ' has-data';
 
-        const isAuditoria = p.es_auditoria_2022_2025 !== false && p.id <= 69;
+        const isAuditoria = !isMulti && p.es_auditoria_2022_2025 !== false && p.id <= 69;
+
+        let badgeIdText = `REG. N° ${String(p.id).padStart(2, '0')}`;
+        let badgeIdStyle = '';
+        if (isMulti) {
+          badgeIdText = '🔀 MULTI-PROYECTO';
+          badgeIdStyle = 'background: #7E22CE;';
+        } else if (isAuditoria) {
+          badgeIdText = `OBRA N° ${String(p.id).padStart(2, '0')}`;
+        }
 
         return `
           <div class="${cardClass}" onclick="openDrawer(${p.id})">
             <div class="card-top">
-              <span class="card-badge-id">${isAuditoria ? `OBRA N° ${String(p.id).padStart(2, '0')}` : `REG. N° ${String(p.id).padStart(2, '0')}`}</span>
+              <span class="card-badge-id" style="${badgeIdStyle}">${badgeIdText}</span>
               <div class="card-badges">
-                ${!isAuditoria ? `<span class="badge badge-gray" style="background: #E2E8F0; color: #475569; font-weight: 700;">⚪ MAESTRO FDM</span>` : ''}
+                ${isMulti ? `<span class="badge" style="background: #F3E8FF; color: #7E22CE; font-weight: 800;">📦 CAJAS MIXTAS</span>` : (!isAuditoria ? `<span class="badge badge-gray" style="background: #E2E8F0; color: #475569; font-weight: 700;">⚪ MAESTRO FDM</span>` : '')}
                 ${p.cui && p.cui !== 'N/D' ? `<span class="badge badge-gray">CUI: ${p.cui}</span>` : ''}
-                ${fechaIni ? `<span class="badge badge-blue">📅 ${fechaIni.substring(0, 10)}</span>` : `<span class="badge badge-red">⚠️ Sin Inicio</span>`}
+                ${fechaIni ? `<span class="badge badge-blue">📅 ${fechaIni.substring(0, 10)}</span>` : (!isMulti ? `<span class="badge badge-red">⚠️ Sin Inicio</span>` : '')}
                 ${photosCount > 0 ? `<span class="badge badge-green">📸 ${photosCount}</span>` : ''}
               </div>
             </div>
@@ -1211,7 +1233,18 @@
         const d = fieldData[id] || { fotos: [] };
 
         const elNum = document.getElementById('drawerObraNum');
-        if (elNum) elNum.innerText = `OBRA CIVIL N° ${String(p.id).padStart(2, '0')}`;
+        if (elNum) {
+          if (p.id === 999 || p.es_multiproyecto) {
+            elNum.innerText = `🔀 MULTI-PROYECTO`;
+            elNum.style.background = '#7E22CE';
+          } else if (p.es_auditoria_2022_2025 !== false && p.id <= 69) {
+            elNum.innerText = `OBRA CIVIL N° ${String(p.id).padStart(2, '0')}`;
+            elNum.style.background = '#2563EB';
+          } else {
+            elNum.innerText = `REG. N° ${String(p.id).padStart(2, '0')}`;
+            elNum.style.background = '#475569';
+          }
+        }
         const elTitle = document.getElementById('drawerTitle');
         if (elTitle) elTitle.innerText = p.desc;
         const elCui = document.getElementById('drawerCui');

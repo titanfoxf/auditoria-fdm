@@ -427,6 +427,7 @@
 
       <div class="filter-tabs">
         <button class="tab-btn active" onclick="setFilter('ALL', this)" id="btnTabAll">Todas las Obras (69)</button>
+        <button class="tab-btn" onclick="setFilter('MULTI_OBRA', this)" id="btnTabMultiObra" style="color: #7E22CE; border-color: #D8B4FE; font-weight: 700;">🔀 Cajas Mixtas (<span id="countTabMulti">1</span>)</button>
         <button class="tab-btn green" onclick="setFilter('COMPLETA', this)" id="btnTabCompleta">🟢 Info Completa (29)</button>
         <button class="tab-btn alert" onclick="setFilter('PARCIAL', this)" id="btnTabParcial">🟡 Trazabilidad Parcial (10)</button>
         <button class="tab-btn red" onclick="setFilter('SIN_INICIO', this)" id="btnTabSinInicio">⚠️ Sin Fecha Inicio (38)</button>
@@ -973,11 +974,13 @@
       const q = document.getElementById('searchInput').value.toLowerCase().trim();
 
       const filtered = projectsData.filter(p => {
-        if (currentFilter === 'COMPLETA') return p.estado_info === 'COMPLETA';
-        if (currentFilter === 'PARCIAL') return p.estado_info === 'PARCIAL';
-        if (currentFilter === 'SIN_INICIO') return !p.tiene_fecha_inicio && p.estado_info !== 'NO_APLICA';
-        if (currentFilter === 'CAJAS') return (p.tiene_caja || '').toUpperCase().includes('CAJA');
-        if (currentFilter === 'NO_APLICA') return p.estado_info === 'NO_APLICA';
+        const isMulti = p.id === 999 || p.es_multiproyecto;
+        if (currentFilter === 'MULTI_OBRA') return isMulti;
+        if (currentFilter === 'COMPLETA') return !isMulti && p.estado_info === 'COMPLETA';
+        if (currentFilter === 'PARCIAL') return !isMulti && p.estado_info === 'PARCIAL';
+        if (currentFilter === 'SIN_INICIO') return !isMulti && !p.tiene_fecha_inicio && p.estado_info !== 'NO_APLICA';
+        if (currentFilter === 'CAJAS') return !isMulti && (p.tiene_caja || '').toUpperCase().includes('CAJA');
+        if (currentFilter === 'NO_APLICA') return !isMulti && p.estado_info === 'NO_APLICA';
         if (currentFilter === 'PROV_ILO') return (p.provincia || '').toUpperCase().includes('ILO');
         if (currentFilter === 'PROV_MN') return (p.provincia || '').toUpperCase().includes('MARISCAL') || (p.provincia || '').toUpperCase() === 'M.N.';
         if (currentFilter === 'PROV_GSC') return (p.provincia || '').toUpperCase().includes('SANCHEZ') || (p.provincia || '').toUpperCase() === 'G.S.C.';
@@ -1056,14 +1059,20 @@
           ? `S/ ${p.costo_ejec.toLocaleString('es-PE', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`
           : 'S/ 0.00';
 
+        const isMulti = p.id === 999 || p.es_multiproyecto;
+
         let badgeCaja = `<span class="badge badge-yellow" title="En Archivador de Secretaría">📁 ARCHIVADOR</span>`;
-        if ((p.tiene_caja || '').toUpperCase().includes('CAJA')) {
+        if (isMulti) {
+          badgeCaja = `<span class="badge" style="background: #9333EA; color: white; font-weight: 700;">📦 CAJA MIXTA</span>`;
+        } else if ((p.tiene_caja || '').toUpperCase().includes('CAJA')) {
           badgeCaja = `<span class="badge badge-green" title="Expediente en Caja FDM">📦 ${p.tiene_caja}</span>`;
         }
 
-        // Start Date Badge (Formato compacto para optimizar visualización en tabla)
+        // Start Date Badge
         let badgeInicio = '';
-        if (p.tiene_fecha_inicio) {
+        if (isMulti) {
+          badgeInicio = `<span class="badge" style="background: #F3E8FF; color: #7E22CE; font-weight: 700; font-size: 0.72rem;">🔀 MULTI-OBRA</span>`;
+        } else if (p.tiene_fecha_inicio) {
           const compact = formatCompactDate(p.fecha_inicio);
           badgeInicio = `<span class="badge badge-blue" style="font-size: 0.73rem; font-family: monospace; font-weight: 700; padding: 0.18rem 0.45rem;" title="${p.fecha_inicio}${p.fecha_inicio_doc ? ' | ' + p.fecha_inicio_doc : ''}">📅 ${compact}</span>`;
         } else if (p.estado_info === 'NO_APLICA') {
@@ -1074,7 +1083,9 @@
 
         // Completeness Badge
         let badgeInfo = '';
-        if (p.estado_info === 'COMPLETA') {
+        if (isMulti) {
+          badgeInfo = `<span class="badge" style="background: #F3E8FF; color: #6B21A8; font-weight: 800; font-size: 0.7rem;">📦 MIXTO</span>`;
+        } else if (p.estado_info === 'COMPLETA') {
           badgeInfo = `<span class="badge badge-green" style="font-size: 0.7rem; padding: 0.18rem 0.45rem;" title="Expediente en Caja FDM o Inicio+Cierre verificado">🟢 Completa</span>`;
         } else if (p.estado_info === 'PARCIAL') {
           badgeInfo = `<span class="badge badge-yellow" style="font-size: 0.7rem; padding: 0.18rem 0.45rem;" title="Hitos en proceso; falta acta de inicio o liquidación">🟡 Parcial</span>`;
@@ -1086,8 +1097,8 @@
 
         return `
           <tr onclick="openDrawer(${p.id})">
-            <td style="font-weight: 700; text-align: center; color: var(--text-muted);">${p.id}</td>
-            <td style="text-align: center;"><span class="badge badge-gray" style="font-size: 0.68rem; padding: 0.15rem 0.4rem;">${p.convenio}</span></td>
+            <td style="font-weight: 700; text-align: center; color: ${isMulti ? '#7E22CE' : 'var(--text-muted)'};">${isMulti ? 'MIX' : p.id}</td>
+            <td style="text-align: center;"><span class="badge ${isMulti ? '' : 'badge-gray'}" style="font-size: 0.68rem; padding: 0.15rem 0.4rem; ${isMulti ? 'background: #F3E8FF; color: #7E22CE; font-weight: 700;' : ''}">${p.convenio}</span></td>
             <td><strong>${p.provincia}</strong></td>
             <td>
               <div style="font-weight: 600; color: var(--text); line-height: 1.35;">${p.desc}</div>
@@ -1115,8 +1126,17 @@
       const p = projectsData.find(item => item.id === id);
       if (!p) return;
 
+      const isMulti = p.id === 999 || p.es_multiproyecto;
       const obraIdLabel = document.getElementById('drawerObraId');
-      if (obraIdLabel) obraIdLabel.innerText = `OBRA CIVIL N° ${String(p.id).padStart(2, '0')}`;
+      if (obraIdLabel) {
+        if (isMulti) {
+          obraIdLabel.innerText = "🔀 MULTI-PROYECTO";
+          obraIdLabel.style.background = "#7E22CE";
+        } else {
+          obraIdLabel.innerText = `OBRA CIVIL N° ${String(p.id).padStart(2, '0')}`;
+          obraIdLabel.style.background = "rgba(255,255,255,0.22)";
+        }
+      }
 
       document.getElementById('drawerProjectName').innerText = p.desc;
       document.getElementById('drawerConvenio').innerText = p.convenio;
