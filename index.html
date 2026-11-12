@@ -455,7 +455,7 @@
             <th style="width: 105px; text-align: center;" class="sortable" onclick="toggleSort('DATE')">FECHA INICIO ⇕</th>
             <th style="width: 105px; text-align: center;">ESTADO DOC.</th>
             <th style="width: 110px; text-align: right;">COSTO EJEC.</th>
-            <th style="width: 115px; text-align: center;">UBICACIÓN FDM</th>
+            <th style="width: 155px; text-align: center;">UBICACIÓN FDM</th>
           </tr>
         </thead>
         <tbody id="projectsTableBody">
@@ -760,6 +760,29 @@
       }
     }
 
+    // Compila los ambientes reales censados en campo con número de cajas
+    function compileUbicacionCajas(obraId) {
+      const fData = fieldPhotosMap[obraId];
+      if (!fData || !fData.fotos || fData.fotos.length === 0) {
+        return null;
+      }
+
+      const ambMap = {};
+      fData.fotos.forEach(f => {
+        const amb = (f.ubicacion || fData.ubicacion || 'Ambiente').trim();
+        const cod = (f.codigo_caja || f.nota || 'Caja').trim();
+        if (!ambMap[amb]) ambMap[amb] = new Set();
+        ambMap[amb].add(cod);
+      });
+
+      const parts = Object.entries(ambMap).map(([amb, setCajas]) => {
+        const n = setCajas.size;
+        return `${amb} (${n} ${n === 1 ? 'caja' : 'cajas'})`;
+      });
+
+      return parts.join(' | ') || null;
+    }
+
     function openCloudSyncPrompt() {
       const current = localStorage.getItem('fdm_gas_url') || '';
       const url = prompt("Pega la URL del Web App de Google Apps Script para sincronizar fotos de Google Drive en este equipo:", current);
@@ -770,6 +793,8 @@
           loadFieldAuditData().then(() => {
             showToast("¡Fotos sincronizadas desde Google Drive!");
             if (selectedProjectId) renderCajasEnDrawer(selectedProjectId);
+            filterTable();
+            renderAnalyticsDashboard();
           });
         } else {
           localStorage.removeItem('fdm_gas_url');
@@ -788,8 +813,9 @@
       const fotos = fData.fotos || [];
       if (countBadge) countBadge.innerText = fotos.length;
 
+      const ubicCompiled = compileUbicacionCajas(obraId);
       if (ubicText) {
-        ubicText.innerText = fData.ubicacion || (fotos.length > 0 ? `${fotos.length} fotos registradas` : 'Aún sin censo físico en campo');
+        ubicText.innerText = ubicCompiled || (fotos.length > 0 ? `${fotos.length} fotos registradas` : 'Aún sin censo físico en campo');
       }
 
       if (fotos.length === 0) {
@@ -904,7 +930,6 @@
             if (entry.checks) p.checks = { ...p.checks, ...entry.checks };
             if (entry.ubicacion) {
               p.n_cajas = entry.ubicacion;
-              p.tiene_caja = entry.ubicacion.toUpperCase().includes('CAJA') ? 'EN CAJA' : 'ARCHIVADOR';
             }
             if (entry.observaciones) p.alerta = entry.observaciones;
           }
@@ -968,7 +993,10 @@
       if (elGSC) elGSC.innerText = `${gsc} obras`;
 
       const sin_inicio = projectsData.filter(p => !p.tiene_fecha_inicio && p.estado_info !== 'NO_APLICA').length;
-      const cajas = projectsData.filter(p => (p.tiene_caja || '').toUpperCase().includes('CAJA')).length;
+      const cajasCensadas = projectsData.filter(p => {
+        const fData = fieldPhotosMap[p.id];
+        return fData && fData.fotos && fData.fotos.length > 0;
+      }).length;
 
       const btnAll = document.getElementById('btnTabAll');
       if (btnAll) btnAll.innerText = `Todas las Obras (${total})`;
@@ -979,7 +1007,9 @@
       const btnSinIni = document.getElementById('btnTabSinInicio');
       if (btnSinIni) btnSinIni.innerText = `⚠️ Sin Fecha Inicio (${sin_inicio})`;
       const btnCajas = document.getElementById('btnTabCajas');
-      if (btnCajas) btnCajas.innerText = `📦 En Cajas FDM (${cajas})`;
+      if (btnCajas) btnCajas.innerText = `📦 En Cajas Censadas (${cajasCensadas})`;
+      const elKpiCajas = document.getElementById('kpi-cajas');
+      if (elKpiCajas) elKpiCajas.innerText = cajasCensadas;
       const btnNoAp = document.getElementById('btnTabNoAplica');
       if (btnNoAp) btnNoAp.innerText = `⚪ No Aplica (${noap})`;
 
@@ -1020,7 +1050,10 @@
         if (currentFilter === 'COMPLETA') return !isMulti && p.estado_info === 'COMPLETA';
         if (currentFilter === 'PARCIAL') return !isMulti && p.estado_info === 'PARCIAL';
         if (currentFilter === 'SIN_INICIO') return !isMulti && !p.tiene_fecha_inicio && p.estado_info !== 'NO_APLICA';
-        if (currentFilter === 'CAJAS') return !isMulti && (p.tiene_caja || '').toUpperCase().includes('CAJA');
+        if (currentFilter === 'CAJAS') {
+          const fData = fieldPhotosMap[p.id];
+          return fData && fData.fotos && fData.fotos.length > 0;
+        }
         if (currentFilter === 'NO_APLICA') return !isMulti && p.estado_info === 'NO_APLICA';
         if (currentFilter === 'PROV_ILO') return (p.provincia || '').toUpperCase().includes('ILO');
         if (currentFilter === 'PROV_MN') return (p.provincia || '').toUpperCase().includes('MARISCAL') || (p.provincia || '').toUpperCase() === 'M.N.';
@@ -1029,11 +1062,12 @@
       }).filter(p => {
         if (!q) return true;
         const h_text = (p.historial || []).map(h => `${h.documento} ${h.asunto_razon} ${h.fecha}`).join(' ').toLowerCase();
+        const ubicField = compileUbicacionCajas(p.id) || '';
         return p.desc.toLowerCase().includes(q) ||
                p.provincia.toLowerCase().includes(q) ||
                p.convenio.toLowerCase().includes(q) ||
                (p.cui && p.cui.toLowerCase().includes(q)) ||
-               (p.tiene_caja && p.tiene_caja.toLowerCase().includes(q)) ||
+               ubicField.toLowerCase().includes(q) ||
                (p.fecha_inicio && p.fecha_inicio.toLowerCase().includes(q)) ||
                h_text.includes(q);
       });
@@ -1102,11 +1136,14 @@
 
         const isMulti = p.id === 999 || p.es_multiproyecto;
 
-        let badgeCaja = `<span class="badge badge-yellow" title="En Archivador de Secretaría">📁 ARCHIVADOR</span>`;
-        if (isMulti) {
-          badgeCaja = `<span class="badge" style="background: #9333EA; color: white; font-weight: 700;">📦 CAJA MIXTA</span>`;
-        } else if ((p.tiene_caja || '').toUpperCase().includes('CAJA')) {
-          badgeCaja = `<span class="badge badge-green" title="Expediente en Caja FDM">📦 ${p.tiene_caja}</span>`;
+        const ubicReal = compileUbicacionCajas(p.id);
+        let badgeCaja = '';
+        if (ubicReal) {
+          badgeCaja = `<span class="badge" style="background: #DCFCE7; color: #15803D; border: 1px solid #86EFAC; font-weight: 800; font-size: 0.72rem; padding: 0.22rem 0.55rem; box-shadow: 0 1px 2px rgba(0,0,0,0.05); white-space: nowrap;" title="Ubicación física censada en campo con fotos">📦 ${ubicReal}</span>`;
+        } else if (isMulti) {
+          badgeCaja = `<span class="badge" style="background: #F3E8FF; color: #7E22CE; border: 1px solid #D8B4FE; font-weight: 700; font-size: 0.7rem; padding: 0.2rem 0.45rem;">🔀 Cajas Mixtas</span>`;
+        } else {
+          badgeCaja = `<span class="badge" style="background: #F8FAFC; color: #94A3B8; border: 1px dashed #CBD5E1; font-weight: 600; font-size: 0.68rem; padding: 0.2rem 0.45rem;" title="Pendiente de censo físico con código">⏳ Por censar</span>`;
         }
 
         // Start Date Badge

@@ -1091,7 +1091,7 @@
 
         const d = fieldData[p.id] || {};
         const hasStart = (d.fecha_inicio || p.fecha_inicio);
-        const hasUbicacion = (d.ubicacion || (p.tiene_caja && p.tiene_caja !== 'NO - ARCHIVADOR'));
+        const hasUbicacion = !!d.ubicacion;
         if (!isMulti && (!hasStart || !hasUbicacion) && p.estado_info !== 'NO_APLICA') {
           missingCount++;
         }
@@ -1129,7 +1129,7 @@
         const d = fieldData[p.id] || {};
         const hasPhotos = (d.fotos || []).length > 0;
         const hasStart = (d.fecha_inicio || p.fecha_inicio);
-        const hasUbicacion = (d.ubicacion || (p.tiene_caja && p.tiene_caja !== 'NO - ARCHIVADOR'));
+        const hasUbicacion = !!d.ubicacion;
         const isMulti = p.id === 999 || p.es_multiproyecto;
 
         if (currentFilter === 'MULTI_OBRA') {
@@ -1178,7 +1178,7 @@
         const d = fieldData[p.id] || {};
         const photosCount = (d.fotos || []).length;
         const fechaIni = d.fecha_inicio || p.fecha_inicio;
-        const ubicacion = d.ubicacion || (p.tiene_caja && p.tiene_caja !== 'NO - ARCHIVADOR' ? p.tiene_caja : 'Por ubicar');
+        const ubicacion = d.ubicacion || '⏳ Por censar en campo';
         const isMulti = p.id === 999 || p.es_multiproyecto;
         const isMissingStart = !isMulti && !fechaIni && p.estado_info !== 'NO_APLICA';
 
@@ -1318,7 +1318,7 @@
         const currAmb = localStorage.getItem('fdm_active_amb') || 'BAÑO1-PMO';
         const selD = document.getElementById('drawerAmbienteSelect');
         
-        let initialUbicacion = d.ubicacion || (p.tiene_caja !== 'NO - ARCHIVADOR' ? p.tiene_caja : '');
+        let initialUbicacion = d.ubicacion || '';
         let parsedAmb = currAmb;
         
         if (initialUbicacion && selD) {
