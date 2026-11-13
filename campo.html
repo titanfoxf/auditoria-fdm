@@ -179,8 +179,10 @@
     </div>
 
     <div class="chips-bar">
-      <button class="chip active" onclick="setFilter('ALL', this)">Todas (<span id="countTotal">154</span>)</button>
-      <button class="chip alert" onclick="setFilter('AUDITORIA_69', this)" style="border-color: #2563EB; font-weight: 800;">📋 Muestra Auditoría (69)</button>
+      <button class="chip active" onclick="setFilter('ALL', this)">Todas (<span id="countTotal">170</span>)</button>
+      <button class="chip alert" onclick="setFilter('AUDITORIA_69', this)" style="border-color: #2563EB; font-weight: 800;">📋 Muestra Auditoría (<span id="countAuditoria">70</span>)</button>
+      <button class="chip green" onclick="setFilter('LIQUIDADO', this)" style="font-weight: 700;">🏆 Liquidadas (<span id="countLiq">0</span>)</button>
+      <button class="chip" onclick="setFilter('EN_LIQ_EXEC', this)" style="background: #E0F2FE; color: #0369A1; border-color: #7DD3FC; font-weight: 700;">⏳ En Liq. / Ejec. (<span id="countEnLiqExec">0</span>)</button>
       <button class="chip" onclick="setFilter('MULTI_OBRA', this)" style="background: #F3E8FF; color: #7E22CE; border-color: #D8B4FE; font-weight: 700;">🔀 Cajas Mixtas (<span id="countMulti">1</span>)</button>
       <button class="chip alert" onclick="setFilter('MISSING', this)">⚠️ Faltan Datos (<span id="countMissing">0</span>)</button>
       <button class="chip green" onclick="setFilter('WITH_PHOTOS', this)">📸 Con Fotos (<span id="countWithPhotos">0</span>)</button>
@@ -207,11 +209,13 @@
     <div class="drawer" onclick="event.stopPropagation()">
       <div class="drawer-header">
         <div>
-          <div style="display: flex; align-items: center; gap: 0.5rem;">
+          <div style="display: flex; align-items: center; gap: 0.45rem; flex-wrap: wrap;">
             <span id="drawerObraNum" style="font-size: 0.75rem; background: #2563EB; padding: 0.15rem 0.5rem; border-radius: 4px; font-weight: 700;">OBRA N° 01</span>
             <span id="drawerTotalFotos" style="font-size: 0.75rem; background: #059669; padding: 0.15rem 0.5rem; border-radius: 4px; font-weight: 700;">0 fotos</span>
+            <span id="drawerSitBadge" style="font-size: 0.72rem; background: #334155; color: #F8FAFC; padding: 0.15rem 0.5rem; border-radius: 4px; font-weight: 700; display: none;"></span>
           </div>
           <h3 id="drawerTitle" style="margin-top: 4px; line-height: 1.25;">Nombre de la Obra</h3>
+          <div id="drawerDatesIng" style="font-size: 0.72rem; color: #93C5FD; margin-top: 3px; font-family: monospace; display: none;"></div>
         </div>
         <button class="drawer-close" onclick="closeDrawer()">✕</button>
       </div>
@@ -1705,6 +1709,19 @@
       }
     }
 
+    function getCampoSitBadge(p) {
+      const sit = (p.estado_situacional || '').toUpperCase().trim();
+      const est = (p.estatus || '').toUpperCase().trim();
+      if (sit === 'LIQUIDADO') return { label: '🏆 LIQUIDADO', bg: '#DCFCE7', col: '#15803D', grp: 'LIQ' };
+      if (sit.includes('LIQUIDACION') || sit.includes('FINALIZADO')) return { label: `⚖️ ${sit}`, bg: '#E0F2FE', col: '#0369A1', grp: 'EN_LIQ' };
+      if (sit === 'EN EJECUCION' || est === 'EN EJECUCION') return { label: '🚧 EN EJECUCIÓN', bg: '#FEF3C7', col: '#B45309', grp: 'EN_LIQ' };
+      if ((sit + ' ' + est).includes('OBSERV') || (sit + ' ' + est).includes('CAMBIO') || (sit + ' ' + est).includes('FALTA')) {
+        return { label: `⚠️ ${est || sit}`, bg: '#FEE2E2', col: '#B91C1C', grp: 'OBS' };
+      }
+      if (sit === 'EJECUTADO' || est === 'EJECUTADO') return { label: '✅ EJECUTADO', bg: '#D1FAE5', col: '#065F46', grp: 'EJEC' };
+      return { label: sit || est || '⚪ POR EJECUTAR', bg: '#F1F5F9', col: '#475569', grp: 'POR' };
+    }
+
     function updateGlobalCounters() {
       let missingCount = 0;
       let withPhotosCount = 0;
@@ -1713,13 +1730,21 @@
       let countMN = 0;
       let countGSC = 0;
       let countMulti = 0;
+      let countAuditoria = 0;
+      let countLiq = 0;
+      let countEnLiqExec = 0;
 
       projects.forEach(p => {
         const isMulti = p.id === 999 || p.es_multiproyecto;
         if (isMulti) countMulti++;
+        else if (p.es_auditoria_2022_2025 === true || p.id <= 69) countAuditoria++;
+
+        const sInfo = getCampoSitBadge(p);
+        if (!isMulti && sInfo.grp === 'LIQ') countLiq++;
+        if (!isMulti && sInfo.grp === 'EN_LIQ') countEnLiqExec++;
 
         const d = fieldData[p.id] || {};
-        const hasStart = (d.fecha_inicio || p.fecha_inicio);
+        const hasStart = !!(d.fecha_inicio || (p.tiene_fecha_inicio && p.fecha_inicio));
         const hasUbicacion = !!d.ubicacion;
         if (!isMulti && (!hasStart || !hasUbicacion) && p.estado_info !== 'NO_APLICA') {
           missingCount++;
@@ -1735,6 +1760,9 @@
       });
 
       if (document.getElementById('countTotal')) document.getElementById('countTotal').innerText = projects.length;
+      if (document.getElementById('countAuditoria')) document.getElementById('countAuditoria').innerText = countAuditoria;
+      if (document.getElementById('countLiq')) document.getElementById('countLiq').innerText = countLiq;
+      if (document.getElementById('countEnLiqExec')) document.getElementById('countEnLiqExec').innerText = countEnLiqExec;
       if (document.getElementById('countMulti')) document.getElementById('countMulti').innerText = countMulti;
       if (document.getElementById('countMissing')) document.getElementById('countMissing').innerText = missingCount;
       if (document.getElementById('countWithPhotos')) document.getElementById('countWithPhotos').innerText = withPhotosCount;
@@ -1757,9 +1785,10 @@
       const filtered = projects.filter(p => {
         const d = fieldData[p.id] || {};
         const hasPhotos = (d.fotos || []).length > 0;
-        const hasStart = (d.fecha_inicio || p.fecha_inicio);
+        const hasStart = !!(d.fecha_inicio || (p.tiene_fecha_inicio && p.fecha_inicio));
         const hasUbicacion = !!d.ubicacion;
         const isMulti = p.id === 999 || p.es_multiproyecto;
+        const sInfo = getCampoSitBadge(p);
 
         if (currentFilter === 'MULTI_OBRA') {
           return isMulti;
@@ -1767,8 +1796,14 @@
         if (currentFilter === 'AUDITORIA_69') {
           return !isMulti && (p.es_auditoria_2022_2025 === true || p.id <= 69);
         }
+        if (currentFilter === 'LIQUIDADO') {
+          return !isMulti && sInfo.grp === 'LIQ';
+        }
+        if (currentFilter === 'EN_LIQ_EXEC') {
+          return !isMulti && sInfo.grp === 'EN_LIQ';
+        }
         if (currentFilter === 'MAESTRO_ADIC') {
-          return !isMulti && (p.es_auditoria_2022_2025 === false || p.id > 69);
+          return !isMulti && p.es_auditoria_2022_2025 !== true && p.id > 69;
         }
         if (currentFilter === 'MISSING') {
           return !isMulti && (!hasStart || !hasUbicacion) && p.estado_info !== 'NO_APLICA';
@@ -1783,7 +1818,7 @@
       }).filter(p => {
         if (!q) return true;
         const d = fieldData[p.id] || {};
-        const text = `${p.id} ${p.desc} ${p.cui} ${p.provincia} ${d.ubicacion || ''} ${d.notas || ''}`.toLowerCase();
+        const text = `${p.id} ${p.desc} ${p.cui} ${p.provincia} ${p.estatus || ''} ${p.estado_situacional || ''} ${d.ubicacion || ''} ${d.notas || ''}`.toLowerCase();
         return text.includes(q);
       });
 
@@ -1806,7 +1841,8 @@
       container.innerHTML = list.map(p => {
         const d = fieldData[p.id] || {};
         const photosCount = (d.fotos || []).length;
-        const fechaIni = d.fecha_inicio || p.fecha_inicio;
+        const fechaIni = d.fecha_inicio || (p.tiene_fecha_inicio ? p.fecha_inicio : '');
+        const fechaFin = d.fecha_culm || p.fecha_termino_verificada_ing || (p.fecha_culminacion_real && p.fecha_culminacion_real !== '-' ? p.fecha_culminacion_real : '');
         const ubicacion = d.ubicacion || '⏳ Por censar en campo';
         const isMulti = p.id === 999 || p.es_multiproyecto;
         const isMissingStart = !isMulti && !fechaIni && p.estado_info !== 'NO_APLICA';
@@ -1816,7 +1852,8 @@
         else if (isMissingStart) cardClass += ' missing-start';
         else cardClass += ' has-data';
 
-        const isAuditoria = !isMulti && p.es_auditoria_2022_2025 !== false && p.id <= 69;
+        const isAuditoria = !isMulti && (p.es_auditoria_2022_2025 === true || p.id <= 69);
+        const sInfo = getCampoSitBadge(p);
 
         let badgeIdText = `REG. N° ${String(p.id).padStart(2, '0')}`;
         let badgeIdStyle = '';
@@ -1832,9 +1869,9 @@
             <div class="card-top">
               <span class="card-badge-id" style="${badgeIdStyle}">${badgeIdText}</span>
               <div class="card-badges">
-                ${isMulti ? `<span class="badge" style="background: #F3E8FF; color: #7E22CE; font-weight: 800;">📦 CAJAS MIXTAS</span>` : (!isAuditoria ? `<span class="badge badge-gray" style="background: #E2E8F0; color: #475569; font-weight: 700;">⚪ MAESTRO FDM</span>` : '')}
-                ${p.cui && p.cui !== 'N/D' ? `<span class="badge badge-gray">CUI: ${p.cui}</span>` : ''}
-                ${fechaIni ? `<span class="badge badge-blue">📅 ${fechaIni.substring(0, 10)}</span>` : (!isMulti ? `<span class="badge badge-red">⚠️ Sin Inicio</span>` : '')}
+                ${!isMulti ? `<span class="badge" style="background: ${sInfo.bg}; color: ${sInfo.col}; font-weight: 800;">${sInfo.label}</span>` : `<span class="badge" style="background: #F3E8FF; color: #7E22CE; font-weight: 800;">📦 CAJAS MIXTAS</span>`}
+                ${p.cui && p.cui !== 'N/D' && p.cui !== 'S/N' ? `<span class="badge badge-gray">CUI: ${p.cui}</span>` : ''}
+                ${fechaIni ? `<span class="badge badge-blue">🚀 ${fechaIni.substring(0, 10)}${fechaFin ? ' → 🏁 ' + fechaFin.substring(0, 10) : ''}</span>` : (!isMulti && p.estado_info !== 'NO_APLICA' ? `<span class="badge badge-red">⚠️ Sin Inicio</span>` : '')}
                 ${photosCount > 0 ? `<span class="badge badge-green">📸 ${photosCount}</span>` : ''}
               </div>
             </div>
@@ -1999,7 +2036,7 @@
           if (p.id === 999 || p.es_multiproyecto) {
             elNum.innerText = `🔀 MULTI-PROYECTO`;
             elNum.style.background = '#7E22CE';
-          } else if (p.es_auditoria_2022_2025 !== false && p.id <= 69) {
+          } else if (p.es_auditoria_2022_2025 === true || p.id <= 69) {
             elNum.innerText = `OBRA CIVIL N° ${String(p.id).padStart(2, '0')}`;
             elNum.style.background = '#2563EB';
           } else {
@@ -2007,19 +2044,38 @@
             elNum.style.background = '#475569';
           }
         }
+        const elSit = document.getElementById('drawerSitBadge');
+        if (elSit) {
+          const sInfo = getCampoSitBadge(p);
+          elSit.innerText = sInfo.label;
+          elSit.style.background = sInfo.bg;
+          elSit.style.color = sInfo.col;
+          elSit.style.display = (p.id === 999 || p.es_multiproyecto) ? 'none' : 'inline-block';
+        }
+        const elDates = document.getElementById('drawerDatesIng');
+        if (elDates) {
+          const ini = d.fecha_inicio || (p.tiene_fecha_inicio ? p.fecha_inicio : '');
+          const fin = d.fecha_culm || p.fecha_termino_verificada_ing || (p.fecha_culminacion_real && p.fecha_culminacion_real !== '-' ? p.fecha_culminacion_real : '');
+          if (ini || fin) {
+            elDates.innerText = `🚀 Inicio: ${ini || 'S/D'}   |   🏁 Término: ${fin || 'S/D'}`;
+            elDates.style.display = 'block';
+          } else {
+            elDates.style.display = 'none';
+          }
+        }
         const elTitle = document.getElementById('drawerTitle');
         if (elTitle) elTitle.innerText = p.desc;
         const elCui = document.getElementById('drawerCui');
-        if (elCui) elCui.innerText = p.cui !== 'N/D' ? `CUI: ${p.cui}` : 'CUI: S/N';
+        if (elCui) elCui.innerText = p.cui && p.cui !== 'N/D' ? `CUI: ${p.cui}` : 'CUI: S/N';
         const elProv = document.getElementById('drawerProv');
         if (elProv) elProv.innerText = p.provincia;
         const elConv = document.getElementById('drawerConv');
         if (elConv) elConv.innerText = p.convenio;
 
         const elIni = document.getElementById('inputFechaInicio');
-        if (elIni) elIni.value = d.fecha_inicio || p.fecha_inicio || '';
+        if (elIni) elIni.value = d.fecha_inicio || (p.tiene_fecha_inicio ? p.fecha_inicio : '');
         const elCulm = document.getElementById('inputFechaCulm');
-        if (elCulm) elCulm.value = d.fecha_culm || p.fecha_culminacion_real || '';
+        if (elCulm) elCulm.value = d.fecha_culm || (p.fecha_culminacion_real && p.fecha_culminacion_real !== '-' ? p.fecha_culminacion_real : '');
         const elNotas = document.getElementById('inputNotas');
         if (elNotas) elNotas.value = d.notas || '';
         const elNotasAud = document.getElementById('inputNotasAuditoria');

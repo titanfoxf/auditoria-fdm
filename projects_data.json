@@ -1,7 +1,7 @@
 {
-  "total_proyectos": 154,
-  "auditoria_2022_2025_count": 69,
-  "adicionales_maestro_count": 84,
+  "total_proyectos": 170,
+  "auditoria_2022_2025_count": 70,
+  "adicionales_maestro_count": 99,
   "projects": [
     {
       "id": 1,
@@ -471,12 +471,12 @@
         }
       ],
       "total_hitos": 12,
-      "fecha_inicio": "17 de mayo del 2021",
-      "fecha_inicio_sort": "9999-99-99",
+      "fecha_inicio": "17/05/2021",
+      "fecha_inicio_sort": "2021-05-17",
       "tiene_fecha_inicio": true,
-      "fecha_inicio_doc": "INFORME N° 171-2022-PMO-FDM (Tomo 2022 Folio 138)",
+      "fecha_inicio_doc": "Matriz Ing. FDM (Verif. 17/05/2021; prev. 17 de mayo del 2021: INFORME N° 171-2022-PMO-FDM (Tomo 2022 Folio 138))",
       "fecha_termino_prog": "15 de agosto del 2021",
-      "fecha_culminacion_real": "10 de diciembre del 2021",
+      "fecha_culminacion_real": "10/12/2022",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
       "estado_info": "COMPLETA",
@@ -491,7 +491,14 @@
       "plazo": "90 d.c. + 208 d.c. (Ampliación 01)",
       "monto_contratado": "S/ 948,114.80 (+ Adicional S/ 446,441.72)",
       "modalidad": "Administración Directa (Res. Gerencial N° 048-2018-GM/MDEA)",
-      "es_auditoria_2022_2025": true
+      "es_auditoria_2022_2025": true,
+      "fuentes_excel_ing": [
+        "100 - ILO F16"
+      ],
+      "estado_situacional": "LIQUIDADO",
+      "fecha_inicio_verificada_ing": true,
+      "fecha_termino_verificada_ing": "10/12/2022",
+      "fecha_termino_sort": "2022-12-10"
     },
     {
       "id": 7,
@@ -529,7 +536,7 @@
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
-      "estado_info": "NO_APLICA",
+      "estado_info": "PENDIENTE",
       "estado_info_label": "⚪ NO APLICA (NO EJECUTADA)",
       "estado_info_desc": "Expediente observado o cambio de proyecto en Directorio (S/ 0.00 ejecutado, sin obra física)",
       "confiabilidad": "ALTA",
@@ -927,12 +934,12 @@
         }
       ],
       "total_hitos": 32,
-      "fecha_inicio": "14 de abril del 2023",
-      "fecha_inicio_sort": "9999-99-99",
+      "fecha_inicio": "14/04/2023",
+      "fecha_inicio_sort": "2023-04-14",
       "tiene_fecha_inicio": true,
-      "fecha_inicio_doc": "INFORME N° 264-2024-PMO-FDM (Tomo 4 Folio 20) e INFORME N° 474-2024-PMO-FDM (Tomo 7 Folio 8)",
+      "fecha_inicio_doc": "Matriz Ing. FDM (Verif. 14/04/2023; prev. 14 de abril del 2023: INFORME N° 264-2024-PMO-FDM (Tomo 4 Folio 20) e INFORME N° 474-2024-PMO-FDM (Tomo 7 Folio 8))",
       "fecha_termino_prog": "12 de julio del 2023",
-      "fecha_culminacion_real": "12 de julio del 2023",
+      "fecha_culminacion_real": "12/07/2023",
       "acta_recepcion": "",
       "resolucion_liquidacion": "Liquidación de consultoría de supervisión aprobada en 2024",
       "estado_info": "COMPLETA",
@@ -946,7 +953,17 @@
       "contratista": "Consorcio La Glorieta",
       "plazo": "90 días calendario",
       "monto_contratado": "S/ 588,806.14",
-      "es_auditoria_2022_2025": true
+      "es_auditoria_2022_2025": true,
+      "fuentes_excel_ing": [
+        "100 - ILO F6"
+      ],
+      "acuerdo_fdm": "Sesión extraordinaria del 16/07/2021",
+      "estado_situacional": "LIQUIDADO",
+      "ampliacion_presupuestal": 0.0,
+      "costo_total": 643684.31,
+      "fecha_inicio_verificada_ing": true,
+      "fecha_termino_verificada_ing": "12/07/2023",
+      "fecha_termino_sort": "2023-07-12"
     },
     {
       "id": 9,
@@ -1197,12 +1214,12 @@
         }
       ],
       "total_hitos": 20,
-      "fecha_inicio": "17 de noviembre del 2022",
-      "fecha_inicio_sort": "9999-99-99",
+      "fecha_inicio": "17/11/2022",
+      "fecha_inicio_sort": "2022-11-17",
       "tiene_fecha_inicio": true,
-      "fecha_inicio_doc": "INFORME N° 090-2024, 226-2024, 537-2024, 585-2024 (Tomos 2, 3, 8, 9 - 2024)",
+      "fecha_inicio_doc": "Matriz Ing. FDM (Verif. 17/11/2022; prev. 17 de noviembre del 2022: INFORME N° 090-2024, 226-2024, 537-2024, 585-2024 (Tomos 2, 3, 8, 9 - 2024))",
       "fecha_termino_prog": "09 de febrero del 2023",
-      "fecha_culminacion_real": "09 de febrero del 2023",
+      "fecha_culminacion_real": "23/02/2023",
       "acta_recepcion": "",
       "resolucion_liquidacion": "Liquidada integralmente por S/ 601,590.14 en 2024 (Informe N° 585-2024)",
       "estado_info": "COMPLETA",
@@ -1216,7 +1233,17 @@
       "contratista": "EDIMARZA CONSTRUCTORA E INMOBILIARIA S.R.L.",
       "plazo": "85 días calendario",
       "monto_contratado": "S/ 540,771.34",
-      "es_auditoria_2022_2025": true
+      "es_auditoria_2022_2025": true,
+      "fuentes_excel_ing": [
+        "100 - ILO F7"
+      ],
+      "acuerdo_fdm": "Sesión extraordinaria del 16/07/2021",
+      "estado_situacional": "LIQUIDADO",
+      "ampliacion_presupuestal": 5828.26,
+      "costo_total": 601590.14,
+      "fecha_inicio_verificada_ing": true,
+      "fecha_termino_verificada_ing": "23/02/2023",
+      "fecha_termino_sort": "2023-02-23"
     },
     {
       "id": 10,
@@ -1225,9 +1252,9 @@
       "desc": "MEJORAMIENTO SERVICIO DE ASISTENCIA ALIMENTARIA DEL COMEDOR POPULAR VIRGEN DE GUADALUPE PROMUVI VII PAMPA INALAMBRICA DEL DISTRITO DE ILO - PROVINCIA DE ILO - DEPARTAMENTO DE MOQUEGUA\"",
       "cui": "N/D",
       "tipologia": "OBRAS CIVILES",
-      "estatus": "EXP. OBSERV.",
+      "estatus": "PRIORIZADO Y EXPEDIENTE OBSERVADO",
       "prio": 587181.1,
-      "costo_ejec": 0,
+      "costo_ejec": 0.0,
       "tiene_caja": "NO - ARCHIVADOR",
       "n_cajas": "-",
       "checks": {
@@ -1254,7 +1281,7 @@
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
-      "estado_info": "PENDIENTE",
+      "estado_info": "NO_APLICA",
       "estado_info_label": "🔴 INCOMPLETA",
       "estado_info_desc": "Sin antecedentes en Tomos 2022-2023; pendiente ubicar en Cajas de Archivo Central",
       "detalles_faltantes": [
@@ -1269,7 +1296,14 @@
       "contrato": "",
       "contratista": "",
       "plazo": "",
-      "es_auditoria_2022_2025": true
+      "es_auditoria_2022_2025": true,
+      "fuentes_excel_ing": [
+        "100 - ILO F8"
+      ],
+      "acuerdo_fdm": "Sesión extraordinaria del 16/07/2021",
+      "ampliacion_presupuestal": 0.0,
+      "costo_total": 0.0,
+      "estado_situacional": "PRIORIZADO Y EXPEDIENTE OBSERVADO"
     },
     {
       "id": 11,
@@ -1278,9 +1312,9 @@
       "desc": "MEJORAMIENTO SERVICIO DE PROTECCION VIAL EN LA CALLE N°1 DEL PUEBLO JOVEN MIGUEL GRAU DEL DISTRITO DE ILO - PROVINCIA DE ILO - DEPARTAMENTO DE MOQUEGUA\"",
       "cui": "N/D",
       "tipologia": "OBRAS CIVILES",
-      "estatus": "EXP. OBSERV.",
-      "prio": 851043,
-      "costo_ejec": 0,
+      "estatus": "PRIORIZADO Y EXPEDIENTE OBSERVADO",
+      "prio": 851043.0,
+      "costo_ejec": 0.0,
       "tiene_caja": "NO - ARCHIVADOR",
       "n_cajas": "-",
       "checks": {
@@ -1322,7 +1356,14 @@
       "contrato": "",
       "contratista": "",
       "plazo": "",
-      "es_auditoria_2022_2025": true
+      "es_auditoria_2022_2025": true,
+      "fuentes_excel_ing": [
+        "100 - ILO F9"
+      ],
+      "acuerdo_fdm": "Sesión extraordinaria del 16/07/2021",
+      "ampliacion_presupuestal": 0.0,
+      "costo_total": 0.0,
+      "estado_situacional": "PRIORIZADO Y EXPEDIENTE OBSERVADO"
     },
     {
       "id": 12,
@@ -1892,12 +1933,12 @@
         }
       ],
       "total_hitos": 49,
-      "fecha_inicio": "16 de mayo del 2023",
-      "fecha_inicio_sort": "9999-99-99",
+      "fecha_inicio": "16/05/2023",
+      "fecha_inicio_sort": "2023-05-16",
       "tiene_fecha_inicio": true,
-      "fecha_inicio_doc": "INFORME N° 405-2024-PMO-FDM y 426-2024-PMO-FDM (Tomo 6 - 2024 Folios 1 y 4)",
+      "fecha_inicio_doc": "Matriz Ing. FDM (Verif. 16/05/2023; prev. 16 de mayo del 2023: INFORME N° 405-2024-PMO-FDM y 426-2024-PMO-FDM (Tomo 6 - 2024 Folios 1 y 4))",
       "fecha_termino_prog": "14 de julio del 2023",
-      "fecha_culminacion_real": "Concluida físicamente",
+      "fecha_culminacion_real": "14/07/2023",
       "acta_recepcion": "Recepción convocada para el 02 de setiembre del 2024",
       "resolucion_liquidacion": "Observaciones a documentación para recepción levantadas (Informe N° 426-2024)",
       "estado_info": "COMPLETA",
@@ -1911,7 +1952,18 @@
       "contratista": "Consorcio Salud Ilo",
       "plazo": "60 días calendario",
       "monto_contratado": "S/ 709,078.06",
-      "es_auditoria_2022_2025": true
+      "es_auditoria_2022_2025": true,
+      "fuentes_excel_ing": [
+        "100 - ILO F15",
+        "100 - ILO F17"
+      ],
+      "acuerdo_fdm": "Sesión ordinaria del 06/06/2022",
+      "ampliacion_presupuestal": 369399.76,
+      "costo_total": 936584.99,
+      "estado_situacional": "LIQUIDADO",
+      "fecha_inicio_verificada_ing": true,
+      "fecha_termino_verificada_ing": "14/07/2023",
+      "fecha_termino_sort": "2023-07-14"
     },
     {
       "id": 13,
@@ -1960,7 +2012,14 @@
       "contratista": "CONSTRUCTORA Y CONSULTORA SIN MUROS SRL",
       "plazo": "120 d.c. (+ ampliaciones 26 y 20 d.c. por adicionales)",
       "monto_contratado": "S/ 2,589,062.15",
-      "es_auditoria_2022_2025": true
+      "es_auditoria_2022_2025": true,
+      "fuentes_excel_ing": [
+        "100 - ILO F21"
+      ],
+      "acuerdo_fdm": "Sesión ordinaria del 18/12/2023",
+      "ampliacion_presupuestal": 140919.49,
+      "costo_total": 3193054.92,
+      "estado_situacional": "EJECUTADO"
     },
     {
       "id": 14,
@@ -2107,7 +2166,7 @@
       "cui": "2272161",
       "tipologia": "OBRAS CIVILES",
       "estatus": "EJECUTADO",
-      "prio": 1500000,
+      "prio": 1500000.0,
       "costo_ejec": 1922828.08,
       "tiene_caja": "NO - ARCHIVADOR",
       "n_cajas": "-",
@@ -2579,12 +2638,12 @@
         }
       ],
       "total_hitos": 41,
-      "fecha_inicio": "17 de agosto del 2021",
-      "fecha_inicio_sort": "9999-99-99",
+      "fecha_inicio": "17/08/2021",
+      "fecha_inicio_sort": "2021-08-17",
       "tiene_fecha_inicio": true,
-      "fecha_inicio_doc": "INFORME N° 032-2024, 070-2024, 456-2024, 600-2024 (Tomos 1, 7, 9 - 2024)",
+      "fecha_inicio_doc": "Matriz Ing. FDM (Verif. 17/08/2021; prev. 17 de agosto del 2021: INFORME N° 032-2024, 070-2024, 456-2024, 600-2024 (Tomos 1, 7, 9 - 2024))",
       "fecha_termino_prog": "16 de febrero del 2023",
-      "fecha_culminacion_real": "16 de febrero del 2023",
+      "fecha_culminacion_real": "16/02/2023",
       "acta_recepcion": "Acta de Recepción suscrita el 27 de noviembre del 2023",
       "resolucion_liquidacion": "Conformidad a la liquidación de obra y supervisión aprobada en 2024 (Informe N° 600-2024)",
       "estado_info": "COMPLETA",
@@ -2598,7 +2657,17 @@
       "contratista": "CONSORCIO HUACANANE (ACVO Ing. + LUMPER SAC)",
       "plazo": "150 d.c. + 70 d.c. (Ampliación 01)",
       "monto_contratado": "S/ 1,755,169.05",
-      "es_auditoria_2022_2025": true
+      "es_auditoria_2022_2025": true,
+      "fuentes_excel_ing": [
+        "100- MN F14"
+      ],
+      "acuerdo_fdm": "Sesión extraordinaria del 26/03/2021",
+      "estado_situacional": "LIQUIDADO",
+      "ampliacion_presupuestal": 0.0,
+      "costo_total": 1922828.08,
+      "fecha_inicio_verificada_ing": true,
+      "fecha_termino_verificada_ing": "16/02/2023",
+      "fecha_termino_sort": "2023-02-16"
     },
     {
       "id": 17,
@@ -2959,12 +3028,12 @@
         }
       ],
       "total_hitos": 30,
-      "fecha_inicio": "09 de julio del 2021",
-      "fecha_inicio_sort": "9999-99-99",
+      "fecha_inicio": "09/07/2021",
+      "fecha_inicio_sort": "2021-07-09",
       "tiene_fecha_inicio": true,
-      "fecha_inicio_doc": "INFORME N° 168-2023-PMO-FDM (Tomo 2 Folio 42) y Liquidación FDM",
+      "fecha_inicio_doc": "Matriz Ing. FDM (Verif. 09/07/2021; prev. 09 de julio del 2021: INFORME N° 168-2023-PMO-FDM (Tomo 2 Folio 42) y Liquidación FDM) (Verif. Ing. FDM)",
       "fecha_termino_prog": "05 de noviembre del 2021",
-      "fecha_culminacion_real": "24 de febrero del 2022 (Asiento N° 355)",
+      "fecha_culminacion_real": "05/12/2021",
       "acta_recepcion": "10 de agosto del 2023 (Acta de Recepción FDM / Municipalidad de Cuchumbaya)",
       "resolucion_liquidacion": "Liquidación de Obra Aprobada el 21/12/2023",
       "estado_info": "COMPLETA",
@@ -2978,7 +3047,19 @@
       "contratista": "Consorcio Sur Perú",
       "plazo": "120 días calendario",
       "monto_contratado": "S/ 1,263,353.89",
-      "es_auditoria_2022_2025": true
+      "es_auditoria_2022_2025": true,
+      "fuentes_excel_ing": [
+        "100- MN F15",
+        "100- MN F21"
+      ],
+      "acuerdo_fdm": "Sesión extraordinaria del 19/02/2020 Sesión ordinaria del 06/11/2020 Sesión ordinaria del 12/11/2021 | 2023",
+      "estado_situacional": "LIQUIDADO",
+      "ampliacion_presupuestal": 95820.13,
+      "costo_total": 1395583.99,
+      "fecha_inicio_verificada_ing": true,
+      "fecha_termino_verificada_ing": "05/12/2021",
+      "fecha_termino_sort": "2021-12-05",
+      "comentario_ing": "Fila alt. Excel Ing. fecha término: 05/11/2021"
     },
     {
       "id": 18,
@@ -4404,12 +4485,12 @@
         }
       ],
       "total_hitos": 122,
-      "fecha_inicio": "17 de setiembre del 2022",
-      "fecha_inicio_sort": "9999-99-99",
+      "fecha_inicio": "17/09/2022",
+      "fecha_inicio_sort": "2022-09-17",
       "tiene_fecha_inicio": true,
-      "fecha_inicio_doc": "INFORME N° 062-2024, 076-2024, 104-2024, 274-2024, 278-2024 (Tomos 1, 2, 4 - 2024)",
+      "fecha_inicio_doc": "Matriz Ing. FDM (Verif. 17/09/2022; prev. 17 de setiembre del 2022: INFORME N° 062-2024, 076-2024, 104-2024, 274-2024, 278-2024 (Tomos 1, 2, 4 - 2024))",
       "fecha_termino_prog": "04 de enero del 2023 (Modif. N° 03: 15 de junio del 2023)",
-      "fecha_culminacion_real": "30 de junio del 2023",
+      "fecha_culminacion_real": "15/06/2023",
       "acta_recepcion": "Acta de acuerdo de entrega provisional: 31 de octubre del 2023",
       "resolucion_liquidacion": "Liquidación integral tramitada con observaciones a liquidación de contratista (Informe N° 274, 278-2024)",
       "estado_info": "COMPLETA",
@@ -4423,7 +4504,17 @@
       "contratista": "Consorcio Santa Fortunata",
       "plazo": "110 d.c. (+ ampliaciones al 15/06/2023)",
       "monto_contratado": "S/ 2,120,850.00",
-      "es_auditoria_2022_2025": true
+      "es_auditoria_2022_2025": true,
+      "fuentes_excel_ing": [
+        "100- MN F16"
+      ],
+      "acuerdo_fdm": "Sesión extraordinaria del 12/11/2021",
+      "estado_situacional": "LIQUIDADO",
+      "ampliacion_presupuestal": 493970.51,
+      "costo_total": 2232983.43,
+      "fecha_inicio_verificada_ing": true,
+      "fecha_termino_verificada_ing": "15/06/2023",
+      "fecha_termino_sort": "2023-06-15"
     },
     {
       "id": 20,
@@ -4485,7 +4576,7 @@
       "desc": "CONSTRUCCION E IMPLEMENTACION DE CREMATORIO PARA LA SOCIEDAD DE BENEFICENCIA DE MOQUEGUA, DEL DEPARTAMENTO DE MOQUEGUA, PROVINCIA DE MARISCAL NIETO, DISTRITO DE MOQUEGUA (ETAPA I)”",
       "cui": "N/D",
       "tipologia": "OBRAS CIVILES",
-      "estatus": "EN EJEC.",
+      "estatus": "EN EJECUCION",
       "prio": 1785128.71,
       "costo_ejec": 2382663.18,
       "tiene_caja": "NO - ARCHIVADOR",
@@ -4595,12 +4686,12 @@
         }
       ],
       "total_hitos": 8,
-      "fecha_inicio": "08 de noviembre del 2024 (Dispuesto inicio: 09/09/2024)",
-      "fecha_inicio_sort": "9999-99-99",
+      "fecha_inicio": "08/11/2024",
+      "fecha_inicio_sort": "2024-11-08",
       "tiene_fecha_inicio": true,
-      "fecha_inicio_doc": "INFORME N° 425-2024-PMO-FDM, 510-2024, 540-2024, 607-2024 (Tomos 6, 8, 9 - 2024)",
+      "fecha_inicio_doc": "Matriz Ing. FDM (Verif. 08/11/2024; prev. 08 de noviembre del 2024 (Dispuesto inicio: 09/09/2024): INFORME N° 425-2024-PMO-FDM, 510-2024, 540-2024, 607-2024 (Tomos 6, 8, 9 - 2024))",
       "fecha_termino_prog": "06 de marzo del 2025",
-      "fecha_culminacion_real": "",
+      "fecha_culminacion_real": "18/07/2025",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
       "estado_info": "COMPLETA",
@@ -4614,7 +4705,18 @@
       "contratista": "EDIMARZA CONSTRUCTORA E INMOBILIARIA SRL",
       "plazo": "119 días calendario (Suspendida 16 meses por certificación ambiental y cambio de uso)",
       "monto_contratado": "S/ 1,350,074.82",
-      "es_auditoria_2022_2025": true
+      "es_auditoria_2022_2025": true,
+      "fuentes_excel_ing": [
+        "100- MN F18"
+      ],
+      "acuerdo_municipal": "Acuerdo de Consejo N° 02-2022-MPMN",
+      "acuerdo_fdm": "Sesión ordinaria del 01/06/2022",
+      "estado_situacional": "EN LIQUIDACION",
+      "ampliacion_presupuestal": 469088.42,
+      "costo_total": 2382663.18,
+      "fecha_inicio_verificada_ing": true,
+      "fecha_termino_verificada_ing": "18/07/2025",
+      "fecha_termino_sort": "2025-07-18"
     },
     {
       "id": 22,
@@ -4624,7 +4726,7 @@
       "cui": "N/D",
       "tipologia": "OBRAS CIVILES",
       "estatus": "EJECUTADO",
-      "prio": 954091.18,
+      "prio": 45111.0,
       "costo_ejec": 980867.73,
       "tiene_caja": "NO - ARCHIVADOR",
       "n_cajas": "-",
@@ -4986,12 +5088,12 @@
         }
       ],
       "total_hitos": 31,
-      "fecha_inicio": "04 de julio del 2023",
-      "fecha_inicio_sort": "9999-99-99",
+      "fecha_inicio": "04/07/2023",
+      "fecha_inicio_sort": "2023-07-04",
       "tiene_fecha_inicio": true,
-      "fecha_inicio_doc": "INFORME N° 273-2024, 278-2024, 282-2024 (Tomo 4 - 2024 Folios 5, 9, 22)",
+      "fecha_inicio_doc": "Matriz Ing. FDM (Verif. 04/07/2023; prev. 04 de julio del 2023: INFORME N° 273-2024, 278-2024, 282-2024 (Tomo 4 - 2024 Folios 5, 9, 22))",
       "fecha_termino_prog": "15 de setiembre del 2023 (Adenda N° 01 al 25 de setiembre del 2023)",
-      "fecha_culminacion_real": "25 de setiembre del 2023",
+      "fecha_culminacion_real": "23/09/2023",
       "acta_recepcion": "Acta de Acuerdo: 31 de octubre del 2023",
       "resolucion_liquidacion": "Aprobación de liquidación integral por S/ 954,091.18 (Informe N° 273, 278, 282-2024)",
       "estado_info": "COMPLETA",
@@ -5005,7 +5107,18 @@
       "contratista": "CONSORCIO INGENIERIA Y CONSTRUCCION M & J",
       "plazo": "74 d.c. + 10 d.c. (Ampliación 01)",
       "monto_contratado": "S/ 907,118.17",
-      "es_auditoria_2022_2025": true
+      "es_auditoria_2022_2025": true,
+      "fuentes_excel_ing": [
+        "100- MN F19",
+        "100- MN F20"
+      ],
+      "acuerdo_fdm": "Sesión extraordinaria del 29/02/2022",
+      "ampliacion_presupuestal": 26776.55,
+      "costo_total": 980867.73,
+      "estado_situacional": "LIQUIDADO",
+      "fecha_inicio_verificada_ing": true,
+      "fecha_termino_verificada_ing": "23/09/2023",
+      "fecha_termino_sort": "2023-09-23"
     },
     {
       "id": 23,
@@ -5134,7 +5247,15 @@
       "contrato": "",
       "contratista": "",
       "plazo": "",
-      "es_auditoria_2022_2025": true
+      "es_auditoria_2022_2025": true,
+      "fuentes_excel_ing": [
+        "100 - SC F6"
+      ],
+      "acuerdo_fdm": "Sesión extraordinaria del 21/10/2019 Sesión ordinaria del 06/11/2020 Sesión ordinaria del 28/10/2022",
+      "comentario_ing": "* Proyecto finalizado, corresponde liquidación.",
+      "estado_situacional": "FINALIZADO (CORRESPONDE LIQUIDACIÓN)",
+      "ampliacion_presupuestal": 72632.79,
+      "costo_total": 496388.18
     },
     {
       "id": 24,
@@ -5264,7 +5385,15 @@
       "contratista": "",
       "plazo": "75 d.c. + 35 d.c. (Ampliación N° 01)",
       "modalidad": "Administración Directa (Fondo de Desarrollo de Moquegua)",
-      "es_auditoria_2022_2025": true
+      "es_auditoria_2022_2025": true,
+      "fuentes_excel_ing": [
+        "100 - SC F7"
+      ],
+      "acuerdo_fdm": "Sesión extraordinaria del 21/10/2019 Sesión ordinaria del 06/11/2020 Sesión ordinaria del 28/10/2022",
+      "comentario_ing": "* Proyecto finalizado, corresponde liquidación.",
+      "estado_situacional": "FINALIZADO (CORRESPONDE LIQUIDACIÓN)",
+      "ampliacion_presupuestal": 89226.24,
+      "costo_total": 488803.4
     },
     {
       "id": 25,
@@ -5393,7 +5522,15 @@
       "contrato": "",
       "contratista": "",
       "plazo": "",
-      "es_auditoria_2022_2025": true
+      "es_auditoria_2022_2025": true,
+      "fuentes_excel_ing": [
+        "100 - SC F8"
+      ],
+      "acuerdo_fdm": "Sesión extraordinaria del 21/10/2019 Sesión ordinaria del 06/11/2020 Sesión ordinaria del 28/10/2022",
+      "comentario_ing": "* Proyecto finalizado, corresponde liquidación.",
+      "estado_situacional": "FINALIZADO (CORRESPONDE LIQUIDACIÓN)",
+      "ampliacion_presupuestal": 87369.44,
+      "costo_total": 478260.61
     },
     {
       "id": 26,
@@ -5446,7 +5583,13 @@
       "contrato": "",
       "contratista": "",
       "plazo": "",
-      "es_auditoria_2022_2025": true
+      "es_auditoria_2022_2025": true,
+      "fuentes_excel_ing": [
+        "100 - SC F15"
+      ],
+      "ampliacion_presupuestal": 0.0,
+      "costo_total": 168298.66,
+      "estado_situacional": "EJECUTADO"
     },
     {
       "id": 27,
@@ -5457,7 +5600,7 @@
       "tipologia": "OBRAS CIVILES",
       "estatus": "EJECUTADO",
       "prio": 163996.79,
-      "costo_ejec": 100000,
+      "costo_ejec": 100000.0,
       "tiene_caja": "NO - ARCHIVADOR",
       "n_cajas": "-",
       "checks": {
@@ -5499,7 +5642,14 @@
       "contrato": "",
       "contratista": "",
       "plazo": "",
-      "es_auditoria_2022_2025": true
+      "es_auditoria_2022_2025": true,
+      "fuentes_excel_ing": [
+        "100 - SC F17"
+      ],
+      "acuerdo_fdm": "Sesión extraordinaria del 03/09/2021",
+      "ampliacion_presupuestal": 0.0,
+      "costo_total": 100000.0,
+      "estado_situacional": "EJECUTADO"
     },
     {
       "id": 28,
@@ -5509,7 +5659,7 @@
       "cui": "N/D",
       "tipologia": "OBRAS CIVILES",
       "estatus": "EJECUTADO",
-      "prio": 1500000,
+      "prio": 1500000.0,
       "costo_ejec": 1691166.21,
       "tiene_caja": "EN CAJA (Caja 06)",
       "n_cajas": "Caja 06",
@@ -5582,7 +5732,7 @@
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
-      "estado_info": "COMPLETA",
+      "estado_info": "PARCIAL",
       "estado_info_label": "🟢 EXPEDIENTE EN CAJA FDM",
       "estado_info_desc": "Expediente físico verificado en EN CAJA (Caja 06) con liquidación técnica-financiera",
       "detalles_faltantes": [],
@@ -5592,7 +5742,15 @@
       "contrato": "",
       "contratista": "",
       "plazo": "",
-      "es_auditoria_2022_2025": true
+      "es_auditoria_2022_2025": true,
+      "fuentes_excel_ing": [
+        "100 - SC F19",
+        "100 - SC F43"
+      ],
+      "acuerdo_fdm": "Sesión extraordinaria del 21/10/2019 Sesión extraordinaria del 06/11/2020 Sesión extraordinaria del 13/04/2022",
+      "ampliacion_presupuestal": 285649.16,
+      "costo_total": 1691166.21,
+      "estado_situacional": "LIQUIDADO"
     },
     {
       "id": 29,
@@ -5697,7 +5855,14 @@
       "contratista": "Consorcio Chojata",
       "plazo": "120 días calendario",
       "monto_contratado": "S/ 1,384,205.16",
-      "es_auditoria_2022_2025": true
+      "es_auditoria_2022_2025": true,
+      "fuentes_excel_ing": [
+        "100 - SC F20"
+      ],
+      "acuerdo_fdm": "Sesión extraordinaria del 10/06/2021",
+      "ampliacion_presupuestal": 0.0,
+      "costo_total": 1457757.16,
+      "estado_situacional": "EJECUTADO"
     },
     {
       "id": 30,
@@ -5706,7 +5871,7 @@
       "desc": "MEJORAMIENTO Y AMPLIACIÓN DEL SERVICIO DE AGUA PARA RIEGO DE LOS SECTORES DE ARAPA, AQUINA Y AYSANA QUINRAY EN LA LOCALIDAD DE YUNGA - GENERAL SÁNCHEZ CERRO - MOQUEGUA.",
       "cui": "N/D",
       "tipologia": "OBRAS CIVILES",
-      "estatus": "EN EJEC.",
+      "estatus": "EN EJECUCION",
       "prio": 1434812.8,
       "costo_ejec": 1202137.68,
       "tiene_caja": "NO - ARCHIVADOR",
@@ -6069,12 +6234,12 @@
         }
       ],
       "total_hitos": 31,
-      "fecha_inicio": "01 de julio del 2023",
-      "fecha_inicio_sort": "9999-99-99",
+      "fecha_inicio": "01/07/2023",
+      "fecha_inicio_sort": "2023-07-01",
       "tiene_fecha_inicio": true,
-      "fecha_inicio_doc": "INFORME N° 042-2024, 098-2024, 330-2024, 336-2024 (Tomos 1, 2, 5 - 2024)",
+      "fecha_inicio_doc": "Matriz Ing. FDM (Verif. 01/07/2023; prev. 01 de julio del 2023: INFORME N° 042-2024, 098-2024, 330-2024, 336-2024 (Tomos 1, 2, 5 - 2024))",
       "fecha_termino_prog": "28 de octubre del 2023",
-      "fecha_culminacion_real": "13 de enero del 2024 (Culminada con atraso)",
+      "fecha_culminacion_real": "13/01/2024",
       "acta_recepcion": "Comisión de recepción conformada",
       "resolucion_liquidacion": "",
       "estado_info": "COMPLETA",
@@ -6088,7 +6253,17 @@
       "contratista": "CONSTRUCTORES Y MINERÍA DEL SUR S.C.R.L.",
       "plazo": "120 días calendario",
       "monto_contratado": "S/ 765,528.31",
-      "es_auditoria_2022_2025": true
+      "es_auditoria_2022_2025": true,
+      "fuentes_excel_ing": [
+        "100 - SC F21"
+      ],
+      "acuerdo_fdm": "Sesión extraordinaria del 14/05/2021",
+      "estado_situacional": "LIQUIDADO",
+      "ampliacion_presupuestal": 0.0,
+      "costo_total": 1434812.8,
+      "fecha_inicio_verificada_ing": true,
+      "fecha_termino_verificada_ing": "13/01/2024",
+      "fecha_termino_sort": "2024-01-13"
     },
     {
       "id": 31,
@@ -6097,7 +6272,7 @@
       "desc": "CREACIÓN DEL SERVICIO DE TRANSITABILIDAD VEHICULAR Y PEATONAL (PUENTE MAYUCHIQUILACK) RUTA MO-103, KM 114; EN EL SECTOR MAYUCHIQUILACK DE LA COMUNIDAD CAMPESINA DE LLOQUE, DISTRITO DE LLOQUE - PROVINCIA DE GENERAL SÁNCHEZ CERRO - DEPARTAMENTO DE MOQUEGUA",
       "cui": "N/D",
       "tipologia": "OBRAS CIVILES",
-      "estatus": "EN EJEC.",
+      "estatus": "EN EJECUCION",
       "prio": 1357663.55,
       "costo_ejec": 11981.8,
       "tiene_caja": "NO - ARCHIVADOR",
@@ -6228,7 +6403,14 @@
       "contrato": "Proceso Adjudicación Consorcio Lloque",
       "contratista": "Consorcio Lloque",
       "plazo": "",
-      "es_auditoria_2022_2025": true
+      "es_auditoria_2022_2025": true,
+      "fuentes_excel_ing": [
+        "100 - SC F22"
+      ],
+      "acuerdo_fdm": "Sesión extraordinaria del 24/03/2021",
+      "ampliacion_presupuestal": 0.0,
+      "costo_total": 1357663.55,
+      "estado_situacional": "EN EJECUCION"
     },
     {
       "id": 32,
@@ -6237,8 +6419,8 @@
       "desc": "CONSTRUCCIÓN DE LOS CANALES DE SAHUANAY DISTRITO LA CAPILLA PROVINCIA SÁNCHEZ CERRO REGIÓN MOQUEGUA.",
       "cui": "N/D",
       "tipologia": "OBRAS CIVILES",
-      "estatus": "EN EJEC.",
-      "prio": 500000,
+      "estatus": "EN EJECUCION",
+      "prio": 500000.0,
       "costo_ejec": 1823169.71,
       "tiene_caja": "NO - ARCHIVADOR",
       "n_cajas": "-",
@@ -6258,12 +6440,12 @@
       "alerta": "Trazabilidad completa con fechas comprobadas",
       "historial": [],
       "total_hitos": 0,
-      "fecha_inicio": "13 de noviembre del 2024",
-      "fecha_inicio_sort": "9999-99-99",
+      "fecha_inicio": "13/11/2024",
+      "fecha_inicio_sort": "2024-11-13",
       "tiene_fecha_inicio": true,
-      "fecha_inicio_doc": "INFORME N° 559-2024-PMO-FDM y 602-2024-PMO-FDM (Tomos 8 y 9 - 2024)",
+      "fecha_inicio_doc": "Matriz Ing. FDM (Verif. 13/11/2024; prev. 13 de noviembre del 2024: INFORME N° 559-2024-PMO-FDM y 602-2024-PMO-FDM (Tomos 8 y 9 - 2024))",
       "fecha_termino_prog": "12 de marzo del 2025",
-      "fecha_culminacion_real": "",
+      "fecha_culminacion_real": "20/05/2025",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
       "estado_info": "COMPLETA",
@@ -6277,7 +6459,17 @@
       "contratista": "CONSORCIO SAHUANAY",
       "plazo": "120 días calendario",
       "monto_contratado": "S/ 1,475,172.27",
-      "es_auditoria_2022_2025": true
+      "es_auditoria_2022_2025": true,
+      "fuentes_excel_ing": [
+        "100 - SC F23"
+      ],
+      "acuerdo_fdm": "Sesión extraordinaria del 21/10/2019",
+      "estado_situacional": "LIQUIDADO",
+      "ampliacion_presupuestal": 1056800.4,
+      "costo_total": 1823169.71,
+      "fecha_inicio_verificada_ing": true,
+      "fecha_termino_verificada_ing": "20/05/2025",
+      "fecha_termino_sort": "2025-05-20"
     },
     {
       "id": 33,
@@ -6286,9 +6478,9 @@
       "desc": "CREACIÓN DE LA CAPTACIÓN, LÍNEA DE CONDUCCIÓN DEL SISTEMA DE RIEGO EN LA LOCALIDAD DE CANDAGUA, DISTRITO DE MATALAQUE, PROVINCIA GENERAL SÁNCHEZ CERRO, DEPARTAMENTO MOQUEGUA.",
       "cui": "N/D",
       "tipologia": "OBRAS CIVILES",
-      "estatus": "EXP. OBSERV.",
-      "prio": 0,
-      "costo_ejec": 0,
+      "estatus": "POR EJECUTAR (PRIORIZADO Y OBSERVADO)",
+      "prio": 0.0,
+      "costo_ejec": 0.0,
       "tiene_caja": "NO - ARCHIVADOR",
       "n_cajas": "-",
       "checks": {
@@ -6315,7 +6507,7 @@
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
-      "estado_info": "PENDIENTE",
+      "estado_info": "NO_APLICA",
       "estado_info_label": "🔴 INCOMPLETA",
       "estado_info_desc": "Sin antecedentes en Tomos 2022-2023; pendiente ubicar en Cajas de Archivo Central",
       "detalles_faltantes": [
@@ -6330,7 +6522,14 @@
       "contrato": "",
       "contratista": "",
       "plazo": "",
-      "es_auditoria_2022_2025": true
+      "es_auditoria_2022_2025": true,
+      "fuentes_excel_ing": [
+        "100 - SC F24"
+      ],
+      "acuerdo_fdm": "Sesión extraordinaria del 21/10/2019",
+      "ampliacion_presupuestal": 0.0,
+      "costo_total": 0.0,
+      "estado_situacional": "POR EJECUTAR (PRIORIZADO Y OBSERVADO)"
     },
     {
       "id": 34,
@@ -6339,9 +6538,9 @@
       "desc": "AMPLIACIÓN DE LA LÍNEA DE CONDUCCIÓN DE TUBERÍA HDP 8\" EN EL ANEXO DE SIBAYA- DISTRITO DE UBINAS, PROVINCIA GENERAL SANCHEZ CERRO - REGIÓN MOQUEGUA",
       "cui": "N/D",
       "tipologia": "OBRAS CIVILES",
-      "estatus": "PRIORIZADO",
-      "prio": 0,
-      "costo_ejec": 0,
+      "estatus": "FALTA EXPEDIENTE (PRIORIZADO)",
+      "prio": 0.0,
+      "costo_ejec": 0.0,
       "tiene_caja": "NO - ARCHIVADOR",
       "n_cajas": "-",
       "checks": {
@@ -6368,7 +6567,7 @@
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
-      "estado_info": "PENDIENTE",
+      "estado_info": "NO_APLICA",
       "estado_info_label": "🔴 INCOMPLETA",
       "estado_info_desc": "Sin antecedentes en Tomos 2022-2023; pendiente ubicar en Cajas de Archivo Central",
       "detalles_faltantes": [
@@ -6383,7 +6582,14 @@
       "contrato": "",
       "contratista": "",
       "plazo": "",
-      "es_auditoria_2022_2025": true
+      "es_auditoria_2022_2025": true,
+      "fuentes_excel_ing": [
+        "100 - SC F25"
+      ],
+      "acuerdo_fdm": "Sesión extraordinaria del 21/10/2019",
+      "ampliacion_presupuestal": 0.0,
+      "costo_total": 0.0,
+      "estado_situacional": "FALTA EXPEDIENTE (PRIORIZADO)"
     },
     {
       "id": 35,
@@ -6392,9 +6598,9 @@
       "desc": "CONSTRUCCIÓN DE BOCATOMA DE CAIMÁN, DISTRITO LA CAPILLA, PROVINCIA SÁNCHEZ CERRO, REGIÓN MOQUEGUA.",
       "cui": "N/D",
       "tipologia": "OBRAS CIVILES",
-      "estatus": "EJECUTADO",
-      "prio": 0,
-      "costo_ejec": 0,
+      "estatus": "EJECUTADO POR LA MUNICIPALIDAD LA CAPILLA",
+      "prio": 0.0,
+      "costo_ejec": 0.0,
       "tiene_caja": "NO - ARCHIVADOR",
       "n_cajas": "-",
       "checks": {
@@ -6421,7 +6627,7 @@
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
-      "estado_info": "PENDIENTE",
+      "estado_info": "NO_APLICA",
       "estado_info_label": "🔴 INCOMPLETA",
       "estado_info_desc": "Sin antecedentes en Tomos 2022-2023; pendiente ubicar en Cajas de Archivo Central",
       "detalles_faltantes": [
@@ -6436,7 +6642,14 @@
       "contrato": "",
       "contratista": "",
       "plazo": "",
-      "es_auditoria_2022_2025": true
+      "es_auditoria_2022_2025": true,
+      "fuentes_excel_ing": [
+        "100 - SC F26"
+      ],
+      "acuerdo_fdm": "Sesión extraordinaria del 21/10/2019",
+      "ampliacion_presupuestal": 0.0,
+      "costo_total": 0.0,
+      "estado_situacional": "EJECUTADO POR LA MUNICIPALIDAD LA CAPILLA"
     },
     {
       "id": 36,
@@ -6445,9 +6658,9 @@
       "desc": "CREACIÓN DEL MERCADO DE ABASTOS EN LA COMUNIDAD DE UBINAS DEL DISTRITO DE UBINAS – PROVINCIA GENERAL SANCHEZ CERRO",
       "cui": "2602499",
       "tipologia": "OBRAS CIVILES",
-      "estatus": "EVALUAR CAMB",
-      "prio": 0,
-      "costo_ejec": 0,
+      "estatus": "EVALUAR CAMBIO",
+      "prio": 0.0,
+      "costo_ejec": 0.0,
       "tiene_caja": "NO - ARCHIVADOR",
       "n_cajas": "-",
       "checks": {
@@ -6474,7 +6687,7 @@
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
-      "estado_info": "PARCIAL",
+      "estado_info": "NO_APLICA",
       "estado_info_label": "🟡 TRAZABILIDAD PARCIAL",
       "estado_info_desc": "Cuenta con hitos contractuales en Tomos PMO; falta acta de inicio o liquidación",
       "detalles_faltantes": [
@@ -6489,7 +6702,14 @@
       "contratista": "CONSORCIO MAYA",
       "plazo": "",
       "monto_contratado": "S/ 7,189,451.90",
-      "es_auditoria_2022_2025": true
+      "es_auditoria_2022_2025": true,
+      "fuentes_excel_ing": [
+        "100 - SC F27"
+      ],
+      "acuerdo_fdm": "Sin ACTA DE S.C",
+      "ampliacion_presupuestal": 0.0,
+      "costo_total": 0.0,
+      "estado_situacional": "EVALUAR CAMBIO"
     },
     {
       "id": 37,
@@ -6498,9 +6718,9 @@
       "desc": "\"CONSTRUCCIÓN DEL CENTRO DE REPOSO TURÍSTICO EN LA COMUNIDAD DE SALINAS MOCHE, DISTRITO DE PUQUINA, PROVINCIA GENERAL SÁNCHEZ CERRO, DEPARTAMENTO DE MOQUEGUA\"",
       "cui": "N/D",
       "tipologia": "OBRAS CIVILES",
-      "estatus": "EVALUAR CAMB",
-      "prio": 0,
-      "costo_ejec": 0,
+      "estatus": "EVALUAR CAMBIO",
+      "prio": 0.0,
+      "costo_ejec": 0.0,
       "tiene_caja": "NO - ARCHIVADOR",
       "n_cajas": "-",
       "checks": {
@@ -6527,7 +6747,7 @@
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
-      "estado_info": "PENDIENTE",
+      "estado_info": "NO_APLICA",
       "estado_info_label": "🔴 INCOMPLETA",
       "estado_info_desc": "Sin antecedentes en Tomos 2022-2023; pendiente ubicar en Cajas de Archivo Central",
       "detalles_faltantes": [
@@ -6542,7 +6762,14 @@
       "contrato": "",
       "contratista": "",
       "plazo": "",
-      "es_auditoria_2022_2025": true
+      "es_auditoria_2022_2025": true,
+      "fuentes_excel_ing": [
+        "100 - SC F29"
+      ],
+      "acuerdo_fdm": "Sin ACTA DE S.C",
+      "ampliacion_presupuestal": 0.0,
+      "costo_total": 0.0,
+      "estado_situacional": "EVALUAR CAMBIO"
     },
     {
       "id": 38,
@@ -6551,9 +6778,9 @@
       "desc": "CREACIÓN DEL PUENTE VEHICULAR HUASAPAMPA EN LA LOCALIDAD DE YUNGA VÍA TRAMO MO-103, DISTRITO DE YUNGA, PROVINCIA GENERAL SÁNCHEZ CERRO - REGIÓN MOQUEGUA.",
       "cui": "N/D",
       "tipologia": "OBRAS CIVILES",
-      "estatus": "EJECUTADO",
-      "prio": 0,
-      "costo_ejec": 0,
+      "estatus": "EJECUTADO POR EL GORE",
+      "prio": 0.0,
+      "costo_ejec": 0.0,
       "tiene_caja": "NO - ARCHIVADOR",
       "n_cajas": "-",
       "checks": {
@@ -6580,7 +6807,7 @@
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
-      "estado_info": "PENDIENTE",
+      "estado_info": "NO_APLICA",
       "estado_info_label": "🔴 INCOMPLETA",
       "estado_info_desc": "Sin antecedentes en Tomos 2022-2023; pendiente ubicar en Cajas de Archivo Central",
       "detalles_faltantes": [
@@ -6595,7 +6822,14 @@
       "contrato": "",
       "contratista": "",
       "plazo": "",
-      "es_auditoria_2022_2025": true
+      "es_auditoria_2022_2025": true,
+      "fuentes_excel_ing": [
+        "100 - SC F30"
+      ],
+      "acuerdo_fdm": "Sin ACTA DE S.C",
+      "ampliacion_presupuestal": 0.0,
+      "costo_total": 0.0,
+      "estado_situacional": "EJECUTADO POR EL GORE"
     },
     {
       "id": 39,
@@ -6604,9 +6838,9 @@
       "desc": "MEJORAMIENTO Y AMPLIACION DEL SERVICIO DE AGUA PARA RIEGO SECTOR MISIHUA - JUAN CAHUANA, DE LA COMUNIDAD CAMPESINA DE LLOQUE, PROVINCIA GENERAL SANCHEZ CERRO - DEPARTAMENTO DE MOQUEGUA.",
       "cui": "N/D",
       "tipologia": "OBRAS CIVILES",
-      "estatus": "EVALUAR CAMB",
-      "prio": 0,
-      "costo_ejec": 0,
+      "estatus": "EVALUAR CAMBIO",
+      "prio": 0.0,
+      "costo_ejec": 0.0,
       "tiene_caja": "NO - ARCHIVADOR",
       "n_cajas": "-",
       "checks": {
@@ -6633,7 +6867,7 @@
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
-      "estado_info": "PENDIENTE",
+      "estado_info": "NO_APLICA",
       "estado_info_label": "🔴 INCOMPLETA",
       "estado_info_desc": "Sin antecedentes en Tomos 2022-2023; pendiente ubicar en Cajas de Archivo Central",
       "detalles_faltantes": [
@@ -6648,7 +6882,14 @@
       "contrato": "",
       "contratista": "",
       "plazo": "",
-      "es_auditoria_2022_2025": true
+      "es_auditoria_2022_2025": true,
+      "fuentes_excel_ing": [
+        "100 - SC F31"
+      ],
+      "acuerdo_fdm": "Sin ACTA DE S.C",
+      "ampliacion_presupuestal": 0.0,
+      "costo_total": 0.0,
+      "estado_situacional": "EVALUAR CAMBIO"
     },
     {
       "id": 40,
@@ -6657,9 +6898,9 @@
       "desc": "MEJORAMIENTO DEL SERVICIO DE PRACTICAS DEPORTIVAS Y RECREATIVAS DE LA LOSA DEPORTIVA SAN JUAN DE LUCCO DEL CENTRO POBLADO DE LUCCO, DISTRITO DE LLOQUE-PROVINCIA GENERAL SANCHEZ CERRO-DEPARTAMENTO DE MOQUEGUA",
       "cui": "N/D",
       "tipologia": "OBRAS CIVILES",
-      "estatus": "EVALUAR CAMB",
-      "prio": 0,
-      "costo_ejec": 0,
+      "estatus": "EVALUAR CAMBIO",
+      "prio": 0.0,
+      "costo_ejec": 0.0,
       "tiene_caja": "NO - ARCHIVADOR",
       "n_cajas": "-",
       "checks": {
@@ -6701,7 +6942,14 @@
       "contrato": "",
       "contratista": "",
       "plazo": "",
-      "es_auditoria_2022_2025": true
+      "es_auditoria_2022_2025": true,
+      "fuentes_excel_ing": [
+        "100 - SC F32"
+      ],
+      "acuerdo_fdm": "Sin ACTA DE S.C",
+      "ampliacion_presupuestal": 0.0,
+      "costo_total": 0.0,
+      "estado_situacional": "EVALUAR CAMBIO"
     },
     {
       "id": 41,
@@ -6710,9 +6958,9 @@
       "desc": "MEJORAMIENTO DEL PARQUE RECREACIONAL DEL ANEXO DE CHALLAHUAYO, DISTRITO DE OMATE, PROVINCIA GENERAL SANCHEZ CERRO, DEPARTAMENTO DE MOQUEGUA",
       "cui": "N/D",
       "tipologia": "OBRAS CIVILES",
-      "estatus": "EVALUAR CAMB",
-      "prio": 0,
-      "costo_ejec": 0,
+      "estatus": "EVALUAR CAMBIO",
+      "prio": 0.0,
+      "costo_ejec": 0.0,
       "tiene_caja": "NO - ARCHIVADOR",
       "n_cajas": "-",
       "checks": {
@@ -6754,7 +7002,14 @@
       "contrato": "",
       "contratista": "",
       "plazo": "",
-      "es_auditoria_2022_2025": true
+      "es_auditoria_2022_2025": true,
+      "fuentes_excel_ing": [
+        "100 - SC F33"
+      ],
+      "acuerdo_fdm": "Sin ACTA DE S.C",
+      "ampliacion_presupuestal": 0.0,
+      "costo_total": 0.0,
+      "estado_situacional": "EVALUAR CAMBIO"
     },
     {
       "id": 42,
@@ -7489,12 +7744,12 @@
         }
       ],
       "total_hitos": 64,
-      "fecha_inicio": "04 de julio del 2023",
-      "fecha_inicio_sort": "9999-99-99",
+      "fecha_inicio": "04/07/2023",
+      "fecha_inicio_sort": "2023-07-04",
       "tiene_fecha_inicio": true,
-      "fecha_inicio_doc": "INFORME N° 002-2024, 394-2024, 483-2024, 484-2024, 548-2024 (Tomos 1, 6, 7, 8 - 2024)",
+      "fecha_inicio_doc": "Matriz Ing. FDM (Verif. 04/07/2023; prev. 04 de julio del 2023: INFORME N° 002-2024, 394-2024, 483-2024, 484-2024, 548-2024 (Tomos 1, 6, 7, 8 - 2024))",
       "fecha_termino_prog": "31 de octubre del 2023 (Reprog. N° 04: 13 de febrero del 2024)",
-      "fecha_culminacion_real": "07 de mayo del 2024",
+      "fecha_culminacion_real": "13/02/2024",
       "acta_recepcion": "",
       "resolucion_liquidacion": "Observaciones a liquidación del contrato de obra reiteradas (Informe N° 548-2024)",
       "estado_info": "COMPLETA",
@@ -7508,7 +7763,17 @@
       "contratista": "ARUNTA CONTRATISTAS S.A.C. / Supervisión: CONSORCIO COGRI",
       "plazo": "120 d.c. (+ ampliaciones 16, 16, 28 y 45 d.c.)",
       "monto_contratado": "S/ 5,152,940.39",
-      "es_auditoria_2022_2025": true
+      "es_auditoria_2022_2025": true,
+      "fuentes_excel_ing": [
+        "100 - SC F34"
+      ],
+      "acuerdo_fdm": "Aprobado en Sesion de Consejo Directivo del FDM",
+      "estado_situacional": "LIQUIDADO",
+      "ampliacion_presupuestal": 0.0,
+      "costo_total": 6128448.29,
+      "fecha_inicio_verificada_ing": true,
+      "fecha_termino_verificada_ing": "13/02/2024",
+      "fecha_termino_sort": "2024-02-13"
     },
     {
       "id": 43,
@@ -7517,9 +7782,9 @@
       "desc": "MEJORAMIENTO DEL SERVICIO DE APOYO AL DESARROLLO PRODUCTIVO A TRAVÉS DEL LOCAL MULTIUSOS EN LA COMUNIDAD CAMPESINA DE SANTA ROSA DE PUCARÁ, DEL DISTRITO DE PUQUINA, PROVINCIA GENERAL SÁNCHEZ CERRO, DEPARTAMENTO DE MOQUEGUA”",
       "cui": "N/D",
       "tipologia": "OBRAS CIVILES",
-      "estatus": "EVALUAR CAMB",
-      "prio": 0,
-      "costo_ejec": 0,
+      "estatus": "EVALUAR CAMBIO",
+      "prio": 0.0,
+      "costo_ejec": 0.0,
       "tiene_caja": "NO - ARCHIVADOR",
       "n_cajas": "-",
       "checks": {
@@ -7546,7 +7811,7 @@
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
-      "estado_info": "PENDIENTE",
+      "estado_info": "NO_APLICA",
       "estado_info_label": "🔴 INCOMPLETA",
       "estado_info_desc": "Sin antecedentes en Tomos 2022-2023; pendiente ubicar en Cajas de Archivo Central",
       "detalles_faltantes": [
@@ -7561,7 +7826,14 @@
       "contrato": "",
       "contratista": "",
       "plazo": "",
-      "es_auditoria_2022_2025": true
+      "es_auditoria_2022_2025": true,
+      "fuentes_excel_ing": [
+        "100 - SC F35"
+      ],
+      "acuerdo_fdm": "Sin ACTA DE S.C",
+      "ampliacion_presupuestal": 0.0,
+      "costo_total": 0.0,
+      "estado_situacional": "EVALUAR CAMBIO"
     },
     {
       "id": 44,
@@ -7933,12 +8205,12 @@
         }
       ],
       "total_hitos": 31,
-      "fecha_inicio": "24 de mayo del 2023",
-      "fecha_inicio_sort": "9999-99-99",
+      "fecha_inicio": "24/05/2023",
+      "fecha_inicio_sort": "2023-05-24",
       "tiene_fecha_inicio": true,
-      "fecha_inicio_doc": "INFORME N° 116-2024, 291-2024, 327-2024, 475-2024, 489-2024 (Tomos 2, 4, 5, 7 - 2024)",
+      "fecha_inicio_doc": "Matriz Ing. FDM (Verif. 24/05/2023; prev. 24 de mayo del 2023: INFORME N° 116-2024, 291-2024, 327-2024, 475-2024, 489-2024 (Tomos 2, 4, 5, 7 - 2024))",
       "fecha_termino_prog": "20 de setiembre del 2023 (Reprog.: 04 de octubre del 2023)",
-      "fecha_culminacion_real": "08 de diciembre del 2023 (Acta: 24/02/2024)",
+      "fecha_culminacion_real": "04/10/2023",
       "acta_recepcion": "",
       "resolucion_liquidacion": "Trámite de subsanación de observaciones a liquidación de obra (Informe N° 489-2024)",
       "estado_info": "COMPLETA",
@@ -7952,7 +8224,16 @@
       "contratista": "CONSORCIO MOCHE / Supervisión: MARVIC S.R.L.",
       "plazo": "120 d.c. + 14 d.c. (Ampliación 01)",
       "monto_contratado": "S/ 1,007,319.25",
-      "es_auditoria_2022_2025": true
+      "es_auditoria_2022_2025": true,
+      "fuentes_excel_ing": [
+        "100 - SC F36"
+      ],
+      "estado_situacional": "LIQUIDADO",
+      "ampliacion_presupuestal": 0.0,
+      "costo_total": 1015901.5,
+      "fecha_inicio_verificada_ing": true,
+      "fecha_termino_verificada_ing": "04/10/2023",
+      "fecha_termino_sort": "2023-10-04"
     },
     {
       "id": 45,
@@ -8357,12 +8638,12 @@
         }
       ],
       "total_hitos": 34,
-      "fecha_inicio": "16 de mayo del 2023",
-      "fecha_inicio_sort": "9999-99-99",
+      "fecha_inicio": "16/05/2023",
+      "fecha_inicio_sort": "2023-05-16",
       "tiene_fecha_inicio": true,
-      "fecha_inicio_doc": "INFORME N° 124-2024, 174-2024, 296-2024, 309-2024 (Tomos 2, 3, 4, 5 - 2024)",
+      "fecha_inicio_doc": "Matriz Ing. FDM (Verif. 16/05/2023; prev. 16 de mayo del 2023: INFORME N° 124-2024, 174-2024, 296-2024, 309-2024 (Tomos 2, 3, 4, 5 - 2024))",
       "fecha_termino_prog": "11 de agosto del 2023",
-      "fecha_culminacion_real": "11 de agosto del 2023 (Acta Recepción: 21/09/2023)",
+      "fecha_culminacion_real": "11/08/2023",
       "acta_recepcion": "",
       "resolucion_liquidacion": "Liquidación de obra con conformidad (Informe N° 309-2024)",
       "estado_info": "COMPLETA",
@@ -8376,7 +8657,16 @@
       "contratista": "EDIMARZA CONSTRUCTORA E INMOBILIARIA S.R.L.",
       "plazo": "88 días calendario (Paralización 7 meses por lluvias)",
       "monto_contratado": "S/ 711,010.24",
-      "es_auditoria_2022_2025": true
+      "es_auditoria_2022_2025": true,
+      "fuentes_excel_ing": [
+        "100 - SC F37"
+      ],
+      "estado_situacional": "LIQUIDADO",
+      "ampliacion_presupuestal": 49347.43,
+      "costo_total": 795908.18,
+      "fecha_inicio_verificada_ing": true,
+      "fecha_termino_verificada_ing": "11/08/2023",
+      "fecha_termino_sort": "2023-08-11"
     },
     {
       "id": 46,
@@ -8726,12 +9016,12 @@
         }
       ],
       "total_hitos": 29,
-      "fecha_inicio": "16 de mayo del 2023",
-      "fecha_inicio_sort": "9999-99-99",
+      "fecha_inicio": "16/05/2023",
+      "fecha_inicio_sort": "2023-05-16",
       "tiene_fecha_inicio": true,
-      "fecha_inicio_doc": "INFORME N° 322-2024, 354-2024, 358-2024 (Tomo 5 - 2024 Folios 4 y 17)",
+      "fecha_inicio_doc": "Matriz Ing. FDM (Verif. 16/05/2023; prev. 16 de mayo del 2023: INFORME N° 322-2024, 354-2024, 358-2024 (Tomo 5 - 2024 Folios 4 y 17))",
       "fecha_termino_prog": "29 de julio del 2023",
-      "fecha_culminacion_real": "29 de julio del 2023 (Acta Recepción: 21/09/2023)",
+      "fecha_culminacion_real": "13/08/2023",
       "acta_recepcion": "",
       "resolucion_liquidacion": "Liquidación aprobada integralmente por S/ 646,910.50 (Informe N° 354 y 358-2024)",
       "estado_info": "COMPLETA",
@@ -8745,7 +9035,16 @@
       "contratista": "ARUNTA CONTRATISTAS S.A.C.",
       "plazo": "75 días calendario",
       "monto_contratado": "S/ 584,846.56",
-      "es_auditoria_2022_2025": true
+      "es_auditoria_2022_2025": true,
+      "fuentes_excel_ing": [
+        "100 - SC F38"
+      ],
+      "estado_situacional": "LIQUIDADO",
+      "ampliacion_presupuestal": 0.0,
+      "costo_total": 646910.5,
+      "fecha_inicio_verificada_ing": true,
+      "fecha_termino_verificada_ing": "13/08/2023",
+      "fecha_termino_sort": "2023-08-13"
     },
     {
       "id": 47,
@@ -8756,7 +9055,7 @@
       "tipologia": "OBRAS CIVILES",
       "estatus": "POR EJECUTAR",
       "prio": 250773.6,
-      "costo_ejec": 0,
+      "costo_ejec": 0.0,
       "tiene_caja": "NO - ARCHIVADOR",
       "n_cajas": "-",
       "checks": {
@@ -8783,7 +9082,7 @@
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
-      "estado_info": "PENDIENTE",
+      "estado_info": "NO_APLICA",
       "estado_info_label": "🔴 INCOMPLETA",
       "estado_info_desc": "Sin antecedentes en Tomos 2022-2023; pendiente ubicar en Cajas de Archivo Central",
       "detalles_faltantes": [
@@ -8798,7 +9097,14 @@
       "contrato": "",
       "contratista": "",
       "plazo": "",
-      "es_auditoria_2022_2025": true
+      "es_auditoria_2022_2025": true,
+      "fuentes_excel_ing": [
+        "100 - SC F53"
+      ],
+      "acuerdo_fdm": "Sesión ordinaria del 09/07/2026, acuerdo 10",
+      "ampliacion_presupuestal": 0.0,
+      "costo_total": 250773.6,
+      "estado_situacional": "POR EJECUTAR"
     },
     {
       "id": 48,
@@ -9346,12 +9652,12 @@
         }
       ],
       "total_hitos": 47,
-      "fecha_inicio": "14 de enero del 2022",
-      "fecha_inicio_sort": "9999-99-99",
+      "fecha_inicio": "14/01/2022",
+      "fecha_inicio_sort": "2022-01-14",
       "tiene_fecha_inicio": true,
-      "fecha_inicio_doc": "INFORME N° 109-2024, 453-2024, 537-2024, 585-2024 (Tomos 2, 7, 8, 9 - 2024)",
+      "fecha_inicio_doc": "Matriz Ing. FDM (Verif. 14/01/2022; prev. 14 de enero del 2022: INFORME N° 109-2024, 453-2024, 537-2024, 585-2024 (Tomos 2, 7, 8, 9 - 2024))",
       "fecha_termino_prog": "11 de agosto del 2022 (Modif.: 11 de setiembre del 2022)",
-      "fecha_culminacion_real": "Concluida",
+      "fecha_culminacion_real": "11/09/2022",
       "acta_recepcion": "",
       "resolucion_liquidacion": "Liquidada técnica y financieramente por S/ 10,718,236.30; pendiente transferencia a UGEL Ilo (Informe N° 585-2024)",
       "estado_info": "COMPLETA",
@@ -9365,7 +9671,18 @@
       "contratista": "Consorcio Obras Promuvi X",
       "plazo": "210 d.c. + 31 d.c. (Ampliación 01)",
       "monto_contratado": "S/ 8,119,083.43",
-      "es_auditoria_2022_2025": true
+      "es_auditoria_2022_2025": true,
+      "fuentes_excel_ing": [
+        "100 - ILO F11",
+        "50 - 3 PROVINCIAS F14"
+      ],
+      "estado_situacional": "LIQUIDADO",
+      "fecha_inicio_verificada_ing": true,
+      "fecha_termino_verificada_ing": "11/09/2022",
+      "fecha_termino_sort": "2022-09-11",
+      "acuerdo_fdm": "Sesión extraordinaria del 21/10/2019 Sesión extraordinaria del 14/12/2020",
+      "ampliacion_presupuestal": 0.0,
+      "costo_total": 10750194.01
     },
     {
       "id": 49,
@@ -9374,8 +9691,8 @@
       "desc": "REPARACION DE COBERTURA CREACION DE LOS SERVICIOS DE EDUCACION INICIAL -II CICLO Y PRIMARIA EN EL PROMUVI X",
       "cui": "N/D",
       "tipologia": "OBRAS CIVILES",
-      "estatus": "EN EJEC.",
-      "prio": 20000,
+      "estatus": "EN EJECUCION",
+      "prio": 20000.0,
       "costo_ejec": 114077.55,
       "tiene_caja": "NO - ARCHIVADOR",
       "n_cajas": "-",
@@ -9414,7 +9731,13 @@
       "contratista": "Soldamax E.I.R.L.",
       "plazo": "",
       "monto_contratado": "S/ 47,800.00",
-      "es_auditoria_2022_2025": true
+      "es_auditoria_2022_2025": true,
+      "fuentes_excel_ing": [
+        "50 - 3 PROVINCIAS F15"
+      ],
+      "ampliacion_presupuestal": 15000.0,
+      "costo_total": 114077.55,
+      "estado_situacional": "EN EJECUCION"
     },
     {
       "id": 50,
@@ -9499,7 +9822,14 @@
       "contrato": "",
       "contratista": "",
       "plazo": "",
-      "es_auditoria_2022_2025": true
+      "es_auditoria_2022_2025": true,
+      "fuentes_excel_ing": [
+        "50 - 3 PROVINCIAS F16"
+      ],
+      "acuerdo_fdm": "Sesión extraordinaria del 15/01/2021",
+      "ampliacion_presupuestal": 0.0,
+      "costo_total": 1851690.49,
+      "estado_situacional": "EJECUTADO"
     },
     {
       "id": 51,
@@ -9552,7 +9882,14 @@
       "contrato": "",
       "contratista": "",
       "plazo": "",
-      "es_auditoria_2022_2025": true
+      "es_auditoria_2022_2025": true,
+      "fuentes_excel_ing": [
+        "50 - 3 PROVINCIAS F17"
+      ],
+      "acuerdo_fdm": "Sesión extraordinaria del 10/06/2024",
+      "ampliacion_presupuestal": 0.0,
+      "costo_total": 542711.05,
+      "estado_situacional": "POR EJECUTAR (EN PROCESO / SALDO)"
     },
     {
       "id": 52,
@@ -9562,7 +9899,7 @@
       "cui": "N/D",
       "tipologia": "OBRAS CIVILES",
       "estatus": "EJECUTADO",
-      "prio": 6539370.037098845,
+      "prio": 6539370.04,
       "costo_ejec": 8175095.88,
       "tiene_caja": "EN CAJA (Cajas 05, 06, 07)",
       "n_cajas": "Cajas 05, 06, 07",
@@ -10672,12 +11009,12 @@
         }
       ],
       "total_hitos": 99,
-      "fecha_inicio": "30 de abril del 2022",
-      "fecha_inicio_sort": "9999-99-99",
+      "fecha_inicio": "30/04/2022",
+      "fecha_inicio_sort": "2022-04-30",
       "tiene_fecha_inicio": true,
-      "fecha_inicio_doc": "INFORME N° 173-2022-PMO-FDM (Tomo 2022 Folio 140) e INFORME N° 721-2023-PMO-FDM (Tomo 9 Folio 60)",
+      "fecha_inicio_doc": "Matriz Ing. FDM (Verif. 30/04/2022; prev. 30 de abril del 2022: INFORME N° 173-2022-PMO-FDM (Tomo 2022 Folio 140) e INFORME N° 721-2023-PMO-FDM (Tomo 9 Folio 60))",
       "fecha_termino_prog": "06 de febrero del 2023",
-      "fecha_culminacion_real": "",
+      "fecha_culminacion_real": "15/05/2023",
       "acta_recepcion": "",
       "resolucion_liquidacion": "Conformidad Liquidación de Obra y Supervisión (Informe N° 721-2023-PMO-FDM, Tomo 9 Folio 60)",
       "estado_info": "COMPLETA",
@@ -10691,7 +11028,18 @@
       "contratista": "Consorcio Crisma",
       "plazo": "240 d.c. + 43 d.c. (Ampliación 01)",
       "monto_contratado": "S/ 5,333,992.29",
-      "es_auditoria_2022_2025": true
+      "es_auditoria_2022_2025": true,
+      "fuentes_excel_ing": [
+        "100 - SC F45",
+        "50 - 3 PROVINCIAS F19"
+      ],
+      "estado_situacional": "LIQUIDADO",
+      "fecha_inicio_verificada_ing": true,
+      "fecha_termino_verificada_ing": "15/05/2023",
+      "fecha_termino_sort": "2023-05-15",
+      "acuerdo_fdm": "Sesión extraordinaria del 21/10/2019 Sesión extraordinaria del 19/10/2021",
+      "ampliacion_presupuestal": 6539370.04,
+      "costo_total": 8175095.88
     },
     {
       "id": 53,
@@ -10796,7 +11144,13 @@
       "contratista": "Ingeniería Mecánica Eléctrica Civil del Sur E.I.R.L.",
       "plazo": "45 días calendario",
       "monto_contratado": "S/ 171,998.74",
-      "es_auditoria_2022_2025": true
+      "es_auditoria_2022_2025": true,
+      "fuentes_excel_ing": [
+        "50 - 3 PROVINCIAS F21"
+      ],
+      "ampliacion_presupuestal": 0.0,
+      "costo_total": 189775.08,
+      "estado_situacional": "EJECUTADO"
     },
     {
       "id": 54,
@@ -10849,7 +11203,14 @@
       "contrato": "",
       "contratista": "",
       "plazo": "",
-      "es_auditoria_2022_2025": true
+      "es_auditoria_2022_2025": true,
+      "fuentes_excel_ing": [
+        "50 - 3 PROVINCIAS F22"
+      ],
+      "acuerdo_fdm": "Sesion Ordinaria 02/08/2022",
+      "ampliacion_presupuestal": 0.0,
+      "costo_total": 8070915.92,
+      "estado_situacional": "EJECUTADO"
     },
     {
       "id": 55,
@@ -10860,7 +11221,7 @@
       "tipologia": "OBRAS CIVILES",
       "estatus": "POR EJECUTAR",
       "prio": 1520353.24,
-      "costo_ejec": 0,
+      "costo_ejec": 0.0,
       "tiene_caja": "NO - ARCHIVADOR",
       "n_cajas": "-",
       "checks": {
@@ -10887,7 +11248,7 @@
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
-      "estado_info": "PENDIENTE",
+      "estado_info": "NO_APLICA",
       "estado_info_label": "🔴 INCOMPLETA",
       "estado_info_desc": "Sin antecedentes en Tomos 2022-2023; pendiente ubicar en Cajas de Archivo Central",
       "detalles_faltantes": [
@@ -10902,7 +11263,14 @@
       "contrato": "",
       "contratista": "",
       "plazo": "",
-      "es_auditoria_2022_2025": true
+      "es_auditoria_2022_2025": true,
+      "fuentes_excel_ing": [
+        "50 - 3 PROVINCIAS F26"
+      ],
+      "acuerdo_fdm": "Sesión extraordinaria del 13/06/2025",
+      "ampliacion_presupuestal": 0.0,
+      "costo_total": 1520353.24,
+      "estado_situacional": "POR EJECUTAR"
     },
     {
       "id": 56,
@@ -10911,9 +11279,9 @@
       "desc": "MEJORAMIENTO DEL SERVICIO DE MOVILIDAD URBANA EN LAS VIAS LOCALES DE LA URBANIZACION VERA VERA DE LA JUNTA VECINAL ROSA LA VICTORIA, DISTRITO DE MOQUEGUA DE LA PROVINCIA MARISCAL NIETO DEL DEPARTAMENTO DE MOQUEGUA",
       "cui": "2584105",
       "tipologia": "OBRAS CIVILES",
-      "estatus": "EN EJEC.",
+      "estatus": "EN EJECUCION",
       "prio": 10926754.15,
-      "costo_ejec": 10926754.15,
+      "costo_ejec": 5032166.19,
       "tiene_caja": "NO - ARCHIVADOR",
       "n_cajas": "-",
       "checks": {
@@ -10956,7 +11324,14 @@
       "contratista": "",
       "plazo": "",
       "monto_contratado": "S/ 10,926,754.15",
-      "es_auditoria_2022_2025": true
+      "es_auditoria_2022_2025": true,
+      "fuentes_excel_ing": [
+        "EO - MN F5"
+      ],
+      "acuerdo_fdm": "Sesión ordinaria del 27/02/2025 Sesión ordinaria del 05/09/2025",
+      "ampliacion_presupuestal": 0.0,
+      "costo_total": 10926754.15,
+      "estado_situacional": "EN EJECUCION"
     },
     {
       "id": 57,
@@ -11009,7 +11384,14 @@
       "contrato": "",
       "contratista": "",
       "plazo": "",
-      "es_auditoria_2022_2025": true
+      "es_auditoria_2022_2025": true,
+      "fuentes_excel_ing": [
+        "EO - MN F12"
+      ],
+      "acuerdo_fdm": "Sesión ordinaria del 09/07/2026, acuerdo 13",
+      "ampliacion_presupuestal": 0.0,
+      "costo_total": 20823.36,
+      "estado_situacional": "POR EJECUTAR (EN PROCESO / SALDO)"
     },
     {
       "id": 58,
@@ -11062,7 +11444,14 @@
       "contrato": "",
       "contratista": "",
       "plazo": "",
-      "es_auditoria_2022_2025": true
+      "es_auditoria_2022_2025": true,
+      "fuentes_excel_ing": [
+        "EO - MN F14"
+      ],
+      "acuerdo_fdm": "Sesión ordinaria del 09/07/2026, acuerdo 11",
+      "ampliacion_presupuestal": 0.0,
+      "costo_total": 11320558.27,
+      "estado_situacional": "POR EJECUTAR (EN PROCESO / SALDO)"
     },
     {
       "id": 59,
@@ -11071,9 +11460,9 @@
       "desc": "MEJORAMIENTO CENTRO INFANTIL DE ATENCION INTEGRAL - CUNA MAS KEIKO SOFIA, LOCALIDAD DE LOS ANGELES, PAMPA INALAMBRICA DEL DISTRITO DE ILO, PROVINCIA DE ILO, DEPARTAMENTO DE MOQUEGUA",
       "cui": "2474850",
       "tipologia": "OBRAS CIVILES",
-      "estatus": "EN EJEC.",
+      "estatus": "EN EJECUCION",
       "prio": 6434125.54,
-      "costo_ejec": 6434125.54,
+      "costo_ejec": 3739276.84,
       "tiene_caja": "NO - ARCHIVADOR",
       "n_cajas": "-",
       "checks": {
@@ -11111,7 +11500,14 @@
       "contratista": "Consorcio Ilo (H&M Contratistas - R&M)",
       "plazo": "179 días calendario",
       "monto_contratado": "S/ 6,124,474.90",
-      "es_auditoria_2022_2025": true
+      "es_auditoria_2022_2025": true,
+      "fuentes_excel_ing": [
+        "EO - ILO F6"
+      ],
+      "acuerdo_fdm": "Sesión ordinaria del 27/02/2025",
+      "ampliacion_presupuestal": 0.0,
+      "costo_total": 6434125.54,
+      "estado_situacional": "EN EJECUCION"
     },
     {
       "id": 60,
@@ -11159,7 +11555,14 @@
       "contrato": "N° 0002-2020-FDM (19/06/2020)",
       "contratista": "Corporación Comercial Canadiense",
       "plazo": "",
-      "es_auditoria_2022_2025": true
+      "es_auditoria_2022_2025": true,
+      "fuentes_excel_ing": [
+        "EO - ILO F8"
+      ],
+      "acuerdo_fdm": "Sesión ordinaria del 31/03/2026, acuerdo 04",
+      "ampliacion_presupuestal": 0.0,
+      "costo_total": 7445963.67,
+      "estado_situacional": "POR EJECUTAR (EN PROCESO / SALDO)"
     },
     {
       "id": 61,
@@ -11208,7 +11611,14 @@
       "contratista": "Inversiones y Servicios Alfa E.I.R.L.",
       "plazo": "239 días calendario",
       "monto_contratado": "S/ 3,756,627.77",
-      "es_auditoria_2022_2025": true
+      "es_auditoria_2022_2025": true,
+      "fuentes_excel_ing": [
+        "EO - SC F6"
+      ],
+      "acuerdo_fdm": "Sesión extraordinaria del 06/03/2025",
+      "ampliacion_presupuestal": 0.0,
+      "costo_total": 4131475.03,
+      "estado_situacional": "POR EJECUTAR (EN PROCESO / SALDO)"
     },
     {
       "id": 62,
@@ -11257,7 +11667,14 @@
       "contratista": "Consorcio Omate L&C",
       "plazo": "237 días calendario",
       "monto_contratado": "S/ 1,518,021.99",
-      "es_auditoria_2022_2025": true
+      "es_auditoria_2022_2025": true,
+      "fuentes_excel_ing": [
+        "EO - SC F7"
+      ],
+      "acuerdo_fdm": "Sesión extraordinaria del 06/03/2025",
+      "ampliacion_presupuestal": 0.0,
+      "costo_total": 2048634.68,
+      "estado_situacional": "POR EJECUTAR (EN PROCESO / SALDO)"
     },
     {
       "id": 63,
@@ -11310,7 +11727,14 @@
       "contrato": "",
       "contratista": "",
       "plazo": "",
-      "es_auditoria_2022_2025": true
+      "es_auditoria_2022_2025": true,
+      "fuentes_excel_ing": [
+        "EO - SC F10"
+      ],
+      "acuerdo_fdm": "Sesión extraordinaria del 30/10/2025",
+      "ampliacion_presupuestal": 0.0,
+      "costo_total": 1815727.5,
+      "estado_situacional": "POR EJECUTAR (EN PROCESO / SALDO)"
     },
     {
       "id": 64,
@@ -11781,12 +12205,12 @@
         }
       ],
       "total_hitos": 40,
-      "fecha_inicio": "27 de abril del 2023",
-      "fecha_inicio_sort": "9999-99-99",
+      "fecha_inicio": "27/04/2023",
+      "fecha_inicio_sort": "2023-04-27",
       "tiene_fecha_inicio": true,
-      "fecha_inicio_doc": "INFORME N° 010-2024, 293-2024, 338-2024, 578-2024, 579-2024 (Tomos 1, 4, 5, 8 - 2024)",
+      "fecha_inicio_doc": "Matriz Ing. FDM (Verif. 27/04/2023; prev. 27 de abril del 2023: INFORME N° 010-2024, 293-2024, 338-2024, 578-2024, 579-2024 (Tomos 1, 4, 5, 8 - 2024))",
       "fecha_termino_prog": "12 de abril del 2024 (Reprog. N° 03: 11 de mayo del 2024)",
-      "fecha_culminacion_real": "11 de mayo del 2024",
+      "fecha_culminacion_real": "12/04/2024",
       "acta_recepcion": "Recepción convocada para el 11/07/2024",
       "resolucion_liquidacion": "Conformidad a levantamiento de observaciones a liquidación de obra y supervisión",
       "estado_info": "COMPLETA",
@@ -11800,7 +12224,17 @@
       "contratista": "Consorcio Cruzpata",
       "plazo": "180 d.c. (+ Amp 01 19 d.c. y Amp 02 10 d.c.)",
       "monto_contratado": "S/ 3,043,230.09",
-      "es_auditoria_2022_2025": true
+      "es_auditoria_2022_2025": true,
+      "fuentes_excel_ing": [
+        "100 - SC F42",
+        "EO - SC F15"
+      ],
+      "estado_situacional": "LIQUIDADO",
+      "fecha_inicio_verificada_ing": true,
+      "fecha_termino_verificada_ing": "12/04/2024",
+      "fecha_termino_sort": "2024-04-12",
+      "ampliacion_presupuestal": 0.0,
+      "costo_total": 3222780.67
     },
     {
       "id": 65,
@@ -11811,7 +12245,7 @@
       "tipologia": "OBRAS CIVILES",
       "estatus": "EJECUTADO",
       "prio": 3850885.45,
-      "costo_ejec": 6000,
+      "costo_ejec": 6000.0,
       "tiene_caja": "NO - ARCHIVADOR",
       "n_cajas": "-",
       "checks": {
@@ -11853,7 +12287,13 @@
       "contrato": "",
       "contratista": "",
       "plazo": "",
-      "es_auditoria_2022_2025": true
+      "es_auditoria_2022_2025": true,
+      "fuentes_excel_ing": [
+        "EO - SC F17"
+      ],
+      "ampliacion_presupuestal": 0.0,
+      "costo_total": 3850885.45,
+      "estado_situacional": "EJECUTADO"
     },
     {
       "id": 66,
@@ -11864,7 +12304,7 @@
       "tipologia": "OBRAS CIVILES",
       "estatus": "POR EJECUTAR",
       "prio": 2585772.05,
-      "costo_ejec": 0,
+      "costo_ejec": 0.0,
       "tiene_caja": "NO - ARCHIVADOR",
       "n_cajas": "-",
       "checks": {
@@ -11891,7 +12331,7 @@
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
-      "estado_info": "PENDIENTE",
+      "estado_info": "NO_APLICA",
       "estado_info_label": "🔴 INCOMPLETA",
       "estado_info_desc": "Sin antecedentes en Tomos 2022-2023; pendiente ubicar en Cajas de Archivo Central",
       "detalles_faltantes": [
@@ -11906,7 +12346,14 @@
       "contrato": "",
       "contratista": "",
       "plazo": "",
-      "es_auditoria_2022_2025": true
+      "es_auditoria_2022_2025": true,
+      "fuentes_excel_ing": [
+        "EO - SC F18"
+      ],
+      "acuerdo_fdm": "Sesión ordinaria del 09/07/2026, acuerdo 07",
+      "ampliacion_presupuestal": 0.0,
+      "costo_total": 2585772.05,
+      "estado_situacional": "POR EJECUTAR"
     },
     {
       "id": 67,
@@ -11917,7 +12364,7 @@
       "tipologia": "OBRAS CIVILES",
       "estatus": "POR EJECUTAR",
       "prio": 1017476.19,
-      "costo_ejec": 0,
+      "costo_ejec": 0.0,
       "tiene_caja": "EN CAJA (Caja (1 Tomos))",
       "n_cajas": "Caja (1 Tomos)",
       "checks": {
@@ -11956,7 +12403,7 @@
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
-      "estado_info": "COMPLETA",
+      "estado_info": "NO_APLICA",
       "estado_info_label": "🟢 EXPEDIENTE EN CAJA FDM",
       "estado_info_desc": "Expediente físico verificado en EN CAJA (Caja (1 Tomos)) con liquidación técnica-financiera",
       "detalles_faltantes": [],
@@ -11966,7 +12413,14 @@
       "contrato": "",
       "contratista": "",
       "plazo": "",
-      "es_auditoria_2022_2025": true
+      "es_auditoria_2022_2025": true,
+      "fuentes_excel_ing": [
+        "EO - SC F19"
+      ],
+      "acuerdo_fdm": "Sesión ordinaria del 09/07/2026, acuerdo 06",
+      "ampliacion_presupuestal": 0.0,
+      "costo_total": 1017476.19,
+      "estado_situacional": "POR EJECUTAR"
     },
     {
       "id": 68,
@@ -11977,7 +12431,7 @@
       "tipologia": "OBRAS CIVILES",
       "estatus": "POR EJECUTAR",
       "prio": 4375038.3,
-      "costo_ejec": 0,
+      "costo_ejec": 0.0,
       "tiene_caja": "EN CAJA (Caja 06 (1 Tomos))",
       "n_cajas": "Caja 06 (1 Tomos)",
       "checks": {
@@ -12004,7 +12458,7 @@
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
-      "estado_info": "COMPLETA",
+      "estado_info": "NO_APLICA",
       "estado_info_label": "🟢 EXPEDIENTE EN CAJA FDM",
       "estado_info_desc": "Expediente físico verificado en EN CAJA (Caja 06 (1 Tomos)) con liquidación técnica-financiera",
       "detalles_faltantes": [],
@@ -12014,7 +12468,14 @@
       "contrato": "",
       "contratista": "",
       "plazo": "",
-      "es_auditoria_2022_2025": true
+      "es_auditoria_2022_2025": true,
+      "fuentes_excel_ing": [
+        "EO - SC F20"
+      ],
+      "acuerdo_fdm": "Sesión ordinaria del 27/08/2026, acuerdo 04",
+      "ampliacion_presupuestal": 0.0,
+      "costo_total": 4375038.3,
+      "estado_situacional": "POR EJECUTAR"
     },
     {
       "id": 69,
@@ -12025,7 +12486,7 @@
       "tipologia": "OBRAS CIVILES",
       "estatus": "POR EJECUTAR",
       "prio": 3461503.2,
-      "costo_ejec": 0,
+      "costo_ejec": 0.0,
       "tiene_caja": "NO - ARCHIVADOR",
       "n_cajas": "-",
       "checks": {
@@ -12052,7 +12513,7 @@
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
-      "estado_info": "PENDIENTE",
+      "estado_info": "NO_APLICA",
       "estado_info_label": "🔴 INCOMPLETA",
       "estado_info_desc": "Sin antecedentes en Tomos 2022-2023; pendiente ubicar en Cajas de Archivo Central",
       "detalles_faltantes": [
@@ -12067,7 +12528,14 @@
       "contrato": "",
       "contratista": "",
       "plazo": "",
-      "es_auditoria_2022_2025": true
+      "es_auditoria_2022_2025": true,
+      "fuentes_excel_ing": [
+        "EO - SC F21"
+      ],
+      "acuerdo_fdm": "Sesión ordinaria del 27/08/2026, acuerdo 03",
+      "ampliacion_presupuestal": 0.0,
+      "costo_total": 3461503.2,
+      "estado_situacional": "POR EJECUTAR"
     },
     {
       "id": 70,
@@ -12105,7 +12573,7 @@
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
-      "estado_info": "ADICIONAL",
+      "estado_info": "PENDIENTE",
       "estado_info_label": "⚪ MAESTRO FDM",
       "estado_info_desc": "Proyecto general FDM; incorporado para orden y foliado físico en campo",
       "detalles_faltantes": [],
@@ -12149,7 +12617,7 @@
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
-      "estado_info": "ADICIONAL",
+      "estado_info": "PENDIENTE",
       "estado_info_label": "⚪ MAESTRO FDM",
       "estado_info_desc": "Proyecto general FDM; incorporado para orden y foliado físico en campo",
       "detalles_faltantes": [],
@@ -12193,7 +12661,7 @@
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
-      "estado_info": "ADICIONAL",
+      "estado_info": "PENDIENTE",
       "estado_info_label": "⚪ MAESTRO FDM",
       "estado_info_desc": "Proyecto general FDM; incorporado para orden y foliado físico en campo",
       "detalles_faltantes": [],
@@ -12209,8 +12677,8 @@
       "cui": "N/D",
       "tipologia": "ADQUISICIONES / SERVICIOS",
       "estatus": "EJECUTADO",
-      "prio": 11081.96,
-      "costo_ejec": 11081.96,
+      "prio": 140912.55,
+      "costo_ejec": 140912.55,
       "tiene_caja": "POR VERIFICAR",
       "n_cajas": "-",
       "checks": {
@@ -12237,13 +12705,20 @@
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
-      "estado_info": "ADICIONAL",
+      "estado_info": "PENDIENTE",
       "estado_info_label": "⚪ MAESTRO FDM",
       "estado_info_desc": "Proyecto general FDM; incorporado para orden y foliado físico en campo",
       "detalles_faltantes": [],
       "confiabilidad": "INFO",
       "total_relevantes": 0,
-      "es_auditoria_2022_2025": false
+      "es_auditoria_2022_2025": false,
+      "fuentes_excel_ing": [
+        "100- MN F10"
+      ],
+      "acuerdo_fdm": "ACUERDO DE CONSEJO DIRECTIVO DEL FDM",
+      "ampliacion_presupuestal": 0.0,
+      "costo_total": 140912.55,
+      "estado_situacional": "EJECUTADO"
     },
     {
       "id": 74,
@@ -12281,7 +12756,7 @@
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
-      "estado_info": "ADICIONAL",
+      "estado_info": "PENDIENTE",
       "estado_info_label": "⚪ MAESTRO FDM",
       "estado_info_desc": "Proyecto general FDM; incorporado para orden y foliado físico en campo",
       "detalles_faltantes": [],
@@ -12325,13 +12800,21 @@
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
-      "estado_info": "ADICIONAL",
+      "estado_info": "PENDIENTE",
       "estado_info_label": "⚪ MAESTRO FDM",
       "estado_info_desc": "Proyecto general FDM; incorporado para orden y foliado físico en campo",
       "detalles_faltantes": [],
       "confiabilidad": "INFO",
       "total_relevantes": 0,
-      "es_auditoria_2022_2025": false
+      "es_auditoria_2022_2025": false,
+      "fuentes_excel_ing": [
+        "100 - ILO F12"
+      ],
+      "acuerdo_municipal": "ACUERDO DE CONSEJO N° 04-2022-MPI",
+      "acuerdo_fdm": "Sesión extraordinaria del 10/02/2022",
+      "ampliacion_presupuestal": 0.0,
+      "costo_total": 2836201.17,
+      "estado_situacional": "EJECUTADO"
     },
     {
       "id": 76,
@@ -12341,7 +12824,7 @@
       "cui": "N/D",
       "tipologia": "ADQUISICIONES / SERVICIOS",
       "estatus": "EJECUTADO",
-      "prio": 1394940,
+      "prio": 1394940.0,
       "costo_ejec": 1150123.5,
       "tiene_caja": "POR VERIFICAR",
       "n_cajas": "-",
@@ -12369,13 +12852,21 @@
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
-      "estado_info": "ADICIONAL",
+      "estado_info": "PENDIENTE",
       "estado_info_label": "⚪ MAESTRO FDM",
       "estado_info_desc": "Proyecto general FDM; incorporado para orden y foliado físico en campo",
       "detalles_faltantes": [],
       "confiabilidad": "INFO",
       "total_relevantes": 0,
-      "es_auditoria_2022_2025": false
+      "es_auditoria_2022_2025": false,
+      "fuentes_excel_ing": [
+        "100 - ILO F10"
+      ],
+      "acuerdo_municipal": "ACUERDO DE CONSEJO N° 065-2021-MPI",
+      "acuerdo_fdm": "Sesión ordinaria del 12/11/2021",
+      "ampliacion_presupuestal": 0.0,
+      "costo_total": 1150123.5,
+      "estado_situacional": "EJECUTADO"
     },
     {
       "id": 77,
@@ -12386,7 +12877,7 @@
       "tipologia": "ADQUISICIONES / SERVICIOS",
       "estatus": "EJECUTADO",
       "prio": 1220816.54,
-      "costo_ejec": 1079370,
+      "costo_ejec": 1079370.0,
       "tiene_caja": "POR VERIFICAR",
       "n_cajas": "-",
       "checks": {
@@ -12413,13 +12904,21 @@
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
-      "estado_info": "ADICIONAL",
+      "estado_info": "PENDIENTE",
       "estado_info_label": "⚪ MAESTRO FDM",
       "estado_info_desc": "Proyecto general FDM; incorporado para orden y foliado físico en campo",
       "detalles_faltantes": [],
       "confiabilidad": "INFO",
       "total_relevantes": 0,
-      "es_auditoria_2022_2025": false
+      "es_auditoria_2022_2025": false,
+      "fuentes_excel_ing": [
+        "100 - ILO F13"
+      ],
+      "acuerdo_municipal": "ACUERDO DE CONSEJO N° 003-2022-MPI",
+      "acuerdo_fdm": "Sesión ordinaria del 13/04/2022",
+      "ampliacion_presupuestal": 0.0,
+      "costo_total": 1079370.0,
+      "estado_situacional": "EJECUTADO"
     },
     {
       "id": 78,
@@ -12429,8 +12928,8 @@
       "cui": "N/D",
       "tipologia": "ADQUISICIONES / SERVICIOS",
       "estatus": "EJECUTADO",
-      "prio": 8960,
-      "costo_ejec": 8960,
+      "prio": 8960.0,
+      "costo_ejec": 8960.0,
       "tiene_caja": "POR VERIFICAR",
       "n_cajas": "-",
       "checks": {
@@ -12457,13 +12956,20 @@
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
-      "estado_info": "ADICIONAL",
+      "estado_info": "PENDIENTE",
       "estado_info_label": "⚪ MAESTRO FDM",
       "estado_info_desc": "Proyecto general FDM; incorporado para orden y foliado físico en campo",
       "detalles_faltantes": [],
       "confiabilidad": "INFO",
       "total_relevantes": 0,
-      "es_auditoria_2022_2025": false
+      "es_auditoria_2022_2025": false,
+      "fuentes_excel_ing": [
+        "100 - ILO F14"
+      ],
+      "acuerdo_fdm": "Sesión ordinaria del 05/12/2022",
+      "ampliacion_presupuestal": 0.0,
+      "costo_total": 8960.0,
+      "estado_situacional": "EJECUTADO"
     },
     {
       "id": 79,
@@ -12473,8 +12979,8 @@
       "cui": "N/D",
       "tipologia": "ADQUISICIONES / SERVICIOS",
       "estatus": "EJECUTADO",
-      "prio": 50000,
-      "costo_ejec": 36103.33,
+      "prio": 384000.0,
+      "costo_ejec": 619270.4,
       "tiene_caja": "POR VERIFICAR",
       "n_cajas": "-",
       "checks": {
@@ -12501,13 +13007,21 @@
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
-      "estado_info": "ADICIONAL",
+      "estado_info": "PENDIENTE",
       "estado_info_label": "⚪ MAESTRO FDM",
       "estado_info_desc": "Proyecto general FDM; incorporado para orden y foliado físico en campo",
       "detalles_faltantes": [],
       "confiabilidad": "INFO",
       "total_relevantes": 0,
-      "es_auditoria_2022_2025": false
+      "es_auditoria_2022_2025": false,
+      "fuentes_excel_ing": [
+        "100 - ILO F18",
+        "100 - ILO F19"
+      ],
+      "acuerdo_fdm": "Sesión ordinaria del 04/08/2023 | Sesión ordinaria del 14/09/2023",
+      "ampliacion_presupuestal": 231000.0,
+      "costo_total": 619270.4,
+      "estado_situacional": "EJECUTADO"
     },
     {
       "id": 80,
@@ -12545,7 +13059,7 @@
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
-      "estado_info": "ADICIONAL",
+      "estado_info": "PENDIENTE",
       "estado_info_label": "⚪ MAESTRO FDM",
       "estado_info_desc": "Proyecto general FDM; incorporado para orden y foliado físico en campo",
       "detalles_faltantes": [],
@@ -12561,8 +13075,8 @@
       "cui": "N/D",
       "tipologia": "ADQUISICIONES / SERVICIOS",
       "estatus": "EJECUTADO",
-      "prio": 20000,
-      "costo_ejec": 20000,
+      "prio": 20000.0,
+      "costo_ejec": 20000.0,
       "tiene_caja": "POR VERIFICAR",
       "n_cajas": "-",
       "checks": {
@@ -12589,13 +13103,20 @@
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
-      "estado_info": "ADICIONAL",
+      "estado_info": "PENDIENTE",
       "estado_info_label": "⚪ MAESTRO FDM",
       "estado_info_desc": "Proyecto general FDM; incorporado para orden y foliado físico en campo",
       "detalles_faltantes": [],
       "confiabilidad": "INFO",
       "total_relevantes": 0,
-      "es_auditoria_2022_2025": false
+      "es_auditoria_2022_2025": false,
+      "fuentes_excel_ing": [
+        "100 - ILO F20"
+      ],
+      "acuerdo_fdm": "S/C",
+      "ampliacion_presupuestal": 0.0,
+      "costo_total": 20000.0,
+      "estado_situacional": "EJECUTADO"
     },
     {
       "id": 82,
@@ -12633,13 +13154,20 @@
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
-      "estado_info": "ADICIONAL",
+      "estado_info": "PENDIENTE",
       "estado_info_label": "⚪ MAESTRO FDM",
       "estado_info_desc": "Proyecto general FDM; incorporado para orden y foliado físico en campo",
       "detalles_faltantes": [],
       "confiabilidad": "INFO",
       "total_relevantes": 0,
-      "es_auditoria_2022_2025": false
+      "es_auditoria_2022_2025": false,
+      "fuentes_excel_ing": [
+        "100 - ILO F22"
+      ],
+      "acuerdo_fdm": "Sesión ordinaria del 20/02/2024",
+      "ampliacion_presupuestal": 0.0,
+      "costo_total": 152644.8,
+      "estado_situacional": "EJECUTADO"
     },
     {
       "id": 83,
@@ -12649,8 +13177,8 @@
       "cui": "N/D",
       "tipologia": "ADQUISICIONES / SERVICIOS",
       "estatus": "EN EJECUCION",
-      "prio": 15000,
-      "costo_ejec": 15660,
+      "prio": 15000.0,
+      "costo_ejec": 15660.0,
       "tiene_caja": "POR VERIFICAR",
       "n_cajas": "-",
       "checks": {
@@ -12677,13 +13205,20 @@
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
-      "estado_info": "ADICIONAL",
+      "estado_info": "PENDIENTE",
       "estado_info_label": "⚪ MAESTRO FDM",
       "estado_info_desc": "Proyecto general FDM; incorporado para orden y foliado físico en campo",
       "detalles_faltantes": [],
       "confiabilidad": "INFO",
       "total_relevantes": 0,
-      "es_auditoria_2022_2025": false
+      "es_auditoria_2022_2025": false,
+      "fuentes_excel_ing": [
+        "100 - ILO F23"
+      ],
+      "acuerdo_fdm": "S/C",
+      "ampliacion_presupuestal": 0.0,
+      "costo_total": 15660.0,
+      "estado_situacional": "EN EJECUCION"
     },
     {
       "id": 84,
@@ -12693,7 +13228,7 @@
       "cui": "N/D",
       "tipologia": "ADQUISICIONES / SERVICIOS",
       "estatus": "EJECUTADO",
-      "prio": 50000,
+      "prio": 50000.0,
       "costo_ejec": 48948.32,
       "tiene_caja": "POR VERIFICAR",
       "n_cajas": "-",
@@ -12721,13 +13256,19 @@
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
-      "estado_info": "ADICIONAL",
+      "estado_info": "PENDIENTE",
       "estado_info_label": "⚪ MAESTRO FDM",
       "estado_info_desc": "Proyecto general FDM; incorporado para orden y foliado físico en campo",
       "detalles_faltantes": [],
       "confiabilidad": "INFO",
       "total_relevantes": 0,
-      "es_auditoria_2022_2025": false
+      "es_auditoria_2022_2025": false,
+      "fuentes_excel_ing": [
+        "100 - ILO F24"
+      ],
+      "ampliacion_presupuestal": 0.0,
+      "costo_total": 48948.32,
+      "estado_situacional": "EJECUTADO"
     },
     {
       "id": 85,
@@ -12737,8 +13278,8 @@
       "cui": "N/D",
       "tipologia": "OBRAS CIVILES",
       "estatus": "EJECUTADO",
-      "prio": 115000,
-      "costo_ejec": 102000,
+      "prio": 115000.0,
+      "costo_ejec": 102000.0,
       "tiene_caja": "POR VERIFICAR",
       "n_cajas": "-",
       "checks": {
@@ -12765,13 +13306,20 @@
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
-      "estado_info": "ADICIONAL",
+      "estado_info": "PENDIENTE",
       "estado_info_label": "⚪ MAESTRO FDM",
       "estado_info_desc": "Proyecto general FDM; incorporado para orden y foliado físico en campo",
       "detalles_faltantes": [],
       "confiabilidad": "INFO",
       "total_relevantes": 0,
-      "es_auditoria_2022_2025": false
+      "es_auditoria_2022_2025": false,
+      "fuentes_excel_ing": [
+        "100 - ILO F32"
+      ],
+      "acuerdo_fdm": "S/C",
+      "ampliacion_presupuestal": 0.0,
+      "costo_total": 102000.0,
+      "estado_situacional": "EJECUTADO"
     },
     {
       "id": 86,
@@ -12781,7 +13329,7 @@
       "cui": "N/D",
       "tipologia": "OBRAS CIVILES",
       "estatus": "EN EJECUCION",
-      "prio": 395300,
+      "prio": 395300.0,
       "costo_ejec": 373037.14,
       "tiene_caja": "POR VERIFICAR",
       "n_cajas": "-",
@@ -12809,13 +13357,21 @@
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
-      "estado_info": "ADICIONAL",
+      "estado_info": "PENDIENTE",
       "estado_info_label": "⚪ MAESTRO FDM",
       "estado_info_desc": "Proyecto general FDM; incorporado para orden y foliado físico en campo",
       "detalles_faltantes": [],
       "confiabilidad": "INFO",
       "total_relevantes": 0,
-      "es_auditoria_2022_2025": false
+      "es_auditoria_2022_2025": false,
+      "fuentes_excel_ing": [
+        "100 - ILO F33"
+      ],
+      "acuerdo_municipal": "ACUERDO DE CONSEJO N° 067-2021-MPI",
+      "acuerdo_fdm": "S/C",
+      "ampliacion_presupuestal": 0.0,
+      "costo_total": 373037.14,
+      "estado_situacional": "EN EJECUCION"
     },
     {
       "id": 87,
@@ -12853,7 +13409,7 @@
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
-      "estado_info": "ADICIONAL",
+      "estado_info": "PENDIENTE",
       "estado_info_label": "⚪ MAESTRO FDM",
       "estado_info_desc": "Proyecto general FDM; incorporado para orden y foliado físico en campo",
       "detalles_faltantes": [],
@@ -12897,7 +13453,7 @@
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
-      "estado_info": "ADICIONAL",
+      "estado_info": "PENDIENTE",
       "estado_info_label": "⚪ MAESTRO FDM",
       "estado_info_desc": "Proyecto general FDM; incorporado para orden y foliado físico en campo",
       "detalles_faltantes": [],
@@ -12941,7 +13497,7 @@
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
-      "estado_info": "ADICIONAL",
+      "estado_info": "PENDIENTE",
       "estado_info_label": "⚪ MAESTRO FDM",
       "estado_info_desc": "Proyecto general FDM; incorporado para orden y foliado físico en campo",
       "detalles_faltantes": [],
@@ -12957,8 +13513,8 @@
       "cui": "N/D",
       "tipologia": "ADQUISICIONES / SERVICIOS",
       "estatus": "EJECUTADO",
-      "prio": 1302985,
-      "costo_ejec": 1302985,
+      "prio": 1302985.0,
+      "costo_ejec": 1302985.0,
       "tiene_caja": "POR VERIFICAR",
       "n_cajas": "-",
       "checks": {
@@ -12985,13 +13541,19 @@
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
-      "estado_info": "ADICIONAL",
+      "estado_info": "PENDIENTE",
       "estado_info_label": "⚪ MAESTRO FDM",
       "estado_info_desc": "Proyecto general FDM; incorporado para orden y foliado físico en campo",
       "detalles_faltantes": [],
       "confiabilidad": "INFO",
       "total_relevantes": 0,
-      "es_auditoria_2022_2025": false
+      "es_auditoria_2022_2025": false,
+      "fuentes_excel_ing": [
+        "100- MN F5"
+      ],
+      "ampliacion_presupuestal": 0.0,
+      "costo_total": 1302985.0,
+      "estado_situacional": "EJECUTADO"
     },
     {
       "id": 91,
@@ -13001,8 +13563,8 @@
       "cui": "N/D",
       "tipologia": "ADQUISICIONES / SERVICIOS",
       "estatus": "EJECUTADO",
-      "prio": 8700,
-      "costo_ejec": 8700,
+      "prio": 8700.0,
+      "costo_ejec": 8700.0,
       "tiene_caja": "POR VERIFICAR",
       "n_cajas": "-",
       "checks": {
@@ -13029,13 +13591,19 @@
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
-      "estado_info": "ADICIONAL",
+      "estado_info": "PENDIENTE",
       "estado_info_label": "⚪ MAESTRO FDM",
       "estado_info_desc": "Proyecto general FDM; incorporado para orden y foliado físico en campo",
       "detalles_faltantes": [],
       "confiabilidad": "INFO",
       "total_relevantes": 0,
-      "es_auditoria_2022_2025": false
+      "es_auditoria_2022_2025": false,
+      "fuentes_excel_ing": [
+        "100- MN F6"
+      ],
+      "ampliacion_presupuestal": 0.0,
+      "costo_total": 8700.0,
+      "estado_situacional": "EJECUTADO"
     },
     {
       "id": 92,
@@ -13045,7 +13613,7 @@
       "cui": "N/D",
       "tipologia": "ADQUISICIONES / SERVICIOS",
       "estatus": "EJECUTADO",
-      "prio": 1304404,
+      "prio": 1304404.0,
       "costo_ejec": 1287241.1,
       "tiene_caja": "POR VERIFICAR",
       "n_cajas": "-",
@@ -13073,13 +13641,21 @@
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
-      "estado_info": "ADICIONAL",
+      "estado_info": "PENDIENTE",
       "estado_info_label": "⚪ MAESTRO FDM",
       "estado_info_desc": "Proyecto general FDM; incorporado para orden y foliado físico en campo",
       "detalles_faltantes": [],
       "confiabilidad": "INFO",
       "total_relevantes": 0,
-      "es_auditoria_2022_2025": false
+      "es_auditoria_2022_2025": false,
+      "fuentes_excel_ing": [
+        "100- MN F11"
+      ],
+      "acuerdo_municipal": "Acuerdo de Consejo N° 43-2021-MPMN",
+      "acuerdo_fdm": "Sesión extraordinaria del 14/05/2021",
+      "ampliacion_presupuestal": 0.0,
+      "costo_total": 1287241.1,
+      "estado_situacional": "EJECUTADO"
     },
     {
       "id": 93,
@@ -13089,7 +13665,7 @@
       "cui": "N/D",
       "tipologia": "ADQUISICIONES / SERVICIOS",
       "estatus": "EJECUTADO",
-      "prio": 6000000,
+      "prio": 6000000.0,
       "costo_ejec": 5947130.39,
       "tiene_caja": "POR VERIFICAR",
       "n_cajas": "-",
@@ -13117,13 +13693,21 @@
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
-      "estado_info": "ADICIONAL",
+      "estado_info": "PENDIENTE",
       "estado_info_label": "⚪ MAESTRO FDM",
       "estado_info_desc": "Proyecto general FDM; incorporado para orden y foliado físico en campo",
       "detalles_faltantes": [],
       "confiabilidad": "INFO",
       "total_relevantes": 0,
-      "es_auditoria_2022_2025": false
+      "es_auditoria_2022_2025": false,
+      "fuentes_excel_ing": [
+        "100- MN F17"
+      ],
+      "acuerdo_municipal": "Acuerdo de Consejo N° 03-2022-MPMN",
+      "acuerdo_fdm": "Sesión extraordinaria del 10/02/2022",
+      "ampliacion_presupuestal": 0.0,
+      "costo_total": 5947130.39,
+      "estado_situacional": "EJECUTADO"
     },
     {
       "id": 94,
@@ -13133,7 +13717,7 @@
       "cui": "N/D",
       "tipologia": "ADQUISICIONES / SERVICIOS",
       "estatus": "EJECUTADO",
-      "prio": 2000000,
+      "prio": 2000000.0,
       "costo_ejec": 1869987.06,
       "tiene_caja": "POR VERIFICAR",
       "n_cajas": "-",
@@ -13161,13 +13745,20 @@
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
-      "estado_info": "ADICIONAL",
+      "estado_info": "PENDIENTE",
       "estado_info_label": "⚪ MAESTRO FDM",
       "estado_info_desc": "Proyecto general FDM; incorporado para orden y foliado físico en campo",
       "detalles_faltantes": [],
       "confiabilidad": "INFO",
       "total_relevantes": 0,
-      "es_auditoria_2022_2025": false
+      "es_auditoria_2022_2025": false,
+      "fuentes_excel_ing": [
+        "100- MN F8"
+      ],
+      "acuerdo_fdm": "Sesión ordinaria del 02/08/2020",
+      "ampliacion_presupuestal": 0.0,
+      "costo_total": 1869987.06,
+      "estado_situacional": "EJECUTADO"
     },
     {
       "id": 95,
@@ -13177,8 +13768,8 @@
       "cui": "N/D",
       "tipologia": "ADQUISICIONES / SERVICIOS",
       "estatus": "EJECUTADO",
-      "prio": 128824,
-      "costo_ejec": 124494,
+      "prio": 128824.0,
+      "costo_ejec": 124494.0,
       "tiene_caja": "POR VERIFICAR",
       "n_cajas": "-",
       "checks": {
@@ -13205,13 +13796,20 @@
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
-      "estado_info": "ADICIONAL",
+      "estado_info": "PENDIENTE",
       "estado_info_label": "⚪ MAESTRO FDM",
       "estado_info_desc": "Proyecto general FDM; incorporado para orden y foliado físico en campo",
       "detalles_faltantes": [],
       "confiabilidad": "INFO",
       "total_relevantes": 0,
-      "es_auditoria_2022_2025": false
+      "es_auditoria_2022_2025": false,
+      "fuentes_excel_ing": [
+        "100- MN F23"
+      ],
+      "acuerdo_fdm": "Sesión ordinaria del 14/09/2023",
+      "ampliacion_presupuestal": 0.0,
+      "costo_total": 124494.0,
+      "estado_situacional": "EJECUTADO"
     },
     {
       "id": 96,
@@ -13221,8 +13819,8 @@
       "cui": "N/D",
       "tipologia": "ADQUISICIONES / SERVICIOS",
       "estatus": "EJECUTADO",
-      "prio": 154030,
-      "costo_ejec": 149090,
+      "prio": 154030.0,
+      "costo_ejec": 149090.0,
       "tiene_caja": "POR VERIFICAR",
       "n_cajas": "-",
       "checks": {
@@ -13249,13 +13847,20 @@
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
-      "estado_info": "ADICIONAL",
+      "estado_info": "PENDIENTE",
       "estado_info_label": "⚪ MAESTRO FDM",
       "estado_info_desc": "Proyecto general FDM; incorporado para orden y foliado físico en campo",
       "detalles_faltantes": [],
       "confiabilidad": "INFO",
       "total_relevantes": 0,
-      "es_auditoria_2022_2025": false
+      "es_auditoria_2022_2025": false,
+      "fuentes_excel_ing": [
+        "100- MN F24"
+      ],
+      "acuerdo_fdm": "Sesión ordinaria del 20/02/2024",
+      "ampliacion_presupuestal": 0.0,
+      "costo_total": 149090.0,
+      "estado_situacional": "EJECUTADO"
     },
     {
       "id": 97,
@@ -13265,8 +13870,8 @@
       "cui": "N/D",
       "tipologia": "ADQUISICIONES / SERVICIOS",
       "estatus": "EJECUTADO",
-      "prio": 36000,
-      "costo_ejec": 35200,
+      "prio": 36000.0,
+      "costo_ejec": 35200.0,
       "tiene_caja": "POR VERIFICAR",
       "n_cajas": "-",
       "checks": {
@@ -13293,13 +13898,19 @@
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
-      "estado_info": "ADICIONAL",
+      "estado_info": "PENDIENTE",
       "estado_info_label": "⚪ MAESTRO FDM",
       "estado_info_desc": "Proyecto general FDM; incorporado para orden y foliado físico en campo",
       "detalles_faltantes": [],
       "confiabilidad": "INFO",
       "total_relevantes": 0,
-      "es_auditoria_2022_2025": false
+      "es_auditoria_2022_2025": false,
+      "fuentes_excel_ing": [
+        "100- MN F25"
+      ],
+      "ampliacion_presupuestal": 0.0,
+      "costo_total": 35200.0,
+      "estado_situacional": "EJECUTADO"
     },
     {
       "id": 98,
@@ -13309,8 +13920,8 @@
       "cui": "N/D",
       "tipologia": "ADQUISICIONES / SERVICIOS",
       "estatus": "EJECUTADO",
-      "prio": 460000,
-      "costo_ejec": 469850,
+      "prio": 460000.0,
+      "costo_ejec": 469850.0,
       "tiene_caja": "POR VERIFICAR",
       "n_cajas": "-",
       "checks": {
@@ -13337,13 +13948,19 @@
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
-      "estado_info": "ADICIONAL",
+      "estado_info": "PENDIENTE",
       "estado_info_label": "⚪ MAESTRO FDM",
       "estado_info_desc": "Proyecto general FDM; incorporado para orden y foliado físico en campo",
       "detalles_faltantes": [],
       "confiabilidad": "INFO",
       "total_relevantes": 0,
-      "es_auditoria_2022_2025": false
+      "es_auditoria_2022_2025": false,
+      "fuentes_excel_ing": [
+        "100- MN F27"
+      ],
+      "ampliacion_presupuestal": 9850.0,
+      "costo_total": 469850.0,
+      "estado_situacional": "EJECUTADO"
     },
     {
       "id": 99,
@@ -13353,7 +13970,7 @@
       "cui": "N/D",
       "tipologia": "ADQUISICIONES / SERVICIOS",
       "estatus": "EJECUTADO",
-      "prio": 60000,
+      "prio": 60000.0,
       "costo_ejec": 53390.08,
       "tiene_caja": "POR VERIFICAR",
       "n_cajas": "-",
@@ -13381,13 +13998,18 @@
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
-      "estado_info": "ADICIONAL",
+      "estado_info": "PENDIENTE",
       "estado_info_label": "⚪ MAESTRO FDM",
       "estado_info_desc": "Proyecto general FDM; incorporado para orden y foliado físico en campo",
       "detalles_faltantes": [],
       "confiabilidad": "INFO",
       "total_relevantes": 0,
-      "es_auditoria_2022_2025": false
+      "es_auditoria_2022_2025": false,
+      "fuentes_excel_ing": [
+        "100- MN F28"
+      ],
+      "costo_total": 53390.08,
+      "estado_situacional": "EJECUTADO"
     },
     {
       "id": 100,
@@ -13397,8 +14019,8 @@
       "cui": "N/D",
       "tipologia": "ADQUISICIONES / SERVICIOS",
       "estatus": "EJECUTADO",
-      "prio": 2500,
-      "costo_ejec": 2500,
+      "prio": 2500.0,
+      "costo_ejec": 2500.0,
       "tiene_caja": "POR VERIFICAR",
       "n_cajas": "-",
       "checks": {
@@ -13425,13 +14047,19 @@
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
-      "estado_info": "ADICIONAL",
+      "estado_info": "PENDIENTE",
       "estado_info_label": "⚪ MAESTRO FDM",
       "estado_info_desc": "Proyecto general FDM; incorporado para orden y foliado físico en campo",
       "detalles_faltantes": [],
       "confiabilidad": "INFO",
       "total_relevantes": 0,
-      "es_auditoria_2022_2025": false
+      "es_auditoria_2022_2025": false,
+      "fuentes_excel_ing": [
+        "100 - SC F9"
+      ],
+      "ampliacion_presupuestal": 0.0,
+      "costo_total": 2500.0,
+      "estado_situacional": "EJECUTADO"
     },
     {
       "id": 101,
@@ -13441,8 +14069,8 @@
       "cui": "N/D",
       "tipologia": "OBRAS CIVILES",
       "estatus": "EJECUTADO",
-      "prio": 588000,
-      "costo_ejec": 295000,
+      "prio": 588000.0,
+      "costo_ejec": 295000.0,
       "tiene_caja": "POR VERIFICAR",
       "n_cajas": "-",
       "checks": {
@@ -13469,13 +14097,20 @@
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
-      "estado_info": "ADICIONAL",
+      "estado_info": "PENDIENTE",
       "estado_info_label": "⚪ MAESTRO FDM",
       "estado_info_desc": "Proyecto general FDM; incorporado para orden y foliado físico en campo",
       "detalles_faltantes": [],
       "confiabilidad": "INFO",
       "total_relevantes": 0,
-      "es_auditoria_2022_2025": false
+      "es_auditoria_2022_2025": false,
+      "fuentes_excel_ing": [
+        "100 - SC F10"
+      ],
+      "acuerdo_fdm": "Sesión extraordinaria del 16/07/2021",
+      "ampliacion_presupuestal": 0.0,
+      "costo_total": 295000.0,
+      "estado_situacional": "EJECUTADO"
     },
     {
       "id": 102,
@@ -13513,13 +14148,20 @@
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
-      "estado_info": "ADICIONAL",
+      "estado_info": "PENDIENTE",
       "estado_info_label": "⚪ MAESTRO FDM",
       "estado_info_desc": "Proyecto general FDM; incorporado para orden y foliado físico en campo",
       "detalles_faltantes": [],
       "confiabilidad": "INFO",
       "total_relevantes": 0,
-      "es_auditoria_2022_2025": false
+      "es_auditoria_2022_2025": false,
+      "fuentes_excel_ing": [
+        "100 - SC F11"
+      ],
+      "acuerdo_fdm": "Sesión extraordinaria del 25/06/2020 Sesión extraordinaria del 18/08/2020 Sesión extraordinaria del 10/09/2020",
+      "ampliacion_presupuestal": 0.0,
+      "costo_total": 1755540.59,
+      "estado_situacional": "EJECUTADO"
     },
     {
       "id": 103,
@@ -13529,8 +14171,8 @@
       "cui": "N/D",
       "tipologia": "ADQUISICIONES / SERVICIOS",
       "estatus": "EJECUTADO",
-      "prio": 3001,
-      "costo_ejec": 3001,
+      "prio": 3001.0,
+      "costo_ejec": 3001.0,
       "tiene_caja": "POR VERIFICAR",
       "n_cajas": "-",
       "checks": {
@@ -13557,13 +14199,19 @@
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
-      "estado_info": "ADICIONAL",
+      "estado_info": "PENDIENTE",
       "estado_info_label": "⚪ MAESTRO FDM",
       "estado_info_desc": "Proyecto general FDM; incorporado para orden y foliado físico en campo",
       "detalles_faltantes": [],
       "confiabilidad": "INFO",
       "total_relevantes": 0,
-      "es_auditoria_2022_2025": false
+      "es_auditoria_2022_2025": false,
+      "fuentes_excel_ing": [
+        "100 - SC F13"
+      ],
+      "ampliacion_presupuestal": 0.0,
+      "costo_total": 3001.0,
+      "estado_situacional": "EJECUTADO"
     },
     {
       "id": 104,
@@ -13573,8 +14221,8 @@
       "cui": "N/D",
       "tipologia": "ADQUISICIONES / SERVICIOS",
       "estatus": "EJECUTADO",
-      "prio": 211680,
-      "costo_ejec": 211680,
+      "prio": 211680.0,
+      "costo_ejec": 211680.0,
       "tiene_caja": "POR VERIFICAR",
       "n_cajas": "-",
       "checks": {
@@ -13601,13 +14249,19 @@
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
-      "estado_info": "ADICIONAL",
+      "estado_info": "PENDIENTE",
       "estado_info_label": "⚪ MAESTRO FDM",
       "estado_info_desc": "Proyecto general FDM; incorporado para orden y foliado físico en campo",
       "detalles_faltantes": [],
       "confiabilidad": "INFO",
       "total_relevantes": 0,
-      "es_auditoria_2022_2025": false
+      "es_auditoria_2022_2025": false,
+      "fuentes_excel_ing": [
+        "100 - SC F14"
+      ],
+      "ampliacion_presupuestal": 0.0,
+      "costo_total": 211680.0,
+      "estado_situacional": "EJECUTADO"
     },
     {
       "id": 105,
@@ -13645,13 +14299,19 @@
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
-      "estado_info": "ADICIONAL",
+      "estado_info": "PENDIENTE",
       "estado_info_label": "⚪ MAESTRO FDM",
       "estado_info_desc": "Proyecto general FDM; incorporado para orden y foliado físico en campo",
       "detalles_faltantes": [],
       "confiabilidad": "INFO",
       "total_relevantes": 0,
-      "es_auditoria_2022_2025": false
+      "es_auditoria_2022_2025": false,
+      "fuentes_excel_ing": [
+        "100 - SC F16"
+      ],
+      "ampliacion_presupuestal": 0.0,
+      "costo_total": 217292.99,
+      "estado_situacional": "EJECUTADO"
     },
     {
       "id": 106,
@@ -13661,7 +14321,7 @@
       "cui": "N/D",
       "tipologia": "ADQUISICIONES / SERVICIOS",
       "estatus": "EJECUTADO",
-      "prio": 70000,
+      "prio": 70000.0,
       "costo_ejec": 69842.61,
       "tiene_caja": "POR VERIFICAR",
       "n_cajas": "-",
@@ -13689,13 +14349,20 @@
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
-      "estado_info": "ADICIONAL",
+      "estado_info": "PENDIENTE",
       "estado_info_label": "⚪ MAESTRO FDM",
       "estado_info_desc": "Proyecto general FDM; incorporado para orden y foliado físico en campo",
       "detalles_faltantes": [],
       "confiabilidad": "INFO",
       "total_relevantes": 0,
-      "es_auditoria_2022_2025": false
+      "es_auditoria_2022_2025": false,
+      "fuentes_excel_ing": [
+        "100 - SC F18"
+      ],
+      "acuerdo_fdm": "Sesión extraordinaria del 20/01/2022",
+      "ampliacion_presupuestal": 0.0,
+      "costo_total": 69842.61,
+      "estado_situacional": "EJECUTADO"
     },
     {
       "id": 107,
@@ -13705,8 +14372,8 @@
       "cui": "N/D",
       "tipologia": "ADQUISICIONES / SERVICIOS",
       "estatus": "EVALUAR CAMBIO",
-      "prio": 0,
-      "costo_ejec": 0,
+      "prio": 0.0,
+      "costo_ejec": 0.0,
       "tiene_caja": "POR VERIFICAR",
       "n_cajas": "-",
       "checks": {
@@ -13733,13 +14400,20 @@
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
-      "estado_info": "ADICIONAL",
+      "estado_info": "NO_APLICA",
       "estado_info_label": "⚪ MAESTRO FDM",
       "estado_info_desc": "Proyecto general FDM; incorporado para orden y foliado físico en campo",
       "detalles_faltantes": [],
       "confiabilidad": "INFO",
       "total_relevantes": 0,
-      "es_auditoria_2022_2025": false
+      "es_auditoria_2022_2025": false,
+      "fuentes_excel_ing": [
+        "100 - SC F28"
+      ],
+      "acuerdo_fdm": "Sin ACTA DE S.C",
+      "ampliacion_presupuestal": 0.0,
+      "costo_total": 0.0,
+      "estado_situacional": "EVALUAR CAMBIO"
     },
     {
       "id": 108,
@@ -13749,8 +14423,8 @@
       "cui": "N/D",
       "tipologia": "ADQUISICIONES / SERVICIOS",
       "estatus": "EJECUTADO",
-      "prio": 33000,
-      "costo_ejec": 24750,
+      "prio": 33000.0,
+      "costo_ejec": 24750.0,
       "tiene_caja": "POR VERIFICAR",
       "n_cajas": "-",
       "checks": {
@@ -13777,13 +14451,20 @@
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
-      "estado_info": "ADICIONAL",
+      "estado_info": "PENDIENTE",
       "estado_info_label": "⚪ MAESTRO FDM",
       "estado_info_desc": "Proyecto general FDM; incorporado para orden y foliado físico en campo",
       "detalles_faltantes": [],
       "confiabilidad": "INFO",
       "total_relevantes": 0,
-      "es_auditoria_2022_2025": false
+      "es_auditoria_2022_2025": false,
+      "fuentes_excel_ing": [
+        "100 - SC F39"
+      ],
+      "acuerdo_fdm": "Sesión ordinaria del 28/10/2022",
+      "ampliacion_presupuestal": 0.0,
+      "costo_total": 24750.0,
+      "estado_situacional": "EJECUTADO"
     },
     {
       "id": 109,
@@ -13793,8 +14474,8 @@
       "cui": "N/D",
       "tipologia": "ADQUISICIONES / SERVICIOS",
       "estatus": "EJECUTADO",
-      "prio": 319850,
-      "costo_ejec": 341563,
+      "prio": 319850.0,
+      "costo_ejec": 341563.0,
       "tiene_caja": "POR VERIFICAR",
       "n_cajas": "-",
       "checks": {
@@ -13821,13 +14502,20 @@
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
-      "estado_info": "ADICIONAL",
+      "estado_info": "PENDIENTE",
       "estado_info_label": "⚪ MAESTRO FDM",
       "estado_info_desc": "Proyecto general FDM; incorporado para orden y foliado físico en campo",
       "detalles_faltantes": [],
       "confiabilidad": "INFO",
       "total_relevantes": 0,
-      "es_auditoria_2022_2025": false
+      "es_auditoria_2022_2025": false,
+      "fuentes_excel_ing": [
+        "100 - SC F40"
+      ],
+      "acuerdo_fdm": "Sesión ordinaria del 05/12/2022",
+      "ampliacion_presupuestal": 21713.0,
+      "costo_total": 341563.0,
+      "estado_situacional": "EJECUTADO"
     },
     {
       "id": 110,
@@ -13837,8 +14525,8 @@
       "cui": "N/D",
       "tipologia": "ADQUISICIONES / SERVICIOS",
       "estatus": "EJECUTADO",
-      "prio": 200000,
-      "costo_ejec": 198000,
+      "prio": 200000.0,
+      "costo_ejec": 198000.0,
       "tiene_caja": "POR VERIFICAR",
       "n_cajas": "-",
       "checks": {
@@ -13865,13 +14553,20 @@
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
-      "estado_info": "ADICIONAL",
+      "estado_info": "PENDIENTE",
       "estado_info_label": "⚪ MAESTRO FDM",
       "estado_info_desc": "Proyecto general FDM; incorporado para orden y foliado físico en campo",
       "detalles_faltantes": [],
       "confiabilidad": "INFO",
       "total_relevantes": 0,
-      "es_auditoria_2022_2025": false
+      "es_auditoria_2022_2025": false,
+      "fuentes_excel_ing": [
+        "100 - SC F44"
+      ],
+      "acuerdo_fdm": "Sesión ordinaria del 14/09/2023",
+      "ampliacion_presupuestal": 0.0,
+      "costo_total": 198000.0,
+      "estado_situacional": "EJECUTADO"
     },
     {
       "id": 111,
@@ -13881,8 +14576,8 @@
       "cui": "N/D",
       "tipologia": "ADQUISICIONES / SERVICIOS",
       "estatus": "EJECUTADO",
-      "prio": 58450,
-      "costo_ejec": 60800,
+      "prio": 58450.0,
+      "costo_ejec": 60800.0,
       "tiene_caja": "POR VERIFICAR",
       "n_cajas": "-",
       "checks": {
@@ -13909,13 +14604,19 @@
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
-      "estado_info": "ADICIONAL",
+      "estado_info": "PENDIENTE",
       "estado_info_label": "⚪ MAESTRO FDM",
       "estado_info_desc": "Proyecto general FDM; incorporado para orden y foliado físico en campo",
       "detalles_faltantes": [],
       "confiabilidad": "INFO",
       "total_relevantes": 0,
-      "es_auditoria_2022_2025": false
+      "es_auditoria_2022_2025": false,
+      "fuentes_excel_ing": [
+        "100 - SC F47"
+      ],
+      "ampliacion_presupuestal": 0.0,
+      "costo_total": 60800.0,
+      "estado_situacional": "EJECUTADO"
     },
     {
       "id": 112,
@@ -13945,21 +14646,32 @@
       "alerta": "Proyecto adicional incorporado desde Maestro General FDM",
       "historial": [],
       "total_hitos": 0,
-      "fecha_inicio": "",
-      "fecha_inicio_sort": "9999-99-99",
-      "tiene_fecha_inicio": false,
-      "fecha_inicio_doc": "",
-      "fecha_termino_prog": "",
-      "fecha_culminacion_real": "",
+      "fecha_inicio": "02/07/2024",
+      "fecha_inicio_sort": "2024-07-02",
+      "tiene_fecha_inicio": true,
+      "fecha_inicio_doc": "Matriz Oficial Verificada Ing. FDM",
+      "fecha_termino_prog": "02/09/2024",
+      "fecha_culminacion_real": "02/09/2024",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
-      "estado_info": "ADICIONAL",
+      "estado_info": "COMPLETA",
       "estado_info_label": "⚪ MAESTRO FDM",
       "estado_info_desc": "Proyecto general FDM; incorporado para orden y foliado físico en campo",
       "detalles_faltantes": [],
       "confiabilidad": "INFO",
       "total_relevantes": 0,
-      "es_auditoria_2022_2025": false
+      "es_auditoria_2022_2025": false,
+      "fuentes_excel_ing": [
+        "100 - SC F46",
+        "100 - SC F49"
+      ],
+      "estado_situacional": "EN LIQUIDACION",
+      "fecha_inicio_verificada_ing": true,
+      "fecha_termino_verificada_ing": "02/09/2024",
+      "fecha_termino_sort": "2024-09-02",
+      "acuerdo_fdm": "Sesión extraordinaria del 10/06/2024",
+      "ampliacion_presupuestal": 500000.0,
+      "costo_total": 1274154.79
     },
     {
       "id": 113,
@@ -13970,7 +14682,7 @@
       "tipologia": "OBRAS CIVILES",
       "estatus": "EN EJECUCION",
       "prio": 7189451.9,
-      "costo_ejec": 7189451.9,
+      "costo_ejec": 3577725.98,
       "tiene_caja": "POR VERIFICAR",
       "n_cajas": "-",
       "checks": {
@@ -13989,21 +14701,28 @@
       "alerta": "Proyecto adicional incorporado desde Maestro General FDM",
       "historial": [],
       "total_hitos": 0,
-      "fecha_inicio": "",
-      "fecha_inicio_sort": "9999-99-99",
-      "tiene_fecha_inicio": false,
-      "fecha_inicio_doc": "",
+      "fecha_inicio": "16/01/2026",
+      "fecha_inicio_sort": "2026-01-16",
+      "tiene_fecha_inicio": true,
+      "fecha_inicio_doc": "Matriz Oficial Verificada Ing. FDM",
       "fecha_termino_prog": "",
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
-      "estado_info": "ADICIONAL",
+      "estado_info": "PARCIAL",
       "estado_info_label": "⚪ MAESTRO FDM",
       "estado_info_desc": "Proyecto general FDM; incorporado para orden y foliado físico en campo",
       "detalles_faltantes": [],
       "confiabilidad": "INFO",
       "total_relevantes": 0,
-      "es_auditoria_2022_2025": false
+      "es_auditoria_2022_2025": false,
+      "fuentes_excel_ing": [
+        "100 - SC F50"
+      ],
+      "estado_situacional": "EN EJECUCION",
+      "ampliacion_presupuestal": 0.0,
+      "costo_total": 7189451.9,
+      "fecha_inicio_verificada_ing": true
     },
     {
       "id": 114,
@@ -14013,8 +14732,8 @@
       "cui": "N/D",
       "tipologia": "ADQUISICIONES / SERVICIOS",
       "estatus": "EJECUTADO",
-      "prio": 200000,
-      "costo_ejec": 200000,
+      "prio": 200000.0,
+      "costo_ejec": 187100.0,
       "tiene_caja": "POR VERIFICAR",
       "n_cajas": "-",
       "checks": {
@@ -14041,13 +14760,19 @@
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
-      "estado_info": "ADICIONAL",
+      "estado_info": "PENDIENTE",
       "estado_info_label": "⚪ MAESTRO FDM",
       "estado_info_desc": "Proyecto general FDM; incorporado para orden y foliado físico en campo",
       "detalles_faltantes": [],
       "confiabilidad": "INFO",
       "total_relevantes": 0,
-      "es_auditoria_2022_2025": false
+      "es_auditoria_2022_2025": false,
+      "fuentes_excel_ing": [
+        "100 - SC F51"
+      ],
+      "ampliacion_presupuestal": 0.0,
+      "costo_total": 200000.0,
+      "estado_situacional": "EJECUTADO"
     },
     {
       "id": 115,
@@ -14085,13 +14810,18 @@
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
-      "estado_info": "ADICIONAL",
+      "estado_info": "PENDIENTE",
       "estado_info_label": "⚪ MAESTRO FDM",
       "estado_info_desc": "Proyecto general FDM; incorporado para orden y foliado físico en campo",
       "detalles_faltantes": [],
       "confiabilidad": "INFO",
       "total_relevantes": 0,
-      "es_auditoria_2022_2025": false
+      "es_auditoria_2022_2025": false,
+      "fuentes_excel_ing": [
+        "100 - SC F52"
+      ],
+      "costo_total": 511.98,
+      "estado_situacional": "EJECUTADO"
     },
     {
       "id": 116,
@@ -14101,7 +14831,7 @@
       "cui": "N/D",
       "tipologia": "ADQUISICIONES / SERVICIOS",
       "estatus": "EJECUTADO",
-      "prio": 0,
+      "prio": 3955336.4,
       "costo_ejec": 4249348.6,
       "tiene_caja": "POR VERIFICAR",
       "n_cajas": "-",
@@ -14129,13 +14859,20 @@
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
-      "estado_info": "ADICIONAL",
+      "estado_info": "PENDIENTE",
       "estado_info_label": "⚪ MAESTRO FDM",
       "estado_info_desc": "Proyecto general FDM; incorporado para orden y foliado físico en campo",
       "detalles_faltantes": [],
       "confiabilidad": "INFO",
       "total_relevantes": 0,
-      "es_auditoria_2022_2025": false
+      "es_auditoria_2022_2025": false,
+      "fuentes_excel_ing": [
+        "50 - 3 PROVINCIAS F7"
+      ],
+      "acuerdo_fdm": "Sesion Ordinaria 10/10/2023",
+      "ampliacion_presupuestal": 294012.2,
+      "costo_total": 4249348.6,
+      "estado_situacional": "EJECUTADO"
     },
     {
       "id": 117,
@@ -14145,8 +14882,8 @@
       "cui": "N/D",
       "tipologia": "ADQUISICIONES / SERVICIOS",
       "estatus": "EJECUTADO",
-      "prio": 0,
-      "costo_ejec": 2931000,
+      "prio": 2800000.0,
+      "costo_ejec": 2931000.0,
       "tiene_caja": "POR VERIFICAR",
       "n_cajas": "-",
       "checks": {
@@ -14173,13 +14910,20 @@
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
-      "estado_info": "ADICIONAL",
+      "estado_info": "PENDIENTE",
       "estado_info_label": "⚪ MAESTRO FDM",
       "estado_info_desc": "Proyecto general FDM; incorporado para orden y foliado físico en campo",
       "detalles_faltantes": [],
       "confiabilidad": "INFO",
       "total_relevantes": 0,
-      "es_auditoria_2022_2025": false
+      "es_auditoria_2022_2025": false,
+      "fuentes_excel_ing": [
+        "50 - 3 PROVINCIAS F8"
+      ],
+      "acuerdo_fdm": "Sesion Ordinaria 26/03/2024",
+      "ampliacion_presupuestal": 131000.0,
+      "costo_total": 2931000.0,
+      "estado_situacional": "EJECUTADO"
     },
     {
       "id": 118,
@@ -14189,7 +14933,7 @@
       "cui": "N/D",
       "tipologia": "ADQUISICIONES / SERVICIOS",
       "estatus": "EJECUTADO",
-      "prio": 0,
+      "prio": 711889.2,
       "costo_ejec": 896062.58,
       "tiene_caja": "POR VERIFICAR",
       "n_cajas": "-",
@@ -14217,13 +14961,19 @@
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
-      "estado_info": "ADICIONAL",
+      "estado_info": "PENDIENTE",
       "estado_info_label": "⚪ MAESTRO FDM",
       "estado_info_desc": "Proyecto general FDM; incorporado para orden y foliado físico en campo",
       "detalles_faltantes": [],
       "confiabilidad": "INFO",
       "total_relevantes": 0,
-      "es_auditoria_2022_2025": false
+      "es_auditoria_2022_2025": false,
+      "fuentes_excel_ing": [
+        "50 - 3 PROVINCIAS F10"
+      ],
+      "ampliacion_presupuestal": 184173.38,
+      "costo_total": 896062.58,
+      "estado_situacional": "EJECUTADO"
     },
     {
       "id": 119,
@@ -14233,8 +14983,8 @@
       "cui": "N/D",
       "tipologia": "ADQUISICIONES / SERVICIOS",
       "estatus": "EJECUTADO",
-      "prio": 0,
-      "costo_ejec": 144626,
+      "prio": 144626.0,
+      "costo_ejec": 144626.0,
       "tiene_caja": "POR VERIFICAR",
       "n_cajas": "-",
       "checks": {
@@ -14261,13 +15011,19 @@
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
-      "estado_info": "ADICIONAL",
+      "estado_info": "PENDIENTE",
       "estado_info_label": "⚪ MAESTRO FDM",
       "estado_info_desc": "Proyecto general FDM; incorporado para orden y foliado físico en campo",
       "detalles_faltantes": [],
       "confiabilidad": "INFO",
       "total_relevantes": 0,
-      "es_auditoria_2022_2025": false
+      "es_auditoria_2022_2025": false,
+      "fuentes_excel_ing": [
+        "50 - 3 PROVINCIAS F11"
+      ],
+      "ampliacion_presupuestal": 0.0,
+      "costo_total": 144626.0,
+      "estado_situacional": "EJECUTADO"
     },
     {
       "id": 120,
@@ -14277,8 +15033,8 @@
       "cui": "N/D",
       "tipologia": "OBRAS CIVILES",
       "estatus": "EJECUTADO",
-      "prio": 0,
-      "costo_ejec": 1080000,
+      "prio": 1080000.0,
+      "costo_ejec": 1080000.0,
       "tiene_caja": "POR VERIFICAR",
       "n_cajas": "-",
       "checks": {
@@ -14305,13 +15061,19 @@
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
-      "estado_info": "ADICIONAL",
+      "estado_info": "PENDIENTE",
       "estado_info_label": "⚪ MAESTRO FDM",
       "estado_info_desc": "Proyecto general FDM; incorporado para orden y foliado físico en campo",
       "detalles_faltantes": [],
       "confiabilidad": "INFO",
       "total_relevantes": 0,
-      "es_auditoria_2022_2025": false
+      "es_auditoria_2022_2025": false,
+      "fuentes_excel_ing": [
+        "50 - 3 PROVINCIAS F12"
+      ],
+      "ampliacion_presupuestal": 0.0,
+      "costo_total": 1080000.0,
+      "estado_situacional": "EJECUTADO"
     },
     {
       "id": 121,
@@ -14321,8 +15083,8 @@
       "cui": "N/D",
       "tipologia": "ADQUISICIONES / SERVICIOS",
       "estatus": "EJECUTADO",
-      "prio": 0,
-      "costo_ejec": 461852,
+      "prio": 461852.0,
+      "costo_ejec": 461852.0,
       "tiene_caja": "POR VERIFICAR",
       "n_cajas": "-",
       "checks": {
@@ -14349,13 +15111,19 @@
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
-      "estado_info": "ADICIONAL",
+      "estado_info": "PENDIENTE",
       "estado_info_label": "⚪ MAESTRO FDM",
       "estado_info_desc": "Proyecto general FDM; incorporado para orden y foliado físico en campo",
       "detalles_faltantes": [],
       "confiabilidad": "INFO",
       "total_relevantes": 0,
-      "es_auditoria_2022_2025": false
+      "es_auditoria_2022_2025": false,
+      "fuentes_excel_ing": [
+        "50 - 3 PROVINCIAS F13"
+      ],
+      "ampliacion_presupuestal": 0.0,
+      "costo_total": 461852.0,
+      "estado_situacional": "EJECUTADO"
     },
     {
       "id": 122,
@@ -14365,7 +15133,7 @@
       "cui": "N/D",
       "tipologia": "ADQUISICIONES / SERVICIOS",
       "estatus": "EJECUTADO",
-      "prio": 0,
+      "prio": 1254827.28,
       "costo_ejec": 1254827.28,
       "tiene_caja": "POR VERIFICAR",
       "n_cajas": "-",
@@ -14393,13 +15161,20 @@
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
-      "estado_info": "ADICIONAL",
+      "estado_info": "PENDIENTE",
       "estado_info_label": "⚪ MAESTRO FDM",
       "estado_info_desc": "Proyecto general FDM; incorporado para orden y foliado físico en campo",
       "detalles_faltantes": [],
       "confiabilidad": "INFO",
       "total_relevantes": 0,
-      "es_auditoria_2022_2025": false
+      "es_auditoria_2022_2025": false,
+      "fuentes_excel_ing": [
+        "50 - 3 PROVINCIAS F18"
+      ],
+      "acuerdo_fdm": "Sesión extraordinaria del 15/01/2021",
+      "ampliacion_presupuestal": 0.0,
+      "costo_total": 1254827.28,
+      "estado_situacional": "EJECUTADO"
     },
     {
       "id": 123,
@@ -14410,7 +15185,7 @@
       "tipologia": "ADQUISICIONES / SERVICIOS",
       "estatus": "POR EJECUTAR",
       "prio": 459226.5,
-      "costo_ejec": 0,
+      "costo_ejec": 0.0,
       "tiene_caja": "POR VERIFICAR",
       "n_cajas": "-",
       "checks": {
@@ -14437,13 +15212,20 @@
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
-      "estado_info": "ADICIONAL",
+      "estado_info": "NO_APLICA",
       "estado_info_label": "⚪ MAESTRO FDM",
       "estado_info_desc": "Proyecto general FDM; incorporado para orden y foliado físico en campo",
       "detalles_faltantes": [],
       "confiabilidad": "INFO",
       "total_relevantes": 0,
-      "es_auditoria_2022_2025": false
+      "es_auditoria_2022_2025": false,
+      "fuentes_excel_ing": [
+        "50 - 3 PROVINCIAS F24"
+      ],
+      "acuerdo_fdm": "Sesión ordinaria del 09/07/2026, acuerdo 09",
+      "ampliacion_presupuestal": 0.0,
+      "costo_total": 459226.5,
+      "estado_situacional": "POR EJECUTAR"
     },
     {
       "id": 124,
@@ -14454,7 +15236,7 @@
       "tipologia": "OBRAS CIVILES",
       "estatus": "EN EJECUCION",
       "prio": 565703.09,
-      "costo_ejec": 565703.09,
+      "costo_ejec": 84006.91,
       "tiene_caja": "POR VERIFICAR",
       "n_cajas": "-",
       "checks": {
@@ -14481,13 +15263,20 @@
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
-      "estado_info": "ADICIONAL",
+      "estado_info": "PENDIENTE",
       "estado_info_label": "⚪ MAESTRO FDM",
       "estado_info_desc": "Proyecto general FDM; incorporado para orden y foliado físico en campo",
       "detalles_faltantes": [],
       "confiabilidad": "INFO",
       "total_relevantes": 0,
-      "es_auditoria_2022_2025": false
+      "es_auditoria_2022_2025": false,
+      "fuentes_excel_ing": [
+        "EO - MN F6"
+      ],
+      "acuerdo_fdm": "Sesión ordinaria del 27/02/2025",
+      "ampliacion_presupuestal": 0.0,
+      "costo_total": 565703.09,
+      "estado_situacional": "EN EJECUCION"
     },
     {
       "id": 125,
@@ -14525,13 +15314,20 @@
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
-      "estado_info": "ADICIONAL",
+      "estado_info": "PENDIENTE",
       "estado_info_label": "⚪ MAESTRO FDM",
       "estado_info_desc": "Proyecto general FDM; incorporado para orden y foliado físico en campo",
       "detalles_faltantes": [],
       "confiabilidad": "INFO",
       "total_relevantes": 0,
-      "es_auditoria_2022_2025": false
+      "es_auditoria_2022_2025": false,
+      "fuentes_excel_ing": [
+        "EO - MN F7"
+      ],
+      "acuerdo_fdm": "Sesión extraordinaria del 17/12/2025",
+      "ampliacion_presupuestal": 0.0,
+      "costo_total": 416846.56,
+      "estado_situacional": "POR EJECUTAR (EN PROCESO / SALDO)"
     },
     {
       "id": 126,
@@ -14569,13 +15365,20 @@
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
-      "estado_info": "ADICIONAL",
+      "estado_info": "PENDIENTE",
       "estado_info_label": "⚪ MAESTRO FDM",
       "estado_info_desc": "Proyecto general FDM; incorporado para orden y foliado físico en campo",
       "detalles_faltantes": [],
       "confiabilidad": "INFO",
       "total_relevantes": 0,
-      "es_auditoria_2022_2025": false
+      "es_auditoria_2022_2025": false,
+      "fuentes_excel_ing": [
+        "EO - MN F8"
+      ],
+      "acuerdo_fdm": "Sesión extraordinaria del 17/12/2025",
+      "ampliacion_presupuestal": 0.0,
+      "costo_total": 1788500.58,
+      "estado_situacional": "POR EJECUTAR (EN PROCESO / SALDO)"
     },
     {
       "id": 127,
@@ -14585,8 +15388,8 @@
       "cui": "N/D",
       "tipologia": "ADQUISICIONES / SERVICIOS",
       "estatus": "EN EJECUCION",
-      "prio": 962030,
-      "costo_ejec": 962030,
+      "prio": 962030.0,
+      "costo_ejec": 836767.0,
       "tiene_caja": "POR VERIFICAR",
       "n_cajas": "-",
       "checks": {
@@ -14613,13 +15416,20 @@
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
-      "estado_info": "ADICIONAL",
+      "estado_info": "PENDIENTE",
       "estado_info_label": "⚪ MAESTRO FDM",
       "estado_info_desc": "Proyecto general FDM; incorporado para orden y foliado físico en campo",
       "detalles_faltantes": [],
       "confiabilidad": "INFO",
       "total_relevantes": 0,
-      "es_auditoria_2022_2025": false
+      "es_auditoria_2022_2025": false,
+      "fuentes_excel_ing": [
+        "EO - MN F9"
+      ],
+      "acuerdo_fdm": "Sesión ordinaria del 31/03/2026, acuerdo 01",
+      "ampliacion_presupuestal": 0.0,
+      "costo_total": 962030.0,
+      "estado_situacional": "EN EJECUCION"
     },
     {
       "id": 128,
@@ -14657,13 +15467,19 @@
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
-      "estado_info": "ADICIONAL",
+      "estado_info": "PENDIENTE",
       "estado_info_label": "⚪ MAESTRO FDM",
       "estado_info_desc": "Proyecto general FDM; incorporado para orden y foliado físico en campo",
       "detalles_faltantes": [],
       "confiabilidad": "INFO",
       "total_relevantes": 0,
-      "es_auditoria_2022_2025": false
+      "es_auditoria_2022_2025": false,
+      "fuentes_excel_ing": [
+        "EO - MN F10"
+      ],
+      "ampliacion_presupuestal": 0.0,
+      "costo_total": 153353.98,
+      "estado_situacional": "EJECUTADO"
     },
     {
       "id": 129,
@@ -14673,7 +15489,7 @@
       "cui": "N/D",
       "tipologia": "OBRAS CIVILES",
       "estatus": "POR EJECUTAR",
-      "prio": 149667,
+      "prio": 149667.0,
       "costo_ejec": 149667,
       "tiene_caja": "POR VERIFICAR",
       "n_cajas": "-",
@@ -14701,13 +15517,20 @@
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
-      "estado_info": "ADICIONAL",
+      "estado_info": "PENDIENTE",
       "estado_info_label": "⚪ MAESTRO FDM",
       "estado_info_desc": "Proyecto general FDM; incorporado para orden y foliado físico en campo",
       "detalles_faltantes": [],
       "confiabilidad": "INFO",
       "total_relevantes": 0,
-      "es_auditoria_2022_2025": false
+      "es_auditoria_2022_2025": false,
+      "fuentes_excel_ing": [
+        "EO - MN F11"
+      ],
+      "acuerdo_fdm": "Sesión ordinaria del 09/07/2026, acuerdo 14",
+      "ampliacion_presupuestal": 0.0,
+      "costo_total": 149667.0,
+      "estado_situacional": "POR EJECUTAR (EN PROCESO / SALDO)"
     },
     {
       "id": 130,
@@ -14717,7 +15540,7 @@
       "cui": "N/D",
       "tipologia": "ADQUISICIONES / SERVICIOS",
       "estatus": "POR EJECUTAR",
-      "prio": 1592322,
+      "prio": 1592322.0,
       "costo_ejec": 1592322,
       "tiene_caja": "POR VERIFICAR",
       "n_cajas": "-",
@@ -14745,13 +15568,20 @@
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
-      "estado_info": "ADICIONAL",
+      "estado_info": "PENDIENTE",
       "estado_info_label": "⚪ MAESTRO FDM",
       "estado_info_desc": "Proyecto general FDM; incorporado para orden y foliado físico en campo",
       "detalles_faltantes": [],
       "confiabilidad": "INFO",
       "total_relevantes": 0,
-      "es_auditoria_2022_2025": false
+      "es_auditoria_2022_2025": false,
+      "fuentes_excel_ing": [
+        "EO - MN F13"
+      ],
+      "acuerdo_fdm": "Sesión ordinaria del 09/07/2026, acuerdo 12",
+      "ampliacion_presupuestal": 0.0,
+      "costo_total": 1592322.0,
+      "estado_situacional": "POR EJECUTAR (EN PROCESO / SALDO)"
     },
     {
       "id": 131,
@@ -14761,7 +15591,7 @@
       "cui": "N/D",
       "tipologia": "ADQUISICIONES / SERVICIOS",
       "estatus": "POR EJECUTAR",
-      "prio": 142500,
+      "prio": 142500.0,
       "costo_ejec": 142500,
       "tiene_caja": "POR VERIFICAR",
       "n_cajas": "-",
@@ -14789,13 +15619,20 @@
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
-      "estado_info": "ADICIONAL",
+      "estado_info": "PENDIENTE",
       "estado_info_label": "⚪ MAESTRO FDM",
       "estado_info_desc": "Proyecto general FDM; incorporado para orden y foliado físico en campo",
       "detalles_faltantes": [],
       "confiabilidad": "INFO",
       "total_relevantes": 0,
-      "es_auditoria_2022_2025": false
+      "es_auditoria_2022_2025": false,
+      "fuentes_excel_ing": [
+        "EO - MN F15"
+      ],
+      "acuerdo_fdm": "Sesión ordinaria del 27/08/2026, acuerdo 05",
+      "ampliacion_presupuestal": 0.0,
+      "costo_total": 142500.0,
+      "estado_situacional": "POR EJECUTAR (EN PROCESO / SALDO)"
     },
     {
       "id": 132,
@@ -14805,7 +15642,7 @@
       "cui": "N/D",
       "tipologia": "ADQUISICIONES / SERVICIOS",
       "estatus": "POR EJECUTAR",
-      "prio": 316000,
+      "prio": 316000.0,
       "costo_ejec": 316000,
       "tiene_caja": "POR VERIFICAR",
       "n_cajas": "-",
@@ -14833,13 +15670,20 @@
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
-      "estado_info": "ADICIONAL",
+      "estado_info": "PENDIENTE",
       "estado_info_label": "⚪ MAESTRO FDM",
       "estado_info_desc": "Proyecto general FDM; incorporado para orden y foliado físico en campo",
       "detalles_faltantes": [],
       "confiabilidad": "INFO",
       "total_relevantes": 0,
-      "es_auditoria_2022_2025": false
+      "es_auditoria_2022_2025": false,
+      "fuentes_excel_ing": [
+        "EO - MN F16"
+      ],
+      "acuerdo_fdm": "Sesión ordinaria del 27/08/2026, acuerdo 05",
+      "ampliacion_presupuestal": 0.0,
+      "costo_total": 316000.0,
+      "estado_situacional": "POR EJECUTAR (EN PROCESO / SALDO)"
     },
     {
       "id": 133,
@@ -14849,7 +15693,7 @@
       "cui": "N/D",
       "tipologia": "ADQUISICIONES / SERVICIOS",
       "estatus": "POR EJECUTAR",
-      "prio": 719000,
+      "prio": 719000.0,
       "costo_ejec": 719000,
       "tiene_caja": "POR VERIFICAR",
       "n_cajas": "-",
@@ -14877,13 +15721,20 @@
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
-      "estado_info": "ADICIONAL",
+      "estado_info": "PENDIENTE",
       "estado_info_label": "⚪ MAESTRO FDM",
       "estado_info_desc": "Proyecto general FDM; incorporado para orden y foliado físico en campo",
       "detalles_faltantes": [],
       "confiabilidad": "INFO",
       "total_relevantes": 0,
-      "es_auditoria_2022_2025": false
+      "es_auditoria_2022_2025": false,
+      "fuentes_excel_ing": [
+        "EO - MN F17"
+      ],
+      "acuerdo_fdm": "Sesión ordinaria del 27/08/2026, acuerdo 05",
+      "ampliacion_presupuestal": 0.0,
+      "costo_total": 719000.0,
+      "estado_situacional": "POR EJECUTAR (EN PROCESO / SALDO)"
     },
     {
       "id": 134,
@@ -14893,7 +15744,7 @@
       "cui": "N/D",
       "tipologia": "ADQUISICIONES / SERVICIOS",
       "estatus": "POR EJECUTAR",
-      "prio": 739000,
+      "prio": 739000.0,
       "costo_ejec": 739000,
       "tiene_caja": "POR VERIFICAR",
       "n_cajas": "-",
@@ -14921,13 +15772,20 @@
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
-      "estado_info": "ADICIONAL",
+      "estado_info": "PENDIENTE",
       "estado_info_label": "⚪ MAESTRO FDM",
       "estado_info_desc": "Proyecto general FDM; incorporado para orden y foliado físico en campo",
       "detalles_faltantes": [],
       "confiabilidad": "INFO",
       "total_relevantes": 0,
-      "es_auditoria_2022_2025": false
+      "es_auditoria_2022_2025": false,
+      "fuentes_excel_ing": [
+        "EO - MN F18"
+      ],
+      "acuerdo_fdm": "Sesión ordinaria del 27/08/2026, acuerdo 05",
+      "ampliacion_presupuestal": 0.0,
+      "costo_total": 739000.0,
+      "estado_situacional": "POR EJECUTAR (EN PROCESO / SALDO)"
     },
     {
       "id": 135,
@@ -14937,7 +15795,7 @@
       "cui": "N/D",
       "tipologia": "OBRAS CIVILES",
       "estatus": "POR EJECUTAR",
-      "prio": 101039,
+      "prio": 101039.0,
       "costo_ejec": 101039,
       "tiene_caja": "POR VERIFICAR",
       "n_cajas": "-",
@@ -14965,13 +15823,20 @@
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
-      "estado_info": "ADICIONAL",
+      "estado_info": "PENDIENTE",
       "estado_info_label": "⚪ MAESTRO FDM",
       "estado_info_desc": "Proyecto general FDM; incorporado para orden y foliado físico en campo",
       "detalles_faltantes": [],
       "confiabilidad": "INFO",
       "total_relevantes": 0,
-      "es_auditoria_2022_2025": false
+      "es_auditoria_2022_2025": false,
+      "fuentes_excel_ing": [
+        "EO - ILO F7"
+      ],
+      "acuerdo_fdm": "Sesión ordinaria del 21/07/2025",
+      "ampliacion_presupuestal": 0.0,
+      "costo_total": 101039.0,
+      "estado_situacional": "POR EJECUTAR (EN PROCESO / SALDO)"
     },
     {
       "id": 136,
@@ -14981,7 +15846,7 @@
       "cui": "N/D",
       "tipologia": "ADQUISICIONES / SERVICIOS",
       "estatus": "POR EJECUTAR",
-      "prio": 1500000,
+      "prio": 1500000.0,
       "costo_ejec": 2100000,
       "tiene_caja": "POR VERIFICAR",
       "n_cajas": "-",
@@ -15009,13 +15874,20 @@
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
-      "estado_info": "ADICIONAL",
+      "estado_info": "PENDIENTE",
       "estado_info_label": "⚪ MAESTRO FDM",
       "estado_info_desc": "Proyecto general FDM; incorporado para orden y foliado físico en campo",
       "detalles_faltantes": [],
       "confiabilidad": "INFO",
       "total_relevantes": 0,
-      "es_auditoria_2022_2025": false
+      "es_auditoria_2022_2025": false,
+      "fuentes_excel_ing": [
+        "EO - ILO F10"
+      ],
+      "acuerdo_fdm": "Sesión ordinaria del 31/03/2026, acuerdo 08",
+      "ampliacion_presupuestal": 0.0,
+      "costo_total": 2100000.0,
+      "estado_situacional": "POR EJECUTAR (EN PROCESO / SALDO)"
     },
     {
       "id": 137,
@@ -15025,8 +15897,8 @@
       "cui": "N/D",
       "tipologia": "ADQUISICIONES / SERVICIOS",
       "estatus": "POR EJECUTAR",
-      "prio": 500000,
-      "costo_ejec": 719000,
+      "prio": 500000.0,
+      "costo_ejec": 719000.0,
       "tiene_caja": "POR VERIFICAR",
       "n_cajas": "-",
       "checks": {
@@ -15053,13 +15925,20 @@
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
-      "estado_info": "ADICIONAL",
+      "estado_info": "PENDIENTE",
       "estado_info_label": "⚪ MAESTRO FDM",
       "estado_info_desc": "Proyecto general FDM; incorporado para orden y foliado físico en campo",
       "detalles_faltantes": [],
       "confiabilidad": "INFO",
       "total_relevantes": 0,
-      "es_auditoria_2022_2025": false
+      "es_auditoria_2022_2025": false,
+      "fuentes_excel_ing": [
+        "EO - ILO F12"
+      ],
+      "acuerdo_fdm": "Sesión ordinaria del 31/03/2026, acuerdo 10",
+      "ampliacion_presupuestal": 0.0,
+      "costo_total": 719000.0,
+      "estado_situacional": "POR EJECUTAR (EN PROCESO / SALDO)"
     },
     {
       "id": 138,
@@ -15069,8 +15948,8 @@
       "cui": "N/D",
       "tipologia": "ADQUISICIONES / SERVICIOS",
       "estatus": "POR EJECUTAR",
-      "prio": 1250000,
-      "costo_ejec": 1244000,
+      "prio": 1250000.0,
+      "costo_ejec": 1244000.0,
       "tiene_caja": "POR VERIFICAR",
       "n_cajas": "-",
       "checks": {
@@ -15097,13 +15976,20 @@
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
-      "estado_info": "ADICIONAL",
+      "estado_info": "PENDIENTE",
       "estado_info_label": "⚪ MAESTRO FDM",
       "estado_info_desc": "Proyecto general FDM; incorporado para orden y foliado físico en campo",
       "detalles_faltantes": [],
       "confiabilidad": "INFO",
       "total_relevantes": 0,
-      "es_auditoria_2022_2025": false
+      "es_auditoria_2022_2025": false,
+      "fuentes_excel_ing": [
+        "EO - ILO F13"
+      ],
+      "acuerdo_fdm": "Sesión ordinaria del 31/03/2026, acuerdo 11",
+      "ampliacion_presupuestal": 0.0,
+      "costo_total": 1244000.0,
+      "estado_situacional": "POR EJECUTAR (EN PROCESO / SALDO)"
     },
     {
       "id": 139,
@@ -15113,7 +15999,7 @@
       "cui": "N/D",
       "tipologia": "ADQUISICIONES / SERVICIOS",
       "estatus": "POR EJECUTAR",
-      "prio": 2080000,
+      "prio": 2080000.0,
       "costo_ejec": 2080000,
       "tiene_caja": "POR VERIFICAR",
       "n_cajas": "-",
@@ -15141,13 +16027,20 @@
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
-      "estado_info": "ADICIONAL",
+      "estado_info": "PENDIENTE",
       "estado_info_label": "⚪ MAESTRO FDM",
       "estado_info_desc": "Proyecto general FDM; incorporado para orden y foliado físico en campo",
       "detalles_faltantes": [],
       "confiabilidad": "INFO",
       "total_relevantes": 0,
-      "es_auditoria_2022_2025": false
+      "es_auditoria_2022_2025": false,
+      "fuentes_excel_ing": [
+        "EO - ILO F14"
+      ],
+      "acuerdo_fdm": "Sesión ordinaria del 27/08/2026, acuerdo 07",
+      "ampliacion_presupuestal": 0.0,
+      "costo_total": 2080000.0,
+      "estado_situacional": "POR EJECUTAR (EN PROCESO / SALDO)"
     },
     {
       "id": 140,
@@ -15157,7 +16050,7 @@
       "cui": "N/D",
       "tipologia": "ADQUISICIONES / SERVICIOS",
       "estatus": "POR EJECUTAR",
-      "prio": 580000,
+      "prio": 580000.0,
       "costo_ejec": 580000,
       "tiene_caja": "POR VERIFICAR",
       "n_cajas": "-",
@@ -15185,13 +16078,20 @@
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
-      "estado_info": "ADICIONAL",
+      "estado_info": "PENDIENTE",
       "estado_info_label": "⚪ MAESTRO FDM",
       "estado_info_desc": "Proyecto general FDM; incorporado para orden y foliado físico en campo",
       "detalles_faltantes": [],
       "confiabilidad": "INFO",
       "total_relevantes": 0,
-      "es_auditoria_2022_2025": false
+      "es_auditoria_2022_2025": false,
+      "fuentes_excel_ing": [
+        "EO - ILO F15"
+      ],
+      "acuerdo_fdm": "Sesión ordinaria del 27/08/2026, acuerdo 07",
+      "ampliacion_presupuestal": 0.0,
+      "costo_total": 580000.0,
+      "estado_situacional": "POR EJECUTAR (EN PROCESO / SALDO)"
     },
     {
       "id": 141,
@@ -15201,7 +16101,7 @@
       "cui": "N/D",
       "tipologia": "ADQUISICIONES / SERVICIOS",
       "estatus": "POR EJECUTAR",
-      "prio": 300780,
+      "prio": 300780.0,
       "costo_ejec": 300780,
       "tiene_caja": "POR VERIFICAR",
       "n_cajas": "-",
@@ -15229,13 +16129,20 @@
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
-      "estado_info": "ADICIONAL",
+      "estado_info": "PENDIENTE",
       "estado_info_label": "⚪ MAESTRO FDM",
       "estado_info_desc": "Proyecto general FDM; incorporado para orden y foliado físico en campo",
       "detalles_faltantes": [],
       "confiabilidad": "INFO",
       "total_relevantes": 0,
-      "es_auditoria_2022_2025": false
+      "es_auditoria_2022_2025": false,
+      "fuentes_excel_ing": [
+        "EO - ILO F16"
+      ],
+      "acuerdo_fdm": "Sesión ordinaria del 27/08/2026, acuerdo 07",
+      "ampliacion_presupuestal": 0.0,
+      "costo_total": 300780.0,
+      "estado_situacional": "POR EJECUTAR (EN PROCESO / SALDO)"
     },
     {
       "id": 142,
@@ -15245,7 +16152,7 @@
       "cui": "N/D",
       "tipologia": "ADQUISICIONES / SERVICIOS",
       "estatus": "POR EJECUTAR",
-      "prio": 200520,
+      "prio": 200520.0,
       "costo_ejec": 200520,
       "tiene_caja": "POR VERIFICAR",
       "n_cajas": "-",
@@ -15273,13 +16180,20 @@
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
-      "estado_info": "ADICIONAL",
+      "estado_info": "PENDIENTE",
       "estado_info_label": "⚪ MAESTRO FDM",
       "estado_info_desc": "Proyecto general FDM; incorporado para orden y foliado físico en campo",
       "detalles_faltantes": [],
       "confiabilidad": "INFO",
       "total_relevantes": 0,
-      "es_auditoria_2022_2025": false
+      "es_auditoria_2022_2025": false,
+      "fuentes_excel_ing": [
+        "EO - ILO F17"
+      ],
+      "acuerdo_fdm": "Sesión ordinaria del 27/08/2026, acuerdo 07",
+      "ampliacion_presupuestal": 0.0,
+      "costo_total": 200520.0,
+      "estado_situacional": "POR EJECUTAR (EN PROCESO / SALDO)"
     },
     {
       "id": 143,
@@ -15289,7 +16203,7 @@
       "cui": "N/D",
       "tipologia": "ADQUISICIONES / SERVICIOS",
       "estatus": "POR EJECUTAR",
-      "prio": 315000,
+      "prio": 315000.0,
       "costo_ejec": 315000,
       "tiene_caja": "POR VERIFICAR",
       "n_cajas": "-",
@@ -15317,13 +16231,20 @@
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
-      "estado_info": "ADICIONAL",
+      "estado_info": "PENDIENTE",
       "estado_info_label": "⚪ MAESTRO FDM",
       "estado_info_desc": "Proyecto general FDM; incorporado para orden y foliado físico en campo",
       "detalles_faltantes": [],
       "confiabilidad": "INFO",
       "total_relevantes": 0,
-      "es_auditoria_2022_2025": false
+      "es_auditoria_2022_2025": false,
+      "fuentes_excel_ing": [
+        "EO - ILO F18"
+      ],
+      "acuerdo_fdm": "Sesión ordinaria del 27/08/2026, acuerdo 07",
+      "ampliacion_presupuestal": 0.0,
+      "costo_total": 315000.0,
+      "estado_situacional": "POR EJECUTAR (EN PROCESO / SALDO)"
     },
     {
       "id": 144,
@@ -15333,7 +16254,7 @@
       "cui": "N/D",
       "tipologia": "ADQUISICIONES / SERVICIOS",
       "estatus": "POR EJECUTAR",
-      "prio": 479000,
+      "prio": 479000.0,
       "costo_ejec": 479000,
       "tiene_caja": "POR VERIFICAR",
       "n_cajas": "-",
@@ -15361,13 +16282,20 @@
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
-      "estado_info": "ADICIONAL",
+      "estado_info": "PENDIENTE",
       "estado_info_label": "⚪ MAESTRO FDM",
       "estado_info_desc": "Proyecto general FDM; incorporado para orden y foliado físico en campo",
       "detalles_faltantes": [],
       "confiabilidad": "INFO",
       "total_relevantes": 0,
-      "es_auditoria_2022_2025": false
+      "es_auditoria_2022_2025": false,
+      "fuentes_excel_ing": [
+        "EO - ILO F19"
+      ],
+      "acuerdo_fdm": "Sesión ordinaria del 27/08/2026, acuerdo 07",
+      "ampliacion_presupuestal": 0.0,
+      "costo_total": 479000.0,
+      "estado_situacional": "POR EJECUTAR (EN PROCESO / SALDO)"
     },
     {
       "id": 145,
@@ -15377,7 +16305,7 @@
       "cui": "N/D",
       "tipologia": "ADQUISICIONES / SERVICIOS",
       "estatus": "POR EJECUTAR",
-      "prio": 449000,
+      "prio": 449000.0,
       "costo_ejec": 449000,
       "tiene_caja": "POR VERIFICAR",
       "n_cajas": "-",
@@ -15405,13 +16333,20 @@
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
-      "estado_info": "ADICIONAL",
+      "estado_info": "PENDIENTE",
       "estado_info_label": "⚪ MAESTRO FDM",
       "estado_info_desc": "Proyecto general FDM; incorporado para orden y foliado físico en campo",
       "detalles_faltantes": [],
       "confiabilidad": "INFO",
       "total_relevantes": 0,
-      "es_auditoria_2022_2025": false
+      "es_auditoria_2022_2025": false,
+      "fuentes_excel_ing": [
+        "EO - ILO F20"
+      ],
+      "acuerdo_fdm": "Sesión ordinaria del 27/08/2026, acuerdo 07",
+      "ampliacion_presupuestal": 0.0,
+      "costo_total": 449000.0,
+      "estado_situacional": "POR EJECUTAR (EN PROCESO / SALDO)"
     },
     {
       "id": 146,
@@ -15449,13 +16384,19 @@
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
-      "estado_info": "ADICIONAL",
+      "estado_info": "NO_APLICA",
       "estado_info_label": "⚪ MAESTRO FDM",
       "estado_info_desc": "Proyecto general FDM; incorporado para orden y foliado físico en campo",
       "detalles_faltantes": [],
       "confiabilidad": "INFO",
       "total_relevantes": 0,
-      "es_auditoria_2022_2025": false
+      "es_auditoria_2022_2025": false,
+      "fuentes_excel_ing": [
+        "EO - ILO F25"
+      ],
+      "ampliacion_presupuestal": 0.0,
+      "costo_total": 7196836.16,
+      "estado_situacional": "POR APROBARSE"
     },
     {
       "id": 147,
@@ -15465,8 +16406,8 @@
       "cui": "N/D",
       "tipologia": "OBRAS CIVILES",
       "estatus": "EJECUTADO",
-      "prio": 1850000,
-      "costo_ejec": 2490000,
+      "prio": 1850000.0,
+      "costo_ejec": 2490000.0,
       "tiene_caja": "POR VERIFICAR",
       "n_cajas": "-",
       "checks": {
@@ -15493,13 +16434,20 @@
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
-      "estado_info": "ADICIONAL",
+      "estado_info": "PENDIENTE",
       "estado_info_label": "⚪ MAESTRO FDM",
       "estado_info_desc": "Proyecto general FDM; incorporado para orden y foliado físico en campo",
       "detalles_faltantes": [],
       "confiabilidad": "INFO",
       "total_relevantes": 0,
-      "es_auditoria_2022_2025": false
+      "es_auditoria_2022_2025": false,
+      "fuentes_excel_ing": [
+        "EO - SC F8"
+      ],
+      "acuerdo_fdm": "Sesión extraordinaria del 13/06/2025",
+      "ampliacion_presupuestal": 640000.0,
+      "costo_total": 2490000.0,
+      "estado_situacional": "EJECUTADO"
     },
     {
       "id": 148,
@@ -15510,7 +16458,7 @@
       "tipologia": "ADQUISICIONES / SERVICIOS",
       "estatus": "POR EJECUTAR",
       "prio": 1116395.05,
-      "costo_ejec": 1160822,
+      "costo_ejec": 1160822.0,
       "tiene_caja": "POR VERIFICAR",
       "n_cajas": "-",
       "checks": {
@@ -15537,13 +16485,20 @@
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
-      "estado_info": "ADICIONAL",
+      "estado_info": "PENDIENTE",
       "estado_info_label": "⚪ MAESTRO FDM",
       "estado_info_desc": "Proyecto general FDM; incorporado para orden y foliado físico en campo",
       "detalles_faltantes": [],
       "confiabilidad": "INFO",
       "total_relevantes": 0,
-      "es_auditoria_2022_2025": false
+      "es_auditoria_2022_2025": false,
+      "fuentes_excel_ing": [
+        "EO - SC F9"
+      ],
+      "acuerdo_fdm": "Sesión extraordinaria del 21/07/2025",
+      "ampliacion_presupuestal": 0.0,
+      "costo_total": 1160822.0,
+      "estado_situacional": "POR EJECUTAR (EN PROCESO / SALDO)"
     },
     {
       "id": 149,
@@ -15554,7 +16509,7 @@
       "tipologia": "OBRAS CIVILES",
       "estatus": "POR EJECUTAR",
       "prio": 8717904.54,
-      "costo_ejec": 8717904.54,
+      "costo_ejec": 823998.54,
       "tiene_caja": "POR VERIFICAR",
       "n_cajas": "-",
       "checks": {
@@ -15581,13 +16536,20 @@
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
-      "estado_info": "ADICIONAL",
+      "estado_info": "PENDIENTE",
       "estado_info_label": "⚪ MAESTRO FDM",
       "estado_info_desc": "Proyecto general FDM; incorporado para orden y foliado físico en campo",
       "detalles_faltantes": [],
       "confiabilidad": "INFO",
       "total_relevantes": 0,
-      "es_auditoria_2022_2025": false
+      "es_auditoria_2022_2025": false,
+      "fuentes_excel_ing": [
+        "EO - SC F11"
+      ],
+      "acuerdo_fdm": "Sesión extraordinaria del 17/12/2025",
+      "ampliacion_presupuestal": 0.0,
+      "costo_total": 8717904.54,
+      "estado_situacional": "POR EJECUTAR (EN PROCESO / SALDO)"
     },
     {
       "id": 150,
@@ -15597,8 +16559,8 @@
       "cui": "N/D",
       "tipologia": "ADQUISICIONES / SERVICIOS",
       "estatus": "EJECUTADO",
-      "prio": 144130,
-      "costo_ejec": 174000,
+      "prio": 144130.0,
+      "costo_ejec": 174000.0,
       "tiene_caja": "POR VERIFICAR",
       "n_cajas": "-",
       "checks": {
@@ -15625,13 +16587,18 @@
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
-      "estado_info": "ADICIONAL",
+      "estado_info": "PENDIENTE",
       "estado_info_label": "⚪ MAESTRO FDM",
       "estado_info_desc": "Proyecto general FDM; incorporado para orden y foliado físico en campo",
       "detalles_faltantes": [],
       "confiabilidad": "INFO",
       "total_relevantes": 0,
-      "es_auditoria_2022_2025": false
+      "es_auditoria_2022_2025": false,
+      "fuentes_excel_ing": [
+        "EO - SC F12"
+      ],
+      "costo_total": 174000.0,
+      "estado_situacional": "EJECUTADO"
     },
     {
       "id": 151,
@@ -15642,7 +16609,7 @@
       "tipologia": "ADQUISICIONES / SERVICIOS",
       "estatus": "POR EJECUTAR",
       "prio": 0,
-      "costo_ejec": 0,
+      "costo_ejec": 0.0,
       "tiene_caja": "POR VERIFICAR",
       "n_cajas": "-",
       "checks": {
@@ -15669,13 +16636,20 @@
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
-      "estado_info": "ADICIONAL",
+      "estado_info": "NO_APLICA",
       "estado_info_label": "⚪ MAESTRO FDM",
       "estado_info_desc": "Proyecto general FDM; incorporado para orden y foliado físico en campo",
       "detalles_faltantes": [],
       "confiabilidad": "INFO",
       "total_relevantes": 0,
-      "es_auditoria_2022_2025": false
+      "es_auditoria_2022_2025": false,
+      "fuentes_excel_ing": [
+        "EO - SC F13"
+      ],
+      "acuerdo_fdm": "Sesión ordinaria del 31/03/2026, acuerdo 12",
+      "ampliacion_presupuestal": 0.0,
+      "costo_total": 0.0,
+      "estado_situacional": "POR EJECUTAR"
     },
     {
       "id": 152,
@@ -15685,8 +16659,8 @@
       "cui": "N/D",
       "tipologia": "ADQUISICIONES / SERVICIOS",
       "estatus": "POR EJECUTAR",
-      "prio": 2500000,
-      "costo_ejec": 2500000,
+      "prio": 2500000.0,
+      "costo_ejec": 10000.0,
       "tiene_caja": "POR VERIFICAR",
       "n_cajas": "-",
       "checks": {
@@ -15713,13 +16687,20 @@
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
-      "estado_info": "ADICIONAL",
+      "estado_info": "PENDIENTE",
       "estado_info_label": "⚪ MAESTRO FDM",
       "estado_info_desc": "Proyecto general FDM; incorporado para orden y foliado físico en campo",
       "detalles_faltantes": [],
       "confiabilidad": "INFO",
       "total_relevantes": 0,
-      "es_auditoria_2022_2025": false
+      "es_auditoria_2022_2025": false,
+      "fuentes_excel_ing": [
+        "EO - SC F14"
+      ],
+      "acuerdo_fdm": "Sesión ordinaria del 31/03/2026, acuerdo 13",
+      "ampliacion_presupuestal": 0.0,
+      "costo_total": 2500000.0,
+      "estado_situacional": "POR EJECUTAR (EN PROCESO / SALDO)"
     },
     {
       "id": 153,
@@ -15729,8 +16710,8 @@
       "cui": "N/D",
       "tipologia": "ADQUISICIONES / SERVICIOS",
       "estatus": "EJECUTADO",
-      "prio": 2500000,
-      "costo_ejec": 2500000,
+      "prio": 2500000.0,
+      "costo_ejec": 448736.07,
       "tiene_caja": "POR VERIFICAR",
       "n_cajas": "-",
       "checks": {
@@ -15757,13 +16738,546 @@
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
       "resolucion_liquidacion": "",
-      "estado_info": "ADICIONAL",
+      "estado_info": "PENDIENTE",
       "estado_info_label": "⚪ MAESTRO FDM",
       "estado_info_desc": "Proyecto general FDM; incorporado para orden y foliado físico en campo",
       "detalles_faltantes": [],
       "confiabilidad": "INFO",
       "total_relevantes": 0,
-      "es_auditoria_2022_2025": false
+      "es_auditoria_2022_2025": false,
+      "fuentes_excel_ing": [
+        "EO - SC F16"
+      ],
+      "ampliacion_presupuestal": 0.0,
+      "costo_total": 2500000.0,
+      "estado_situacional": "EJECUTADO"
+    },
+    {
+      "id": 154,
+      "es_auditoria_2022_2025": false,
+      "tipo_obra": "MAESTRO / COMPRA / FICHA",
+      "desc": "ELABORACION DE EXPEDIENTE TECNICO: \"CREACION DE LOS SERVICIOS CULTURALES EN CENTRO CULTURAL EN LA PAMPA INALAMBRICA, DISTRITO DE ILO PROVINCIA DE ILO, REGION MOQUEGUA",
+      "cui": "S/N",
+      "convenio": "100 MLL.",
+      "provincia": "ILO",
+      "prio": 414318.08,
+      "costo_ejec": 207302.4,
+      "contrato": "-",
+      "contratista": "-",
+      "plazo": "-",
+      "fecha_inicio": "SIN INICIO REGISTRADO",
+      "fecha_inicio_sort": "9999-12-31",
+      "fecha_inicio_doc": "Matriz Oficial Ing. FDM",
+      "fecha_termino_prog": "-",
+      "fecha_culminacion_real": "-",
+      "acta_recepcion": "-",
+      "res_liquidacion": "-",
+      "tiene_fecha_inicio": false,
+      "estado_info": "PENDIENTE",
+      "ubicacion": "Archivo FDM / Por Ubicar",
+      "historial": [],
+      "fuentes_excel_ing": [
+        "100 - ILO F31"
+      ],
+      "acuerdo_fdm": "Sesión ordinaria del 10/06/2024",
+      "estatus": "EN EJECUCION",
+      "ampliacion_presupuestal": 0.0,
+      "costo_total": 345504.0,
+      "estado_situacional": "EN EJECUCION"
+    },
+    {
+      "id": 155,
+      "es_auditoria_2022_2025": false,
+      "tipo_obra": "MAESTRO / COMPRA / FICHA",
+      "desc": "ATENCIÓN COMPRAS COVID - 19: SERVICIOS",
+      "cui": "S/N",
+      "convenio": "100 MLL.",
+      "provincia": "M.N.",
+      "prio": 132115.79,
+      "costo_ejec": 132115.79,
+      "contrato": "-",
+      "contratista": "-",
+      "plazo": "-",
+      "fecha_inicio": "SIN INICIO REGISTRADO",
+      "fecha_inicio_sort": "9999-12-31",
+      "fecha_inicio_doc": "Matriz Oficial Ing. FDM",
+      "fecha_termino_prog": "-",
+      "fecha_culminacion_real": "-",
+      "acta_recepcion": "-",
+      "res_liquidacion": "-",
+      "tiene_fecha_inicio": false,
+      "estado_info": "PENDIENTE",
+      "ubicacion": "Archivo FDM / Por Ubicar",
+      "historial": [],
+      "fuentes_excel_ing": [
+        "100- MN F7"
+      ],
+      "estatus": "EJECUTADO",
+      "ampliacion_presupuestal": 0.0,
+      "costo_total": 132115.79,
+      "estado_situacional": "EJECUTADO"
+    },
+    {
+      "id": 156,
+      "es_auditoria_2022_2025": true,
+      "tipo_obra": "INFRAESTRUCTURA / EQUIPAMIENTO",
+      "desc": "MEJORAMIENTO DEL SERVICIO DE EDUCACION SUPERIOR TECNOCLOGICO DEL IESTP JOSE CARLOS MARIATEGUI, DISTRITO DE SAMEGUA - MARISCAL NIETO - DEPARTAMENTO MOQUEGUA",
+      "cui": "S/N",
+      "convenio": "100 MLL.",
+      "provincia": "M.N.",
+      "prio": 25000000.0,
+      "costo_ejec": 21273115.37,
+      "contrato": "-",
+      "contratista": "-",
+      "plazo": "-",
+      "fecha_inicio": "01/02/2024",
+      "fecha_inicio_sort": "2024-02-01",
+      "fecha_inicio_doc": "Matriz Ing. FDM (Verif. 01/02/2024; prev. SIN INICIO REGISTRADO: Matriz Oficial Ing. FDM)",
+      "fecha_termino_prog": "29/07/2024",
+      "fecha_culminacion_real": "29/07/2024",
+      "acta_recepcion": "-",
+      "res_liquidacion": "-",
+      "tiene_fecha_inicio": true,
+      "estado_info": "COMPLETA",
+      "ubicacion": "Archivo FDM / Por Ubicar",
+      "historial": [],
+      "fuentes_excel_ing": [
+        "100- MN F12",
+        "50 - 3 PROVINCIAS F6"
+      ],
+      "estado_situacional": "EN PROCESO DE LIQUIDACION",
+      "fecha_inicio_verificada_ing": true,
+      "fecha_termino_verificada_ing": "29/07/2024",
+      "fecha_termino_sort": "2024-07-29",
+      "acuerdo_fdm": "Sesión extraordinaria del 20/05/2019",
+      "estatus": "EN EJECUCION",
+      "ampliacion_presupuestal": 1750000.0,
+      "costo_total": 23250000.0
+    },
+    {
+      "id": 157,
+      "es_auditoria_2022_2025": false,
+      "tipo_obra": "MAESTRO / COMPRA / FICHA",
+      "desc": "FORTALECIMIENTO AL GOBIERNO LOCAL PARA GARANTIZAR LOS SERVICIOS ESENCIALES A TRAVES DE SUS OFICINAS ADMINISTRATIVAS, EN EL MARCO DE LA EMERGENCIA SANITARIA DEL COVID 19 EN EL DISTRITO DE MOQUEGUA",
+      "cui": "S/N",
+      "convenio": "100 MLL.",
+      "provincia": "M.N.",
+      "prio": 705121.0,
+      "costo_ejec": 646911.7,
+      "contrato": "-",
+      "contratista": "-",
+      "plazo": "-",
+      "fecha_inicio": "SIN INICIO REGISTRADO",
+      "fecha_inicio_sort": "9999-12-31",
+      "fecha_inicio_doc": "Matriz Oficial Ing. FDM",
+      "fecha_termino_prog": "-",
+      "fecha_culminacion_real": "-",
+      "acta_recepcion": "-",
+      "res_liquidacion": "-",
+      "tiene_fecha_inicio": false,
+      "estado_info": "PENDIENTE",
+      "ubicacion": "Archivo FDM / Por Ubicar",
+      "historial": [],
+      "fuentes_excel_ing": [
+        "100- MN F13"
+      ],
+      "acuerdo_municipal": "Acuerdo de Consejo N° 43-2021-MPMN",
+      "acuerdo_fdm": "Sesión extraordinaria del 19/10/2021",
+      "estatus": "EJECUTADO",
+      "ampliacion_presupuestal": 0.0,
+      "costo_total": 646911.7,
+      "estado_situacional": "EJECUTADO"
+    },
+    {
+      "id": 158,
+      "es_auditoria_2022_2025": false,
+      "tipo_obra": "MAESTRO / COMPRA / FICHA",
+      "desc": "IMPLEMENTACION, DE OPERATIVIDAD DEL CENTRO DE CONTROL BIOLOGICO EN SANCHEZ CERRO",
+      "cui": "S/N",
+      "convenio": "100 MLL.",
+      "provincia": "M.N.",
+      "prio": 50000.0,
+      "costo_ejec": 36103.33,
+      "contrato": "-",
+      "contratista": "-",
+      "plazo": "-",
+      "fecha_inicio": "SIN INICIO REGISTRADO",
+      "fecha_inicio_sort": "9999-12-31",
+      "fecha_inicio_doc": "Matriz Oficial Ing. FDM",
+      "fecha_termino_prog": "-",
+      "fecha_culminacion_real": "-",
+      "acta_recepcion": "-",
+      "res_liquidacion": "-",
+      "tiene_fecha_inicio": false,
+      "estado_info": "PENDIENTE",
+      "ubicacion": "Archivo FDM / Por Ubicar",
+      "historial": [],
+      "fuentes_excel_ing": [
+        "100- MN F22"
+      ],
+      "acuerdo_fdm": "Sesión ordinaria del 04/08/2023",
+      "estatus": "EJECUTADO",
+      "ampliacion_presupuestal": 0.0,
+      "costo_total": 36103.33,
+      "estado_situacional": "EJECUTADO"
+    },
+    {
+      "id": 159,
+      "es_auditoria_2022_2025": false,
+      "tipo_obra": "MAESTRO / COMPRA / FICHA",
+      "desc": "LIQUIDACIONES TECNICO - FINANCIERO DE PROYECTOS",
+      "cui": "S/N",
+      "convenio": "100 MLL.",
+      "provincia": "M.N.",
+      "prio": 8500.0,
+      "costo_ejec": 5000.0,
+      "contrato": "-",
+      "contratista": "-",
+      "plazo": "-",
+      "fecha_inicio": "SIN INICIO REGISTRADO",
+      "fecha_inicio_sort": "9999-12-31",
+      "fecha_inicio_doc": "Matriz Oficial Ing. FDM",
+      "fecha_termino_prog": "-",
+      "fecha_culminacion_real": "-",
+      "acta_recepcion": "-",
+      "res_liquidacion": "-",
+      "tiene_fecha_inicio": false,
+      "estado_info": "PENDIENTE",
+      "ubicacion": "Archivo FDM / Por Ubicar",
+      "historial": [],
+      "fuentes_excel_ing": [
+        "100- MN F26"
+      ],
+      "estatus": "EN EJECUCION",
+      "ampliacion_presupuestal": 0.0,
+      "costo_total": 8500.0,
+      "estado_situacional": "EN EJECUCION"
+    },
+    {
+      "id": 160,
+      "es_auditoria_2022_2025": false,
+      "tipo_obra": "MAESTRO / COMPRA / FICHA",
+      "desc": "EQUIPOS DE PROTECCION PERSONAL (EPPS)",
+      "cui": "S/N",
+      "convenio": "100 MLL.",
+      "provincia": "G.S.C.",
+      "prio": 100395.0,
+      "costo_ejec": 100395.0,
+      "contrato": "-",
+      "contratista": "-",
+      "plazo": "-",
+      "fecha_inicio": "SIN INICIO REGISTRADO",
+      "fecha_inicio_sort": "9999-12-31",
+      "fecha_inicio_doc": "Matriz Oficial Ing. FDM",
+      "fecha_termino_prog": "-",
+      "fecha_culminacion_real": "-",
+      "acta_recepcion": "-",
+      "res_liquidacion": "-",
+      "tiene_fecha_inicio": false,
+      "estado_info": "PENDIENTE",
+      "ubicacion": "Archivo FDM / Por Ubicar",
+      "historial": [],
+      "fuentes_excel_ing": [
+        "100 - SC F12"
+      ],
+      "estatus": "EJECUTADO",
+      "ampliacion_presupuestal": 0.0,
+      "costo_total": 100395.0,
+      "estado_situacional": "EJECUTADO"
+    },
+    {
+      "id": 161,
+      "es_auditoria_2022_2025": false,
+      "tipo_obra": "MAESTRO / COMPRA / FICHA",
+      "desc": "IMPLEMENTACION, DE OPERATIVIDAD DEL CENTRO DE CONTROL BIOLOGICO EN SANCHEZ CERRO",
+      "cui": "S/N",
+      "convenio": "100 MLL.",
+      "provincia": "G.S.C.",
+      "prio": 50000.0,
+      "costo_ejec": 36103.33,
+      "contrato": "-",
+      "contratista": "-",
+      "plazo": "-",
+      "fecha_inicio": "SIN INICIO REGISTRADO",
+      "fecha_inicio_sort": "9999-12-31",
+      "fecha_inicio_doc": "Matriz Oficial Ing. FDM",
+      "fecha_termino_prog": "-",
+      "fecha_culminacion_real": "-",
+      "acta_recepcion": "-",
+      "res_liquidacion": "-",
+      "tiene_fecha_inicio": false,
+      "estado_info": "PENDIENTE",
+      "ubicacion": "Archivo FDM / Por Ubicar",
+      "historial": [],
+      "fuentes_excel_ing": [
+        "100 - SC F41"
+      ],
+      "acuerdo_fdm": "Sesión ordinaria del 05/12/2022",
+      "estatus": "EJECUTADO",
+      "ampliacion_presupuestal": 0.0,
+      "costo_total": 36103.33,
+      "estado_situacional": "EJECUTADO"
+    },
+    {
+      "id": 162,
+      "es_auditoria_2022_2025": false,
+      "tipo_obra": "MAESTRO / COMPRA / FICHA",
+      "desc": "LIQUIDACIONES TECNICO - FINANCIERO DE PROYECTOS",
+      "cui": "S/N",
+      "convenio": "100 MLL.",
+      "provincia": "G.S.C.",
+      "prio": 15000.0,
+      "costo_ejec": 19749.8,
+      "contrato": "-",
+      "contratista": "-",
+      "plazo": "-",
+      "fecha_inicio": "SIN INICIO REGISTRADO",
+      "fecha_inicio_sort": "9999-12-31",
+      "fecha_inicio_doc": "Matriz Oficial Ing. FDM",
+      "fecha_termino_prog": "-",
+      "fecha_culminacion_real": "-",
+      "acta_recepcion": "-",
+      "res_liquidacion": "-",
+      "tiene_fecha_inicio": false,
+      "estado_info": "PENDIENTE",
+      "ubicacion": "Archivo FDM / Por Ubicar",
+      "historial": [],
+      "fuentes_excel_ing": [
+        "100 - SC F48"
+      ],
+      "estatus": "EN EJECUCION",
+      "ampliacion_presupuestal": 0.0,
+      "costo_total": 19749.8,
+      "estado_situacional": "EN EJECUCION"
+    },
+    {
+      "id": 163,
+      "es_auditoria_2022_2025": false,
+      "tipo_obra": "MAESTRO / COMPRA / FICHA",
+      "desc": "ADQUISICIÓN DE “AMBULANCIAS URBANAS TIPO II y III\", PARA EL PROYECTO: “EQUIPAMIENTO HOSPITAL II MOQUEGUA DE LA RED ASISTENCIAL DE MOQUEGUA”",
+      "cui": "S/N",
+      "convenio": "50 MLL.",
+      "provincia": "M.N.",
+      "prio": 1775664.0,
+      "costo_ejec": 1441861.6,
+      "contrato": "-",
+      "contratista": "-",
+      "plazo": "-",
+      "fecha_inicio": "SIN INICIO REGISTRADO",
+      "fecha_inicio_sort": "9999-12-31",
+      "fecha_inicio_doc": "Matriz Oficial Ing. FDM",
+      "fecha_termino_prog": "-",
+      "fecha_culminacion_real": "-",
+      "acta_recepcion": "-",
+      "res_liquidacion": "-",
+      "tiene_fecha_inicio": false,
+      "estado_info": "PENDIENTE",
+      "ubicacion": "Archivo FDM / Por Ubicar",
+      "historial": [],
+      "fuentes_excel_ing": [
+        "50 - 3 PROVINCIAS F9"
+      ],
+      "acuerdo_fdm": "Sesion Ordinaria 08/05/2024",
+      "estatus": "EJECUTADO",
+      "ampliacion_presupuestal": 0.0,
+      "costo_total": 1441861.6,
+      "estado_situacional": "EJECUTADO"
+    },
+    {
+      "id": 164,
+      "es_auditoria_2022_2025": false,
+      "tipo_obra": "MAESTRO / COMPRA / FICHA",
+      "desc": "IMPLEMENTACION, DE OPERATIVIDAD DEL CENTRO DE CONTROL BIOLOGICO EN SANCHEZ CERRO",
+      "cui": "S/N",
+      "convenio": "50 MLL.",
+      "provincia": "G.S.C.",
+      "prio": 8000.0,
+      "costo_ejec": 7028.96,
+      "contrato": "-",
+      "contratista": "-",
+      "plazo": "-",
+      "fecha_inicio": "SIN INICIO REGISTRADO",
+      "fecha_inicio_sort": "9999-12-31",
+      "fecha_inicio_doc": "Matriz Oficial Ing. FDM",
+      "fecha_termino_prog": "-",
+      "fecha_culminacion_real": "-",
+      "acta_recepcion": "-",
+      "res_liquidacion": "-",
+      "tiene_fecha_inicio": false,
+      "estado_info": "PENDIENTE",
+      "ubicacion": "Archivo FDM / Por Ubicar",
+      "historial": [],
+      "fuentes_excel_ing": [
+        "50 - 3 PROVINCIAS F20"
+      ],
+      "estatus": "EJECUTADO",
+      "ampliacion_presupuestal": 0.0,
+      "costo_total": 7028.96,
+      "estado_situacional": "EJECUTADO"
+    },
+    {
+      "id": 165,
+      "es_auditoria_2022_2025": false,
+      "tipo_obra": "MAESTRO / COMPRA / FICHA",
+      "desc": "LIQUIDACIONES TECNICO - FINANCIERO DE PROYECTOS",
+      "cui": "S/N",
+      "convenio": "50 MLL.",
+      "provincia": "G.S.C.",
+      "prio": 9000.0,
+      "costo_ejec": 14500.0,
+      "contrato": "-",
+      "contratista": "-",
+      "plazo": "-",
+      "fecha_inicio": "SIN INICIO REGISTRADO",
+      "fecha_inicio_sort": "9999-12-31",
+      "fecha_inicio_doc": "Matriz Oficial Ing. FDM",
+      "fecha_termino_prog": "-",
+      "fecha_culminacion_real": "-",
+      "acta_recepcion": "-",
+      "res_liquidacion": "-",
+      "tiene_fecha_inicio": false,
+      "estado_info": "PENDIENTE",
+      "ubicacion": "Archivo FDM / Por Ubicar",
+      "historial": [],
+      "fuentes_excel_ing": [
+        "50 - 3 PROVINCIAS F23"
+      ],
+      "estatus": "EJECUTADO",
+      "ampliacion_presupuestal": 5500.0,
+      "costo_total": 14500.0,
+      "estado_situacional": "EJECUTADO"
+    },
+    {
+      "id": 166,
+      "es_auditoria_2022_2025": false,
+      "tipo_obra": "MAESTRO / COMPRA / FICHA",
+      "desc": "ADQUISICIÓN DE EQUIPAMIENTO DE TALLER, EN EL(LA) EQUIPO AGRICOLA PARA LA CAPACIDAD OPERATIVA DE LA SUB. GERENCIA DE DESARROLLO URBANO Y RURAL, DISTRITO DE COALAQUE, PROVINCIA GENERAL SANCHEZ CERRO, DEPARTAMENTO MOQUEGUA (CUI 2702357)",
+      "cui": "2702357",
+      "convenio": "50 MLL.",
+      "provincia": "G.S.C.",
+      "prio": 718206.22,
+      "costo_ejec": 0.0,
+      "contrato": "-",
+      "contratista": "-",
+      "plazo": "-",
+      "fecha_inicio": "SIN INICIO REGISTRADO",
+      "fecha_inicio_sort": "9999-12-31",
+      "fecha_inicio_doc": "Matriz Oficial Ing. FDM",
+      "fecha_termino_prog": "-",
+      "fecha_culminacion_real": "-",
+      "acta_recepcion": "-",
+      "res_liquidacion": "-",
+      "tiene_fecha_inicio": false,
+      "estado_info": "NO_APLICA",
+      "ubicacion": "Archivo FDM / Por Ubicar",
+      "historial": [],
+      "fuentes_excel_ing": [
+        "50 - 3 PROVINCIAS F25"
+      ],
+      "acuerdo_fdm": "Sesión ordinaria del 09/07/2026, acuerdo 08",
+      "estatus": "POR EJECUTAR",
+      "ampliacion_presupuestal": 0.0,
+      "costo_total": 718206.22,
+      "estado_situacional": "POR EJECUTAR"
+    },
+    {
+      "id": 167,
+      "es_auditoria_2022_2025": false,
+      "tipo_obra": "MAESTRO / COMPRA / FICHA",
+      "desc": "AQUISICION DE EQUIPAMIENTO DE TALLER DE EQUIPO AGRICOLA PARA LA CAPACIDAD OPERATIVA DE LA SUB GERENCIA DE DESARROLLO URBANO Y RURAL DEL DISTRITO DE PUQUINA, PROVINCIA GENERAL SANCHEZ CERRO, DEPARTAMENTO DE MOQUEGUA",
+      "cui": "S/N",
+      "convenio": "50 MLL.",
+      "provincia": "G.S.C.",
+      "prio": 688114.07,
+      "costo_ejec": 511242.26,
+      "contrato": "-",
+      "contratista": "-",
+      "plazo": "-",
+      "fecha_inicio": "SIN INICIO REGISTRADO",
+      "fecha_inicio_sort": "9999-12-31",
+      "fecha_inicio_doc": "Matriz Oficial Ing. FDM",
+      "fecha_termino_prog": "-",
+      "fecha_culminacion_real": "-",
+      "acta_recepcion": "-",
+      "res_liquidacion": "-",
+      "tiene_fecha_inicio": false,
+      "estado_info": "PENDIENTE",
+      "ubicacion": "Archivo FDM / Por Ubicar",
+      "historial": [],
+      "fuentes_excel_ing": [
+        "50 - 3 PROVINCIAS F27"
+      ],
+      "acuerdo_fdm": "Sesión extraordinaria del 21/07/2025",
+      "estatus": "POR EJECUTAR",
+      "ampliacion_presupuestal": 0.0,
+      "costo_total": 688114.07,
+      "estado_situacional": "POR EJECUTAR (EN PROCESO / SALDO)"
+    },
+    {
+      "id": 168,
+      "es_auditoria_2022_2025": false,
+      "tipo_obra": "MAESTRO / COMPRA / FICHA",
+      "desc": "ADQUISICION DE 02 CAMIONES COMPACTADORES PARA LA GERENCIA DE SERVICIOS MUNICIPALES Y GESTION AMBIENTAL CUI 2708522",
+      "cui": "2708522",
+      "convenio": "E.O.",
+      "provincia": "ILO",
+      "prio": 900000.0,
+      "costo_ejec": 0.0,
+      "contrato": "-",
+      "contratista": "-",
+      "plazo": "-",
+      "fecha_inicio": "SIN INICIO REGISTRADO",
+      "fecha_inicio_sort": "9999-12-31",
+      "fecha_inicio_doc": "Matriz Oficial Ing. FDM",
+      "fecha_termino_prog": "-",
+      "fecha_culminacion_real": "-",
+      "acta_recepcion": "-",
+      "res_liquidacion": "-",
+      "tiene_fecha_inicio": false,
+      "estado_info": "NO_APLICA",
+      "ubicacion": "Archivo FDM / Por Ubicar",
+      "historial": [],
+      "fuentes_excel_ing": [
+        "EO - ILO F9"
+      ],
+      "acuerdo_fdm": "Sesión ordinaria del 31/03/2026, acuerdo 06",
+      "estatus": "POR EJECUTAR",
+      "ampliacion_presupuestal": 0.0,
+      "costo_total": 1578000.0,
+      "estado_situacional": "POR EJECUTAR"
+    },
+    {
+      "id": 169,
+      "es_auditoria_2022_2025": false,
+      "tipo_obra": "MAESTRO / COMPRA / FICHA",
+      "desc": "CAMION GRUA PARA FORTALECER LOS SERVICIOS MUNICIPALES Y EL MANTENIMIENTO URBANO",
+      "cui": "S/N",
+      "convenio": "E.O.",
+      "provincia": "ILO",
+      "prio": 400000.0,
+      "costo_ejec": 0.0,
+      "contrato": "-",
+      "contratista": "-",
+      "plazo": "-",
+      "fecha_inicio": "SIN INICIO REGISTRADO",
+      "fecha_inicio_sort": "9999-12-31",
+      "fecha_inicio_doc": "Matriz Oficial Ing. FDM",
+      "fecha_termino_prog": "-",
+      "fecha_culminacion_real": "-",
+      "acta_recepcion": "-",
+      "res_liquidacion": "-",
+      "tiene_fecha_inicio": false,
+      "estado_info": "NO_APLICA",
+      "ubicacion": "Archivo FDM / Por Ubicar",
+      "historial": [],
+      "fuentes_excel_ing": [
+        "EO - ILO F11"
+      ],
+      "acuerdo_fdm": "Sesión ordinaria del 31/03/2026, acuerdo 09",
+      "estatus": "POR EJECUTAR",
+      "ampliacion_presupuestal": 0.0,
+      "costo_total": 400000.0,
+      "estado_situacional": "POR EJECUTAR"
     },
     {
       "id": 999,
