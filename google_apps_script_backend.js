@@ -228,6 +228,70 @@ function doPost(e) {
     }
 
     // ==============================================================
+    // CASO 2.C: ACTUALIZAR CONTENIDO/RÓTULO EN GABINETE (NO DESTRUCTIVO)
+    // ==============================================================
+    if (action === "update_box_content") {
+      const sheetCajas = getOrCreateSheetCajas(ss);
+      const obraId = parseInt(payload.obra_id);
+      const codigoCaja = String(payload.codigo_caja || "").trim();
+      const nuevoContenido = String(payload.contenido_caja || "").trim();
+
+      if (!obraId || !codigoCaja) {
+        return ContentService.createTextOutput(JSON.stringify({
+          status: "error",
+          message: "Faltan parámetros obra_id o codigo_caja"
+        })).setMimeType(ContentService.MimeType.JSON);
+      }
+
+      // Respaldo de seguridad antes de editar texto de rótulo
+      try {
+        crearRespaldoAutomaticoCajas(ss, sheetCajas, "RESPALDO_CAJAS_AUTO");
+      } catch (bakErr) {
+        Logger.log("Aviso respaldo automático: " + bakErr);
+      }
+
+      const data = sheetCajas.getDataRange().getValues();
+      let updatedRows = 0;
+      for (let i = 1; i < data.length; i++) {
+        const rowObraId = parseInt(data[i][1]);
+        const rowCod = String(data[i][2] || "").trim();
+        if (rowObraId === obraId && rowCod === codigoCaja) {
+          // Actualizar UNICAMENTE la columna 5 (CONTENIDO_DE_ESTA_CAJA)
+          sheetCajas.getRange(i + 1, 5).setValue(nuevoContenido);
+          updatedRows++;
+        }
+      }
+
+      return ContentService.createTextOutput(JSON.stringify({
+        status: "success",
+        action: "update_box_content",
+        obra_id: obraId,
+        codigo_caja: codigoCaja,
+        filas_actualizadas: updatedRows,
+        message: `Rótulo actualizado en ${updatedRows} filas sin alterar archivos de Drive`
+      })).setMimeType(ContentService.MimeType.JSON);
+    }
+
+    // ==============================================================
+    // CASO 2.D: GENERAR RESPALDO COMPLETO EN HOJA DE CÁLCULO
+    // ==============================================================
+    if (action === "backup_sheet") {
+      const sheetCajas = getOrCreateSheetCajas(ss);
+      const now = new Date();
+      const fechaTag = Utilities.formatDate(now, Session.getScriptTimeZone(), "yyyy_MM_dd");
+      const backupName = "BACKUP_CAJAS_" + fechaTag;
+      const totalRows = crearRespaldoAutomaticoCajas(ss, sheetCajas, backupName);
+
+      return ContentService.createTextOutput(JSON.stringify({
+        status: "success",
+        action: "backup_sheet",
+        backup_sheet_name: backupName,
+        total_filas: totalRows,
+        message: `Respaldo guardado en pestaña ${backupName} (${totalRows} filas)`
+      })).setMimeType(ContentService.MimeType.JSON);
+    }
+
+    // ==============================================================
     // CASO 3: BORRAR CAJA O FOTO ESPECÍFICA (CENSO_CAJAS_FOTOS)
     // ==============================================================
     if (action === "delete_record") {
@@ -347,6 +411,24 @@ function getOrCreateSheetCajas(ss) {
     }
   }
   return sheet;
+}
+
+function crearRespaldoAutomaticoCajas(ss, sheetCajas, backupName) {
+  const sourceRange = sheetCajas.getDataRange();
+  const values = sourceRange.getValues();
+  if (!values || values.length === 0) return 0;
+
+  let backupSheet = ss.getSheetByName(backupName);
+  if (!backupSheet) {
+    backupSheet = ss.insertSheet(backupName);
+  } else {
+    backupSheet.clearContents();
+  }
+
+  backupSheet.getRange(1, 1, values.length, values[0].length).setValues(values);
+  backupSheet.getRange(1, 1, 1, values[0].length).setBackground("#1E293B").setFontColor("#FFFFFF").setFontWeight("bold");
+  backupSheet.setFrozenRows(1);
+  return Math.max(0, values.length - 1);
 }
 
 function getOrCreateSheetObras(ss) {

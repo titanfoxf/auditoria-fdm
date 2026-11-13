@@ -142,7 +142,7 @@
     /* Drawer / Modal */
     .modal-backdrop { position: fixed; inset: 0; background: rgba(15, 23, 42, 0.65); display: none; justify-content: flex-end; z-index: 50; backdrop-filter: blur(3px); }
     .modal-backdrop.open { display: flex; }
-    .drawer { width: 100%; max-width: 880px; background: white; height: 100vh; overflow-y: auto; display: flex; flex-direction: column; box-shadow: -8px 0 25px rgba(0,0,0,0.25); animation: slideLeft 0.22s cubic-bezier(0.16, 1, 0.3, 1); }
+    .drawer { width: 100%; max-width: 1040px; background: white; height: 100vh; overflow-y: auto; display: flex; flex-direction: column; box-shadow: -8px 0 25px rgba(0,0,0,0.25); animation: slideLeft 0.22s cubic-bezier(0.16, 1, 0.3, 1); }
     @keyframes slideLeft { from { transform: translateX(100%); } to { transform: translateX(0); } }
 
     .drawer-header { padding: 1.5rem; background: linear-gradient(135deg, #0F172A, #1E293B); color: white; position: sticky; top: 0; z-index: 10; display: flex; justify-content: space-between; align-items: flex-start; }
@@ -233,28 +233,39 @@
     .toast.success::before { content: "✓"; color: #4ADE80; font-weight: bold; }
   
     /* Galería de Cajas y Fotos en Dashboard */
-    .cajas-grid-container { display: flex; flex-direction: column; gap: 1.2rem; margin-top: 0.75rem; }
-    .caja-group-card { background: #FFFFFF; border: 1.5px solid #CBD5E1; border-radius: 12px; padding: 1rem; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+    .cajas-grid-container { display: flex; flex-direction: column; gap: 1.35rem; margin-top: 0.75rem; }
+    .caja-group-card { background: #FFFFFF; border: 1.5px solid #CBD5E1; border-radius: 12px; padding: 1.1rem; box-shadow: 0 2px 10px rgba(0,0,0,0.06); }
     .caja-group-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1.5px solid #F1F5F9; padding-bottom: 0.5rem; margin-bottom: 0.75rem; }
     .caja-tag { background: #1E293B; color: #38BDF8; font-weight: 800; font-family: monospace; font-size: 0.95rem; padding: 0.25rem 0.65rem; border-radius: 6px; letter-spacing: 0.5px; }
     .caja-amb { font-size: 0.82rem; font-weight: 800; color: #2563EB; background: #EFF6FF; padding: 0.25rem 0.6rem; border-radius: 6px; border: 1px solid #DBEAFE; }
-    .caja-content-box { font-size: 0.85rem; color: #334155; background: #F8FAFC; border-left: 4px solid #0D9488; padding: 0.5rem 0.75rem; border-radius: 0 8px 8px 0; margin-bottom: 0.65rem; line-height: 1.4; }
+    .caja-content-edit-box { background: #F8FAFC; border: 1.5px solid #CBD5E1; border-left: 4px solid #0D9488; padding: 0.65rem 0.8rem; border-radius: 0 8px 8px 0; margin-bottom: 0.8rem; }
+    .caja-content-edit-hdr { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.4rem; gap: 0.5rem; flex-wrap: wrap; }
+    .caja-content-edit-lbl { font-size: 0.8rem; font-weight: 800; color: #0F172A; display: flex; align-items: center; gap: 0.35rem; }
+    .caja-content-edit-row { display: flex; gap: 0.5rem; align-items: stretch; }
+    .caja-content-textarea { flex: 1; padding: 0.55rem 0.7rem; border: 1.5px solid #CBD5E1; border-radius: 8px; font-size: 0.9rem; font-family: inherit; color: #0F172A; background: #FFFFFF; resize: vertical; min-height: 54px; line-height: 1.4; outline: none; transition: border-color 0.15s, box-shadow 0.15s; }
+    .caja-content-textarea:focus { border-color: #0D9488; box-shadow: 0 0 0 3px rgba(13,148,136,0.15); }
+    .btn-save-rotulo { background: #0D9488; color: white; border: none; border-radius: 8px; padding: 0.5rem 0.95rem; font-size: 0.8rem; font-weight: 700; cursor: pointer; display: inline-flex; align-items: center; gap: 0.35rem; white-space: nowrap; transition: background 0.15s; }
+    .btn-save-rotulo:hover { background: #0F766E; }
+    .btn-save-rotulo:disabled { opacity: 0.6; cursor: wait; }
     .caja-ocr-box { font-size: 0.82rem; color: #0F766E; background: #F0FDFA; border-left: 4px solid #14B8A6; padding: 0.5rem 0.75rem; border-radius: 0 8px 8px 0; margin-bottom: 0.75rem; line-height: 1.45; }
     
-    .caja-photos-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1rem; }
-    .caja-photo-card { border: 1.5px solid #E2E8F0; border-radius: 10px; overflow: hidden; background: #FFFFFF; text-align: center; box-shadow: 0 2px 6px rgba(0,0,0,0.05); transition: all 0.2s; }
-    .caja-photo-card:hover { transform: translateY(-3px); box-shadow: 0 8px 18px rgba(0,0,0,0.12); border-color: #38BDF8; }
-    .caja-photo-img { width: 100%; height: 200px; object-fit: cover; display: block; cursor: pointer; transition: transform 0.2s; background: #0F172A; }
-    .caja-photo-img:hover { transform: scale(1.02); }
-    .caja-photo-label { font-size: 0.76rem; font-weight: 700; color: #0F172A; padding: 0.45rem 0.6rem; background: white; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; border-top: 1px solid #F1F5F9; display: flex; justify-content: space-between; align-items: center; gap: 0.3rem; }
-    .drive-link { font-size: 0.72rem; color: #1D4ED8; text-decoration: none; font-weight: 800; padding: 0.2rem 0.5rem; background: #EFF6FF; border-radius: 5px; border: 1px solid #BFDBFE; flex-shrink: 0; }
+    .caja-photos-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); gap: 1.15rem; }
+    .caja-photo-card { border: 1.5px solid #E2E8F0; border-radius: 10px; overflow: hidden; background: #FFFFFF; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.06); transition: all 0.2s; }
+    .caja-photo-card:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,0,0,0.12); border-color: #38BDF8; }
+    .caja-photo-img { width: 100%; height: 340px; object-fit: contain; display: block; cursor: zoom-in; transition: transform 0.2s; background: #0F172A; }
+    .caja-photo-label { font-size: 0.8rem; font-weight: 700; color: #0F172A; padding: 0.5rem 0.75rem; background: white; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; border-top: 1px solid #F1F5F9; display: flex; justify-content: space-between; align-items: center; gap: 0.4rem; }
+    .drive-link { font-size: 0.75rem; color: #1D4ED8; text-decoration: none; font-weight: 800; padding: 0.25rem 0.6rem; background: #EFF6FF; border-radius: 5px; border: 1px solid #BFDBFE; flex-shrink: 0; }
     .drive-link:hover { text-decoration: underline; background: #DBEAFE; }
     
-    /* Lightbox Modal */
-    .lightbox-modal { position: fixed; inset: 0; background: rgba(15, 23, 42, 0.95); z-index: 200; display: none; align-items: center; justify-content: center; padding: 1.5rem; }
+    /* Lightbox Modal con Zoom */
+    .lightbox-modal { position: fixed; inset: 0; background: rgba(15, 23, 42, 0.96); z-index: 200; display: none; align-items: center; justify-content: center; padding: 1.5rem; overflow: auto; }
     .lightbox-modal.open { display: flex; }
-    .lightbox-modal img { max-width: 92%; max-height: 88vh; object-fit: contain; border-radius: 8px; box-shadow: 0 10px 25px rgba(0,0,0,0.5); }
-    .lightbox-close-btn { position: absolute; top: 1.2rem; right: 1.5rem; background: rgba(255,255,255,0.2); border: none; color: white; font-size: 1.6rem; width: 44px; height: 44px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+    .lightbox-modal img { max-width: 94%; max-height: 88vh; object-fit: contain; border-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.6); transition: transform 0.2s ease; cursor: zoom-in; transform-origin: center center; }
+    .lightbox-toolbar { position: fixed; top: 1.1rem; right: 1.5rem; display: flex; gap: 0.5rem; align-items: center; z-index: 210; }
+    .lightbox-tool-btn { background: rgba(30, 41, 59, 0.9); border: 1px solid rgba(255,255,255,0.25); color: white; font-size: 0.85rem; font-weight: 700; padding: 0.5rem 0.85rem; border-radius: 9999px; cursor: pointer; }
+    .lightbox-tool-btn:hover { background: #2563EB; }
+    .lightbox-close-btn { background: rgba(220, 38, 38, 0.85); border: none; color: white; font-size: 1.35rem; width: 42px; height: 42px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+    .lightbox-close-btn:hover { background: #DC2626; }
   </style>
 </head>
 <body>
@@ -270,6 +281,9 @@
       </div>
       <button class="btn-cloud" onclick="openCloudSyncPrompt()" style="background: rgba(255,255,255,0.15); color: white; border: 1px solid rgba(255,255,255,0.25); padding: 0.65rem 0.9rem; border-radius: 8px; font-weight: 600; font-size: 0.82rem; cursor: pointer; display: inline-flex; align-items: center; gap: 0.4rem; transition: background 0.2s;">
         ☁️ Nube Drive
+      </button>
+      <button class="btn-backup" onclick="descargarRespaldoDrive()" style="background: #0F766E; color: white; border: 1px solid #14B8A6; padding: 0.65rem 0.9rem; border-radius: 8px; font-weight: 700; font-size: 0.82rem; cursor: pointer; display: inline-flex; align-items: center; gap: 0.4rem;" title="Descargar copia de seguridad completa de Drive y Sheets">
+        🛡️ Respaldar Drive
       </button>
       <a href="campo.html" class="btn-campo" style="background: #2563EB; color: white; border: none; padding: 0.65rem 1.1rem; border-radius: 8px; font-weight: 700; font-size: 0.85rem; text-decoration: none; display: inline-flex; align-items: center; gap: 0.4rem; box-shadow: 0 2px 5px rgba(37,99,235,0.3);">
         📷 Ir a Modo Campo / Censo de Cajas ➔
@@ -694,7 +708,7 @@
       }
       if (!id) return url || '';
       // Retorna endpoint de thumbnail optimizado de Google (alta resolución, CORS habilitado)
-      return `https://drive.google.com/thumbnail?id=${id}&sz=w1200`;
+      return `https://drive.google.com/thumbnail?id=${id}&sz=w1600`;
     }
 
     function handleDriveImgError(img, idOrUrl) {
@@ -706,8 +720,35 @@
       }
       if (id && id.length >= 25) {
         img.dataset.errorHandled = "1";
-        img.src = `https://lh3.googleusercontent.com/d/${id}=w1200`;
+        img.src = `https://lh3.googleusercontent.com/d/${id}=w1600`;
       }
+    }
+
+    function getRotuloEditsMap() {
+      try {
+        return JSON.parse(localStorage.getItem('fdm_rotulo_edits') || '{}');
+      } catch (e) {
+        return {};
+      }
+    }
+
+    function applyRotuloEditsToMap() {
+      const edits = getRotuloEditsMap();
+      Object.keys(edits).forEach(key => {
+        const parts = key.split('::');
+        if (parts.length < 2) return;
+        const oId = parts[0];
+        const cod = parts.slice(1).join('::');
+        const entry = fieldPhotosMap[oId];
+        if (entry && entry.fotos) {
+          entry.fotos.forEach(f => {
+            const fCod = f.codigo_caja || f.nota || 'SIN_CODIGO';
+            if (fCod === cod) {
+              f.nota = edits[key];
+            }
+          });
+        }
+      });
     }
 
     async function loadFieldAuditData() {
@@ -753,6 +794,14 @@
           const res = await fetch(gasUrl);
           const cloudData = await res.json();
           if (cloudData && cloudData.status === 'success') {
+            // Respaldo espejo automático local de lo recibido desde Drive/Sheets
+            try {
+              localStorage.setItem('fdm_cloud_raw_backup', JSON.stringify({
+                timestamp: new Date().toISOString(),
+                data: cloudData
+              }));
+            } catch (bakErr) {}
+
             const listaCajas = cloudData.cajas || cloudData.records || [];
             listaCajas.forEach(r => {
               const oId = r.obra_id;
@@ -768,7 +817,7 @@
               if (existing) {
                 if (r.ocr_acervo) existing.ocr_acervo = r.ocr_acervo;
                 if (r.ocr_raw) existing.ocr_raw = r.ocr_raw;
-                if (r.contenido_caja && (!existing.nota || existing.nota === existing.codigo_caja)) existing.nota = r.contenido_caja;
+                if (r.contenido_caja) existing.nota = r.contenido_caja;
                 if (r.ambiente && !existing.ubicacion) existing.ubicacion = r.ambiente;
               } else if (r.drive_url) {
                 const directImg = resolveDirectImageUrl(r.drive_url, r.file_id);
@@ -795,6 +844,9 @@
           console.warn("Sincronización en segundo plano con nube:", e);
         }
       }
+
+      // Aplicar ediciones locales de gabinete en caso existan
+      applyRotuloEditsToMap();
     }
 
     // Compila los ambientes reales censados en campo con número de cajas y docs sueltos
@@ -947,7 +999,7 @@
         if (data && data.status === 'success') {
           showToast(`✓ ${data.message || 'OCR completado'}`);
           // Recargar fotos desde la nube para actualizar acervo y fotos
-          await loadFieldPhotosFromCloud();
+          await loadFieldAuditData();
           renderCajasEnDrawer(selectedProjectId);
         } else {
           showToast("Aviso: " + (data.message || "No se detectaron nuevas fotos para OCR"));
@@ -961,6 +1013,168 @@
           btn.innerHTML = originalText;
         }
       }
+    }
+
+    function escapeHtmlAttr(str) {
+      return String(str || '')
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+    }
+
+    async function guardarRotuloGabinete(obraId, encodedCod, btnEl) {
+      const cod = decodeURIComponent(encodedCod);
+      const card = btnEl ? btnEl.closest('.caja-group-card') : null;
+      const textarea = card ? card.querySelector('.caja-content-textarea') : null;
+      if (!textarea) return;
+
+      const nuevoTexto = textarea.value.trim();
+      const origBtnHtml = btnEl ? btnEl.innerHTML : '💾 Guardar Rótulo';
+      if (btnEl) {
+        btnEl.disabled = true;
+        btnEl.innerHTML = '⏳ Guardando...';
+      }
+
+      // 1. Actualizar en memoria (fieldPhotosMap) todas las fotos de esta caja/suelto
+      const fData = fieldPhotosMap[obraId];
+      if (fData && fData.fotos) {
+        fData.fotos.forEach(f => {
+          const fCod = f.codigo_caja || f.nota || 'SIN_CODIGO';
+          if (fCod === cod) {
+            f.nota = nuevoTexto || cod;
+          }
+        });
+      }
+
+      // 2. Guardar respaldo de edición local (fdm_rotulo_edits)
+      try {
+        const edits = getRotuloEditsMap();
+        edits[`${obraId}::${cod}`] = nuevoTexto || cod;
+        localStorage.setItem('fdm_rotulo_edits', JSON.stringify(edits));
+      } catch (e) {}
+
+      // 3. Actualizar IndexedDB local si existe la obra allí
+      try {
+        await new Promise((resolve) => {
+          const req = indexedDB.open('FDM_Field_Audit_DB', 1);
+          req.onsuccess = (e) => {
+            const dbInstance = e.target.result;
+            if (!dbInstance.objectStoreNames.contains('obras_campo')) { resolve(); return; }
+            const tx = dbInstance.transaction('obras_campo', 'readwrite');
+            const store = tx.objectStore('obras_campo');
+            if (fData) store.put(fData);
+            tx.oncomplete = () => resolve();
+            tx.onerror = () => resolve();
+          };
+          req.onerror = () => resolve();
+        });
+      } catch (e) {}
+
+      // 4. Actualizar inmediatamente el panel consolidado de Acervo Documental
+      const txtAcervo = document.getElementById('txtAcervoConsolidado');
+      if (txtAcervo) {
+        txtAcervo.value = compileAcervoConsolidadoText(obraId);
+      }
+
+      // 5. Sincronizar cambio no destructivo a Google Sheets (solo columna 5: CONTENIDO_DE_ESTA_CAJA)
+      const gasUrl = localStorage.getItem('fdm_gas_url');
+      if (gasUrl) {
+        try {
+          const res = await fetch(gasUrl, {
+            method: 'POST',
+            headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+            body: JSON.stringify({
+              action: 'update_box_content',
+              obra_id: obraId,
+              codigo_caja: cod,
+              contenido_caja: nuevoTexto || cod
+            })
+          });
+          const data = await res.json();
+          if (data && data.status === 'success') {
+            showToast(`✓ Rótulo "${cod}" actualizado y sincronizado con Google Sheets`);
+          } else {
+            showToast(`✓ Rótulo "${cod}" guardado en gabinete (aviso nube: ${(data && data.message) || 'sin respuesta'})`);
+          }
+        } catch (err) {
+          console.warn("Error sincronizando rótulo con Google Sheets:", err);
+          showToast(`✓ Rótulo "${cod}" guardado localmente (se sincronizará luego)`);
+        }
+      } else {
+        showToast(`✓ Rótulo "${cod}" guardado localmente en gabinete`);
+      }
+
+      if (btnEl) {
+        btnEl.disabled = false;
+        btnEl.innerHTML = '✓ Guardado';
+        setTimeout(() => {
+          if (btnEl) btnEl.innerHTML = origBtnHtml;
+        }, 1800);
+      }
+    }
+
+    async function descargarRespaldoDrive() {
+      showToast("🛡️ Generando respaldo completo de Drive y Sheets...");
+      const gasUrl = localStorage.getItem('fdm_gas_url');
+      let cloudSnapshot = null;
+
+      if (gasUrl) {
+        try {
+          const res = await fetch(gasUrl);
+          const json = await res.json();
+          if (json && json.status === 'success') {
+            cloudSnapshot = json;
+            try {
+              localStorage.setItem('fdm_cloud_raw_backup', JSON.stringify({
+                timestamp: new Date().toISOString(),
+                data: json
+              }));
+            } catch (e) {}
+          }
+          // También disparar respaldo de pestaña dentro del propio Google Sheets
+          fetch(gasUrl, {
+            method: 'POST',
+            headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+            body: JSON.stringify({ action: 'backup_sheet' })
+          }).catch(() => {});
+        } catch (err) {
+          console.warn("Usando copia en caché para respaldo:", err);
+        }
+      }
+
+      if (!cloudSnapshot) {
+        try {
+          const cached = JSON.parse(localStorage.getItem('fdm_cloud_raw_backup') || 'null');
+          if (cached && cached.data) cloudSnapshot = cached.data;
+        } catch (e) {}
+      }
+
+      const backupPayload = {
+        generado_el: new Date().toISOString(),
+        origen: gasUrl ? "Google Drive / Apps Script + Gabinete" : "Caché Local / Gabinete",
+        total_obras_con_fotos: Object.keys(fieldPhotosMap).length,
+        ediciones_gabinete: getRotuloEditsMap(),
+        datos_nube_sheets: cloudSnapshot,
+        mapa_local_fotos: fieldPhotosMap
+      };
+
+      const now = new Date();
+      const pad = n => String(n).padStart(2, '0');
+      const stamp = `${now.getFullYear()}-${pad(now.getMonth()+1)}-${pad(now.getDate())}_${pad(now.getHours())}${pad(now.getMinutes())}`;
+      const filename = `RESPALDO_DRIVE_AUDITORIA_FDM_${stamp}.json`;
+
+      const blob = new Blob([JSON.stringify(backupPayload, null, 2)], { type: 'application/json;charset=utf-8' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = filename;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+
+      showToast(`🛡️ Respaldo descargado: ${filename}`);
     }
 
     function copiarAcervoAlPortapapeles() {
@@ -1033,7 +1247,8 @@
         const cajaFotos = groups[cod];
         const first = cajaFotos[0] || {};
         const amb = first.ubicacion || fData.ubicacion || 'Ambiente';
-        const contenido = first.nota && first.nota !== cod ? first.nota : 'Contenido no especificado';
+        const rawContenido = first.nota && first.nota !== cod && first.nota !== 'Contenido no especificado' ? first.nota : '';
+        const encodedCod = encodeURIComponent(cod);
 
         const isSuelto = cod.includes('SUELTO');
         const tagIcon = isSuelto ? '📁' : '🏷️';
@@ -1060,23 +1275,30 @@
         html += `
           <div class="caja-group-card">
             <div class="caja-group-header">
-              <span class="caja-tag" style="${tagStyle}">${tagIcon} ${cod}</span>
-              <span class="caja-amb">📍 ${amb}</span>
+              <span class="caja-tag" style="${tagStyle}">${tagIcon} ${escapeHtmlAttr(cod)}</span>
+              <span class="caja-amb">📍 ${escapeHtmlAttr(amb)}</span>
             </div>
-            <div class="caja-content-box">
-              <strong>Contenido / Rótulo:</strong> ${contenido}
+            <div class="caja-content-edit-box">
+              <div class="caja-content-edit-hdr">
+                <label class="caja-content-edit-lbl">✏️ Contenido / Rótulo <span style="font-weight:600; color:#0D9488; font-size:0.72rem;">(Editable en Gabinete)</span>:</label>
+                <span style="font-size:0.68rem; color:#64748B;">Lee la foto ampliada y detalla aquí el contenido</span>
+              </div>
+              <div class="caja-content-edit-row">
+                <textarea class="caja-content-textarea" rows="2" placeholder="Describe en detalle lo que indica la fotografía del rótulo..." onkeydown="if(event.ctrlKey && event.key==='Enter'){ event.preventDefault(); this.nextElementSibling.click(); }">${escapeHtmlAttr(rawContenido)}</textarea>
+                <button type="button" class="btn-save-rotulo" onclick="guardarRotuloGabinete(${obraId}, '${encodedCod}', this)" title="Guardar texto en Visualización y Google Sheets (Ctrl+Enter)">💾 Guardar Rótulo</button>
+              </div>
             </div>
             ${ocrHtml}
             <div class="caja-photos-grid">
               ${cajaFotos.map(f => {
                 const directUrl = resolveDirectImageUrl(f.dataUrl, f.file_id || f.drive_url);
-                const driveLink = f.drive_url ? `<a href="${f.drive_url}" target="_blank" class="drive-link" onclick="event.stopPropagation()" title="Abrir en Google Drive">🔗 Drive</a>` : '';
-                const ocrPhotoBadge = f.ocr_acervo ? `<div style="font-size: 0.65rem; color: #0D9488; font-weight: 700; padding: 0.25rem 0.45rem; background: #F0FDFA; border-top: 1px solid #CCFBF1; text-align: left; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;" title="${f.ocr_acervo}">📄 OCR: ${f.ocr_acervo.replace(/\|/g, ', ')}</div>` : '';
+                const driveLink = f.drive_url ? `<a href="${f.drive_url}" target="_blank" class="drive-link" onclick="event.stopPropagation()" title="Abrir original en Google Drive">🔗 Drive</a>` : '';
+                const ocrPhotoBadge = f.ocr_acervo ? `<div style="font-size: 0.68rem; color: #0D9488; font-weight: 700; padding: 0.3rem 0.55rem; background: #F0FDFA; border-top: 1px solid #CCFBF1; text-align: left; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;" title="${escapeHtmlAttr(f.ocr_acervo)}">📄 OCR: ${escapeHtmlAttr(f.ocr_acervo.replace(/\|/g, ', '))}</div>` : '';
                 return `
                 <div class="caja-photo-card">
-                  <img src="${directUrl}" class="caja-photo-img" onclick="openDashboardLightbox('${directUrl}')" onerror="handleDriveImgError(this, '${f.file_id || f.drive_url || ''}')" alt="${f.tipo_foto || 'Foto'}">
-                  <div class="caja-photo-label" title="${f.sub_codigo || f.tipo_foto || cod}">
-                    <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${f.tipo_foto || 'Foto'}</span>
+                  <img src="${directUrl}" class="caja-photo-img" onclick="openDashboardLightbox('${directUrl}')" onerror="handleDriveImgError(this, '${f.file_id || f.drive_url || ''}')" alt="${escapeHtmlAttr(f.tipo_foto || 'Foto')}" title="Clic para ampliar a pantalla completa con Zoom">
+                  <div class="caja-photo-label" title="${escapeHtmlAttr(f.sub_codigo || f.tipo_foto || cod)}">
+                    <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">🔍 ${escapeHtmlAttr(f.tipo_foto || 'Foto')}</span>
                     ${driveLink}
                   </div>
                   ${ocrPhotoBadge}
@@ -1090,18 +1312,46 @@
       container.innerHTML = html;
     }
 
+    let lightboxZoomScale = 1;
+
     function openDashboardLightbox(src) {
       const box = document.getElementById('dashboardLightbox');
       const img = document.getElementById('dashboardLightboxImg');
       if (box && img) {
+        lightboxZoomScale = 1;
+        img.style.transform = 'scale(1)';
         img.src = resolveDirectImageUrl(src);
         box.classList.add('open');
+      }
+    }
+
+    function zoomDashboardLightbox(delta) {
+      const img = document.getElementById('dashboardLightboxImg');
+      if (!img) return;
+      lightboxZoomScale = Math.min(3.5, Math.max(0.75, +(lightboxZoomScale + delta).toFixed(2)));
+      img.style.transform = `scale(${lightboxZoomScale})`;
+    }
+
+    function resetDashboardLightboxZoom() {
+      const img = document.getElementById('dashboardLightboxImg');
+      if (!img) return;
+      lightboxZoomScale = 1;
+      img.style.transform = 'scale(1)';
+    }
+
+    function toggleClickZoomLightbox(e) {
+      e.stopPropagation();
+      if (lightboxZoomScale > 1.05) {
+        resetDashboardLightboxZoom();
+      } else {
+        zoomDashboardLightbox(0.8);
       }
     }
 
     function closeDashboardLightbox() {
       const box = document.getElementById('dashboardLightbox');
       if (box) box.classList.remove('open');
+      lightboxZoomScale = 1;
     }
 
     async function loadProjects() {
@@ -1880,10 +2130,15 @@
   </script>
 
 
-  <!-- Lightbox Modal para fotos de Cajas -->
+  <!-- Lightbox Modal para fotos de Cajas con Zoom -->
   <div class="lightbox-modal" id="dashboardLightbox" onclick="closeDashboardLightbox()">
-    <button class="lightbox-close-btn" onclick="closeDashboardLightbox()">✕</button>
-    <img id="dashboardLightboxImg" src="" onclick="event.stopPropagation()">
+    <div class="lightbox-toolbar" onclick="event.stopPropagation()">
+      <button type="button" class="lightbox-tool-btn" onclick="zoomDashboardLightbox(0.35)" title="Acercar imagen">🔍 +</button>
+      <button type="button" class="lightbox-tool-btn" onclick="zoomDashboardLightbox(-0.35)" title="Alejar imagen">🔍 −</button>
+      <button type="button" class="lightbox-tool-btn" onclick="resetDashboardLightboxZoom()" title="Restaurar tamaño">↺ 100%</button>
+      <button type="button" class="lightbox-close-btn" onclick="closeDashboardLightbox()" title="Cerrar">✕</button>
+    </div>
+    <img id="dashboardLightboxImg" src="" onclick="toggleClickZoomLightbox(event)" title="Clic para acercar/alejar">
   </div>
 </body>
 </html>

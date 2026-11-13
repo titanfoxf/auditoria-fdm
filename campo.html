@@ -145,6 +145,7 @@
       </div>
       <div class="header-actions">
         <button id="btnCloudSync" class="btn-action" onclick="toggleCloudConfig()" style="background: #475569;" title="Configurar sincronización en tiempo real">☁️ Conectar</button>
+        <button class="btn-action" onclick="descargarRespaldoDriveCampo()" style="background: #0F766E;" title="Descargar respaldo completo de Drive y campo">🛡️</button>
         <button class="btn-action green" onclick="exportZipPackage()">📦 ZIP</button>
         <a href="index.html" class="btn-action">🖥️ Web</a>
       </div>
@@ -331,18 +332,57 @@
 
           <!-- Qué contiene la caja según su rótulo -->
           <div class="field-group">
-            <div class="field-title">
+            <div class="field-title" style="display: flex; justify-content: space-between; align-items: center; gap: 0.4rem;">
               <span>📦 ¿Qué contiene esta caja? (Marca lo que dice el rótulo)</span>
+              <div style="display: flex; gap: 0.3rem;">
+                <button type="button" onclick="borrarUltimaPalabraContenido()" style="background: #FEF3C7; border: 1px solid #FCD34D; color: #92400E; font-size: 0.68rem; font-weight: 700; padding: 0.2rem 0.5rem; border-radius: 6px; cursor: pointer;" title="Borrar última palabra agregada">⌫ Borrar</button>
+                <button type="button" onclick="limpiarContenido()" style="background: #FEE2E2; border: 1px solid #FCA5A5; color: #991B1B; font-size: 0.68rem; font-weight: 700; padding: 0.2rem 0.5rem; border-radius: 6px; cursor: pointer;" title="Limpiar texto">🗑️ Limpiar</button>
+              </div>
             </div>
-            <div class="preset-chips" style="margin-top: 0.2rem;">
+
+            <div class="preset-chips" style="margin-top: 0.25rem;">
               <span class="preset-chip" onclick="appendContenido('Exp. Técnico')">📁 Exp. Técnico</span>
               <span class="preset-chip" onclick="appendContenido('Valorizaciones')">📊 Valorizaciones</span>
-              <span class="preset-chip" onclick="appendContenido('Cuadernos de Obra')">📖 Cuadernos</span>
-              <span class="preset-chip" onclick="appendContenido('Cuadernos de Obra Multi-Proyecto: ')" style="background: #F3E8FF; border-color: #C084FC; color: #7E22CE; font-weight: 700;">🔀 Cuadernos Multi-Obra</span>
-              <span class="preset-chip" onclick="appendContenido('Liquidación')">⚖️ Liquidación</span>
-              <span class="preset-chip" onclick="appendContenido('Contrato y Bases')">📜 Contrato/Bases</span>
-              <span class="preset-chip" onclick="appendContenido('Adicionales/Ampliaciones')">➕ Adicionales</span>
-              <span class="preset-chip" onclick="appendContenido('Supervisión')">👷 Supervisión</span>
+              <span class="preset-chip" onclick="appendContenido('Liquidaciones')">⚖️ Liquidaciones</span>
+              <span class="preset-chip" onclick="appendContenido('Adicionales')">➕ Adicionales</span>
+              <span class="preset-chip" onclick="appendContenido('Informe Final')">🏁 Informe Final</span>
+              <span class="preset-chip" onclick="appendContenido('Informe Mensual')">📅 Informe Mensual</span>
+              <span class="preset-chip" onclick="appendContenido('Reportes semanales')">🗓️ Reportes semanales</span>
+              <span class="preset-chip" onclick="appendContenido('Lev. de Obs.')">🛠️ Lev. de Obs.</span>
+              <span class="preset-chip" onclick="appendContenido('Cuadernos')">📖 Cuadernos</span>
+              <span class="preset-chip" onclick="appendContenido('Cuadernos Multi-Obra')" style="background: #F3E8FF; border-color: #C084FC; color: #7E22CE; font-weight: 700;">🔀 Cuadernos Multi-Obra</span>
+            </div>
+
+            <div style="font-size: 0.68rem; font-weight: 700; color: #475569; margin-top: 0.4rem;">
+              🔗 Complementos y conectores:
+            </div>
+            <div class="preset-chips" style="margin-top: 0.2rem;">
+              <span class="preset-chip" onclick="appendContenido('de Obra')" style="background: #EFF6FF; border-color: #BFDBFE; color: #1E40AF; font-weight: 700;">de Obra</span>
+              <span class="preset-chip" onclick="appendContenido('de Supervisión')" style="background: #EFF6FF; border-color: #BFDBFE; color: #1E40AF; font-weight: 700;">de Supervisión</span>
+              <span class="preset-chip" onclick="appendContenido('de contrato')" style="background: #EFF6FF; border-color: #BFDBFE; color: #1E40AF; font-weight: 700;">de contrato</span>
+              <span class="preset-chip" onclick="appendContenido('copia')" style="background: #F8FAFC; border-color: #CBD5E1; color: #334155; font-weight: 700;">copia</span>
+              <span class="preset-chip" onclick="appendContenido('de')" style="background: #F8FAFC; border-color: #CBD5E1; color: #334155; font-weight: 700;">de</span>
+              <span class="preset-chip" onclick="appendContenido('N°')" style="background: #F8FAFC; border-color: #CBD5E1; color: #334155; font-weight: 700;">N°</span>
+              <span class="preset-chip" onclick="appendContenido(',')" style="background: #FEF9C3; border-color: #FDE047; color: #854D0E; font-weight: 900; min-width: 32px; text-align: center;">,</span>
+              <span class="preset-chip" onclick="appendContenido('y')" style="background: #FEF9C3; border-color: #FDE047; color: #854D0E; font-weight: 800; min-width: 32px; text-align: center;">y</span>
+            </div>
+
+            <div style="font-size: 0.68rem; font-weight: 700; color: #475569; margin-top: 0.4rem;">
+              🔢 Números:
+            </div>
+            <div class="preset-chips" style="margin-top: 0.2rem;">
+              <span class="preset-chip" onclick="appendContenido('1')" style="font-weight: 800; min-width: 32px; text-align: center;">1</span>
+              <span class="preset-chip" onclick="appendContenido('2')" style="font-weight: 800; min-width: 32px; text-align: center;">2</span>
+              <span class="preset-chip" onclick="appendContenido('3')" style="font-weight: 800; min-width: 32px; text-align: center;">3</span>
+              <span class="preset-chip" onclick="appendContenido('4')" style="font-weight: 800; min-width: 32px; text-align: center;">4</span>
+              <span class="preset-chip" onclick="appendContenido('5')" style="font-weight: 800; min-width: 32px; text-align: center;">5</span>
+              <span class="preset-chip" onclick="appendContenido('6')" style="font-weight: 800; min-width: 32px; text-align: center;">6</span>
+              <span class="preset-chip" onclick="appendContenido('7')" style="font-weight: 800; min-width: 32px; text-align: center;">7</span>
+              <span class="preset-chip" onclick="appendContenido('8')" style="font-weight: 800; min-width: 32px; text-align: center;">8</span>
+              <span class="preset-chip" onclick="appendContenido('9')" style="font-weight: 800; min-width: 32px; text-align: center;">9</span>
+              <span class="preset-chip" onclick="appendContenido('10')" style="font-weight: 800; min-width: 32px; text-align: center;">10</span>
+              <span class="preset-chip" onclick="appendContenido('11')" style="font-weight: 800; min-width: 32px; text-align: center;">11</span>
+              <span class="preset-chip" onclick="appendContenido('12')" style="font-weight: 800; min-width: 32px; text-align: center;">12</span>
             </div>
 
             <div style="font-size: 0.7rem; font-weight: 700; color: #2563EB; margin-top: 0.45rem; display: flex; align-items: center; gap: 0.3rem;">
@@ -356,7 +396,7 @@
               <span class="preset-chip" onclick="appendContenido('En el piso')" style="background: #FEE2E2; border-color: #FCA5A5; color: #991B1B; font-weight: 700;">⬇️ En el piso</span>
               <span class="preset-chip" onclick="appendContenido('Encima de cajas')" style="background: #E0E7FF; border-color: #A5B4FC; color: #3730A3; font-weight: 700;">📦 Encima de cajas</span>
             </div>
-            <textarea id="inputNotas" class="field-input" style="height: 55px; resize: none; margin-top: 0.5rem;" placeholder="Ej: Caja contiene Valorizaciones 1 a 6 y Cuaderno de Obra N° 01..."></textarea>
+            <textarea id="inputNotas" class="field-input" style="height: 65px; resize: vertical; margin-top: 0.5rem;" placeholder="Ej: Informe Mensual y Valorizaciones de Obra N° 1, 2, 3 y Lev. de Obs."></textarea>
           </div>
 
           <!-- Foto del Rótulo de la Caja -->
@@ -786,6 +826,13 @@
         const data = await res.json();
 
         if (data && data.status === 'success') {
+          try {
+            localStorage.setItem('fdm_cloud_raw_backup', JSON.stringify({
+              timestamp: new Date().toISOString(),
+              data: data
+            }));
+          } catch (e) {}
+
           let mergedCount = 0;
 
           // 1. Sincronizar Cajas y Fotos
@@ -804,7 +851,7 @@
               if (existing) {
                 if (r.ocr_acervo) existing.ocr_acervo = r.ocr_acervo;
                 if (r.ocr_raw) existing.ocr_raw = r.ocr_raw;
-                if (r.contenido_caja && (!existing.nota || existing.nota === existing.codigo_caja)) existing.nota = r.contenido_caja;
+                if (r.contenido_caja) existing.nota = r.contenido_caja;
                 if (r.ambiente && !existing.ubicacion) existing.ubicacion = r.ambiente;
               } else {
                 const isSuelto = (r.codigo_caja && r.codigo_caja.includes('SUELTO')) || (r.tipo_foto && r.tipo_foto.includes('Suelto'));
@@ -1835,22 +1882,113 @@
       }
     }
 
+    let contenidoChipHistory = [];
+
     function appendContenido(tag) {
       const txt = document.getElementById('inputNotas');
       if (!txt) return;
-      const curr = txt.value.trim();
-      if (curr.includes(tag)) {
-        showToast("Ya incluido: " + tag);
-        return;
+      const prevVal = txt.value;
+      const curr = prevVal.replace(/\s+$/, '');
+
+      contenidoChipHistory.push(prevVal);
+
+      if (!curr) {
+        txt.value = tag === ',' ? '' : tag;
+      } else if (tag === ',') {
+        txt.value = curr + ',';
+      } else {
+        txt.value = curr + ' ' + tag;
       }
-      txt.value = curr ? `${curr}, ${tag}` : tag;
+
       saveCurrentObra(false);
-      showToast("➕ Agregado: " + tag);
+    }
+
+    function borrarUltimaPalabraContenido() {
+      const txt = document.getElementById('inputNotas');
+      if (!txt) return;
+      if (contenidoChipHistory.length > 0) {
+        txt.value = contenidoChipHistory.pop();
+      } else {
+        const words = txt.value.trim().split(/\s+/);
+        words.pop();
+        txt.value = words.join(' ');
+      }
+      saveCurrentObra(false);
+    }
+
+    function limpiarContenido() {
+      const txt = document.getElementById('inputNotas');
+      if (!txt) return;
+      contenidoChipHistory = [];
+      txt.value = '';
+      saveCurrentObra(false);
+      showToast("🗑️ Texto limpiado");
+    }
+
+    async function descargarRespaldoDriveCampo() {
+      showToast("🛡️ Generando respaldo de Drive y Campo...");
+      const gasUrl = getGasUrl();
+      let cloudSnapshot = null;
+
+      if (gasUrl) {
+        try {
+          const res = await fetch(gasUrl);
+          const json = await res.json();
+          if (json && json.status === 'success') {
+            cloudSnapshot = json;
+            try {
+              localStorage.setItem('fdm_cloud_raw_backup', JSON.stringify({
+                timestamp: new Date().toISOString(),
+                data: json
+              }));
+            } catch (e) {}
+          }
+          fetch(gasUrl, {
+            method: 'POST',
+            headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+            body: JSON.stringify({ action: 'backup_sheet' })
+          }).catch(() => {});
+        } catch (err) {
+          console.warn("Usando caché local para respaldo:", err);
+        }
+      }
+
+      if (!cloudSnapshot) {
+        try {
+          const cached = JSON.parse(localStorage.getItem('fdm_cloud_raw_backup') || 'null');
+          if (cached && cached.data) cloudSnapshot = cached.data;
+        } catch (e) {}
+      }
+
+      const payload = {
+        generado_el: new Date().toISOString(),
+        origen: gasUrl ? "Google Drive / Sheets + Campo" : "Campo Offline",
+        datos_nube_sheets: cloudSnapshot,
+        field_data_local: fieldData
+      };
+
+      const now = new Date();
+      const pad = n => String(n).padStart(2, '0');
+      const stamp = `${now.getFullYear()}-${pad(now.getMonth()+1)}-${pad(now.getDate())}_${pad(now.getHours())}${pad(now.getMinutes())}`;
+      const filename = `RESPALDO_CAMPO_DRIVE_FDM_${stamp}.json`;
+
+      const blob = new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json;charset=utf-8' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = filename;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+
+      showToast(`🛡️ Respaldo descargado: ${filename}`);
     }
 
     function openDrawer(id) {
       try {
         activeObraId = id;
+        contenidoChipHistory = [];
         const p = projects.find(x => x.id === id);
         if (!p) return;
 
@@ -2130,6 +2268,7 @@
       if (inputCod) inputCod.dataset.userEdited = "";
 
       // Limpiar el campo de contenido del rótulo para la nueva caja
+      contenidoChipHistory = [];
       const inputCont = document.getElementById('inputNotas');
       if (inputCont) inputCont.value = "";
 
