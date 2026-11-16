@@ -354,14 +354,14 @@
       <button class="btn-backup" onclick="descargarRespaldoDrive()" style="background: #0F766E; color: white; border: 1px solid #14B8A6; padding: 0.65rem 0.9rem; border-radius: 8px; font-weight: 700; font-size: 0.82rem; cursor: pointer; display: inline-flex; align-items: center; gap: 0.4rem;" title="Descargar copia de seguridad completa de Drive y Sheets">
         🛡️ Respaldar Drive
       </button>
-      <button class="btn-audit-master" onclick="openAuditMasterModal()" style="background: linear-gradient(135deg, #D97706, #B45309); color: white; border: 1px solid #F59E0B; padding: 0.65rem 1rem; border-radius: 8px; font-weight: 800; font-size: 0.84rem; cursor: pointer; display: inline-flex; align-items: center; gap: 0.4rem; box-shadow: 0 2px 6px rgba(217,119,6,0.35);" title="Vista consolidada para Auditoría con ubicaciones, valorizaciones, informes finales y fechas verificadas">
-        🏛️ Cuadro Maestro Auditoría
+      <button class="btn-audit-master" onclick="openAuditMasterModal()" style="background: linear-gradient(135deg, #D97706, #B45309); color: white; border: 1px solid #F59E0B; padding: 0.65rem 1rem; border-radius: 8px; font-weight: 800; font-size: 0.84rem; cursor: pointer; display: inline-flex; align-items: center; gap: 0.4rem; box-shadow: 0 2px 6px rgba(217,119,6,0.35);" title="Abrir Informe Situacional (Google Sheets, Impresión Horizontal y Cuadro Maestro)">
+        📊 Informe Situacional / Google Sheets
       </button>
       <a href="campo.html" class="btn-campo" style="background: #2563EB; color: white; border: none; padding: 0.65rem 1.1rem; border-radius: 8px; font-weight: 700; font-size: 0.85rem; text-decoration: none; display: inline-flex; align-items: center; gap: 0.4rem; box-shadow: 0 2px 5px rgba(37,99,235,0.3);">
         📷 Ir a Modo Campo / Censo de Cajas ➔
       </a>
-      <button class="btn-excel" onclick="exportToExcel()">
-        📥 Descargar Excel Oficial
+      <button class="btn-excel" onclick="exportInformeSituacionalMultiSheetExcel()" title="Descarga Excel Multi-Hoja igual al del Ingeniero con ubicaciones reales por ambiente">
+        📥 Excel Informe Situacional (7 Hojas)
       </button>
     </div>
   </header>
@@ -2716,6 +2716,300 @@
       showToast(`¡Excel Consolidado generado (${rows.length} proyectos + ubicaciones por ambiente)!`);
     }
 
+    function buildInformeSituacionalPayloadList() {
+      const list = getFilteredAuditMasterList();
+      return (list && list.length > 0) ? list : (projectsData || []).filter(p => p.es_obra_civil === true);
+    }
+
+    function mapProjectToInformeRowObj(p) {
+      const b = getDetailedAmbientesBreakdown(p.id);
+      const docInfo = compileDocumentTagsForProject(p.id);
+      const ubic = compileUbicacionCajas(p.id) || (isProjectExecutedOrLiquidated(p) ? 'FALTA CENSAR (PRIORIDAD)' : 'Por censar');
+      const ini = hasValidStart(p) ? p.fecha_inicio : (isProjectExecutedOrLiquidated(p) ? 'FALTA INICIO' : '—');
+      const finRaw = p.fecha_termino_verificada_ing || (p.fecha_culminacion_real && p.fecha_culminacion_real !== '-' ? p.fecha_culminacion_real : (p.fecha_termino_prog && p.fecha_termino_prog !== '-' ? p.fecha_termino_prog : ''));
+      const fin = hasValidEnd(p) ? finRaw : (isProjectExecutedOrLiquidated(p) ? 'FALTA FIN' : '—');
+      const contenido = b.hasCenso
+        ? b.ambientes.map(a => `[${a.ambiente}] ` + a.items.map(it => `${it.codigo}: ${it.contenido || 'Registrado'}`).join(' | ')).join('\n')
+        : (isProjectExecutedOrLiquidated(p) ? 'Pendiente ubicar cajas en campo' : '—');
+      const prio = Number(p.prio || 0);
+      const amp = Number(p.ampliacion_presupuestal || 0);
+      const ctot = Number(p.costo_total || (prio + amp) || 0);
+      const ejec = Number(p.costo_ejec || 0);
+      return {
+        'N° OBRA': p.id,
+        'CONVENIO': p.convenio || '',
+        'PROVINCIA': p.provincia || '',
+        'CUI': (p.cui && p.cui !== 'N/D') ? p.cui : 'S/N',
+        'ACUERDO DE CONSEJO MUNICIPAL': p.acuerdo_municipal || '',
+        'ACUERDO DE CONSEJO DIRECTIVO DEL FDM': p.acuerdo_fdm || '',
+        'ESTATUS DEL PY': (p.estatus || 'SIN STATUS').toUpperCase(),
+        'DESCRIPCIÓN DE PROYECTOS (OBRA CIVIL)': p.desc || '',
+        'FECHA INICIO': ini,
+        'FECHA DE TÉRMINO': fin,
+        'ESTADO SITUACIONAL ACTUAL': (p.estado_situacional || '—').toUpperCase(),
+        'PRESUPUESTO PRIORIZADO (S/)': prio,
+        'AMPLIACIÓN PRESUPUESTAL (S/)': amp,
+        'COSTE TOTAL DEL PY (S/)': ctot,
+        'PRESUPUESTO EJECUTADO (S/)': ejec,
+        'UBICACIÓN POR AMBIENTES': ubic,
+        'CONTENIDO DOCUMENTAL ENCONTRADO (CAJAS / SUELTOS)': contenido,
+        'VALORIZACIONES / INF. FINAL': [docInfo.hasVal ? 'Valoriz.' : '', docInfo.hasInfFinal ? 'Inf. Final' : '', docInfo.hasLiq ? 'Liquid.' : ''].filter(Boolean).join(', ') || '—',
+        'COMENTARIO / NOTA': p.comentario_ing || ''
+      };
+    }
+
+    function exportInformeSituacionalMultiSheetExcel() {
+      if (typeof XLSX === 'undefined') {
+        window.location.href = './INFORME_SITUACIONAL_OBRAS_CIVILES_FDM_2021_2025.xlsx';
+        return;
+      }
+      const civils = (projectsData || []).filter(p => p.es_obra_civil === true).sort((a,b) => a.id - b.id);
+      if (civils.length === 0) {
+        window.location.href = './INFORME_SITUACIONAL_OBRAS_CIVILES_FDM_2021_2025.xlsx';
+        return;
+      }
+      const wb = XLSX.utils.book_new();
+      const sheetsSpec = [
+        ['00_INFORME_CONSOLIDADO_72', civils],
+        ['100 - ILO', civils.filter(p => p.convenio === '100 MLL.' && (p.provincia || '').toUpperCase().includes('ILO'))],
+        ['100 - MN', civils.filter(p => p.convenio === '100 MLL.' && ((p.provincia || '').toUpperCase().includes('MARISCAL') || p.provincia === 'M.N.'))],
+        ['100 - SC', civils.filter(p => p.convenio === '100 MLL.' && ((p.provincia || '').toUpperCase().includes('SANCHEZ') || p.provincia === 'G.S.C.'))],
+        ['50 - 3 PROVINCIAS', civils.filter(p => p.convenio === '50 MLL.')],
+        ['EO - 3 PROVINCIAS', civils.filter(p => p.convenio === 'E.O.' || p.convenio === 'ETAPA OPERACIONES')],
+        ['PRIORIDAD_FALTANTES', civils.filter(p => isProjectExecutedOrLiquidated(p) && (isProjectMissingCensus(p) || !hasValidStart(p) || !hasValidEnd(p)))]
+      ];
+      sheetsSpec.forEach(([name, arr]) => {
+        const mapped = arr.map(mapProjectToInformeRowObj);
+        const ws = XLSX.utils.json_to_sheet(mapped);
+        ws['!cols'] = [
+          {wch:8},{wch:13},{wch:12},{wch:10},{wch:18},{wch:22},{wch:18},{wch:50},
+          {wch:13},{wch:13},{wch:20},{wch:15},{wch:14},{wch:15},{wch:15},{wch:26},{wch:50},{wch:18},{wch:28}
+        ];
+        XLSX.utils.book_append_sheet(wb, ws, name);
+      });
+      const stamp = new Date().toISOString().slice(0,10);
+      XLSX.writeFile(wb, `FDM_INFORME_SITUACIONAL_OBRAS_CIVILES_${stamp}.xlsx`);
+      showToast(`📥 Excel Multi-Hoja generado (${civils.length} Obras Civiles + ubicaciones en vivo). Súbelo directo a Google Drive / Sheets.`);
+    }
+
+    async function copyRichTableForGoogleSheets() {
+      const list = buildInformeSituacionalPayloadList();
+      const rows = list.map(mapProjectToInformeRowObj);
+      const headers = Object.keys(rows[0] || {});
+
+      const getBg = (col, val) => {
+        const s = String(val || '').toUpperCase();
+        if (col === 'ESTATUS DEL PY') {
+          if (s === 'EJECUTADO') return 'background:#DCFCE7;color:#166534;font-weight:bold;';
+          if (s.includes('EN EJECUCION')) return 'background:#FEF3C7;color:#B45309;font-weight:bold;';
+          if (s.includes('CAMBIO') || s.includes('EJECUTADO POR')) return 'background:#FFEDD5;color:#C2410C;font-weight:bold;';
+          if (s.includes('OBSERV') || s.includes('FALTA')) return 'background:#FEE2E2;color:#B91C1C;font-weight:bold;';
+          return 'background:#F1F5F9;color:#475569;font-weight:bold;';
+        }
+        if (col === 'ESTADO SITUACIONAL ACTUAL') {
+          if (s === 'LIQUIDADO') return 'background:#059669;color:#FFFFFF;font-weight:bold;';
+          if (s.includes('LIQUIDACION') || s.includes('FINALIZAD')) return 'background:#E0F2FE;color:#0369A1;font-weight:bold;';
+        }
+        if ((col === 'FECHA INICIO' || col === 'FECHA DE TÉRMINO' || col === 'UBICACIÓN POR AMBIENTES') && s.includes('FALTA')) {
+          return 'background:#FEE2E2;color:#B91C1C;font-weight:bold;';
+        }
+        return '';
+      };
+
+      const esc = v => String(v ?? '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g,'<br>');
+      let html = '<table border="1" cellspacing="0" cellpadding="4" style="border-collapse:collapse;font-family:Calibri,Arial,sans-serif;font-size:10pt;">';
+      html += `<tr><th colspan="${headers.length}" style="background:#0F172A;color:#FFFFFF;font-size:12pt;text-align:left;padding:8px;">FONDO DE DESARROLLO DE MOQUEGUA (FDM) — INFORME SITUACIONAL DE OBRAS CIVILES (${rows.length} PROYECTOS)</th></tr>`;
+      html += '<tr>' + headers.map(h => `<th style="background:#1E3A8A;color:#FFFFFF;font-weight:bold;text-align:center;">${esc(h)}</th>`).join('') + '</tr>';
+      rows.forEach((r, idx) => {
+        const bgRow = idx % 2 === 1 ? '#F8FAFC' : '#FFFFFF';
+        html += '<tr>' + headers.map(h => {
+          const v = r[h];
+          const isNum = typeof v === 'number';
+          const fmt = isNum ? v.toLocaleString('en-US', {minimumFractionDigits:2, maximumFractionDigits:2}) : v;
+          const st = getBg(h, v);
+          return `<td style="background:${bgRow};vertical-align:middle;${isNum ? 'text-align:right;' : ''}${st}">${esc(fmt)}</td>`;
+        }).join('') + '</tr>';
+      });
+      html += '</table>';
+
+      const tsv = [headers.join('\t'), ...rows.map(r => headers.map(h => String(r[h] ?? '').replace(/[\t\r\n]+/g, ' | ')).join('\t'))].join('\n');
+
+      try {
+        if (navigator.clipboard && window.ClipboardItem) {
+          await navigator.clipboard.write([
+            new ClipboardItem({
+              'text/html': new Blob([html], { type: 'text/html' }),
+              'text/plain': new Blob([tsv], { type: 'text/plain' })
+            })
+          ]);
+        } else {
+          await navigator.clipboard.writeText(tsv);
+        }
+        showToast(`✅ ¡${rows.length} obras copiadas con formato! Abre sheets.new y presiona Ctrl+V.`);
+        if (confirm(`✅ Se copió el Informe Situacional (${rows.length} Obras Civiles) con colores, fechas, status y cajas por ambiente.\n\n¿Deseas abrir ahora una Hoja de Google nueva (sheets.new) para pegarlo con Ctrl + V?`)) {
+          window.open('https://sheets.new', '_blank');
+        }
+      } catch (err) {
+        console.error(err);
+        alert("No se pudo copiar al portapapeles. Usa el botón Descargar Excel (7 Hojas) e impórtalo a Google Sheets.");
+      }
+    }
+
+    async function syncInformeSituacionalToGoogleSheet() {
+      const gasUrl = (localStorage.getItem('fdm_gas_url') || '').trim();
+      const list = buildInformeSituacionalPayloadList();
+      if (!gasUrl) {
+        if (confirm("No tienes conectada la URL de Google Apps Script en este navegador.\n\n¿Deseas copiar la tabla con formato para pegarla directo en Google Sheets (Ctrl+V en sheets.new)?")) {
+          copyRichTableForGoogleSheets();
+        }
+        return;
+      }
+
+      const btn = document.getElementById('btnSyncGoogleSheet');
+      const prevTxt = btn ? btn.innerText : '';
+      if (btn) { btn.disabled = true; btn.innerText = '⏳ Creando pestaña...'; }
+
+      const obrasPayload = list.map(p => {
+        const b = getDetailedAmbientesBreakdown(p.id);
+        const ubic = compileUbicacionCajas(p.id) || '';
+        const cont = b.hasCenso
+          ? b.ambientes.map(a => `[${a.ambiente}] ` + a.items.map(it => `${it.codigo}: ${it.contenido || 'Registrado'}`).join(' | ')).join('\n')
+          : '';
+        return {
+          id: p.id,
+          convenio: p.convenio || '',
+          provincia: p.provincia || '',
+          cui: (p.cui && p.cui !== 'N/D') ? p.cui : 'S/N',
+          acuerdo_municipal: p.acuerdo_municipal || '',
+          acuerdo_fdm: p.acuerdo_fdm || '',
+          estatus: p.estatus || '',
+          desc: p.desc || '',
+          fecha_inicio: hasValidStart(p) ? p.fecha_inicio : '',
+          fecha_termino: hasValidEnd(p) ? (p.fecha_termino_verificada_ing || p.fecha_culminacion_real || '') : '',
+          estado_situacional: p.estado_situacional || '',
+          prio: Number(p.prio || 0),
+          ampliacion: Number(p.ampliacion_presupuestal || 0),
+          costo_total: Number(p.costo_total || ((Number(p.prio||0) + Number(p.ampliacion_presupuestal||0))) || 0),
+          costo_ejec: Number(p.costo_ejec || 0),
+          ubicacion_ambientes: ubic,
+          contenido_cajas: cont,
+          comentario: p.comentario_ing || ''
+        };
+      });
+
+      try {
+        const res = await fetch(gasUrl, {
+          method: 'POST',
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+          body: JSON.stringify({ action: 'sync_informe_situacional', obras: obrasPayload })
+        });
+        const data = await res.json();
+        if (data && data.status === 'success' && data.sheet_url) {
+          showToast(`✅ Pestaña "${data.sheet_name}" creada en tu Google Sheet.`);
+          if (confirm(`✅ ¡Pestaña "${data.sheet_name}" creada/actualizada en tu Google Sheet con ${data.total_obras} Obras Civiles y ubicaciones en vivo!\n\n¿Abrir el Google Sheet ahora para verlo o imprimirlo?`)) {
+            window.open(data.sheet_url, '_blank');
+          }
+        } else {
+          showToast("⚠️ El Apps Script conectado aún no tiene la función v4. Copiando tabla con formato...");
+          await copyRichTableForGoogleSheets();
+        }
+      } catch (e) {
+        console.warn("Fallback copiar tabla para Google Sheets:", e);
+        await copyRichTableForGoogleSheets();
+      } finally {
+        if (btn) { btn.disabled = false; btn.innerText = prevTxt; }
+      }
+    }
+
+    function printInformeSituacional() {
+      const list = buildInformeSituacionalPayloadList();
+      const nowStr = new Date().toLocaleString('es-PE');
+      let sumPrio = 0, sumEjec = 0, cntCensadas = 0, cntEjecSinCenso = 0;
+      const rowsHtml = list.map(p => {
+        const prio = Number(p.prio || 0);
+        const ejec = Number(p.costo_ejec || 0);
+        sumPrio += prio;
+        sumEjec += ejec;
+        const b = getDetailedAmbientesBreakdown(p.id);
+        const isEjec = isProjectExecutedOrLiquidated(p);
+        if (b.hasCenso) cntCensadas++;
+        else if (isEjec) cntEjecSinCenso++;
+
+        const ini = hasValidStart(p) ? p.fecha_inicio : (isEjec ? '<span class="warn">FALTA INICIO</span>' : '—');
+        const finRaw = p.fecha_termino_verificada_ing || (p.fecha_culminacion_real && p.fecha_culminacion_real !== '-' ? p.fecha_culminacion_real : (p.fecha_termino_prog && p.fecha_termino_prog !== '-' ? p.fecha_termino_prog : ''));
+        const fin = hasValidEnd(p) ? escapeHtmlAttr(finRaw) : (isEjec ? '<span class="warn">FALTA FIN</span>' : '—');
+        const sitHtml = p.estado_situacional ? `<div class="sit-tag">${escapeHtmlAttr(p.estado_situacional)}</div>` : '';
+        const ambHtml = b.hasCenso
+          ? b.ambientes.map(a => `<div class="amb-blk"><b>📍 ${escapeHtmlAttr(a.ambiente)} (${a.items.length})</b><br>${a.items.map(it => `<span class="cod">${escapeHtmlAttr(it.codigo)}:</span> ${escapeHtmlAttr(it.contenido || 'Foto')}`).join('<br>')}</div>`).join('')
+          : (isEjec ? '<span class="warn">🚨 FALTA CENSAR (PRIORIDAD)</span>' : '<span style="color:#64748B;">Por censar</span>');
+
+        return `
+          <tr>
+            <td style="text-align:center;font-weight:bold;">${p.id === 999 ? 'MIX' : p.id}</td>
+            <td style="text-align:center;"><b>${escapeHtmlAttr(p.provincia)}</b><br><small>${escapeHtmlAttr(p.convenio)}</small></td>
+            <td><b>${escapeHtmlAttr(p.desc)}</b><br><small>CUI: ${(p.cui && p.cui !== 'N/D') ? escapeHtmlAttr(p.cui) : 'S/N'}${p.acuerdo_fdm ? ' • ' + escapeHtmlAttr(p.acuerdo_fdm) : ''}</small></td>
+            <td style="text-align:center;"><div class="st-tag">${escapeHtmlAttr(p.estatus || 'SIN STATUS')}</div>${sitHtml}</td>
+            <td style="text-align:center;font-family:monospace;">🚀 ${ini}<br>🏁 ${fin}</td>
+            <td style="text-align:right;font-family:monospace;">S/ ${prio.toLocaleString('es-PE',{minimumFractionDigits:2,maximumFractionDigits:2})}</td>
+            <td style="text-align:right;font-family:monospace;font-weight:bold;">S/ ${ejec.toLocaleString('es-PE',{minimumFractionDigits:2,maximumFractionDigits:2})}</td>
+            <td>${ambHtml}</td>
+          </tr>
+        `;
+      }).join('');
+
+      const win = window.open('', '_blank', 'width=1280,height=850');
+      if (!win) { alert("Permite ventanas emergentes para generar la vista de impresión."); return; }
+      win.document.write(`<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><title>Informe Situacional Obras Civiles FDM</title>
+        <style>
+          @page { size: A4 landscape; margin: 8mm; }
+          body { font-family: Arial, Helvetica, sans-serif; font-size: 8.5pt; color: #0F172A; margin: 0; }
+          .hdr { background: #0F172A; color: #FFF; padding: 10px 14px; border-radius: 6px; margin-bottom: 8px; display:flex; justify-content:space-between; align-items:center; }
+          .hdr h1 { font-size: 13pt; margin: 0 0 2px 0; }
+          .kpis { display: flex; gap: 10px; margin-bottom: 8px; flex-wrap: wrap; }
+          .kpi { border: 1px solid #CBD5E1; border-radius: 5px; padding: 4px 10px; background: #F8FAFC; font-size: 8.5pt; }
+          table { width: 100%; border-collapse: collapse; table-layout: fixed; }
+          th { background: #1E3A8A; color: #FFF; padding: 5px 4px; font-size: 7.5pt; border: 1px solid #1E3A8A; text-align: center; }
+          td { border: 1px solid #CBD5E1; padding: 4px; vertical-align: top; word-wrap: break-word; overflow-wrap: break-word; }
+          tr { page-break-inside: avoid; }
+          .st-tag { font-weight: bold; font-size: 7.5pt; background: #EEF2FF; border: 1px solid #C7D2FE; padding: 2px 4px; border-radius: 4px; }
+          .sit-tag { margin-top: 3px; font-weight: bold; font-size: 7pt; background: #DCFCE7; color: #166534; padding: 2px 4px; border-radius: 4px; }
+          .warn { color: #B91C1C; font-weight: bold; font-size: 7.5pt; }
+          .amb-blk { margin-bottom: 3px; font-size: 7.5pt; }
+          .cod { font-family: monospace; font-weight: bold; color: #1E3A8A; }
+          @media print { .no-print { display: none; } body { -webkit-print-color-adjust: exact; print-color-adjust: exact; } }
+        </style></head><body>
+        <div class="hdr">
+          <div>
+            <h1>🏛️ FONDO DE DESARROLLO DE MOQUEGUA — INFORME SITUACIONAL DE OBRAS CIVILES</h1>
+            <div>Control de Status Oficial (Excel 2021-2025), Fechas de Ejecución y Ubicación Física por Ambientes • Emitido: ${nowStr}</div>
+          </div>
+          <button class="no-print" onclick="window.print()" style="background:#16A34A;color:#FFF;border:none;padding:8px 14px;border-radius:6px;font-weight:bold;cursor:pointer;">🖨️ Imprimir / Guardar PDF</button>
+        </div>
+        <div class="kpis">
+          <div class="kpi"><b>Obras en Informe:</b> ${list.length}</div>
+          <div class="kpi"><b>Ubicadas en Campo:</b> ${cntCensadas}</div>
+          <div class="kpi" style="color:#B91C1C;"><b>Ejecutadas Sin Censar:</b> ${cntEjecSinCenso}</div>
+          <div class="kpi"><b>Pto. Priorizado Total:</b> S/ ${sumPrio.toLocaleString('es-PE',{minimumFractionDigits:2,maximumFractionDigits:2})}</div>
+          <div class="kpi"><b>Pto. Ejecutado Total:</b> S/ ${sumEjec.toLocaleString('es-PE',{minimumFractionDigits:2,maximumFractionDigits:2})}</div>
+        </div>
+        <table>
+          <thead><tr>
+            <th style="width:32px;">N°</th>
+            <th style="width:72px;">PROV / CONV</th>
+            <th style="width:230px;">DESCRIPCIÓN DE OBRA CIVIL / CUI</th>
+            <th style="width:92px;">STATUS EXCEL / SITUACIÓN</th>
+            <th style="width:86px;">INICIO / TÉRMINO</th>
+            <th style="width:78px;">PRIORIZADO</th>
+            <th style="width:78px;">EJECUTADO</th>
+            <th>UBICACIÓN POR AMBIENTES Y CONTENIDO ENCONTRADO</th>
+          </tr></thead>
+          <tbody>${rowsHtml}</tbody>
+        </table>
+      </body></html>`);
+      win.document.close();
+      setTimeout(() => win.print(), 350);
+    }
+
     // Initialize
     window.addEventListener('DOMContentLoaded', loadProjects);
   </script>
@@ -2725,12 +3019,14 @@
     <div class="audit-modal">
       <div class="audit-modal-header">
         <div>
-          <h2 style="font-size:1.15rem; font-weight:800; margin:0;">🏛️ Cuadro Maestro para Auditoría FDM (Obras Civiles + Ambientes y Faltantes)</h2>
+          <h2 style="font-size:1.15rem; font-weight:800; margin:0;">🏛️ Informe Situacional y Cuadro Maestro FDM (Obras Civiles + Google Sheets)</h2>
           <div style="font-size:0.78rem; color:#CBD5E1; margin-top:2px;">Control unificado del Status Excel, fechas de inicio/fin faltantes y todo el contenido encontrado por ambiente en Google Drive.</div>
         </div>
-        <div style="display:flex; gap:0.5rem; align-items:center; flex-wrap:wrap;">
-          <button type="button" class="btn" onclick="copyAuditMasterSummary()" style="background:#334155; color:white; font-size:0.78rem; padding:0.5rem 0.85rem;">📋 Copiar Tabla</button>
-          <button type="button" class="btn" onclick="exportAuditMasterExcel()" style="background:#16A34A; color:white; font-size:0.8rem; padding:0.5rem 0.95rem;">📥 Descargar Excel Consolidado En Vivo</button>
+        <div style="display:flex; gap:0.45rem; align-items:center; flex-wrap:wrap;">
+          <button type="button" id="btnSyncGoogleSheet" class="btn" onclick="syncInformeSituacionalToGoogleSheet()" style="background:#0F766E; color:white; font-size:0.78rem; padding:0.5rem 0.85rem; border:1px solid #14B8A6;" title="Crea la pestaña INFORME_SITUACIONAL_OBRAS directamente en tu Google Sheet conectado">☁️ Crear en mi Google Sheet</button>
+          <button type="button" class="btn" onclick="copyRichTableForGoogleSheets()" style="background:#0284C7; color:white; font-size:0.78rem; padding:0.5rem 0.85rem;" title="Copia la tabla con colores y bordes para pegarla (Ctrl+V) en sheets.new">📊 Copiar para Google Sheets</button>
+          <button type="button" class="btn" onclick="exportInformeSituacionalMultiSheetExcel()" style="background:#16A34A; color:white; font-size:0.78rem; padding:0.5rem 0.85rem;">📥 Excel 7 Hojas En Vivo</button>
+          <button type="button" class="btn" onclick="printInformeSituacional()" style="background:#D97706; color:white; font-size:0.78rem; padding:0.5rem 0.85rem;">🖨️ Imprimir / PDF</button>
           <button type="button" class="close-btn" onclick="closeAuditMasterModal()" style="position:static;">&times;</button>
         </div>
       </div>

@@ -10,6 +10,16 @@
 const FOLDER_NAME = "AUDITORIA_FDM_EVIDENCIAS_2022_2025";
 const SHEET_CAJAS = "CENSO_CAJAS_FOTOS";
 const SHEET_OBRAS = "MATRIZ_69_OBRAS";
+const SHEET_INFORME = "INFORME_SITUACIONAL_OBRAS";
+
+function onOpen() {
+  try {
+    SpreadsheetApp.getUi()
+      .createMenu("🏛️ Auditoría FDM")
+      .addItem("🖨️ Preparar Vista Impresión Horizontal", "formatearImpresionInforme")
+      .addToUi();
+  } catch (e) {}
+}
 
 const CHECK_KEYS = [
   'chk_exp', 'chk_cont', 'chk_acta_ent', 'chk_cuad', 
@@ -346,6 +356,21 @@ function doPost(e) {
       })).setMimeType(ContentService.MimeType.JSON);
     }
 
+    // ==============================================================
+    // CASO 4: CREAR / ACTUALIZAR INFORME SITUACIONAL EN GOOGLE SHEETS
+    // ==============================================================
+    if (action === "sync_informe_situacional") {
+      const sheetInfo = crearHojaInformeSituacional(ss, payload);
+      return ContentService.createTextOutput(JSON.stringify({
+        status: "success",
+        action: "sync_informe_situacional",
+        sheet_name: SHEET_INFORME,
+        sheet_url: sheetInfo.sheetUrl,
+        total_obras: sheetInfo.totalObras,
+        message: `Hoja "${SHEET_INFORME}" actualizada con ${sheetInfo.totalObras} obras civiles y ubicaciones en vivo.`
+      })).setMimeType(ContentService.MimeType.JSON);
+    }
+
   } catch (err) {
     return ContentService.createTextOutput(JSON.stringify({
       status: "error",
@@ -448,6 +473,197 @@ function getOrCreateSheetObras(ss) {
     sheet.setFrozenRows(1);
   }
   return sheet;
+}
+
+function formatearImpresionInforme() {
+  const ss = SpreadsheetApp.getActiveSpreadsheet();
+  const sheet = ss.getSheetByName(SHEET_INFORME);
+  if (!sheet) return;
+  sheet.setFrozenRows(4);
+  sheet.autoResizeRows(5, Math.max(1, sheet.getLastRow() - 4));
+}
+
+/**
+ * Crea o regenera la pestaña INFORME_SITUACIONAL_OBRAS combinando las obras civiles
+ * enviadas desde el visor web con el censo en vivo de CENSO_CAJAS_FOTOS (por Ambiente).
+ */
+function crearHojaInformeSituacional(ss, payload) {
+  const sheetCajas = getOrCreateSheetCajas(ss);
+  const dataCajas = sheetCajas.getDataRange().getValues();
+
+  // 1. Indexar cajas y documentos sueltos por OBRA_ID y AMBIENTE en vivo
+  const censoPorObra = {};
+  for (let i = 1; i < dataCajas.length; i++) {
+    const r = dataCajas[i];
+    const oId = parseInt(r[1]);
+    if (!oId) continue;
+    const cod = String(r[2] || "").trim() || "SIN_CODIGO";
+    const amb = String(r[3] || "").trim() || "AMBIENTE";
+    const cont = String(r[4] || "").trim();
+    const ocr = String(r[8] || "").trim();
+    if (!censoPorObra[oId]) censoPorObra[oId] = {};
+    if (!censoPorObra[oId][amb]) censoPorObra[oId][amb] = {};
+    if (!censoPorObra[oId][amb][cod]) censoPorObra[oId][amb][cod] = [];
+    if (cont && cont !== cod && cont !== "Contenido no especificado" && censoPorObra[oId][amb][cod].indexOf(cont) === -1) {
+      censoPorObra[oId][amb][cod].push(cont);
+    }
+    if (ocr && censoPorObra[oId][amb][cod].length === 0) {
+      censoPorObra[oId][amb][cod].push("OCR: " + ocr);
+    }
+  }
+
+  let sheet = ss.getSheetByName(SHEET_INFORME);
+  if (!sheet) {
+    sheet = ss.insertSheet(SHEET_INFORME, 0);
+  } else {
+    sheet.clear();
+  }
+
+  const headers = [
+    "N°", "CONVENIO", "PROVINCIA", "CUI",
+    "ACUERDO MUNICIPAL", "ACUERDO CONSEJO DIRECTIVO FDM",
+    "ESTATUS DEL PY", "DESCRIPCIÓN DE PROYECTOS (OBRA CIVIL)",
+    "FECHA INICIO", "FECHA DE TÉRMINO", "ESTADO SITUACIONAL ACTUAL",
+    "PTO. PRIORIZADO (S/)", "AMPLIACIÓN (S/)", "COSTE TOTAL PY (S/)", "PTO. EJECUTADO (S/)",
+    "UBICACIÓN POR AMBIENTES", "CONTENIDO DOCUMENTAL ENCONTRADO (CAJAS / SUELTOS)", "COMENTARIO / NOTA"
+  ];
+  const maxCols = headers.length;
+
+  sheet.getRange(1, 1, 1, maxCols).merge()
+    .setValue("FONDO DE DESARROLLO DE MOQUEGUA (FDM) — INFORME SITUACIONAL DE OBRAS CIVILES (2021 - 2025)")
+    .setBackground("#0F172A").setFontColor("#FFFFFF").setFontWeight("bold").setFontSize(12)
+    .setVerticalAlignment("middle").setHorizontalAlignment("left");
+  sheet.setRowHeight(1, 28);
+
+  sheet.getRange(2, 1, 1, maxCols).merge()
+    .setValue("Actualizado al " + new Date().toLocaleString() + " • Para imprimir: Archivo -> Imprimir -> Horizontal -> Ajustar al ancho")
+    .setBackground("#EFF6FF").setFontColor("#1E3A8A").setFontStyle("italic").setFontSize(9)
+    .setVerticalAlignment("middle").setHorizontalAlignment("left");
+  sheet.setRowHeight(2, 20);
+
+  sheet.getRange(4, 1, 1, maxCols).setValues([headers])
+    .setBackground("#1E3A8A").setFontColor("#FFFFFF").setFontWeight("bold").setFontSize(9)
+    .setWrap(true).setHorizontalAlignment("center").setVerticalAlignment("middle");
+  sheet.setRowHeight(4, 34);
+  sheet.setFrozenRows(4);
+
+  const obras = Array.isArray(payload.obras) ? payload.obras : [];
+  const rows = [];
+  const bgColors = [];
+  const txtColors = [];
+
+  obras.forEach((p, idx) => {
+    const oId = parseInt(p.id);
+    const liveAmb = censoPorObra[oId] || null;
+    let ubicStr = p.ubicacion_ambientes || "";
+    let contStr = p.contenido_cajas || "";
+
+    if (liveAmb) {
+      const ambNames = [];
+      const ambParts = [];
+      Object.keys(liveAmb).forEach(amb => {
+        const codObj = liveAmb[amb];
+        const codKeys = Object.keys(codObj);
+        ambNames.push(amb + " (" + codKeys.length + ")");
+        const lines = codKeys.map(cod => {
+          const det = codObj[cod].join("; ");
+          return cod + (det ? ": " + det : "");
+        });
+        ambParts.push("[" + amb + "] " + lines.join(" | "));
+      });
+      ubicStr = ambNames.join(" | ");
+      contStr = ambParts.join("\n");
+    }
+
+    const est = String(p.estatus || "").toUpperCase();
+    const sit = String(p.estado_situacional || "").toUpperCase();
+    const ini = p.fecha_inicio || "";
+    const fin = p.fecha_termino || "";
+    const isEjec = est === "EJECUTADO" || sit.indexOf("LIQUID") !== -1;
+
+    rows.push([
+      oId,
+      p.convenio || "",
+      p.provincia || "",
+      p.cui || "S/N",
+      p.acuerdo_municipal || "",
+      p.acuerdo_fdm || "",
+      est || "SIN STATUS",
+      p.desc || "",
+      ini || (isEjec ? "FALTA INICIO" : "—"),
+      fin || (isEjec ? "FALTA FIN" : "—"),
+      sit || "—",
+      Number(p.prio || 0),
+      Number(p.ampliacion || 0),
+      Number(p.costo_total || 0),
+      Number(p.costo_ejec || 0),
+      ubicStr || (isEjec ? "FALTA CENSAR (PRIORIDAD)" : "Por censar"),
+      contStr || (isEjec ? "Pendiente ubicar cajas en campo" : "—"),
+      p.comentario || ""
+    ]);
+
+    const baseBg = (idx % 2 === 1) ? "#F8FAFC" : "#FFFFFF";
+    const rBg = new Array(maxCols).fill(baseBg);
+    const rFg = new Array(maxCols).fill("#0F172A");
+
+    // Col 7 ESTATUS
+    if (est === "EJECUTADO") { rBg[6] = "#DCFCE7"; rFg[6] = "#166534"; }
+    else if (est.indexOf("EN EJECUCION") !== -1) { rBg[6] = "#FEF3C7"; rFg[6] = "#B45309"; }
+    else if (est.indexOf("CAMBIO") !== -1 || est.indexOf("EJECUTADO POR") !== -1) { rBg[6] = "#FFEDD5"; rFg[6] = "#C2410C"; }
+    else if (est.indexOf("OBSERV") !== -1 || est.indexOf("FALTA") !== -1) { rBg[6] = "#FEE2E2"; rFg[6] = "#B91C1C"; }
+    else { rBg[6] = "#F1F5F9"; rFg[6] = "#475569"; }
+
+    // Col 11 SITUACION
+    if (sit === "LIQUIDADO") { rBg[10] = "#059669"; rFg[10] = "#FFFFFF"; }
+    else if (sit.indexOf("LIQUIDACION") !== -1 || sit.indexOf("FINALIZAD") !== -1) { rBg[10] = "#E0F2FE"; rFg[10] = "#0369A1"; }
+
+    // Alerta fechas / censo
+    if (!ini && isEjec) { rBg[8] = "#FEE2E2"; rFg[8] = "#B91C1C"; }
+    if (!fin && isEjec) { rBg[9] = "#FEE2E2"; rFg[9] = "#B91C1C"; }
+    if (!ubicStr && isEjec) { rBg[15] = "#FEE2E2"; rFg[15] = "#B91C1C"; }
+    else if (ubicStr) { rBg[15] = "#DCFCE7"; rFg[15] = "#166534"; }
+
+    bgColors.push(rBg);
+    txtColors.push(rFg);
+  });
+
+  if (rows.length > 0) {
+    const startRow = 5;
+    const rng = sheet.getRange(startRow, 1, rows.length, maxCols);
+    rng.setValues(rows)
+      .setWrap(true)
+      .setVerticalAlignment("middle")
+      .setFontSize(9)
+      .setBorder(true, true, true, true, true, true, "#CBD5E1", SpreadsheetApp.BorderStyle.SOLID);
+    rng.setBackgrounds(bgColors);
+    rng.setFontColors(txtColors);
+
+    sheet.getRange(startRow, 1, rows.length, 4).setHorizontalAlignment("center");
+    sheet.getRange(startRow, 7, rows.length, 1).setHorizontalAlignment("center").setFontWeight("bold");
+    sheet.getRange(startRow, 9, rows.length, 3).setHorizontalAlignment("center");
+    sheet.getRange(startRow, 12, rows.length, 4).setHorizontalAlignment("right").setNumberFormat("#,##0.00");
+
+    // Fila de Totales
+    const totRow = startRow + rows.length;
+    sheet.getRange(totRow, 1, 1, 11).merge().setValue("TOTAL (" + rows.length + " OBRAS CIVILES)")
+      .setHorizontalAlignment("right").setFontWeight("bold");
+    for (let c = 12; c <= 15; c++) {
+      const colLetter = String.fromCharCode(64 + c);
+      sheet.getRange(totRow, c).setFormula(`=SUM(${colLetter}${startRow}:${colLetter}${totRow - 1})`)
+        .setNumberFormat("#,##0.00").setFontWeight("bold").setHorizontalAlignment("right");
+    }
+    sheet.getRange(totRow, 1, 1, maxCols).setBackground("#E2E8F0").setVerticalAlignment("middle")
+      .setBorder(true, true, true, true, true, true, "#1E3A8A", SpreadsheetApp.BorderStyle.SOLID_MEDIUM);
+    sheet.setRowHeight(totRow, 24);
+  }
+
+  const widths = [45, 78, 85, 72, 130, 150, 115, 290, 92, 92, 125, 105, 95, 105, 105, 170, 270, 180];
+  widths.forEach((w, idx) => sheet.setColumnWidth(idx + 1, w));
+
+  return {
+    totalObras: rows.length,
+    sheetUrl: ss.getUrl() + "#gid=" + sheet.getSheetId()
+  };
 }
 
 function getOrCreateFolder(folderName) {
