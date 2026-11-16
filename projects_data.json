@@ -1,7 +1,7 @@
 {
   "total_proyectos": 170,
-  "auditoria_2022_2025_count": 70,
-  "adicionales_maestro_count": 99,
+  "auditoria_2022_2025_count": 69,
+  "adicionales_maestro_count": 100,
   "projects": [
     {
       "id": 1,
@@ -54,7 +54,10 @@
       "contrato": "",
       "contratista": "",
       "plazo": "",
-      "es_auditoria_2022_2025": true
+      "es_auditoria_2022_2025": true,
+      "es_obra_civil": true,
+      "tiene_fecha_termino": false,
+      "estado_situacional": ""
     },
     {
       "id": 2,
@@ -128,7 +131,10 @@
       "contrato": "",
       "contratista": "",
       "plazo": "",
-      "es_auditoria_2022_2025": true
+      "es_auditoria_2022_2025": true,
+      "es_obra_civil": true,
+      "tiene_fecha_termino": false,
+      "estado_situacional": ""
     },
     {
       "id": 3,
@@ -202,7 +208,10 @@
       "contrato": "",
       "contratista": "",
       "plazo": "",
-      "es_auditoria_2022_2025": true
+      "es_auditoria_2022_2025": true,
+      "es_obra_civil": true,
+      "tiene_fecha_termino": false,
+      "estado_situacional": ""
     },
     {
       "id": 4,
@@ -255,7 +264,10 @@
       "contrato": "",
       "contratista": "",
       "plazo": "",
-      "es_auditoria_2022_2025": true
+      "es_auditoria_2022_2025": true,
+      "es_obra_civil": true,
+      "tiene_fecha_termino": false,
+      "estado_situacional": ""
     },
     {
       "id": 5,
@@ -308,7 +320,10 @@
       "contrato": "",
       "contratista": "",
       "plazo": "",
-      "es_auditoria_2022_2025": true
+      "es_auditoria_2022_2025": true,
+      "es_obra_civil": true,
+      "tiene_fecha_termino": false,
+      "estado_situacional": ""
     },
     {
       "id": 6,
@@ -498,7 +513,9 @@
       "estado_situacional": "LIQUIDADO",
       "fecha_inicio_verificada_ing": true,
       "fecha_termino_verificada_ing": "10/12/2022",
-      "fecha_termino_sort": "2022-12-10"
+      "fecha_termino_sort": "2022-12-10",
+      "es_obra_civil": true,
+      "tiene_fecha_termino": true
     },
     {
       "id": 7,
@@ -551,7 +568,10 @@
       "contrato": "",
       "contratista": "",
       "plazo": "",
-      "es_auditoria_2022_2025": true
+      "es_auditoria_2022_2025": true,
+      "es_obra_civil": true,
+      "tiene_fecha_termino": false,
+      "estado_situacional": ""
     },
     {
       "id": 8,
@@ -963,7 +983,9 @@
       "costo_total": 643684.31,
       "fecha_inicio_verificada_ing": true,
       "fecha_termino_verificada_ing": "12/07/2023",
-      "fecha_termino_sort": "2023-07-12"
+      "fecha_termino_sort": "2023-07-12",
+      "es_obra_civil": true,
+      "tiene_fecha_termino": true
     },
     {
       "id": 9,
@@ -1243,7 +1265,9 @@
       "costo_total": 601590.14,
       "fecha_inicio_verificada_ing": true,
       "fecha_termino_verificada_ing": "23/02/2023",
-      "fecha_termino_sort": "2023-02-23"
+      "fecha_termino_sort": "2023-02-23",
+      "es_obra_civil": true,
+      "tiene_fecha_termino": true
     },
     {
       "id": 10,
@@ -1303,7 +1327,9 @@
       "acuerdo_fdm": "Sesión extraordinaria del 16/07/2021",
       "ampliacion_presupuestal": 0.0,
       "costo_total": 0.0,
-      "estado_situacional": "PRIORIZADO Y EXPEDIENTE OBSERVADO"
+      "es_obra_civil": true,
+      "tiene_fecha_termino": false,
+      "estado_situacional": ""
     },
     {
       "id": 11,
@@ -1363,7 +1389,9 @@
       "acuerdo_fdm": "Sesión extraordinaria del 16/07/2021",
       "ampliacion_presupuestal": 0.0,
       "costo_total": 0.0,
-      "estado_situacional": "PRIORIZADO Y EXPEDIENTE OBSERVADO"
+      "es_obra_civil": true,
+      "tiene_fecha_termino": false,
+      "estado_situacional": ""
     },
     {
       "id": 12,
@@ -1963,7 +1991,9 @@
       "estado_situacional": "LIQUIDADO",
       "fecha_inicio_verificada_ing": true,
       "fecha_termino_verificada_ing": "14/07/2023",
-      "fecha_termino_sort": "2023-07-14"
+      "fecha_termino_sort": "2023-07-14",
+      "es_obra_civil": true,
+      "tiene_fecha_termino": true
     },
     {
       "id": 13,
@@ -2019,7 +2049,9 @@
       "acuerdo_fdm": "Sesión ordinaria del 18/12/2023",
       "ampliacion_presupuestal": 140919.49,
       "costo_total": 3193054.92,
-      "estado_situacional": "EJECUTADO"
+      "es_obra_civil": true,
+      "tiene_fecha_termino": true,
+      "estado_situacional": ""
     },
     {
       "id": 14,
@@ -2093,7 +2125,10 @@
       "contrato": "",
       "contratista": "",
       "plazo": "",
-      "es_auditoria_2022_2025": true
+      "es_auditoria_2022_2025": true,
+      "es_obra_civil": true,
+      "tiene_fecha_termino": false,
+      "estado_situacional": ""
     },
     {
       "id": 15,
@@ -2156,7 +2191,10 @@
       "contrato": "",
       "contratista": "",
       "plazo": "",
-      "es_auditoria_2022_2025": true
+      "es_auditoria_2022_2025": true,
+      "es_obra_civil": true,
+      "tiene_fecha_termino": false,
+      "estado_situacional": ""
     },
     {
       "id": 16,
@@ -2667,7 +2705,9 @@
       "costo_total": 1922828.08,
       "fecha_inicio_verificada_ing": true,
       "fecha_termino_verificada_ing": "16/02/2023",
-      "fecha_termino_sort": "2023-02-16"
+      "fecha_termino_sort": "2023-02-16",
+      "es_obra_civil": true,
+      "tiene_fecha_termino": true
     },
     {
       "id": 17,
@@ -3059,7 +3099,9 @@
       "fecha_inicio_verificada_ing": true,
       "fecha_termino_verificada_ing": "05/12/2021",
       "fecha_termino_sort": "2021-12-05",
-      "comentario_ing": "Fila alt. Excel Ing. fecha término: 05/11/2021"
+      "comentario_ing": "Fila alt. Excel Ing. fecha término: 05/11/2021",
+      "es_obra_civil": true,
+      "tiene_fecha_termino": true
     },
     {
       "id": 18,
@@ -3112,7 +3154,10 @@
       "contrato": "",
       "contratista": "",
       "plazo": "",
-      "es_auditoria_2022_2025": true
+      "es_auditoria_2022_2025": true,
+      "es_obra_civil": true,
+      "tiene_fecha_termino": false,
+      "estado_situacional": ""
     },
     {
       "id": 19,
@@ -4514,7 +4559,9 @@
       "costo_total": 2232983.43,
       "fecha_inicio_verificada_ing": true,
       "fecha_termino_verificada_ing": "15/06/2023",
-      "fecha_termino_sort": "2023-06-15"
+      "fecha_termino_sort": "2023-06-15",
+      "es_obra_civil": true,
+      "tiene_fecha_termino": true
     },
     {
       "id": 20,
@@ -4567,7 +4614,10 @@
       "contrato": "",
       "contratista": "",
       "plazo": "",
-      "es_auditoria_2022_2025": true
+      "es_auditoria_2022_2025": true,
+      "es_obra_civil": true,
+      "tiene_fecha_termino": false,
+      "estado_situacional": ""
     },
     {
       "id": 21,
@@ -4716,7 +4766,9 @@
       "costo_total": 2382663.18,
       "fecha_inicio_verificada_ing": true,
       "fecha_termino_verificada_ing": "18/07/2025",
-      "fecha_termino_sort": "2025-07-18"
+      "fecha_termino_sort": "2025-07-18",
+      "es_obra_civil": true,
+      "tiene_fecha_termino": true
     },
     {
       "id": 22,
@@ -5118,7 +5170,9 @@
       "estado_situacional": "LIQUIDADO",
       "fecha_inicio_verificada_ing": true,
       "fecha_termino_verificada_ing": "23/09/2023",
-      "fecha_termino_sort": "2023-09-23"
+      "fecha_termino_sort": "2023-09-23",
+      "es_obra_civil": true,
+      "tiene_fecha_termino": true
     },
     {
       "id": 23,
@@ -5255,7 +5309,9 @@
       "comentario_ing": "* Proyecto finalizado, corresponde liquidación.",
       "estado_situacional": "FINALIZADO (CORRESPONDE LIQUIDACIÓN)",
       "ampliacion_presupuestal": 72632.79,
-      "costo_total": 496388.18
+      "costo_total": 496388.18,
+      "es_obra_civil": true,
+      "tiene_fecha_termino": false
     },
     {
       "id": 24,
@@ -5393,7 +5449,9 @@
       "comentario_ing": "* Proyecto finalizado, corresponde liquidación.",
       "estado_situacional": "FINALIZADO (CORRESPONDE LIQUIDACIÓN)",
       "ampliacion_presupuestal": 89226.24,
-      "costo_total": 488803.4
+      "costo_total": 488803.4,
+      "es_obra_civil": true,
+      "tiene_fecha_termino": false
     },
     {
       "id": 25,
@@ -5530,15 +5588,17 @@
       "comentario_ing": "* Proyecto finalizado, corresponde liquidación.",
       "estado_situacional": "FINALIZADO (CORRESPONDE LIQUIDACIÓN)",
       "ampliacion_presupuestal": 87369.44,
-      "costo_total": 478260.61
+      "costo_total": 478260.61,
+      "es_obra_civil": true,
+      "tiene_fecha_termino": false
     },
     {
       "id": 26,
       "convenio": "100 MLL.",
       "provincia": "G.S.C.",
-      "desc": "SERVICIOS",
+      "desc": "ATENCIÓN COMPRAS COVID - 19: SERVICIOS (G.S.C.)",
       "cui": "N/D",
-      "tipologia": "OBRAS CIVILES",
+      "tipologia": "ADQUISICIONES / SERVICIOS",
       "estatus": "EJECUTADO",
       "prio": 168298.66,
       "costo_ejec": 168298.66,
@@ -5583,13 +5643,15 @@
       "contrato": "",
       "contratista": "",
       "plazo": "",
-      "es_auditoria_2022_2025": true,
+      "es_auditoria_2022_2025": false,
       "fuentes_excel_ing": [
         "100 - SC F15"
       ],
       "ampliacion_presupuestal": 0.0,
       "costo_total": 168298.66,
-      "estado_situacional": "EJECUTADO"
+      "es_obra_civil": false,
+      "tiene_fecha_termino": false,
+      "estado_situacional": ""
     },
     {
       "id": 27,
@@ -5649,7 +5711,9 @@
       "acuerdo_fdm": "Sesión extraordinaria del 03/09/2021",
       "ampliacion_presupuestal": 0.0,
       "costo_total": 100000.0,
-      "estado_situacional": "EJECUTADO"
+      "es_obra_civil": true,
+      "tiene_fecha_termino": false,
+      "estado_situacional": ""
     },
     {
       "id": 28,
@@ -5750,7 +5814,9 @@
       "acuerdo_fdm": "Sesión extraordinaria del 21/10/2019 Sesión extraordinaria del 06/11/2020 Sesión extraordinaria del 13/04/2022",
       "ampliacion_presupuestal": 285649.16,
       "costo_total": 1691166.21,
-      "estado_situacional": "LIQUIDADO"
+      "estado_situacional": "LIQUIDADO",
+      "es_obra_civil": true,
+      "tiene_fecha_termino": false
     },
     {
       "id": 29,
@@ -5862,7 +5928,9 @@
       "acuerdo_fdm": "Sesión extraordinaria del 10/06/2021",
       "ampliacion_presupuestal": 0.0,
       "costo_total": 1457757.16,
-      "estado_situacional": "EJECUTADO"
+      "es_obra_civil": true,
+      "tiene_fecha_termino": true,
+      "estado_situacional": ""
     },
     {
       "id": 30,
@@ -6263,7 +6331,9 @@
       "costo_total": 1434812.8,
       "fecha_inicio_verificada_ing": true,
       "fecha_termino_verificada_ing": "13/01/2024",
-      "fecha_termino_sort": "2024-01-13"
+      "fecha_termino_sort": "2024-01-13",
+      "es_obra_civil": true,
+      "tiene_fecha_termino": true
     },
     {
       "id": 31,
@@ -6410,7 +6480,9 @@
       "acuerdo_fdm": "Sesión extraordinaria del 24/03/2021",
       "ampliacion_presupuestal": 0.0,
       "costo_total": 1357663.55,
-      "estado_situacional": "EN EJECUCION"
+      "es_obra_civil": true,
+      "tiene_fecha_termino": false,
+      "estado_situacional": ""
     },
     {
       "id": 32,
@@ -6469,7 +6541,9 @@
       "costo_total": 1823169.71,
       "fecha_inicio_verificada_ing": true,
       "fecha_termino_verificada_ing": "20/05/2025",
-      "fecha_termino_sort": "2025-05-20"
+      "fecha_termino_sort": "2025-05-20",
+      "es_obra_civil": true,
+      "tiene_fecha_termino": true
     },
     {
       "id": 33,
@@ -6529,7 +6603,9 @@
       "acuerdo_fdm": "Sesión extraordinaria del 21/10/2019",
       "ampliacion_presupuestal": 0.0,
       "costo_total": 0.0,
-      "estado_situacional": "POR EJECUTAR (PRIORIZADO Y OBSERVADO)"
+      "es_obra_civil": true,
+      "tiene_fecha_termino": false,
+      "estado_situacional": ""
     },
     {
       "id": 34,
@@ -6589,7 +6665,9 @@
       "acuerdo_fdm": "Sesión extraordinaria del 21/10/2019",
       "ampliacion_presupuestal": 0.0,
       "costo_total": 0.0,
-      "estado_situacional": "FALTA EXPEDIENTE (PRIORIZADO)"
+      "es_obra_civil": true,
+      "tiene_fecha_termino": false,
+      "estado_situacional": ""
     },
     {
       "id": 35,
@@ -6649,7 +6727,9 @@
       "acuerdo_fdm": "Sesión extraordinaria del 21/10/2019",
       "ampliacion_presupuestal": 0.0,
       "costo_total": 0.0,
-      "estado_situacional": "EJECUTADO POR LA MUNICIPALIDAD LA CAPILLA"
+      "es_obra_civil": true,
+      "tiene_fecha_termino": false,
+      "estado_situacional": ""
     },
     {
       "id": 36,
@@ -6709,7 +6789,9 @@
       "acuerdo_fdm": "Sin ACTA DE S.C",
       "ampliacion_presupuestal": 0.0,
       "costo_total": 0.0,
-      "estado_situacional": "EVALUAR CAMBIO"
+      "es_obra_civil": true,
+      "tiene_fecha_termino": false,
+      "estado_situacional": ""
     },
     {
       "id": 37,
@@ -6769,7 +6851,9 @@
       "acuerdo_fdm": "Sin ACTA DE S.C",
       "ampliacion_presupuestal": 0.0,
       "costo_total": 0.0,
-      "estado_situacional": "EVALUAR CAMBIO"
+      "es_obra_civil": true,
+      "tiene_fecha_termino": false,
+      "estado_situacional": ""
     },
     {
       "id": 38,
@@ -6829,7 +6913,9 @@
       "acuerdo_fdm": "Sin ACTA DE S.C",
       "ampliacion_presupuestal": 0.0,
       "costo_total": 0.0,
-      "estado_situacional": "EJECUTADO POR EL GORE"
+      "es_obra_civil": true,
+      "tiene_fecha_termino": false,
+      "estado_situacional": ""
     },
     {
       "id": 39,
@@ -6889,7 +6975,9 @@
       "acuerdo_fdm": "Sin ACTA DE S.C",
       "ampliacion_presupuestal": 0.0,
       "costo_total": 0.0,
-      "estado_situacional": "EVALUAR CAMBIO"
+      "es_obra_civil": true,
+      "tiene_fecha_termino": false,
+      "estado_situacional": ""
     },
     {
       "id": 40,
@@ -6949,7 +7037,9 @@
       "acuerdo_fdm": "Sin ACTA DE S.C",
       "ampliacion_presupuestal": 0.0,
       "costo_total": 0.0,
-      "estado_situacional": "EVALUAR CAMBIO"
+      "es_obra_civil": true,
+      "tiene_fecha_termino": false,
+      "estado_situacional": ""
     },
     {
       "id": 41,
@@ -7009,7 +7099,9 @@
       "acuerdo_fdm": "Sin ACTA DE S.C",
       "ampliacion_presupuestal": 0.0,
       "costo_total": 0.0,
-      "estado_situacional": "EVALUAR CAMBIO"
+      "es_obra_civil": true,
+      "tiene_fecha_termino": false,
+      "estado_situacional": ""
     },
     {
       "id": 42,
@@ -7773,7 +7865,9 @@
       "costo_total": 6128448.29,
       "fecha_inicio_verificada_ing": true,
       "fecha_termino_verificada_ing": "13/02/2024",
-      "fecha_termino_sort": "2024-02-13"
+      "fecha_termino_sort": "2024-02-13",
+      "es_obra_civil": true,
+      "tiene_fecha_termino": true
     },
     {
       "id": 43,
@@ -7833,7 +7927,9 @@
       "acuerdo_fdm": "Sin ACTA DE S.C",
       "ampliacion_presupuestal": 0.0,
       "costo_total": 0.0,
-      "estado_situacional": "EVALUAR CAMBIO"
+      "es_obra_civil": true,
+      "tiene_fecha_termino": false,
+      "estado_situacional": ""
     },
     {
       "id": 44,
@@ -8233,7 +8329,9 @@
       "costo_total": 1015901.5,
       "fecha_inicio_verificada_ing": true,
       "fecha_termino_verificada_ing": "04/10/2023",
-      "fecha_termino_sort": "2023-10-04"
+      "fecha_termino_sort": "2023-10-04",
+      "es_obra_civil": true,
+      "tiene_fecha_termino": true
     },
     {
       "id": 45,
@@ -8666,7 +8764,9 @@
       "costo_total": 795908.18,
       "fecha_inicio_verificada_ing": true,
       "fecha_termino_verificada_ing": "11/08/2023",
-      "fecha_termino_sort": "2023-08-11"
+      "fecha_termino_sort": "2023-08-11",
+      "es_obra_civil": true,
+      "tiene_fecha_termino": true
     },
     {
       "id": 46,
@@ -9044,7 +9144,9 @@
       "costo_total": 646910.5,
       "fecha_inicio_verificada_ing": true,
       "fecha_termino_verificada_ing": "13/08/2023",
-      "fecha_termino_sort": "2023-08-13"
+      "fecha_termino_sort": "2023-08-13",
+      "es_obra_civil": true,
+      "tiene_fecha_termino": true
     },
     {
       "id": 47,
@@ -9104,7 +9206,9 @@
       "acuerdo_fdm": "Sesión ordinaria del 09/07/2026, acuerdo 10",
       "ampliacion_presupuestal": 0.0,
       "costo_total": 250773.6,
-      "estado_situacional": "POR EJECUTAR"
+      "es_obra_civil": true,
+      "tiene_fecha_termino": false,
+      "estado_situacional": ""
     },
     {
       "id": 48,
@@ -9682,7 +9786,9 @@
       "fecha_termino_sort": "2022-09-11",
       "acuerdo_fdm": "Sesión extraordinaria del 21/10/2019 Sesión extraordinaria del 14/12/2020",
       "ampliacion_presupuestal": 0.0,
-      "costo_total": 10750194.01
+      "costo_total": 10750194.01,
+      "es_obra_civil": true,
+      "tiene_fecha_termino": true
     },
     {
       "id": 49,
@@ -9737,7 +9843,9 @@
       ],
       "ampliacion_presupuestal": 15000.0,
       "costo_total": 114077.55,
-      "estado_situacional": "EN EJECUCION"
+      "es_obra_civil": true,
+      "tiene_fecha_termino": true,
+      "estado_situacional": ""
     },
     {
       "id": 50,
@@ -9829,7 +9937,9 @@
       "acuerdo_fdm": "Sesión extraordinaria del 15/01/2021",
       "ampliacion_presupuestal": 0.0,
       "costo_total": 1851690.49,
-      "estado_situacional": "EJECUTADO"
+      "es_obra_civil": true,
+      "tiene_fecha_termino": false,
+      "estado_situacional": ""
     },
     {
       "id": 51,
@@ -9889,7 +9999,9 @@
       "acuerdo_fdm": "Sesión extraordinaria del 10/06/2024",
       "ampliacion_presupuestal": 0.0,
       "costo_total": 542711.05,
-      "estado_situacional": "POR EJECUTAR (EN PROCESO / SALDO)"
+      "es_obra_civil": true,
+      "tiene_fecha_termino": false,
+      "estado_situacional": ""
     },
     {
       "id": 52,
@@ -11039,7 +11151,9 @@
       "fecha_termino_sort": "2023-05-15",
       "acuerdo_fdm": "Sesión extraordinaria del 21/10/2019 Sesión extraordinaria del 19/10/2021",
       "ampliacion_presupuestal": 6539370.04,
-      "costo_total": 8175095.88
+      "costo_total": 8175095.88,
+      "es_obra_civil": true,
+      "tiene_fecha_termino": true
     },
     {
       "id": 53,
@@ -11150,7 +11264,9 @@
       ],
       "ampliacion_presupuestal": 0.0,
       "costo_total": 189775.08,
-      "estado_situacional": "EJECUTADO"
+      "es_obra_civil": true,
+      "tiene_fecha_termino": true,
+      "estado_situacional": ""
     },
     {
       "id": 54,
@@ -11210,7 +11326,9 @@
       "acuerdo_fdm": "Sesion Ordinaria 02/08/2022",
       "ampliacion_presupuestal": 0.0,
       "costo_total": 8070915.92,
-      "estado_situacional": "EJECUTADO"
+      "es_obra_civil": true,
+      "tiene_fecha_termino": false,
+      "estado_situacional": ""
     },
     {
       "id": 55,
@@ -11270,7 +11388,9 @@
       "acuerdo_fdm": "Sesión extraordinaria del 13/06/2025",
       "ampliacion_presupuestal": 0.0,
       "costo_total": 1520353.24,
-      "estado_situacional": "POR EJECUTAR"
+      "es_obra_civil": true,
+      "tiene_fecha_termino": false,
+      "estado_situacional": ""
     },
     {
       "id": 56,
@@ -11331,7 +11451,9 @@
       "acuerdo_fdm": "Sesión ordinaria del 27/02/2025 Sesión ordinaria del 05/09/2025",
       "ampliacion_presupuestal": 0.0,
       "costo_total": 10926754.15,
-      "estado_situacional": "EN EJECUCION"
+      "es_obra_civil": true,
+      "tiene_fecha_termino": false,
+      "estado_situacional": ""
     },
     {
       "id": 57,
@@ -11391,7 +11513,9 @@
       "acuerdo_fdm": "Sesión ordinaria del 09/07/2026, acuerdo 13",
       "ampliacion_presupuestal": 0.0,
       "costo_total": 20823.36,
-      "estado_situacional": "POR EJECUTAR (EN PROCESO / SALDO)"
+      "es_obra_civil": true,
+      "tiene_fecha_termino": false,
+      "estado_situacional": ""
     },
     {
       "id": 58,
@@ -11451,7 +11575,9 @@
       "acuerdo_fdm": "Sesión ordinaria del 09/07/2026, acuerdo 11",
       "ampliacion_presupuestal": 0.0,
       "costo_total": 11320558.27,
-      "estado_situacional": "POR EJECUTAR (EN PROCESO / SALDO)"
+      "es_obra_civil": true,
+      "tiene_fecha_termino": false,
+      "estado_situacional": ""
     },
     {
       "id": 59,
@@ -11507,7 +11633,9 @@
       "acuerdo_fdm": "Sesión ordinaria del 27/02/2025",
       "ampliacion_presupuestal": 0.0,
       "costo_total": 6434125.54,
-      "estado_situacional": "EN EJECUCION"
+      "es_obra_civil": true,
+      "tiene_fecha_termino": false,
+      "estado_situacional": ""
     },
     {
       "id": 60,
@@ -11562,7 +11690,9 @@
       "acuerdo_fdm": "Sesión ordinaria del 31/03/2026, acuerdo 04",
       "ampliacion_presupuestal": 0.0,
       "costo_total": 7445963.67,
-      "estado_situacional": "POR EJECUTAR (EN PROCESO / SALDO)"
+      "es_obra_civil": true,
+      "tiene_fecha_termino": false,
+      "estado_situacional": ""
     },
     {
       "id": 61,
@@ -11618,7 +11748,9 @@
       "acuerdo_fdm": "Sesión extraordinaria del 06/03/2025",
       "ampliacion_presupuestal": 0.0,
       "costo_total": 4131475.03,
-      "estado_situacional": "POR EJECUTAR (EN PROCESO / SALDO)"
+      "es_obra_civil": true,
+      "tiene_fecha_termino": false,
+      "estado_situacional": ""
     },
     {
       "id": 62,
@@ -11674,7 +11806,9 @@
       "acuerdo_fdm": "Sesión extraordinaria del 06/03/2025",
       "ampliacion_presupuestal": 0.0,
       "costo_total": 2048634.68,
-      "estado_situacional": "POR EJECUTAR (EN PROCESO / SALDO)"
+      "es_obra_civil": true,
+      "tiene_fecha_termino": false,
+      "estado_situacional": ""
     },
     {
       "id": 63,
@@ -11734,7 +11868,9 @@
       "acuerdo_fdm": "Sesión extraordinaria del 30/10/2025",
       "ampliacion_presupuestal": 0.0,
       "costo_total": 1815727.5,
-      "estado_situacional": "POR EJECUTAR (EN PROCESO / SALDO)"
+      "es_obra_civil": true,
+      "tiene_fecha_termino": false,
+      "estado_situacional": ""
     },
     {
       "id": 64,
@@ -12234,7 +12370,9 @@
       "fecha_termino_verificada_ing": "12/04/2024",
       "fecha_termino_sort": "2024-04-12",
       "ampliacion_presupuestal": 0.0,
-      "costo_total": 3222780.67
+      "costo_total": 3222780.67,
+      "es_obra_civil": true,
+      "tiene_fecha_termino": true
     },
     {
       "id": 65,
@@ -12293,7 +12431,9 @@
       ],
       "ampliacion_presupuestal": 0.0,
       "costo_total": 3850885.45,
-      "estado_situacional": "EJECUTADO"
+      "es_obra_civil": true,
+      "tiene_fecha_termino": false,
+      "estado_situacional": ""
     },
     {
       "id": 66,
@@ -12353,7 +12493,9 @@
       "acuerdo_fdm": "Sesión ordinaria del 09/07/2026, acuerdo 07",
       "ampliacion_presupuestal": 0.0,
       "costo_total": 2585772.05,
-      "estado_situacional": "POR EJECUTAR"
+      "es_obra_civil": true,
+      "tiene_fecha_termino": false,
+      "estado_situacional": ""
     },
     {
       "id": 67,
@@ -12420,7 +12562,9 @@
       "acuerdo_fdm": "Sesión ordinaria del 09/07/2026, acuerdo 06",
       "ampliacion_presupuestal": 0.0,
       "costo_total": 1017476.19,
-      "estado_situacional": "POR EJECUTAR"
+      "es_obra_civil": true,
+      "tiene_fecha_termino": false,
+      "estado_situacional": ""
     },
     {
       "id": 68,
@@ -12475,7 +12619,9 @@
       "acuerdo_fdm": "Sesión ordinaria del 27/08/2026, acuerdo 04",
       "ampliacion_presupuestal": 0.0,
       "costo_total": 4375038.3,
-      "estado_situacional": "POR EJECUTAR"
+      "es_obra_civil": true,
+      "tiene_fecha_termino": false,
+      "estado_situacional": ""
     },
     {
       "id": 69,
@@ -12535,7 +12681,9 @@
       "acuerdo_fdm": "Sesión ordinaria del 27/08/2026, acuerdo 03",
       "ampliacion_presupuestal": 0.0,
       "costo_total": 3461503.2,
-      "estado_situacional": "POR EJECUTAR"
+      "es_obra_civil": true,
+      "tiene_fecha_termino": false,
+      "estado_situacional": ""
     },
     {
       "id": 70,
@@ -12543,7 +12691,7 @@
       "provincia": "ILO",
       "desc": "ATENCIÓN COMPRAS COVID - 19 : EQUIPAMIENTO",
       "cui": "N/D",
-      "tipologia": "ADQUISICIONES / SERVICIOS",
+      "tipologia": "ADQUISICIONES / EQUIPAMIENTO / SERVICIOS",
       "estatus": "EJECUTADO",
       "prio": 8694028.34,
       "costo_ejec": 8725885.83,
@@ -12579,7 +12727,10 @@
       "detalles_faltantes": [],
       "confiabilidad": "INFO",
       "total_relevantes": 0,
-      "es_auditoria_2022_2025": false
+      "es_auditoria_2022_2025": false,
+      "es_obra_civil": false,
+      "tiene_fecha_termino": false,
+      "estado_situacional": ""
     },
     {
       "id": 71,
@@ -12587,7 +12738,7 @@
       "provincia": "ILO",
       "desc": "ATENCIÓN COMPRAS COVID - 19: EQUIPOS DE PROTECCION PERSONAL (EPPS)",
       "cui": "N/D",
-      "tipologia": "ADQUISICIONES / SERVICIOS",
+      "tipologia": "ADQUISICIONES / EQUIPAMIENTO / SERVICIOS",
       "estatus": "EJECUTADO",
       "prio": 867220,
       "costo_ejec": 867220,
@@ -12623,7 +12774,10 @@
       "detalles_faltantes": [],
       "confiabilidad": "INFO",
       "total_relevantes": 0,
-      "es_auditoria_2022_2025": false
+      "es_auditoria_2022_2025": false,
+      "es_obra_civil": false,
+      "tiene_fecha_termino": false,
+      "estado_situacional": ""
     },
     {
       "id": 72,
@@ -12631,7 +12785,7 @@
       "provincia": "ILO",
       "desc": "ATENCIÓN COMPRAS COVID - 19: MEDICAMENTOS",
       "cui": "N/D",
-      "tipologia": "ADQUISICIONES / SERVICIOS",
+      "tipologia": "ADQUISICIONES / EQUIPAMIENTO / SERVICIOS",
       "estatus": "EJECUTADO",
       "prio": 731947,
       "costo_ejec": 731947,
@@ -12667,7 +12821,10 @@
       "detalles_faltantes": [],
       "confiabilidad": "INFO",
       "total_relevantes": 0,
-      "es_auditoria_2022_2025": false
+      "es_auditoria_2022_2025": false,
+      "es_obra_civil": false,
+      "tiene_fecha_termino": false,
+      "estado_situacional": ""
     },
     {
       "id": 73,
@@ -12675,7 +12832,7 @@
       "provincia": "ILO",
       "desc": "ABASTECIMIENTO ANTE EMERGENCIA DE DESABASTECIMIENTO DE AGUA POTABLE POR DERRAME DE HIDROCARBURO",
       "cui": "N/D",
-      "tipologia": "ADQUISICIONES / SERVICIOS",
+      "tipologia": "ADQUISICIONES / EQUIPAMIENTO / SERVICIOS",
       "estatus": "EJECUTADO",
       "prio": 140912.55,
       "costo_ejec": 140912.55,
@@ -12718,7 +12875,9 @@
       "acuerdo_fdm": "ACUERDO DE CONSEJO DIRECTIVO DEL FDM",
       "ampliacion_presupuestal": 0.0,
       "costo_total": 140912.55,
-      "estado_situacional": "EJECUTADO"
+      "es_obra_civil": false,
+      "tiene_fecha_termino": false,
+      "estado_situacional": ""
     },
     {
       "id": 74,
@@ -12726,7 +12885,7 @@
       "provincia": "ILO",
       "desc": "MEJORAMIENTO Y EQUIPAMIENTO DE LABORATORIOS DE COMPUTO DEL IESTP LUIS E. VALCARCEL, DISTRITO DE ILO. PROVINCIA DE ILO, REGION MOQUEGUA.",
       "cui": "N/D",
-      "tipologia": "OBRAS CIVILES",
+      "tipologia": "ADQUISICIONES / EQUIPAMIENTO / SERVICIOS",
       "estatus": "EJECUTADO",
       "prio": 1000000,
       "costo_ejec": 996853.6,
@@ -12762,7 +12921,10 @@
       "detalles_faltantes": [],
       "confiabilidad": "INFO",
       "total_relevantes": 0,
-      "es_auditoria_2022_2025": false
+      "es_auditoria_2022_2025": false,
+      "es_obra_civil": false,
+      "tiene_fecha_termino": false,
+      "estado_situacional": ""
     },
     {
       "id": 75,
@@ -12770,7 +12932,7 @@
       "provincia": "ILO",
       "desc": "ADQUISICIÓN DE EQUIPOS PARA IMPLEMENTACIÓN DE LABORATORIOS DEL PROGRAMA PROFESIONAL DE INGENIERÍA SISTEMAS FILIAL ILO - UNAM",
       "cui": "N/D",
-      "tipologia": "ADQUISICIONES / SERVICIOS",
+      "tipologia": "ADQUISICIONES / EQUIPAMIENTO / SERVICIOS",
       "estatus": "EJECUTADO",
       "prio": 3309902.32,
       "costo_ejec": 2836201.17,
@@ -12814,7 +12976,9 @@
       "acuerdo_fdm": "Sesión extraordinaria del 10/02/2022",
       "ampliacion_presupuestal": 0.0,
       "costo_total": 2836201.17,
-      "estado_situacional": "EJECUTADO"
+      "es_obra_civil": false,
+      "tiene_fecha_termino": false,
+      "estado_situacional": ""
     },
     {
       "id": 76,
@@ -12822,7 +12986,7 @@
       "provincia": "ILO",
       "desc": "ADQUISICIÓN DE EQUIPOS PARA LA COMPAÑÍA DE BOMBEROS \"TENIENTE CBP JOSÉ TRABUCO N° 180\" (HASTA $ 347,000.00) t/c 4.02",
       "cui": "N/D",
-      "tipologia": "ADQUISICIONES / SERVICIOS",
+      "tipologia": "ADQUISICIONES / EQUIPAMIENTO / SERVICIOS",
       "estatus": "EJECUTADO",
       "prio": 1394940.0,
       "costo_ejec": 1150123.5,
@@ -12866,7 +13030,9 @@
       "acuerdo_fdm": "Sesión ordinaria del 12/11/2021",
       "ampliacion_presupuestal": 0.0,
       "costo_total": 1150123.5,
-      "estado_situacional": "EJECUTADO"
+      "es_obra_civil": false,
+      "tiene_fecha_termino": false,
+      "estado_situacional": ""
     },
     {
       "id": 77,
@@ -12874,7 +13040,7 @@
       "provincia": "ILO",
       "desc": "ADQUISICIÓN DE UNA MÁQUINA DE AGUA CONTRA INCENDIOS PARA LA PRIMERA BRIGADA DE BOMBEROS DE LA PROVINCIA DE ILO",
       "cui": "N/D",
-      "tipologia": "ADQUISICIONES / SERVICIOS",
+      "tipologia": "ADQUISICIONES / EQUIPAMIENTO / SERVICIOS",
       "estatus": "EJECUTADO",
       "prio": 1220816.54,
       "costo_ejec": 1079370.0,
@@ -12918,7 +13084,9 @@
       "acuerdo_fdm": "Sesión ordinaria del 13/04/2022",
       "ampliacion_presupuestal": 0.0,
       "costo_total": 1079370.0,
-      "estado_situacional": "EJECUTADO"
+      "es_obra_civil": false,
+      "tiene_fecha_termino": false,
+      "estado_situacional": ""
     },
     {
       "id": 78,
@@ -12926,7 +13094,7 @@
       "provincia": "ILO",
       "desc": "ACCIONES DE CONTINGENCIA ANTE INFLUENCIA AVIAR H5 N1 DE LA PROVINCIA DE ILO",
       "cui": "N/D",
-      "tipologia": "ADQUISICIONES / SERVICIOS",
+      "tipologia": "ADQUISICIONES / EQUIPAMIENTO / SERVICIOS",
       "estatus": "EJECUTADO",
       "prio": 8960.0,
       "costo_ejec": 8960.0,
@@ -12969,7 +13137,9 @@
       "acuerdo_fdm": "Sesión ordinaria del 05/12/2022",
       "ampliacion_presupuestal": 0.0,
       "costo_total": 8960.0,
-      "estado_situacional": "EJECUTADO"
+      "es_obra_civil": false,
+      "tiene_fecha_termino": false,
+      "estado_situacional": ""
     },
     {
       "id": 79,
@@ -12977,7 +13147,7 @@
       "provincia": "ILO",
       "desc": "IMPLEMENTACION, DE OPERATIVIDAD DEL CENTRO DE CONTROL BIOLOGICO EN SANCHEZ CERRO",
       "cui": "N/D",
-      "tipologia": "ADQUISICIONES / SERVICIOS",
+      "tipologia": "ADQUISICIONES / EQUIPAMIENTO / SERVICIOS",
       "estatus": "EJECUTADO",
       "prio": 384000.0,
       "costo_ejec": 619270.4,
@@ -13021,7 +13191,9 @@
       "acuerdo_fdm": "Sesión ordinaria del 04/08/2023 | Sesión ordinaria del 14/09/2023",
       "ampliacion_presupuestal": 231000.0,
       "costo_total": 619270.4,
-      "estado_situacional": "EJECUTADO"
+      "es_obra_civil": false,
+      "tiene_fecha_termino": false,
+      "estado_situacional": ""
     },
     {
       "id": 80,
@@ -13029,7 +13201,7 @@
       "provincia": "ILO",
       "desc": "ADQUISICION DE AMBULANCIA URBANA TIPO 3 PARA EL HOSPITAL II DE ESSALUD ILO",
       "cui": "N/D",
-      "tipologia": "ADQUISICIONES / SERVICIOS",
+      "tipologia": "ADQUISICIONES / EQUIPAMIENTO / SERVICIOS",
       "estatus": "EJECUTADO",
       "prio": 384000,
       "costo_ejec": 619270.4,
@@ -13065,7 +13237,10 @@
       "detalles_faltantes": [],
       "confiabilidad": "INFO",
       "total_relevantes": 0,
-      "es_auditoria_2022_2025": false
+      "es_auditoria_2022_2025": false,
+      "es_obra_civil": false,
+      "tiene_fecha_termino": false,
+      "estado_situacional": ""
     },
     {
       "id": 81,
@@ -13073,7 +13248,7 @@
       "provincia": "ILO",
       "desc": "ASISTENCIA ANTE EMERGENCIA DE INCENDIO BOTADERO MUNICIPAL ILO",
       "cui": "N/D",
-      "tipologia": "ADQUISICIONES / SERVICIOS",
+      "tipologia": "ADQUISICIONES / EQUIPAMIENTO / SERVICIOS",
       "estatus": "EJECUTADO",
       "prio": 20000.0,
       "costo_ejec": 20000.0,
@@ -13116,7 +13291,9 @@
       "acuerdo_fdm": "S/C",
       "ampliacion_presupuestal": 0.0,
       "costo_total": 20000.0,
-      "estado_situacional": "EJECUTADO"
+      "es_obra_civil": false,
+      "tiene_fecha_termino": false,
+      "estado_situacional": ""
     },
     {
       "id": 82,
@@ -13124,7 +13301,7 @@
       "provincia": "ILO",
       "desc": "ATENCION DE EMERGENCIA (DESABASTECIMIENTO DE AGUA POTABLE) - CISTERNAS",
       "cui": "N/D",
-      "tipologia": "ADQUISICIONES / SERVICIOS",
+      "tipologia": "ADQUISICIONES / EQUIPAMIENTO / SERVICIOS",
       "estatus": "EJECUTADO",
       "prio": 152644.8,
       "costo_ejec": 152644.8,
@@ -13167,7 +13344,9 @@
       "acuerdo_fdm": "Sesión ordinaria del 20/02/2024",
       "ampliacion_presupuestal": 0.0,
       "costo_total": 152644.8,
-      "estado_situacional": "EJECUTADO"
+      "es_obra_civil": false,
+      "tiene_fecha_termino": false,
+      "estado_situacional": ""
     },
     {
       "id": 83,
@@ -13175,7 +13354,7 @@
       "provincia": "ILO",
       "desc": "LIQUIDACIONES TECNICO - FINANCIERO DE PROYECTOS",
       "cui": "N/D",
-      "tipologia": "ADQUISICIONES / SERVICIOS",
+      "tipologia": "ADQUISICIONES / EQUIPAMIENTO / SERVICIOS",
       "estatus": "EN EJECUCION",
       "prio": 15000.0,
       "costo_ejec": 15660.0,
@@ -13218,7 +13397,9 @@
       "acuerdo_fdm": "S/C",
       "ampliacion_presupuestal": 0.0,
       "costo_total": 15660.0,
-      "estado_situacional": "EN EJECUCION"
+      "es_obra_civil": false,
+      "tiene_fecha_termino": false,
+      "estado_situacional": ""
     },
     {
       "id": 84,
@@ -13226,7 +13407,7 @@
       "provincia": "ILO",
       "desc": "ATENCION DE EMERGENCIA, DESABASTECIMIENTO DE AGUA POR LLUVIAS 2025_ILO",
       "cui": "N/D",
-      "tipologia": "ADQUISICIONES / SERVICIOS",
+      "tipologia": "ADQUISICIONES / EQUIPAMIENTO / SERVICIOS",
       "estatus": "EJECUTADO",
       "prio": 50000.0,
       "costo_ejec": 48948.32,
@@ -13268,7 +13449,9 @@
       ],
       "ampliacion_presupuestal": 0.0,
       "costo_total": 48948.32,
-      "estado_situacional": "EJECUTADO"
+      "es_obra_civil": false,
+      "tiene_fecha_termino": false,
+      "estado_situacional": ""
     },
     {
       "id": 85,
@@ -13276,7 +13459,7 @@
       "provincia": "ILO",
       "desc": "ACTUALIZACION DE EXPEDIENTE TECNICO: \" MEJORAMIENTO DEL CENTRO INFANTIL DE ATENCION INTEGRAL, CUNAMAS KEIKO SOFIA, PAMPA INALAMBRICA, DISTRITO Y PROVINCIA DE ILO, REGION MOQUEGUA",
       "cui": "N/D",
-      "tipologia": "OBRAS CIVILES",
+      "tipologia": "EXPEDIENTE TÉCNICO",
       "estatus": "EJECUTADO",
       "prio": 115000.0,
       "costo_ejec": 102000.0,
@@ -13319,7 +13502,9 @@
       "acuerdo_fdm": "S/C",
       "ampliacion_presupuestal": 0.0,
       "costo_total": 102000.0,
-      "estado_situacional": "EJECUTADO"
+      "es_obra_civil": false,
+      "tiene_fecha_termino": false,
+      "estado_situacional": ""
     },
     {
       "id": 86,
@@ -13327,7 +13512,7 @@
       "provincia": "ILO",
       "desc": "MEJORAMIENTO DEL SERVICIO DE SEGURIDAD CIUDADANA EN EL DISTRITO DE ILO – PROVINCIA DE ILO – DEPARTAMENTO DE MOQUEGUA",
       "cui": "N/D",
-      "tipologia": "OBRAS CIVILES",
+      "tipologia": "ADQUISICIONES / EQUIPAMIENTO / SERVICIOS",
       "estatus": "EN EJECUCION",
       "prio": 395300.0,
       "costo_ejec": 373037.14,
@@ -13371,7 +13556,9 @@
       "acuerdo_fdm": "S/C",
       "ampliacion_presupuestal": 0.0,
       "costo_total": 373037.14,
-      "estado_situacional": "EN EJECUCION"
+      "es_obra_civil": false,
+      "tiene_fecha_termino": false,
+      "estado_situacional": ""
     },
     {
       "id": 87,
@@ -13379,7 +13566,7 @@
       "provincia": "MARISCAL NIETO",
       "desc": "ATENCIÓN COMPRAS COVID - 19: EQUIPAMIENTO",
       "cui": "N/D",
-      "tipologia": "ADQUISICIONES / SERVICIOS",
+      "tipologia": "ADQUISICIONES / EQUIPAMIENTO / SERVICIOS",
       "estatus": "EJECUTADO",
       "prio": 6778732.51,
       "costo_ejec": 6778732.51,
@@ -13415,7 +13602,10 @@
       "detalles_faltantes": [],
       "confiabilidad": "INFO",
       "total_relevantes": 0,
-      "es_auditoria_2022_2025": false
+      "es_auditoria_2022_2025": false,
+      "es_obra_civil": false,
+      "tiene_fecha_termino": false,
+      "estado_situacional": ""
     },
     {
       "id": 88,
@@ -13423,7 +13613,7 @@
       "provincia": "MARISCAL NIETO",
       "desc": "ATENCIÓN COMPRAS COVID - 19::EQUIPOS DE PROTECCION PERSONAL (EPPS)",
       "cui": "N/D",
-      "tipologia": "ADQUISICIONES / SERVICIOS",
+      "tipologia": "ADQUISICIONES / EQUIPAMIENTO / SERVICIOS",
       "estatus": "EJECUTADO",
       "prio": 40015,
       "costo_ejec": 40015,
@@ -13459,7 +13649,10 @@
       "detalles_faltantes": [],
       "confiabilidad": "INFO",
       "total_relevantes": 0,
-      "es_auditoria_2022_2025": false
+      "es_auditoria_2022_2025": false,
+      "es_obra_civil": false,
+      "tiene_fecha_termino": false,
+      "estado_situacional": ""
     },
     {
       "id": 89,
@@ -13467,7 +13660,7 @@
       "provincia": "MARISCAL NIETO",
       "desc": "ATENCIÓN COMPRAS COVID - 19: MATERIALES DE LIMPIEZA",
       "cui": "N/D",
-      "tipologia": "ADQUISICIONES / SERVICIOS",
+      "tipologia": "ADQUISICIONES / EQUIPAMIENTO / SERVICIOS",
       "estatus": "EJECUTADO",
       "prio": 14900,
       "costo_ejec": 14900,
@@ -13503,7 +13696,10 @@
       "detalles_faltantes": [],
       "confiabilidad": "INFO",
       "total_relevantes": 0,
-      "es_auditoria_2022_2025": false
+      "es_auditoria_2022_2025": false,
+      "es_obra_civil": false,
+      "tiene_fecha_termino": false,
+      "estado_situacional": ""
     },
     {
       "id": 90,
@@ -13511,7 +13707,7 @@
       "provincia": "MARISCAL NIETO",
       "desc": "ATENCIÓN COMPRAS COVID - 19:MEDICAMENTOS",
       "cui": "N/D",
-      "tipologia": "ADQUISICIONES / SERVICIOS",
+      "tipologia": "ADQUISICIONES / EQUIPAMIENTO / SERVICIOS",
       "estatus": "EJECUTADO",
       "prio": 1302985.0,
       "costo_ejec": 1302985.0,
@@ -13553,7 +13749,9 @@
       ],
       "ampliacion_presupuestal": 0.0,
       "costo_total": 1302985.0,
-      "estado_situacional": "EJECUTADO"
+      "es_obra_civil": false,
+      "tiene_fecha_termino": false,
+      "estado_situacional": ""
     },
     {
       "id": 91,
@@ -13561,7 +13759,7 @@
       "provincia": "MARISCAL NIETO",
       "desc": "ATENCIÓN COMPRAS COVID - 19: MATERIALES ELECTRICOS",
       "cui": "N/D",
-      "tipologia": "ADQUISICIONES / SERVICIOS",
+      "tipologia": "ADQUISICIONES / EQUIPAMIENTO / SERVICIOS",
       "estatus": "EJECUTADO",
       "prio": 8700.0,
       "costo_ejec": 8700.0,
@@ -13603,7 +13801,9 @@
       ],
       "ampliacion_presupuestal": 0.0,
       "costo_total": 8700.0,
-      "estado_situacional": "EJECUTADO"
+      "es_obra_civil": false,
+      "tiene_fecha_termino": false,
+      "estado_situacional": ""
     },
     {
       "id": 92,
@@ -13611,7 +13811,7 @@
       "provincia": "MARISCAL NIETO",
       "desc": "IMPLEMENTACION, SEGUIMIENTO Y MONITOREO DE   ESPACIOS DE MAYOR RIESGO DE CONTAGIO Y ACTIVIDADES RELACIONADAS A LA CONTINGENCIA COVID - MARISCAL NIETO",
       "cui": "N/D",
-      "tipologia": "ADQUISICIONES / SERVICIOS",
+      "tipologia": "ADQUISICIONES / EQUIPAMIENTO / SERVICIOS",
       "estatus": "EJECUTADO",
       "prio": 1304404.0,
       "costo_ejec": 1287241.1,
@@ -13655,7 +13855,9 @@
       "acuerdo_fdm": "Sesión extraordinaria del 14/05/2021",
       "ampliacion_presupuestal": 0.0,
       "costo_total": 1287241.1,
-      "estado_situacional": "EJECUTADO"
+      "es_obra_civil": false,
+      "tiene_fecha_termino": false,
+      "estado_situacional": ""
     },
     {
       "id": 93,
@@ -13663,7 +13865,7 @@
       "provincia": "MARISCAL NIETO",
       "desc": "ADQUISICIÓN DE EQUIPOS PARA IMPLEMENTACIÓN DE LABORATORIOS DEL PROGRAMA PROFESIONAL DE INGENIERÍA CIVIL - UNAM",
       "cui": "N/D",
-      "tipologia": "ADQUISICIONES / SERVICIOS",
+      "tipologia": "ADQUISICIONES / EQUIPAMIENTO / SERVICIOS",
       "estatus": "EJECUTADO",
       "prio": 6000000.0,
       "costo_ejec": 5947130.39,
@@ -13707,7 +13909,9 @@
       "acuerdo_fdm": "Sesión extraordinaria del 10/02/2022",
       "ampliacion_presupuestal": 0.0,
       "costo_total": 5947130.39,
-      "estado_situacional": "EJECUTADO"
+      "es_obra_civil": false,
+      "tiene_fecha_termino": false,
+      "estado_situacional": ""
     },
     {
       "id": 94,
@@ -13715,7 +13919,7 @@
       "provincia": "MARISCAL NIETO",
       "desc": "ADQUISICION DE EQUIPAMIENTO PARA LOS BOMBEROS",
       "cui": "N/D",
-      "tipologia": "ADQUISICIONES / SERVICIOS",
+      "tipologia": "ADQUISICIONES / EQUIPAMIENTO / SERVICIOS",
       "estatus": "EJECUTADO",
       "prio": 2000000.0,
       "costo_ejec": 1869987.06,
@@ -13758,7 +13962,9 @@
       "acuerdo_fdm": "Sesión ordinaria del 02/08/2020",
       "ampliacion_presupuestal": 0.0,
       "costo_total": 1869987.06,
-      "estado_situacional": "EJECUTADO"
+      "es_obra_civil": false,
+      "tiene_fecha_termino": false,
+      "estado_situacional": ""
     },
     {
       "id": 95,
@@ -13766,7 +13972,7 @@
       "provincia": "MARISCAL NIETO",
       "desc": "EMERGENCIA DE INCENDIO - BOTADERO MUNICIPAL",
       "cui": "N/D",
-      "tipologia": "ADQUISICIONES / SERVICIOS",
+      "tipologia": "ADQUISICIONES / EQUIPAMIENTO / SERVICIOS",
       "estatus": "EJECUTADO",
       "prio": 128824.0,
       "costo_ejec": 124494.0,
@@ -13809,7 +14015,9 @@
       "acuerdo_fdm": "Sesión ordinaria del 14/09/2023",
       "ampliacion_presupuestal": 0.0,
       "costo_total": 124494.0,
-      "estado_situacional": "EJECUTADO"
+      "es_obra_civil": false,
+      "tiene_fecha_termino": false,
+      "estado_situacional": ""
     },
     {
       "id": 96,
@@ -13817,7 +14025,7 @@
       "provincia": "MARISCAL NIETO",
       "desc": "ATENCION DE EMERGENCIA HIDRICA POR PERIODO DE LLUVIAS MARISCAL NIETO",
       "cui": "N/D",
-      "tipologia": "ADQUISICIONES / SERVICIOS",
+      "tipologia": "ADQUISICIONES / EQUIPAMIENTO / SERVICIOS",
       "estatus": "EJECUTADO",
       "prio": 154030.0,
       "costo_ejec": 149090.0,
@@ -13860,7 +14068,9 @@
       "acuerdo_fdm": "Sesión ordinaria del 20/02/2024",
       "ampliacion_presupuestal": 0.0,
       "costo_total": 149090.0,
-      "estado_situacional": "EJECUTADO"
+      "es_obra_civil": false,
+      "tiene_fecha_termino": false,
+      "estado_situacional": ""
     },
     {
       "id": 97,
@@ -13868,7 +14078,7 @@
       "provincia": "MARISCAL NIETO",
       "desc": "ATENCION DE EMERGENCIA MARISCAL NIETO (2000 GALONES COMBUSTIBLE)",
       "cui": "N/D",
-      "tipologia": "ADQUISICIONES / SERVICIOS",
+      "tipologia": "ADQUISICIONES / EQUIPAMIENTO / SERVICIOS",
       "estatus": "EJECUTADO",
       "prio": 36000.0,
       "costo_ejec": 35200.0,
@@ -13910,7 +14120,9 @@
       ],
       "ampliacion_presupuestal": 0.0,
       "costo_total": 35200.0,
-      "estado_situacional": "EJECUTADO"
+      "es_obra_civil": false,
+      "tiene_fecha_termino": false,
+      "estado_situacional": ""
     },
     {
       "id": 98,
@@ -13918,7 +14130,7 @@
       "provincia": "MARISCAL NIETO",
       "desc": "ADQUISICIÓN DE “UNIDADES VEHICULARES LIVIANAS (MOTOCICLETAS) PARA LA SEGURIDAD CIUDADANA:  “SITUACION DE EMERGENCIA DE LA OFICINA DE SEGURIDAD CIUDADANA”.",
       "cui": "N/D",
-      "tipologia": "ADQUISICIONES / SERVICIOS",
+      "tipologia": "ADQUISICIONES / EQUIPAMIENTO / SERVICIOS",
       "estatus": "EJECUTADO",
       "prio": 460000.0,
       "costo_ejec": 469850.0,
@@ -13960,7 +14172,9 @@
       ],
       "ampliacion_presupuestal": 9850.0,
       "costo_total": 469850.0,
-      "estado_situacional": "EJECUTADO"
+      "es_obra_civil": false,
+      "tiene_fecha_termino": false,
+      "estado_situacional": ""
     },
     {
       "id": 99,
@@ -13968,7 +14182,7 @@
       "provincia": "MARISCAL NIETO",
       "desc": "ATENCION EMERGENCIA HIDRICA POR DESCARGA DE COMBUSTIBLE RIO TUMILACA",
       "cui": "N/D",
-      "tipologia": "ADQUISICIONES / SERVICIOS",
+      "tipologia": "ADQUISICIONES / EQUIPAMIENTO / SERVICIOS",
       "estatus": "EJECUTADO",
       "prio": 60000.0,
       "costo_ejec": 53390.08,
@@ -14009,7 +14223,9 @@
         "100- MN F28"
       ],
       "costo_total": 53390.08,
-      "estado_situacional": "EJECUTADO"
+      "es_obra_civil": false,
+      "tiene_fecha_termino": false,
+      "estado_situacional": ""
     },
     {
       "id": 100,
@@ -14017,7 +14233,7 @@
       "provincia": "GENERAL SÁNCHEZ CERRO",
       "desc": "MANTENIMIENTO DE LOCALES COMUNALES ANEXO MATAZO Y PILLONE",
       "cui": "N/D",
-      "tipologia": "ADQUISICIONES / SERVICIOS",
+      "tipologia": "ADQUISICIONES / EQUIPAMIENTO / SERVICIOS",
       "estatus": "EJECUTADO",
       "prio": 2500.0,
       "costo_ejec": 2500.0,
@@ -14059,7 +14275,9 @@
       ],
       "ampliacion_presupuestal": 0.0,
       "costo_total": 2500.0,
-      "estado_situacional": "EJECUTADO"
+      "es_obra_civil": false,
+      "tiene_fecha_termino": false,
+      "estado_situacional": ""
     },
     {
       "id": 101,
@@ -14067,7 +14285,7 @@
       "provincia": "GENERAL SÁNCHEZ CERRO",
       "desc": "ADQUISICION DE TRACTOR AGRICOLA PARA EL MEJORAMIENTO DEL AREA AGRICOLA EN EL DISTRITO DE LA CAPILLA, PROVINCIA GENERAL SANCHEZ CERRO, REGION MOQUEGUA",
       "cui": "N/D",
-      "tipologia": "OBRAS CIVILES",
+      "tipologia": "ADQUISICIONES / EQUIPAMIENTO / SERVICIOS",
       "estatus": "EJECUTADO",
       "prio": 588000.0,
       "costo_ejec": 295000.0,
@@ -14110,7 +14328,9 @@
       "acuerdo_fdm": "Sesión extraordinaria del 16/07/2021",
       "ampliacion_presupuestal": 0.0,
       "costo_total": 295000.0,
-      "estado_situacional": "EJECUTADO"
+      "es_obra_civil": false,
+      "tiene_fecha_termino": false,
+      "estado_situacional": ""
     },
     {
       "id": 102,
@@ -14118,7 +14338,7 @@
       "provincia": "GENERAL SÁNCHEZ CERRO",
       "desc": "EQUIPAMIENTO",
       "cui": "N/D",
-      "tipologia": "ADQUISICIONES / SERVICIOS",
+      "tipologia": "ADQUISICIONES / EQUIPAMIENTO / SERVICIOS",
       "estatus": "EJECUTADO",
       "prio": 1755540.59,
       "costo_ejec": 1755540.59,
@@ -14161,7 +14381,9 @@
       "acuerdo_fdm": "Sesión extraordinaria del 25/06/2020 Sesión extraordinaria del 18/08/2020 Sesión extraordinaria del 10/09/2020",
       "ampliacion_presupuestal": 0.0,
       "costo_total": 1755540.59,
-      "estado_situacional": "EJECUTADO"
+      "es_obra_civil": false,
+      "tiene_fecha_termino": false,
+      "estado_situacional": ""
     },
     {
       "id": 103,
@@ -14169,7 +14391,7 @@
       "provincia": "GENERAL SÁNCHEZ CERRO",
       "desc": "MATERIAL DE LIMPIEZA",
       "cui": "N/D",
-      "tipologia": "ADQUISICIONES / SERVICIOS",
+      "tipologia": "ADQUISICIONES / EQUIPAMIENTO / SERVICIOS",
       "estatus": "EJECUTADO",
       "prio": 3001.0,
       "costo_ejec": 3001.0,
@@ -14211,7 +14433,9 @@
       ],
       "ampliacion_presupuestal": 0.0,
       "costo_total": 3001.0,
-      "estado_situacional": "EJECUTADO"
+      "es_obra_civil": false,
+      "tiene_fecha_termino": false,
+      "estado_situacional": ""
     },
     {
       "id": 104,
@@ -14219,7 +14443,7 @@
       "provincia": "GENERAL SÁNCHEZ CERRO",
       "desc": "MEDICAMENTOS",
       "cui": "N/D",
-      "tipologia": "ADQUISICIONES / SERVICIOS",
+      "tipologia": "ADQUISICIONES / EQUIPAMIENTO / SERVICIOS",
       "estatus": "EJECUTADO",
       "prio": 211680.0,
       "costo_ejec": 211680.0,
@@ -14261,7 +14485,9 @@
       ],
       "ampliacion_presupuestal": 0.0,
       "costo_total": 211680.0,
-      "estado_situacional": "EJECUTADO"
+      "es_obra_civil": false,
+      "tiene_fecha_termino": false,
+      "estado_situacional": ""
     },
     {
       "id": 105,
@@ -14269,7 +14495,7 @@
       "provincia": "GENERAL SÁNCHEZ CERRO",
       "desc": "ATENCION ANTE EMERGENCIA POR ACTIVACIÓN DEL VOLCÁN UBINAS",
       "cui": "N/D",
-      "tipologia": "ADQUISICIONES / SERVICIOS",
+      "tipologia": "ADQUISICIONES / EQUIPAMIENTO / SERVICIOS",
       "estatus": "EJECUTADO",
       "prio": 217292.99,
       "costo_ejec": 217292.99,
@@ -14311,7 +14537,9 @@
       ],
       "ampliacion_presupuestal": 0.0,
       "costo_total": 217292.99,
-      "estado_situacional": "EJECUTADO"
+      "es_obra_civil": false,
+      "tiene_fecha_termino": false,
+      "estado_situacional": ""
     },
     {
       "id": 106,
@@ -14319,7 +14547,7 @@
       "provincia": "GENERAL SÁNCHEZ CERRO",
       "desc": "SUB ESTACION ELECTRICA",
       "cui": "N/D",
-      "tipologia": "ADQUISICIONES / SERVICIOS",
+      "tipologia": "ADQUISICIONES / EQUIPAMIENTO / SERVICIOS",
       "estatus": "EJECUTADO",
       "prio": 70000.0,
       "costo_ejec": 69842.61,
@@ -14362,7 +14590,9 @@
       "acuerdo_fdm": "Sesión extraordinaria del 20/01/2022",
       "ampliacion_presupuestal": 0.0,
       "costo_total": 69842.61,
-      "estado_situacional": "EJECUTADO"
+      "es_obra_civil": false,
+      "tiene_fecha_termino": false,
+      "estado_situacional": ""
     },
     {
       "id": 107,
@@ -14370,7 +14600,7 @@
       "provincia": "GENERAL SÁNCHEZ CERRO",
       "desc": "IMPLEMENTACIÓN DE LABORATORIOS DE LOS PROGRAMAS DE ESTUDIO DEL INSTITUTO DE EDUCACIÓN SUPERIOR TECNOLÓGICO DE LA LOCALIDAD DE ICHUÑA, DISTRITO DE ICHUÑA, PROVINCIA GENERAL SANCHEZ CERRO- REGIÓN MOQUEGUA",
       "cui": "N/D",
-      "tipologia": "ADQUISICIONES / SERVICIOS",
+      "tipologia": "ADQUISICIONES / EQUIPAMIENTO / SERVICIOS",
       "estatus": "EVALUAR CAMBIO",
       "prio": 0.0,
       "costo_ejec": 0.0,
@@ -14413,7 +14643,9 @@
       "acuerdo_fdm": "Sin ACTA DE S.C",
       "ampliacion_presupuestal": 0.0,
       "costo_total": 0.0,
-      "estado_situacional": "EVALUAR CAMBIO"
+      "es_obra_civil": false,
+      "tiene_fecha_termino": false,
+      "estado_situacional": ""
     },
     {
       "id": 108,
@@ -14421,7 +14653,7 @@
       "provincia": "GENERAL SÁNCHEZ CERRO",
       "desc": "APOYO A LOS AGRICULTORES DEL VALLE DE OMATE FRENTE A LA PROBLEMÁTICA DE LA PLAGA DE LA MOSCA DE LA FRUTA",
       "cui": "N/D",
-      "tipologia": "ADQUISICIONES / SERVICIOS",
+      "tipologia": "ADQUISICIONES / EQUIPAMIENTO / SERVICIOS",
       "estatus": "EJECUTADO",
       "prio": 33000.0,
       "costo_ejec": 24750.0,
@@ -14464,7 +14696,9 @@
       "acuerdo_fdm": "Sesión ordinaria del 28/10/2022",
       "ampliacion_presupuestal": 0.0,
       "costo_total": 24750.0,
-      "estado_situacional": "EJECUTADO"
+      "es_obra_civil": false,
+      "tiene_fecha_termino": false,
+      "estado_situacional": ""
     },
     {
       "id": 109,
@@ -14472,7 +14706,7 @@
       "provincia": "GENERAL SÁNCHEZ CERRO",
       "desc": "ADQUISICION DE EQUIPOS INFORMATICOS Y MOBILIARIO EDUCATIVO PARA EL INSTITUTO DE EDUCACION SUPERIOR ALIANZA ICHUÑA BELGICA EN EL DISTRITO DE ICHUÑA",
       "cui": "N/D",
-      "tipologia": "ADQUISICIONES / SERVICIOS",
+      "tipologia": "ADQUISICIONES / EQUIPAMIENTO / SERVICIOS",
       "estatus": "EJECUTADO",
       "prio": 319850.0,
       "costo_ejec": 341563.0,
@@ -14515,7 +14749,9 @@
       "acuerdo_fdm": "Sesión ordinaria del 05/12/2022",
       "ampliacion_presupuestal": 21713.0,
       "costo_total": 341563.0,
-      "estado_situacional": "EJECUTADO"
+      "es_obra_civil": false,
+      "tiene_fecha_termino": false,
+      "estado_situacional": ""
     },
     {
       "id": 110,
@@ -14523,7 +14759,7 @@
       "provincia": "GENERAL SÁNCHEZ CERRO",
       "desc": "ELABORACION DE EXPEDIENTE TECNICO DEL PROYECTO MERCADO DE ABASTOS OMATE",
       "cui": "N/D",
-      "tipologia": "ADQUISICIONES / SERVICIOS",
+      "tipologia": "EXPEDIENTE TÉCNICO",
       "estatus": "EJECUTADO",
       "prio": 200000.0,
       "costo_ejec": 198000.0,
@@ -14566,7 +14802,9 @@
       "acuerdo_fdm": "Sesión ordinaria del 14/09/2023",
       "ampliacion_presupuestal": 0.0,
       "costo_total": 198000.0,
-      "estado_situacional": "EJECUTADO"
+      "es_obra_civil": false,
+      "tiene_fecha_termino": false,
+      "estado_situacional": ""
     },
     {
       "id": 111,
@@ -14574,7 +14812,7 @@
       "provincia": "GENERAL SÁNCHEZ CERRO",
       "desc": "ATENCION DE EMERGENCIA HIDRICA POR PERIODO DE LLUVIAS S. CERRO",
       "cui": "N/D",
-      "tipologia": "ADQUISICIONES / SERVICIOS",
+      "tipologia": "ADQUISICIONES / EQUIPAMIENTO / SERVICIOS",
       "estatus": "EJECUTADO",
       "prio": 58450.0,
       "costo_ejec": 60800.0,
@@ -14616,7 +14854,9 @@
       ],
       "ampliacion_presupuestal": 0.0,
       "costo_total": 60800.0,
-      "estado_situacional": "EJECUTADO"
+      "es_obra_civil": false,
+      "tiene_fecha_termino": false,
+      "estado_situacional": ""
     },
     {
       "id": 112,
@@ -14624,7 +14864,7 @@
       "provincia": "GENERAL SÁNCHEZ CERRO",
       "desc": "FICHA DE EMERGENCIA PARA CONTROL DE MOSCA BLANCA",
       "cui": "N/D",
-      "tipologia": "ADQUISICIONES / SERVICIOS",
+      "tipologia": "ADQUISICIONES / EQUIPAMIENTO / SERVICIOS",
       "estatus": "EJECUTADO",
       "prio": 1011298.26,
       "costo_ejec": 1274154.79,
@@ -14671,7 +14911,9 @@
       "fecha_termino_sort": "2024-09-02",
       "acuerdo_fdm": "Sesión extraordinaria del 10/06/2024",
       "ampliacion_presupuestal": 500000.0,
-      "costo_total": 1274154.79
+      "costo_total": 1274154.79,
+      "es_obra_civil": false,
+      "tiene_fecha_termino": true
     },
     {
       "id": 113,
@@ -14719,10 +14961,12 @@
       "fuentes_excel_ing": [
         "100 - SC F50"
       ],
-      "estado_situacional": "EN EJECUCION",
+      "estado_situacional": "",
       "ampliacion_presupuestal": 0.0,
       "costo_total": 7189451.9,
-      "fecha_inicio_verificada_ing": true
+      "fecha_inicio_verificada_ing": true,
+      "es_obra_civil": true,
+      "tiene_fecha_termino": false
     },
     {
       "id": 114,
@@ -14730,7 +14974,7 @@
       "provincia": "GENERAL SÁNCHEZ CERRO",
       "desc": "ATENCION DE EMERGENCIA POR LLUVIAS 2025 EN LA PROVINCIA GENERAL SANCHEZ CERRO",
       "cui": "N/D",
-      "tipologia": "ADQUISICIONES / SERVICIOS",
+      "tipologia": "ADQUISICIONES / EQUIPAMIENTO / SERVICIOS",
       "estatus": "EJECUTADO",
       "prio": 200000.0,
       "costo_ejec": 187100.0,
@@ -14772,7 +15016,9 @@
       ],
       "ampliacion_presupuestal": 0.0,
       "costo_total": 200000.0,
-      "estado_situacional": "EJECUTADO"
+      "es_obra_civil": false,
+      "tiene_fecha_termino": false,
+      "estado_situacional": ""
     },
     {
       "id": 115,
@@ -14780,7 +15026,7 @@
       "provincia": "GENERAL SÁNCHEZ CERRO",
       "desc": "CONTINGENCIAS PY. PROVINCIA GENERAL SANCHEZ CERRO",
       "cui": "N/D",
-      "tipologia": "ADQUISICIONES / SERVICIOS",
+      "tipologia": "ADQUISICIONES / EQUIPAMIENTO / SERVICIOS",
       "estatus": "EJECUTADO",
       "prio": 0,
       "costo_ejec": 511.98,
@@ -14821,7 +15067,9 @@
         "100 - SC F52"
       ],
       "costo_total": 511.98,
-      "estado_situacional": "EJECUTADO"
+      "es_obra_civil": false,
+      "tiene_fecha_termino": false,
+      "estado_situacional": ""
     },
     {
       "id": 116,
@@ -14829,7 +15077,7 @@
       "provincia": "MARISCAL NIETO",
       "desc": "ADQUISICIÓN DE MAQUINARIA POR RIESGO INMINENTE AMBIENTAL Y DE SALUBRIDAD EN LA PROVINCIA MARISCAL NIETO",
       "cui": "N/D",
-      "tipologia": "ADQUISICIONES / SERVICIOS",
+      "tipologia": "ADQUISICIONES / EQUIPAMIENTO / SERVICIOS",
       "estatus": "EJECUTADO",
       "prio": 3955336.4,
       "costo_ejec": 4249348.6,
@@ -14872,7 +15120,9 @@
       "acuerdo_fdm": "Sesion Ordinaria 10/10/2023",
       "ampliacion_presupuestal": 294012.2,
       "costo_total": 4249348.6,
-      "estado_situacional": "EJECUTADO"
+      "es_obra_civil": false,
+      "tiene_fecha_termino": false,
+      "estado_situacional": ""
     },
     {
       "id": 117,
@@ -14880,7 +15130,7 @@
       "provincia": "MARISCAL NIETO",
       "desc": "ADQUISICIÓN DE TOMOGRAFO COMPUTARIZADO DE 128 CORTES PARA EL HOSPITAL REGIONAL DE MOQUEGUA, PROVINCIA MARISCAL NIETO",
       "cui": "N/D",
-      "tipologia": "ADQUISICIONES / SERVICIOS",
+      "tipologia": "ADQUISICIONES / EQUIPAMIENTO / SERVICIOS",
       "estatus": "EJECUTADO",
       "prio": 2800000.0,
       "costo_ejec": 2931000.0,
@@ -14923,7 +15173,9 @@
       "acuerdo_fdm": "Sesion Ordinaria 26/03/2024",
       "ampliacion_presupuestal": 131000.0,
       "costo_total": 2931000.0,
-      "estado_situacional": "EJECUTADO"
+      "es_obra_civil": false,
+      "tiene_fecha_termino": false,
+      "estado_situacional": ""
     },
     {
       "id": 118,
@@ -14931,7 +15183,7 @@
       "provincia": "MARISCAL NIETO",
       "desc": "ADQUISICIÓN DE UNIDADES VEHICULARES (CAMIONETAS 4 X 4) PARA LA SEGURIDAD CIUDADANA POR SITUACION DE EMERGENCIA",
       "cui": "N/D",
-      "tipologia": "ADQUISICIONES / SERVICIOS",
+      "tipologia": "ADQUISICIONES / EQUIPAMIENTO / SERVICIOS",
       "estatus": "EJECUTADO",
       "prio": 711889.2,
       "costo_ejec": 896062.58,
@@ -14973,7 +15225,9 @@
       ],
       "ampliacion_presupuestal": 184173.38,
       "costo_total": 896062.58,
-      "estado_situacional": "EJECUTADO"
+      "es_obra_civil": false,
+      "tiene_fecha_termino": false,
+      "estado_situacional": ""
     },
     {
       "id": 119,
@@ -14981,7 +15235,7 @@
       "provincia": "MARISCAL NIETO",
       "desc": "ATENCION DE EMERGENCIA HIDIRICA POR DESCARGA DE COMBUSTIBLE RIO TUMILACA (ETAPA II)",
       "cui": "N/D",
-      "tipologia": "ADQUISICIONES / SERVICIOS",
+      "tipologia": "ADQUISICIONES / EQUIPAMIENTO / SERVICIOS",
       "estatus": "EJECUTADO",
       "prio": 144626.0,
       "costo_ejec": 144626.0,
@@ -15023,7 +15277,9 @@
       ],
       "ampliacion_presupuestal": 0.0,
       "costo_total": 144626.0,
-      "estado_situacional": "EJECUTADO"
+      "es_obra_civil": false,
+      "tiene_fecha_termino": false,
+      "estado_situacional": ""
     },
     {
       "id": 120,
@@ -15031,7 +15287,7 @@
       "provincia": "MARISCAL NIETO",
       "desc": "ADQUISICIÓN DE CONTENEDORES DE 1100 LITROS PARA EL MEJORAMIENTO DE LA GESTIÓN INTEGRAL DE LOS RESIDUOS SÓLIDOS MUNICIPALES DEL DISTRITO DE MOQUEGUA Y SUS CENTROS POBLADOS",
       "cui": "N/D",
-      "tipologia": "OBRAS CIVILES",
+      "tipologia": "ADQUISICIONES / EQUIPAMIENTO / SERVICIOS",
       "estatus": "EJECUTADO",
       "prio": 1080000.0,
       "costo_ejec": 1080000.0,
@@ -15073,7 +15329,9 @@
       ],
       "ampliacion_presupuestal": 0.0,
       "costo_total": 1080000.0,
-      "estado_situacional": "EJECUTADO"
+      "es_obra_civil": false,
+      "tiene_fecha_termino": false,
+      "estado_situacional": ""
     },
     {
       "id": 121,
@@ -15081,7 +15339,7 @@
       "provincia": "MARISCAL NIETO",
       "desc": "ATENCION DE EMERGENCIA, DESABASTECIMIENTO DE AGUA POR LLUVIAS 2025, EN LA PROVINCIA DE MARISCAL NIETO",
       "cui": "N/D",
-      "tipologia": "ADQUISICIONES / SERVICIOS",
+      "tipologia": "ADQUISICIONES / EQUIPAMIENTO / SERVICIOS",
       "estatus": "EJECUTADO",
       "prio": 461852.0,
       "costo_ejec": 461852.0,
@@ -15123,7 +15381,9 @@
       ],
       "ampliacion_presupuestal": 0.0,
       "costo_total": 461852.0,
-      "estado_situacional": "EJECUTADO"
+      "es_obra_civil": false,
+      "tiene_fecha_termino": false,
+      "estado_situacional": ""
     },
     {
       "id": 122,
@@ -15131,7 +15391,7 @@
       "provincia": "MARISCAL NIETO",
       "desc": "MANTENIMIENTO DE CHILOTA",
       "cui": "N/D",
-      "tipologia": "ADQUISICIONES / SERVICIOS",
+      "tipologia": "ADQUISICIONES / EQUIPAMIENTO / SERVICIOS",
       "estatus": "EJECUTADO",
       "prio": 1254827.28,
       "costo_ejec": 1254827.28,
@@ -15174,7 +15434,9 @@
       "acuerdo_fdm": "Sesión extraordinaria del 15/01/2021",
       "ampliacion_presupuestal": 0.0,
       "costo_total": 1254827.28,
-      "estado_situacional": "EJECUTADO"
+      "es_obra_civil": false,
+      "tiene_fecha_termino": false,
+      "estado_situacional": ""
     },
     {
       "id": 123,
@@ -15182,7 +15444,7 @@
       "provincia": "MARISCAL NIETO",
       "desc": "ADQUISICIÓN DE AMBULANCIA RURALM EN EL PS QUINISTAQUILLAS, DISTRITO DE QUINISTAQUILLAS, PROVINCIA GENERAL SANCHEZ CERRO, DEPARTAMENTO DE MOQUEGUA (CUI 2683748)",
       "cui": "2683748",
-      "tipologia": "ADQUISICIONES / SERVICIOS",
+      "tipologia": "ADQUISICIONES / EQUIPAMIENTO / SERVICIOS",
       "estatus": "POR EJECUTAR",
       "prio": 459226.5,
       "costo_ejec": 0.0,
@@ -15225,7 +15487,9 @@
       "acuerdo_fdm": "Sesión ordinaria del 09/07/2026, acuerdo 09",
       "ampliacion_presupuestal": 0.0,
       "costo_total": 459226.5,
-      "estado_situacional": "POR EJECUTAR"
+      "es_obra_civil": false,
+      "tiene_fecha_termino": false,
+      "estado_situacional": ""
     },
     {
       "id": 124,
@@ -15276,7 +15540,9 @@
       "acuerdo_fdm": "Sesión ordinaria del 27/02/2025",
       "ampliacion_presupuestal": 0.0,
       "costo_total": 565703.09,
-      "estado_situacional": "EN EJECUCION"
+      "es_obra_civil": true,
+      "tiene_fecha_termino": false,
+      "estado_situacional": ""
     },
     {
       "id": 125,
@@ -15284,7 +15550,7 @@
       "provincia": "MARISCAL NIETO",
       "desc": "MANTENIMIENTO PREVENTIVO DE UNIDADES OPERATIVAS DE AGUA POTABLE Y ALCANTARILLADO DISTRITO DE MOQUEGUA, PROV. MARISCAL NIETO",
       "cui": "N/D",
-      "tipologia": "ADQUISICIONES / SERVICIOS",
+      "tipologia": "ADQUISICIONES / EQUIPAMIENTO / SERVICIOS",
       "estatus": "POR EJECUTAR",
       "prio": 416846.56,
       "costo_ejec": 416846.56,
@@ -15327,7 +15593,9 @@
       "acuerdo_fdm": "Sesión extraordinaria del 17/12/2025",
       "ampliacion_presupuestal": 0.0,
       "costo_total": 416846.56,
-      "estado_situacional": "POR EJECUTAR (EN PROCESO / SALDO)"
+      "es_obra_civil": false,
+      "tiene_fecha_termino": false,
+      "estado_situacional": ""
     },
     {
       "id": 126,
@@ -15335,7 +15603,7 @@
       "provincia": "MARISCAL NIETO",
       "desc": "ADQUISICION E INSTALACION DE CAMARAS DE VIDEOVIGILANCIA EN PUNTOS CRITICOS DEL DISTRITO DE MOQUEGUA",
       "cui": "N/D",
-      "tipologia": "OBRAS CIVILES",
+      "tipologia": "ADQUISICIONES / EQUIPAMIENTO / SERVICIOS",
       "estatus": "POR EJECUTAR",
       "prio": 1788500.58,
       "costo_ejec": 1788500.58,
@@ -15378,7 +15646,9 @@
       "acuerdo_fdm": "Sesión extraordinaria del 17/12/2025",
       "ampliacion_presupuestal": 0.0,
       "costo_total": 1788500.58,
-      "estado_situacional": "POR EJECUTAR (EN PROCESO / SALDO)"
+      "es_obra_civil": false,
+      "tiene_fecha_termino": false,
+      "estado_situacional": ""
     },
     {
       "id": 127,
@@ -15386,7 +15656,7 @@
       "provincia": "MARISCAL NIETO",
       "desc": "PLAN DE TRABAJO PARA EL CONTROL DE LA MOSCA DE LA FRUTA EN ÁREAS HORTOFRUTÍCOLAS DE LA PROVINCIA MARISCAL NIETO",
       "cui": "N/D",
-      "tipologia": "ADQUISICIONES / SERVICIOS",
+      "tipologia": "ADQUISICIONES / EQUIPAMIENTO / SERVICIOS",
       "estatus": "EN EJECUCION",
       "prio": 962030.0,
       "costo_ejec": 836767.0,
@@ -15429,7 +15699,9 @@
       "acuerdo_fdm": "Sesión ordinaria del 31/03/2026, acuerdo 01",
       "ampliacion_presupuestal": 0.0,
       "costo_total": 962030.0,
-      "estado_situacional": "EN EJECUCION"
+      "es_obra_civil": false,
+      "tiene_fecha_termino": false,
+      "estado_situacional": ""
     },
     {
       "id": 128,
@@ -15437,7 +15709,7 @@
       "provincia": "MARISCAL NIETO",
       "desc": "ATENCION DE EMERGENCIA EN LA ZONA DE SICUAYA, RECUPERACION DE TRANSITABILIDAD DE VIAS",
       "cui": "N/D",
-      "tipologia": "ADQUISICIONES / SERVICIOS",
+      "tipologia": "ADQUISICIONES / EQUIPAMIENTO / SERVICIOS",
       "estatus": "EJECUTADO",
       "prio": 153353.98,
       "costo_ejec": 153353.98,
@@ -15479,7 +15751,9 @@
       ],
       "ampliacion_presupuestal": 0.0,
       "costo_total": 153353.98,
-      "estado_situacional": "EJECUTADO"
+      "es_obra_civil": false,
+      "tiene_fecha_termino": false,
+      "estado_situacional": ""
     },
     {
       "id": 129,
@@ -15487,7 +15761,7 @@
       "provincia": "MARISCAL NIETO",
       "desc": "MEJORAMIENTO DEL SERVICIO EDUCATIVO CON RECURSOS TECNOLOGICOS INTERACTIVOS MEDIOANTE LA ADQUISICIÓN DE PANTALLAS INTERACTIVAS, EQUIPOS DE COMPUTO E IMPLEMENTACIÓN DE RED INALAMBRICA INSTITUCIONAL (IEP JUAN XXIII)",
       "cui": "N/D",
-      "tipologia": "OBRAS CIVILES",
+      "tipologia": "ADQUISICIONES / EQUIPAMIENTO / SERVICIOS",
       "estatus": "POR EJECUTAR",
       "prio": 149667.0,
       "costo_ejec": 149667,
@@ -15530,7 +15804,9 @@
       "acuerdo_fdm": "Sesión ordinaria del 09/07/2026, acuerdo 14",
       "ampliacion_presupuestal": 0.0,
       "costo_total": 149667.0,
-      "estado_situacional": "POR EJECUTAR (EN PROCESO / SALDO)"
+      "es_obra_civil": false,
+      "tiene_fecha_termino": false,
+      "estado_situacional": ""
     },
     {
       "id": 130,
@@ -15538,7 +15814,7 @@
       "provincia": "MARISCAL NIETO",
       "desc": "FORTALECIMIENTO DE LA CADENA PRODUCTIVA AGROPECUARIA DE LA PROVINCIA DE MARISCAL NIETO",
       "cui": "N/D",
-      "tipologia": "ADQUISICIONES / SERVICIOS",
+      "tipologia": "ADQUISICIONES / EQUIPAMIENTO / SERVICIOS",
       "estatus": "POR EJECUTAR",
       "prio": 1592322.0,
       "costo_ejec": 1592322,
@@ -15581,7 +15857,9 @@
       "acuerdo_fdm": "Sesión ordinaria del 09/07/2026, acuerdo 12",
       "ampliacion_presupuestal": 0.0,
       "costo_total": 1592322.0,
-      "estado_situacional": "POR EJECUTAR (EN PROCESO / SALDO)"
+      "es_obra_civil": false,
+      "tiene_fecha_termino": false,
+      "estado_situacional": ""
     },
     {
       "id": 131,
@@ -15589,7 +15867,7 @@
       "provincia": "MARISCAL NIETO",
       "desc": "ADQUISICION DE MANERA EXCEPCIONAL DE 30 CONTENEDORES DE BASURA DE 3,200 LITROS PARA FORTALECER EL ALMACENAMIENTO TEMPORAL DE RESIDUOS",
       "cui": "N/D",
-      "tipologia": "ADQUISICIONES / SERVICIOS",
+      "tipologia": "ADQUISICIONES / EQUIPAMIENTO / SERVICIOS",
       "estatus": "POR EJECUTAR",
       "prio": 142500.0,
       "costo_ejec": 142500,
@@ -15632,7 +15910,9 @@
       "acuerdo_fdm": "Sesión ordinaria del 27/08/2026, acuerdo 05",
       "ampliacion_presupuestal": 0.0,
       "costo_total": 142500.0,
-      "estado_situacional": "POR EJECUTAR (EN PROCESO / SALDO)"
+      "es_obra_civil": false,
+      "tiene_fecha_termino": false,
+      "estado_situacional": ""
     },
     {
       "id": 132,
@@ -15640,7 +15920,7 @@
       "provincia": "MARISCAL NIETO",
       "desc": "ADQUISICION DE MANERA EXPCEPCIONAL DE 80 CONTENEDORES DE BASURA DE 2,300 LITROS",
       "cui": "N/D",
-      "tipologia": "ADQUISICIONES / SERVICIOS",
+      "tipologia": "ADQUISICIONES / EQUIPAMIENTO / SERVICIOS",
       "estatus": "POR EJECUTAR",
       "prio": 316000.0,
       "costo_ejec": 316000,
@@ -15683,7 +15963,9 @@
       "acuerdo_fdm": "Sesión ordinaria del 27/08/2026, acuerdo 05",
       "ampliacion_presupuestal": 0.0,
       "costo_total": 316000.0,
-      "estado_situacional": "POR EJECUTAR (EN PROCESO / SALDO)"
+      "es_obra_civil": false,
+      "tiene_fecha_termino": false,
+      "estado_situacional": ""
     },
     {
       "id": 133,
@@ -15691,7 +15973,7 @@
       "provincia": "MARISCAL NIETO",
       "desc": "ADQUISICION DE MANERA EXPCEPCIONAL DE 01 CAMION COMPACTADOR DE RESIDUOS SOLIDOS, CON SISTEMA DE ALZA CONTENEDOR",
       "cui": "N/D",
-      "tipologia": "ADQUISICIONES / SERVICIOS",
+      "tipologia": "ADQUISICIONES / EQUIPAMIENTO / SERVICIOS",
       "estatus": "POR EJECUTAR",
       "prio": 719000.0,
       "costo_ejec": 719000,
@@ -15734,7 +16016,9 @@
       "acuerdo_fdm": "Sesión ordinaria del 27/08/2026, acuerdo 05",
       "ampliacion_presupuestal": 0.0,
       "costo_total": 719000.0,
-      "estado_situacional": "POR EJECUTAR (EN PROCESO / SALDO)"
+      "es_obra_civil": false,
+      "tiene_fecha_termino": false,
+      "estado_situacional": ""
     },
     {
       "id": 134,
@@ -15742,7 +16026,7 @@
       "provincia": "MARISCAL NIETO",
       "desc": "ADQUISICION DE MANERA EXPCEPCIONAL DE 01 CAMION CISTERNA DE 5,000 GALONES DE CAPACIDAD",
       "cui": "N/D",
-      "tipologia": "ADQUISICIONES / SERVICIOS",
+      "tipologia": "ADQUISICIONES / EQUIPAMIENTO / SERVICIOS",
       "estatus": "POR EJECUTAR",
       "prio": 739000.0,
       "costo_ejec": 739000,
@@ -15785,7 +16069,9 @@
       "acuerdo_fdm": "Sesión ordinaria del 27/08/2026, acuerdo 05",
       "ampliacion_presupuestal": 0.0,
       "costo_total": 739000.0,
-      "estado_situacional": "POR EJECUTAR (EN PROCESO / SALDO)"
+      "es_obra_civil": false,
+      "tiene_fecha_termino": false,
+      "estado_situacional": ""
     },
     {
       "id": 135,
@@ -15793,7 +16079,7 @@
       "provincia": "ILO",
       "desc": "CREACION DEL SERVICIO DE MOVILIDAD URBANA EN LAS CALLES 53 Y CALLE 82, PROMUVI VII PAMPA INALAMBRICA, DISTRITO DE ILO, PROVINCIA DE ILO, DEPARTAMENTO DE MOQUEGUA (EXPEDIENTE TECNICO)",
       "cui": "N/D",
-      "tipologia": "OBRAS CIVILES",
+      "tipologia": "EXPEDIENTE TÉCNICO",
       "estatus": "POR EJECUTAR",
       "prio": 101039.0,
       "costo_ejec": 101039,
@@ -15836,7 +16122,9 @@
       "acuerdo_fdm": "Sesión ordinaria del 21/07/2025",
       "ampliacion_presupuestal": 0.0,
       "costo_total": 101039.0,
-      "estado_situacional": "POR EJECUTAR (EN PROCESO / SALDO)"
+      "es_obra_civil": false,
+      "tiene_fecha_termino": false,
+      "estado_situacional": ""
     },
     {
       "id": 136,
@@ -15844,7 +16132,7 @@
       "provincia": "ILO",
       "desc": "CAMION HYDROJET PARA LA LIMPIEZA Y DESCOLMATACION DE COLECTORES - EPS ILO",
       "cui": "N/D",
-      "tipologia": "ADQUISICIONES / SERVICIOS",
+      "tipologia": "ADQUISICIONES / EQUIPAMIENTO / SERVICIOS",
       "estatus": "POR EJECUTAR",
       "prio": 1500000.0,
       "costo_ejec": 2100000,
@@ -15887,7 +16175,9 @@
       "acuerdo_fdm": "Sesión ordinaria del 31/03/2026, acuerdo 08",
       "ampliacion_presupuestal": 0.0,
       "costo_total": 2100000.0,
-      "estado_situacional": "POR EJECUTAR (EN PROCESO / SALDO)"
+      "es_obra_civil": false,
+      "tiene_fecha_termino": false,
+      "estado_situacional": ""
     },
     {
       "id": 137,
@@ -15895,7 +16185,7 @@
       "provincia": "ILO",
       "desc": "CAMION CISTERNA DE 5,000 GALONES PARA MEJORAR EL RIEGO DE AREAS VERDES",
       "cui": "N/D",
-      "tipologia": "ADQUISICIONES / SERVICIOS",
+      "tipologia": "ADQUISICIONES / EQUIPAMIENTO / SERVICIOS",
       "estatus": "POR EJECUTAR",
       "prio": 500000.0,
       "costo_ejec": 719000.0,
@@ -15938,7 +16228,9 @@
       "acuerdo_fdm": "Sesión ordinaria del 31/03/2026, acuerdo 10",
       "ampliacion_presupuestal": 0.0,
       "costo_total": 719000.0,
-      "estado_situacional": "POR EJECUTAR (EN PROCESO / SALDO)"
+      "es_obra_civil": false,
+      "tiene_fecha_termino": false,
+      "estado_situacional": ""
     },
     {
       "id": 138,
@@ -15946,7 +16238,7 @@
       "provincia": "ILO",
       "desc": "500 CONTENEDORES DE 1,100 LITROS PARA FORTALECER EL ALMACENAMIENTO TEMPORAL DE RESIDUOS",
       "cui": "N/D",
-      "tipologia": "ADQUISICIONES / SERVICIOS",
+      "tipologia": "ADQUISICIONES / EQUIPAMIENTO / SERVICIOS",
       "estatus": "POR EJECUTAR",
       "prio": 1250000.0,
       "costo_ejec": 1244000.0,
@@ -15989,7 +16281,9 @@
       "acuerdo_fdm": "Sesión ordinaria del 31/03/2026, acuerdo 11",
       "ampliacion_presupuestal": 0.0,
       "costo_total": 1244000.0,
-      "estado_situacional": "POR EJECUTAR (EN PROCESO / SALDO)"
+      "es_obra_civil": false,
+      "tiene_fecha_termino": false,
+      "estado_situacional": ""
     },
     {
       "id": 139,
@@ -15997,7 +16291,7 @@
       "provincia": "ILO",
       "desc": "ADQUISICION DE MANERA EXPCEPCIONAL DE 08 CAMIONETAS PATRULLERO",
       "cui": "N/D",
-      "tipologia": "ADQUISICIONES / SERVICIOS",
+      "tipologia": "ADQUISICIONES / EQUIPAMIENTO / SERVICIOS",
       "estatus": "POR EJECUTAR",
       "prio": 2080000.0,
       "costo_ejec": 2080000,
@@ -16040,7 +16334,9 @@
       "acuerdo_fdm": "Sesión ordinaria del 27/08/2026, acuerdo 07",
       "ampliacion_presupuestal": 0.0,
       "costo_total": 2080000.0,
-      "estado_situacional": "POR EJECUTAR (EN PROCESO / SALDO)"
+      "es_obra_civil": false,
+      "tiene_fecha_termino": false,
+      "estado_situacional": ""
     },
     {
       "id": 140,
@@ -16048,7 +16344,7 @@
       "provincia": "ILO",
       "desc": "ADQUISICION DE MANERA EXPCEPCIONAL DE 01 BUS DE 30 PASAJEROS",
       "cui": "N/D",
-      "tipologia": "ADQUISICIONES / SERVICIOS",
+      "tipologia": "ADQUISICIONES / EQUIPAMIENTO / SERVICIOS",
       "estatus": "POR EJECUTAR",
       "prio": 580000.0,
       "costo_ejec": 580000,
@@ -16091,7 +16387,9 @@
       "acuerdo_fdm": "Sesión ordinaria del 27/08/2026, acuerdo 07",
       "ampliacion_presupuestal": 0.0,
       "costo_total": 580000.0,
-      "estado_situacional": "POR EJECUTAR (EN PROCESO / SALDO)"
+      "es_obra_civil": false,
+      "tiene_fecha_termino": false,
+      "estado_situacional": ""
     },
     {
       "id": 141,
@@ -16099,7 +16397,7 @@
       "provincia": "ILO",
       "desc": "ADQUISICION DE MANERA EXPCEPCIONAL DE 20 MOTOS LINEALES",
       "cui": "N/D",
-      "tipologia": "ADQUISICIONES / SERVICIOS",
+      "tipologia": "ADQUISICIONES / EQUIPAMIENTO / SERVICIOS",
       "estatus": "POR EJECUTAR",
       "prio": 300780.0,
       "costo_ejec": 300780,
@@ -16142,7 +16440,9 @@
       "acuerdo_fdm": "Sesión ordinaria del 27/08/2026, acuerdo 07",
       "ampliacion_presupuestal": 0.0,
       "costo_total": 300780.0,
-      "estado_situacional": "POR EJECUTAR (EN PROCESO / SALDO)"
+      "es_obra_civil": false,
+      "tiene_fecha_termino": false,
+      "estado_situacional": ""
     },
     {
       "id": 142,
@@ -16150,7 +16450,7 @@
       "provincia": "ILO",
       "desc": "ADQUISICION DE MANERA EXPCEPCIONAL DE 04 CUATRIMOTOS 4X4",
       "cui": "N/D",
-      "tipologia": "ADQUISICIONES / SERVICIOS",
+      "tipologia": "ADQUISICIONES / EQUIPAMIENTO / SERVICIOS",
       "estatus": "POR EJECUTAR",
       "prio": 200520.0,
       "costo_ejec": 200520,
@@ -16193,7 +16493,9 @@
       "acuerdo_fdm": "Sesión ordinaria del 27/08/2026, acuerdo 07",
       "ampliacion_presupuestal": 0.0,
       "costo_total": 200520.0,
-      "estado_situacional": "POR EJECUTAR (EN PROCESO / SALDO)"
+      "es_obra_civil": false,
+      "tiene_fecha_termino": false,
+      "estado_situacional": ""
     },
     {
       "id": 143,
@@ -16201,7 +16503,7 @@
       "provincia": "ILO",
       "desc": "ADQUISICION DE MANERA EXPCEPCIONAL DE 03 MOTOS ACUATICAS TIPO RESCATE",
       "cui": "N/D",
-      "tipologia": "ADQUISICIONES / SERVICIOS",
+      "tipologia": "ADQUISICIONES / EQUIPAMIENTO / SERVICIOS",
       "estatus": "POR EJECUTAR",
       "prio": 315000.0,
       "costo_ejec": 315000,
@@ -16244,7 +16546,9 @@
       "acuerdo_fdm": "Sesión ordinaria del 27/08/2026, acuerdo 07",
       "ampliacion_presupuestal": 0.0,
       "costo_total": 315000.0,
-      "estado_situacional": "POR EJECUTAR (EN PROCESO / SALDO)"
+      "es_obra_civil": false,
+      "tiene_fecha_termino": false,
+      "estado_situacional": ""
     },
     {
       "id": 144,
@@ -16252,7 +16556,7 @@
       "provincia": "ILO",
       "desc": "ADQUISICION DE MANERA EXPCEPCIONAL DE 01 CAMION GRUA ELEVADOR",
       "cui": "N/D",
-      "tipologia": "ADQUISICIONES / SERVICIOS",
+      "tipologia": "ADQUISICIONES / EQUIPAMIENTO / SERVICIOS",
       "estatus": "POR EJECUTAR",
       "prio": 479000.0,
       "costo_ejec": 479000,
@@ -16295,7 +16599,9 @@
       "acuerdo_fdm": "Sesión ordinaria del 27/08/2026, acuerdo 07",
       "ampliacion_presupuestal": 0.0,
       "costo_total": 479000.0,
-      "estado_situacional": "POR EJECUTAR (EN PROCESO / SALDO)"
+      "es_obra_civil": false,
+      "tiene_fecha_termino": false,
+      "estado_situacional": ""
     },
     {
       "id": 145,
@@ -16303,7 +16609,7 @@
       "provincia": "ILO",
       "desc": "ADQUISICION DE MANERA EXPCEPCIONAL DE 01 CAMION GRUA CON PLATAFORMA",
       "cui": "N/D",
-      "tipologia": "ADQUISICIONES / SERVICIOS",
+      "tipologia": "ADQUISICIONES / EQUIPAMIENTO / SERVICIOS",
       "estatus": "POR EJECUTAR",
       "prio": 449000.0,
       "costo_ejec": 449000,
@@ -16346,7 +16652,9 @@
       "acuerdo_fdm": "Sesión ordinaria del 27/08/2026, acuerdo 07",
       "ampliacion_presupuestal": 0.0,
       "costo_total": 449000.0,
-      "estado_situacional": "POR EJECUTAR (EN PROCESO / SALDO)"
+      "es_obra_civil": false,
+      "tiene_fecha_termino": false,
+      "estado_situacional": ""
     },
     {
       "id": 146,
@@ -16396,7 +16704,9 @@
       ],
       "ampliacion_presupuestal": 0.0,
       "costo_total": 7196836.16,
-      "estado_situacional": "POR APROBARSE"
+      "es_obra_civil": true,
+      "tiene_fecha_termino": false,
+      "estado_situacional": ""
     },
     {
       "id": 147,
@@ -16404,7 +16714,7 @@
       "provincia": "GENERAL SÁNCHEZ CERRO",
       "desc": "ADQUISICION DE CONTENEDORES DE 1100 LITROS PARA EL MEJORAMIENTO DE LA GESTION INTEGRAL DE LOS RESIDUOS SOLIDOS MUNICIPALES DE LA PROVINCIA GENERAL SANCHEZ CERRO",
       "cui": "N/D",
-      "tipologia": "OBRAS CIVILES",
+      "tipologia": "ADQUISICIONES / EQUIPAMIENTO / SERVICIOS",
       "estatus": "EJECUTADO",
       "prio": 1850000.0,
       "costo_ejec": 2490000.0,
@@ -16447,7 +16757,9 @@
       "acuerdo_fdm": "Sesión extraordinaria del 13/06/2025",
       "ampliacion_presupuestal": 640000.0,
       "costo_total": 2490000.0,
-      "estado_situacional": "EJECUTADO"
+      "es_obra_civil": false,
+      "tiene_fecha_termino": false,
+      "estado_situacional": ""
     },
     {
       "id": 148,
@@ -16455,7 +16767,7 @@
       "provincia": "GENERAL SÁNCHEZ CERRO",
       "desc": "ADQUISICION DE ANALIZADOR BIOQUIMICO SEMI AUTOMATICO, ANALIZADOR HEMATOLOGICO, INCUBADORA PARA CULTIVO (INS) Y MICROSCOPIO BINOCULAR (TELEMEDICINA); ADEMAS DE OTROS ACTIVOS EN EL CENTRO DE SALUD DE OMATE, DISTRITO DE OMATE, PROVINCIA GENERAL SANCHEZ CERRO, DEPARTAMENTO DE MOQUEGUA",
       "cui": "N/D",
-      "tipologia": "ADQUISICIONES / SERVICIOS",
+      "tipologia": "ADQUISICIONES / EQUIPAMIENTO / SERVICIOS",
       "estatus": "POR EJECUTAR",
       "prio": 1116395.05,
       "costo_ejec": 1160822.0,
@@ -16498,7 +16810,9 @@
       "acuerdo_fdm": "Sesión extraordinaria del 21/07/2025",
       "ampliacion_presupuestal": 0.0,
       "costo_total": 1160822.0,
-      "estado_situacional": "POR EJECUTAR (EN PROCESO / SALDO)"
+      "es_obra_civil": false,
+      "tiene_fecha_termino": false,
+      "estado_situacional": ""
     },
     {
       "id": 149,
@@ -16506,7 +16820,7 @@
       "provincia": "GENERAL SÁNCHEZ CERRO",
       "desc": "MEJORAMIENTO DEL SERVICIO DE SEGURIDAD CIUDADANA LOCAL EN LA MUNICIPALIDAD, PROV. GRAL S. CERRO DISTRITO DE OMATE",
       "cui": "N/D",
-      "tipologia": "OBRAS CIVILES",
+      "tipologia": "ADQUISICIONES / EQUIPAMIENTO / SERVICIOS",
       "estatus": "POR EJECUTAR",
       "prio": 8717904.54,
       "costo_ejec": 823998.54,
@@ -16549,7 +16863,9 @@
       "acuerdo_fdm": "Sesión extraordinaria del 17/12/2025",
       "ampliacion_presupuestal": 0.0,
       "costo_total": 8717904.54,
-      "estado_situacional": "POR EJECUTAR (EN PROCESO / SALDO)"
+      "es_obra_civil": false,
+      "tiene_fecha_termino": false,
+      "estado_situacional": ""
     },
     {
       "id": 150,
@@ -16557,7 +16873,7 @@
       "provincia": "GENERAL SÁNCHEZ CERRO",
       "desc": "APOYO ANTE EMERGENCIA POR LLUVIAS 2026",
       "cui": "N/D",
-      "tipologia": "ADQUISICIONES / SERVICIOS",
+      "tipologia": "ADQUISICIONES / EQUIPAMIENTO / SERVICIOS",
       "estatus": "EJECUTADO",
       "prio": 144130.0,
       "costo_ejec": 174000.0,
@@ -16598,7 +16914,9 @@
         "EO - SC F12"
       ],
       "costo_total": 174000.0,
-      "estado_situacional": "EJECUTADO"
+      "es_obra_civil": false,
+      "tiene_fecha_termino": false,
+      "estado_situacional": ""
     },
     {
       "id": 151,
@@ -16606,7 +16924,7 @@
       "provincia": "GENERAL SÁNCHEZ CERRO",
       "desc": "ADQUISICION DE 3,000 GALONES DE PETROLEO",
       "cui": "N/D",
-      "tipologia": "ADQUISICIONES / SERVICIOS",
+      "tipologia": "ADQUISICIONES / EQUIPAMIENTO / SERVICIOS",
       "estatus": "POR EJECUTAR",
       "prio": 0,
       "costo_ejec": 0.0,
@@ -16649,7 +16967,9 @@
       "acuerdo_fdm": "Sesión ordinaria del 31/03/2026, acuerdo 12",
       "ampliacion_presupuestal": 0.0,
       "costo_total": 0.0,
-      "estado_situacional": "POR EJECUTAR"
+      "es_obra_civil": false,
+      "tiene_fecha_termino": false,
+      "estado_situacional": ""
     },
     {
       "id": 152,
@@ -16657,7 +16977,7 @@
       "provincia": "GENERAL SÁNCHEZ CERRO",
       "desc": "FORTALECIMIENTO DE CAPACIDADES PARA LA MEJORA DE LA PRODUCCION AGROPECUARIA EN LA PROVINCIA GENERAL SANCHEZ CERRO",
       "cui": "N/D",
-      "tipologia": "ADQUISICIONES / SERVICIOS",
+      "tipologia": "ADQUISICIONES / EQUIPAMIENTO / SERVICIOS",
       "estatus": "POR EJECUTAR",
       "prio": 2500000.0,
       "costo_ejec": 10000.0,
@@ -16700,7 +17020,9 @@
       "acuerdo_fdm": "Sesión ordinaria del 31/03/2026, acuerdo 13",
       "ampliacion_presupuestal": 0.0,
       "costo_total": 2500000.0,
-      "estado_situacional": "POR EJECUTAR (EN PROCESO / SALDO)"
+      "es_obra_civil": false,
+      "tiene_fecha_termino": false,
+      "estado_situacional": ""
     },
     {
       "id": 153,
@@ -16708,7 +17030,7 @@
       "provincia": "GENERAL SÁNCHEZ CERRO",
       "desc": "FICHA: FORTALECIMIENTO DE CAPACIDADES PROD. AGROPECUARIA PROV. S.CERRO",
       "cui": "N/D",
-      "tipologia": "ADQUISICIONES / SERVICIOS",
+      "tipologia": "ADQUISICIONES / EQUIPAMIENTO / SERVICIOS",
       "estatus": "EJECUTADO",
       "prio": 2500000.0,
       "costo_ejec": 448736.07,
@@ -16750,7 +17072,9 @@
       ],
       "ampliacion_presupuestal": 0.0,
       "costo_total": 2500000.0,
-      "estado_situacional": "EJECUTADO"
+      "es_obra_civil": false,
+      "tiene_fecha_termino": false,
+      "estado_situacional": ""
     },
     {
       "id": 154,
@@ -16783,7 +17107,10 @@
       "estatus": "EN EJECUCION",
       "ampliacion_presupuestal": 0.0,
       "costo_total": 345504.0,
-      "estado_situacional": "EN EJECUCION"
+      "es_obra_civil": false,
+      "tipologia": "EXPEDIENTE TÉCNICO",
+      "tiene_fecha_termino": false,
+      "estado_situacional": ""
     },
     {
       "id": 155,
@@ -16815,7 +17142,10 @@
       "estatus": "EJECUTADO",
       "ampliacion_presupuestal": 0.0,
       "costo_total": 132115.79,
-      "estado_situacional": "EJECUTADO"
+      "es_obra_civil": false,
+      "tipologia": "ADQUISICIONES / EQUIPAMIENTO / SERVICIOS",
+      "tiene_fecha_termino": false,
+      "estado_situacional": ""
     },
     {
       "id": 156,
@@ -16852,7 +17182,10 @@
       "acuerdo_fdm": "Sesión extraordinaria del 20/05/2019",
       "estatus": "EN EJECUCION",
       "ampliacion_presupuestal": 1750000.0,
-      "costo_total": 23250000.0
+      "costo_total": 23250000.0,
+      "es_obra_civil": true,
+      "tipologia": "OBRAS CIVILES",
+      "tiene_fecha_termino": true
     },
     {
       "id": 157,
@@ -16886,7 +17219,10 @@
       "estatus": "EJECUTADO",
       "ampliacion_presupuestal": 0.0,
       "costo_total": 646911.7,
-      "estado_situacional": "EJECUTADO"
+      "es_obra_civil": false,
+      "tipologia": "ADQUISICIONES / EQUIPAMIENTO / SERVICIOS",
+      "tiene_fecha_termino": false,
+      "estado_situacional": ""
     },
     {
       "id": 158,
@@ -16919,7 +17255,10 @@
       "estatus": "EJECUTADO",
       "ampliacion_presupuestal": 0.0,
       "costo_total": 36103.33,
-      "estado_situacional": "EJECUTADO"
+      "es_obra_civil": false,
+      "tipologia": "ADQUISICIONES / EQUIPAMIENTO / SERVICIOS",
+      "tiene_fecha_termino": false,
+      "estado_situacional": ""
     },
     {
       "id": 159,
@@ -16951,7 +17290,10 @@
       "estatus": "EN EJECUCION",
       "ampliacion_presupuestal": 0.0,
       "costo_total": 8500.0,
-      "estado_situacional": "EN EJECUCION"
+      "es_obra_civil": false,
+      "tipologia": "ADQUISICIONES / EQUIPAMIENTO / SERVICIOS",
+      "tiene_fecha_termino": false,
+      "estado_situacional": ""
     },
     {
       "id": 160,
@@ -16983,7 +17325,10 @@
       "estatus": "EJECUTADO",
       "ampliacion_presupuestal": 0.0,
       "costo_total": 100395.0,
-      "estado_situacional": "EJECUTADO"
+      "es_obra_civil": false,
+      "tipologia": "ADQUISICIONES / EQUIPAMIENTO / SERVICIOS",
+      "tiene_fecha_termino": false,
+      "estado_situacional": ""
     },
     {
       "id": 161,
@@ -17016,7 +17361,10 @@
       "estatus": "EJECUTADO",
       "ampliacion_presupuestal": 0.0,
       "costo_total": 36103.33,
-      "estado_situacional": "EJECUTADO"
+      "es_obra_civil": false,
+      "tipologia": "ADQUISICIONES / EQUIPAMIENTO / SERVICIOS",
+      "tiene_fecha_termino": false,
+      "estado_situacional": ""
     },
     {
       "id": 162,
@@ -17048,7 +17396,10 @@
       "estatus": "EN EJECUCION",
       "ampliacion_presupuestal": 0.0,
       "costo_total": 19749.8,
-      "estado_situacional": "EN EJECUCION"
+      "es_obra_civil": false,
+      "tipologia": "ADQUISICIONES / EQUIPAMIENTO / SERVICIOS",
+      "tiene_fecha_termino": false,
+      "estado_situacional": ""
     },
     {
       "id": 163,
@@ -17081,7 +17432,10 @@
       "estatus": "EJECUTADO",
       "ampliacion_presupuestal": 0.0,
       "costo_total": 1441861.6,
-      "estado_situacional": "EJECUTADO"
+      "es_obra_civil": false,
+      "tipologia": "ADQUISICIONES / EQUIPAMIENTO / SERVICIOS",
+      "tiene_fecha_termino": false,
+      "estado_situacional": ""
     },
     {
       "id": 164,
@@ -17113,7 +17467,10 @@
       "estatus": "EJECUTADO",
       "ampliacion_presupuestal": 0.0,
       "costo_total": 7028.96,
-      "estado_situacional": "EJECUTADO"
+      "es_obra_civil": false,
+      "tipologia": "ADQUISICIONES / EQUIPAMIENTO / SERVICIOS",
+      "tiene_fecha_termino": false,
+      "estado_situacional": ""
     },
     {
       "id": 165,
@@ -17145,7 +17502,10 @@
       "estatus": "EJECUTADO",
       "ampliacion_presupuestal": 5500.0,
       "costo_total": 14500.0,
-      "estado_situacional": "EJECUTADO"
+      "es_obra_civil": false,
+      "tipologia": "ADQUISICIONES / EQUIPAMIENTO / SERVICIOS",
+      "tiene_fecha_termino": false,
+      "estado_situacional": ""
     },
     {
       "id": 166,
@@ -17178,7 +17538,10 @@
       "estatus": "POR EJECUTAR",
       "ampliacion_presupuestal": 0.0,
       "costo_total": 718206.22,
-      "estado_situacional": "POR EJECUTAR"
+      "es_obra_civil": false,
+      "tipologia": "ADQUISICIONES / EQUIPAMIENTO / SERVICIOS",
+      "tiene_fecha_termino": false,
+      "estado_situacional": ""
     },
     {
       "id": 167,
@@ -17211,7 +17574,10 @@
       "estatus": "POR EJECUTAR",
       "ampliacion_presupuestal": 0.0,
       "costo_total": 688114.07,
-      "estado_situacional": "POR EJECUTAR (EN PROCESO / SALDO)"
+      "es_obra_civil": false,
+      "tipologia": "ADQUISICIONES / EQUIPAMIENTO / SERVICIOS",
+      "tiene_fecha_termino": false,
+      "estado_situacional": ""
     },
     {
       "id": 168,
@@ -17244,7 +17610,10 @@
       "estatus": "POR EJECUTAR",
       "ampliacion_presupuestal": 0.0,
       "costo_total": 1578000.0,
-      "estado_situacional": "POR EJECUTAR"
+      "es_obra_civil": false,
+      "tipologia": "ADQUISICIONES / EQUIPAMIENTO / SERVICIOS",
+      "tiene_fecha_termino": false,
+      "estado_situacional": ""
     },
     {
       "id": 169,
@@ -17277,7 +17646,10 @@
       "estatus": "POR EJECUTAR",
       "ampliacion_presupuestal": 0.0,
       "costo_total": 400000.0,
-      "estado_situacional": "POR EJECUTAR"
+      "es_obra_civil": false,
+      "tipologia": "ADQUISICIONES / EQUIPAMIENTO / SERVICIOS",
+      "tiene_fecha_termino": false,
+      "estado_situacional": ""
     },
     {
       "id": 999,
@@ -17322,7 +17694,11 @@
       "confiabilidad": "ALTA",
       "total_relevantes": 0,
       "es_auditoria_2022_2025": false,
-      "es_multiproyecto": true
+      "es_multiproyecto": true,
+      "es_obra_civil": false,
+      "tiene_fecha_termino": false,
+      "estado_situacional": ""
     }
-  ]
+  ],
+  "obras_civiles_count": 72
 }

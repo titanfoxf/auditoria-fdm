@@ -305,6 +305,36 @@
     .audit-master-table th { position: sticky; top: 0; background: #1E293B; color: #F8FAFC; padding: 0.65rem 0.6rem; font-size: 0.71rem; text-transform: uppercase; letter-spacing: 0.3px; text-align: left; z-index: 2; }
     .audit-master-table td { padding: 0.6rem; border-bottom: 1px solid #E2E8F0; vertical-align: top; }
     .audit-master-table tr:hover td { background: #F8FAFC; }
+
+    /* Interfaz Limpia Priorizando Status Excel, Obras Civiles y Ubicacion por Ambientes */
+    .scope-bar { display: flex; gap: 0.5rem; flex-wrap: wrap; align-items: center; padding-bottom: 0.75rem; margin-bottom: 0.75rem; border-bottom: 1px solid var(--border); }
+    .scope-btn { background: #F8FAFC; border: 1.5px solid #CBD5E1; color: #334155; padding: 0.45rem 0.9rem; border-radius: 9px; font-size: 0.82rem; font-weight: 800; cursor: pointer; display: inline-flex; align-items: center; gap: 0.4rem; transition: all 0.15s; }
+    .scope-btn:hover { border-color: #2563EB; color: #1D4ED8; background: #EFF6FF; }
+    .scope-btn.active { background: #1E3A8A; border-color: #1E3A8A; color: #FFFFFF; box-shadow: 0 2px 6px rgba(30,58,138,0.28); }
+
+    .col-status { width: 118px; max-width: 120px; text-align: center; vertical-align: middle !important; }
+    .status-stack { display: flex; flex-direction: column; align-items: center; gap: 4px; width: 100%; max-width: 112px; margin: 0 auto; }
+    .status-pill { display: block; width: 100%; white-space: normal; word-wrap: break-word; overflow-wrap: break-word; text-align: center; line-height: 1.15; font-size: 0.67rem; font-weight: 800; padding: 0.24rem 0.36rem; border-radius: 6px; box-sizing: border-box; letter-spacing: 0.15px; }
+    .st-ejec { background: #DCFCE7; color: #166534; border: 1px solid #86EFAC; }
+    .st-enejec { background: #FEF3C7; color: #B45309; border: 1px solid #FCD34D; }
+    .st-porejec { background: #F1F5F9; color: #475569; border: 1px solid #CBD5E1; }
+    .st-cambio { background: #FFEDD5; color: #C2410C; border: 1px solid #FDBA74; }
+    .st-obs { background: #FEE2E2; color: #B91C1C; border: 1px solid #FCA5A5; }
+    .st-liq { background: #059669; color: #FFFFFF; border: 1px solid #047857; }
+    .st-enliq { background: #E0F2FE; color: #0369A1; border: 1px solid #7DD3FC; }
+
+    .amb-breakdown-list { display: flex; flex-direction: column; gap: 5px; text-align: left; font-size: 0.72rem; min-width: 225px; }
+    .amb-card-mini { background: #F8FAFC; border: 1px solid #CBD5E1; border-left: 3.5px solid #16A34A; border-radius: 6px; padding: 0.32rem 0.5rem; }
+    .amb-card-mini-hdr { font-weight: 800; color: #15803D; display: flex; justify-content: space-between; align-items: center; gap: 4px; margin-bottom: 2px; font-size: 0.72rem; }
+    .amb-box-line { font-size: 0.69rem; color: #334155; line-height: 1.28; padding: 1px 0; border-top: 1px dashed #E2E8F0; }
+    .amb-box-line:first-of-type { border-top: none; }
+    .amb-box-code { font-family: monospace; font-weight: 800; color: #1E3A8A; }
+
+    .quick-dates-bar { background: #EFF6FF; border: 1.5px solid #BFDBFE; border-radius: 10px; padding: 0.75rem 0.9rem; margin-bottom: 0.85rem; }
+    .quick-dates-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 0.55rem; align-items: end; margin-top: 0.45rem; }
+    .quick-date-input { width: 100%; padding: 0.42rem 0.55rem; border: 1.5px solid #93C5FD; border-radius: 6px; font-size: 0.82rem; font-family: monospace; background: #FFFFFF; box-sizing: border-box; }
+    .drawer-amb-map-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 0.75rem; margin-bottom: 0.9rem; }
+    .drawer-amb-card { background: #FFFFFF; border: 1.5px solid #BBF7D0; border-left: 4px solid #16A34A; border-radius: 10px; padding: 0.7rem 0.85rem; box-shadow: 0 2px 6px rgba(0,0,0,0.04); }
   </style>
 </head>
 <body>
@@ -338,169 +368,82 @@
 
   <div class="container">
     
-    <!-- Metrics Grid -->
+    <!-- Focused Audit Metrics Grid (5 Key KPIs) -->
     <div class="metrics-grid">
-      <div class="metric-card blue" onclick="setFilter('ALL', document.getElementById('btnTabAll'))">
-        <div class="title">Total Obras Civiles <span>🏗️</span></div>
-        <div class="value" id="kpi-total">69</div>
-        <div class="desc">100% Cartera Auditada FDM</div>
+      <div class="metric-card blue" onclick="setScope('CIVIL'); setFilter('ALL', document.getElementById('btnTabAll'));">
+        <div class="title">Obras Civiles Objetivo <span>🏗️</span></div>
+        <div class="value" id="kpi-total">72</div>
+        <div class="desc" id="kpi-total-desc">Proyectos objetivo de auditoría</div>
       </div>
-      <div class="metric-card green" onclick="setFilter('COMPLETA', document.getElementById('btnTabCompleta'))">
-        <div class="title">Información Completa <span>🟢</span></div>
-        <div class="value" id="kpi-completa" style="color: #16A34A;">29</div>
-        <div class="desc">En Caja FDM o Inicio+Cierre probado</div>
+      <div class="metric-card green" onclick="setFilter('CAJAS', document.getElementById('btnTabCajas'))">
+        <div class="title">Ubicadas en Campo <span>📦</span></div>
+        <div class="value" id="kpi-cajas" style="color: #16A34A;">0</div>
+        <div class="desc">Con cajas / ambientes censados</div>
       </div>
-      <div class="metric-card yellow" onclick="setFilter('PARCIAL', document.getElementById('btnTabParcial'))">
-        <div class="title">Trazabilidad Parcial <span>🟡</span></div>
-        <div class="value" id="kpi-parcial" style="color: #CA8A04;">10</div>
-        <div class="desc">Hitos en tomos; falta inicio o liq.</div>
+      <div class="metric-card red" onclick="setFilter('PRIO_SIN_CENSAR', document.getElementById('btnTabPrioCensar'))">
+        <div class="title">🚨 Ejecutadas Sin Censar <span>🔍</span></div>
+        <div class="value" id="kpi-prio-censar" style="color: #DC2626;">0</div>
+        <div class="desc">Prioridad urgente por ubicar en campo</div>
       </div>
-      <div class="metric-card red" onclick="setFilter('SIN_INICIO', document.getElementById('btnTabSinInicio'))">
-        <div class="title">⚠️ Sin Fecha Inicio <span>🚨</span></div>
-        <div class="value" id="kpi-sin-inicio" style="color: #DC2626;">38</div>
-        <div class="desc">Pendiente ubicar en Archivo Central</div>
+      <div class="metric-card yellow" onclick="setFilter('FALTA_FECHAS', document.getElementById('btnTabFaltaFechas'))">
+        <div class="title">📅 Ejecutadas Sin Fechas <span>⏱️</span></div>
+        <div class="value" id="kpi-falta-fechas" style="color: #CA8A04;">0</div>
+        <div class="desc">Falta fecha inicio y/o término</div>
       </div>
-      <div class="metric-card purple" onclick="setFilter('CAJAS', document.getElementById('btnTabCajas'))">
-        <div class="title">En Cajas Rotuladas <span>📦</span></div>
-        <div class="value" id="kpi-cajas" style="color: #9333EA;">10</div>
-        <div class="desc">Expedientes físicos en custodia</div>
-      </div>
-    </div>
-
-    <!-- Analytics Dashboard Panels -->
-    <div class="analytics-panel">
-      <!-- Widget 1: Estado de Auditoría (Audit Readiness) -->
-      <div class="analytics-card">
-        <div class="analytics-title">
-          <span>📊 Estado Documental de Auditoría</span>
-          <span id="readinessPercent">42.0% Completo</span>
-        </div>
-        <div class="progress-bar-container">
-          <div class="progress-label">
-            <span style="color: #16A34A;">🟢 Completas (<span id="statComp">29</span>)</span>
-            <span style="color: #CA8A04;">🟡 Parciales (<span id="statParc">10</span>)</span>
-            <span style="color: #DC2626;">🔴 Pendientes (<span id="statPend">26</span>)</span>
-            <span style="color: #64748B;">⚪ No Aplica (<span id="statNoAp">4</span>)</span>
-          </div>
-          <div class="progress-track">
-            <div id="progFillComp" class="progress-fill" style="width: 42.0%; background: #16A34A;"></div>
-            <div id="progFillParc" class="progress-fill" style="width: 14.5%; background: #EAB308;"></div>
-            <div id="progFillPend" class="progress-fill" style="width: 37.7%; background: #DC2626;"></div>
-            <div id="progFillNoAp" class="progress-fill" style="width: 5.8%; background: #94A3B8;"></div>
-          </div>
-        </div>
-        <div class="stats-pill-grid" style="margin-top: 1rem;">
-          <div class="stat-mini-pill" onclick="setFilter('COMPLETA', document.getElementById('btnTabCompleta'))" style="cursor: pointer;">
-            <div class="lbl">Sustento Pleno</div>
-            <div class="num" style="color: #16A34A;" id="miniSustento">29 obras</div>
-          </div>
-          <div class="stat-mini-pill" onclick="setFilter('PARCIAL', document.getElementById('btnTabParcial'))" style="cursor: pointer;">
-            <div class="lbl">En Trazabilidad</div>
-            <div class="num" style="color: #CA8A04;" id="miniTrazabilidad">10 obras</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Widget 2: Distribución por Provincia -->
-      <div class="analytics-card">
-        <div class="analytics-title">
-          <span>📍 Distribución Territorial</span>
-          <span>69 Obras Civiles</span>
-        </div>
-        <div style="display: flex; flex-direction: column; gap: 0.6rem;">
-          <div>
-            <div class="progress-label">
-              <span>⚓ Provincia de Ilo</span>
-              <span id="provIloCount">20 obras</span>
-            </div>
-            <div class="progress-track">
-              <div class="progress-fill" style="width: 29.0%; background: #2563EB;"></div>
-            </div>
-          </div>
-          <div>
-            <div class="progress-label">
-              <span>🏛️ Provincia Mariscal Nieto</span>
-              <span id="provMNCount">12 obras</span>
-            </div>
-            <div class="progress-track">
-              <div class="progress-fill" style="width: 17.4%; background: #0D9488;"></div>
-            </div>
-          </div>
-          <div>
-            <div class="progress-label">
-              <span>🌾 General Sánchez Cerro</span>
-              <span id="provGSCCount">37 obras</span>
-            </div>
-            <div class="progress-track">
-              <div class="progress-fill" style="width: 53.6%; background: #8B5CF6;"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Widget 3: Avance Acumulado de Tomos Auditados -->
-      <div class="analytics-card">
-        <div class="analytics-title">
-          <span>📚 Acervo Documentario Procesado</span>
-          <span>19 Tomos PMO (2022-2024)</span>
-        </div>
-        <div class="stats-pill-grid">
-          <div class="stat-mini-pill">
-            <div class="lbl">Folios Físicos OCR</div>
-            <div class="num" style="color: #2563EB;">1,600+ Folios</div>
-          </div>
-          <div class="stat-mini-pill">
-            <div class="lbl">Periodo Analizado</div>
-            <div class="num" style="font-size: 0.95rem; color: #0F172A;">2022 - 2026 (Auditoría)</div>
-          </div>
-          <div class="stat-mini-pill">
-            <div class="lbl">Hitos Vinculados</div>
-            <div class="num" style="color: #0D9488;">776 Actuados</div>
-          </div>
-          <div class="stat-mini-pill">
-            <div class="lbl">Cajas en Custodia</div>
-            <div class="num" style="color: #9333EA;">10 Cajas</div>
-          </div>
-        </div>
+      <div class="metric-card purple" onclick="setFilter('LIQUIDADO_ALL', document.getElementById('btnTabLiq'))">
+        <div class="title">Liquidadas / En Liq. <span>🏆</span></div>
+        <div class="value" id="kpi-liquidadas" style="color: #059669;">0</div>
+        <div class="desc">Situación confirmada Excel Ing.</div>
       </div>
     </div>
 
     <!-- Controls Bar -->
     <div class="controls-card">
+      <div class="scope-bar">
+        <span style="font-size: 0.76rem; font-weight: 800; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.4px; margin-right: 0.25rem;">Vista:</span>
+        <button type="button" class="scope-btn active" id="btnScopeCivil" onclick="setScope('CIVIL', this)">
+          🏗️ Obras Civiles Objetivo (<span id="countScopeCivil">72</span>)
+        </button>
+        <button type="button" class="scope-btn" id="btnScopeAll" onclick="setScope('ALL', this)">
+          📋 Toda la Cartera Excel (<span id="countScopeAll">170</span>)
+        </button>
+        <button type="button" class="scope-btn" id="btnScopeMulti" onclick="setScope('MULTI', this)">
+          🔀 Cajas Mixtas (<span id="countScopeMulti">1</span>)
+        </button>
+      </div>
+
       <div class="controls-top">
         <div class="search-input">
           <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
-          <input type="text" id="searchInput" placeholder="Buscar por nombre, CUI, provincia, fecha de inicio, documento o razón..." oninput="filterTable()">
+          <input type="text" id="searchInput" placeholder="Buscar obra, CUI, provincia, status Excel, ambiente (ej. BAÑO2), código de caja, valorización o informe..." oninput="filterTable()">
         </div>
         <div class="sort-controls">
           <span class="sort-label">Ordenar:</span>
           <select id="sortSelect" class="sort-select" onchange="changeSort(this.value)">
-            <option value="ID_ASC">N° Obra Civil (1 a 69)</option>
+            <option value="PRIORITY_AUDIT">🎯 Prioridad: Ejecutadas y Faltantes primero</option>
+            <option value="ID_ASC">N° Proyecto (1 a N)</option>
             <option value="DATE_ASC">📅 Fecha de Inicio (Más antiguas primero)</option>
             <option value="DATE_DESC">📅 Fecha de Inicio (Más recientes primero)</option>
-            <option value="MISSING_FIRST">⚠️ Obras sin Fecha Inicio primero</option>
-            <option value="STATUS_ALERT">🚨 Estado de Información (Incompletas primero)</option>
             <option value="COST_DESC">💰 Mayor Costo Ejecutado</option>
           </select>
         </div>
       </div>
 
       <div class="filter-tabs">
-        <button class="tab-btn active" onclick="setFilter('ALL', this)" id="btnTabAll">Todas (<span id="countTabAll">170</span>)</button>
-        <button class="tab-btn" onclick="setFilter('AUDIT_SCOPE', this)" id="btnTabAudit" style="color: #1D4ED8; border-color: #93C5FD; font-weight: 700;">🏛️ Muestra Auditoría (<span id="countTabAudit">70</span>)</button>
-        <button class="tab-btn" onclick="setFilter('MULTI_OBRA', this)" id="btnTabMultiObra" style="color: #7E22CE; border-color: #D8B4FE; font-weight: 700;">🔀 Cajas Mixtas (<span id="countTabMulti">1</span>)</button>
-        <button class="tab-btn green" onclick="setFilter('LIQUIDADO', this)" id="btnTabLiq">🏆 Liquidadas (0)</button>
-        <button class="tab-btn" onclick="setFilter('EN_LIQ_EXEC', this)" id="btnTabEnLiqExec" style="color: #0369A1; border-color: #BAE6FD; font-weight: 700;">⏳ En Liq. / Ejecución (0)</button>
-        <button class="tab-btn" onclick="setFilter('CON_VAL_INF', this)" id="btnTabValInf" style="color: #4338CA; border-color: #C7D2FE; font-weight: 700;">📊 Valoriz. / Inf. Final (0)</button>
-        <button class="tab-btn" onclick="setFilter('CAJAS', this)" id="btnTabCajas">📦 En Cajas FDM (0)</button>
-        <button class="tab-btn green" onclick="setFilter('COMPLETA', this)" id="btnTabCompleta">🟢 Info Completa (0)</button>
-        <button class="tab-btn alert" onclick="setFilter('PARCIAL', this)" id="btnTabParcial">🟡 Parcial (0)</button>
-        <button class="tab-btn red" onclick="setFilter('SIN_INICIO', this)" id="btnTabSinInicio">⚠️ Sin Inicio (0)</button>
-        <button class="tab-btn" onclick="setFilter('NO_APLICA', this)" id="btnTabNoAplica">⏸️ No Ejec. / Obs. (0)</button>
+        <button class="tab-btn active" onclick="setFilter('ALL', this)" id="btnTabAll">Todos (72)</button>
+        <button class="tab-btn red" onclick="setFilter('PRIO_SIN_CENSAR', this)" id="btnTabPrioCensar">🚨 Ejecutadas Sin Censar (0)</button>
+        <button class="tab-btn green" onclick="setFilter('CAJAS', this)" id="btnTabCajas">📦 Ubicadas en Campo (0)</button>
+        <button class="tab-btn" onclick="setFilter('SIN_CENSAR', this)" id="btnTabSinCensar">⏳ Todas Sin Censar (0)</button>
+        <button class="tab-btn alert" onclick="setFilter('FALTA_FECHAS', this)" id="btnTabFaltaFechas">📅 Ejecutadas Sin Inicio/Fin (0)</button>
+        <button class="tab-btn" onclick="setFilter('STATUS_EJECUTADO', this)" id="btnTabEjec" style="color: #166534; border-color: #86EFAC; font-weight: 700;">✅ EJECUTADO (0)</button>
+        <button class="tab-btn" onclick="setFilter('LIQUIDADO_ALL', this)" id="btnTabLiq" style="color: #047857; border-color: #6EE7B7; font-weight: 700;">🏆 LIQUIDADO / EN LIQ. (0)</button>
+        <button class="tab-btn" onclick="setFilter('STATUS_EN_EJEC', this)" id="btnTabEnEjec" style="color: #B45309; border-color: #FCD34D; font-weight: 700;">🚧 EN EJECUCIÓN (0)</button>
+        <button class="tab-btn" onclick="setFilter('STATUS_POR_EJEC', this)" id="btnTabPorEjec">⚪ POR EJECUTAR (0)</button>
+        <button class="tab-btn" onclick="setFilter('STATUS_OBS_CAMBIO', this)" id="btnTabObs">⚠️ OBS. / CAMBIO (0)</button>
         <span style="border-left: 1px solid var(--border); margin: 0 0.35rem;"></span>
         <button class="tab-btn" onclick="setFilter('PROV_ILO', this)" id="btnTabIlo">⚓ Ilo (0)</button>
-        <button class="tab-btn" onclick="setFilter('PROV_MN', this)" id="btnTabMN">🏛️ Mariscal Nieto (0)</button>
-        <button class="tab-btn" onclick="setFilter('PROV_GSC', this)" id="btnTabGSC">🌾 Sánchez Cerro (0)</button>
+        <button class="tab-btn" onclick="setFilter('PROV_MN', this)" id="btnTabMN">🏛️ M.N. (0)</button>
+        <button class="tab-btn" onclick="setFilter('PROV_GSC', this)" id="btnTabGSC">🌾 G.S.C. (0)</button>
       </div>
     </div>
 
@@ -509,15 +452,13 @@
       <table>
         <thead>
           <tr>
-            <th style="width: 45px; text-align: center;" class="sortable" onclick="toggleSort('ID')">N° ⇕</th>
-            <th style="width: 80px; text-align: center;">CONVENIO</th>
-            <th style="width: 85px;">PROVINCIA</th>
-            <th>DESCRIPCIÓN DEL PROYECTO / OBRA CIVIL</th>
-            <th style="width: 82px; text-align: center;">CUI</th>
-            <th style="width: 122px; text-align: center;" class="sortable" onclick="toggleSort('DATE')">INICIO / TÉRMINO ⇕</th>
-            <th style="width: 145px; text-align: center;">ESTATUS / SITUACIÓN</th>
-            <th style="width: 108px; text-align: right;">COSTO EJEC.</th>
-            <th style="width: 185px; text-align: center;">UBICACIÓN FDM &amp; ACERVO</th>
+            <th style="width: 44px; text-align: center;" class="sortable" onclick="toggleSort('ID')">N° ⇕</th>
+            <th style="width: 86px; text-align: center;">PROV. / CONV.</th>
+            <th>PROYECTO / OBRA CIVIL</th>
+            <th class="col-status">STATUS EXCEL</th>
+            <th style="width: 112px; text-align: center;" class="sortable" onclick="toggleSort('DATE')">INICIO / FIN ⇕</th>
+            <th style="width: 105px; text-align: right;">EJECUTADO</th>
+            <th style="width: 300px; text-align: left;">UBICACIÓN POR AMBIENTE Y CONTENIDO</th>
           </tr>
         </thead>
         <tbody id="projectsTableBody">
@@ -550,14 +491,14 @@
       </div>
 
       <div class="drawer-nav">
-        <div class="nav-tab active" onclick="switchDrawerTab('HISTORIAL')" id="tabNavHistorial">
-          📑 Historial y Trazabilidad (<span id="drawerCountHitos">0</span>)
+        <div class="nav-tab active" onclick="switchDrawerTab('UBICACION')" id="tabNavUbicacion">
+          📦 Ubicación por Ambientes y Cajas (<span id="drawerCountFotosCajas">0</span>)
+        </div>
+        <div class="nav-tab" onclick="switchDrawerTab('HISTORIAL')" id="tabNavHistorial">
+          📑 Historial PMO y Datos (<span id="drawerCountHitos">0</span>)
         </div>
         <div class="nav-tab" onclick="switchDrawerTab('CHECKLIST')" id="tabNavChecklist">
           📋 Checklist de Expediente
-        </div>
-        <div class="nav-tab" onclick="switchDrawerTab('UBICACION')" id="tabNavUbicacion">
-          📦 Evidencias Físicas y Fotos (<span id="drawerCountFotosCajas">0</span>)
         </div>
       </div>
 
@@ -675,11 +616,32 @@
         </div>
 
         <!-- Tab 3: Evidencias de Campo y Fotos de Cajas -->
-        <div id="drawerTabContentUbicacion" style="display: none;">
+        <div id="drawerTabContentUbicacion" style="display: block;">
+          <!-- Barra Rápida para Completar Fechas Faltantes en Gabinete -->
+          <div id="drawerQuickEditBar" class="quick-dates-bar">
+            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.4rem;">
+              <span style="font-size:0.78rem; font-weight:800; color:#1E3A8A;">⏱️ Completar / Verificar Fechas de Obra y Situación Actual</span>
+              <span id="drawerQuickStatusBadge" style="font-size:0.72rem; font-weight:700;"></span>
+            </div>
+            <div class="quick-dates-grid">
+              <div>
+                <label style="display:block; font-size:0.68rem; font-weight:700; color:#334155; margin-bottom:2px;">🚀 Fecha de Inicio (DD/MM/AAAA)</label>
+                <input type="text" id="quickInputInicio" class="quick-date-input" placeholder="Ej: 15/03/2023">
+              </div>
+              <div>
+                <label style="display:block; font-size:0.68rem; font-weight:700; color:#334155; margin-bottom:2px;">🏁 Fecha de Término (DD/MM/AAAA)</label>
+                <input type="text" id="quickInputTermino" class="quick-date-input" placeholder="Ej: 20/08/2023">
+              </div>
+              <div style="display:flex; gap:0.4rem;">
+                <button type="button" onclick="saveQuickDatesFromDrawer()" class="btn btn-primary" style="width:100%; padding:0.48rem 0.75rem; font-size:0.78rem; background:#1D4ED8;">💾 Guardar Fechas</button>
+              </div>
+            </div>
+          </div>
+
           <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem; background: #F8FAFC; border: 1px solid #CBD5E1; padding: 0.65rem 0.85rem; border-radius: 8px; flex-wrap: wrap; gap: 0.5rem;">
             <div>
-              <span style="font-size: 0.72rem; font-weight: 700; text-transform: uppercase; color: var(--text-muted);">Trazabilidad Física de Archivo:</span>
-              <div id="drawerResumenUbicacionText" style="font-size: 0.95rem; font-weight: 800; color: #2563EB;">Por ubicar en campo</div>
+              <span style="font-size: 0.72rem; font-weight: 700; text-transform: uppercase; color: var(--text-muted);">Resumen de Ubicación por Ambientes:</span>
+              <div id="drawerResumenUbicacionText" style="font-size: 0.92rem; font-weight: 800; color: #2563EB;">Por ubicar en campo</div>
             </div>
             <div style="display: flex; gap: 0.4rem; align-items: center;">
               <button id="btnEjecutarOcrObra" type="button" onclick="ejecutarOcrObraActual()" style="background: #0F766E; border: 1px solid #14B8A6; color: white; font-size: 0.76rem; font-weight: 700; padding: 0.4rem 0.75rem; border-radius: 6px; display: inline-flex; align-items: center; gap: 0.3rem; cursor: pointer;" title="Escanear fotos con OCR en Google Drive">
@@ -690,6 +652,9 @@
               </a>
             </div>
           </div>
+
+          <!-- Mapa de Ambientes y Partes Encontradas -->
+          <div id="drawerAmbientesMapContainer" class="drawer-amb-map-grid" style="display: none;"></div>
 
           <!-- Card de Acervo Documental Fila tras Fila -->
           <div id="boxAcervoConsolidado" style="display: none; background: #0B132B; border: 1.5px solid #1E293B; border-radius: 12px; padding: 0.9rem; color: white; margin-bottom: 1rem; box-shadow: 0 4px 14px rgba(0,0,0,0.15);">
@@ -734,8 +699,9 @@
 
   <script>
     let projectsData = [];
+    let currentScope = 'CIVIL'; // 'CIVIL' | 'ALL' | 'MULTI'
     let currentFilter = 'ALL';
-    let currentSort = 'ID_ASC';
+    let currentSort = 'PRIORITY_AUDIT';
     let selectedProjectId = null;
     let currentTimelineFilter = 'ALL';
     let currentTimelineView = 'TIMELINE'; // 'TIMELINE' or 'TREE'
@@ -985,6 +951,131 @@
       return res;
     }
 
+    // Agrupa TODAS las cajas y doc. sueltos por AMBIENTE para responder donde esta cada parte del proyecto
+    function getDetailedAmbientesBreakdown(obraId) {
+      const fData = fieldPhotosMap[obraId];
+      if (!fData || !fData.fotos || fData.fotos.length === 0) {
+        return { hasCenso: false, totalAmbientes: 0, totalUnidades: 0, ambientes: [] };
+      }
+
+      const ambMap = {};
+      fData.fotos.forEach(f => {
+        const amb = (f.ubicacion || fData.ubicacion || 'Ambiente').trim();
+        const cod = (f.codigo_caja || f.nota || 'SIN_CODIGO').trim();
+        const isSuelto = (f.slot === 'suelto') || cod.includes('SUELTO');
+        if (!ambMap[amb]) ambMap[amb] = {};
+        if (!ambMap[amb][cod]) {
+          ambMap[amb][cod] = { codigo: cod, isSuelto, notes: new Set(), ocrs: new Set(), fotosCount: 0 };
+        }
+        ambMap[amb][cod].fotosCount++;
+        const note = (f.nota || '').trim();
+        if (note && note !== cod && note !== 'Contenido no especificado') {
+          ambMap[amb][cod].notes.add(note);
+        }
+        const ocr = (f.ocr_acervo || '').trim();
+        if (ocr) {
+          ocr.split('|').forEach(part => {
+            const s = part.trim();
+            if (s) ambMap[amb][cod].ocrs.add(s);
+          });
+        }
+      });
+
+      const ambientes = Object.entries(ambMap).map(([ambiente, itemsObj]) => {
+        const items = Object.values(itemsObj).map(it => {
+          const contenido = Array.from(it.notes).join('; ');
+          const ocrText = Array.from(it.ocrs).join(', ');
+          return {
+            codigo: it.codigo,
+            isSuelto: it.isSuelto,
+            contenido: contenido || ocrText || '',
+            fotosCount: it.fotosCount
+          };
+        });
+        return {
+          ambiente,
+          cajasCount: items.filter(x => !x.isSuelto).length,
+          sueltosCount: items.filter(x => x.isSuelto).length,
+          items
+        };
+      });
+
+      const totalUnidades = ambientes.reduce((acc, a) => acc + a.items.length, 0);
+      return { hasCenso: true, totalAmbientes: ambientes.length, totalUnidades, ambientes };
+    }
+
+    function isProjectExecutedOrLiquidated(p) {
+      const est = (p.estatus || '').toUpperCase().trim();
+      const sit = (p.estado_situacional || '').toUpperCase().trim();
+      return est === 'EJECUTADO' || sit === 'LIQUIDADO' || sit.includes('LIQUIDACION') || sit.includes('FINALIZADO');
+    }
+
+    function isProjectMissingCensus(p) {
+      if (p.id === 999 || p.es_multiproyecto) return false;
+      const fData = fieldPhotosMap[p.id];
+      return !(fData && fData.fotos && fData.fotos.length > 0);
+    }
+
+    function hasValidStart(p) {
+      const ini = (p.fecha_inicio || '').trim();
+      return !!p.tiene_fecha_inicio && !!ini && !ini.toUpperCase().includes('SIN INICIO') && !ini.toUpperCase().includes('POR UBICAR');
+    }
+
+    function hasValidEnd(p) {
+      if (p.tiene_fecha_termino) return true;
+      const fin = (p.fecha_termino_verificada_ing || p.fecha_culminacion_real || '').trim();
+      return !!fin && fin !== '-' && fin !== 'Culminada' && fin !== 'Sin dato' && fin !== 'Sin dato en PMO' && /\d/.test(fin);
+    }
+
+    function renderStatusStackHtml(p) {
+      const est = (p.estatus || 'SIN STATUS').toUpperCase().trim();
+      const sit = (p.estado_situacional || '').toUpperCase().trim();
+
+      let estCls = 'st-porejec';
+      let estLabel = est;
+      if (est === 'EJECUTADO') {
+        estCls = 'st-ejec';
+        estLabel = '✅ EJECUTADO';
+      } else if (est.includes('EN EJECUCION')) {
+        estCls = 'st-enejec';
+        estLabel = '🚧 EN EJECUCIÓN';
+      } else if (est.includes('EVALUAR CAMBIO')) {
+        estCls = 'st-cambio';
+        estLabel = '🔄 EVALUAR CAMBIO';
+      } else if (est.includes('OBSERV') || est.includes('FALTA EXPEDIENTE') || est.includes('EXP. OBSERV')) {
+        estCls = 'st-obs';
+        estLabel = `⚠️ ${est}`;
+      } else if (est.includes('EJECUTADO POR')) {
+        estCls = 'st-cambio';
+        estLabel = `🏛️ ${est}`;
+      } else if (est.includes('POR APROBARSE')) {
+        estCls = 'st-enejec';
+        estLabel = '⏳ POR APROBARSE';
+      } else if (est === 'POR EJECUTAR') {
+        estCls = 'st-porejec';
+        estLabel = '⚪ POR EJECUTAR';
+      }
+
+      let sitHtml = '';
+      if (sit && sit !== est) {
+        let sitCls = 'st-enliq';
+        let sitLabel = sit;
+        if (sit === 'LIQUIDADO') {
+          sitCls = 'st-liq';
+          sitLabel = '🏆 LIQUIDADO';
+        } else if (sit.includes('EN LIQUIDACION') || sit.includes('EN PROCESO DE LIQUIDACION')) {
+          sitCls = 'st-enliq';
+          sitLabel = `⏳ ${sit}`;
+        } else if (sit.includes('FINALIZADO')) {
+          sitCls = 'st-enliq';
+          sitLabel = '🏁 FINALIZADO (X LIQ.)';
+        }
+        sitHtml = `<span class="status-pill ${sitCls}" title="Estado Situacional Excel">${escapeHtmlAttr(sitLabel)}</span>`;
+      }
+
+      return `<div class="status-stack"><span class="status-pill ${estCls}" title="Estatus Excel: ${escapeHtmlAttr(est)}">${escapeHtmlAttr(estLabel)}</span>${sitHtml}</div>`;
+    }
+
     function getSituationalInfo(p) {
       const sit = (p.estado_situacional || '').toUpperCase().trim();
       const est = (p.estatus || '').toUpperCase().trim();
@@ -1000,26 +1091,18 @@
         return { label: '✅ FINALIZADO / X LIQ.', cls: 'sit-fin', group: 'FINALIZADO' };
       }
       if (combined.includes('OBSERV') || combined.includes('EVALUAR CAMBIO') || combined.includes('FALTA EXPEDIENTE') || combined.includes('EJECUTADO POR')) {
-        const shortLbl = est.includes('CAMBIO') ? '⚠️ EVALUAR CAMBIO'
-          : est.includes('OBSERV') ? '⚠️ EXP. OBSERVADO'
-          : est.includes('FALTA') ? '⚠️ FALTA EXPEDIENTE'
-          : `ℹ️ ${est}`;
-        return { label: shortLbl, cls: 'sit-obs', group: 'NO_EJEC' };
+        return { label: est || sit, cls: 'sit-obs', group: 'NO_EJEC' };
       }
-      if (sit === 'EN EJECUCION' || est === 'EN EJECUCION') {
+      if (est === 'EN EJECUCION') {
         return { label: '🚧 EN EJECUCIÓN', cls: 'sit-ejec', group: 'EN_EJEC' };
       }
-      if (sit === 'EJECUTADO' || est === 'EJECUTADO') {
+      if (est === 'EJECUTADO') {
         return { label: '✅ EJECUTADO', cls: 'sit-fin', group: 'EJECUTADO' };
       }
       if (combined.includes('POR APROBARSE')) {
         return { label: '⏳ POR APROBARSE', cls: 'sit-por', group: 'NO_EJEC' };
       }
-      if (combined.includes('POR EJECUTAR')) {
-        const hasEjec = (p.costo_ejec || 0) > 0;
-        return { label: hasEjec ? '🔄 EN PROC. / CON EJEC.' : '⚪ POR EJECUTAR', cls: hasEjec ? 'sit-ejec' : 'sit-por', group: hasEjec ? 'EN_EJEC' : 'POR_EJEC' };
-      }
-      return { label: sit || est || '⚪ SIN DATO', cls: 'sit-por', group: 'OTRO' };
+      return { label: est || '⚪ POR EJECUTAR', cls: 'sit-por', group: 'POR_EJEC' };
     }
 
     function openCloudSyncPrompt() {
@@ -1345,8 +1428,40 @@
       if (countBadge) countBadge.innerText = fotos.length;
 
       const ubicCompiled = compileUbicacionCajas(obraId);
+      const breakdown = getDetailedAmbientesBreakdown(obraId);
+      const ambMapContainer = document.getElementById('drawerAmbientesMapContainer');
       if (ubicText) {
         ubicText.innerText = ubicCompiled || (fotos.length > 0 ? `${fotos.length} fotos registradas` : 'Aún sin censo físico en campo');
+      }
+
+      if (ambMapContainer) {
+        if (breakdown.hasCenso) {
+          ambMapContainer.style.display = 'grid';
+          ambMapContainer.innerHTML = breakdown.ambientes.map(a => {
+            const partsCount = [
+              a.cajasCount > 0 ? `${a.cajasCount} ${a.cajasCount === 1 ? 'caja' : 'cajas'}` : '',
+              a.sueltosCount > 0 ? `${a.sueltosCount} ${a.sueltosCount === 1 ? 'suelto' : 'sueltos'}` : ''
+            ].filter(Boolean).join(', ');
+            const itemsListHtml = a.items.map(it => `
+              <div class="amb-box-line">
+                <span class="amb-box-code">${it.isSuelto ? '📁' : '📦'} ${escapeHtmlAttr(it.codigo)}</span>:
+                <span>${escapeHtmlAttr(it.contenido || 'Sin descripción de rótulo aún')}</span>
+              </div>
+            `).join('');
+            return `
+              <div class="drawer-amb-card">
+                <div class="amb-card-mini-hdr" style="font-size:0.82rem; margin-bottom:0.35rem;">
+                  <span>📍 ${escapeHtmlAttr(a.ambiente)}</span>
+                  <span class="badge badge-green" style="font-size:0.68rem;">${partsCount}</span>
+                </div>
+                ${itemsListHtml}
+              </div>
+            `;
+          }).join('');
+        } else {
+          ambMapContainer.style.display = 'none';
+          ambMapContainer.innerHTML = '';
+        }
       }
 
       if (fotos.length === 0) {
@@ -1531,10 +1646,18 @@
           if (p) {
             const entry = saved[id];
             if (entry.checks) p.checks = { ...p.checks, ...entry.checks };
-            if (entry.ubicacion) {
-              p.n_cajas = entry.ubicacion;
-            }
+            if (entry.ubicacion) p.n_cajas = entry.ubicacion;
             if (entry.observaciones) p.alerta = entry.observaciones;
+            if (entry.fecha_inicio) {
+              p.fecha_inicio = entry.fecha_inicio;
+              p.tiene_fecha_inicio = true;
+              p.fecha_inicio_doc = 'Completado / Verificado en Visor';
+            }
+            if (entry.fecha_culminacion_real) {
+              p.fecha_culminacion_real = entry.fecha_culminacion_real;
+              p.fecha_termino_verificada_ing = entry.fecha_culminacion_real;
+              p.tiene_fecha_termino = /\d/.test(entry.fecha_culminacion_real);
+            }
           }
         });
       } catch (e) {
@@ -1542,121 +1665,135 @@
       }
     }
 
+    function saveQuickDatesFromDrawer() {
+      if (!selectedProjectId) return;
+      const p = projectsData.find(item => item.id === selectedProjectId);
+      if (!p) return;
+
+      const iniVal = (document.getElementById('quickInputInicio')?.value || '').trim();
+      const finVal = (document.getElementById('quickInputTermino')?.value || '').trim();
+
+      if (iniVal) {
+        p.fecha_inicio = iniVal;
+        p.tiene_fecha_inicio = !iniVal.toUpperCase().includes('SIN INICIO');
+        const m = iniVal.match(/^(\d{2})\/(\d{2})\/(\d{4})$/);
+        if (m) p.fecha_inicio_sort = `${m[3]}-${m[2]}-${m[1]}`;
+      }
+      if (finVal) {
+        p.fecha_culminacion_real = finVal;
+        p.fecha_termino_verificada_ing = finVal;
+        p.tiene_fecha_termino = /\d/.test(finVal);
+      }
+
+      try {
+        const saved = JSON.parse(localStorage.getItem('fdm_audit_changes') || '{}');
+        saved[selectedProjectId] = {
+          ...(saved[selectedProjectId] || {}),
+          fecha_inicio: iniVal || (saved[selectedProjectId]?.fecha_inicio || ''),
+          fecha_culminacion_real: finVal || (saved[selectedProjectId]?.fecha_culminacion_real || '')
+        };
+        localStorage.setItem('fdm_audit_changes', JSON.stringify(saved));
+      } catch (e) {
+        console.error("Error saving quick dates:", e);
+      }
+
+      openDrawer(selectedProjectId);
+      switchDrawerTab('UBICACION');
+      filterTable();
+      renderAnalyticsDashboard();
+      showToast("✅ Fechas actualizadas para esta obra");
+    }
+
     function renderKPIs(kpis) {
-      if (!kpis) return;
-      document.getElementById('kpi-total').innerText = kpis.total || projectsData.length;
-      document.getElementById('kpi-completa').innerText = kpis.info_completa || kpis.completas || 20;
-      document.getElementById('kpi-parcial').innerText = kpis.info_parcial || kpis.parciales || 13;
-      document.getElementById('kpi-sin-inicio').innerText = kpis.sin_fecha_inicio || kpis.pendientes || 32;
-      document.getElementById('kpi-cajas').innerText = kpis.en_caja || kpis.en_cajas || 11;
+      // Calculado dinámicamente por renderAnalyticsDashboard según el alcance actual
+    }
+
+    function getScopedProjects() {
+      if (!projectsData) return [];
+      if (currentScope === 'CIVIL') {
+        return projectsData.filter(p => p.es_obra_civil === true);
+      }
+      if (currentScope === 'MULTI') {
+        return projectsData.filter(p => p.id === 999 || p.es_multiproyecto);
+      }
+      return projectsData;
     }
 
     function renderAnalyticsDashboard() {
-      const total = projectsData.length || 170;
-      const auditCount = projectsData.filter(p => p.es_auditoria_2022_2025).length;
-      const multiCount = projectsData.filter(p => p.id === 999 || p.es_multiproyecto).length;
-      const comp = projectsData.filter(p => p.estado_info === 'COMPLETA').length;
-      const parc = projectsData.filter(p => p.estado_info === 'PARCIAL').length;
-      const pend = projectsData.filter(p => p.estado_info === 'PENDIENTE').length;
-      const noap = projectsData.filter(p => p.estado_info === 'NO_APLICA').length;
-      const liqCount = projectsData.filter(p => (p.estado_situacional || '').toUpperCase() === 'LIQUIDADO').length;
-      const enLiqExecCount = projectsData.filter(p => {
-        const g = getSituationalInfo(p).group;
-        return g === 'EN_LIQ' || g === 'EN_EJEC' || g === 'FINALIZADO';
+      const all = projectsData || [];
+      const civilCount = all.filter(p => p.es_obra_civil === true).length;
+      const multiCount = all.filter(p => p.id === 999 || p.es_multiproyecto).length;
+
+      const elSC = document.getElementById('countScopeCivil');
+      if (elSC) elSC.innerText = civilCount;
+      const elSA = document.getElementById('countScopeAll');
+      if (elSA) elSA.innerText = all.length;
+      const elSM = document.getElementById('countScopeMulti');
+      if (elSM) elSM.innerText = multiCount;
+
+      const scoped = getScopedProjects();
+      const total = scoped.length;
+      const conCajas = scoped.filter(p => !isProjectMissingCensus(p)).length;
+      const sinCensarAll = scoped.filter(p => isProjectMissingCensus(p)).length;
+      const prioSinCensar = scoped.filter(p => isProjectExecutedOrLiquidated(p) && isProjectMissingCensus(p)).length;
+      const faltaFechas = scoped.filter(p => isProjectExecutedOrLiquidated(p) && (!hasValidStart(p) || !hasValidEnd(p))).length;
+
+      const ejecCount = scoped.filter(p => (p.estatus || '').toUpperCase().trim() === 'EJECUTADO').length;
+      const liqAllCount = scoped.filter(p => {
+        const s = (p.estado_situacional || '').toUpperCase();
+        return s.includes('LIQUID') || s.includes('FINALIZAD');
       }).length;
-      const valInfCount = projectsData.filter(p => {
-        const t = compileDocumentTagsForProject(p.id);
-        return t.hasVal || t.hasInfFinal;
+      const enEjecCount = scoped.filter(p => (p.estatus || '').toUpperCase().includes('EN EJECUCION')).length;
+      const porEjecCount = scoped.filter(p => (p.estatus || '').toUpperCase().trim() === 'POR EJECUTAR').length;
+      const obsCambioCount = scoped.filter(p => {
+        const e = (p.estatus || '').toUpperCase();
+        return e.includes('OBSERV') || e.includes('CAMBIO') || e.includes('FALTA') || e.includes('EJECUTADO POR') || e.includes('POR APROBARSE');
       }).length;
 
-      const pComp = ((comp / total) * 100).toFixed(1);
-      const pParc = ((parc / total) * 100).toFixed(1);
-      const pPend = ((pend / total) * 100).toFixed(1);
-      const pNoap = ((noap / total) * 100).toFixed(1);
+      const ilo = scoped.filter(p => (p.provincia || '').toUpperCase().includes('ILO')).length;
+      const mn = scoped.filter(p => (p.provincia || '').toUpperCase().includes('MARISCAL') || (p.provincia || '').toUpperCase() === 'M.N.').length;
+      const gsc = scoped.filter(p => (p.provincia || '').toUpperCase().includes('SANCHEZ') || (p.provincia || '').toUpperCase() === 'G.S.C.').length;
 
       const elKpiTotal = document.getElementById('kpi-total');
       if (elKpiTotal) elKpiTotal.innerText = total;
-      const elKpiComp = document.getElementById('kpi-completa');
-      if (elKpiComp) elKpiComp.innerText = comp;
-      const elKpiParc = document.getElementById('kpi-parcial');
-      if (elKpiParc) elKpiParc.innerText = parc;
-
-      const elReadiness = document.getElementById('readinessPercent');
-      if (elReadiness) elReadiness.innerText = `${pComp}% Completo (${liqCount} Liquidadas)`;
-
-      const elStatComp = document.getElementById('statComp');
-      if (elStatComp) elStatComp.innerText = comp;
-      const elStatParc = document.getElementById('statParc');
-      if (elStatParc) elStatParc.innerText = parc;
-      const elStatPend = document.getElementById('statPend');
-      if (elStatPend) elStatPend.innerText = pend;
-      const elStatNoAp = document.getElementById('statNoAp');
-      if (elStatNoAp) elStatNoAp.innerText = noap;
-
-      const fComp = document.getElementById('progFillComp');
-      if (fComp) fComp.style.width = `${pComp}%`;
-      const fParc = document.getElementById('progFillParc');
-      if (fParc) fParc.style.width = `${pParc}%`;
-      const fPend = document.getElementById('progFillPend');
-      if (fPend) fPend.style.width = `${pPend}%`;
-      const fNoap = document.getElementById('progFillNoAp');
-      if (fNoap) fNoap.style.width = `${pNoap}%`;
-
-      const ilo = projectsData.filter(p => (p.provincia || '').toUpperCase().includes('ILO')).length;
-      const mn = projectsData.filter(p => (p.provincia || '').toUpperCase().includes('MARISCAL') || (p.provincia || '').toUpperCase() === 'M.N.').length;
-      const gsc = projectsData.filter(p => (p.provincia || '').toUpperCase().includes('SANCHEZ') || (p.provincia || '').toUpperCase() === 'G.S.C.').length;
-
-      const elIlo = document.getElementById('provIloCount');
-      if (elIlo) elIlo.innerText = `${ilo} obras`;
-      const elMN = document.getElementById('provMNCount');
-      if (elMN) elMN.innerText = `${mn} obras`;
-      const elGSC = document.getElementById('provGSCCount');
-      if (elGSC) elGSC.innerText = `${gsc} obras`;
-
-      const sin_inicio = projectsData.filter(p => !p.tiene_fecha_inicio && p.estado_info !== 'NO_APLICA').length;
-      const elKpiSin = document.getElementById('kpi-sin-inicio');
-      if (elKpiSin) elKpiSin.innerText = sin_inicio;
-
-      const cajasCensadas = projectsData.filter(p => {
-        const fData = fieldPhotosMap[p.id];
-        return fData && fData.fotos && fData.fotos.length > 0;
-      }).length;
-
-      const elCountAll = document.getElementById('countTabAll');
-      if (elCountAll) elCountAll.innerText = total;
-      const elCountAudit = document.getElementById('countTabAudit');
-      if (elCountAudit) elCountAudit.innerText = auditCount;
-      const elCountMulti = document.getElementById('countTabMulti');
-      if (elCountMulti) elCountMulti.innerText = multiCount;
-      const btnLiq = document.getElementById('btnTabLiq');
-      if (btnLiq) btnLiq.innerText = `🏆 Liquidadas (${liqCount})`;
-      const btnEnLiqExec = document.getElementById('btnTabEnLiqExec');
-      if (btnEnLiqExec) btnEnLiqExec.innerText = `⏳ En Liq. / Ejecución (${enLiqExecCount})`;
-      const btnValInf = document.getElementById('btnTabValInf');
-      if (btnValInf) btnValInf.innerText = `📊 Valoriz. / Inf. Final (${valInfCount})`;
-      const btnComp = document.getElementById('btnTabCompleta');
-      if (btnComp) btnComp.innerText = `🟢 Info Completa (${comp})`;
-      const btnParc = document.getElementById('btnTabParcial');
-      if (btnParc) btnParc.innerText = `🟡 Parcial (${parc})`;
-      const btnSinIni = document.getElementById('btnTabSinInicio');
-      if (btnSinIni) btnSinIni.innerText = `⚠️ Sin Inicio (${sin_inicio})`;
-      const btnCajas = document.getElementById('btnTabCajas');
-      if (btnCajas) btnCajas.innerText = `📦 En Cajas FDM (${cajasCensadas})`;
+      const elKpiTotalDesc = document.getElementById('kpi-total-desc');
+      if (elKpiTotalDesc) elKpiTotalDesc.innerText = currentScope === 'CIVIL' ? 'Obras Civiles Objetivo' : (currentScope === 'MULTI' ? 'Cajas Multi-Proyecto' : 'Toda la Cartera Excel');
       const elKpiCajas = document.getElementById('kpi-cajas');
-      if (elKpiCajas) elKpiCajas.innerText = cajasCensadas;
-      const btnNoAp = document.getElementById('btnTabNoAplica');
-      if (btnNoAp) btnNoAp.innerText = `⏸️ No Ejec. / Obs. (${noap})`;
-      const btnIlo = document.getElementById('btnTabIlo');
-      if (btnIlo) btnIlo.innerText = `⚓ Ilo (${ilo})`;
-      const btnMN = document.getElementById('btnTabMN');
-      if (btnMN) btnMN.innerText = `🏛️ Mariscal Nieto (${mn})`;
-      const btnGSC = document.getElementById('btnTabGSC');
-      if (btnGSC) btnGSC.innerText = `🌾 Sánchez Cerro (${gsc})`;
+      if (elKpiCajas) elKpiCajas.innerText = conCajas;
+      const elKpiPrio = document.getElementById('kpi-prio-censar');
+      if (elKpiPrio) elKpiPrio.innerText = prioSinCensar;
+      const elKpiFaltaF = document.getElementById('kpi-falta-fechas');
+      if (elKpiFaltaF) elKpiFaltaF.innerText = faltaFechas;
+      const elKpiLiq = document.getElementById('kpi-liquidadas');
+      if (elKpiLiq) elKpiLiq.innerText = liqAllCount;
 
-      const elMiniSust = document.getElementById('miniSustento');
-      if (elMiniSust) elMiniSust.innerText = `${comp} obras`;
-      const elMiniTraz = document.getElementById('miniTrazabilidad');
-      if (elMiniTraz) elMiniTraz.innerText = `${parc} obras`;
+      const setTxt = (id, txt) => { const el = document.getElementById(id); if (el) el.innerText = txt; };
+      setTxt('btnTabAll', `Todos (${total})`);
+      setTxt('btnTabPrioCensar', `🚨 Ejecutadas Sin Censar (${prioSinCensar})`);
+      setTxt('btnTabCajas', `📦 Ubicadas en Campo (${conCajas})`);
+      setTxt('btnTabSinCensar', `⏳ Todas Sin Censar (${sinCensarAll})`);
+      setTxt('btnTabFaltaFechas', `📅 Ejecutadas Sin Inicio/Fin (${faltaFechas})`);
+      setTxt('btnTabEjec', `✅ EJECUTADO (${ejecCount})`);
+      setTxt('btnTabLiq', `🏆 LIQUIDADO / EN LIQ. (${liqAllCount})`);
+      setTxt('btnTabEnEjec', `🚧 EN EJECUCIÓN (${enEjecCount})`);
+      setTxt('btnTabPorEjec', `⚪ POR EJECUTAR (${porEjecCount})`);
+      setTxt('btnTabObs', `⚠️ OBS. / CAMBIO (${obsCambioCount})`);
+      setTxt('btnTabIlo', `⚓ Ilo (${ilo})`);
+      setTxt('btnTabMN', `🏛️ M.N. (${mn})`);
+      setTxt('btnTabGSC', `🌾 G.S.C. (${gsc})`);
+    }
+
+    function setScope(scope, btn) {
+      currentScope = scope;
+      document.querySelectorAll('.scope-btn').forEach(b => b.classList.remove('active'));
+      if (btn) {
+        btn.classList.add('active');
+      } else {
+        const fallback = document.getElementById(scope === 'CIVIL' ? 'btnScopeCivil' : scope === 'MULTI' ? 'btnScopeMulti' : 'btnScopeAll');
+        if (fallback) fallback.classList.add('active');
+      }
+      renderAnalyticsDashboard();
+      filterTable();
     }
 
     function setFilter(filter, btn) {
@@ -1683,28 +1820,21 @@
 
     function filterTable() {
       const q = document.getElementById('searchInput').value.toLowerCase().trim();
+      const scoped = getScopedProjects();
 
-      const filtered = projectsData.filter(p => {
+      const filtered = scoped.filter(p => {
         const isMulti = p.id === 999 || p.es_multiproyecto;
-        if (currentFilter === 'AUDIT_SCOPE') return !!p.es_auditoria_2022_2025;
-        if (currentFilter === 'MULTI_OBRA') return isMulti;
-        if (currentFilter === 'LIQUIDADO') return !isMulti && (p.estado_situacional || '').toUpperCase() === 'LIQUIDADO';
-        if (currentFilter === 'EN_LIQ_EXEC') {
-          const g = getSituationalInfo(p).group;
-          return !isMulti && (g === 'EN_LIQ' || g === 'EN_EJEC' || g === 'FINALIZADO');
-        }
-        if (currentFilter === 'CON_VAL_INF') {
-          const t = compileDocumentTagsForProject(p.id);
-          return t.hasVal || t.hasInfFinal;
-        }
-        if (currentFilter === 'COMPLETA') return !isMulti && p.estado_info === 'COMPLETA';
-        if (currentFilter === 'PARCIAL') return !isMulti && p.estado_info === 'PARCIAL';
-        if (currentFilter === 'SIN_INICIO') return !isMulti && !p.tiene_fecha_inicio && p.estado_info !== 'NO_APLICA';
-        if (currentFilter === 'CAJAS') {
-          const fData = fieldPhotosMap[p.id];
-          return fData && fData.fotos && fData.fotos.length > 0;
-        }
-        if (currentFilter === 'NO_APLICA') return !isMulti && p.estado_info === 'NO_APLICA';
+        const est = (p.estatus || '').toUpperCase().trim();
+        const sit = (p.estado_situacional || '').toUpperCase().trim();
+        if (currentFilter === 'PRIO_SIN_CENSAR') return isProjectExecutedOrLiquidated(p) && isProjectMissingCensus(p);
+        if (currentFilter === 'CAJAS') return !isProjectMissingCensus(p);
+        if (currentFilter === 'SIN_CENSAR') return isProjectMissingCensus(p);
+        if (currentFilter === 'FALTA_FECHAS') return isProjectExecutedOrLiquidated(p) && (!hasValidStart(p) || !hasValidEnd(p));
+        if (currentFilter === 'STATUS_EJECUTADO') return !isMulti && est === 'EJECUTADO';
+        if (currentFilter === 'LIQUIDADO_ALL') return !isMulti && (sit.includes('LIQUID') || sit.includes('FINALIZAD'));
+        if (currentFilter === 'STATUS_EN_EJEC') return !isMulti && est.includes('EN EJECUCION');
+        if (currentFilter === 'STATUS_POR_EJEC') return !isMulti && est === 'POR EJECUTAR';
+        if (currentFilter === 'STATUS_OBS_CAMBIO') return !isMulti && (est.includes('OBSERV') || est.includes('CAMBIO') || est.includes('FALTA') || est.includes('EJECUTADO POR') || est.includes('POR APROBARSE'));
         if (currentFilter === 'PROV_ILO') return (p.provincia || '').toUpperCase().includes('ILO');
         if (currentFilter === 'PROV_MN') return (p.provincia || '').toUpperCase().includes('MARISCAL') || (p.provincia || '').toUpperCase() === 'M.N.';
         if (currentFilter === 'PROV_GSC') return (p.provincia || '').toUpperCase().includes('SANCHEZ') || (p.provincia || '').toUpperCase() === 'G.S.C.';
@@ -1728,8 +1858,25 @@
                h_text.includes(q);
       });
 
+      const getAuditPriorityScore = (p) => {
+        if (p.id === 999) return 99;
+        const ejec = isProjectExecutedOrLiquidated(p);
+        const noCenso = isProjectMissingCensus(p);
+        const noFechas = !hasValidStart(p) || !hasValidEnd(p);
+        if (ejec && noCenso && noFechas) return 1;
+        if (ejec && noCenso) return 2;
+        if (ejec && noFechas) return 3;
+        if (ejec) return 4;
+        if ((p.estatus || '').toUpperCase().includes('EN EJECUCION')) return 5;
+        if ((p.estatus || '').toUpperCase() === 'POR EJECUTAR') return 6;
+        return 7;
+      };
+
       // Sorting
       filtered.sort((a, b) => {
+        if (currentSort === 'PRIORITY_AUDIT') {
+          return getAuditPriorityScore(a) - getAuditPriorityScore(b) || (a.id - b.id);
+        }
         if (currentSort === 'ID_ASC') return a.id - b.id;
         if (currentSort === 'ID_DESC') return b.id - a.id;
         if (currentSort === 'DATE_ASC') {
@@ -1739,15 +1886,6 @@
           const dA = a.fecha_inicio_sort || '0000-00-00';
           const dB = b.fecha_inicio_sort || '0000-00-00';
           return dB.localeCompare(dA) || (a.id - b.id);
-        }
-        if (currentSort === 'MISSING_FIRST') {
-          if (!a.tiene_fecha_inicio && b.tiene_fecha_inicio) return -1;
-          if (a.tiene_fecha_inicio && !b.tiene_fecha_inicio) return 1;
-          return a.id - b.id;
-        }
-        if (currentSort === 'STATUS_ALERT') {
-          const weights = { 'INCOMPLETA': 1, 'PARCIAL': 2, 'COMPLETA': 3, 'NO_APLICA': 4 };
-          return (weights[a.estado_info] || 9) - (weights[b.estado_info] || 9);
         }
         if (currentSort === 'COST_DESC') return b.costo_ejec - a.costo_ejec;
         return a.id - b.id;
@@ -1781,7 +1919,7 @@
       tbody.innerHTML = '';
 
       if (list.length === 0) {
-        tbody.innerHTML = `<tr><td colspan="9" style="text-align: center; padding: 2rem; color: var(--text-muted);">No se encontraron proyectos con los criterios de búsqueda.</td></tr>`;
+        tbody.innerHTML = `<tr><td colspan="7" style="text-align: center; padding: 2rem; color: var(--text-muted);">No se encontraron proyectos con los criterios de búsqueda.</td></tr>`;
         return;
       }
 
@@ -1791,71 +1929,79 @@
           : 'S/ 0.00';
 
         const isMulti = p.id === 999 || p.es_multiproyecto;
+        const isEjecOrLiq = isProjectExecutedOrLiquidated(p);
 
-        const ubicReal = compileUbicacionCajas(p.id);
+        // Columna 7: Desglose completo por Ambiente + contenido de cada caja + micro-etiquetas
+        const breakdown = getDetailedAmbientesBreakdown(p.id);
         const docTagsInfo = compileDocumentTagsForProject(p.id);
-        let badgeCaja = '';
-        if (ubicReal) {
+        let ubicCellHtml = '';
+        if (breakdown.hasCenso) {
+          const ambCards = breakdown.ambientes.map(a => {
+            const countTxt = [
+              a.cajasCount > 0 ? `${a.cajasCount} ${a.cajasCount === 1 ? 'caja' : 'cajas'}` : '',
+              a.sueltosCount > 0 ? `${a.sueltosCount} ${a.sueltosCount === 1 ? 'suelto' : 'sueltos'}` : ''
+            ].filter(Boolean).join(', ');
+            const boxLines = a.items.map(it => {
+              const txt = it.contenido ? escapeHtmlAttr(it.contenido) : '<span style="color:#94A3B8;font-style:italic;">Foto sin rótulo escrito</span>';
+              return `<div class="amb-box-line"><span class="amb-box-code">${it.isSuelto ? '📁' : '📦'} ${escapeHtmlAttr(it.codigo)}</span>: ${txt}</div>`;
+            }).join('');
+            return `<div class="amb-card-mini"><div class="amb-card-mini-hdr"><span>📍 ${escapeHtmlAttr(a.ambiente)}</span><span style="font-size:0.66rem;background:#DCFCE7;padding:1px 5px;border-radius:4px;">${countTxt}</span></div>${boxLines}</div>`;
+          }).join('');
           const microHtml = docTagsInfo.tags.length > 0
-            ? `<div class="doc-microtags">${docTagsInfo.tags.map(t => `<span class="doc-microtag ${t.cls}">${t.label}</span>`).join('')}</div>`
+            ? `<div class="doc-microtags" style="justify-content:flex-start;">${docTagsInfo.tags.map(t => `<span class="doc-microtag ${t.cls}">${t.label}</span>`).join('')}</div>`
             : '';
-          badgeCaja = `<span class="badge" style="background: #DCFCE7; color: #15803D; border: 1px solid #86EFAC; font-weight: 800; font-size: 0.71rem; padding: 0.22rem 0.5rem; box-shadow: 0 1px 2px rgba(0,0,0,0.05); white-space: nowrap;" title="${escapeHtmlAttr(docTagsInfo.boxesSummary || ubicReal)}">📦 ${ubicReal}</span>${microHtml}`;
+          ubicCellHtml = `<div class="amb-breakdown-list">${ambCards}${microHtml}</div>`;
         } else if (isMulti) {
-          badgeCaja = `<span class="badge" style="background: #F3E8FF; color: #7E22CE; border: 1px solid #D8B4FE; font-weight: 700; font-size: 0.7rem; padding: 0.2rem 0.45rem;">🔀 Cajas Mixtas</span>`;
+          ubicCellHtml = `<span class="badge" style="background: #F3E8FF; color: #7E22CE; border: 1px solid #D8B4FE; font-weight: 700; font-size: 0.7rem;">🔀 Cajas Mixtas</span>`;
+        } else if (isEjecOrLiq) {
+          ubicCellHtml = `<span class="badge badge-red" style="font-size:0.7rem; padding:0.25rem 0.55rem; white-space:normal; display:inline-block;" title="Obra EJECUTADA / LIQUIDADA aún sin ubicar en campo">🚨 FALTA CENSAR (PRIORIDAD)</span>`;
         } else {
-          badgeCaja = `<span class="badge" style="background: #F8FAFC; color: #94A3B8; border: 1px dashed #CBD5E1; font-weight: 600; font-size: 0.68rem; padding: 0.2rem 0.45rem;" title="Pendiente de censo físico con código">⏳ Por censar</span>`;
+          ubicCellHtml = `<span class="badge" style="background: #F8FAFC; color: #94A3B8; border: 1px dashed #CBD5E1; font-weight: 600; font-size: 0.68rem;">⏳ Por censar</span>`;
         }
 
         // Start & End Date Stack Badge
         let badgeInicio = '';
-        const verifFin = p.fecha_termino_verificada_ing || (p.fecha_culminacion_real && p.fecha_culminacion_real !== '-' ? formatCompactDate(p.fecha_culminacion_real) : '');
-        const progFin = (!verifFin && p.fecha_termino_prog && p.fecha_termino_prog !== '-' && p.fecha_termino_prog !== 'Sin dato' && p.fecha_termino_prog !== 'Sin dato en PMO') ? formatCompactDate(p.fecha_termino_prog) : '';
+        const hasIni = hasValidStart(p);
+        const verifFinRaw = p.fecha_termino_verificada_ing || (p.fecha_culminacion_real && p.fecha_culminacion_real !== '-' ? p.fecha_culminacion_real : '');
+        const hasFin = hasValidEnd(p);
+        const verifFin = hasFin ? formatCompactDate(verifFinRaw) : '';
+        const progFin = (!hasFin && p.fecha_termino_prog && p.fecha_termino_prog !== '-' && p.fecha_termino_prog !== 'Sin dato' && p.fecha_termino_prog !== 'Sin dato en PMO') ? formatCompactDate(p.fecha_termino_prog) : '';
 
         if (isMulti) {
-          badgeInicio = `<span class="badge" style="background: #F3E8FF; color: #7E22CE; font-weight: 700; font-size: 0.72rem;">🔀 MULTI-OBRA</span>`;
-        } else if (p.tiene_fecha_inicio) {
-          const compactIni = formatCompactDate(p.fecha_inicio);
-          const star = p.fecha_inicio_verificada_ing ? '✓' : '';
-          const finHtml = verifFin
-            ? `<span class="date-pill-mini date-pill-fin" title="Fecha Término Verificada: ${verifFin}">🏁 ${verifFin}</span>`
-            : (progFin ? `<span class="date-pill-mini date-pill-prog" title="Término Prog.: ${p.fecha_termino_prog}">⏳ ${progFin}</span>` : '');
-          badgeInicio = `<div class="date-stack"><span class="date-pill-mini date-pill-ini" title="${escapeHtmlAttr((p.fecha_inicio || '') + (p.fecha_inicio_doc ? ' | ' + p.fecha_inicio_doc : ''))}">🚀 ${compactIni}${star ? ' ' + star : ''}</span>${finHtml}</div>`;
-        } else if (p.estado_info === 'NO_APLICA') {
-          badgeInicio = `<span class="badge badge-gray" style="font-size: 0.68rem; padding: 0.15rem 0.4rem;">⚪ No Aplica</span>`;
+          badgeInicio = `<span class="badge" style="background: #F3E8FF; color: #7E22CE; font-weight: 700; font-size: 0.72rem;">🔀 MULTI</span>`;
         } else {
-          const finFallback = verifFin ? `<span class="date-pill-mini date-pill-fin">🏁 ${verifFin}</span>` : '';
-          badgeInicio = `<div class="date-stack"><span class="badge badge-red" style="font-size: 0.68rem; padding: 0.15rem 0.4rem;" title="Pendiente de ubicar acta original">⚠️ Sin Inicio</span>${finFallback}</div>`;
+          const iniPill = hasIni
+            ? `<span class="date-pill-mini date-pill-ini" title="${escapeHtmlAttr(p.fecha_inicio)}">🚀 ${formatCompactDate(p.fecha_inicio)}${p.fecha_inicio_verificada_ing ? ' ✓' : ''}</span>`
+            : (isEjecOrLiq ? `<span class="badge badge-red" style="font-size:0.65rem;">⚠️ Sin Inicio</span>` : `<span style="font-size:0.68rem;color:#94A3B8;">Sin Inicio</span>`);
+          const finPill = verifFin
+            ? `<span class="date-pill-mini date-pill-fin" title="Término: ${escapeHtmlAttr(verifFinRaw)}">🏁 ${verifFin}</span>`
+            : (progFin ? `<span class="date-pill-mini date-pill-prog" title="Prog.: ${escapeHtmlAttr(p.fecha_termino_prog)}">⏳ ${progFin}</span>`
+              : (isEjecOrLiq ? `<span class="badge badge-yellow" style="font-size:0.65rem;">⚠️ Sin Fin</span>` : ''));
+          badgeInicio = `<div class="date-stack">${iniPill}${finPill}</div>`;
         }
 
-        // Situational Status & Doc Completeness
-        let badgeInfo = '';
-        const sitInfo = getSituationalInfo(p);
-        if (isMulti) {
-          badgeInfo = `<span class="badge" style="background: #F3E8FF; color: #6B21A8; font-weight: 800; font-size: 0.7rem;">📦 MIXTO</span>`;
-        } else {
-          const docDot = p.estado_info === 'COMPLETA' ? '🟢 Info Completa'
-            : p.estado_info === 'PARCIAL' ? '🟡 Parcial'
-            : p.estado_info === 'NO_APLICA' ? '⚪ No Aplica'
-            : '🔴 Pendiente';
-          badgeInfo = `<div style="display:flex; flex-direction:column; align-items:center; gap:3px;"><span class="sit-badge ${sitInfo.cls}" title="Estatus: ${escapeHtmlAttr(p.estatus || '')} | Situación: ${escapeHtmlAttr(p.estado_situacional || '')}">${sitInfo.label}</span><span style="font-size:0.65rem; font-weight:600; color:#64748B;">${docDot}</span></div>`;
-        }
+        const statusHtml = isMulti
+          ? `<div class="status-stack"><span class="status-pill" style="background:#F3E8FF;color:#6B21A8;border:1px solid #D8B4FE;">📦 MIXTO</span></div>`
+          : renderStatusStackHtml(p);
 
-        const tipoSubtitle = p.tipologia || p.tipo_obra || '';
+        const cuiStr = (p.cui && p.cui !== 'N/D' && p.cui !== 'S/N') ? `CUI: <strong>${p.cui}</strong>` : 'CUI: S/N';
+        const tipoTag = p.tipologia || p.tipo_obra || '';
 
         return `
           <tr onclick="openDrawer(${p.id})">
-            <td style="font-weight: 700; text-align: center; color: ${isMulti ? '#7E22CE' : 'var(--text-muted)'};">${isMulti ? 'MIX' : p.id}</td>
-            <td style="text-align: center;"><span class="badge ${isMulti ? '' : 'badge-gray'}" style="font-size: 0.68rem; padding: 0.15rem 0.4rem; ${isMulti ? 'background: #F3E8FF; color: #7E22CE; font-weight: 700;' : ''}">${p.convenio}</span></td>
-            <td><strong>${p.provincia}</strong></td>
-            <td>
-              <div style="font-weight: 600; color: var(--text); line-height: 1.35;">${p.desc}</div>
-              <div style="font-size: 0.71rem; color: var(--text-muted); margin-top: 0.2rem;">${tipoSubtitle}${p.es_auditoria_2022_2025 ? ' • <strong style="color:#1D4ED8;">Muestra Auditoría</strong>' : ''}</div>
+            <td style="font-weight: 800; text-align: center; color: ${isMulti ? '#7E22CE' : '#1E3A8A'};">${isMulti ? 'MIX' : p.id}</td>
+            <td style="text-align: center; font-size: 0.74rem;">
+              <div style="font-weight: 800; color: #0F172A;">${p.provincia}</div>
+              <div style="font-size: 0.68rem; color: var(--text-muted); margin-top: 2px;">${p.convenio}</div>
             </td>
-            <td style="text-align: center; font-family: monospace; font-size: 0.8rem; font-weight: 600;">${p.cui && p.cui !== 'N/D' && p.cui !== 'S/N' ? p.cui : '—'}</td>
+            <td>
+              <div style="font-weight: 600; color: var(--text); line-height: 1.32;">${p.desc}</div>
+              <div style="font-size: 0.7rem; color: var(--text-muted); margin-top: 0.22rem;">${cuiStr} • ${tipoTag}${p.es_obra_civil ? ' • <strong style="color:#1D4ED8;">Obra Civil Objetivo</strong>' : ''}</div>
+            </td>
+            <td class="col-status">${statusHtml}</td>
             <td style="text-align: center; white-space: nowrap;">${badgeInicio}</td>
-            <td style="text-align: center; white-space: nowrap;">${badgeInfo}</td>
-            <td style="text-align: right; font-weight: 600; font-family: monospace; white-space: nowrap;">${costoFmt}</td>
-            <td style="text-align: center;">${badgeCaja}</td>
+            <td style="text-align: right; font-weight: 700; font-family: monospace; white-space: nowrap;">${costoFmt}</td>
+            <td>${ubicCellHtml}</td>
           </tr>
         `;
       }).join('');
@@ -2055,7 +2201,14 @@
       document.getElementById('chk_res').checked = !!checks.res || !!p.resolucion_liquidacion;
       document.getElementById('chk_transf').checked = !!checks.transf || (p.alerta || '').includes('transferencia');
 
-      // Tab 3: Evidencias y Cajas de Campo
+      // Tab Ubicacion: Quick dates + Evidencias y Cajas de Campo
+      const qIni = document.getElementById('quickInputInicio');
+      if (qIni) qIni.value = hasValidStart(p) ? p.fecha_inicio : '';
+      const qFin = document.getElementById('quickInputTermino');
+      if (qFin) qFin.value = hasValidEnd(p) ? (p.fecha_termino_verificada_ing || p.fecha_culminacion_real || '') : '';
+      const qBadge = document.getElementById('drawerQuickStatusBadge');
+      if (qBadge) qBadge.innerHTML = `${p.estatus || ''}${p.estado_situacional ? ' • ' + p.estado_situacional : ''}`;
+
       const elUbic = document.getElementById('drawerUbicacion');
       if (elUbic) elUbic.value = p.n_cajas || '';
       const elObs = document.getElementById('drawerObservaciones');
@@ -2075,7 +2228,7 @@
         console.warn("Aviso al renderizar cajas en drawer:", errCaj);
       }
 
-      switchDrawerTab('HISTORIAL');
+      switchDrawerTab('UBICACION');
       const mb = document.getElementById('modalBackdrop');
       if (mb) mb.classList.add('open');
     }
@@ -2376,8 +2529,8 @@
       window.location.href = './PUNTO_61_MATRIZ_OBRAS_INICIADAS_Y_TERMINADAS_2022_2025.xlsx';
     }
 
-    // === CUADRO MAESTRO AUDITORÍA EN VIVO (FECHA INICIO/FIN + ESTATUS + UBICACIÓN CAJAS Y ACERVO) ===
-    let auditMasterFilter = 'ALL';
+    // === CUADRO MAESTRO AUDITORÍA EN VIVO (FECHA INICIO/FIN + STATUS EXCEL + UBICACIÓN POR AMBIENTES) ===
+    let auditMasterFilter = 'CIVIL';
 
     function openAuditMasterModal() {
       const m = document.getElementById('auditMasterModal');
@@ -2410,18 +2563,29 @@
           if (prov === 'GSC' && !pv.includes('SANCHEZ') && pv !== 'G.S.C.') return false;
         }
         const t = compileDocumentTagsForProject(p.id);
-        const ubic = compileUbicacionCajas(p.id);
         const sitInfo = getSituationalInfo(p);
-        if (auditMasterFilter === 'AUDIT' && !p.es_auditoria_2022_2025) return false;
-        if (auditMasterFilter === 'CAJAS' && !ubic) return false;
+        if (auditMasterFilter === 'CIVIL' && !p.es_obra_civil) return false;
+        if (auditMasterFilter === 'PRIO_SIN_CENSAR' && !(p.es_obra_civil && isProjectExecutedOrLiquidated(p) && isProjectMissingCensus(p))) return false;
+        if (auditMasterFilter === 'FALTA_FECHAS' && !(p.es_obra_civil && isProjectExecutedOrLiquidated(p) && (!hasValidStart(p) || !hasValidEnd(p)))) return false;
+        if (auditMasterFilter === 'CAJAS' && isProjectMissingCensus(p)) return false;
         if (auditMasterFilter === 'VAL_INF' && !t.hasVal && !t.hasInfFinal) return false;
         if (auditMasterFilter === 'LIQ' && sitInfo.group !== 'LIQUIDADO' && sitInfo.group !== 'EN_LIQ' && sitInfo.group !== 'FINALIZADO') return false;
         if (auditMasterFilter === 'EJEC' && sitInfo.group !== 'EN_EJEC') return false;
 
         if (!q) return true;
-        const blob = `${p.id} ${p.desc} ${p.cui} ${p.convenio} ${p.provincia} ${p.estatus || ''} ${p.estado_situacional || ''} ${p.fecha_inicio || ''} ${p.fecha_culminacion_real || ''} ${ubic || ''} ${t.boxesSummary || ''}`.toLowerCase();
+        const ubic = compileUbicacionCajas(p.id) || '';
+        const blob = `${p.id} ${p.desc} ${p.cui} ${p.convenio} ${p.provincia} ${p.estatus || ''} ${p.estado_situacional || ''} ${p.fecha_inicio || ''} ${p.fecha_culminacion_real || ''} ${ubic} ${t.boxesSummary || ''}`.toLowerCase();
         return blob.includes(q);
       });
+    }
+
+    function formatAmbientesPlainText(obraId) {
+      const b = getDetailedAmbientesBreakdown(obraId);
+      if (!b.hasCenso) return '';
+      return b.ambientes.map(a => {
+        const list = a.items.map(it => `${it.codigo}: ${it.contenido || 'Registrado'}`).join(' / ');
+        return `[${a.ambiente}] -> ${list}`;
+      }).join(' || ');
     }
 
     function renderAuditMasterTable() {
@@ -2430,40 +2594,42 @@
       const strip = document.getElementById('auditMasterSummary');
       if (!tbody || !strip) return;
 
-      let cntLiq = 0, cntEnLiq = 0, cntCajas = 0, cntVal = 0, cntInfFin = 0, sumEjec = 0;
+      let cntLiq = 0, cntEnLiq = 0, cntCajas = 0, cntPrioSin = 0, cntFaltaF = 0, sumEjec = 0;
       list.forEach(p => {
         const sit = getSituationalInfo(p);
         if (sit.group === 'LIQUIDADO') cntLiq++;
         if (sit.group === 'EN_LIQ' || sit.group === 'FINALIZADO') cntEnLiq++;
-        if (compileUbicacionCajas(p.id)) cntCajas++;
-        const t = compileDocumentTagsForProject(p.id);
-        if (t.hasVal) cntVal++;
-        if (t.hasInfFinal) cntInfFin++;
+        if (!isProjectMissingCensus(p)) cntCajas++;
+        if (isProjectExecutedOrLiquidated(p) && isProjectMissingCensus(p)) cntPrioSin++;
+        if (isProjectExecutedOrLiquidated(p) && (!hasValidStart(p) || !hasValidEnd(p))) cntFaltaF++;
         sumEjec += Number(p.costo_ejec || 0);
       });
 
       strip.innerHTML = `
         <span class="audit-kpi-pill">📋 Mostrando: <strong>${list.length}</strong> proyectos</span>
-        <span class="audit-kpi-pill" style="color:#15803D;border-color:#86EFAC;">🏆 Liquidadas: <strong>${cntLiq}</strong></span>
-        <span class="audit-kpi-pill" style="color:#0369A1;border-color:#7DD3FC;">⚖️ En Liq. / X Liq.: <strong>${cntEnLiq}</strong></span>
-        <span class="audit-kpi-pill" style="color:#1D4ED8;border-color:#93C5FD;">📦 Censados en Cajas: <strong>${cntCajas}</strong></span>
-        <span class="audit-kpi-pill" style="color:#4338CA;border-color:#C7D2FE;">📊 Con Valoriz.: <strong>${cntVal}</strong> | 🏁 Inf. Final: <strong>${cntInfFin}</strong></span>
+        <span class="audit-kpi-pill" style="color:#15803D;border-color:#86EFAC;">📦 Censados: <strong>${cntCajas}</strong></span>
+        <span class="audit-kpi-pill" style="color:#DC2626;border-color:#FCA5A5;">🚨 Ejecutados Sin Censar: <strong>${cntPrioSin}</strong></span>
+        <span class="audit-kpi-pill" style="color:#B45309;border-color:#FCD34D;">📅 Ejecutados Sin Fechas: <strong>${cntFaltaF}</strong></span>
+        <span class="audit-kpi-pill" style="color:#0369A1;border-color:#7DD3FC;">🏆 Liquidadas / X Liq.: <strong>${cntLiq + cntEnLiq}</strong></span>
         <span class="audit-kpi-pill">💰 Ejecutado Vista: <strong>S/ ${sumEjec.toLocaleString('es-PE', {minimumFractionDigits:2, maximumFractionDigits:2})}</strong></span>
       `;
 
       if (list.length === 0) {
-        tbody.innerHTML = `<tr><td colspan="8" style="text-align:center;padding:2rem;color:#64748B;">No hay proyectos que coincidan con este filtro de auditoría.</td></tr>`;
+        tbody.innerHTML = `<tr><td colspan="7" style="text-align:center;padding:2rem;color:#64748B;">No hay proyectos que coincidan con este filtro de auditoría.</td></tr>`;
         return;
       }
 
       tbody.innerHTML = list.map(p => {
-        const sitInfo = getSituationalInfo(p);
-        const ubic = compileUbicacionCajas(p.id);
         const docInfo = compileDocumentTagsForProject(p.id);
-        const ini = p.tiene_fecha_inicio ? p.fecha_inicio : '—';
-        const fin = (p.fecha_termino_verificada_ing || (p.fecha_culminacion_real && p.fecha_culminacion_real !== '-' ? p.fecha_culminacion_real : (p.fecha_termino_prog && p.fecha_termino_prog !== '-' ? p.fecha_termino_prog : '—')));
+        const b = getDetailedAmbientesBreakdown(p.id);
+        const ini = hasValidStart(p) ? p.fecha_inicio : '⚠️ Sin Inicio';
+        const finRaw = p.fecha_termino_verificada_ing || (p.fecha_culminacion_real && p.fecha_culminacion_real !== '-' ? p.fecha_culminacion_real : (p.fecha_termino_prog && p.fecha_termino_prog !== '-' ? p.fecha_termino_prog : ''));
+        const fin = hasValidEnd(p) ? finRaw : (isProjectExecutedOrLiquidated(p) ? '⚠️ Sin Fin' : '—');
+        const ambHtml = b.hasCenso
+          ? b.ambientes.map(a => `<div class="amb-card-mini" style="margin-bottom:4px;"><div class="amb-card-mini-hdr"><span>📍 ${escapeHtmlAttr(a.ambiente)}</span><span>(${a.items.length})</span></div>${a.items.map(it => `<div class="amb-box-line"><span class="amb-box-code">${it.codigo}</span>: ${escapeHtmlAttr(it.contenido || 'Foto sin rótulo')}</div>`).join('')}</div>`).join('')
+          : (isProjectExecutedOrLiquidated(p) ? '<span class="badge badge-red">🚨 FALTA CENSAR</span>' : '<span style="color:#94A3B8;font-size:0.72rem;">Por censar</span>');
         const microHtml = docInfo.tags.length > 0
-          ? `<div style="display:flex;flex-wrap:wrap;gap:3px;margin-bottom:3px;">${docInfo.tags.map(t => `<span class="doc-microtag ${t.cls}">${t.label}</span>`).join('')}</div>`
+          ? `<div style="display:flex;flex-wrap:wrap;gap:3px;margin-top:3px;">${docInfo.tags.map(t => `<span class="doc-microtag ${t.cls}">${t.label}</span>`).join('')}</div>`
           : '';
         return `
           <tr onclick="closeAuditMasterModal(); openDrawer(${p.id});" style="cursor:pointer;">
@@ -2473,17 +2639,13 @@
               <div style="font-weight:700;color:#0F172A;line-height:1.3;">${p.desc}</div>
               <div style="font-size:0.7rem;color:#64748B;margin-top:2px;">CUI: <strong>${p.cui && p.cui !== 'N/D' ? p.cui : 'S/N'}</strong>${p.comentario_ing ? ' • <span style="color:#92400E;">' + escapeHtmlAttr(p.comentario_ing) + '</span>' : ''}</div>
             </td>
-            <td style="font-family:monospace;white-space:nowrap;">
-              <div>🚀 <strong>${ini}</strong></div>
-              <div style="color:#158034;">🏁 <strong>${fin}</strong></div>
-            </td>
-            <td>
-              <span class="sit-badge ${sitInfo.cls}">${sitInfo.label}</span>
-              <div style="font-size:0.68rem;color:#64748B;margin-top:2px;">${escapeHtmlAttr(p.estatus || '')}</div>
+            <td class="col-status">${renderStatusStackHtml(p)}</td>
+            <td style="font-family:monospace;white-space:nowrap;font-size:0.73rem;">
+              <div>🚀 <strong>${escapeHtmlAttr(ini)}</strong></div>
+              <div style="color:#158034;">🏁 <strong>${escapeHtmlAttr(fin)}</strong></div>
             </td>
             <td style="text-align:right;font-family:monospace;font-weight:700;white-space:nowrap;">S/ ${Number(p.costo_ejec || 0).toLocaleString('es-PE', {minimumFractionDigits:2, maximumFractionDigits:2})}</td>
-            <td>${ubic ? `<span class="badge badge-green" style="font-size:0.7rem;">📦 ${escapeHtmlAttr(ubic)}</span>` : '<span style="color:#94A3B8;font-size:0.72rem;">Por censar</span>'}</td>
-            <td style="max-width:300px;font-size:0.73rem;color:#334155;">${microHtml}${docInfo.boxesSummary ? `<div>${escapeHtmlAttr(docInfo.boxesSummary)}</div>` : '<span style="color:#94A3B8;">Sin rótulos registrados</span>'}</td>
+            <td style="min-width:260px;">${ambHtml}${microHtml}</td>
           </tr>
         `;
       }).join('');
@@ -2491,16 +2653,14 @@
 
     function copyAuditMasterSummary() {
       const list = getFilteredAuditMasterList();
-      const lines = ['N°\tCONVENIO\tPROVINCIA\tCUI\tPROYECTO\tINICIO\tTERMINO\tESTATUS\tSITUACION_ACTUAL\tEJECUTADO\tUBICACION_CAJAS\tCONTENIDO_DOCUMENTAL'];
+      const lines = ['N°\tOBRA_CIVIL\tCONVENIO\tPROVINCIA\tCUI\tPROYECTO\tSTATUS_EXCEL\tSITUACION\tINICIO\tTERMINO\tEJECUTADO\tUBICACION_AMBIENTES_Y_CONTENIDO'];
       list.forEach(p => {
-        const ubic = compileUbicacionCajas(p.id) || 'Por censar';
-        const docInfo = compileDocumentTagsForProject(p.id);
-        const fin = p.fecha_termino_verificada_ing || (p.fecha_culminacion_real && p.fecha_culminacion_real !== '-' ? p.fecha_culminacion_real : (p.fecha_termino_prog || ''));
+        const ini = hasValidStart(p) ? p.fecha_inicio : 'SIN INICIO';
+        const fin = hasValidEnd(p) ? (p.fecha_termino_verificada_ing || p.fecha_culminacion_real || '') : 'SIN FIN';
         lines.push([
-          p.id, p.convenio, p.provincia, p.cui || '', p.desc,
-          p.tiene_fecha_inicio ? p.fecha_inicio : 'SIN INICIO', fin,
-          p.estatus || '', p.estado_situacional || '', p.costo_ejec || 0,
-          ubic, docInfo.boxesSummary || ''
+          p.id, p.es_obra_civil ? 'SÍ' : 'NO', p.convenio, p.provincia, p.cui || '', p.desc,
+          p.estatus || '', p.estado_situacional || '', ini, fin, p.costo_ejec || 0,
+          formatAmbientesPlainText(p.id) || 'POR CENSAR'
         ].join('\t'));
       });
       navigator.clipboard.writeText(lines.join('\n')).then(() => {
@@ -2515,45 +2675,45 @@
       }
       const list = getFilteredAuditMasterList();
       const rows = list.map(p => {
-        const ubic = compileUbicacionCajas(p.id) || 'Por censar';
+        const ubic = compileUbicacionCajas(p.id) || 'POR CENSAR';
         const docInfo = compileDocumentTagsForProject(p.id);
-        const fin = p.fecha_termino_verificada_ing || (p.fecha_culminacion_real && p.fecha_culminacion_real !== '-' ? p.fecha_culminacion_real : (p.fecha_termino_prog && p.fecha_termino_prog !== '-' ? p.fecha_termino_prog : ''));
+        const ini = hasValidStart(p) ? p.fecha_inicio : 'FALTA INICIO';
+        const fin = hasValidEnd(p) ? (p.fecha_termino_verificada_ing || p.fecha_culminacion_real || '') : 'FALTA FIN';
         return {
           'N°': p.id,
-          'MUESTRA_AUDITORIA': p.es_auditoria_2022_2025 ? 'SÍ' : 'NO (MAESTRO)',
+          'OBRA_CIVIL_OBJETIVO': p.es_obra_civil ? 'SÍ' : 'NO',
           'CONVENIO': p.convenio || '',
           'PROVINCIA': p.provincia || '',
           'CUI': p.cui || '',
           'DESCRIPCION_PROYECTO': p.desc || '',
-          'FECHA_INICIO_VERIF': p.tiene_fecha_inicio ? p.fecha_inicio : 'SIN INICIO',
-          'FECHA_TERMINO_VERIF': fin,
-          'ESTATUS_OFICIAL': p.estatus || '',
+          'STATUS_EXCEL_ING': p.estatus || '',
           'ESTADO_SITUACIONAL': p.estado_situacional || '',
+          'FECHA_INICIO': ini,
+          'FECHA_TERMINO': fin,
+          'CENSADO_EN_CAMPO': isProjectMissingCensus(p) ? 'NO (FALTA CENSAR)' : 'SÍ (UBICADO)',
           'PTO_PRIORIZADO_S': Number(p.prio || 0),
           'AMPLIACION_S': Number(p.ampliacion_presupuestal || 0),
           'COSTO_TOTAL_S': Number(p.costo_total || 0),
           'PTO_EJECUTADO_S': Number(p.costo_ejec || 0),
-          'ACUERDO_FDM': p.acuerdo_fdm || '',
-          'ACUERDO_MUNICIPAL': p.acuerdo_municipal || '',
-          'UBICACION_AMBIENTE_CAJAS': ubic,
+          'RESUMEN_AMBIENTES': ubic,
+          'CONTENIDO_POR_AMBIENTE_Y_CAJA': formatAmbientesPlainText(p.id) || '',
           'TIENE_VALORIZACIONES': docInfo.hasVal ? 'SÍ' : 'NO',
           'TIENE_INFORME_FINAL': docInfo.hasInfFinal ? 'SÍ' : 'NO',
           'TIENE_LIQUIDACION': docInfo.hasLiq ? 'SÍ' : 'NO',
           'TIENE_EXP_TECNICO': docInfo.hasExp ? 'SÍ' : 'NO',
-          'DETALLE_CAJAS_Y_ROTULOS': docInfo.boxesSummary || '',
           'COMENTARIO_INGENIERO': p.comentario_ing || ''
         };
       });
       const ws = XLSX.utils.json_to_sheet(rows);
       ws['!cols'] = [
-        {wch:6},{wch:14},{wch:14},{wch:14},{wch:10},{wch:55},{wch:14},{wch:14},{wch:18},{wch:24},
-        {wch:14},{wch:13},{wch:14},{wch:14},{wch:26},{wch:22},{wch:28},{wch:12},{wch:12},{wch:12},{wch:12},{wch:55},{wch:35}
+        {wch:6},{wch:14},{wch:12},{wch:12},{wch:10},{wch:52},{wch:20},{wch:22},{wch:14},{wch:14},{wch:18},
+        {wch:14},{wch:13},{wch:14},{wch:14},{wch:28},{wch:62},{wch:12},{wch:12},{wch:12},{wch:12},{wch:32}
       ];
       const wb = XLSX.utils.book_new();
       XLSX.utils.book_append_sheet(wb, ws, 'CUADRO_MAESTRO_AUDITORIA');
       const stamp = new Date().toISOString().slice(0,10);
       XLSX.writeFile(wb, `FDM_Cuadro_Maestro_Auditoria_EnVivo_${stamp}.xlsx`);
-      showToast(`¡Excel Consolidado generado (${rows.length} proyectos + ubicaciones de Drive)!`);
+      showToast(`¡Excel Consolidado generado (${rows.length} proyectos + ubicaciones por ambiente)!`);
     }
 
     // Initialize
@@ -2565,8 +2725,8 @@
     <div class="audit-modal">
       <div class="audit-modal-header">
         <div>
-          <h2 style="font-size:1.15rem; font-weight:800; margin:0;">🏛️ Cuadro Maestro para Auditoría FDM (Fechas Verificadas + Cajas &amp; Acervo En Vivo)</h2>
-          <div style="font-size:0.78rem; color:#CBD5E1; margin-top:2px;">Integra la Matriz Oficial del Ingeniero (Inicio, Término, Situación Actual) con la ubicación física real y rótulos sincronizados desde Google Drive.</div>
+          <h2 style="font-size:1.15rem; font-weight:800; margin:0;">🏛️ Cuadro Maestro para Auditoría FDM (Obras Civiles + Ambientes y Faltantes)</h2>
+          <div style="font-size:0.78rem; color:#CBD5E1; margin-top:2px;">Control unificado del Status Excel, fechas de inicio/fin faltantes y todo el contenido encontrado por ambiente en Google Drive.</div>
         </div>
         <div style="display:flex; gap:0.5rem; align-items:center; flex-wrap:wrap;">
           <button type="button" class="btn" onclick="copyAuditMasterSummary()" style="background:#334155; color:white; font-size:0.78rem; padding:0.5rem 0.85rem;">📋 Copiar Tabla</button>
@@ -2577,12 +2737,14 @@
 
       <div class="audit-modal-controls">
         <div style="display:flex; gap:0.4rem; flex-wrap:wrap;">
-          <button type="button" class="tab-btn audit-flt-btn active" onclick="setAuditModalFilter('ALL', this)">Todos</button>
-          <button type="button" class="tab-btn audit-flt-btn" onclick="setAuditModalFilter('AUDIT', this)">🏛️ Muestra Auditoría (70)</button>
+          <button type="button" class="tab-btn audit-flt-btn active" onclick="setAuditModalFilter('CIVIL', this)">🏗️ Obras Civiles (72)</button>
+          <button type="button" class="tab-btn audit-flt-btn" onclick="setAuditModalFilter('PRIO_SIN_CENSAR', this)" style="color:#DC2626;border-color:#FCA5A5;">🚨 Ejecutadas Sin Censar</button>
+          <button type="button" class="tab-btn audit-flt-btn" onclick="setAuditModalFilter('FALTA_FECHAS', this)" style="color:#B45309;border-color:#FCD34D;">📅 Ejecutadas Sin Fechas</button>
           <button type="button" class="tab-btn audit-flt-btn" onclick="setAuditModalFilter('CAJAS', this)">📦 Con Cajas Censadas</button>
-          <button type="button" class="tab-btn audit-flt-btn" onclick="setAuditModalFilter('VAL_INF', this)">📊 Valorizaciones / Inf. Final</button>
-          <button type="button" class="tab-btn audit-flt-btn" onclick="setAuditModalFilter('LIQ', this)">🏆 Liquidadas / En Liq.</button>
+          <button type="button" class="tab-btn audit-flt-btn" onclick="setAuditModalFilter('VAL_INF', this)">📊 Valoriz. / Inf. Final</button>
+          <button type="button" class="tab-btn audit-flt-btn" onclick="setAuditModalFilter('LIQ', this)">🏆 Liquidadas</button>
           <button type="button" class="tab-btn audit-flt-btn" onclick="setAuditModalFilter('EJEC', this)">🚧 En Ejecución</button>
+          <button type="button" class="tab-btn audit-flt-btn" onclick="setAuditModalFilter('ALL', this)">📋 Toda Cartera (170)</button>
         </div>
         <div style="display:flex; gap:0.5rem; align-items:center; flex-wrap:wrap;">
           <select id="auditMasterProv" onchange="renderAuditMasterTable()" class="sort-select" style="font-size:0.78rem;">
@@ -2591,7 +2753,7 @@
             <option value="MN">Mariscal Nieto</option>
             <option value="GSC">Gral. Sánchez Cerro</option>
           </select>
-          <input type="text" id="auditMasterSearch" oninput="renderAuditMasterTable()" placeholder="Buscar obra, caja, valorización, informe final..." style="padding:0.45rem 0.75rem; border:1px solid #CBD5E1; border-radius:8px; font-size:0.8rem; min-width:250px;">
+          <input type="text" id="auditMasterSearch" oninput="renderAuditMasterTable()" placeholder="Buscar obra, ambiente, caja, valorización..." style="padding:0.45rem 0.75rem; border:1px solid #CBD5E1; border-radius:8px; font-size:0.8rem; min-width:250px;">
         </div>
       </div>
 
@@ -2602,13 +2764,12 @@
           <thead>
             <tr>
               <th style="width:45px;text-align:center;">N°</th>
-              <th style="width:95px;">PROV. / CONV.</th>
+              <th style="width:90px;">PROV. / CONV.</th>
               <th>PROYECTO Y CUI / NOTA</th>
-              <th style="width:115px;">INICIO / TÉRMINO</th>
-              <th style="width:140px;">SITUACIÓN / ESTATUS</th>
+              <th class="col-status">STATUS EXCEL</th>
+              <th style="width:115px;">INICIO / FIN</th>
               <th style="width:105px;text-align:right;">EJECUTADO</th>
-              <th style="width:165px;">UBICACIÓN EN CAJAS</th>
-              <th>ACERVO DETECTADO (VALORIZACIONES, INF. FINAL, EXP. TÉC., ETC.)</th>
+              <th style="width:290px;">UBICACIÓN POR AMBIENTE Y CONTENIDO</th>
             </tr>
           </thead>
           <tbody id="auditMasterTbody"></tbody>
