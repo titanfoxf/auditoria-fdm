@@ -351,6 +351,9 @@
       <button class="btn-cloud" onclick="openCloudSyncPrompt()" style="background: rgba(255,255,255,0.15); color: white; border: 1px solid rgba(255,255,255,0.25); padding: 0.65rem 0.9rem; border-radius: 8px; font-weight: 600; font-size: 0.82rem; cursor: pointer; display: inline-flex; align-items: center; gap: 0.4rem; transition: background 0.2s;">
         ☁️ Nube Drive
       </button>
+      <button class="btn-sync-matriz" id="btnSyncMatrizDrive" onclick="syncAllObrasToMatrizDrive()" style="background: #1D4ED8; color: white; border: 1px solid #60A5FA; padding: 0.65rem 0.9rem; border-radius: 8px; font-weight: 700; font-size: 0.82rem; cursor: pointer; display: inline-flex; align-items: center; gap: 0.4rem;" title="Poblar o actualizar MATRIZ_69_OBRAS en Google Drive con todos los proyectos y su clasificación sin borrar fechas existentes">
+        🔄 Poblar MATRIZ_69_OBRAS
+      </button>
       <button class="btn-backup" onclick="descargarRespaldoDrive()" style="background: #0F766E; color: white; border: 1px solid #14B8A6; padding: 0.65rem 0.9rem; border-radius: 8px; font-weight: 700; font-size: 0.82rem; cursor: pointer; display: inline-flex; align-items: center; gap: 0.4rem;" title="Descargar copia de seguridad completa de Drive y Sheets">
         🛡️ Respaldar Drive
       </button>
@@ -492,13 +495,10 @@
 
       <div class="drawer-nav">
         <div class="nav-tab active" onclick="switchDrawerTab('UBICACION')" id="tabNavUbicacion">
-          📦 Ubicación por Ambientes y Cajas (<span id="drawerCountFotosCajas">0</span>)
+          📦 Ubicación, Cajas y Fechas (<span id="drawerCountFotosCajas">0</span>)
         </div>
         <div class="nav-tab" onclick="switchDrawerTab('HISTORIAL')" id="tabNavHistorial">
           📑 Historial PMO y Datos (<span id="drawerCountHitos">0</span>)
-        </div>
-        <div class="nav-tab" onclick="switchDrawerTab('CHECKLIST')" id="tabNavChecklist">
-          📋 Checklist de Expediente
         </div>
       </div>
 
@@ -593,29 +593,7 @@
 
         </div>
 
-        <!-- Tab 2: Checklist Documental de Obra -->
-        <div id="drawerTabContentChecklist" style="display: none;">
-          <div class="checklist-section">
-            <div style="font-size: 0.85rem; font-weight: 700; color: var(--primary); margin-bottom: 0.75rem; display: flex; justify-content: space-between;">
-              <span>Checklist Documental de Obra Civil (11 Puntos)</span>
-              <span style="font-size: 0.75rem; font-weight: normal; color: var(--text-muted);">Marca lo verificado en físico</span>
-            </div>
-            
-            <div class="check-item"><label><input type="checkbox" id="chk_exp"> 1. Expediente Técnico Aprobado</label></div>
-            <div class="check-item"><label><input type="checkbox" id="chk_cont"> 2. Contrato Principal y Cartas Fianza</label></div>
-            <div class="check-item"><label><input type="checkbox" id="chk_acta_ent"> 3. Acta de Entrega de Terreno / Inicio</label></div>
-            <div class="check-item"><label><input type="checkbox" id="chk_cuad"> 4. Cuaderno de Obra Completo</label></div>
-            <div class="check-item"><label><input type="checkbox" id="chk_val"> 5. Valorizaciones Mensuales (1 a N) con Ensayos</label></div>
-            <div class="check-item"><label><input type="checkbox" id="chk_adic"> 6. Adicionales de Obra / Ampliaciones de Plazo</label></div>
-            <div class="check-item"><label><input type="checkbox" id="chk_sup"> 7. Informes Mensuales de Supervisión</label></div>
-            <div class="check-item"><label><input type="checkbox" id="chk_rec"> 8. Acta de Recepción de Obra Definitiva</label></div>
-            <div class="check-item"><label><input type="checkbox" id="chk_liq"> 9. Liquidación de Contrato de Obra</label></div>
-            <div class="check-item"><label><input type="checkbox" id="chk_res"> 10. Resolución de Liquidación FDM</label></div>
-            <div class="check-item"><label><input type="checkbox" id="chk_transf"> 11. Acta de Transferencia a Entidad Receptora</label></div>
-          </div>
-        </div>
-
-        <!-- Tab 3: Evidencias de Campo y Fotos de Cajas -->
+        <!-- Tab Ubicación, Cajas y Fechas -->
         <div id="drawerTabContentUbicacion" style="display: block;">
           <!-- Barra Rápida para Completar Fechas Faltantes en Gabinete -->
           <div id="drawerQuickEditBar" class="quick-dates-bar">
@@ -854,6 +832,46 @@
                 fieldPhotosMap[oId].ubicacion = r.ambiente;
               }
             });
+
+            // 3. Sincronizar Fechas y Notas desde MATRIZ_69_OBRAS (Google Drive -> Visor PC)
+            if (cloudData.obras && typeof cloudData.obras === 'object') {
+              window.cloudObrasMap = cloudData.obras;
+              Object.keys(cloudData.obras).forEach(oKey => {
+                const oData = cloudData.obras[oKey];
+                const oId = parseInt(oKey);
+                if (!oId || !oData) return;
+
+                if (!fieldPhotosMap[oId]) fieldPhotosMap[oId] = { id: oId, fotos: [], ubicacion: '' };
+                const iniCloud = normalizeCloudDateStr(oData.fecha_inicio);
+                const finCloud = normalizeCloudDateStr(oData.fecha_culm);
+
+                if (iniCloud) fieldPhotosMap[oId].fecha_inicio = iniCloud;
+                if (finCloud) fieldPhotosMap[oId].fecha_culm = finCloud;
+                if (oData.notas_auditoria) fieldPhotosMap[oId].notas_auditoria = String(oData.notas_auditoria).trim();
+
+                const p = (projectsData || []).find(item => item.id === oId);
+                if (p) {
+                  if (iniCloud) {
+                    p.fecha_inicio = iniCloud;
+                    p.tiene_fecha_inicio = true;
+                    p.fecha_inicio_from_drive = true;
+                    p.fecha_inicio_verificada_ing = true;
+                    p.fecha_inicio_doc = 'Verificado en Campo / MATRIZ_69_OBRAS (Drive)';
+                    const m = iniCloud.match(/^(\d{2})\/(\d{2})\/(\d{4})$/);
+                    if (m) p.fecha_inicio_sort = `${m[3]}-${m[2]}-${m[1]}`;
+                  }
+                  if (finCloud) {
+                    p.fecha_culminacion_real = finCloud;
+                    p.fecha_termino_verificada_ing = finCloud;
+                    p.fecha_culm_from_drive = true;
+                    p.tiene_fecha_termino = /\d/.test(finCloud);
+                  }
+                  if (oData.notas_auditoria) {
+                    p.alerta = String(oData.notas_auditoria).trim();
+                  }
+                }
+              });
+            }
           }
         } catch (e) {
           console.warn("Sincronización en segundo plano con nube:", e);
@@ -862,6 +880,20 @@
 
       // Aplicar ediciones locales de gabinete en caso existan
       applyRotuloEditsToMap();
+    }
+
+    function normalizeCloudDateStr(val) {
+      if (val === null || val === undefined) return '';
+      let s = String(val).trim();
+      if (!s || s === '-' || s === '—' || s.toUpperCase() === 'FALTA INICIO' || s.toUpperCase() === 'FALTA FIN' || s.toUpperCase().includes('SIN INICIO')) {
+        return '';
+      }
+      // Google Sheets suele serializar fechas como ISO YYYY-MM-DD o YYYY-MM-DDTHH:mm:ss.sssZ
+      const isoMatch = s.match(/^(\d{4})-(\d{2})-(\d{2})(?:T.*)?$/);
+      if (isoMatch) {
+        return `${isoMatch[3]}/${isoMatch[2]}/${isoMatch[1]}`;
+      }
+      return s;
     }
 
     // Compila los ambientes reales censados en campo con número de cajas y docs sueltos
@@ -1648,12 +1680,12 @@
             if (entry.checks) p.checks = { ...p.checks, ...entry.checks };
             if (entry.ubicacion) p.n_cajas = entry.ubicacion;
             if (entry.observaciones) p.alerta = entry.observaciones;
-            if (entry.fecha_inicio) {
+            if (entry.fecha_inicio && !p.fecha_inicio_from_drive) {
               p.fecha_inicio = entry.fecha_inicio;
               p.tiene_fecha_inicio = true;
               p.fecha_inicio_doc = 'Completado / Verificado en Visor';
             }
-            if (entry.fecha_culminacion_real) {
+            if (entry.fecha_culminacion_real && !p.fecha_culm_from_drive) {
               p.fecha_culminacion_real = entry.fecha_culminacion_real;
               p.fecha_termino_verificada_ing = entry.fecha_culminacion_real;
               p.tiene_fecha_termino = /\d/.test(entry.fecha_culminacion_real);
@@ -1665,7 +1697,7 @@
       }
     }
 
-    function saveQuickDatesFromDrawer() {
+    async function saveQuickDatesFromDrawer() {
       if (!selectedProjectId) return;
       const p = projectsData.find(item => item.id === selectedProjectId);
       if (!p) return;
@@ -1685,6 +1717,10 @@
         p.tiene_fecha_termino = /\d/.test(finVal);
       }
 
+      if (!fieldPhotosMap[selectedProjectId]) fieldPhotosMap[selectedProjectId] = { id: selectedProjectId, fotos: [], ubicacion: '' };
+      if (iniVal) fieldPhotosMap[selectedProjectId].fecha_inicio = iniVal;
+      if (finVal) fieldPhotosMap[selectedProjectId].fecha_culm = finVal;
+
       try {
         const saved = JSON.parse(localStorage.getItem('fdm_audit_changes') || '{}');
         saved[selectedProjectId] = {
@@ -1701,7 +1737,144 @@
       switchDrawerTab('UBICACION');
       filterTable();
       renderAnalyticsDashboard();
-      showToast("✅ Fechas actualizadas para esta obra");
+
+      // Sincronizar también en MATRIZ_69_OBRAS (Google Drive) para que celular y PC vean exactamente lo mismo
+      const gasUrl = (localStorage.getItem('fdm_gas_url') || '').trim();
+      if (gasUrl) {
+        showToast("💾 Guardado local. Subiendo a MATRIZ_69_OBRAS en Drive...");
+        try {
+          const res = await fetch(gasUrl, {
+            method: 'POST',
+            headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+            body: JSON.stringify({
+              action: 'save_obra_checks',
+              obra_id: p.id,
+              desc: p.desc || '',
+              cui: (p.cui && p.cui !== 'N/D') ? p.cui : 'S/N',
+              provincia: p.provincia || '',
+              convenio: p.convenio || '',
+              es_obra_civil: p.es_obra_civil ? 'OBRA CIVIL OBJETIVO' : 'ADQUISICIÓN / OTROS',
+              estatus: p.estatus || '',
+              estado_situacional: p.estado_situacional || '',
+              prio: Number(p.prio || 0),
+              costo_ejec: Number(p.costo_ejec || 0),
+              ubicacion_ambientes: compileUbicacionCajas(p.id) || '',
+              fecha_inicio: iniVal || (hasValidStart(p) ? p.fecha_inicio : ''),
+              fecha_culm: finVal || (hasValidEnd(p) ? (p.fecha_termino_verificada_ing || p.fecha_culminacion_real || '') : ''),
+              notas_auditoria: p.alerta || p.comentario_ing || ''
+            })
+          });
+          const data = await res.json();
+          if (data && data.status === 'success') {
+            showToast("☁️ ¡Fechas guardadas y sincronizadas en MATRIZ_69_OBRAS (Drive)!");
+          } else {
+            showToast("✅ Fechas guardadas en navegador (aviso Drive).");
+          }
+        } catch (cloudErr) {
+          console.warn("No se pudo subir fecha a Drive:", cloudErr);
+          showToast("✅ Fechas guardadas localmente (sin conexión a Drive ahora).");
+        }
+      } else {
+        showToast("✅ Fechas actualizadas para esta obra");
+      }
+    }
+
+    async function syncAllObrasToMatrizDrive() {
+      let gasUrl = (localStorage.getItem('fdm_gas_url') || '').trim();
+      if (!gasUrl) {
+        openCloudSyncPrompt();
+        gasUrl = (localStorage.getItem('fdm_gas_url') || '').trim();
+        if (!gasUrl) return;
+      }
+
+      if (!confirm(
+        "🔄 POBLAR / SINCRONIZAR MATRIZ_69_OBRAS EN GOOGLE DRIVE\n\n" +
+        "• Respaldará primero lo que ya existe en tu hoja MATRIZ_69_OBRAS.\n" +
+        "• Mantendrá intactas todas las fechas que ya ingresaste en campo ayer/hoy.\n" +
+        "• Llenará todas las filas de Obras Civiles (72) y cartera completa (170) con sus columnas de clasificación (Obra Civil / Adquisición, Convenio, Status Excel, Situación y Fechas).\n\n" +
+        "¿Deseas iniciar la sincronización?"
+      )) return;
+
+      const btn = document.getElementById('btnSyncMatrizDrive');
+      const prevTxt = btn ? btn.innerText : '';
+      if (btn) { btn.disabled = true; btn.innerText = '⏳ Sincronizando Drive...'; }
+
+      try {
+        showToast("📥 Descargando estado actual de MATRIZ_69_OBRAS para proteger tus datos...");
+        const getRes = await fetch(gasUrl);
+        const cloudData = await getRes.json();
+        const cloudObras = (cloudData && cloudData.obras) ? cloudData.obras : {};
+
+        try {
+          localStorage.setItem('fdm_matriz_pre_sync_backup', JSON.stringify({
+            timestamp: new Date().toISOString(),
+            obras_drive: cloudObras
+          }));
+        } catch (bakErr) {}
+
+        // Preparar todas las filas preservando con prioridad absoluta lo que ya esté escrito en Drive
+        const allSorted = (projectsData || []).filter(p => p.id !== 999).sort((a, b) => a.id - b.id);
+        const payloadObras = allSorted.map(p => {
+          const dr = cloudObras[p.id] || {};
+          const iniDr = normalizeCloudDateStr(dr.fecha_inicio);
+          const finDr = normalizeCloudDateStr(dr.fecha_culm);
+          const iniWeb = hasValidStart(p) ? p.fecha_inicio : '';
+          const finWeb = hasValidEnd(p) ? (p.fecha_termino_verificada_ing || p.fecha_culminacion_real || '') : '';
+          return {
+            obra_id: p.id,
+            desc: p.desc || '',
+            cui: (p.cui && p.cui !== 'N/D') ? p.cui : 'S/N',
+            provincia: p.provincia || '',
+            convenio: p.convenio || '',
+            es_obra_civil: p.es_obra_civil ? 'OBRA CIVIL OBJETIVO' : (p.tipologia || 'ADQUISICIÓN / OTROS'),
+            estatus: p.estatus || '',
+            estado_situacional: p.estado_situacional || '',
+            prio: Number(p.prio || 0),
+            costo_ejec: Number(p.costo_ejec || 0),
+            ubicacion_ambientes: compileUbicacionCajas(p.id) || '',
+            fecha_inicio: iniDr || iniWeb,
+            fecha_culm: finDr || finWeb,
+            notas_auditoria: (dr.notas_auditoria || p.alerta || p.comentario_ing || '').trim()
+          };
+        });
+
+        // Intentar carga rápida por lotes (si ya actualizó google_apps_script_backend.js)
+        const postRes = await fetch(gasUrl, {
+          method: 'POST',
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+          body: JSON.stringify({ action: 'sync_matriz_obras_completa', obras: payloadObras })
+        });
+        const postJson = await postRes.json().catch(() => null);
+
+        if (postJson && postJson.status === 'success' && postJson.action === 'sync_matriz_obras_completa') {
+          await loadFieldAuditData();
+          filterTable();
+          renderAnalyticsDashboard();
+          alert(`✅ ¡MATRIZ_69_OBRAS poblada con éxito!\n\n• Total filas registradas: ${postJson.total_obras}\n• Pestaña de respaldo creada automáticamente: ${postJson.backup_sheet || 'BACKUP_MATRIZ_OBRAS'}\n• Tus fechas ingresadas en campo se conservaron y ya están visibles aquí en la PC.`);
+        } else {
+          // Respaldo compatible con Apps Script antiguo: insertar fila por fila las 72 Obras Civiles faltantes sin tocar las que ya tienen datos
+          const civilsPayload = payloadObras.filter(o => o.es_obra_civil === 'OBRA CIVIL OBJETIVO');
+          let done = 0;
+          for (const item of civilsPayload) {
+            await fetch(gasUrl, {
+              method: 'POST',
+              headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+              body: JSON.stringify({ action: 'save_obra_checks', ...item })
+            }).catch(() => {});
+            done++;
+            if (btn && done % 5 === 0) btn.innerText = `⏳ ${done}/${civilsPayload.length}`;
+          }
+          await loadFieldAuditData();
+          filterTable();
+          renderAnalyticsDashboard();
+          alert(`✅ ¡Se sincronizaron ${done} Obras Civiles en MATRIZ_69_OBRAS!\n\nNota: Si deseas ver también las nuevas columnas de clasificación (TIPO_PROYECTO, CONVENIO, STATUS_EXCEL, SITUACION_ACTUAL) y las 170 filas completas, pega el código actualizado de google_apps_script_backend.js en tu Apps Script y vuelve a pulsar este botón.`);
+        }
+      } catch (err) {
+        console.error("Error poblando MATRIZ_69_OBRAS:", err);
+        alert("No se pudo conectar con Google Drive para poblar MATRIZ_69_OBRAS: " + err.message);
+      } finally {
+        if (btn) { btn.disabled = false; btn.innerText = prevTxt; }
+      }
     }
 
     function renderKPIs(kpis) {
@@ -2187,20 +2360,6 @@
         alertBox.style.display = 'none';
       }
 
-      // Set checklist
-      const checks = p.checks || {};
-      document.getElementById('chk_exp').checked = !!checks.exp || (p.estado_info === 'COMPLETA');
-      document.getElementById('chk_cont').checked = !!checks.cont || !!p.contrato || p.tiene_fecha_inicio;
-      document.getElementById('chk_acta_ent').checked = !!checks.acta_ent || !!p.entrega_terreno || p.tiene_fecha_inicio;
-      document.getElementById('chk_cuad').checked = !!checks.cuad || hist.length > 0;
-      document.getElementById('chk_val').checked = !!checks.val || hist.some(h => (h.tipo || '').includes('Valoriz'));
-      document.getElementById('chk_adic').checked = !!checks.adic || hist.some(h => (h.asunto_razon || '').includes('Adicional'));
-      document.getElementById('chk_sup').checked = !!checks.sup || hist.length > 0;
-      document.getElementById('chk_rec').checked = !!checks.rec || !!p.acta_recepcion || hist.some(h => (h.tipo || '').includes('Recep'));
-      document.getElementById('chk_liq').checked = !!checks.liq || !!p.resolucion_liquidacion || hist.some(h => (h.tipo || '').includes('Liquid'));
-      document.getElementById('chk_res').checked = !!checks.res || !!p.resolucion_liquidacion;
-      document.getElementById('chk_transf').checked = !!checks.transf || (p.alerta || '').includes('transferencia');
-
       // Tab Ubicacion: Quick dates + Evidencias y Cajas de Campo
       const qIni = document.getElementById('quickInputInicio');
       if (qIni) qIni.value = hasValidStart(p) ? p.fecha_inicio : '';
@@ -2455,13 +2614,13 @@
     }
 
     function switchDrawerTab(tab) {
-      document.getElementById('tabNavHistorial').classList.toggle('active', tab === 'HISTORIAL');
-      document.getElementById('tabNavChecklist').classList.toggle('active', tab === 'CHECKLIST');
-      document.getElementById('tabNavUbicacion').classList.toggle('active', tab === 'UBICACION');
+      document.getElementById('tabNavHistorial')?.classList.toggle('active', tab === 'HISTORIAL');
+      document.getElementById('tabNavUbicacion')?.classList.toggle('active', tab === 'UBICACION');
 
-      document.getElementById('drawerTabContentHistorial').style.display = tab === 'HISTORIAL' ? 'block' : 'none';
-      document.getElementById('drawerTabContentChecklist').style.display = tab === 'CHECKLIST' ? 'block' : 'none';
-      document.getElementById('drawerTabContentUbicacion').style.display = tab === 'UBICACION' ? 'block' : 'none';
+      const elHist = document.getElementById('drawerTabContentHistorial');
+      const elUbic = document.getElementById('drawerTabContentUbicacion');
+      if (elHist) elHist.style.display = tab === 'HISTORIAL' ? 'block' : 'none';
+      if (elUbic) elUbic.style.display = tab === 'UBICACION' ? 'block' : 'none';
     }
 
     function closeDrawer() {
@@ -2474,48 +2633,7 @@
 
     async function saveProjectChanges() {
       if (!selectedProjectId) return;
-
-      const updatedChecks = {
-        exp: document.getElementById('chk_exp').checked,
-        cont: document.getElementById('chk_cont').checked,
-        acta_ent: document.getElementById('chk_acta_ent').checked,
-        cuad: document.getElementById('chk_cuad').checked,
-        val: document.getElementById('chk_val').checked,
-        adic: document.getElementById('chk_adic').checked,
-        sup: document.getElementById('chk_sup').checked,
-        rec: document.getElementById('chk_rec').checked,
-        liq: document.getElementById('chk_liq').checked,
-        res: document.getElementById('chk_res').checked,
-        transf: document.getElementById('chk_transf').checked
-      };
-
-      const elUbic = document.getElementById('drawerUbicacion');
-      const updatedUbicacion = elUbic ? elUbic.value : '';
-      const elObs = document.getElementById('drawerObservaciones');
-      const updatedObservaciones = elObs ? elObs.value : '';
-
-      const p = projectsData.find(item => item.id === selectedProjectId);
-      if (p) {
-        p.checks = updatedChecks;
-        p.n_cajas = updatedUbicacion;
-        p.tiene_caja = updatedUbicacion.toUpperCase().includes('CAJA') ? 'EN CAJA' : 'ARCHIVADOR';
-        p.alerta = updatedObservaciones;
-      }
-
-      try {
-        const saved = JSON.parse(localStorage.getItem('fdm_audit_changes') || '{}');
-        saved[selectedProjectId] = {
-          checks: updatedChecks,
-          ubicacion: updatedUbicacion,
-          observaciones: updatedObservaciones
-        };
-        localStorage.setItem('fdm_audit_changes', JSON.stringify(saved));
-      } catch (e) {
-        console.error("Error writing localStorage:", e);
-      }
-
-      showToast("Cambios guardados en memoria correctamente");
-      filterTable();
+      saveQuickDatesFromDrawer();
     }
 
     function showToast(msg) {

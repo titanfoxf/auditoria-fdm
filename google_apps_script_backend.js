@@ -53,28 +53,32 @@ function doGet(e) {
       });
     }
 
-    // 2. Leer Matriz de 69 Obras (Solo Fechas y 11 Checks)
+    // 2. Leer Matriz de Obras (Fechas Inicio/Fin, Clasificación y Notas)
     const dataObras = sheetObras.getDataRange().getValues();
+    const headerRow = dataObras.length > 0 ? dataObras[0] : [];
+    const isNewSchema = String(headerRow[6] || "").trim() === "TIPO_PROYECTO";
     const obras = {};
     for (let i = 1; i < dataObras.length; i++) {
       const row = dataObras[i];
       const oId = parseInt(row[0]);
       if (!oId) continue;
 
-      const checks = {};
-      CHECK_KEYS.forEach((k, idx) => {
-        checks[k] = (row[6 + idx] === "SÍ" || row[6 + idx] === true);
-      });
+      const fIni = formatSheetCellDateStr(row[4]);
+      const fCulm = formatSheetCellDateStr(row[5]);
+      const notas = isNewSchema ? (row[13] || "") : (row[17] || row[13] || "");
 
       obras[oId] = {
         obra_id: oId,
         desc: row[1],
         cui: row[2],
         provincia: row[3],
-        fecha_inicio: row[4],
-        fecha_culm: row[5],
-        checks: checks,
-        notas_auditoria: row[17] || ""
+        fecha_inicio: fIni,
+        fecha_culm: fCulm,
+        tipo_proyecto: isNewSchema ? (row[6] || "") : "",
+        convenio: isNewSchema ? (row[7] || "") : "",
+        estatus: isNewSchema ? (row[8] || "") : "",
+        estado_situacional: isNewSchema ? (row[9] || "") : "",
+        notas_auditoria: notas
       };
     }
 
@@ -371,6 +375,20 @@ function doPost(e) {
       })).setMimeType(ContentService.MimeType.JSON);
     }
 
+    // ==============================================================
+    // CASO 5: POBLAR MATRIZ_69_OBRAS COMPLETA CON CLASIFICACIÓN (SIN CHECKLISTS)
+    // ==============================================================
+    if (action === "sync_matriz_obras_completa") {
+      const resSync = poblarMatrizObrasCompleta(ss, payload);
+      return ContentService.createTextOutput(JSON.stringify({
+        status: "success",
+        action: "sync_matriz_obras_completa",
+        total_obras: resSync.totalObras,
+        backup_sheet: resSync.backupSheet,
+        message: `MATRIZ_69_OBRAS poblada con ${resSync.totalObras} proyectos y respaldo en ${resSync.backupSheet}.`
+      })).setMimeType(ContentService.MimeType.JSON);
+    }
+
   } catch (err) {
     return ContentService.createTextOutput(JSON.stringify({
       status: "error",
@@ -379,8 +397,22 @@ function doPost(e) {
   }
 }
 
+function formatSheetCellDateStr(val) {
+  if (!val) return "";
+  if (val instanceof Date) {
+    try {
+      return Utilities.formatDate(val, Session.getScriptTimeZone(), "dd/MM/yyyy");
+    } catch (e) {
+      return val.toISOString().slice(0, 10);
+    }
+  }
+  return String(val).trim();
+}
+
 function upsertObraRow(sheetObras, obraId, payload) {
   const data = sheetObras.getDataRange().getValues();
+  const headerRow = data.length > 0 ? data[0] : [];
+  const isNewSchema = String(headerRow[6] || "").trim() === "TIPO_PROYECTO";
   let targetRowIndex = -1;
 
   for (let i = 1; i < data.length; i++) {
@@ -396,23 +428,143 @@ function upsertObraRow(sheetObras, obraId, payload) {
   const fIni = payload.fecha_inicio || "";
   const fCulm = payload.fecha_culm || "";
   const notasAuditoria = payload.notas_auditoria || payload.notas || "";
-  const checks = payload.checks || {};
 
-  const checkCols = CHECK_KEYS.map(k => checks[k] ? "SÍ" : "");
-
-  const rowValues = [
-    obraId, desc, cui, prov, fIni, fCulm,
-    checkCols[0], checkCols[1], checkCols[2], checkCols[3],
-    checkCols[4], checkCols[5], checkCols[6], checkCols[7],
-    checkCols[8], checkCols[9], checkCols[10],
-    notasAuditoria, new Date().toLocaleString()
-  ];
-
-  if (targetRowIndex !== -1) {
-    sheetObras.getRange(targetRowIndex, 1, 1, rowValues.length).setValues([rowValues]);
+  if (isNewSchema) {
+    const rowValues = [
+      obraId,
+      desc,
+      cui,
+      prov,
+      fIni,
+      fCulm,
+      payload.es_obra_civil || "OBRA CIVIL OBJETIVO",
+      payload.convenio || "",
+      payload.estatus || "",
+      payload.estado_situacional || "",
+      Number(payload.prio || 0),
+      Number(payload.costo_ejec || 0),
+      payload.ubicacion_ambientes || "",
+      notasAuditoria,
+      new Date().toLocaleString()
+    ];
+    if (targetRowIndex !== -1) {
+      sheetObras.getRange(targetRowIndex, 1, 1, rowValues.length).setValues([rowValues]);
+    } else {
+      sheetObras.appendRow(rowValues);
+    }
   } else {
-    sheetObras.appendRow(rowValues);
+    // Hoja con esquema anterior: actualizar columnas 1-6 y notas/fecha actualización (18-19) sin tocar 7-17
+    if (targetRowIndex !== -1) {
+      sheetObras.getRange(targetRowIndex, 1, 1, 6).setValues([[obraId, desc, cui, prov, fIni, fCulm]]);
+      sheetObras.getRange(targetRowIndex, 18, 1, 2).setValues([[notasAuditoria, new Date().toLocaleString()]]);
+    } else {
+      const rowLegacy = [obraId, desc, cui, prov, fIni, fCulm, "", "", "", "", "", "", "", "", "", "", "", notasAuditoria, new Date().toLocaleString()];
+      sheetObras.appendRow(rowLegacy);
+    }
   }
+}
+
+function poblarMatrizObrasCompleta(ss, payload) {
+  let sheetObras = getOrCreateSheetObras(ss);
+  const dataActual = sheetObras.getDataRange().getValues();
+  const isLegacy = dataActual.length > 0 && String(dataActual[0][6] || "").trim() !== "TIPO_PROYECTO";
+
+  // 1. Respaldo de seguridad de lo que ya tenía MATRIZ_69_OBRAS
+  const backupName = "BACKUP_MATRIZ_OBRAS_" + Utilities.formatDate(new Date(), Session.getScriptTimeZone(), "yyyyMMdd");
+  if (dataActual.length > 1) {
+    crearRespaldoAutomaticoCajas(ss, sheetObras, backupName);
+  }
+
+  // 2. Preservar fechas y notas ya registradas manualmente en Google Sheets
+  const existentes = {};
+  for (let i = 1; i < dataActual.length; i++) {
+    const r = dataActual[i];
+    const id = parseInt(r[0]);
+    if (!id) continue;
+    const iniEx = formatSheetCellDateStr(r[4]);
+    const finEx = formatSheetCellDateStr(r[5]);
+    const notaEx = isLegacy ? String(r[17] || "").trim() : String(r[13] || "").trim();
+    existentes[id] = { ini: iniEx, fin: finEx, nota: notaEx };
+  }
+
+  // 3. Indexar ubicaciones por ambiente desde CENSO_CAJAS_FOTOS
+  const sheetCajas = getOrCreateSheetCajas(ss);
+  const dataCajas = sheetCajas.getDataRange().getValues();
+  const ubicMap = {};
+  for (let i = 1; i < dataCajas.length; i++) {
+    const oId = parseInt(dataCajas[i][1]);
+    if (!oId) continue;
+    const amb = String(dataCajas[i][3] || "").trim() || "Ambiente";
+    const cod = String(dataCajas[i][2] || "").trim() || "Caja";
+    if (!ubicMap[oId]) ubicMap[oId] = {};
+    if (!ubicMap[oId][amb]) ubicMap[oId][amb] = {};
+    ubicMap[oId][amb][cod] = true;
+  }
+
+  // 4. Reescribir MATRIZ_69_OBRAS con el nuevo esquema limpio y clasificable
+  sheetObras.clear();
+  const headers = [
+    "OBRA_N°", "DESCRIPCION_PROYECTO", "CUI", "PROVINCIA",
+    "FECHA_INICIO_REAL", "FECHA_CULMINACION_REAL",
+    "TIPO_PROYECTO", "CONVENIO", "STATUS_EXCEL", "SITUACION_ACTUAL",
+    "PTO_PRIORIZADO", "PTO_EJECUTADO", "UBICACION_AMBIENTES",
+    "NOTAS_AUDITORIA", "ULTIMA_ACTUALIZACION"
+  ];
+  sheetObras.getRange(1, 1, 1, headers.length).setValues([headers])
+    .setBackground("#1E293B").setFontColor("#FFFFFF").setFontWeight("bold").setWrap(true);
+  sheetObras.setFrozenRows(1);
+
+  const obras = Array.isArray(payload.obras) ? payload.obras : [];
+  const rows = [];
+  const bgColors = [];
+  const stamp = new Date().toLocaleString();
+
+  obras.forEach((o, idx) => {
+    const id = parseInt(o.obra_id);
+    const ex = existentes[id] || {};
+    const fIni = ex.ini || o.fecha_inicio || "";
+    const fFin = ex.fin || o.fecha_culm || "";
+    const nota = ex.nota || o.notas_auditoria || "";
+
+    let ubicStr = o.ubicacion_ambientes || "";
+    if (ubicMap[id]) {
+      ubicStr = Object.keys(ubicMap[id]).map(amb => `${amb} (${Object.keys(ubicMap[id][amb]).length})`).join(" | ");
+    }
+
+    rows.push([
+      id,
+      o.desc || "",
+      o.cui || "S/N",
+      o.provincia || "",
+      fIni,
+      fFin,
+      o.es_obra_civil || "ADQUISICIÓN / OTROS",
+      o.convenio || "",
+      o.estatus || "",
+      o.estado_situacional || "",
+      Number(o.prio || 0),
+      Number(o.costo_ejec || 0),
+      ubicStr,
+      nota,
+      stamp
+    ]);
+
+    const baseBg = (o.es_obra_civil === "OBRA CIVIL OBJETIVO") ? ((idx % 2 === 1) ? "#F8FAFC" : "#FFFFFF") : "#F1F5F9";
+    const rowBg = new Array(headers.length).fill(baseBg);
+    if (o.es_obra_civil === "OBRA CIVIL OBJETIVO") {
+      rowBg[6] = "#DBEAFE";
+    }
+    bgColors.push(rowBg);
+  });
+
+  if (rows.length > 0) {
+    const rng = sheetObras.getRange(2, 1, rows.length, headers.length);
+    rng.setValues(rows).setWrap(true).setVerticalAlignment("middle").setBackgrounds(bgColors);
+    sheetObras.getRange(2, 5, rows.length, 2).setNumberFormat("@");
+    sheetObras.getRange(2, 11, rows.length, 2).setNumberFormat("#,##0.00");
+  }
+
+  return { totalObras: rows.length, backupSheet: backupName };
 }
 
 function getOrCreateSheetCajas(ss) {
@@ -463,9 +615,8 @@ function getOrCreateSheetObras(ss) {
     const headers = [
       "OBRA_N°", "DESCRIPCION_PROYECTO", "CUI", "PROVINCIA", 
       "FECHA_INICIO_REAL", "FECHA_CULMINACION_REAL",
-      "1_EXP_TECNICO", "2_CONTRATO", "3_ACTA_INICIO", "4_CUADERNO",
-      "5_VALORIZACIONES", "6_ADICIONALES", "7_SUPERVISION", "8_ACTA_RECEPCION",
-      "9_LIQ_OBRA", "10_RES_LIQ_FDM", "11_TRANSFERENCIA",
+      "TIPO_PROYECTO", "CONVENIO", "STATUS_EXCEL", "SITUACION_ACTUAL",
+      "PTO_PRIORIZADO", "PTO_EJECUTADO", "UBICACION_AMBIENTES",
       "NOTAS_AUDITORIA", "ULTIMA_ACTUALIZACION"
     ];
     sheet.getRange(1, 1, 1, headers.length).setValues([headers]);
