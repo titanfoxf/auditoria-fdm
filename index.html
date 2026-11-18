@@ -258,7 +258,7 @@
     .drive-link:hover { text-decoration: underline; background: #DBEAFE; }
     
     /* Lightbox Modal con Zoom */
-    .lightbox-modal { position: fixed; inset: 0; background: rgba(15, 23, 42, 0.96); z-index: 200; display: none; align-items: center; justify-content: center; padding: 1.5rem; overflow: auto; }
+    .lightbox-modal { position: fixed; inset: 0; background: rgba(15, 23, 42, 0.96); z-index: 4200; display: none; align-items: center; justify-content: center; padding: 1.5rem; overflow: auto; }
     .lightbox-modal.open { display: flex; }
     .lightbox-modal img { max-width: 94%; max-height: 88vh; object-fit: contain; border-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.6); transition: transform 0.2s ease; cursor: zoom-in; transform-origin: center center; }
     .lightbox-toolbar { position: fixed; top: 1.1rem; right: 1.5rem; display: flex; gap: 0.5rem; align-items: center; z-index: 210; }
@@ -335,6 +335,53 @@
     .quick-date-input { width: 100%; padding: 0.42rem 0.55rem; border: 1.5px solid #93C5FD; border-radius: 6px; font-size: 0.82rem; font-family: monospace; background: #FFFFFF; box-sizing: border-box; }
     .drawer-amb-map-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 0.75rem; margin-bottom: 0.9rem; }
     .drawer-amb-card { background: #FFFFFF; border: 1.5px solid #BBF7D0; border-left: 4px solid #16A34A; border-radius: 10px; padding: 0.7rem 0.85rem; box-shadow: 0 2px 6px rgba(0,0,0,0.04); }
+
+    /* Barra de Filtros por Año de Inicio + Acciones en Lote */
+    .year-bar { display: flex; gap: 0.4rem; flex-wrap: wrap; align-items: center; padding-bottom: 0.75rem; margin-bottom: 0.75rem; border-bottom: 1px solid var(--border); }
+    .year-btn { background: #F8FAFC; border: 1.5px solid #CBD5E1; color: #334155; padding: 0.34rem 0.68rem; border-radius: 8px; font-size: 0.76rem; font-weight: 800; cursor: pointer; display: inline-flex; align-items: center; gap: 0.3rem; transition: all 0.15s; }
+    .year-btn:hover { border-color: #0284C7; color: #0369A1; background: #F0F9FF; }
+    .year-btn.active { background: #0369A1; border-color: #0369A1; color: #FFFFFF; box-shadow: 0 2px 5px rgba(3,105,161,0.28); }
+    .btn-batch-dates { margin-left: auto; background: #FEF3C7; border: 1.5px solid #F59E0B; color: #92400E; padding: 0.36rem 0.8rem; border-radius: 8px; font-size: 0.76rem; font-weight: 800; cursor: pointer; display: inline-flex; align-items: center; gap: 0.35rem; transition: all 0.15s; }
+    .btn-batch-dates:hover { background: #FDE68A; transform: translateY(-1px); }
+    .year-pill-mini { display: inline-block; background: #E0F2FE; color: #0369A1; border: 1px solid #7DD3FC; font-size: 0.63rem; font-weight: 800; padding: 1px 5px; border-radius: 4px; margin-bottom: 2px; }
+
+    /* Botón Armar Rótulo en Drawer */
+    .btn-armar-rotulo-hdr { background: linear-gradient(135deg, #7C3AED, #5B21B6); color: #FFFFFF; border: none; padding: 0.32rem 0.68rem; border-radius: 7px; font-size: 0.73rem; font-weight: 800; cursor: pointer; display: inline-flex; align-items: center; gap: 0.3rem; box-shadow: 0 2px 5px rgba(91,33,182,0.24); transition: transform 0.12s; }
+    .btn-armar-rotulo-hdr:hover { transform: translateY(-1px); background: linear-gradient(135deg, #6D28D9, #4C1D95); }
+
+    /* Modal Armador de Hoja de Rótulo A4 & Editor Fechas en Lote */
+    .armador-modal-backdrop { position: fixed; inset: 0; background: rgba(15,23,42,0.72); backdrop-filter: blur(4px); z-index: 3600; display: none; align-items: center; justify-content: center; padding: 1rem; }
+    .armador-modal-backdrop.open { display: flex; }
+    .armador-modal { background: #FFFFFF; width: 100%; max-width: 1240px; max-height: 92vh; border-radius: 16px; display: flex; flex-direction: column; overflow: hidden; box-shadow: 0 25px 60px rgba(0,0,0,0.35); }
+    .armador-modal-header { background: linear-gradient(135deg, #1E1B4B, #4C1D95); color: #FFFFFF; padding: 0.95rem 1.35rem; display: flex; justify-content: space-between; align-items: center; gap: 1rem; }
+    .armador-modal-body { padding: 1rem 1.25rem; overflow-y: auto; flex: 1; background: #F8FAFC; }
+    .armador-split { display: grid; grid-template-columns: 1fr 1.2fr; gap: 1rem; align-items: start; }
+    @media (max-width: 960px) { .armador-split { grid-template-columns: 1fr; } }
+    .armador-panel { background: #FFFFFF; border: 1.5px solid #E2E8F0; border-radius: 12px; padding: 0.9rem; box-shadow: 0 2px 6px rgba(0,0,0,0.03); }
+    .armador-photos-list { display: flex; flex-direction: column; gap: 0.75rem; max-height: 64vh; overflow-y: auto; padding-right: 0.25rem; }
+    .armador-photo-item { border: 1.5px solid #CBD5E1; border-radius: 10px; overflow: hidden; background: #F8FAFC; }
+    .armador-photo-item img { width: 100%; max-height: 230px; object-fit: contain; background: #0F172A; cursor: zoom-in; display: block; }
+    .armador-photo-meta { padding: 0.55rem 0.7rem; font-size: 0.76rem; display: flex; flex-direction: column; gap: 0.35rem; }
+    .armador-table { width: 100%; border-collapse: collapse; margin-top: 0.55rem; background: #FFFFFF; }
+    .armador-table th { background: #1E293B; color: #FFFFFF; font-size: 0.72rem; padding: 0.45rem 0.5rem; text-align: left; border: 1px solid #334155; }
+    .armador-table td { border: 1px solid #CBD5E1; padding: 0.32rem 0.4rem; vertical-align: middle; }
+    .armador-input { width: 100%; padding: 0.38rem 0.5rem; border: 1px solid #CBD5E1; border-radius: 6px; font-size: 0.8rem; font-family: inherit; box-sizing: border-box; }
+    .armador-input:focus { outline: none; border-color: #6D28D9; box-shadow: 0 0 0 2px rgba(109,40,217,0.15); }
+    .armador-chips-wrap { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-top: 0.5rem; }
+    .armador-chip { background: #F1F5F9; border: 1px solid #CBD5E1; color: #334155; padding: 0.24rem 0.52rem; border-radius: 6px; font-size: 0.72rem; font-weight: 700; cursor: pointer; transition: all 0.12s; }
+    .armador-chip:hover { background: #EDE9FE; border-color: #8B5CF6; color: #5B21B6; }
+
+    /* Modal Batch Dates */
+    .batch-flt-btn.active { background: #B45309; border-color: #92400E; color: #FFFFFF; font-weight: 800; }
+    .batch-dates-table { width: 100%; border-collapse: collapse; font-size: 0.78rem; background: #FFFFFF; }
+    .batch-dates-table th { background: #0F172A; color: #FFFFFF; padding: 0.55rem 0.5rem; font-size: 0.72rem; text-align: left; position: sticky; top: 0; z-index: 2; border: 1px solid #1E293B; }
+    .batch-dates-table td { border: 1px solid #E2E8F0; padding: 0.45rem 0.5rem; vertical-align: middle; }
+    .batch-dates-table tr.row-missing { background: #FFFBEB; }
+    .batch-input-date { width: 112px; padding: 0.34rem 0.45rem; border: 1.5px solid #93C5FD; border-radius: 6px; font-family: monospace; font-size: 0.78rem; background: #FFFFFF; box-sizing: border-box; }
+    .batch-input-date.dirty { border-color: #F59E0B; background: #FEFCE8; }
+    .batch-hint-box { font-size: 0.7rem; color: #475569; margin-top: 0.22rem; line-height: 1.3; }
+    .btn-hint-apply { background: #E0F2FE; border: 1px solid #7DD3FC; color: #0369A1; font-size: 0.68rem; font-weight: 800; padding: 2px 6px; border-radius: 5px; cursor: pointer; margin-top: 3px; display: inline-flex; align-items: center; gap: 3px; }
+    .btn-hint-apply:hover { background: #BAE6FD; }
   </style>
 </head>
 <body>
@@ -415,6 +462,22 @@
         </button>
       </div>
 
+      <div class="year-bar" id="yearFilterBar">
+        <span style="font-size: 0.74rem; font-weight: 800; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.4px; margin-right: 0.2rem;">Año Inicio:</span>
+        <button type="button" class="year-btn active" onclick="setYearFilter('ALL', this)">Todos (<span id="countYearAll">0</span>)</button>
+        <button type="button" class="year-btn" onclick="setYearFilter('2020', this)">2020 (<span id="countYear2020">0</span>)</button>
+        <button type="button" class="year-btn" onclick="setYearFilter('2021', this)">2021 (<span id="countYear2021">0</span>)</button>
+        <button type="button" class="year-btn" onclick="setYearFilter('2022', this)">2022 (<span id="countYear2022">0</span>)</button>
+        <button type="button" class="year-btn" onclick="setYearFilter('2023', this)">2023 (<span id="countYear2023">0</span>)</button>
+        <button type="button" class="year-btn" onclick="setYearFilter('2024', this)">2024 (<span id="countYear2024">0</span>)</button>
+        <button type="button" class="year-btn" onclick="setYearFilter('2025', this)">2025 (<span id="countYear2025">0</span>)</button>
+        <button type="button" class="year-btn" onclick="setYearFilter('2026', this)">2026 (<span id="countYear2026">0</span>)</button>
+        <button type="button" class="year-btn" onclick="setYearFilter('SIN_ANIO', this)">⏳ Sin Año (<span id="countYearSin">0</span>)</button>
+        <button type="button" class="btn-batch-dates" onclick="openBatchDatesModal()" title="Completar en lote las fechas de inicio y fin de proyectos faltantes (con pistas de PMO y resoluciones)">
+          ⏱️ Completar Fechas Inicio/Fin (<span id="countBtnFaltaFechasBar">0</span>)
+        </button>
+      </div>
+
       <div class="controls-top">
         <div class="search-input">
           <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
@@ -425,6 +488,8 @@
           <select id="sortSelect" class="sort-select" onchange="changeSort(this.value)">
             <option value="PRIORITY_AUDIT">🎯 Prioridad: Ejecutadas y Faltantes primero</option>
             <option value="ID_ASC">N° Proyecto (1 a N)</option>
+            <option value="YEAR_ASC">📆 Año de Inicio (2020 ➔ 2026)</option>
+            <option value="YEAR_DESC">📆 Año de Inicio (2026 ➔ 2020)</option>
             <option value="DATE_ASC">📅 Fecha de Inicio (Más antiguas primero)</option>
             <option value="DATE_DESC">📅 Fecha de Inicio (Más recientes primero)</option>
             <option value="COST_DESC">💰 Mayor Costo Ejecutado</option>
@@ -1536,7 +1601,14 @@
         const cajaFotos = groups[cod];
         const first = cajaFotos[0] || {};
         const amb = first.ubicacion || fData.ubicacion || 'Ambiente';
-        const rawContenido = first.nota && first.nota !== cod && first.nota !== 'Contenido no especificado' ? first.nota : '';
+        const validBoxNotes = [];
+        cajaFotos.forEach(cf => {
+          const n = (cf.nota || '').trim();
+          if (n && n !== cod && n !== 'Contenido no especificado' && !validBoxNotes.includes(n)) {
+            validBoxNotes.push(n);
+          }
+        });
+        const rawContenido = validBoxNotes.join(' ; ');
         const encodedCod = encodeURIComponent(cod);
 
         const isSuelto = cod.includes('SUELTO');
@@ -1564,13 +1636,16 @@
         html += `
           <div class="caja-group-card">
             <div class="caja-group-header">
-              <span class="caja-tag" style="${tagStyle}">${tagIcon} ${escapeHtmlAttr(cod)}</span>
-              <span class="caja-amb">📍 ${escapeHtmlAttr(amb)}</span>
+              <div style="display:flex; align-items:center; gap:0.45rem; flex-wrap:wrap;">
+                <span class="caja-tag" style="${tagStyle}">${tagIcon} ${escapeHtmlAttr(cod)}</span>
+                <span class="caja-amb">📍 ${escapeHtmlAttr(amb)}</span>
+              </div>
+              <button type="button" class="btn-armar-rotulo-hdr" onclick="openArmadorRotuloModal(${obraId}, '${encodedCod}')" title="Ver fotos ítem por ítem y armar/imprimir su Hoja de Rótulo A4">🏷️ Armar / Imprimir Rótulo A4</button>
             </div>
             <div class="caja-content-edit-box">
               <div class="caja-content-edit-hdr">
                 <label class="caja-content-edit-lbl">✏️ Contenido / Rótulo <span style="font-weight:600; color:#0D9488; font-size:0.72rem;">(Editable en Gabinete)</span>:</label>
-                <span style="font-size:0.68rem; color:#64748B;">Lee la foto ampliada y detalla aquí el contenido</span>
+                <span style="font-size:0.68rem; color:#64748B;">Lee la foto ampliada o usa "Armar Rótulo A4" para estructurarlo</span>
               </div>
               <div class="caja-content-edit-row">
                 <textarea class="caja-content-textarea" rows="2" placeholder="Describe en detalle lo que indica la fotografía del rótulo..." onkeydown="if(event.ctrlKey && event.key==='Enter'){ event.preventDefault(); this.nextElementSibling.click(); }">${escapeHtmlAttr(rawContenido)}</textarea>
@@ -1582,12 +1657,15 @@
               ${cajaFotos.map(f => {
                 const directUrl = resolveDirectImageUrl(f.dataUrl, f.file_id || f.drive_url);
                 const driveLink = f.drive_url ? `<a href="${f.drive_url}" target="_blank" class="drive-link" onclick="event.stopPropagation()" title="Abrir original en Google Drive">🔗 Drive</a>` : '';
+                const subChip = (f.sub_codigo && f.sub_codigo !== cod)
+                  ? `<span style="font-size:0.62rem;font-family:monospace;background:#EDE9FE;color:#5B21B6;padding:1px 5px;border-radius:4px;font-weight:800;margin-right:4px;flex-shrink:0;">${escapeHtmlAttr(f.sub_codigo)}</span>`
+                  : '';
                 const ocrPhotoBadge = f.ocr_acervo ? `<div style="font-size: 0.68rem; color: #0D9488; font-weight: 700; padding: 0.3rem 0.55rem; background: #F0FDFA; border-top: 1px solid #CCFBF1; text-align: left; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;" title="${escapeHtmlAttr(f.ocr_acervo)}">📄 OCR: ${escapeHtmlAttr(f.ocr_acervo.replace(/\|/g, ', '))}</div>` : '';
                 return `
                 <div class="caja-photo-card">
                   <img src="${directUrl}" class="caja-photo-img" onclick="openDashboardLightbox('${directUrl}')" onerror="handleDriveImgError(this, '${f.file_id || f.drive_url || ''}')" alt="${escapeHtmlAttr(f.tipo_foto || 'Foto')}" title="Clic para ampliar a pantalla completa con Zoom">
                   <div class="caja-photo-label" title="${escapeHtmlAttr(f.sub_codigo || f.tipo_foto || cod)}">
-                    <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">🔍 ${escapeHtmlAttr(f.tipo_foto || 'Foto')}</span>
+                    <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; display:inline-flex; align-items:center;">${subChip}🔍 ${escapeHtmlAttr(f.tipo_foto || 'Foto')}</span>
                     ${driveLink}
                   </div>
                   ${ocrPhotoBadge}
@@ -1940,6 +2018,17 @@
       const elKpiLiq = document.getElementById('kpi-liquidadas');
       if (elKpiLiq) elKpiLiq.innerText = liqAllCount;
 
+      const yearCounts = { ALL: total, '2020': 0, '2021': 0, '2022': 0, '2023': 0, '2024': 0, '2025': 0, '2026': 0, SIN_ANIO: 0 };
+      scoped.forEach(p => {
+        if (p.id === 999 || p.es_multiproyecto) return;
+        const y = getProjectStartYear(p);
+        if (y && Object.prototype.hasOwnProperty.call(yearCounts, y)) {
+          yearCounts[y]++;
+        } else if (!y) {
+          yearCounts.SIN_ANIO++;
+        }
+      });
+
       const setTxt = (id, txt) => { const el = document.getElementById(id); if (el) el.innerText = txt; };
       setTxt('btnTabAll', `Todos (${total})`);
       setTxt('btnTabPrioCensar', `🚨 Ejecutadas Sin Censar (${prioSinCensar})`);
@@ -1954,6 +2043,37 @@
       setTxt('btnTabIlo', `⚓ Ilo (${ilo})`);
       setTxt('btnTabMN', `🏛️ M.N. (${mn})`);
       setTxt('btnTabGSC', `🌾 G.S.C. (${gsc})`);
+
+      setTxt('countYearAll', yearCounts.ALL);
+      setTxt('countYear2020', yearCounts['2020']);
+      setTxt('countYear2021', yearCounts['2021']);
+      setTxt('countYear2022', yearCounts['2022']);
+      setTxt('countYear2023', yearCounts['2023']);
+      setTxt('countYear2024', yearCounts['2024']);
+      setTxt('countYear2025', yearCounts['2025']);
+      setTxt('countYear2026', yearCounts['2026']);
+      setTxt('countYearSin', yearCounts.SIN_ANIO);
+      setTxt('countBtnFaltaFechasBar', faltaFechas);
+    }
+
+    let currentYearFilter = 'ALL';
+
+    function getProjectStartYear(p) {
+      if (!p || p.id === 999 || p.es_multiproyecto) return '';
+      if (!hasValidStart(p)) return '';
+      if (p.fecha_inicio_sort && /^\d{4}/.test(p.fecha_inicio_sort)) {
+        return p.fecha_inicio_sort.slice(0, 4);
+      }
+      const ini = String(p.fecha_inicio || '').trim();
+      const m = ini.match(/\b(20\d{2})\b/);
+      return m ? m[1] : '';
+    }
+
+    function setYearFilter(year, btn) {
+      currentYearFilter = year;
+      document.querySelectorAll('.year-btn').forEach(b => b.classList.remove('active'));
+      if (btn) btn.classList.add('active');
+      filterTable();
     }
 
     function setScope(scope, btn) {
@@ -2013,6 +2133,11 @@
         if (currentFilter === 'PROV_GSC') return (p.provincia || '').toUpperCase().includes('SANCHEZ') || (p.provincia || '').toUpperCase() === 'G.S.C.';
         return true;
       }).filter(p => {
+        if (currentYearFilter === 'ALL') return true;
+        const y = getProjectStartYear(p);
+        if (currentYearFilter === 'SIN_ANIO') return !y && !(p.id === 999 || p.es_multiproyecto);
+        return y === currentYearFilter;
+      }).filter(p => {
         if (!q) return true;
         const h_text = (p.historial || []).map(h => `${h.documento} ${h.asunto_razon} ${h.fecha}`).join(' ').toLowerCase();
         const ubicField = compileUbicacionCajas(p.id) || '';
@@ -2052,6 +2177,16 @@
         }
         if (currentSort === 'ID_ASC') return a.id - b.id;
         if (currentSort === 'ID_DESC') return b.id - a.id;
+        if (currentSort === 'YEAR_ASC') {
+          const yA = parseInt(getProjectStartYear(a) || '9999', 10);
+          const yB = parseInt(getProjectStartYear(b) || '9999', 10);
+          return (yA - yB) || (a.fecha_inicio_sort || '9999-99-99').localeCompare(b.fecha_inicio_sort || '9999-99-99') || (a.id - b.id);
+        }
+        if (currentSort === 'YEAR_DESC') {
+          const yA = parseInt(getProjectStartYear(a) || '0', 10);
+          const yB = parseInt(getProjectStartYear(b) || '0', 10);
+          return (yB - yA) || (b.fecha_inicio_sort || '0000-00-00').localeCompare(a.fecha_inicio_sort || '0000-00-00') || (a.id - b.id);
+        }
         if (currentSort === 'DATE_ASC') {
           return (a.fecha_inicio_sort || '9999-99-99').localeCompare(b.fecha_inicio_sort || '9999-99-99') || (a.id - b.id);
         }
@@ -2143,6 +2278,8 @@
         if (isMulti) {
           badgeInicio = `<span class="badge" style="background: #F3E8FF; color: #7E22CE; font-weight: 700; font-size: 0.72rem;">🔀 MULTI</span>`;
         } else {
+          const startYear = hasIni ? getProjectStartYear(p) : '';
+          const yearPill = startYear ? `<span class="year-pill-mini" title="Año de inicio">📆 ${startYear}</span>` : '';
           const iniPill = hasIni
             ? `<span class="date-pill-mini date-pill-ini" title="${escapeHtmlAttr(p.fecha_inicio)}">🚀 ${formatCompactDate(p.fecha_inicio)}${p.fecha_inicio_verificada_ing ? ' ✓' : ''}</span>`
             : (isEjecOrLiq ? `<span class="badge badge-red" style="font-size:0.65rem;">⚠️ Sin Inicio</span>` : `<span style="font-size:0.68rem;color:#94A3B8;">Sin Inicio</span>`);
@@ -2150,7 +2287,7 @@
             ? `<span class="date-pill-mini date-pill-fin" title="Término: ${escapeHtmlAttr(verifFinRaw)}">🏁 ${verifFin}</span>`
             : (progFin ? `<span class="date-pill-mini date-pill-prog" title="Prog.: ${escapeHtmlAttr(p.fecha_termino_prog)}">⏳ ${progFin}</span>`
               : (isEjecOrLiq ? `<span class="badge badge-yellow" style="font-size:0.65rem;">⚠️ Sin Fin</span>` : ''));
-          badgeInicio = `<div class="date-stack">${iniPill}${finPill}</div>`;
+          badgeInicio = `<div class="date-stack">${yearPill}${iniPill}${finPill}</div>`;
         }
 
         const statusHtml = isMulti
@@ -3128,9 +3265,719 @@
       setTimeout(() => win.print(), 350);
     }
 
+    // =========================================================================
+    // COMPLETADOR EN LOTE DE FECHAS INICIO / FIN + PISTAS PUNTO 61 & PMO
+    // =========================================================================
+    let currentBatchDatesFilter = 'MISSING';
+
+    const PUNTO61_DATE_HINTS = {
+      1:  { ini: '03/08/2020', fin: '15/05/2021', src: 'Punto 61 / Res. Liquidación' },
+      2:  { ini: '10/08/2020', fin: '20/05/2021', src: 'Punto 61 + PMO Ago 2022' },
+      3:  { ini: '15/08/2020', fin: '30/06/2021', src: 'Punto 61 / Res. Liquidación' },
+      15: { ini: '',           fin: '30/12/2021', src: 'Recepción verificada 30/12/2021' },
+      31: { ini: '21/09/2023', fin: '',           src: 'Acta notif. lluvias 21/09/2023' },
+      50: { ini: 'Periodo 2018-2020', fin: '',    src: 'Punto 61 / Convenio FDM' },
+      54: { ini: '',           fin: '04/09/2026', src: 'Acta PMO / 2025-2026' },
+      56: { ini: '02/02/2026', fin: '',           src: 'Inicio registrado 02/02/2026' },
+      59: { ini: '16/07/2025', fin: '30/11/2025', src: 'Cronograma Punto 61' },
+      60: { ini: '19/06/2020', fin: '15/12/2023', src: 'Suscripción 2020 - Culm. 2023' },
+      61: { ini: '08/09/2025', fin: '',           src: 'Inicio 08/09/2025 (Suspendida)' },
+      62: { ini: '25/08/2025', fin: '',           src: 'Inicio registrado 25/08/2025' },
+      67: { ini: '12/05/2022', fin: '30/11/2022', src: 'Cronograma Punto 61' }
+    };
+
+    function getProjectDateHints(p) {
+      const ref = PUNTO61_DATE_HINTS[p.id] || null;
+      const hist = (p.historial || []);
+      const validHist = hist.filter(h => h.fecha && /\d{4}/.test(h.fecha));
+      const firstH = validHist.length > 0 ? validHist[0] : null;
+      const lastH = validHist.length > 1 ? validHist[validHist.length - 1] : null;
+      const pmoSummary = firstH
+        ? `PMO (${validHist.length} hitos): ${formatCompactDate(firstH.fecha)}${lastH ? ' ➔ ' + formatCompactDate(lastH.fecha) : ''}`
+        : (p.acuerdo_fdm ? `Acuerdo: ${p.acuerdo_fdm}` : 'Sin hitos PMO registrados');
+      return {
+        suggestedIni: (ref && ref.ini) || '',
+        suggestedFin: (ref && ref.fin) || '',
+        sourceNote: (ref && ref.src) || '',
+        pmoSummary
+      };
+    }
+
+    function applyProjectDatesLocally(p, iniVal, finVal) {
+      if (!p) return;
+      if (iniVal !== undefined && iniVal !== null) {
+        const cleanIni = String(iniVal).trim();
+        if (cleanIni) {
+          p.fecha_inicio = cleanIni;
+          p.tiene_fecha_inicio = !cleanIni.toUpperCase().includes('SIN INICIO') && !cleanIni.toUpperCase().includes('POR UBICAR');
+          p.fecha_inicio_verificada_ing = true;
+          const m = cleanIni.match(/^(\d{2})\/(\d{2})\/(\d{4})$/);
+          if (m) {
+            p.fecha_inicio_sort = `${m[3]}-${m[2]}-${m[1]}`;
+          } else {
+            const mY = cleanIni.match(/\b(20\d{2})\b/);
+            if (mY) p.fecha_inicio_sort = `${mY[1]}-01-01`;
+          }
+        }
+      }
+      if (finVal !== undefined && finVal !== null) {
+        const cleanFin = String(finVal).trim();
+        if (cleanFin) {
+          p.fecha_culminacion_real = cleanFin;
+          p.fecha_termino_verificada_ing = cleanFin;
+          p.tiene_fecha_termino = /\d/.test(cleanFin);
+        }
+      }
+      if (!fieldPhotosMap[p.id]) fieldPhotosMap[p.id] = { id: p.id, fotos: [], ubicacion: '' };
+      if (iniVal) fieldPhotosMap[p.id].fecha_inicio = String(iniVal).trim();
+      if (finVal) fieldPhotosMap[p.id].fecha_culm = String(finVal).trim();
+
+      try {
+        const saved = JSON.parse(localStorage.getItem('fdm_audit_changes') || '{}');
+        saved[p.id] = {
+          ...(saved[p.id] || {}),
+          fecha_inicio: String(iniVal || '').trim() || (saved[p.id]?.fecha_inicio || ''),
+          fecha_culminacion_real: String(finVal || '').trim() || (saved[p.id]?.fecha_culminacion_real || '')
+        };
+        localStorage.setItem('fdm_audit_changes', JSON.stringify(saved));
+      } catch (e) {}
+    }
+
+    async function pushProjectDatesToCloud(p, iniVal, finVal) {
+      const gasUrl = (localStorage.getItem('fdm_gas_url') || '').trim();
+      if (!gasUrl || !p) return false;
+      try {
+        const res = await fetch(gasUrl, {
+          method: 'POST',
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+          body: JSON.stringify({
+            action: 'save_obra_checks',
+            obra_id: p.id,
+            desc: p.desc || '',
+            cui: (p.cui && p.cui !== 'N/D') ? p.cui : 'S/N',
+            provincia: p.provincia || '',
+            convenio: p.convenio || '',
+            es_obra_civil: p.es_obra_civil ? 'OBRA CIVIL OBJETIVO' : 'ADQUISICIÓN / OTROS',
+            estatus: p.estatus || '',
+            estado_situacional: p.estado_situacional || '',
+            prio: Number(p.prio || 0),
+            costo_ejec: Number(p.costo_ejec || 0),
+            ubicacion_ambientes: compileUbicacionCajas(p.id) || '',
+            fecha_inicio: String(iniVal || '').trim() || (hasValidStart(p) ? p.fecha_inicio : ''),
+            fecha_culm: String(finVal || '').trim() || (hasValidEnd(p) ? (p.fecha_termino_verificada_ing || p.fecha_culminacion_real || '') : ''),
+            notas_auditoria: p.alerta || p.comentario_ing || ''
+          })
+        });
+        const data = await res.json();
+        return !!(data && data.status === 'success');
+      } catch (e) {
+        return false;
+      }
+    }
+
+    function openBatchDatesModal() {
+      const modal = document.getElementById('batchDatesModal');
+      if (!modal) return;
+      modal.classList.add('open');
+      renderBatchDatesTable();
+    }
+
+    function closeBatchDatesModal() {
+      const modal = document.getElementById('batchDatesModal');
+      if (modal) modal.classList.remove('open');
+    }
+
+    function setBatchDatesFilter(flt, btn) {
+      currentBatchDatesFilter = flt;
+      document.querySelectorAll('.batch-flt-btn').forEach(b => b.classList.remove('active'));
+      if (btn) btn.classList.add('active');
+      renderBatchDatesTable();
+    }
+
+    function applyBatchHintToRow(obraId, hintIni, hintFin) {
+      const iniInp = document.getElementById(`batchIni_${obraId}`);
+      const finInp = document.getElementById(`batchFin_${obraId}`);
+      if (iniInp && hintIni && !iniInp.value.trim()) {
+        iniInp.value = hintIni;
+        iniInp.classList.add('dirty');
+        iniInp.dataset.dirty = '1';
+      }
+      if (finInp && hintFin && !finInp.value.trim()) {
+        finInp.value = hintFin;
+        finInp.classList.add('dirty');
+        finInp.dataset.dirty = '1';
+      }
+    }
+
+    function markBatchInputDirty(el) {
+      if (!el) return;
+      el.classList.add('dirty');
+      el.dataset.dirty = '1';
+    }
+
+    function renderBatchDatesTable() {
+      const tbody = document.getElementById('batchDatesTbody');
+      const summary = document.getElementById('batchDatesSummary');
+      if (!tbody) return;
+
+      const q = (document.getElementById('batchDatesSearch')?.value || '').toLowerCase().trim();
+      const base = (projectsData || []).filter(p => !(p.id === 999 || p.es_multiproyecto));
+      const list = base.filter(p => {
+        if (currentBatchDatesFilter === 'MISSING') {
+          return isProjectExecutedOrLiquidated(p) && (!hasValidStart(p) || !hasValidEnd(p));
+        }
+        if (currentBatchDatesFilter === 'CIVIL') {
+          return p.es_obra_civil === true;
+        }
+        return true;
+      }).filter(p => {
+        if (!q) return true;
+        return String(p.id).includes(q) || (p.desc || '').toLowerCase().includes(q) || (p.provincia || '').toLowerCase().includes(q) || (p.estatus || '').toLowerCase().includes(q);
+      });
+
+      const missingStart = list.filter(p => !hasValidStart(p)).length;
+      const missingEnd = list.filter(p => !hasValidEnd(p)).length;
+      if (summary) {
+        summary.innerHTML = `<span>📋 Mostrando <strong>${list.length}</strong> proyectos</span><span>⚠️ Sin Inicio: <strong style="color:#DC2626;">${missingStart}</strong></span><span>⚠️ Sin Término: <strong style="color:#B45309;">${missingEnd}</strong></span><span style="margin-left:auto;color:#475569;font-size:0.74rem;">Formato recomendado: <code>dd/mm/aaaa</code> (ej. 15/08/2022)</span>`;
+      }
+
+      if (list.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="6" style="text-align:center; padding:2rem; color:#64748B;">¡No hay proyectos pendientes bajo este filtro! 🎉</td></tr>`;
+        return;
+      }
+
+      tbody.innerHTML = list.map(p => {
+        const curIni = hasValidStart(p) ? p.fecha_inicio : '';
+        const finRaw = p.fecha_termino_verificada_ing || (p.fecha_culminacion_real && p.fecha_culminacion_real !== '-' ? p.fecha_culminacion_real : '');
+        const curFin = hasValidEnd(p) ? finRaw : '';
+        const hints = getProjectDateHints(p);
+        const hintBtnHtml = (hints.suggestedIni || hints.suggestedFin)
+          ? `<button type="button" class="btn-hint-apply" onclick="applyBatchHintToRow(${p.id}, '${escapeHtmlAttr(hints.suggestedIni)}', '${escapeHtmlAttr(hints.suggestedFin)}')" title="Rellenar campos vacíos con esta referencia">✨ Pista: ${escapeHtmlAttr([hints.suggestedIni, hints.suggestedFin].filter(Boolean).join(' ➔ '))}</button>`
+          : '';
+        const isMissing = !curIni || !curFin;
+        return `
+          <tr class="${isMissing ? 'row-missing' : ''}">
+            <td style="text-align:center; font-weight:800; color:#1E3A8A;">#${p.id}<div style="font-size:0.65rem; color:#64748B; font-weight:700;">${escapeHtmlAttr(p.provincia || '')}</div></td>
+            <td>
+              <div style="font-weight:700; color:#0F172A; font-size:0.77rem; line-height:1.28;">${escapeHtmlAttr(p.desc || '')}</div>
+              <div style="margin-top:3px; display:flex; gap:4px; flex-wrap:wrap; align-items:center;">
+                <span class="badge badge-gray" style="font-size:0.65rem;">${escapeHtmlAttr(p.estatus || '')}</span>
+                ${p.estado_situacional ? `<span class="badge badge-green" style="font-size:0.64rem;">${escapeHtmlAttr(p.estado_situacional)}</span>` : ''}
+              </div>
+            </td>
+            <td>
+              <div class="batch-hint-box">${escapeHtmlAttr(hints.pmoSummary)}</div>
+              ${hints.sourceNote ? `<div class="batch-hint-box" style="color:#0369A1;font-weight:700;">📌 ${escapeHtmlAttr(hints.sourceNote)}</div>` : ''}
+              ${hintBtnHtml}
+            </td>
+            <td><input type="text" class="batch-input-date" id="batchIni_${p.id}" value="${escapeHtmlAttr(curIni)}" placeholder="dd/mm/aaaa" oninput="markBatchInputDirty(this)"></td>
+            <td><input type="text" class="batch-input-date" id="batchFin_${p.id}" value="${escapeHtmlAttr(curFin)}" placeholder="dd/mm/aaaa" oninput="markBatchInputDirty(this)"></td>
+            <td style="text-align:center;">
+              <button type="button" class="btn-save-rotulo" style="padding:0.36rem 0.65rem; font-size:0.74rem;" onclick="saveSingleBatchDate(${p.id}, this)">💾</button>
+            </td>
+          </tr>
+        `;
+      }).join('');
+    }
+
+    async function saveSingleBatchDate(obraId, btnEl) {
+      const p = (projectsData || []).find(x => x.id === obraId);
+      if (!p) return;
+      const iniInp = document.getElementById(`batchIni_${obraId}`);
+      const finInp = document.getElementById(`batchFin_${obraId}`);
+      const iniVal = iniInp ? iniInp.value.trim() : '';
+      const finVal = finInp ? finInp.value.trim() : '';
+      if (!iniVal && !finVal) { showToast("Ingresa al menos una fecha antes de guardar."); return; }
+
+      if (btnEl) { btnEl.disabled = true; btnEl.innerText = '⏳'; }
+      applyProjectDatesLocally(p, iniVal, finVal);
+      if (iniInp) { iniInp.classList.remove('dirty'); iniInp.dataset.dirty = '0'; }
+      if (finInp) { finInp.classList.remove('dirty'); finInp.dataset.dirty = '0'; }
+
+      const synced = await pushProjectDatesToCloud(p, iniVal, finVal);
+      filterTable();
+      renderAnalyticsDashboard();
+      if (selectedProjectId === obraId) openDrawer(obraId);
+      if (btnEl) { btnEl.disabled = false; btnEl.innerText = synced ? '✅' : '💾'; setTimeout(() => { if (btnEl) btnEl.innerText = '💾'; }, 1500); }
+      showToast(synced ? `☁️ Fechas de Obra #${obraId} guardadas y sincronizadas en MATRIZ_69_OBRAS` : `💾 Fechas de Obra #${obraId} guardadas localmente`);
+    }
+
+    async function saveAllBatchDates() {
+      const btn = document.getElementById('btnSaveAllBatchDates');
+      const dirtyInputs = Array.from(document.querySelectorAll('.batch-input-date[data-dirty="1"]'));
+      const touchedIds = new Set();
+      dirtyInputs.forEach(inp => {
+        const m = inp.id.match(/^batch(?:Ini|Fin)_(\d+)$/);
+        if (m) touchedIds.add(parseInt(m[1], 10));
+      });
+      if (touchedIds.size === 0) {
+        showToast("No hay fechas modificadas pendientes de guardar.");
+        return;
+      }
+
+      if (btn) { btn.disabled = true; btn.innerText = `⏳ Guardando ${touchedIds.size}...`; }
+      let cloudOk = 0;
+      for (const id of touchedIds) {
+        const p = (projectsData || []).find(x => x.id === id);
+        if (!p) continue;
+        const iniInp = document.getElementById(`batchIni_${id}`);
+        const finInp = document.getElementById(`batchFin_${id}`);
+        const iniVal = iniInp ? iniInp.value.trim() : '';
+        const finVal = finInp ? finInp.value.trim() : '';
+        applyProjectDatesLocally(p, iniVal, finVal);
+        if (iniInp) { iniInp.classList.remove('dirty'); iniInp.dataset.dirty = '0'; }
+        if (finInp) { finInp.classList.remove('dirty'); finInp.dataset.dirty = '0'; }
+        if (await pushProjectDatesToCloud(p, iniVal, finVal)) cloudOk++;
+      }
+
+      filterTable();
+      renderAnalyticsDashboard();
+      renderBatchDatesTable();
+      if (btn) { btn.disabled = false; btn.innerText = '💾 Guardar Cambiados y Subir a Drive'; }
+      showToast(`✅ ${touchedIds.size} obras actualizadas (${cloudOk} sincronizadas con Google Drive)`);
+    }
+
+    // =========================================================================
+    // ARMADOR DE HOJA DE RÓTULO OFICIAL (GABINETE + IMPRESIÓN A4)
+    // =========================================================================
+    const ARMADOR_QUICK_WORDS = [
+      'Exp. Técnico', 'Valorizaciones de Obra', 'Valorizaciones de Supervisión',
+      'Liquidación', 'Informe Final', 'Informe Mensual', 'Reportes semanales',
+      'Cuaderno de Obra', 'Adicionales', 'Lev. de Obs.', 'Copia de Contrato',
+      'Carta Fianza', 'Planos / Replanteo', 'N°', 'al', 'y'
+    ];
+
+    let activeArmadorCtx = { obraId: null, cod: '', amb: '', projDesc: '', rows: [], activeRowIdx: 0 };
+
+    function parseRotuloToRows(cajaFotos, cod) {
+      const validNotes = [];
+      (cajaFotos || []).forEach(cf => {
+        const n = (cf.nota || '').trim();
+        if (n && n !== cod && n !== 'Contenido no especificado' && !validNotes.includes(n)) {
+          validNotes.push(n);
+        }
+      });
+
+      const rows = [];
+      if (validNotes.length === 1 && /\b\d{1,2}\)\s*/.test(validNotes[0])) {
+        validNotes[0].split(/;\s*(?=\d{1,2}\))/).forEach((part, idx) => {
+          const m = part.match(/^(\d{1,2})\)\s*(.*)$/);
+          const num = m ? m[1].padStart(2, '0') : String(idx + 1).padStart(2, '0');
+          const txt = (m ? m[2] : part).trim();
+          if (txt) rows.push({ num, contenido: txt, caja: cod });
+        });
+      } else if (validNotes.length > 0 && validNotes.some(n => /^\[IT\d+\]/i.test(n))) {
+        validNotes.forEach((n, idx) => {
+          const m = n.match(/^\[IT(\d+)\]\s*(.*)$/i);
+          const num = m ? m[1].padStart(2, '0') : String(idx + 1).padStart(2, '0');
+          const txt = (m ? m[2] : n).trim();
+          rows.push({ num, contenido: txt, caja: cod });
+        });
+      } else if (validNotes.length > 0) {
+        const joined = validNotes.join('; ');
+        joined.split(/;\s*/).forEach((seg, idx) => {
+          const cleanSeg = seg.replace(/^\[IT\d+\]\s*/i, '').replace(/^\d{1,2}\)\s*/, '').trim();
+          if (cleanSeg) rows.push({ num: String(idx + 1).padStart(2, '0'), contenido: cleanSeg, caja: cod });
+        });
+      }
+
+      if (rows.length === 0) {
+        const itemPhotos = (cajaFotos || []).filter(f => (f.sub_codigo || '').includes('-IT') || (f.tipo_foto || '').includes('Armar Rótulo'));
+        if (itemPhotos.length > 0) {
+          itemPhotos.forEach((f, idx) => {
+            const ocrTxt = (f.ocr_acervo || '').replace(/\|/g, ', ').trim();
+            rows.push({ num: String(idx + 1).padStart(2, '0'), contenido: ocrTxt, caja: cod });
+          });
+        } else {
+          rows.push({ num: '01', contenido: '', caja: cod });
+        }
+      }
+      return rows;
+    }
+
+    function openArmadorRotuloModal(obraId, encodedCod) {
+      const cod = decodeURIComponent(encodedCod);
+      const p = (projectsData || []).find(x => x.id === obraId) || {};
+      const fData = fieldPhotosMap[obraId] || { fotos: [] };
+      const cajaFotos = (fData.fotos || []).filter(f => (f.codigo_caja || f.nota || 'SIN_CODIGO') === cod);
+      const amb = (cajaFotos[0] && cajaFotos[0].ubicacion) || fData.ubicacion || 'Ambiente';
+
+      activeArmadorCtx = {
+        obraId,
+        cod,
+        amb,
+        projDesc: p.desc || `OBRA N° ${obraId}`,
+        rows: parseRotuloToRows(cajaFotos, cod),
+        activeRowIdx: 0
+      };
+
+      const titleInp = document.getElementById('armadorProyectoTitle');
+      if (titleInp) titleInp.value = activeArmadorCtx.projDesc;
+      const codInp = document.getElementById('armadorCodInput');
+      if (codInp) codInp.value = cod;
+      const ambSpan = document.getElementById('armadorAmbSpan');
+      if (ambSpan) ambSpan.innerText = `📍 ${amb} (${cajaFotos.length} fotos)`;
+
+      const photosPane = document.getElementById('armadorPhotosPane');
+      if (photosPane) {
+        photosPane.innerHTML = cajaFotos.map((f, i) => {
+          const directUrl = resolveDirectImageUrl(f.dataUrl, f.file_id || f.drive_url);
+          const cleanNote = (f.nota && f.nota !== cod && f.nota !== 'Contenido no especificado') ? f.nota.replace(/^\[IT\d+\]\s*/i, '').trim() : '';
+          const ocrText = (f.ocr_acervo || '').replace(/\|/g, ', ').trim();
+          const candidateText = ocrText || cleanNote || '';
+          const subTag = f.sub_codigo && f.sub_codigo !== cod ? `${f.sub_codigo} • ` : '';
+          return `
+            <div class="armador-photo-item">
+              <img src="${directUrl}" onclick="openDashboardLightbox('${directUrl}')" onerror="handleDriveImgError(this, '${f.file_id || f.drive_url || ''}')" title="Clic para ampliar a pantalla completa">
+              <div class="armador-photo-meta">
+                <div style="display:flex; justify-content:space-between; align-items:center; gap:6px;">
+                  <strong style="color:#4C1D95;">#${i + 1} ${escapeHtmlAttr(subTag + (f.tipo_foto || 'Foto'))}</strong>
+                  ${candidateText ? `<button type="button" class="armador-chip" onclick="usePhotoTextInArmador('${escapeHtmlAttr(candidateText)}')" title="Copiar este texto a una fila del rótulo">➕ Pasar a tabla</button>` : ''}
+                </div>
+                ${cleanNote ? `<div style="color:#334155;">📝 Nota campo: <b>${escapeHtmlAttr(cleanNote)}</b></div>` : ''}
+                ${ocrText ? `<div style="color:#0D9488;">🔍 OCR: ${escapeHtmlAttr(ocrText)}</div>` : ''}
+              </div>
+            </div>
+          `;
+        }).join('');
+      }
+
+      const chipsBox = document.getElementById('armadorQuickChips');
+      if (chipsBox) {
+        chipsBox.innerHTML = ARMADOR_QUICK_WORDS.map(w =>
+          `<button type="button" class="armador-chip" onclick="appendArmadorWord('${escapeHtmlAttr(w)}')">+ ${escapeHtmlAttr(w)}</button>`
+        ).join('');
+      }
+
+      renderArmadorRotuloTable();
+      const modal = document.getElementById('armadorRotuloModal');
+      if (modal) modal.classList.add('open');
+    }
+
+    function closeArmadorRotuloModal() {
+      const modal = document.getElementById('armadorRotuloModal');
+      if (modal) modal.classList.remove('open');
+    }
+
+    function renderArmadorRotuloTable() {
+      const tbody = document.getElementById('armadorRowsTbody');
+      if (!tbody) return;
+      tbody.innerHTML = activeArmadorCtx.rows.map((r, idx) => `
+        <tr>
+          <td style="width:54px;">
+            <input type="text" class="armador-input" style="text-align:center; font-weight:800; font-family:monospace;" value="${escapeHtmlAttr(r.num)}" oninput="activeArmadorCtx.rows[${idx}].num = this.value">
+          </td>
+          <td>
+            <input type="text" class="armador-input" id="armadorCont_${idx}" value="${escapeHtmlAttr(r.contenido)}" placeholder="Ej: Exp. Técnico / Valorizaciones N° 01 al 04..." onfocus="activeArmadorCtx.activeRowIdx = ${idx}" oninput="activeArmadorCtx.rows[${idx}].contenido = this.value">
+          </td>
+          <td style="width:110px;">
+            <input type="text" class="armador-input" style="text-align:center; font-family:monospace; font-weight:700;" value="${escapeHtmlAttr(r.caja || activeArmadorCtx.cod)}" oninput="activeArmadorCtx.rows[${idx}].caja = this.value">
+          </td>
+          <td style="width:36px; text-align:center;">
+            <button type="button" onclick="removeArmadorRow(${idx})" style="border:none; background:#FEE2E2; color:#B91C1C; border-radius:6px; padding:0.25rem 0.45rem; cursor:pointer; font-weight:800;" title="Eliminar fila">✕</button>
+          </td>
+        </tr>
+      `).join('');
+    }
+
+    function addArmadorRow(initialText) {
+      const nextNum = String(activeArmadorCtx.rows.length + 1).padStart(2, '0');
+      activeArmadorCtx.rows.push({
+        num: nextNum,
+        contenido: (initialText || '').trim(),
+        caja: (document.getElementById('armadorCodInput')?.value || activeArmadorCtx.cod || '').trim()
+      });
+      activeArmadorCtx.activeRowIdx = activeArmadorCtx.rows.length - 1;
+      renderArmadorRotuloTable();
+      const inp = document.getElementById(`armadorCont_${activeArmadorCtx.activeRowIdx}`);
+      if (inp) inp.focus();
+    }
+
+    function removeArmadorRow(idx) {
+      if (activeArmadorCtx.rows.length <= 1) {
+        activeArmadorCtx.rows[0].contenido = '';
+      } else {
+        activeArmadorCtx.rows.splice(idx, 1);
+        activeArmadorCtx.rows.forEach((r, i) => { r.num = String(i + 1).padStart(2, '0'); });
+        if (activeArmadorCtx.activeRowIdx >= activeArmadorCtx.rows.length) {
+          activeArmadorCtx.activeRowIdx = activeArmadorCtx.rows.length - 1;
+        }
+      }
+      renderArmadorRotuloTable();
+    }
+
+    function usePhotoTextInArmador(text) {
+      const clean = String(text || '').trim();
+      if (!clean) return;
+      const curRow = activeArmadorCtx.rows[activeArmadorCtx.activeRowIdx];
+      if (curRow && !curRow.contenido.trim()) {
+        curRow.contenido = clean;
+        renderArmadorRotuloTable();
+      } else {
+        addArmadorRow(clean);
+      }
+    }
+
+    function appendArmadorWord(tag) {
+      if (!activeArmadorCtx.rows.length) addArmadorRow('');
+      const idx = Math.min(activeArmadorCtx.activeRowIdx, activeArmadorCtx.rows.length - 1);
+      const row = activeArmadorCtx.rows[idx];
+      const cur = (row.contenido || '').trim();
+      row.contenido = cur ? `${cur} ${tag}` : tag;
+      const inp = document.getElementById(`armadorCont_${idx}`);
+      if (inp) {
+        inp.value = row.contenido;
+        inp.focus();
+      }
+    }
+
+    async function guardarRotuloDesdeArmador() {
+      const obraId = activeArmadorCtx.obraId;
+      const cod = activeArmadorCtx.cod;
+      if (!obraId || !cod) return;
+
+      const nonEmpty = activeArmadorCtx.rows
+        .map((r, i) => ({
+          num: String(r.num || (i + 1)).trim().padStart(2, '0'),
+          contenido: String(r.contenido || '').replace(/^\d{1,2}\)\s*/, '').trim()
+        }))
+        .filter(r => r.contenido);
+
+      if (nonEmpty.length === 0) {
+        showToast("Escribe al menos una fila de contenido antes de guardar.");
+        return;
+      }
+
+      const serialized = nonEmpty.length === 1
+        ? nonEmpty[0].contenido
+        : nonEmpty.map(r => `${r.num}) ${r.contenido}`).join('; ');
+
+      const fData = fieldPhotosMap[obraId];
+      if (fData && fData.fotos) {
+        fData.fotos.forEach(f => {
+          const fCod = f.codigo_caja || f.nota || 'SIN_CODIGO';
+          if (fCod === cod) f.nota = serialized;
+        });
+      }
+
+      try {
+        const edits = getRotuloEditsMap();
+        edits[`${obraId}::${cod}`] = serialized;
+        localStorage.setItem('fdm_rotulo_edits', JSON.stringify(edits));
+      } catch (e) {}
+
+      try {
+        await new Promise((resolve) => {
+          const req = indexedDB.open('FDM_Field_Audit_DB', 1);
+          req.onsuccess = (e) => {
+            const dbInstance = e.target.result;
+            if (!dbInstance.objectStoreNames.contains('obras_campo')) { resolve(); return; }
+            const tx = dbInstance.transaction('obras_campo', 'readwrite');
+            if (fData) tx.objectStore('obras_campo').put(fData);
+            tx.oncomplete = () => resolve();
+            tx.onerror = () => resolve();
+          };
+          req.onerror = () => resolve();
+        });
+      } catch (e) {}
+
+      renderCajasEnDrawer(obraId);
+      filterTable();
+      renderAnalyticsDashboard();
+
+      const btn = document.getElementById('btnSaveArmadorRotulo');
+      if (btn) { btn.disabled = true; btn.innerText = '⏳ Subiendo a Drive...'; }
+      const gasUrl = (localStorage.getItem('fdm_gas_url') || '').trim();
+      let synced = false;
+      if (gasUrl) {
+        try {
+          const res = await fetch(gasUrl, {
+            method: 'POST',
+            headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+            body: JSON.stringify({
+              action: 'update_box_content',
+              obra_id: obraId,
+              codigo_caja: cod,
+              contenido_caja: serialized
+            })
+          });
+          const data = await res.json();
+          synced = !!(data && data.status === 'success');
+        } catch (err) {}
+      }
+      if (btn) { btn.disabled = false; btn.innerText = '💾 Guardar Rótulo (Web + Drive)'; }
+      showToast(synced ? `☁️ Rótulo "${cod}" guardado y sincronizado en CENSO_CAJAS_FOTOS` : `💾 Rótulo "${cod}" guardado en Gabinete`);
+    }
+
+    function imprimirHojaRotuloCaja() {
+      const projTitle = (document.getElementById('armadorProyectoTitle')?.value || activeArmadorCtx.projDesc || '').trim();
+      const boxCod = (document.getElementById('armadorCodInput')?.value || activeArmadorCtx.cod || '').trim();
+      const rows = [...activeArmadorCtx.rows];
+      const totalRows = Math.max(12, rows.length);
+      let rowsHtml = '';
+      for (let i = 0; i < totalRows; i++) {
+        const r = rows[i];
+        const num = r ? String(r.num || (i + 1)).padStart(2, '0') : String(i + 1).padStart(2, '0');
+        const cont = r ? escapeHtmlAttr((r.contenido || '').toUpperCase()) : '';
+        const caja = (r && r.contenido) ? escapeHtmlAttr(r.caja || boxCod) : '';
+        rowsHtml += `
+          <tr>
+            <td class="col-num">${num}</td>
+            <td class="col-cont">${cont}</td>
+            <td class="col-caja">${caja}</td>
+          </tr>
+        `;
+      }
+
+      const win = window.open('', '_blank', 'width=900,height=1100');
+      if (!win) { alert("Permite ventanas emergentes para imprimir la Hoja de Rótulo A4."); return; }
+      win.document.write(`<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><title>Rótulo ${escapeHtmlAttr(boxCod)}</title>
+        <style>
+          @page { size: A4 portrait; margin: 14mm; }
+          body { font-family: Arial, Helvetica, sans-serif; color: #000; margin: 0; padding: 8mm; }
+          .top-code { text-align: right; font-size: 16pt; font-weight: 900; font-family: monospace; margin-bottom: 6px; letter-spacing: 0.8px; }
+          .proj-box { border: 2px solid #000; padding: 12px 16px; text-align: center; font-size: 12pt; font-weight: 800; line-height: 1.4; margin-bottom: 10px; text-transform: uppercase; }
+          .meta-line { display: flex; justify-content: space-between; font-size: 9pt; color: #333; margin-bottom: 10px; font-weight: 700; }
+          table { width: 100%; border-collapse: collapse; table-layout: fixed; }
+          th { border: 2px solid #000; background: #F1F5F9; padding: 9px 6px; font-size: 11pt; font-weight: 900; text-align: center; text-transform: uppercase; }
+          td { border: 1.5px solid #000; height: 34px; padding: 6px 10px; font-size: 10.5pt; vertical-align: middle; }
+          .col-num { width: 52px; text-align: center; font-weight: 800; }
+          .col-cont { font-weight: 700; }
+          .col-caja { width: 115px; text-align: center; font-weight: 800; font-family: monospace; }
+          .foot { margin-top: 14px; font-size: 8.5pt; color: #555; display: flex; justify-content: space-between; }
+          @media print { .no-print { display: none; } body { padding: 0; -webkit-print-color-adjust: exact; print-color-adjust: exact; } }
+        </style></head><body>
+        <div class="no-print" style="margin-bottom:12px; text-align:right;">
+          <button onclick="window.print()" style="background:#5B21B6;color:#FFF;border:none;padding:9px 16px;border-radius:6px;font-weight:bold;cursor:pointer;font-size:11pt;">🖨️ Imprimir Rótulo A4</button>
+        </div>
+        <div class="top-code">${escapeHtmlAttr(boxCod)}</div>
+        <div class="proj-box">PROYECTO: "${escapeHtmlAttr(projTitle)}"</div>
+        <div class="meta-line">
+          <span>FONDO DE DESARROLLO DE MOQUEGUA (FDM) — INVENTARIO DE ARCHIVO</span>
+          <span>AMBIENTE: ${escapeHtmlAttr(activeArmadorCtx.amb)}</span>
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th style="width:52px;">N°</th>
+              <th>CONTENIDO</th>
+              <th style="width:115px;">N° CAJA</th>
+            </tr>
+          </thead>
+          <tbody>${rowsHtml}</tbody>
+        </table>
+        <div class="foot">
+          <span>Obra N° ${activeArmadorCtx.obraId === 999 ? 'MULTI' : activeArmadorCtx.obraId}</span>
+          <span>Emitido desde Sistema Auditoría FDM</span>
+        </div>
+      </body></html>`);
+      win.document.close();
+      setTimeout(() => win.print(), 300);
+    }
+
     // Initialize
     window.addEventListener('DOMContentLoaded', loadProjects);
   </script>
+
+  <!-- Modal Armador de Hoja de Rótulo Oficial (A4) -->
+  <div class="armador-modal-backdrop" id="armadorRotuloModal" onclick="if(event.target.id==='armadorRotuloModal') closeArmadorRotuloModal()">
+    <div class="armador-modal">
+      <div class="armador-modal-header">
+        <div>
+          <h2 style="font-size:1.1rem; font-weight:800; margin:0;">🏷️ Armador de Hoja de Rótulo Oficial (Gabinete + Impresión A4)</h2>
+          <div id="armadorAmbSpan" style="font-size:0.78rem; color:#DDD6FE; margin-top:2px;">📍 Ambiente</div>
+        </div>
+        <div style="display:flex; gap:0.5rem; align-items:center; flex-wrap:wrap;">
+          <button type="button" id="btnSaveArmadorRotulo" class="btn" onclick="guardarRotuloDesdeArmador()" style="background:#16A34A; color:white; font-size:0.78rem; padding:0.48rem 0.9rem;">💾 Guardar Rótulo (Web + Drive)</button>
+          <button type="button" class="btn" onclick="imprimirHojaRotuloCaja()" style="background:#F59E0B; color:#0F172A; font-size:0.78rem; padding:0.48rem 0.9rem; font-weight:800;">🖨️ Imprimir Hoja de Rótulo A4</button>
+          <button type="button" class="close-btn" onclick="closeArmadorRotuloModal()" style="position:static;">&times;</button>
+        </div>
+      </div>
+      <div class="armador-modal-body">
+        <div class="armador-split">
+          <div class="armador-panel">
+            <div style="font-weight:800; color:#1E293B; font-size:0.86rem; margin-bottom:0.5rem; display:flex; justify-content:space-between; align-items:center;">
+              <span>📸 Fotos Censadas (Clic en imagen para Zoom 3.5x)</span>
+              <span style="font-size:0.72rem; color:#64748B;">Revisa archivador por archivador</span>
+            </div>
+            <div class="armador-photos-list" id="armadorPhotosPane"></div>
+          </div>
+
+          <div class="armador-panel">
+            <div style="display:grid; grid-template-columns: 1fr 140px; gap:0.5rem; margin-bottom:0.5rem;">
+              <div>
+                <label style="font-size:0.7rem; font-weight:800; color:#475569; text-transform:uppercase;">Título de Proyecto en Rótulo</label>
+                <input type="text" id="armadorProyectoTitle" class="armador-input" oninput="activeArmadorCtx.projDesc = this.value">
+              </div>
+              <div>
+                <label style="font-size:0.7rem; font-weight:800; color:#475569; text-transform:uppercase;">Código de Caja</label>
+                <input type="text" id="armadorCodInput" class="armador-input" style="font-family:monospace; font-weight:800;" readonly>
+              </div>
+            </div>
+
+            <div style="font-size:0.72rem; font-weight:800; color:#4C1D95; margin-top:0.4rem;">⚡ Frases rápidas (Clic para insertar en fila activa):</div>
+            <div class="armador-chips-wrap" id="armadorQuickChips"></div>
+
+            <table class="armador-table">
+              <thead>
+                <tr>
+                  <th style="width:54px; text-align:center;">N°</th>
+                  <th>CONTENIDO DEL ARCHIVADOR / FILE</th>
+                  <th style="width:110px; text-align:center;">N° CAJA</th>
+                  <th style="width:36px;"></th>
+                </tr>
+              </thead>
+              <tbody id="armadorRowsTbody"></tbody>
+            </table>
+            <div style="margin-top:0.65rem; display:flex; justify-content:space-between; align-items:center;">
+              <button type="button" class="armador-chip" style="background:#EDE9FE; border-color:#8B5CF6; color:#5B21B6; font-weight:800; padding:0.4rem 0.85rem;" onclick="addArmadorRow()">+ Añadir Fila al Rótulo</button>
+              <span style="font-size:0.72rem; color:#64748B;">Se guarda en Web, Resumen por Ambientes y Google Sheets</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Completador en Lote de Fechas Inicio / Fin -->
+  <div class="armador-modal-backdrop" id="batchDatesModal" onclick="if(event.target.id==='batchDatesModal') closeBatchDatesModal()">
+    <div class="armador-modal">
+      <div class="armador-modal-header" style="background: linear-gradient(135deg, #0F172A, #B45309);">
+        <div>
+          <h2 style="font-size:1.1rem; font-weight:800; margin:0;">⏱️ Completar Fechas de Inicio y Término (MATRIZ_69_OBRAS)</h2>
+          <div style="font-size:0.78rem; color:#FDE68A; margin-top:2px;">Completa las fechas faltantes con ayuda de pistas de Punto 61 e historial PMO, y súbelas directo a Google Drive.</div>
+        </div>
+        <button type="button" class="close-btn" onclick="closeBatchDatesModal()" style="position:static;">&times;</button>
+      </div>
+      <div class="audit-modal-controls">
+        <div style="display:flex; gap:0.4rem; flex-wrap:wrap;">
+          <button type="button" class="armador-chip batch-flt-btn active" style="padding:0.42rem 0.8rem;" onclick="setBatchDatesFilter('MISSING', this)">⚠️ Ejecutadas Sin Inicio/Fin</button>
+          <button type="button" class="armador-chip batch-flt-btn" style="padding:0.42rem 0.8rem;" onclick="setBatchDatesFilter('CIVIL', this)">🏗️ Todas las Obras Civiles (72)</button>
+          <button type="button" class="armador-chip batch-flt-btn" style="padding:0.42rem 0.8rem;" onclick="setBatchDatesFilter('ALL', this)">📋 Toda la Cartera</button>
+        </div>
+        <div style="display:flex; gap:0.5rem; align-items:center; flex-wrap:wrap;">
+          <input type="text" id="batchDatesSearch" oninput="renderBatchDatesTable()" placeholder="Buscar N°, obra, provincia..." style="padding:0.42rem 0.7rem; border:1px solid #CBD5E1; border-radius:8px; font-size:0.8rem; min-width:210px;">
+          <button type="button" id="btnSaveAllBatchDates" class="btn" onclick="saveAllBatchDates()" style="background:#16A34A; color:white; font-size:0.78rem; padding:0.46rem 0.9rem;">💾 Guardar Cambiados y Subir a Drive</button>
+        </div>
+      </div>
+      <div class="audit-summary-strip" id="batchDatesSummary"></div>
+      <div class="audit-modal-body" style="padding:0.75rem 1.25rem;">
+        <table class="batch-dates-table">
+          <thead>
+            <tr>
+              <th style="width:65px; text-align:center;">N° / PROV</th>
+              <th>PROYECTO Y STATUS EXCEL</th>
+              <th style="width:270px;">PISTA PUNTO 61 / HITOS PMO</th>
+              <th style="width:125px;">FECHA INICIO</th>
+              <th style="width:125px;">FECHA TÉRMINO</th>
+              <th style="width:55px; text-align:center;">GRABAR</th>
+            </tr>
+          </thead>
+          <tbody id="batchDatesTbody"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
 
   <!-- Modal Cuadro Maestro Auditoría En Vivo -->
   <div class="audit-modal-backdrop" id="auditMasterModal" onclick="if(event.target.id==='auditMasterModal') closeAuditMasterModal()">

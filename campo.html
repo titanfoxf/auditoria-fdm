@@ -223,13 +223,16 @@
       <!-- Pestañas Modulares de Trabajo -->
       <div class="drawer-tabs">
         <button type="button" class="drawer-tab active" id="tabBtnCajas" onclick="switchDrawerTab('CAJAS')">
-          📦 1. Censo de Cajas <span id="tabBadgeCajas" class="badge badge-gray" style="font-size: 0.65rem; margin-left: 0.25rem;">0</span>
+          📦 1. Cajas c/Rótulo <span id="tabBadgeCajas" class="badge badge-gray" style="font-size: 0.65rem; margin-left: 0.25rem;">0</span>
+        </button>
+        <button type="button" class="drawer-tab" id="tabBtnArmarRotulo" onclick="switchDrawerTab('ARMAR_ROTULO')">
+          🗂️ 2. Armar Rótulo <span id="tabBadgeItems" class="badge badge-gray" style="font-size: 0.65rem; margin-left: 0.25rem;">0</span>
         </button>
         <button type="button" class="drawer-tab" id="tabBtnSueltos" onclick="switchDrawerTab('SUELTOS')">
-          📁 2. Doc. Sueltos <span id="tabBadgeSueltos" class="badge badge-gray" style="font-size: 0.65rem; margin-left: 0.25rem;">0</span>
+          📁 3. Doc. Sueltos <span id="tabBadgeSueltos" class="badge badge-gray" style="font-size: 0.65rem; margin-left: 0.25rem;">0</span>
         </button>
         <button type="button" class="drawer-tab" id="tabBtnDocs" onclick="switchDrawerTab('DOCS')">
-          📅 3. Fechas Inicio y Fin
+          📅 4. Fechas Ini/Fin
         </button>
       </div>
 
@@ -433,6 +436,115 @@
             <div style="font-size: 0.68rem; color: #64748B; text-align: center; margin-top: 0.35rem;">
               Presiona aquí únicamente al terminar todas las fotos de esta caja para limpiar el contenido y avanzar al siguiente número.
             </div>
+          </div>
+        </div>
+
+        <!-- PANEL 1B: ARMAR RÓTULO DE CAJA SIN RÓTULO (ARCHIVADOR X ARCHIVADOR / FILE X FILE) -->
+        <div id="panelTabArmarRotulo" style="display: none;">
+          <div class="field-group" style="border-color: #F59E0B; background: #FFFBEB;">
+            <div style="font-size: 0.76rem; font-weight: 800; color: #92400E; line-height: 1.35;">
+              🗂️ MODO CAJA SIN RÓTULO IMPRESO: Toma fotos ítem por ítem (archivador, tomo o fólder) dentro de una misma caja para armar e imprimir su Hoja de Rótulo A4 en gabinete.
+            </div>
+          </div>
+
+          <div class="field-group">
+            <div class="field-title">
+              <span>📍 AMBIENTE Y CÓDIGO DE CAJA A ROTULAR</span>
+            </div>
+            <select id="drawerAmbienteSelectArmar" class="field-input" onchange="onDrawerAmbienteChange(this.value)" style="font-weight: 700; color: #0F172A; background: #FFF; font-size: 0.9rem; border: 1.5px solid #D97706; cursor: pointer; padding: 0.6rem;">
+              <option value="BAÑO1-PMO">🚽 BAÑO1-PMO</option>
+              <option value="BAÑO2-PMO">🚽 BAÑO2-PMO</option>
+              <option value="BAÑO3-PMO">🚽 BAÑO3-PMO</option>
+              <option value="OFICINA1-PMO">🏢 OFICINA1-PMO</option>
+              <option value="OFICINA2-PMO">🏢 OFICINA2-PMO</option>
+              <option value="OFICINA3-PMO">🏢 OFICINA3-PMO</option>
+              <option value="PASADIZO-ESCALERA">🚶 PASADIZO-ESCALERA</option>
+              <option value="SECRETARIA-PMO">📑 SECRETARIA-PMO</option>
+              <option value="ALMACEN-TECHO">📦 ALMACEN-TECHO</option>
+              <option value="ARMARIO-1ERPISO">🗄️ ARMARIO-1ERPISO</option>
+              <option value="OTROS">📍 OTROS</option>
+              <option value="CUSTOM">➕ Agregar Sub-zona / Otro...</option>
+            </select>
+
+            <div style="margin-top: 0.65rem; background: #0F172A; border-radius: 10px; padding: 0.7rem; color: white; display: flex; flex-direction: column; gap: 0.4rem;">
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <span style="font-size: 0.7rem; font-weight: 700; color: #FCD34D;">🏷️ CAJA ACTUAL:</span>
+                <span style="font-size: 0.66rem; color: #94A3B8;">Todas las fotos de esta pestaña pertenecen a esta caja</span>
+              </div>
+              <div style="display: flex; align-items: center; gap: 0.4rem;">
+                <button type="button" onclick="cambiarCajaSeqDelta(-1)" style="background: #334155; border: 1px solid #475569; color: white; width: 42px; height: 42px; border-radius: 8px; font-size: 1.25rem; font-weight: 900; cursor: pointer;">−</button>
+                <div id="displayCodigoCajaArmar" style="flex: 1; background: #1E293B; border: 1.5px solid #F59E0B; color: #FCD34D; font-size: 1.2rem; font-weight: 800; letter-spacing: 1px; text-align: center; padding: 0.45rem; border-radius: 8px;">B1-01-C1</div>
+                <button type="button" onclick="cambiarCajaSeqDelta(1)" style="background: #D97706; border: 1px solid #F59E0B; color: white; width: 42px; height: 42px; border-radius: 8px; font-size: 1.25rem; font-weight: 900; cursor: pointer;">+</button>
+              </div>
+              <div id="armarCajaSeqChipsContainer" style="display: flex; gap: 0.35rem; overflow-x: auto; padding-bottom: 0.2rem;"></div>
+
+              <!-- Stepper de Ítem interno dentro de esta caja -->
+              <div style="margin-top: 0.35rem; border-top: 1px solid #1E293B; padding-top: 0.45rem;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.3rem;">
+                  <span style="font-size: 0.7rem; font-weight: 800; color: #38BDF8;">📑 CORRELATIVO INTERNO DEL RÓTULO (ARCHIVADOR / TOMO / FILE):</span>
+                </div>
+                <div style="display: flex; align-items: center; gap: 0.4rem;">
+                  <button type="button" onclick="cambiarItemRotuloDelta(-1)" style="background: #334155; border: 1px solid #475569; color: white; width: 40px; height: 40px; border-radius: 8px; font-size: 1.2rem; font-weight: 900; cursor: pointer;">−</button>
+                  <div style="flex: 1; background: #0B132B; border: 1.5px solid #38BDF8; color: #38BDF8; font-size: 1.1rem; font-weight: 800; text-align: center; padding: 0.4rem; border-radius: 8px;">
+                    ÍTEM N° <span id="displayItemRotuloSeq">01</span>
+                  </div>
+                  <button type="button" onclick="cambiarItemRotuloDelta(1)" style="background: #0284C7; border: 1px solid #38BDF8; color: white; width: 40px; height: 40px; border-radius: 8px; font-size: 1.2rem; font-weight: 900; cursor: pointer;">+</button>
+                </div>
+                <div id="itemRotuloChipsContainer" style="display: flex; gap: 0.3rem; overflow-x: auto; margin-top: 0.35rem; padding-bottom: 0.2rem;"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="field-group">
+            <div class="field-title" style="display: flex; justify-content: space-between; align-items: center;">
+              <span>✏️ Descripción breve del Ítem (Opcional - OCR también lo lee)</span>
+              <button type="button" onclick="limpiarNotaItemRotulo()" style="background: #FEE2E2; border: 1px solid #FCA5A5; color: #991B1B; font-size: 0.68rem; font-weight: 700; padding: 0.2rem 0.5rem; border-radius: 6px; cursor: pointer;">🗑️ Limpiar</button>
+            </div>
+            <div class="preset-chips" style="margin-top: 0.25rem;">
+              <span class="preset-chip" onclick="appendNotaItemRotulo('TOMO I')">📘 TOMO I</span>
+              <span class="preset-chip" onclick="appendNotaItemRotulo('TOMO II')">📘 TOMO II</span>
+              <span class="preset-chip" onclick="appendNotaItemRotulo('TOMO III')">📘 TOMO III</span>
+              <span class="preset-chip" onclick="appendNotaItemRotulo('TOMO IV')">📘 TOMO IV</span>
+              <span class="preset-chip" onclick="appendNotaItemRotulo('ARCHIVADOR')">🗂️ ARCHIVADOR</span>
+              <span class="preset-chip" onclick="appendNotaItemRotulo('FILE / FÓLDER')">📂 FILE</span>
+              <span class="preset-chip" onclick="appendNotaItemRotulo('CUADERNO DE OBRA')">📖 CUADERNO</span>
+              <span class="preset-chip" onclick="appendNotaItemRotulo('Exp. Técnico')">📁 Exp. Técnico</span>
+              <span class="preset-chip" onclick="appendNotaItemRotulo('Valorizaciones')">📊 Valorizaciones</span>
+              <span class="preset-chip" onclick="appendNotaItemRotulo('Informe Mensual')">📅 Inf. Mensual</span>
+              <span class="preset-chip" onclick="appendNotaItemRotulo('Informe Final')">🏁 Inf. Final</span>
+              <span class="preset-chip" onclick="appendNotaItemRotulo('Liquidación')">⚖️ Liquidación</span>
+              <span class="preset-chip" onclick="appendNotaItemRotulo('Adicionales')">➕ Adicionales</span>
+              <span class="preset-chip" onclick="appendNotaItemRotulo('de Obra')">de Obra</span>
+              <span class="preset-chip" onclick="appendNotaItemRotulo('de Supervisión')">de Supervisión</span>
+              <span class="preset-chip" onclick="appendNotaItemRotulo('Contrato')">Contrato</span>
+              <span class="preset-chip" onclick="appendNotaItemRotulo('ORIGINAL')">ORIGINAL</span>
+              <span class="preset-chip" onclick="appendNotaItemRotulo('COPIA')">COPIA</span>
+              <span class="preset-chip" onclick="appendNotaItemRotulo('N°')">N°</span>
+              <span class="preset-chip" onclick="appendNotaItemRotulo('1')">1</span>
+              <span class="preset-chip" onclick="appendNotaItemRotulo('2')">2</span>
+              <span class="preset-chip" onclick="appendNotaItemRotulo('3')">3</span>
+              <span class="preset-chip" onclick="appendNotaItemRotulo('4')">4</span>
+              <span class="preset-chip" onclick="appendNotaItemRotulo('5')">5</span>
+            </div>
+            <textarea id="inputNotaItemRotulo" class="field-input" style="height: 54px; resize: none; margin-top: 0.45rem;" placeholder="Ej: ARCHIVADOR Valorizaciones de Obra 1 a 4 (Original)..."></textarea>
+          </div>
+
+          <div class="photo-slot" style="border: 2px dashed #D97706; background: #FFFBEB;">
+            <div class="slot-hdr">
+              <span style="font-size: 0.85rem; font-weight: 800; color: #92400E;">📸 Foto del Archivador / File (para Rótulo)</span>
+              <span id="slotCount_item_rotulo" class="badge badge-gray">0</span>
+            </div>
+            <button type="button" class="btn-camera" onclick="triggerCamera('item_rotulo')" style="padding: 0.85rem; font-size: 0.92rem; font-weight: 800; background: #D97706;">
+              📸 Fotografiar <span id="btnCameraItemLabel">ÍTEM 01</span> de la Caja
+            </button>
+            <input type="file" accept="image/*" capture="environment" id="file_item_rotulo" style="display:none;" onchange="handlePhotoUpload('item_rotulo', this)">
+            <div class="thumb-grid" id="grid_item_rotulo" style="margin-top: 0.65rem;"></div>
+          </div>
+
+          <div style="margin-top: 0.85rem;">
+            <button type="button" onclick="pasarASiguienteCaja()" style="width: 100%; background: linear-gradient(135deg, #16A34A, #15803D); color: white; border: none; border-radius: 12px; padding: 0.85rem 1rem; font-size: 0.9rem; font-weight: 800; cursor: pointer;">
+              📦 Cerrar Caja Actual y Pasar a Siguiente Caja ➔
+            </button>
           </div>
         </div>
 
@@ -794,10 +906,12 @@
                 if (r.contenido_caja) existing.nota = r.contenido_caja;
                 if (r.ambiente && !existing.ubicacion) existing.ubicacion = r.ambiente;
               } else {
-                const isSuelto = (r.codigo_caja && r.codigo_caja.includes('SUELTO')) || (r.tipo_foto && r.tipo_foto.includes('Suelto'));
-                const isRotulo = !r.tipo_foto || r.tipo_foto === 'Rótulo de Caja';
+                const isItemRotulo = (r.tipo_foto && r.tipo_foto.includes('Armar Rótulo')) || (r.sub_codigo && r.sub_codigo.includes('-IT'));
+                const isSuelto = !isItemRotulo && ((r.codigo_caja && r.codigo_caja.includes('SUELTO')) || (r.tipo_foto && r.tipo_foto.includes('Suelto')));
+                const isRotulo = !isItemRotulo && (!r.tipo_foto || r.tipo_foto === 'Rótulo de Caja');
                 let slotName = 'otros';
-                if (isSuelto) slotName = 'suelto';
+                if (isItemRotulo) slotName = 'item_rotulo';
+                else if (isSuelto) slotName = 'suelto';
                 else if (isRotulo) slotName = 'rotulo';
 
                 fieldData[obraId].fotos.push({
@@ -1072,6 +1186,8 @@
       if (selD) selD.value = val;
       const selS = document.getElementById('drawerAmbienteSelectSueltos');
       if (selS) selS.value = val;
+      const selA = document.getElementById('drawerAmbienteSelectArmar');
+      if (selA) selA.value = val;
       
       // Limpiar flag de edición manual para que el código tome de inmediato el nuevo prefijo del ambiente
       const inputCod = document.getElementById('inputCodigoCaja');
@@ -1099,6 +1215,8 @@
       if (selD) selD.value = val;
       const selS = document.getElementById('drawerAmbienteSelectSueltos');
       if (selS) selS.value = val;
+      const selA = document.getElementById('drawerAmbienteSelectArmar');
+      if (selA) selA.value = val;
       
       if (activeObraId) {
         const inputCod = document.getElementById('inputCodigoCaja');
@@ -1303,13 +1421,20 @@
       if (lblO) lblO.innerText = obraStr;
       const lblS = document.getElementById('lblCajaSeq');
       if (lblS) lblS.innerText = seq;
+
+      const dispArmar = document.getElementById('displayCodigoCajaArmar');
+      if (dispArmar) {
+        dispArmar.innerText = (input && input.value.trim()) ? input.value.trim() : code;
+      }
       
       updateFullUbicacion();
       renderCajaSeqChips();
+      if (typeof updateItemRotuloDisplay === 'function') updateItemRotuloDisplay();
     }
 
     function renderCajaSeqChips() {
       const cont = document.getElementById('cajaSeqChipsContainer');
+      const contArmar = document.getElementById('armarCajaSeqChipsContainer');
       if (!cont || !activeObraId) return;
 
       const d = fieldData[activeObraId];
@@ -1357,6 +1482,89 @@
         html += `<button type="button" onclick="setCajaSeq(${i})" style="${chipStyle}" title="${title}">${label}</button>`;
       }
       cont.innerHTML = html;
+      if (contArmar) contArmar.innerHTML = html;
+    }
+
+    // ==========================================
+    // CONTROL DE ÍTEMS PARA ARMAR RÓTULO SIN ETIQUETA
+    // ==========================================
+    let currentItemRotuloSeq = 1;
+
+    function getActiveBoxCodeForArmar() {
+      const input = document.getElementById('inputCodigoCaja');
+      if (input && input.value.trim()) return input.value.trim().toUpperCase();
+      return autoGenerarCodigoCaja().code;
+    }
+
+    function getUsedItemRotuloSeqs(obraId, boxCode) {
+      const d = fieldData[obraId];
+      if (!d || !d.fotos) return new Set();
+      const used = new Set();
+      d.fotos.forEach(f => {
+        if ((f.codigo_caja || '') === boxCode && (f.slot === 'item_rotulo' || (f.sub_codigo && f.sub_codigo.includes('-IT')) || (f.tipo_foto && f.tipo_foto.includes('Ítem')))) {
+          const m = (f.sub_codigo || f.tipo_foto || f.nota || '').match(/IT(?:EM|[ÉE]M)?\s*[-_ ]?(\d+)/i);
+          if (m) used.add(parseInt(m[1]));
+        }
+      });
+      return used;
+    }
+
+    function getNextAvailableItemRotuloSeq(obraId, boxCode) {
+      const used = getUsedItemRotuloSeqs(obraId, boxCode);
+      let s = 1;
+      while (used.has(s)) s++;
+      return s;
+    }
+
+    function cambiarItemRotuloDelta(delta) {
+      currentItemRotuloSeq = Math.max(1, currentItemRotuloSeq + delta);
+      updateItemRotuloDisplay();
+    }
+
+    function setItemRotuloSeq(seq) {
+      currentItemRotuloSeq = Math.max(1, seq);
+      updateItemRotuloDisplay();
+      showToast(`📑 Seleccionado ÍTEM ${String(currentItemRotuloSeq).padStart(2, '0')}`);
+    }
+
+    function updateItemRotuloDisplay() {
+      if (!activeObraId) return;
+      const boxCode = getActiveBoxCodeForArmar();
+      const disp = document.getElementById('displayItemRotuloSeq');
+      const itStr = String(currentItemRotuloSeq).padStart(2, '0');
+      if (disp) disp.innerText = itStr;
+      const btnLbl = document.getElementById('btnCameraItemLabel');
+      if (btnLbl) btnLbl.innerText = `ÍTEM ${itStr} (${boxCode})`;
+
+      const cont = document.getElementById('itemRotuloChipsContainer');
+      if (cont) {
+        const used = getUsedItemRotuloSeqs(activeObraId, boxCode);
+        const maxShown = Math.max(6, currentItemRotuloSeq + 2, ...(used.size ? Array.from(used) : [1]));
+        let html = '';
+        for (let i = 1; i <= maxShown; i++) {
+          const isUsed = used.has(i);
+          const isSel = (i === currentItemRotuloSeq);
+          let st = "padding: 3px 9px; border-radius: 6px; font-size: 0.72rem; font-weight: 700; cursor: pointer; white-space: nowrap;";
+          if (isSel) st += " background: #0284C7; color: white; border: 1.5px solid #38BDF8;";
+          else if (isUsed) st += " background: #14532D; color: #4ADE80; border: 1px solid #22C55E;";
+          else st += " background: #1E293B; color: #94A3B8; border: 1px solid #334155;";
+          const lbl = isUsed ? `IT${String(i).padStart(2,'0')} ✓` : `IT${String(i).padStart(2,'0')}`;
+          html += `<button type="button" onclick="setItemRotuloSeq(${i})" style="${st}">${lbl}</button>`;
+        }
+        cont.innerHTML = html;
+      }
+    }
+
+    function appendNotaItemRotulo(tag) {
+      const txt = document.getElementById('inputNotaItemRotulo');
+      if (!txt) return;
+      const curr = txt.value.replace(/\s+$/, '');
+      txt.value = curr ? `${curr} ${tag}` : tag;
+    }
+
+    function limpiarNotaItemRotulo() {
+      const txt = document.getElementById('inputNotaItemRotulo');
+      if (txt) txt.value = '';
     }
 
     function onCustomCodigoChange() {
@@ -1881,17 +2089,21 @@
 
     function switchDrawerTab(tabName) {
       const tabCajas = document.getElementById('panelTabCajas');
+      const tabArmar = document.getElementById('panelTabArmarRotulo');
       const tabSueltos = document.getElementById('panelTabSueltos');
       const tabDocs = document.getElementById('panelTabDocs');
       const btnCajas = document.getElementById('tabBtnCajas');
+      const btnArmar = document.getElementById('tabBtnArmarRotulo');
       const btnSueltos = document.getElementById('tabBtnSueltos');
       const btnDocs = document.getElementById('tabBtnDocs');
 
       if (tabCajas) tabCajas.style.display = (tabName === 'CAJAS' ? 'block' : 'none');
+      if (tabArmar) tabArmar.style.display = (tabName === 'ARMAR_ROTULO' ? 'block' : 'none');
       if (tabSueltos) tabSueltos.style.display = (tabName === 'SUELTOS' ? 'block' : 'none');
       if (tabDocs) tabDocs.style.display = (tabName === 'DOCS' ? 'block' : 'none');
 
       if (btnCajas) btnCajas.classList.toggle('active', tabName === 'CAJAS');
+      if (btnArmar) btnArmar.classList.toggle('active', tabName === 'ARMAR_ROTULO');
       if (btnSueltos) btnSueltos.classList.toggle('active', tabName === 'SUELTOS');
       if (btnDocs) btnDocs.classList.toggle('active', tabName === 'DOCS');
 
@@ -1899,8 +2111,12 @@
         updateSueltoDisplay();
         renderMultiAmbientesSummary();
         updateAcervoConsolidadoDisplay();
-      } else if (tabName === 'CAJAS') {
+      } else if (tabName === 'CAJAS' || tabName === 'ARMAR_ROTULO') {
         updateCodigoDisplay();
+        if (tabName === 'ARMAR_ROTULO' && activeObraId) {
+          currentItemRotuloSeq = getNextAvailableItemRotuloSeq(activeObraId, getActiveBoxCodeForArmar());
+          updateItemRotuloDisplay();
+        }
         renderMultiAmbientesSummary();
         updateAcervoConsolidadoDisplay();
       }
@@ -2075,12 +2291,16 @@
         if (selD) selD.value = currAmb;
         const selS = document.getElementById('drawerAmbienteSelectSueltos');
         if (selS) selS.value = currAmb;
+        const selA = document.getElementById('drawerAmbienteSelectArmar');
+        if (selA) selA.value = currAmb;
         
         // Inicializar y mostrar código de caja sugerido (primer número desocupado)
         currentCajaSeq = getFirstAvailableCajaSeq(id);
         const inputCod = document.getElementById('inputCodigoCaja');
         if (inputCod) inputCod.dataset.userEdited = "";
         updateCodigoDisplay();
+        currentItemRotuloSeq = getNextAvailableItemRotuloSeq(id, getActiveBoxCodeForArmar());
+        updateItemRotuloDisplay();
 
         // Inicializar código de doc suelto sugerido
         currentSueltoSeq = getNextAvailableSueltoSeq(id, currAmb);
@@ -2225,6 +2445,14 @@
           tipoFoto = 'Doc. Suelto / Archivador';
           currentContenido = (document.getElementById('inputNotasSuelto')?.value || '').trim() || 'Doc. Suelto';
           filename = `OBRA_${String(activeObraId).padStart(2, '0')}_${currentCodigo}.jpg`;
+        } else if (slotKey === 'item_rotulo') {
+          currentCodigo = getActiveBoxCodeForArmar();
+          const itNumStr = String(currentItemRotuloSeq).padStart(2, '0');
+          subCodigo = `${currentCodigo}-IT${itNumStr}`;
+          tipoFoto = `Ítem ${itNumStr} (Armar Rótulo)`;
+          const descIt = (document.getElementById('inputNotaItemRotulo')?.value || '').trim();
+          currentContenido = descIt ? `[IT${itNumStr}] ${descIt}` : `[IT${itNumStr}] Archivador / File ${itNumStr}`;
+          filename = `OBRA_${String(activeObraId).padStart(2, '0')}_${currentCodigo}_IT${itNumStr}.jpg`;
         } else {
           currentCodigo = (document.getElementById('inputCodigoCaja')?.value || '').trim() || autoGenerarCodigoCaja().code;
           currentContenido = (document.getElementById('inputNotas')?.value || '').trim();
@@ -2266,6 +2494,13 @@
           const nTxt = document.getElementById('inputNotasSuelto');
           if (nTxt) nTxt.value = '';
           showToast(`📸 Registrado: ${currentCodigo}`);
+        } else if (slotKey === 'item_rotulo') {
+          currentItemRotuloSeq = getNextAvailableItemRotuloSeq(activeObraId, currentCodigo);
+          updateItemRotuloDisplay();
+          limpiarNotaItemRotulo();
+          updateCodigoDisplay();
+          renderCajaSeqChips();
+          showToast(`🗂️ Ítem guardado en ${subCodigo}`);
         } else {
           // Para cajas, mantener secuencia actual hasta presionar Terminar Caja
           updateCodigoDisplay();
@@ -2344,34 +2579,36 @@
     }
 
     function renderDrawerPhotos() {
-      const slots = ['rotulo', 'suelto', 'inicio', 'contrato', 'cuaderno', 'recepcion', 'liquidacion', 'otros'];
+      const slots = ['rotulo', 'item_rotulo', 'suelto', 'otros'];
       const d = fieldData[activeObraId] || { fotos: [] };
       const fotos = d.fotos || [];
 
       const elTotal = document.getElementById('drawerTotalFotos');
       if (elTotal) elTotal.innerText = `${fotos.length} fotos`;
 
-      // Contador de fotos de cajas
-      const cajasCount = fotos.filter(f => f.slot === 'rotulo' || f.slot === 'otros' || (!f.slot && !f.codigo_caja?.includes('SUELTO'))).length;
+      // Contador de fotos de cajas con rótulo
+      const cajasCount = fotos.filter(f => f.slot === 'rotulo' || f.slot === 'otros' || (!f.slot && !f.codigo_caja?.includes('SUELTO') && !f.sub_codigo?.includes('-IT'))).length;
       const badgeTabCajas = document.getElementById('tabBadgeCajas');
       if (badgeTabCajas) badgeTabCajas.innerText = cajasCount;
+
+      // Contador de fotos para Armar Rótulo (ítem por ítem)
+      const itemsCount = fotos.filter(f => f.slot === 'item_rotulo' || f.sub_codigo?.includes('-IT') || f.tipo_foto?.includes('Armar Rótulo')).length;
+      const badgeTabItems = document.getElementById('tabBadgeItems');
+      if (badgeTabItems) badgeTabItems.innerText = itemsCount;
 
       // Contador de fotos de documentos sueltos
       const sueltosCount = fotos.filter(f => f.slot === 'suelto' || f.codigo_caja?.includes('SUELTO')).length;
       const badgeTabSueltos = document.getElementById('tabBadgeSueltos');
       if (badgeTabSueltos) badgeTabSueltos.innerText = sueltosCount;
 
-      const docsSlots = ['inicio', 'contrato', 'cuaderno', 'recepcion', 'liquidacion'];
-      const docsFotosCount = fotos.filter(f => docsSlots.includes(f.slot)).length;
-      const elDocsCount = document.getElementById('drawerTotalFotosDocs');
-      if (elDocsCount) elDocsCount.innerText = `${docsFotosCount} fotos`;
-
       slots.forEach(slotKey => {
         let slotFotos = [];
         if (slotKey === 'suelto') {
           slotFotos = fotos.filter(f => f.slot === 'suelto' || f.codigo_caja?.includes('SUELTO'));
+        } else if (slotKey === 'item_rotulo') {
+          slotFotos = fotos.filter(f => f.slot === 'item_rotulo' || f.sub_codigo?.includes('-IT') || f.tipo_foto?.includes('Armar Rótulo'));
         } else if (slotKey === 'rotulo') {
-          slotFotos = fotos.filter(f => f.slot === 'rotulo' || (!f.slot && !f.codigo_caja?.includes('SUELTO')));
+          slotFotos = fotos.filter(f => f.slot === 'rotulo' || (!f.slot && !f.codigo_caja?.includes('SUELTO') && !f.sub_codigo?.includes('-IT')));
         } else {
           slotFotos = fotos.filter(f => f.slot === slotKey);
         }
@@ -2389,7 +2626,9 @@
           const directUrl = resolveDirectImageUrl(f.dataUrl, f.file_id || f.drive_url);
           const driveLink = f.drive_url ? `<a href="${f.drive_url}" target="_blank" style="font-size: 0.65rem; color: #2563EB; text-decoration: none; font-weight: 700; margin-left: 0.3rem;" onclick="event.stopPropagation()">🔗 Drive</a>` : '';
           const isDocSuelto = f.slot === 'suelto' || f.codigo_caja?.includes('SUELTO');
-          const icon = isDocSuelto ? '📁' : '🏷️';
+          const isItemRot = f.slot === 'item_rotulo' || f.sub_codigo?.includes('-IT');
+          const icon = isDocSuelto ? '📁' : (isItemRot ? '🗂️' : '🏷️');
+          const descPreview = (f.nota && f.nota !== f.codigo_caja) ? `<div style="font-size:0.65rem;color:#334155;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${f.nota}</div>` : '';
           return `
           <div class="thumb-card">
             <div class="thumb-wrap">
@@ -2398,10 +2637,11 @@
             </div>
             <div class="thumb-meta">
               <div class="thumb-amb">
-                <span style="font-weight: 800; color: ${isDocSuelto ? '#0284C7' : '#2563EB'};">${icon} ${f.sub_codigo || f.codigo_caja || f.nota || 'Doc'}</span>
+                <span style="font-weight: 800; color: ${isDocSuelto ? '#0284C7' : (isItemRot ? '#B45309' : '#2563EB')};">${icon} ${f.sub_codigo || f.codigo_caja || f.nota || 'Doc'}</span>
                 <span onclick="editPhotoCaption('${f.id}')" style="cursor: pointer; padding: 0 3px;" title="Editar código o ambiente">✏️</span>
                 ${driveLink}
               </div>
+              ${descPreview}
               <div class="thumb-note" onclick="editPhotoCaption('${f.id}')" title="${f.ubicacion}">
                 📍 ${f.ubicacion || 'Ambiente'} ${f.tipo_foto && f.tipo_foto !== 'Rótulo de Caja' ? `• ${f.tipo_foto}` : ''}
               </div>
