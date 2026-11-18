@@ -382,6 +382,17 @@
     .batch-hint-box { font-size: 0.7rem; color: #475569; margin-top: 0.22rem; line-height: 1.3; }
     .btn-hint-apply { background: #E0F2FE; border: 1px solid #7DD3FC; color: #0369A1; font-size: 0.68rem; font-weight: 800; padding: 2px 6px; border-radius: 5px; cursor: pointer; margin-top: 3px; display: inline-flex; align-items: center; gap: 3px; }
     .btn-hint-apply:hover { background: #BAE6FD; }
+
+    /* Adaptación TDR Req. N° 000393 */
+    .scope-btn-tdr { border-color: #F59E0B; color: #92400E; background: #FFFBEB; }
+    .scope-btn-tdr:hover { border-color: #D97706; background: #FEF3C7; color: #78350F; }
+    .scope-btn-tdr.active { background: linear-gradient(135deg, #D97706, #B45309); border-color: #B45309; color: #FFFFFF; box-shadow: 0 2px 8px rgba(180,83,9,0.32); }
+    .audit-view-bar { display: flex; gap: 0.45rem; flex-wrap: wrap; padding: 0.55rem 1.25rem; background: #F1F5F9; border-bottom: 1px solid #CBD5E1; align-items: center; }
+    .audit-view-btn { background: #FFFFFF; border: 1.5px solid #CBD5E1; color: #334155; padding: 0.42rem 0.85rem; border-radius: 8px; font-size: 0.78rem; font-weight: 800; cursor: pointer; display: inline-flex; align-items: center; gap: 0.35rem; transition: all 0.14s; }
+    .audit-view-btn:hover { border-color: #2563EB; color: #1D4ED8; }
+    .audit-view-btn.active { background: #1E3A8A; border-color: #1E3A8A; color: #FFFFFF; box-shadow: 0 2px 5px rgba(30,58,138,0.25); }
+    .tdr-cell-ok { display: inline-block; background: #DCFCE7; color: #166534; border: 1px solid #86EFAC; font-size: 0.68rem; font-weight: 700; padding: 2px 5px; border-radius: 5px; line-height: 1.25; }
+    .tdr-cell-miss { display: inline-block; background: #FEF2F2; color: #991B1B; border: 1px dashed #FCA5A5; font-size: 0.67rem; font-weight: 700; padding: 2px 5px; border-radius: 5px; }
   </style>
 </head>
 <body>
@@ -404,14 +415,14 @@
       <button class="btn-backup" onclick="descargarRespaldoDrive()" style="background: #0F766E; color: white; border: 1px solid #14B8A6; padding: 0.65rem 0.9rem; border-radius: 8px; font-weight: 700; font-size: 0.82rem; cursor: pointer; display: inline-flex; align-items: center; gap: 0.4rem;" title="Descargar copia de seguridad completa de Drive y Sheets">
         🛡️ Respaldar Drive
       </button>
-      <button class="btn-audit-master" onclick="openAuditMasterModal()" style="background: linear-gradient(135deg, #D97706, #B45309); color: white; border: 1px solid #F59E0B; padding: 0.65rem 1rem; border-radius: 8px; font-weight: 800; font-size: 0.84rem; cursor: pointer; display: inline-flex; align-items: center; gap: 0.4rem; box-shadow: 0 2px 6px rgba(217,119,6,0.35);" title="Abrir Informe Situacional (Google Sheets, Impresión Horizontal y Cuadro Maestro)">
-        📊 Informe Situacional / Google Sheets
+      <button class="btn-audit-master" onclick="openAuditMasterModal()" style="background: linear-gradient(135deg, #D97706, #B45309); color: white; border: 1px solid #F59E0B; padding: 0.65rem 1rem; border-radius: 8px; font-weight: 800; font-size: 0.84rem; cursor: pointer; display: inline-flex; align-items: center; gap: 0.4rem; box-shadow: 0 2px 6px rgba(217,119,6,0.35);" title="Abrir Centro de Entregables TDR (Matriz de Trazabilidad, Faltantes y Google Sheets)">
+        📊 Centro Entregables TDR / Sheets
       </button>
       <a href="campo.html" class="btn-campo" style="background: #2563EB; color: white; border: none; padding: 0.65rem 1.1rem; border-radius: 8px; font-weight: 700; font-size: 0.85rem; text-decoration: none; display: inline-flex; align-items: center; gap: 0.4rem; box-shadow: 0 2px 5px rgba(37,99,235,0.3);">
         📷 Ir a Modo Campo / Censo de Cajas ➔
       </a>
-      <button class="btn-excel" onclick="exportInformeSituacionalMultiSheetExcel()" title="Descarga Excel Multi-Hoja igual al del Ingeniero con ubicaciones reales por ambiente">
-        📥 Excel Informe Situacional (7 Hojas)
+      <button class="btn-excel" onclick="exportEntregableTdrExcel()" title="Descarga Excel Oficial de Entrega TDR Req. 000393 (5 Hojas: Listado 2022-2025, Matriz Trazabilidad, Cajas, Faltantes e Índice Drive)">
+        📥 Excel Entregable TDR (5 Hojas)
       </button>
     </div>
   </header>
@@ -453,6 +464,9 @@
         <span style="font-size: 0.76rem; font-weight: 800; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.4px; margin-right: 0.25rem;">Vista:</span>
         <button type="button" class="scope-btn active" id="btnScopeCivil" onclick="setScope('CIVIL', this)">
           🏗️ Obras Civiles Objetivo (<span id="countScopeCivil">72</span>)
+        </button>
+        <button type="button" class="scope-btn scope-btn-tdr" id="btnScopeTdr" onclick="setScope('TDR_2022_2025', this)" title="Obras Civiles Ejecutadas y Culminadas durante el periodo 2022–2025 (TDR Req. 000393)">
+          🎯 Entregable TDR 2022–2025 (<span id="countScopeTdr">0</span>)
         </button>
         <button type="button" class="scope-btn" id="btnScopeAll" onclick="setScope('ALL', this)">
           📋 Toda la Cartera Excel (<span id="countScopeAll">170</span>)
@@ -2451,10 +2465,38 @@
       // Calculado dinámicamente por renderAnalyticsDashboard según el alcance actual
     }
 
+    function getProjectEndYear(p) {
+      if (!p || p.id === 999 || p.es_multiproyecto) return '';
+      const raw = p.fecha_termino_verificada_ing || (p.fecha_culminacion_real && p.fecha_culminacion_real !== '-' ? p.fecha_culminacion_real : (p.fecha_termino_prog && p.fecha_termino_prog !== '-' ? p.fecha_termino_prog : ''));
+      const m = String(raw || '').match(/\b(20\d{2})\b/);
+      return m ? m[1] : '';
+    }
+
+    function isProjectInTdr2022_2025(p) {
+      if (!p || p.id === 999 || p.es_multiproyecto || p.es_obra_civil !== true) return false;
+      const est = (p.estatus || '').toUpperCase().trim();
+      const isEjecOrLiq = isProjectExecutedOrLiquidated(p);
+      const hasFieldBoxes = !isProjectMissingCensus(p);
+      if (!isEjecOrLiq && !(hasFieldBoxes && est !== 'POR EJECUTAR')) return false;
+
+      const iniY = parseInt(getProjectStartYear(p) || '0', 10);
+      const finY = parseInt(getProjectEndYear(p) || '0', 10);
+      if (finY >= 2022 && finY <= 2025) return true;
+      if (iniY >= 2022 && iniY <= 2025) return true;
+      if (iniY >= 2026) return false;
+      // Obras 2020-2021 culminadas/liquidadas en tomos 2022-2025 o ejecutadas sin fecha definida aún
+      if ((p.historial || []).some(h => /202[2345]/.test(String(h.fecha_sort || h.fecha || '')))) return true;
+      if (isEjecOrLiq && (finY === 0 || finY >= 2022)) return true;
+      return false;
+    }
+
     function getScopedProjects() {
       if (!projectsData) return [];
       if (currentScope === 'CIVIL') {
         return projectsData.filter(p => p.es_obra_civil === true);
+      }
+      if (currentScope === 'TDR_2022_2025') {
+        return projectsData.filter(p => isProjectInTdr2022_2025(p));
       }
       if (currentScope === 'MULTI') {
         return projectsData.filter(p => p.id === 999 || p.es_multiproyecto);
@@ -2465,10 +2507,13 @@
     function renderAnalyticsDashboard() {
       const all = projectsData || [];
       const civilCount = all.filter(p => p.es_obra_civil === true).length;
+      const tdrCount = all.filter(p => isProjectInTdr2022_2025(p)).length;
       const multiCount = all.filter(p => p.id === 999 || p.es_multiproyecto).length;
 
       const elSC = document.getElementById('countScopeCivil');
       if (elSC) elSC.innerText = civilCount;
+      const elSTdr = document.getElementById('countScopeTdr');
+      if (elSTdr) elSTdr.innerText = tdrCount;
       const elSA = document.getElementById('countScopeAll');
       if (elSA) elSA.innerText = all.length;
       const elSM = document.getElementById('countScopeMulti');
@@ -2500,7 +2545,13 @@
       const elKpiTotal = document.getElementById('kpi-total');
       if (elKpiTotal) elKpiTotal.innerText = total;
       const elKpiTotalDesc = document.getElementById('kpi-total-desc');
-      if (elKpiTotalDesc) elKpiTotalDesc.innerText = currentScope === 'CIVIL' ? 'Obras Civiles Objetivo' : (currentScope === 'MULTI' ? 'Cajas Multi-Proyecto' : 'Toda la Cartera Excel');
+      if (elKpiTotalDesc) {
+        elKpiTotalDesc.innerText = currentScope === 'CIVIL'
+          ? 'Obras Civiles Objetivo'
+          : (currentScope === 'TDR_2022_2025'
+            ? 'Obras Ejecutadas/Culminadas 2022-2025 (TDR)'
+            : (currentScope === 'MULTI' ? 'Cajas Multi-Proyecto' : 'Toda la Cartera Excel'));
+      }
       const elKpiCajas = document.getElementById('kpi-cajas');
       if (elKpiCajas) elKpiCajas.innerText = conCajas;
       const elKpiPrio = document.getElementById('kpi-prio-censar');
@@ -2574,7 +2625,8 @@
       if (btn) {
         btn.classList.add('active');
       } else {
-        const fallback = document.getElementById(scope === 'CIVIL' ? 'btnScopeCivil' : scope === 'MULTI' ? 'btnScopeMulti' : 'btnScopeAll');
+        const idMap = { CIVIL: 'btnScopeCivil', TDR_2022_2025: 'btnScopeTdr', MULTI: 'btnScopeMulti', ALL: 'btnScopeAll' };
+        const fallback = document.getElementById(idMap[scope] || 'btnScopeAll');
         if (fallback) fallback.classList.add('active');
       }
       renderAnalyticsDashboard();
@@ -3288,12 +3340,100 @@
       window.location.href = './PUNTO_61_MATRIZ_OBRAS_INICIADAS_Y_TERMINADAS_2022_2025.xlsx';
     }
 
-    // === CUADRO MAESTRO AUDITORÍA EN VIVO (FECHA INICIO/FIN + STATUS EXCEL + UBICACIÓN POR AMBIENTES) ===
-    let auditMasterFilter = 'CIVIL';
+    // === CENTRO DE ENTREGABLES TDR (REQ. 000393): TRAZABILIDAD, FALTANTES Y CUADRO MAESTRO ===
+    let auditMasterFilter = 'TDR_2022_2025';
+    let auditMasterViewMode = 'TRAZABILIDAD_TDR';
+
+    function compileTdrTraceabilityForProject(p) {
+      const fData = fieldPhotosMap[p.id];
+      const fotos = (fData && fData.fotos) ? fData.fotos : [];
+      const hojas = getHojasRotuloA4Map();
+      const missingCenso = isProjectMissingCensus(p);
+
+      const rubros = {
+        exp: { rx: /EXP\.?\s*T[EÉ]C|EXPEDIENTE|ESTUDIO\s+DEFINITIVO/i, refs: new Set() },
+        val: { rx: /VALORIZ/i, refs: new Set() },
+        inf: { rx: /INFORME\s+MENSUAL|INF\.?\s*MENSUAL|REPORTES?\s+SEMANAL|INFORME\s+SEMANAL|SEMANAL/i, refs: new Set() },
+        cuad: { rx: /CUADERNO|CONTRATO|ACTA|ENTREGA\s+DE\s+TERRENO|ADICIONAL|LEV\.?\s*DE\s*OBS/i, refs: new Set() },
+        liq: { rx: /LIQUID|INFORME\s+FINAL|INF\.?\s*FINAL|INF\s+FINAL|RESOLUCI[OÓ]N|CIERRE/i, refs: new Set() }
+      };
+
+      const unitMap = {};
+      fotos.forEach(f => {
+        const cod = (f.codigo_caja || f.nota || 'SIN_CODIGO').trim();
+        const amb = (f.ubicacion || (fData && fData.ubicacion) || 'Ambiente').trim();
+        if (!unitMap[cod]) unitMap[cod] = { cod, amb, texts: [] };
+        const note = cleanShortSummaryNote((f.nota || '').trim(), p.id, cod);
+        if (note && note !== cod && note !== 'Contenido no especificado') unitMap[cod].texts.push(note);
+        if (f.ocr_acervo) unitMap[cod].texts.push(f.ocr_acervo.replace(/\|/g, ' '));
+        const hEntry = hojas[`${p.id}::${cod}`];
+        if (hEntry) {
+          if (hEntry.shortSummary) unitMap[cod].texts.push(hEntry.shortSummary);
+          (hEntry.rows || []).forEach(r => { if (r.contenido) unitMap[cod].texts.push(r.contenido); });
+        }
+      });
+
+      Object.values(unitMap).forEach(u => {
+        const blob = u.texts.join(' ');
+        const tagRef = `${u.cod} (${u.amb})`;
+        Object.values(rubros).forEach(rb => {
+          if (rb.rx.test(blob)) rb.refs.add(tagRef);
+        });
+      });
+
+      const foundRubros = [];
+      const missingRubros = [];
+      if (rubros.exp.refs.size) foundRubros.push('Exp. Técnico'); else missingRubros.push('Exp. Técnico');
+      if (rubros.val.refs.size) foundRubros.push('Valorizaciones'); else missingRubros.push('Valorizaciones');
+      if (rubros.inf.refs.size) foundRubros.push('Inf. Mensuales/Sem.'); else missingRubros.push('Inf. Mensuales/Sem.');
+      if (rubros.cuad.refs.size) foundRubros.push('Cuaderno/Contrato'); else missingRubros.push('Cuaderno/Contrato');
+      if (rubros.liq.refs.size) foundRubros.push('Inf. Final/Liquid.'); else missingRubros.push('Inf. Final/Liquid.');
+
+      const hasAnyDateMiss = !hasValidStart(p) || !hasValidEnd(p);
+      let estadoDoc = { code: 'SIN_ACERVO', label: '🔴 SIN ACERVO EN PMO', cls: 'badge-red' };
+      if (!missingCenso) {
+        if (foundRubros.length >= 2 || rubros.liq.refs.size > 0) {
+          estadoDoc = { code: 'UBICADO', label: `🟢 ACERVO UBICADO (${foundRubros.length}/5)`, cls: 'badge-green' };
+        } else {
+          estadoDoc = { code: 'PARCIAL', label: `🟡 PARCIAL / POR DETALLAR (${foundRubros.length}/5)`, cls: 'badge-yellow' };
+        }
+      }
+
+      let faltantesText = '';
+      if (missingCenso) {
+        faltantesText = isProjectExecutedOrLiquidated(p)
+          ? 'Falta ubicar cajas físicas en PMO (Exp. Técnico, Valorizaciones, Inf. Final/Liquidación)'
+          : 'Obra aún no ejecutada o sin cajas en custodia PMO';
+      } else if (missingRubros.length === 0) {
+        faltantesText = hasAnyDateMiss ? 'Documentación completa en cajas • Falta registrar fecha Inicio/Fin' : 'Documentación principal ubicada y verificada';
+      } else {
+        faltantesText = `Falta ubicar o detallar en rótulo: ${missingRubros.join(', ')}`;
+        if (hasAnyDateMiss && isProjectExecutedOrLiquidated(p)) {
+          faltantesText += ' + Completar fecha Inicio/Fin';
+        }
+      }
+
+      return {
+        exp: Array.from(rubros.exp.refs),
+        val: Array.from(rubros.val.refs),
+        inf: Array.from(rubros.inf.refs),
+        cuad: Array.from(rubros.cuad.refs),
+        liq: Array.from(rubros.liq.refs),
+        foundCount: foundRubros.length,
+        missingRubros,
+        estadoDoc,
+        faltantesText,
+        hasMissingForTdr: missingCenso || missingRubros.length > 0 || (isProjectExecutedOrLiquidated(p) && hasAnyDateMiss),
+        totalCajas: Object.keys(unitMap).length,
+        totalFotos: fotos.length
+      };
+    }
 
     function openAuditMasterModal() {
       const m = document.getElementById('auditMasterModal');
       if (m) {
+        const cntEl = document.getElementById('cntAuditTdr');
+        if (cntEl) cntEl.innerText = `(${(projectsData || []).filter(p => isProjectInTdr2022_2025(p)).length})`;
         m.classList.add('open');
         renderAuditMasterTable();
       }
@@ -3302,6 +3442,13 @@
     function closeAuditMasterModal() {
       const m = document.getElementById('auditMasterModal');
       if (m) m.classList.remove('open');
+    }
+
+    function setAuditMasterViewMode(mode, btn) {
+      auditMasterViewMode = mode;
+      document.querySelectorAll('.audit-view-btn').forEach(b => b.classList.remove('active'));
+      if (btn) btn.classList.add('active');
+      renderAuditMasterTable();
     }
 
     function setAuditModalFilter(flt, btn) {
@@ -3323,6 +3470,12 @@
         }
         const t = compileDocumentTagsForProject(p.id);
         const sitInfo = getSituationalInfo(p);
+        if (auditMasterFilter === 'TDR_2022_2025' && !isProjectInTdr2022_2025(p)) return false;
+        if (auditMasterFilter === 'DOC_FALTANTE') {
+          if (!isProjectInTdr2022_2025(p)) return false;
+          const tr = compileTdrTraceabilityForProject(p);
+          if (!tr.hasMissingForTdr) return false;
+        }
         if (auditMasterFilter === 'CIVIL' && !p.es_obra_civil) return false;
         if (auditMasterFilter === 'PRIO_SIN_CENSAR' && !(p.es_obra_civil && isProjectExecutedOrLiquidated(p) && isProjectMissingCensus(p))) return false;
         if (auditMasterFilter === 'FALTA_FECHAS' && !(p.es_obra_civil && isProjectExecutedOrLiquidated(p) && (!hasValidStart(p) || !hasValidEnd(p)))) return false;
@@ -3349,11 +3502,12 @@
 
     function renderAuditMasterTable() {
       const list = getFilteredAuditMasterList();
+      const thead = document.getElementById('auditMasterThead');
       const tbody = document.getElementById('auditMasterTbody');
       const strip = document.getElementById('auditMasterSummary');
       if (!tbody || !strip) return;
 
-      let cntLiq = 0, cntEnLiq = 0, cntCajas = 0, cntPrioSin = 0, cntFaltaF = 0, sumEjec = 0;
+      let cntLiq = 0, cntEnLiq = 0, cntCajas = 0, cntPrioSin = 0, cntFaltaF = 0, cntFaltaDoc = 0, sumEjec = 0;
       list.forEach(p => {
         const sit = getSituationalInfo(p);
         if (sit.group === 'LIQUIDADO') cntLiq++;
@@ -3361,17 +3515,88 @@
         if (!isProjectMissingCensus(p)) cntCajas++;
         if (isProjectExecutedOrLiquidated(p) && isProjectMissingCensus(p)) cntPrioSin++;
         if (isProjectExecutedOrLiquidated(p) && (!hasValidStart(p) || !hasValidEnd(p))) cntFaltaF++;
+        if (compileTdrTraceabilityForProject(p).hasMissingForTdr) cntFaltaDoc++;
         sumEjec += Number(p.costo_ejec || 0);
       });
 
       strip.innerHTML = `
-        <span class="audit-kpi-pill">📋 Mostrando: <strong>${list.length}</strong> proyectos</span>
-        <span class="audit-kpi-pill" style="color:#15803D;border-color:#86EFAC;">📦 Censados: <strong>${cntCajas}</strong></span>
-        <span class="audit-kpi-pill" style="color:#DC2626;border-color:#FCA5A5;">🚨 Ejecutados Sin Censar: <strong>${cntPrioSin}</strong></span>
-        <span class="audit-kpi-pill" style="color:#B45309;border-color:#FCD34D;">📅 Ejecutados Sin Fechas: <strong>${cntFaltaF}</strong></span>
+        <span class="audit-kpi-pill">🎯 Entregable TDR: <strong>${list.length}</strong> obras</span>
+        <span class="audit-kpi-pill" style="color:#15803D;border-color:#86EFAC;">📦 Ubicadas en PMO: <strong>${cntCajas}</strong></span>
+        <span class="audit-kpi-pill" style="color:#DC2626;border-color:#FCA5A5;">🚨 Sin Cajas: <strong>${cntPrioSin}</strong></span>
+        <span class="audit-kpi-pill" style="color:#B45309;border-color:#FCD34D;">📋 Por Regularizar (TDR 5.4): <strong>${cntFaltaDoc}</strong></span>
         <span class="audit-kpi-pill" style="color:#0369A1;border-color:#7DD3FC;">🏆 Liquidadas / X Liq.: <strong>${cntLiq + cntEnLiq}</strong></span>
         <span class="audit-kpi-pill">💰 Ejecutado Vista: <strong>S/ ${sumEjec.toLocaleString('es-PE', {minimumFractionDigits:2, maximumFractionDigits:2})}</strong></span>
       `;
+
+      const renderRubroCell = (arr) => {
+        if (!arr || arr.length === 0) return `<span class="tdr-cell-miss">— Falta</span>`;
+        return arr.map(r => `<div class="tdr-cell-ok" style="margin-bottom:2px;">✓ ${escapeHtmlAttr(r)}</div>`).join('');
+      };
+
+      if (auditMasterViewMode === 'TRAZABILIDAD_TDR') {
+        if (thead) {
+          thead.innerHTML = `
+            <tr>
+              <th style="width:42px;text-align:center;">N°</th>
+              <th style="min-width:210px;">OBRA / CUI / PROV.</th>
+              <th style="width:110px;text-align:center;">STATUS / FECHAS</th>
+              <th style="width:125px;">EXP. TÉCNICO</th>
+              <th style="width:125px;">VALORIZACIONES</th>
+              <th style="width:125px;">INF. MENS./SEM.</th>
+              <th style="width:125px;">CUADERNO/CONT.</th>
+              <th style="width:125px;">INF. FINAL/LIQ.</th>
+              <th style="width:205px;">ESTADO Y FALTANTES (TDR 5.4)</th>
+            </tr>
+          `;
+        }
+        if (list.length === 0) {
+          tbody.innerHTML = `<tr><td colspan="9" style="text-align:center;padding:2rem;color:#64748B;">No hay proyectos que coincidan con este filtro.</td></tr>`;
+          return;
+        }
+        tbody.innerHTML = list.map(p => {
+          const tr = compileTdrTraceabilityForProject(p);
+          const ini = hasValidStart(p) ? p.fecha_inicio : 'S/Inicio';
+          const finRaw = p.fecha_termino_verificada_ing || (p.fecha_culminacion_real && p.fecha_culminacion_real !== '-' ? p.fecha_culminacion_real : (p.fecha_termino_prog && p.fecha_termino_prog !== '-' ? p.fecha_termino_prog : ''));
+          const fin = hasValidEnd(p) ? finRaw : 'S/Fin';
+          return `
+            <tr onclick="closeAuditMasterModal(); openDrawer(${p.id});" style="cursor:pointer;">
+              <td style="font-weight:800;text-align:center;color:#1E3A8A;">${p.id === 999 ? 'MIX' : p.id}</td>
+              <td>
+                <div style="font-weight:700;color:#0F172A;line-height:1.25;font-size:0.75rem;">${escapeHtmlAttr(p.desc)}</div>
+                <div style="font-size:0.68rem;color:#64748B;margin-top:2px;">CUI: <strong>${p.cui && p.cui !== 'N/D' ? p.cui : 'S/N'}</strong> • ${escapeHtmlAttr(p.provincia)} (${escapeHtmlAttr(p.convenio)})</div>
+              </td>
+              <td style="text-align:center;">
+                ${renderStatusStackHtml(p)}
+                <div style="font-family:monospace;font-size:0.66rem;color:#334155;margin-top:3px;">${escapeHtmlAttr(ini)}<br>${escapeHtmlAttr(fin)}</div>
+              </td>
+              <td>${renderRubroCell(tr.exp)}</td>
+              <td>${renderRubroCell(tr.val)}</td>
+              <td>${renderRubroCell(tr.inf)}</td>
+              <td>${renderRubroCell(tr.cuad)}</td>
+              <td>${renderRubroCell(tr.liq)}</td>
+              <td>
+                <span class="badge ${tr.estadoDoc.cls}" style="font-size:0.66rem;margin-bottom:4px;display:inline-block;">${tr.estadoDoc.label}</span>
+                <div style="font-size:0.7rem;color:#334155;line-height:1.28;">${escapeHtmlAttr(tr.faltantesText)}</div>
+              </td>
+            </tr>
+          `;
+        }).join('');
+        return;
+      }
+
+      if (thead) {
+        thead.innerHTML = `
+          <tr>
+            <th style="width:45px;text-align:center;">N°</th>
+            <th style="width:90px;">PROV. / CONV.</th>
+            <th>PROYECTO Y CUI / NOTA</th>
+            <th class="col-status">STATUS EXCEL</th>
+            <th style="width:115px;">INICIO / FIN</th>
+            <th style="width:105px;text-align:right;">EJECUTADO</th>
+            <th style="width:290px;">UBICACIÓN POR AMBIENTE Y CONTENIDO</th>
+          </tr>
+        `;
+      }
 
       if (list.length === 0) {
         tbody.innerHTML = `<tr><td colspan="7" style="text-align:center;padding:2rem;color:#64748B;">No hay proyectos que coincidan con este filtro de auditoría.</td></tr>`;
@@ -3473,6 +3698,153 @@
       const stamp = new Date().toISOString().slice(0,10);
       XLSX.writeFile(wb, `FDM_Cuadro_Maestro_Auditoria_EnVivo_${stamp}.xlsx`);
       showToast(`¡Excel Consolidado generado (${rows.length} proyectos + ubicaciones por ambiente)!`);
+    }
+
+    function exportEntregableTdrExcel() {
+      if (typeof XLSX === 'undefined') {
+        alert("La librería Excel aún está cargando. Intenta de nuevo en unos segundos.");
+        return;
+      }
+      const all = projectsData || [];
+      const tdrObras = all.filter(p => isProjectInTdr2022_2025(p)).sort((a, b) => a.id - b.id);
+      const targetObras = tdrObras.length > 0 ? tdrObras : all.filter(p => p.es_obra_civil === true).sort((a, b) => a.id - b.id);
+      const hojasMap = getHojasRotuloA4Map();
+
+      // Hoja 1: 01_LISTADO_OBRAS_2022_2025 (TDR Punto 5.1 y Punto 7)
+      const sheet1Rows = targetObras.map(p => mapProjectToInformeRowObj(p));
+
+      // Hoja 2: 02_MATRIZ_TRAZABILIDAD_DOC (TDR Punto 5.2 y 5.3)
+      const sheet2Rows = targetObras.map(p => {
+        const tr = compileTdrTraceabilityForProject(p);
+        const ini = hasValidStart(p) ? p.fecha_inicio : 'FALTA INICIO';
+        const fin = hasValidEnd(p) ? (p.fecha_termino_verificada_ing || p.fecha_culminacion_real || '') : 'FALTA FIN';
+        return {
+          'N° OBRA': p.id,
+          'CUI': (p.cui && p.cui !== 'N/D') ? p.cui : 'S/N',
+          'PROVINCIA': p.provincia || '',
+          'CONVENIO': p.convenio || '',
+          'DESCRIPCIÓN DE OBRA CIVIL': p.desc || '',
+          'STATUS EXCEL': (p.estatus || '').toUpperCase(),
+          'SITUACIÓN ACTUAL': (p.estado_situacional || '—').toUpperCase(),
+          'FECHA INICIO': ini,
+          'FECHA TÉRMINO': fin,
+          'EXP. TÉCNICO (CAJA / AMBIENTE)': tr.exp.join(' | ') || 'FALTA',
+          'VALORIZACIONES (CAJA / AMBIENTE)': tr.val.join(' | ') || 'FALTA',
+          'INF. MENSUALES / SEM. (CAJA / AMBIENTE)': tr.inf.join(' | ') || 'FALTA',
+          'CUADERNO / CONTRATO (CAJA / AMBIENTE)': tr.cuad.join(' | ') || 'FALTA',
+          'INF. FINAL / LIQUIDACIÓN (CAJA / AMBIENTE)': tr.liq.join(' | ') || 'FALTA',
+          'AMBIENTES UBICADOS': compileUbicacionCajas(p.id) || 'SIN CAJAS UBICADAS',
+          'ESTADO DOCUMENTAL': tr.estadoDoc.label.replace(/^[^\w\s]+\s*/, ''),
+          'DOCUMENTACIÓN FALTANTE / POR REGULARIZAR (TDR 5.4)': tr.faltantesText
+        };
+      });
+
+      // Hoja 3: 03_INVENTARIO_FISICO_CAJAS (TDR Punto 5.6)
+      const sheet3Rows = [];
+      // Hoja 5: 05_INDICE_DIGITAL_DRIVE (TDR Punto 5.6 y Punto 7)
+      const sheet5Rows = [];
+
+      all.filter(p => p.es_obra_civil === true || p.id === 999).sort((a, b) => a.id - b.id).forEach(p => {
+        const fData = fieldPhotosMap[p.id];
+        if (!fData || !fData.fotos || fData.fotos.length === 0) return;
+
+        const boxGroups = {};
+        fData.fotos.forEach(f => {
+          const cod = (f.codigo_caja || f.nota || 'SIN_CODIGO').trim();
+          if (!boxGroups[cod]) boxGroups[cod] = [];
+          boxGroups[cod].push(f);
+
+          sheet5Rows.push({
+            'N° OBRA': p.id === 999 ? 'MULTI' : p.id,
+            'CARPETA DIGITAL OBRA': `OBRA_${String(p.id).padStart(2, '0')}`,
+            'CÓDIGO CAJA': cod,
+            'SUB-CÓDIGO / ÍTEM': f.sub_codigo || cod,
+            'AMBIENTE FÍSICO': f.ubicacion || fData.ubicacion || 'Ambiente',
+            'TIPO EVIDENCIA': f.tipo_foto || 'Rótulo de Caja',
+            'CONTENIDO / NOTA': cleanShortSummaryNote(f.nota || '', p.id, cod) || f.nota || '',
+            'TEXTO OCR DETECTADO': (f.ocr_acervo || '').replace(/\|/g, ', '),
+            'FILE ID DRIVE': f.file_id || '',
+            'URL ARCHIVO EN GOOGLE DRIVE': f.drive_url || resolveDirectImageUrl(f.dataUrl, f.file_id)
+          });
+        });
+
+        Object.entries(boxGroups).forEach(([cod, fotosList]) => {
+          const first = fotosList[0] || {};
+          const amb = (first.ubicacion || fData.ubicacion || 'Ambiente').trim();
+          const isCN = fotosList.some(x => isCajaNuevaPhoto(x));
+          const isSuelto = !isCN && (first.slot === 'suelto' || cod.includes('SUELTO'));
+          const tipoUnidad = isCN ? 'CAJA NUEVA (POR ROTULAR)' : (isSuelto ? 'DOC. SUELTO / ARCHIVADOR' : 'CAJA ROTULADA');
+
+          const notesSet = new Set();
+          const linksSet = new Set();
+          fotosList.forEach(x => {
+            const cn = isCN ? (x.nota || '').trim() : cleanShortSummaryNote(x.nota || '', p.id, cod);
+            if (cn && cn !== cod) notesSet.add(cn);
+            if (x.drive_url) linksSet.add(x.drive_url);
+          });
+          const hoja = hojasMap[`${p.id}::${cod}`];
+          const rotuloA4Text = (hoja && Array.isArray(hoja.rows))
+            ? hoja.rows.filter(r => r.contenido).map(r => `${r.num}) ${r.contenido}`).join('; ')
+            : '';
+
+          sheet3Rows.push({
+            'N° OBRA': p.id === 999 ? 'MULTI' : p.id,
+            'CUI': (p.cui && p.cui !== 'N/D') ? p.cui : 'S/N',
+            'PROYECTO / OBRA': p.desc || '',
+            'AMBIENTE FÍSICO': amb,
+            'TIPO UNIDAD FÍSICA': tipoUnidad,
+            'CÓDIGO DE CAJA': cod,
+            'DESCRIPCIÓN CORTA DE CONTENIDO': (isCN && hoja && hoja.shortSummary) ? hoja.shortSummary : Array.from(notesSet).join('; '),
+            'DETALLE HOJA DE RÓTULO A4': rotuloA4Text,
+            'FOTOS': fotosList.length,
+            'ENLACES GOOGLE DRIVE': Array.from(linksSet).join(' | ')
+          });
+        });
+      });
+
+      // Hoja 4: 04_REPORTE_DOC_FALTANTE (TDR Punto 5.4)
+      const sheet4Rows = targetObras
+        .map(p => ({ p, tr: compileTdrTraceabilityForProject(p) }))
+        .filter(({ tr }) => tr.hasMissingForTdr)
+        .map(({ p, tr }) => ({
+          'N° OBRA': p.id,
+          'CUI': (p.cui && p.cui !== 'N/D') ? p.cui : 'S/N',
+          'PROVINCIA': p.provincia || '',
+          'CONVENIO': p.convenio || '',
+          'DESCRIPCIÓN DE OBRA CIVIL': p.desc || '',
+          'STATUS EXCEL': (p.estatus || '').toUpperCase(),
+          'FECHA INICIO': hasValidStart(p) ? p.fecha_inicio : 'FALTA INICIO',
+          'FECHA TÉRMINO': hasValidEnd(p) ? (p.fecha_termino_verificada_ing || p.fecha_culminacion_real || '') : 'FALTA FIN',
+          'CAJAS UBICADAS': tr.totalCajas,
+          'AMBIENTES': compileUbicacionCajas(p.id) || 'SIN CAJAS EN PMO',
+          'ESTADO DOCUMENTAL': tr.estadoDoc.label.replace(/^[^\w\s]+\s*/, ''),
+          'DOCUMENTACIÓN FALTANTE / ACCIÓN DE REGULARIZACIÓN (TDR 5.4)': tr.faltantesText
+        }));
+
+      const wb = XLSX.utils.book_new();
+      const ws1 = XLSX.utils.json_to_sheet(sheet1Rows);
+      ws1['!cols'] = [{wch:8},{wch:12},{wch:12},{wch:10},{wch:18},{wch:20},{wch:18},{wch:50},{wch:13},{wch:13},{wch:20},{wch:14},{wch:14},{wch:14},{wch:14},{wch:26},{wch:48},{wch:18},{wch:26}];
+      XLSX.utils.book_append_sheet(wb, ws1, '01_LISTADO_OBRAS_2022_2025');
+
+      const ws2 = XLSX.utils.json_to_sheet(sheet2Rows);
+      ws2['!cols'] = [{wch:8},{wch:10},{wch:11},{wch:11},{wch:46},{wch:16},{wch:18},{wch:12},{wch:12},{wch:24},{wch:24},{wch:24},{wch:24},{wch:24},{wch:26},{wch:22},{wch:46}];
+      XLSX.utils.book_append_sheet(wb, ws2, '02_MATRIZ_TRAZABILIDAD_DOC');
+
+      const ws3 = XLSX.utils.json_to_sheet(sheet3Rows.length ? sheet3Rows : [{ 'AVISO': 'Sin cajas censadas aún' }]);
+      ws3['!cols'] = [{wch:8},{wch:10},{wch:44},{wch:18},{wch:22},{wch:16},{wch:40},{wch:46},{wch:8},{wch:48}];
+      XLSX.utils.book_append_sheet(wb, ws3, '03_INVENTARIO_FISICO_CAJAS');
+
+      const ws4 = XLSX.utils.json_to_sheet(sheet4Rows.length ? sheet4Rows : [{ 'AVISO': 'Cero obras con faltantes pendientes' }]);
+      ws4['!cols'] = [{wch:8},{wch:10},{wch:12},{wch:11},{wch:48},{wch:16},{wch:12},{wch:12},{wch:12},{wch:26},{wch:22},{wch:54}];
+      XLSX.utils.book_append_sheet(wb, ws4, '04_REPORTE_DOC_FALTANTE');
+
+      const ws5 = XLSX.utils.json_to_sheet(sheet5Rows.length ? sheet5Rows : [{ 'AVISO': 'Sin archivos en Drive aún' }]);
+      ws5['!cols'] = [{wch:8},{wch:18},{wch:16},{wch:18},{wch:18},{wch:22},{wch:36},{wch:36},{wch:28},{wch:52}];
+      XLSX.utils.book_append_sheet(wb, ws5, '05_INDICE_DIGITAL_DRIVE');
+
+      const stamp = new Date().toISOString().slice(0, 10);
+      XLSX.writeFile(wb, `FDM_ENTREGABLE_OFICIAL_TDR_000393_${stamp}.xlsx`);
+      showToast(`📥 Excel TDR generado (5 Hojas Oficiales • ${targetObras.length} obras + ${sheet3Rows.length} cajas + ${sheet5Rows.length} archivos Drive)`);
     }
 
     function buildInformeSituacionalPayloadList() {
@@ -3683,7 +4055,9 @@
     function printInformeSituacional() {
       const list = buildInformeSituacionalPayloadList();
       const nowStr = new Date().toLocaleString('es-PE');
-      let sumPrio = 0, sumEjec = 0, cntCensadas = 0, cntEjecSinCenso = 0;
+      const isTdrMode = auditMasterViewMode === 'TRAZABILIDAD_TDR';
+      let sumPrio = 0, sumEjec = 0, cntCensadas = 0, cntEjecSinCenso = 0, cntFaltantes = 0;
+
       const rowsHtml = list.map(p => {
         const prio = Number(p.prio || 0);
         const ejec = Number(p.costo_ejec || 0);
@@ -3698,6 +4072,26 @@
         const finRaw = p.fecha_termino_verificada_ing || (p.fecha_culminacion_real && p.fecha_culminacion_real !== '-' ? p.fecha_culminacion_real : (p.fecha_termino_prog && p.fecha_termino_prog !== '-' ? p.fecha_termino_prog : ''));
         const fin = hasValidEnd(p) ? escapeHtmlAttr(finRaw) : (isEjec ? '<span class="warn">FALTA FIN</span>' : '—');
         const sitHtml = p.estado_situacional ? `<div class="sit-tag">${escapeHtmlAttr(p.estado_situacional)}</div>` : '';
+
+        if (isTdrMode) {
+          const tr = compileTdrTraceabilityForProject(p);
+          if (tr.hasMissingForTdr) cntFaltantes++;
+          const fmtR = (arr) => (arr && arr.length) ? arr.map(x => `<div>✓ ${escapeHtmlAttr(x)}</div>`).join('') : '<span class="warn">— Falta</span>';
+          return `
+            <tr>
+              <td style="text-align:center;font-weight:bold;">${p.id === 999 ? 'MIX' : p.id}</td>
+              <td><b>${escapeHtmlAttr(p.desc)}</b><br><small>CUI: ${(p.cui && p.cui !== 'N/D') ? escapeHtmlAttr(p.cui) : 'S/N'} • ${escapeHtmlAttr(p.provincia)} (${escapeHtmlAttr(p.convenio)})</small></td>
+              <td style="text-align:center;"><div class="st-tag">${escapeHtmlAttr(p.estatus || 'SIN STATUS')}</div>${sitHtml}<div style="font-family:monospace;font-size:6.8pt;margin-top:2px;">${ini}<br>${fin}</div></td>
+              <td>${fmtR(tr.exp)}</td>
+              <td>${fmtR(tr.val)}</td>
+              <td>${fmtR(tr.inf)}</td>
+              <td>${fmtR(tr.cuad)}</td>
+              <td>${fmtR(tr.liq)}</td>
+              <td><div><b>${escapeHtmlAttr(tr.estadoDoc.label)}</b></div><div style="font-size:7pt;margin-top:2px;">${escapeHtmlAttr(tr.faltantesText)}</div></td>
+            </tr>
+          `;
+        }
+
         const ambHtml = b.hasCenso
           ? b.ambientes.map(a => `<div class="amb-blk"><b>📍 ${escapeHtmlAttr(a.ambiente)} (${a.items.length})</b><br>${a.items.map(it => `<span class="cod">${escapeHtmlAttr(it.codigo)}:</span> ${escapeHtmlAttr(it.contenido || 'Foto')}`).join('<br>')}</div>`).join('')
           : (isEjec ? '<span class="warn">🚨 FALTA CENSAR (PRIORIDAD)</span>' : '<span style="color:#64748B;">Por censar</span>');
@@ -3716,43 +4110,19 @@
         `;
       }).join('');
 
-      const win = window.open('', '_blank', 'width=1280,height=850');
-      if (!win) { alert("Permite ventanas emergentes para generar la vista de impresión."); return; }
-      win.document.write(`<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><title>Informe Situacional Obras Civiles FDM</title>
-        <style>
-          @page { size: A4 landscape; margin: 8mm; }
-          body { font-family: Arial, Helvetica, sans-serif; font-size: 8.5pt; color: #0F172A; margin: 0; }
-          .hdr { background: #0F172A; color: #FFF; padding: 10px 14px; border-radius: 6px; margin-bottom: 8px; display:flex; justify-content:space-between; align-items:center; }
-          .hdr h1 { font-size: 13pt; margin: 0 0 2px 0; }
-          .kpis { display: flex; gap: 10px; margin-bottom: 8px; flex-wrap: wrap; }
-          .kpi { border: 1px solid #CBD5E1; border-radius: 5px; padding: 4px 10px; background: #F8FAFC; font-size: 8.5pt; }
-          table { width: 100%; border-collapse: collapse; table-layout: fixed; }
-          th { background: #1E3A8A; color: #FFF; padding: 5px 4px; font-size: 7.5pt; border: 1px solid #1E3A8A; text-align: center; }
-          td { border: 1px solid #CBD5E1; padding: 4px; vertical-align: top; word-wrap: break-word; overflow-wrap: break-word; }
-          tr { page-break-inside: avoid; }
-          .st-tag { font-weight: bold; font-size: 7.5pt; background: #EEF2FF; border: 1px solid #C7D2FE; padding: 2px 4px; border-radius: 4px; }
-          .sit-tag { margin-top: 3px; font-weight: bold; font-size: 7pt; background: #DCFCE7; color: #166534; padding: 2px 4px; border-radius: 4px; }
-          .warn { color: #B91C1C; font-weight: bold; font-size: 7.5pt; }
-          .amb-blk { margin-bottom: 3px; font-size: 7.5pt; }
-          .cod { font-family: monospace; font-weight: bold; color: #1E3A8A; }
-          @media print { .no-print { display: none; } body { -webkit-print-color-adjust: exact; print-color-adjust: exact; } }
-        </style></head><body>
-        <div class="hdr">
-          <div>
-            <h1>🏛️ FONDO DE DESARROLLO DE MOQUEGUA — INFORME SITUACIONAL DE OBRAS CIVILES</h1>
-            <div>Control de Status Oficial (Excel 2021-2025), Fechas de Ejecución y Ubicación Física por Ambientes • Emitido: ${nowStr}</div>
-          </div>
-          <button class="no-print" onclick="window.print()" style="background:#16A34A;color:#FFF;border:none;padding:8px 14px;border-radius:6px;font-weight:bold;cursor:pointer;">🖨️ Imprimir / Guardar PDF</button>
-        </div>
-        <div class="kpis">
-          <div class="kpi"><b>Obras en Informe:</b> ${list.length}</div>
-          <div class="kpi"><b>Ubicadas en Campo:</b> ${cntCensadas}</div>
-          <div class="kpi" style="color:#B91C1C;"><b>Ejecutadas Sin Censar:</b> ${cntEjecSinCenso}</div>
-          <div class="kpi"><b>Pto. Priorizado Total:</b> S/ ${sumPrio.toLocaleString('es-PE',{minimumFractionDigits:2,maximumFractionDigits:2})}</div>
-          <div class="kpi"><b>Pto. Ejecutado Total:</b> S/ ${sumEjec.toLocaleString('es-PE',{minimumFractionDigits:2,maximumFractionDigits:2})}</div>
-        </div>
-        <table>
-          <thead><tr>
+      const tableHeadHtml = isTdrMode
+        ? `<tr>
+            <th style="width:28px;">N°</th>
+            <th style="width:190px;">DESCRIPCIÓN DE OBRA CIVIL / CUI</th>
+            <th style="width:82px;">STATUS / FECHAS</th>
+            <th style="width:88px;">EXP. TÉCNICO</th>
+            <th style="width:88px;">VALORIZACIONES</th>
+            <th style="width:88px;">INF. MENS./SEM.</th>
+            <th style="width:88px;">CUAD./CONTRATO</th>
+            <th style="width:88px;">INF. FINAL/LIQ.</th>
+            <th>ESTADO Y DOCUMENTACIÓN FALTANTE (TDR 5.4)</th>
+          </tr>`
+        : `<tr>
             <th style="width:32px;">N°</th>
             <th style="width:72px;">PROV / CONV</th>
             <th style="width:230px;">DESCRIPCIÓN DE OBRA CIVIL / CUI</th>
@@ -3761,7 +4131,46 @@
             <th style="width:78px;">PRIORIZADO</th>
             <th style="width:78px;">EJECUTADO</th>
             <th>UBICACIÓN POR AMBIENTES Y CONTENIDO ENCONTRADO</th>
-          </tr></thead>
+          </tr>`;
+
+      const win = window.open('', '_blank', 'width=1280,height=850');
+      if (!win) { alert("Permite ventanas emergentes para generar la vista de impresión."); return; }
+      win.document.write(`<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><title>${isTdrMode ? 'Matriz Trazabilidad Documental TDR Req 000393' : 'Informe Situacional Obras Civiles FDM'}</title>
+        <style>
+          @page { size: A4 landscape; margin: 8mm; }
+          body { font-family: Arial, Helvetica, sans-serif; font-size: 8.2pt; color: #0F172A; margin: 0; }
+          .hdr { background: #0F172A; color: #FFF; padding: 10px 14px; border-radius: 6px; margin-bottom: 8px; display:flex; justify-content:space-between; align-items:center; }
+          .hdr h1 { font-size: 12.5pt; margin: 0 0 2px 0; }
+          .kpis { display: flex; gap: 10px; margin-bottom: 8px; flex-wrap: wrap; }
+          .kpi { border: 1px solid #CBD5E1; border-radius: 5px; padding: 4px 10px; background: #F8FAFC; font-size: 8.2pt; }
+          table { width: 100%; border-collapse: collapse; table-layout: fixed; }
+          th { background: #1E3A8A; color: #FFF; padding: 5px 4px; font-size: 7.2pt; border: 1px solid #1E3A8A; text-align: center; }
+          td { border: 1px solid #CBD5E1; padding: 4px; vertical-align: top; word-wrap: break-word; overflow-wrap: break-word; font-size: 7.5pt; }
+          tr { page-break-inside: avoid; }
+          .st-tag { font-weight: bold; font-size: 7pt; background: #EEF2FF; border: 1px solid #C7D2FE; padding: 2px 4px; border-radius: 4px; }
+          .sit-tag { margin-top: 3px; font-weight: bold; font-size: 6.8pt; background: #DCFCE7; color: #166534; padding: 2px 4px; border-radius: 4px; }
+          .warn { color: #B91C1C; font-weight: bold; font-size: 7.2pt; }
+          .amb-blk { margin-bottom: 3px; font-size: 7.3pt; }
+          .cod { font-family: monospace; font-weight: bold; color: #1E3A8A; }
+          @media print { .no-print { display: none; } body { -webkit-print-color-adjust: exact; print-color-adjust: exact; } }
+        </style></head><body>
+        <div class="hdr">
+          <div>
+            <h1>🏛️ FONDO DE DESARROLLO DE MOQUEGUA — ${isTdrMode ? 'MATRIZ DE TRAZABILIDAD DOCUMENTAL Y FALTANTES (TDR 5.2–5.4)' : 'INFORME SITUACIONAL DE OBRAS CIVILES (TDR 5.1 / 5.6)'}</h1>
+            <div>TDR REGISTRO N° 000383 / REQUERIMIENTO N° 000393 — RECOPILACIÓN Y ORGANIZACIÓN DE OBRAS EJECUTADAS Y CULMINADAS 2022–2025 • Emitido: ${nowStr}</div>
+          </div>
+          <button class="no-print" onclick="window.print()" style="background:#16A34A;color:#FFF;border:none;padding:8px 14px;border-radius:6px;font-weight:bold;cursor:pointer;">🖨️ Imprimir / Guardar PDF</button>
+        </div>
+        <div class="kpis">
+          <div class="kpi"><b>Obras en Entregable:</b> ${list.length}</div>
+          <div class="kpi"><b>Ubicadas en PMO:</b> ${cntCensadas}</div>
+          <div class="kpi" style="color:#B91C1C;"><b>Sin Cajas Censadas:</b> ${cntEjecSinCenso}</div>
+          ${isTdrMode ? `<div class="kpi" style="color:#B45309;"><b>Con Faltantes por Regularizar:</b> ${cntFaltantes}</div>` : ''}
+          <div class="kpi"><b>Pto. Priorizado Total:</b> S/ ${sumPrio.toLocaleString('es-PE',{minimumFractionDigits:2,maximumFractionDigits:2})}</div>
+          <div class="kpi"><b>Pto. Ejecutado Total:</b> S/ ${sumEjec.toLocaleString('es-PE',{minimumFractionDigits:2,maximumFractionDigits:2})}</div>
+        </div>
+        <table>
+          <thead>${tableHeadHtml}</thead>
           <tbody>${rowsHtml}</tbody>
         </table>
       </body></html>`);
@@ -4470,33 +4879,40 @@
     </div>
   </div>
 
-  <!-- Modal Cuadro Maestro Auditoría En Vivo -->
+  <!-- Modal Cuadro Maestro Auditoría En Vivo / Centro de Entregables TDR -->
   <div class="audit-modal-backdrop" id="auditMasterModal" onclick="if(event.target.id==='auditMasterModal') closeAuditMasterModal()">
     <div class="audit-modal">
       <div class="audit-modal-header">
         <div>
-          <h2 style="font-size:1.15rem; font-weight:800; margin:0;">🏛️ Informe Situacional y Cuadro Maestro FDM (Obras Civiles + Google Sheets)</h2>
-          <div style="font-size:0.78rem; color:#CBD5E1; margin-top:2px;">Control unificado del Status Excel, fechas de inicio/fin faltantes y todo el contenido encontrado por ambiente en Google Drive.</div>
+          <h2 style="font-size:1.15rem; font-weight:800; margin:0;">🏛️ Centro de Entregables TDR (Req. N° 000393 — Periodo 2022–2025)</h2>
+          <div style="font-size:0.78rem; color:#CBD5E1; margin-top:2px;">Matriz de Trazabilidad Documental (TDR 5.2–5.3), Reporte de Faltantes (5.4), Inventario por Ambientes y Exportación Excel Oficial de 5 Hojas.</div>
         </div>
         <div style="display:flex; gap:0.45rem; align-items:center; flex-wrap:wrap;">
-          <button type="button" id="btnSyncGoogleSheet" class="btn" onclick="syncInformeSituacionalToGoogleSheet()" style="background:#0F766E; color:white; font-size:0.78rem; padding:0.5rem 0.85rem; border:1px solid #14B8A6;" title="Crea la pestaña INFORME_SITUACIONAL_OBRAS directamente en tu Google Sheet conectado">☁️ Crear en mi Google Sheet</button>
-          <button type="button" class="btn" onclick="copyRichTableForGoogleSheets()" style="background:#0284C7; color:white; font-size:0.78rem; padding:0.5rem 0.85rem;" title="Copia la tabla con colores y bordes para pegarla (Ctrl+V) en sheets.new">📊 Copiar para Google Sheets</button>
-          <button type="button" class="btn" onclick="exportInformeSituacionalMultiSheetExcel()" style="background:#16A34A; color:white; font-size:0.78rem; padding:0.5rem 0.85rem;">📥 Excel 7 Hojas En Vivo</button>
+          <button type="button" id="btnSyncGoogleSheet" class="btn" onclick="syncInformeSituacionalToGoogleSheet()" style="background:#0F766E; color:white; font-size:0.78rem; padding:0.5rem 0.85rem; border:1px solid #14B8A6;" title="Crea la pestaña INFORME_SITUACIONAL_OBRAS directamente en tu Google Sheet conectado">☁️ Crear en Google Sheet</button>
+          <button type="button" class="btn" onclick="copyRichTableForGoogleSheets()" style="background:#0284C7; color:white; font-size:0.78rem; padding:0.5rem 0.85rem;" title="Copia la tabla con colores y bordes para pegarla (Ctrl+V) en sheets.new">📊 Copiar Tabla</button>
+          <button type="button" class="btn" onclick="exportEntregableTdrExcel()" style="background:#16A34A; color:white; font-size:0.78rem; padding:0.5rem 0.85rem; font-weight:800;" title="Descarga Excel de Entrega TDR con 5 Hojas Exactas">📥 Excel Entregable TDR (5 Hojas)</button>
+          <button type="button" class="btn" onclick="exportInformeSituacionalMultiSheetExcel()" style="background:#334155; color:white; font-size:0.75rem; padding:0.5rem 0.75rem;" title="Descarga respaldo Excel por Convenios (7 Hojas)">📥 7 Hojas Conv.</button>
           <button type="button" class="btn" onclick="printInformeSituacional()" style="background:#D97706; color:white; font-size:0.78rem; padding:0.5rem 0.85rem;">🖨️ Imprimir / PDF</button>
           <button type="button" class="close-btn" onclick="closeAuditMasterModal()" style="position:static;">&times;</button>
         </div>
       </div>
 
+      <div class="audit-view-bar">
+        <span style="font-size:0.74rem; font-weight:800; color:#475569; text-transform:uppercase; margin-right:0.25rem;">Vista Entregable:</span>
+        <button type="button" class="audit-view-btn active" onclick="setAuditMasterViewMode('TRAZABILIDAD_TDR', this)">📊 1. Matriz de Trazabilidad y Faltantes (TDR 5.2–5.4)</button>
+        <button type="button" class="audit-view-btn" onclick="setAuditMasterViewMode('SITUACIONAL', this)">📋 2. Listado Situacional por Ambientes (TDR 5.1 y 5.6)</button>
+      </div>
+
       <div class="audit-modal-controls">
         <div style="display:flex; gap:0.4rem; flex-wrap:wrap;">
-          <button type="button" class="tab-btn audit-flt-btn active" onclick="setAuditModalFilter('CIVIL', this)">🏗️ Obras Civiles (72)</button>
+          <button type="button" class="tab-btn audit-flt-btn active" onclick="setAuditModalFilter('TDR_2022_2025', this)" style="border-color:#F59E0B; color:#92400E;">🎯 Entregable TDR 2022–2025 <span id="cntAuditTdr"></span></button>
+          <button type="button" class="tab-btn audit-flt-btn" onclick="setAuditModalFilter('DOC_FALTANTE', this)" style="color:#B45309; border-color:#FCD34D;">📋 Con Doc. Faltante (TDR 5.4)</button>
+          <button type="button" class="tab-btn audit-flt-btn" onclick="setAuditModalFilter('CIVIL', this)">🏗️ Obras Civiles (72)</button>
           <button type="button" class="tab-btn audit-flt-btn" onclick="setAuditModalFilter('PRIO_SIN_CENSAR', this)" style="color:#DC2626;border-color:#FCA5A5;">🚨 Ejecutadas Sin Censar</button>
-          <button type="button" class="tab-btn audit-flt-btn" onclick="setAuditModalFilter('FALTA_FECHAS', this)" style="color:#B45309;border-color:#FCD34D;">📅 Ejecutadas Sin Fechas</button>
-          <button type="button" class="tab-btn audit-flt-btn" onclick="setAuditModalFilter('CAJAS', this)">📦 Con Cajas Censadas</button>
-          <button type="button" class="tab-btn audit-flt-btn" onclick="setAuditModalFilter('VAL_INF', this)">📊 Valoriz. / Inf. Final</button>
+          <button type="button" class="tab-btn audit-flt-btn" onclick="setAuditModalFilter('FALTA_FECHAS', this)" style="color:#B45309;border-color:#FCD34D;">📅 Sin Fechas</button>
+          <button type="button" class="tab-btn audit-flt-btn" onclick="setAuditModalFilter('CAJAS', this)">📦 Con Cajas</button>
           <button type="button" class="tab-btn audit-flt-btn" onclick="setAuditModalFilter('LIQ', this)">🏆 Liquidadas</button>
-          <button type="button" class="tab-btn audit-flt-btn" onclick="setAuditModalFilter('EJEC', this)">🚧 En Ejecución</button>
-          <button type="button" class="tab-btn audit-flt-btn" onclick="setAuditModalFilter('ALL', this)">📋 Toda Cartera (170)</button>
+          <button type="button" class="tab-btn audit-flt-btn" onclick="setAuditModalFilter('ALL', this)">📋 Cartera (170)</button>
         </div>
         <div style="display:flex; gap:0.5rem; align-items:center; flex-wrap:wrap;">
           <select id="auditMasterProv" onchange="renderAuditMasterTable()" class="sort-select" style="font-size:0.78rem;">
@@ -4513,7 +4929,7 @@
 
       <div class="audit-modal-body">
         <table class="audit-master-table">
-          <thead>
+          <thead id="auditMasterThead">
             <tr>
               <th style="width:45px;text-align:center;">N°</th>
               <th style="width:90px;">PROV. / CONV.</th>
