@@ -226,7 +226,7 @@
           📦 1. Cajas c/Rótulo <span id="tabBadgeCajas" class="badge badge-gray" style="font-size: 0.65rem; margin-left: 0.25rem;">0</span>
         </button>
         <button type="button" class="drawer-tab" id="tabBtnArmarRotulo" onclick="switchDrawerTab('ARMAR_ROTULO')">
-          🗂️ 2. Armar Rótulo <span id="tabBadgeItems" class="badge badge-gray" style="font-size: 0.65rem; margin-left: 0.25rem;">0</span>
+          🆕 2. Caja Nueva <span id="tabBadgeItems" class="badge badge-gray" style="font-size: 0.65rem; margin-left: 0.25rem;">0</span>
         </button>
         <button type="button" class="drawer-tab" id="tabBtnSueltos" onclick="switchDrawerTab('SUELTOS')">
           📁 3. Doc. Sueltos <span id="tabBadgeSueltos" class="badge badge-gray" style="font-size: 0.65rem; margin-left: 0.25rem;">0</span>
@@ -439,19 +439,19 @@
           </div>
         </div>
 
-        <!-- PANEL 1B: ARMAR RÓTULO DE CAJA SIN RÓTULO (ARCHIVADOR X ARCHIVADOR / FILE X FILE) -->
+        <!-- PANEL 1B: CREACIÓN DE CAJA NUEVA INDEPENDIENTE (ARCHIVADOR X ARCHIVADOR / FILE X FILE) -->
         <div id="panelTabArmarRotulo" style="display: none;">
-          <div class="field-group" style="border-color: #F59E0B; background: #FFFBEB;">
-            <div style="font-size: 0.76rem; font-weight: 800; color: #92400E; line-height: 1.35;">
-              🗂️ MODO CAJA SIN RÓTULO IMPRESO: Toma fotos ítem por ítem (archivador, tomo o fólder) dentro de una misma caja para armar e imprimir su Hoja de Rótulo A4 en gabinete.
+          <div class="field-group" style="border-color: #8B5CF6; background: #F5F3FF;">
+            <div style="font-size: 0.76rem; font-weight: 800; color: #5B21B6; line-height: 1.35;">
+              🆕 CREACIÓN DE CAJA NUEVA (FUERA DEL CENSO Y SUELTOS): Toma fotos de cada archivador, tomo o file que irá en esta caja nueva para armar e imprimir su Hoja de Rótulo A4 en gabinete, sin alterar las cajas ya censadas.
             </div>
           </div>
 
           <div class="field-group">
             <div class="field-title">
-              <span>📍 AMBIENTE Y CÓDIGO DE CAJA A ROTULAR</span>
+              <span>📍 AMBIENTE Y CÓDIGO DE CAJA NUEVA</span>
             </div>
-            <select id="drawerAmbienteSelectArmar" class="field-input" onchange="onDrawerAmbienteChange(this.value)" style="font-weight: 700; color: #0F172A; background: #FFF; font-size: 0.9rem; border: 1.5px solid #D97706; cursor: pointer; padding: 0.6rem;">
+            <select id="drawerAmbienteSelectArmar" class="field-input" onchange="onDrawerAmbienteChange(this.value)" style="font-weight: 700; color: #0F172A; background: #FFF; font-size: 0.9rem; border: 1.5px solid #7C3AED; cursor: pointer; padding: 0.6rem;">
               <option value="BAÑO1-PMO">🚽 BAÑO1-PMO</option>
               <option value="BAÑO2-PMO">🚽 BAÑO2-PMO</option>
               <option value="BAÑO3-PMO">🚽 BAÑO3-PMO</option>
@@ -466,22 +466,22 @@
               <option value="CUSTOM">➕ Agregar Sub-zona / Otro...</option>
             </select>
 
-            <div style="margin-top: 0.65rem; background: #0F172A; border-radius: 10px; padding: 0.7rem; color: white; display: flex; flex-direction: column; gap: 0.4rem;">
+            <div style="margin-top: 0.65rem; background: #1E1B4B; border-radius: 10px; padding: 0.7rem; color: white; display: flex; flex-direction: column; gap: 0.4rem;">
               <div style="display: flex; justify-content: space-between; align-items: center;">
-                <span style="font-size: 0.7rem; font-weight: 700; color: #FCD34D;">🏷️ CAJA ACTUAL:</span>
-                <span style="font-size: 0.66rem; color: #94A3B8;">Todas las fotos de esta pestaña pertenecen a esta caja</span>
+                <span style="font-size: 0.7rem; font-weight: 700; color: #DDD6FE;">🆕 CAJA NUEVA ACTUAL:</span>
+                <span style="font-size: 0.66rem; color: #A5B4FC;">Secuencia independiente (CN1, CN2...)</span>
               </div>
               <div style="display: flex; align-items: center; gap: 0.4rem;">
-                <button type="button" onclick="cambiarCajaSeqDelta(-1)" style="background: #334155; border: 1px solid #475569; color: white; width: 42px; height: 42px; border-radius: 8px; font-size: 1.25rem; font-weight: 900; cursor: pointer;">−</button>
-                <div id="displayCodigoCajaArmar" style="flex: 1; background: #1E293B; border: 1.5px solid #F59E0B; color: #FCD34D; font-size: 1.2rem; font-weight: 800; letter-spacing: 1px; text-align: center; padding: 0.45rem; border-radius: 8px;">B1-01-C1</div>
-                <button type="button" onclick="cambiarCajaSeqDelta(1)" style="background: #D97706; border: 1px solid #F59E0B; color: white; width: 42px; height: 42px; border-radius: 8px; font-size: 1.25rem; font-weight: 900; cursor: pointer;">+</button>
+                <button type="button" onclick="cambiarCajaNuevaSeqDelta(-1)" style="background: #312E81; border: 1px solid #6366F1; color: white; width: 42px; height: 42px; border-radius: 8px; font-size: 1.25rem; font-weight: 900; cursor: pointer;">−</button>
+                <div id="displayCodigoCajaArmar" style="flex: 1; background: #0F172A; border: 1.5px solid #A78BFA; color: #E9D5FF; font-size: 1.2rem; font-weight: 800; letter-spacing: 1px; text-align: center; padding: 0.45rem; border-radius: 8px;">B1-01-CN1</div>
+                <button type="button" onclick="cambiarCajaNuevaSeqDelta(1)" style="background: #7C3AED; border: 1px solid #A78BFA; color: white; width: 42px; height: 42px; border-radius: 8px; font-size: 1.25rem; font-weight: 900; cursor: pointer;">+</button>
               </div>
               <div id="armarCajaSeqChipsContainer" style="display: flex; gap: 0.35rem; overflow-x: auto; padding-bottom: 0.2rem;"></div>
 
-              <!-- Stepper de Ítem interno dentro de esta caja -->
-              <div style="margin-top: 0.35rem; border-top: 1px solid #1E293B; padding-top: 0.45rem;">
+              <!-- Stepper de Archivador / File dentro de esta Caja Nueva -->
+              <div style="margin-top: 0.35rem; border-top: 1px solid #312E81; padding-top: 0.45rem;">
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.3rem;">
-                  <span style="font-size: 0.7rem; font-weight: 800; color: #38BDF8;">📑 CORRELATIVO INTERNO DEL RÓTULO (ARCHIVADOR / TOMO / FILE):</span>
+                  <span style="font-size: 0.7rem; font-weight: 800; color: #38BDF8;">📑 ARCHIVADOR / FILE N° DENTRO DE ESTA CAJA NUEVA:</span>
                 </div>
                 <div style="display: flex; align-items: center; gap: 0.4rem;">
                   <button type="button" onclick="cambiarItemRotuloDelta(-1)" style="background: #334155; border: 1px solid #475569; color: white; width: 40px; height: 40px; border-radius: 8px; font-size: 1.2rem; font-weight: 900; cursor: pointer;">−</button>
@@ -497,7 +497,7 @@
 
           <div class="field-group">
             <div class="field-title" style="display: flex; justify-content: space-between; align-items: center;">
-              <span>✏️ Descripción breve del Ítem (Opcional - OCR también lo lee)</span>
+              <span>✏️ Descripción breve del Archivador / File (Opcional)</span>
               <button type="button" onclick="limpiarNotaItemRotulo()" style="background: #FEE2E2; border: 1px solid #FCA5A5; color: #991B1B; font-size: 0.68rem; font-weight: 700; padding: 0.2rem 0.5rem; border-radius: 6px; cursor: pointer;">🗑️ Limpiar</button>
             </div>
             <div class="preset-chips" style="margin-top: 0.25rem;">
@@ -529,21 +529,21 @@
             <textarea id="inputNotaItemRotulo" class="field-input" style="height: 54px; resize: none; margin-top: 0.45rem;" placeholder="Ej: ARCHIVADOR Valorizaciones de Obra 1 a 4 (Original)..."></textarea>
           </div>
 
-          <div class="photo-slot" style="border: 2px dashed #D97706; background: #FFFBEB;">
+          <div class="photo-slot" style="border: 2px dashed #7C3AED; background: #F5F3FF;">
             <div class="slot-hdr">
-              <span style="font-size: 0.85rem; font-weight: 800; color: #92400E;">📸 Foto del Archivador / File (para Rótulo)</span>
+              <span style="font-size: 0.85rem; font-weight: 800; color: #5B21B6;">📸 Foto de Archivador / File para esta Caja Nueva</span>
               <span id="slotCount_item_rotulo" class="badge badge-gray">0</span>
             </div>
-            <button type="button" class="btn-camera" onclick="triggerCamera('item_rotulo')" style="padding: 0.85rem; font-size: 0.92rem; font-weight: 800; background: #D97706;">
-              📸 Fotografiar <span id="btnCameraItemLabel">ÍTEM 01</span> de la Caja
+            <button type="button" class="btn-camera" onclick="triggerCamera('item_rotulo')" style="padding: 0.85rem; font-size: 0.92rem; font-weight: 800; background: #7C3AED;">
+              📸 Fotografiar <span id="btnCameraItemLabel">ÍTEM 01</span> para Caja Nueva
             </button>
             <input type="file" accept="image/*" capture="environment" id="file_item_rotulo" style="display:none;" onchange="handlePhotoUpload('item_rotulo', this)">
             <div class="thumb-grid" id="grid_item_rotulo" style="margin-top: 0.65rem;"></div>
           </div>
 
           <div style="margin-top: 0.85rem;">
-            <button type="button" onclick="pasarASiguienteCaja()" style="width: 100%; background: linear-gradient(135deg, #16A34A, #15803D); color: white; border: none; border-radius: 12px; padding: 0.85rem 1rem; font-size: 0.9rem; font-weight: 800; cursor: pointer;">
-              📦 Cerrar Caja Actual y Pasar a Siguiente Caja ➔
+            <button type="button" onclick="pasarASiguienteCajaNueva()" style="width: 100%; background: linear-gradient(135deg, #7C3AED, #5B21B6); color: white; border: none; border-radius: 12px; padding: 0.85rem 1rem; font-size: 0.9rem; font-weight: 800; cursor: pointer;">
+              🆕 Cerrar esta Caja Nueva y Crear Siguiente Caja Nueva (CN+1) ➔
             </button>
           </div>
         </div>
@@ -906,7 +906,7 @@
                 if (r.contenido_caja) existing.nota = r.contenido_caja;
                 if (r.ambiente && !existing.ubicacion) existing.ubicacion = r.ambiente;
               } else {
-                const isItemRotulo = (r.tipo_foto && r.tipo_foto.includes('Armar Rótulo')) || (r.sub_codigo && r.sub_codigo.includes('-IT'));
+                const isItemRotulo = (r.tipo_foto && (r.tipo_foto.includes('Caja Nueva') || r.tipo_foto.includes('Armar Rótulo'))) || (r.codigo_caja && /(?:^|-)CN\d+(?:-|$)/i.test(r.codigo_caja)) || (r.sub_codigo && r.sub_codigo.includes('-IT'));
                 const isSuelto = !isItemRotulo && ((r.codigo_caja && r.codigo_caja.includes('SUELTO')) || (r.tipo_foto && r.tipo_foto.includes('Suelto')));
                 const isRotulo = !isItemRotulo && (!r.tipo_foto || r.tipo_foto === 'Rótulo de Caja');
                 let slotName = 'otros';
@@ -975,6 +975,7 @@
           if (activeObraId) {
             renderDrawerPhotos();
             renderCajaSeqChips();
+            if (typeof updateCajaNuevaDisplay === 'function') updateCajaNuevaDisplay();
           }
           if (mergedCount > 0) {
             showToast(`☁️ ${mergedCount} cajas sincronizadas desde Google Drive`);
@@ -1142,7 +1143,8 @@
       const dropdowns = [
         document.getElementById('selectAmbienteGlobal'), 
         document.getElementById('drawerAmbienteSelect'),
-        document.getElementById('drawerAmbienteSelectSueltos')
+        document.getElementById('drawerAmbienteSelectSueltos'),
+        document.getElementById('drawerAmbienteSelectArmar')
       ];
       dropdowns.forEach(sel => {
         if (!sel) return;
@@ -1176,6 +1178,7 @@
           const prev = localStorage.getItem('fdm_active_amb') || 'BAÑO1-PMO';
           if (document.getElementById('drawerAmbienteSelect')) document.getElementById('drawerAmbienteSelect').value = prev;
           if (document.getElementById('drawerAmbienteSelectSueltos')) document.getElementById('drawerAmbienteSelectSueltos').value = prev;
+          if (document.getElementById('drawerAmbienteSelectArmar')) document.getElementById('drawerAmbienteSelectArmar').value = prev;
           return;
         }
       }
@@ -1194,6 +1197,7 @@
       if (inputCod) inputCod.dataset.userEdited = "";
       
       updateCodigoDisplay();
+      if (typeof updateCajaNuevaDisplay === 'function') updateCajaNuevaDisplay();
       if (typeof updateSueltoDisplay === 'function') updateSueltoDisplay();
       renderMultiAmbientesSummary();
       showToast("📍 Ambiente: " + val);
@@ -1222,6 +1226,7 @@
         const inputCod = document.getElementById('inputCodigoCaja');
         if (inputCod) inputCod.dataset.userEdited = "";
         updateCodigoDisplay();
+        if (typeof updateCajaNuevaDisplay === 'function') updateCajaNuevaDisplay();
         if (typeof updateSueltoDisplay === 'function') updateSueltoDisplay();
         renderMultiAmbientesSummary();
         updateAcervoConsolidadoDisplay();
@@ -1358,13 +1363,27 @@
       return cleanAmb.substring(0, 4).toUpperCase();
     }
 
+    function isCajaNuevaPhoto(f) {
+      if (!f) return false;
+      const cod = String(f.codigo_caja || '');
+      const sub = String(f.sub_codigo || '');
+      const tipo = String(f.tipo_foto || '');
+      return f.slot === 'caja_nueva' ||
+             f.slot === 'item_rotulo' ||
+             /(?:^|-)CN\d+(?:-|$)/i.test(cod) ||
+             sub.includes('-IT') ||
+             tipo.includes('Caja Nueva') ||
+             tipo.includes('Armar Rótulo');
+    }
+
     function getUsedCajaSeqs(obraId) {
       const d = fieldData[obraId];
       if (!d || !d.fotos) return new Set();
       const used = new Set();
       d.fotos.forEach(f => {
+        if (isCajaNuevaPhoto(f)) return;
         const cod = f.codigo_caja || f.nota || '';
-        const m = cod.match(/C(?:AJA)?[-_]?(\d+)/i);
+        const m = cod.match(/(?:^|-)C(?:AJA)?[-_]?(\d+)(?:-|$)/i);
         if (m) {
           used.add(parseInt(m[1]));
         }
@@ -1421,20 +1440,13 @@
       if (lblO) lblO.innerText = obraStr;
       const lblS = document.getElementById('lblCajaSeq');
       if (lblS) lblS.innerText = seq;
-
-      const dispArmar = document.getElementById('displayCodigoCajaArmar');
-      if (dispArmar) {
-        dispArmar.innerText = (input && input.value.trim()) ? input.value.trim() : code;
-      }
       
       updateFullUbicacion();
       renderCajaSeqChips();
-      if (typeof updateItemRotuloDisplay === 'function') updateItemRotuloDisplay();
     }
 
     function renderCajaSeqChips() {
       const cont = document.getElementById('cajaSeqChipsContainer');
-      const contArmar = document.getElementById('armarCajaSeqChipsContainer');
       if (!cont || !activeObraId) return;
 
       const d = fieldData[activeObraId];
@@ -1444,8 +1456,9 @@
       const seqAmbMap = {};
       if (d && d.fotos) {
         d.fotos.forEach(f => {
+          if (isCajaNuevaPhoto(f)) return;
           const cod = f.codigo_caja || f.nota || '';
-          const m = cod.match(/C(?:AJA)?[-_]?(\d+)/i);
+          const m = cod.match(/(?:^|-)C(?:AJA)?[-_]?(\d+)(?:-|$)/i);
           if (m) {
             const num = parseInt(m[1]);
             const pref = getAmbientePrefix(f.ubicacion || '');
@@ -1482,18 +1495,114 @@
         html += `<button type="button" onclick="setCajaSeq(${i})" style="${chipStyle}" title="${title}">${label}</button>`;
       }
       cont.innerHTML = html;
-      if (contArmar) contArmar.innerHTML = html;
     }
 
-    // ==========================================
-    // CONTROL DE ÍTEMS PARA ARMAR RÓTULO SIN ETIQUETA
-    // ==========================================
+    // ========================================================
+    // SECUENCIA INDEPENDIENTE DE CAJA NUEVA (CN1, CN2, ...)
+    // ========================================================
+    let currentCajaNuevaSeq = 1;
     let currentItemRotuloSeq = 1;
 
+    function getUsedCajaNuevaSeqs(obraId) {
+      const d = fieldData[obraId];
+      if (!d || !d.fotos) return new Set();
+      const used = new Set();
+      d.fotos.forEach(f => {
+        if (!isCajaNuevaPhoto(f)) return;
+        const cod = String(f.codigo_caja || '');
+        const m = cod.match(/(?:^|-)CN[-_]?(\d+)(?:-|$)/i);
+        if (m) used.add(parseInt(m[1]));
+      });
+      return used;
+    }
+
+    function getFirstAvailableCajaNuevaSeq(obraId) {
+      const used = getUsedCajaNuevaSeqs(obraId);
+      let seq = 1;
+      while (used.has(seq)) seq++;
+      return seq;
+    }
+
+    function autoGenerarCodigoCajaNueva() {
+      if (!activeObraId) return { code: 'B1-01-CN1', pref: 'B1', obraStr: '01', seq: 'CN1' };
+      const amb = getActiveAmbiente();
+      const pref = getAmbientePrefix(amb);
+      let obraStr = String(activeObraId).padStart(2, '0');
+      if (activeObraId === 999) obraStr = 'MIX';
+      const seq = `CN${currentCajaNuevaSeq}`;
+      const code = `${pref}-${obraStr}-${seq}`;
+      return { code, pref, obraStr, seq };
+    }
+
+    function setCajaNuevaSeq(seq) {
+      currentCajaNuevaSeq = Math.max(1, seq);
+      if (activeObraId) {
+        currentItemRotuloSeq = getNextAvailableItemRotuloSeq(activeObraId, autoGenerarCodigoCajaNueva().code);
+      }
+      updateCajaNuevaDisplay();
+      showToast(`🆕 Caja Nueva CN${currentCajaNuevaSeq}`);
+    }
+
+    function cambiarCajaNuevaSeqDelta(delta) {
+      setCajaNuevaSeq(Math.max(1, currentCajaNuevaSeq + delta));
+    }
+
+    function renderCajaNuevaSeqChips() {
+      const contArmar = document.getElementById('armarCajaSeqChipsContainer');
+      if (!contArmar || !activeObraId) return;
+      const d = fieldData[activeObraId];
+      const used = getUsedCajaNuevaSeqs(activeObraId);
+      const countBySeq = {};
+      if (d && d.fotos) {
+        d.fotos.forEach(f => {
+          if (!isCajaNuevaPhoto(f)) return;
+          const m = String(f.codigo_caja || '').match(/(?:^|-)CN[-_]?(\d+)(?:-|$)/i);
+          if (m) {
+            const n = parseInt(m[1]);
+            countBySeq[n] = (countBySeq[n] || 0) + 1;
+          }
+        });
+      }
+      const maxShown = Math.max(5, currentCajaNuevaSeq + 1, ...(used.size ? Array.from(used) : [1]));
+      let html = '';
+      for (let i = 1; i <= maxShown; i++) {
+        const isUsed = used.has(i);
+        const isSel = (i === currentCajaNuevaSeq);
+        let chipStyle = "padding: 4px 10px; border-radius: 6px; font-size: 0.74rem; font-weight: 700; cursor: pointer; white-space: nowrap;";
+        if (isSel) {
+          chipStyle += " background: #7C3AED; color: white; border: 1.5px solid #DDD6FE; box-shadow: 0 0 8px rgba(167,139,250,0.45);";
+        } else if (isUsed) {
+          chipStyle += " background: #312E81; color: #C4B5FD; border: 1px solid #8B5CF6;";
+        } else {
+          chipStyle += " background: #0F172A; color: #94A3B8; border: 1px solid #334155;";
+        }
+        const label = isUsed ? `CN${i} (${countBySeq[i] || 1})` : `CN${i}`;
+        html += `<button type="button" onclick="setCajaNuevaSeq(${i})" style="${chipStyle}">${label}</button>`;
+      }
+      contArmar.innerHTML = html;
+    }
+
+    function updateCajaNuevaDisplay() {
+      const { code } = autoGenerarCodigoCajaNueva();
+      const disp = document.getElementById('displayCodigoCajaArmar');
+      if (disp) disp.innerText = code;
+      renderCajaNuevaSeqChips();
+      updateItemRotuloDisplay();
+    }
+
+    function pasarASiguienteCajaNueva() {
+      if (!activeObraId) return;
+      const nextFree = getFirstAvailableCajaNuevaSeq(activeObraId);
+      currentCajaNuevaSeq = Math.max(currentCajaNuevaSeq + 1, nextFree);
+      const notaInp = document.getElementById('inputNotaItemRotulo');
+      if (notaInp) notaInp.value = '';
+      currentItemRotuloSeq = 1;
+      updateCajaNuevaDisplay();
+      showToast(`🆕 Lista para llenar Caja Nueva CN${currentCajaNuevaSeq}`);
+    }
+
     function getActiveBoxCodeForArmar() {
-      const input = document.getElementById('inputCodigoCaja');
-      if (input && input.value.trim()) return input.value.trim().toUpperCase();
-      return autoGenerarCodigoCaja().code;
+      return autoGenerarCodigoCajaNueva().code;
     }
 
     function getUsedItemRotuloSeqs(obraId, boxCode) {
@@ -1501,7 +1610,7 @@
       if (!d || !d.fotos) return new Set();
       const used = new Set();
       d.fotos.forEach(f => {
-        if ((f.codigo_caja || '') === boxCode && (f.slot === 'item_rotulo' || (f.sub_codigo && f.sub_codigo.includes('-IT')) || (f.tipo_foto && f.tipo_foto.includes('Ítem')))) {
+        if ((f.codigo_caja || '') === boxCode && isCajaNuevaPhoto(f)) {
           const m = (f.sub_codigo || f.tipo_foto || f.nota || '').match(/IT(?:EM|[ÉE]M)?\s*[-_ ]?(\d+)/i);
           if (m) used.add(parseInt(m[1]));
         }
@@ -1744,8 +1853,9 @@
           const first = itemFotos[0] || {};
           const amb = first.ubicacion || getActiveAmbiente();
           const isSuelto = cod.includes('SUELTO');
-          const icon = isSuelto ? '📁' : '📦';
-          const tipoLabel = isSuelto ? 'DOC. SUELTO' : 'CAJA';
+          const isCN = itemFotos.some(f => isCajaNuevaPhoto(f));
+          const icon = isCN ? '🆕' : (isSuelto ? '📁' : '📦');
+          const tipoLabel = isCN ? 'CAJA NUEVA' : (isSuelto ? 'DOC. SUELTO' : 'CAJA');
 
           lines.push(`\n${icon} ${tipoLabel} ${cod} [${amb}]:`);
 
@@ -1759,9 +1869,10 @@
               });
             }
             if (f.nota && f.nota !== cod && !f.nota.startsWith('OBRA_')) {
-              f.nota.split(',').forEach(part => {
-                const s = part.trim();
-                if (s) items.add(s);
+              const rawClean = String(f.nota).replace(/^\d{1,2}\)\s*/g, '').replace(/-{4,}/g, '').trim();
+              rawClean.split(/[,;]/).forEach(part => {
+                const s = part.replace(/^\d{1,2}\)\s*/, '').trim();
+                if (s && !/^-+$/.test(s)) items.add(s);
               });
             }
           });
@@ -2111,12 +2222,15 @@
         updateSueltoDisplay();
         renderMultiAmbientesSummary();
         updateAcervoConsolidadoDisplay();
-      } else if (tabName === 'CAJAS' || tabName === 'ARMAR_ROTULO') {
+      } else if (tabName === 'CAJAS') {
         updateCodigoDisplay();
-        if (tabName === 'ARMAR_ROTULO' && activeObraId) {
+        renderMultiAmbientesSummary();
+        updateAcervoConsolidadoDisplay();
+      } else if (tabName === 'ARMAR_ROTULO') {
+        if (activeObraId) {
           currentItemRotuloSeq = getNextAvailableItemRotuloSeq(activeObraId, getActiveBoxCodeForArmar());
-          updateItemRotuloDisplay();
         }
+        updateCajaNuevaDisplay();
         renderMultiAmbientesSummary();
         updateAcervoConsolidadoDisplay();
       }
@@ -2299,8 +2413,11 @@
         const inputCod = document.getElementById('inputCodigoCaja');
         if (inputCod) inputCod.dataset.userEdited = "";
         updateCodigoDisplay();
+
+        // Inicializar secuencia independiente de Caja Nueva (CN1, CN2...)
+        currentCajaNuevaSeq = getFirstAvailableCajaNuevaSeq(id);
         currentItemRotuloSeq = getNextAvailableItemRotuloSeq(id, getActiveBoxCodeForArmar());
-        updateItemRotuloDisplay();
+        updateCajaNuevaDisplay();
 
         // Inicializar código de doc suelto sugerido
         currentSueltoSeq = getNextAvailableSueltoSeq(id, currAmb);
@@ -2446,10 +2563,10 @@
           currentContenido = (document.getElementById('inputNotasSuelto')?.value || '').trim() || 'Doc. Suelto';
           filename = `OBRA_${String(activeObraId).padStart(2, '0')}_${currentCodigo}.jpg`;
         } else if (slotKey === 'item_rotulo') {
-          currentCodigo = getActiveBoxCodeForArmar();
+          currentCodigo = autoGenerarCodigoCajaNueva().code;
           const itNumStr = String(currentItemRotuloSeq).padStart(2, '0');
           subCodigo = `${currentCodigo}-IT${itNumStr}`;
-          tipoFoto = `Ítem ${itNumStr} (Armar Rótulo)`;
+          tipoFoto = `Caja Nueva (${currentCodigo}) - Ítem ${itNumStr}`;
           const descIt = (document.getElementById('inputNotaItemRotulo')?.value || '').trim();
           currentContenido = descIt ? `[IT${itNumStr}] ${descIt}` : `[IT${itNumStr}] Archivador / File ${itNumStr}`;
           filename = `OBRA_${String(activeObraId).padStart(2, '0')}_${currentCodigo}_IT${itNumStr}.jpg`;
@@ -2496,11 +2613,9 @@
           showToast(`📸 Registrado: ${currentCodigo}`);
         } else if (slotKey === 'item_rotulo') {
           currentItemRotuloSeq = getNextAvailableItemRotuloSeq(activeObraId, currentCodigo);
-          updateItemRotuloDisplay();
           limpiarNotaItemRotulo();
-          updateCodigoDisplay();
-          renderCajaSeqChips();
-          showToast(`🗂️ Ítem guardado en ${subCodigo}`);
+          updateCajaNuevaDisplay();
+          showToast(`🆕 Archivador guardado en ${subCodigo}`);
         } else {
           // Para cajas, mantener secuencia actual hasta presionar Terminar Caja
           updateCodigoDisplay();
@@ -2552,9 +2667,11 @@
       const ambMap = {};
       d.fotos.forEach(f => {
         const amb = (f.ubicacion || 'Ambiente').trim();
-        if (!ambMap[amb]) ambMap[amb] = { cajas: new Set(), sueltos: new Set() };
+        if (!ambMap[amb]) ambMap[amb] = { cajas: new Set(), sueltos: new Set(), cajasNuevas: new Set() };
         const cod = (f.codigo_caja || f.nota || '').trim();
-        if (f.slot === 'suelto' || cod.includes('SUELTO')) {
+        if (isCajaNuevaPhoto(f)) {
+          ambMap[amb].cajasNuevas.add(cod || 'Caja Nueva');
+        } else if (f.slot === 'suelto' || cod.includes('SUELTO')) {
           ambMap[amb].sueltos.add(cod || 'Doc. Suelto');
         } else {
           ambMap[amb].cajas.add(cod || 'Caja');
@@ -2564,8 +2681,10 @@
       const summaryList = Object.keys(ambMap).map(amb => {
         const cCount = ambMap[amb].cajas.size;
         const sCount = ambMap[amb].sueltos.size;
+        const cnCount = ambMap[amb].cajasNuevas.size;
         const details = [];
         if (cCount > 0) details.push(`${cCount} ${cCount === 1 ? 'caja' : 'cajas'}`);
+        if (cnCount > 0) details.push(`${cnCount} ${cnCount === 1 ? 'caja nueva' : 'cajas nuevas'}`);
         if (sCount > 0) details.push(`${sCount} doc. ${sCount === 1 ? 'suelto' : 'sueltos'}`);
         return `${amb} (${details.join(', ') || 'censado'})`;
       });
@@ -2586,31 +2705,31 @@
       const elTotal = document.getElementById('drawerTotalFotos');
       if (elTotal) elTotal.innerText = `${fotos.length} fotos`;
 
-      // Contador de fotos de cajas con rótulo
-      const cajasCount = fotos.filter(f => f.slot === 'rotulo' || f.slot === 'otros' || (!f.slot && !f.codigo_caja?.includes('SUELTO') && !f.sub_codigo?.includes('-IT'))).length;
+      // Contador de fotos de cajas con rótulo (excluyendo Caja Nueva)
+      const cajasCount = fotos.filter(f => !isCajaNuevaPhoto(f) && (f.slot === 'rotulo' || f.slot === 'otros' || (!f.slot && !f.codigo_caja?.includes('SUELTO')))).length;
       const badgeTabCajas = document.getElementById('tabBadgeCajas');
       if (badgeTabCajas) badgeTabCajas.innerText = cajasCount;
 
-      // Contador de fotos para Armar Rótulo (ítem por ítem)
-      const itemsCount = fotos.filter(f => f.slot === 'item_rotulo' || f.sub_codigo?.includes('-IT') || f.tipo_foto?.includes('Armar Rótulo')).length;
+      // Contador de fotos de Caja Nueva
+      const itemsCount = fotos.filter(f => isCajaNuevaPhoto(f)).length;
       const badgeTabItems = document.getElementById('tabBadgeItems');
       if (badgeTabItems) badgeTabItems.innerText = itemsCount;
 
       // Contador de fotos de documentos sueltos
-      const sueltosCount = fotos.filter(f => f.slot === 'suelto' || f.codigo_caja?.includes('SUELTO')).length;
+      const sueltosCount = fotos.filter(f => !isCajaNuevaPhoto(f) && (f.slot === 'suelto' || f.codigo_caja?.includes('SUELTO'))).length;
       const badgeTabSueltos = document.getElementById('tabBadgeSueltos');
       if (badgeTabSueltos) badgeTabSueltos.innerText = sueltosCount;
 
       slots.forEach(slotKey => {
         let slotFotos = [];
         if (slotKey === 'suelto') {
-          slotFotos = fotos.filter(f => f.slot === 'suelto' || f.codigo_caja?.includes('SUELTO'));
+          slotFotos = fotos.filter(f => !isCajaNuevaPhoto(f) && (f.slot === 'suelto' || f.codigo_caja?.includes('SUELTO')));
         } else if (slotKey === 'item_rotulo') {
-          slotFotos = fotos.filter(f => f.slot === 'item_rotulo' || f.sub_codigo?.includes('-IT') || f.tipo_foto?.includes('Armar Rótulo'));
+          slotFotos = fotos.filter(f => isCajaNuevaPhoto(f));
         } else if (slotKey === 'rotulo') {
-          slotFotos = fotos.filter(f => f.slot === 'rotulo' || (!f.slot && !f.codigo_caja?.includes('SUELTO') && !f.sub_codigo?.includes('-IT')));
+          slotFotos = fotos.filter(f => !isCajaNuevaPhoto(f) && (f.slot === 'rotulo' || (!f.slot && !f.codigo_caja?.includes('SUELTO'))));
         } else {
-          slotFotos = fotos.filter(f => f.slot === slotKey);
+          slotFotos = fotos.filter(f => !isCajaNuevaPhoto(f) && f.slot === slotKey);
         }
 
         const countBadge = document.getElementById(`slotCount_${slotKey}`);

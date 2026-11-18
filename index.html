@@ -228,7 +228,7 @@
     .btn-secondary:hover { background: #CBD5E1; }
 
     /* Toast */
-    .toast { position: fixed; bottom: 1.5rem; right: 1.5rem; background: #0F172A; color: white; padding: 0.85rem 1.4rem; border-radius: 8px; font-size: 0.9rem; font-weight: 500; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.2); transform: translateY(100px); opacity: 0; transition: all 0.25s; z-index: 100; display: flex; align-items: center; gap: 0.5rem; }
+    .toast { position: fixed; bottom: 1.5rem; right: 1.5rem; background: #0F172A; color: white; padding: 0.85rem 1.4rem; border-radius: 8px; font-size: 0.9rem; font-weight: 500; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.2); transform: translateY(100px); opacity: 0; transition: all 0.25s; z-index: 5000; display: flex; align-items: center; gap: 0.5rem; }
     .toast.show { transform: translateY(0); opacity: 1; }
     .toast.success::before { content: "✓"; color: #4ADE80; font-weight: bold; }
   
@@ -560,7 +560,10 @@
 
       <div class="drawer-nav">
         <div class="nav-tab active" onclick="switchDrawerTab('UBICACION')" id="tabNavUbicacion">
-          📦 Ubicación, Cajas y Fechas (<span id="drawerCountFotosCajas">0</span>)
+          📦 Cajas Censadas y Sueltos (<span id="drawerCountFotosCajas">0</span>)
+        </div>
+        <div class="nav-tab" onclick="switchDrawerTab('CAJAS_NUEVAS')" id="tabNavCajasNuevas">
+          🆕 Cajas Nuevas / Rótulos A4 (<span id="drawerCountCajasNuevas">0</span>)
         </div>
         <div class="nav-tab" onclick="switchDrawerTab('HISTORIAL')" id="tabNavHistorial">
           📑 Historial PMO y Datos (<span id="drawerCountHitos">0</span>)
@@ -728,6 +731,47 @@
           </div>
         </div>
 
+        <!-- Tab Independiente: Cajas Nuevas y Armador de Hojas de Rótulo A4 -->
+        <div id="drawerTabContentCajasNuevas" style="display: none;">
+          <div style="background: #F5F3FF; border: 1.5px solid #C4B5FD; border-radius: 12px; padding: 0.9rem 1rem; margin-bottom: 1rem;">
+            <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:0.5rem;">
+              <div>
+                <div style="font-size: 0.88rem; font-weight: 800; color: #5B21B6;">🆕 Creación de Caja Nueva y Rótulos A4 (Aparte del Censo y Sueltos)</div>
+                <div style="font-size: 0.75rem; color: #4C1D95; margin-top: 2px;">Agrupa las fotos de archivadores/files por Caja Nueva (<code>CN1, CN2...</code>) para armar e imprimir su Hoja de Rótulo A4 sin saturar la descripción corta de la tabla principal.</div>
+              </div>
+              <a href="campo.html" target="_blank" style="background: #7C3AED; color: white; text-decoration: none; font-size: 0.74rem; font-weight: 800; padding: 0.42rem 0.75rem; border-radius: 7px;">📷 Tomar Fotos en Campo ➔</a>
+            </div>
+            <div style="display:grid; grid-template-columns: 185px 1fr auto; gap: 0.5rem; margin-top: 0.75rem; align-items: end;">
+              <div>
+                <label style="display:block; font-size:0.68rem; font-weight:800; color:#4C1D95; margin-bottom:2px;">📍 AMBIENTE</label>
+                <select id="cnNewAmbSelect" style="width:100%; padding:0.45rem 0.55rem; border:1.5px solid #A78BFA; border-radius:7px; font-size:0.8rem; font-weight:700; background:#FFFFFF;">
+                  <option value="BAÑO1-PMO">BAÑO1-PMO</option>
+                  <option value="BAÑO2-PMO">BAÑO2-PMO</option>
+                  <option value="BAÑO3-PMO">BAÑO3-PMO</option>
+                  <option value="OFICINA1-PMO">OFICINA1-PMO</option>
+                  <option value="OFICINA2-PMO">OFICINA2-PMO</option>
+                  <option value="OFICINA3-PMO">OFICINA3-PMO</option>
+                  <option value="PASADIZO-ESCALERA">PASADIZO-ESCALERA</option>
+                  <option value="SECRETARIA-PMO">SECRETARIA-PMO</option>
+                  <option value="ALMACEN-TECHO">ALMACEN-TECHO</option>
+                  <option value="ARMARIO-1ERPISO">ARMARIO-1ERPISO</option>
+                  <option value="OTROS">OTROS</option>
+                </select>
+              </div>
+              <div>
+                <label style="display:block; font-size:0.68rem; font-weight:800; color:#4C1D95; margin-bottom:2px;">📝 RESUMEN CORTO EN TABLA (OPCIONAL)</label>
+                <input type="text" id="cnNewResumenInput" placeholder="Ej: Valorizaciones y Liquidación..." style="width:100%; padding:0.45rem 0.6rem; border:1.5px solid #A78BFA; border-radius:7px; font-size:0.8rem; box-sizing:border-box;">
+              </div>
+              <button type="button" onclick="crearCajaNuevaGabinete()" style="background: linear-gradient(135deg, #7C3AED, #5B21B6); color: white; border: none; border-radius: 7px; padding: 0.48rem 0.9rem; font-size: 0.8rem; font-weight: 800; cursor: pointer; white-space: nowrap;">+ Crear Caja Nueva</button>
+            </div>
+          </div>
+
+          <input type="file" id="cnPhotoUploadInput" accept="image/*" multiple style="display:none;" onchange="handleUploadFotoCajaNuevaGabinete(this)">
+          <div id="drawerCajasNuevasContainer" class="cajas-grid-container">
+            <!-- Renderizado dinámico de Cajas Nuevas -->
+          </div>
+        </div>
+
       </div>
 
       <div class="drawer-footer">
@@ -790,26 +834,108 @@
       }
     }
 
+    function isCajaNuevaPhoto(f) {
+      if (!f) return false;
+      const cod = String(f.codigo_caja || '');
+      const sub = String(f.sub_codigo || '');
+      const tipo = String(f.tipo_foto || '');
+      return f.slot === 'caja_nueva' ||
+             f.slot === 'item_rotulo' ||
+             /(?:^|-)CN\d+(?:-|$)/i.test(cod) ||
+             sub.includes('-IT') ||
+             tipo.includes('Caja Nueva') ||
+             tipo.includes('Armar Rótulo');
+    }
+
+    function getHojasRotuloA4Map() {
+      try { return JSON.parse(localStorage.getItem('fdm_hojas_rotulo_a4') || '{}'); } catch (e) { return {}; }
+    }
+
+    function saveHojaRotuloA4ToLocal(obraId, cod, hojaData) {
+      try {
+        const map = getHojasRotuloA4Map();
+        map[`${obraId}::${cod}`] = hojaData;
+        localStorage.setItem('fdm_hojas_rotulo_a4', JSON.stringify(map));
+      } catch (e) {}
+    }
+
+    function getCajasNuevasLocalMap() {
+      try { return JSON.parse(localStorage.getItem('fdm_cajas_nuevas_gabinete') || '{}'); } catch (e) { return {}; }
+    }
+
+    function saveCajasNuevasLocalMap(map) {
+      try { localStorage.setItem('fdm_cajas_nuevas_gabinete', JSON.stringify(map)); } catch (e) {}
+    }
+
+    function isPollutedRotuloString(str) {
+      if (!str) return false;
+      const s = String(str);
+      return /\b0?1\)\s*/.test(s) && (/;\s*\d{1,2}\)\s*/.test(s) || /-{4,}/.test(s));
+    }
+
+    function cleanShortSummaryNote(rawNote, obraId, cod) {
+      const s = String(rawNote || '').trim();
+      if (!s) return '';
+      if (!isPollutedRotuloString(s)) {
+        return /^[-_\s]+$/.test(s) ? '' : s;
+      }
+      const key = `${obraId}::${cod}`;
+      const hojas = getHojasRotuloA4Map();
+      const extractedRows = [];
+      const cleanParts = [];
+      s.split(/;\s*(?=\d{1,2}\))/).forEach((part, idx) => {
+        const m = part.match(/^(\d{1,2})\)\s*(.*)$/);
+        const num = m ? m[1].padStart(2, '0') : String(idx + 1).padStart(2, '0');
+        const txt = (m ? m[2] : part).trim();
+        if (txt && !/^[-_\s]+$/.test(txt)) {
+          extractedRows.push({ num, contenido: txt, caja: cod });
+          cleanParts.push(txt);
+        }
+      });
+      if (!hojas[key] && obraId && cod && extractedRows.length > 0) {
+        const pObj = (projectsData || []).find(p => p.id === Number(obraId)) || {};
+        saveHojaRotuloA4ToLocal(obraId, cod, {
+          projDesc: pObj.desc || '',
+          amb: '',
+          shortSummary: cleanParts.join(', '),
+          rows: extractedRows,
+          updatedAt: new Date().toISOString()
+        });
+      }
+      return cleanParts.join(', ');
+    }
+
     function applyRotuloEditsToMap() {
       const edits = getRotuloEditsMap();
+      let editsChanged = false;
       Object.keys(edits).forEach(key => {
         const parts = key.split('::');
         if (parts.length < 2) return;
         const oId = parts[0];
         const cod = parts.slice(1).join('::');
+        let val = edits[key];
+        if (isPollutedRotuloString(val)) {
+          val = cleanShortSummaryNote(val, oId, cod) || cod;
+          edits[key] = val;
+          editsChanged = true;
+        }
         const entry = fieldPhotosMap[oId];
         if (entry && entry.fotos) {
           entry.fotos.forEach(f => {
             const fCod = f.codigo_caja || f.nota || 'SIN_CODIGO';
             if (fCod === cod) {
-              f.nota = edits[key];
+              f.nota = val;
             }
           });
         }
       });
+      if (editsChanged) {
+        try { localStorage.setItem('fdm_rotulo_edits', JSON.stringify(edits)); } catch (e) {}
+      }
     }
 
     async function loadFieldAuditData() {
+      const repairedCloudBoxes = new Map();
       // 1. Cargar desde IndexedDB local
       await new Promise((resolve) => {
         try {
@@ -829,6 +955,10 @@
                   item.fotos.forEach(f => {
                     if (f.dataUrl && !f.dataUrl.startsWith('data:')) {
                       f.dataUrl = resolveDirectImageUrl(f.dataUrl, f.file_id || f.drive_url);
+                    }
+                    if (!isCajaNuevaPhoto(f) && isPollutedRotuloString(f.nota)) {
+                      const cod = (f.codigo_caja || '').trim();
+                      f.nota = cleanShortSummaryNote(f.nota, item.id, cod) || cod;
                     }
                   });
                 }
@@ -869,18 +999,30 @@
               }
               if (!fieldPhotosMap[oId].fotos) fieldPhotosMap[oId].fotos = [];
 
+              let cleanCloudNota = r.contenido_caja || '';
+              if (isPollutedRotuloString(cleanCloudNota)) {
+                cleanCloudNota = cleanShortSummaryNote(cleanCloudNota, oId, r.codigo_caja) || r.codigo_caja;
+                repairedCloudBoxes.set(`${oId}::${r.codigo_caja}`, {
+                  obra_id: oId,
+                  codigo_caja: r.codigo_caja,
+                  contenido_caja: cleanCloudNota
+                });
+              }
+
               const existing = fieldPhotosMap[oId].fotos.find(f => 
                 (f.drive_url && f.drive_url === r.drive_url) || (f.file_id && f.file_id === r.file_id)
               );
               if (existing) {
                 if (r.ocr_acervo) existing.ocr_acervo = r.ocr_acervo;
                 if (r.ocr_raw) existing.ocr_raw = r.ocr_raw;
-                if (r.contenido_caja) existing.nota = r.contenido_caja;
+                if (cleanCloudNota) existing.nota = cleanCloudNota;
                 if (r.ambiente && !existing.ubicacion) existing.ubicacion = r.ambiente;
               } else if (r.drive_url) {
                 const directImg = resolveDirectImageUrl(r.drive_url, r.file_id);
+                const isCN = (r.tipo_foto && (r.tipo_foto.includes('Caja Nueva') || r.tipo_foto.includes('Armar Rótulo'))) || (r.codigo_caja && /(?:^|-)CN\d+(?:-|$)/i.test(r.codigo_caja)) || (r.sub_codigo && r.sub_codigo.includes('-IT'));
                 fieldPhotosMap[oId].fotos.push({
                   id: 'cloud_' + (r.file_id || Date.now()),
+                  slot: isCN ? 'item_rotulo' : undefined,
                   codigo_caja: r.codigo_caja,
                   sub_codigo: r.sub_codigo || r.codigo_caja,
                   tipo_foto: r.tipo_foto || 'Rótulo de Caja',
@@ -888,7 +1030,7 @@
                   drive_url: r.drive_url,
                   file_id: r.file_id,
                   ubicacion: r.ambiente || '',
-                  nota: r.contenido_caja || r.codigo_caja,
+                  nota: cleanCloudNota || r.codigo_caja,
                   ocr_acervo: r.ocr_acervo || '',
                   ocr_raw: r.ocr_raw || ''
                 });
@@ -943,6 +1085,22 @@
         }
       }
 
+      // Auto-reparar en Sheets cualquier descripción corta contaminada con formato 01)...; 02) --- (ej. ALT-01-C1)
+      if (gasUrl && repairedCloudBoxes.size > 0) {
+        repairedCloudBoxes.forEach((payloadBox) => {
+          fetch(gasUrl, {
+            method: 'POST',
+            headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+            body: JSON.stringify({
+              action: 'update_box_content',
+              obra_id: payloadBox.obra_id,
+              codigo_caja: payloadBox.codigo_caja,
+              contenido_caja: payloadBox.contenido_caja
+            })
+          }).catch(() => {});
+        });
+      }
+
       // Aplicar ediciones locales de gabinete en caso existan
       applyRotuloEditsToMap();
     }
@@ -961,7 +1119,7 @@
       return s;
     }
 
-    // Compila los ambientes reales censados en campo con número de cajas y docs sueltos
+    // Compila los ambientes reales censados en campo con número de cajas, cajas nuevas y docs sueltos
     function compileUbicacionCajas(obraId) {
       const fData = fieldPhotosMap[obraId];
       if (!fData || !fData.fotos || fData.fotos.length === 0) {
@@ -971,9 +1129,11 @@
       const ambMap = {};
       fData.fotos.forEach(f => {
         const amb = (f.ubicacion || fData.ubicacion || 'Ambiente').trim();
-        if (!ambMap[amb]) ambMap[amb] = { cajas: new Set(), sueltos: new Set() };
+        if (!ambMap[amb]) ambMap[amb] = { cajas: new Set(), cajasNuevas: new Set(), sueltos: new Set() };
         const cod = (f.codigo_caja || f.nota || '').trim();
-        if (f.slot === 'suelto' || cod.includes('SUELTO')) {
+        if (isCajaNuevaPhoto(f)) {
+          ambMap[amb].cajasNuevas.add(cod || 'Caja Nueva');
+        } else if (f.slot === 'suelto' || cod.includes('SUELTO')) {
           ambMap[amb].sueltos.add(cod || 'Doc. Suelto');
         } else {
           ambMap[amb].cajas.add(cod || 'Caja');
@@ -982,9 +1142,11 @@
 
       const parts = Object.entries(ambMap).map(([amb, info]) => {
         const cCount = info.cajas.size;
+        const cnCount = info.cajasNuevas.size;
         const sCount = info.sueltos.size;
         const details = [];
         if (cCount > 0) details.push(`${cCount} ${cCount === 1 ? 'caja' : 'cajas'}`);
+        if (cnCount > 0) details.push(`${cnCount} ${cnCount === 1 ? 'caja nueva' : 'cajas nuevas'}`);
         if (sCount > 0) details.push(`${sCount} doc. ${sCount === 1 ? 'suelto' : 'sueltos'}`);
         return `${amb} (${details.join(', ') || 'censado'})`;
       });
@@ -1010,23 +1172,34 @@
       const fData = fieldPhotosMap[obraId];
       if (!fData || !fData.fotos || fData.fotos.length === 0) return res;
 
+      const hojas = getHojasRotuloA4Map();
       const boxMap = {};
       let combined = [];
       fData.fotos.forEach(f => {
         const cod = (f.codigo_caja || 'SIN_CODIGO').trim();
         const amb = (f.ubicacion || fData.ubicacion || 'Ambiente').trim();
-        if (!boxMap[cod]) boxMap[cod] = { amb, notes: new Set() };
-        const note = (f.nota || '').trim();
+        const isCN = isCajaNuevaPhoto(f);
+        if (!boxMap[cod]) boxMap[cod] = { amb, isCN, notes: new Set() };
+        const rawNote = (f.nota || '').trim();
+        const note = isCN ? rawNote : cleanShortSummaryNote(rawNote, obraId, cod);
         const ocr = (f.ocr_acervo || '').trim();
         if (note && note !== cod && note !== 'Contenido no especificado') {
-          boxMap[cod].notes.add(note);
+          if (!isCN) boxMap[cod].notes.add(note);
           combined.push(note);
         }
         if (ocr) {
           ocr.split('|').forEach(x => {
             const s = x.trim();
-            if (s) { boxMap[cod].notes.add(s); combined.push(s); }
+            if (s) { if (!isCN) boxMap[cod].notes.add(s); combined.push(s); }
           });
+        }
+        const hEntry = hojas[`${obraId}::${cod}`];
+        if (hEntry) {
+          if (hEntry.shortSummary) {
+            combined.push(hEntry.shortSummary);
+            if (isCN) boxMap[cod].notes.add(hEntry.shortSummary);
+          }
+          (hEntry.rows || []).forEach(r => { if (r.contenido) combined.push(r.contenido); });
         }
       });
 
@@ -1048,50 +1221,67 @@
       return res;
     }
 
-    // Agrupa TODAS las cajas y doc. sueltos por AMBIENTE para responder donde esta cada parte del proyecto
+    // Agrupa TODAS las cajas, cajas nuevas y doc. sueltos por AMBIENTE sin saturar el resumen rápido
     function getDetailedAmbientesBreakdown(obraId) {
       const fData = fieldPhotosMap[obraId];
       if (!fData || !fData.fotos || fData.fotos.length === 0) {
         return { hasCenso: false, totalAmbientes: 0, totalUnidades: 0, ambientes: [] };
       }
 
+      const hojas = getHojasRotuloA4Map();
       const ambMap = {};
       fData.fotos.forEach(f => {
         const amb = (f.ubicacion || fData.ubicacion || 'Ambiente').trim();
         const cod = (f.codigo_caja || f.nota || 'SIN_CODIGO').trim();
-        const isSuelto = (f.slot === 'suelto') || cod.includes('SUELTO');
+        const isCN = isCajaNuevaPhoto(f);
+        const isSuelto = !isCN && ((f.slot === 'suelto') || cod.includes('SUELTO'));
         if (!ambMap[amb]) ambMap[amb] = {};
         if (!ambMap[amb][cod]) {
-          ambMap[amb][cod] = { codigo: cod, isSuelto, notes: new Set(), ocrs: new Set(), fotosCount: 0 };
+          ambMap[amb][cod] = { codigo: cod, isSuelto, isCajaNueva: isCN, notes: new Set(), ocrs: new Set(), fotosCount: 0 };
         }
         ambMap[amb][cod].fotosCount++;
-        const note = (f.nota || '').trim();
-        if (note && note !== cod && note !== 'Contenido no especificado') {
-          ambMap[amb][cod].notes.add(note);
-        }
-        const ocr = (f.ocr_acervo || '').trim();
-        if (ocr) {
-          ocr.split('|').forEach(part => {
-            const s = part.trim();
-            if (s) ambMap[amb][cod].ocrs.add(s);
-          });
+        if (!isCN) {
+          const cleanNote = cleanShortSummaryNote((f.nota || '').trim(), obraId, cod);
+          if (cleanNote && cleanNote !== cod && cleanNote !== 'Contenido no especificado') {
+            ambMap[amb][cod].notes.add(cleanNote);
+          }
+          const ocr = (f.ocr_acervo || '').trim();
+          if (ocr) {
+            ocr.split('|').forEach(part => {
+              const s = part.trim();
+              if (s) ambMap[amb][cod].ocrs.add(s);
+            });
+          }
         }
       });
 
       const ambientes = Object.entries(ambMap).map(([ambiente, itemsObj]) => {
         const items = Object.values(itemsObj).map(it => {
-          const contenido = Array.from(it.notes).join('; ');
-          const ocrText = Array.from(it.ocrs).join(', ');
+          let contenido = '';
+          if (it.isCajaNueva) {
+            const h = hojas[`${obraId}::${it.codigo}`];
+            const hRowsCount = (h && h.rows) ? h.rows.filter(r => r.contenido && !/^[-_\s]+$/.test(r.contenido)).length : 0;
+            contenido = (h && h.shortSummary)
+              ? h.shortSummary
+              : `Caja Nueva (${it.fotosCount} ${it.fotosCount === 1 ? 'foto' : 'fotos'}${hRowsCount > 0 ? ' • Rótulo A4 listo' : ' p/ Rótulo'})`;
+          } else {
+            const notesStr = Array.from(it.notes).join('; ');
+            const ocrText = Array.from(it.ocrs).join(', ');
+            contenido = notesStr || ocrText || '';
+          }
           return {
             codigo: it.codigo,
             isSuelto: it.isSuelto,
-            contenido: contenido || ocrText || '',
+            isCajaNueva: it.isCajaNueva,
+            contenido,
             fotosCount: it.fotosCount
           };
         });
+        items.sort((a, b) => (a.isCajaNueva === b.isCajaNueva ? 0 : (a.isCajaNueva ? 1 : -1)));
         return {
           ambiente,
-          cajasCount: items.filter(x => !x.isSuelto).length,
+          cajasCount: items.filter(x => !x.isSuelto && !x.isCajaNueva).length,
+          cajasNuevasCount: items.filter(x => x.isCajaNueva).length,
           sueltosCount: items.filter(x => x.isSuelto).length,
           items
         };
@@ -1244,13 +1434,15 @@
           groups[cod].push(f);
         });
 
+        const hojasMap = getHojasRotuloA4Map();
         Object.keys(groups).forEach(cod => {
           const itemFotos = groups[cod];
           const first = itemFotos[0] || {};
           const amb = first.ubicacion || fData.ubicacion || 'Ambiente';
-          const isSuelto = cod.includes('SUELTO');
-          const icon = isSuelto ? '📁' : '📦';
-          const tipoLabel = isSuelto ? 'DOC. SUELTO' : 'CAJA';
+          const isCN = itemFotos.some(f => isCajaNuevaPhoto(f));
+          const isSuelto = !isCN && cod.includes('SUELTO');
+          const icon = isCN ? '🆕' : (isSuelto ? '📁' : '📦');
+          const tipoLabel = isCN ? 'CAJA NUEVA' : (isSuelto ? 'DOC. SUELTO' : 'CAJA');
 
           lines.push(`\n${icon} ${tipoLabel} ${cod} [${amb}]:`);
 
@@ -1262,13 +1454,21 @@
                 if (s) items.add(s);
               });
             }
-            if (f.nota && f.nota !== cod && !f.nota.startsWith('OBRA_')) {
-              f.nota.split(',').forEach(part => {
+            const cleanNota = isCN ? (f.nota || '').trim() : cleanShortSummaryNote(f.nota, obraId, cod);
+            if (cleanNota && cleanNota !== cod && !cleanNota.startsWith('OBRA_')) {
+              cleanNota.split(/[,;]/).forEach(part => {
                 const s = part.trim();
-                if (s) items.add(s);
+                if (s && !/^-+$/.test(s)) items.add(s);
               });
             }
           });
+          const hEntry = hojasMap[`${obraId}::${cod}`];
+          if (hEntry && Array.isArray(hEntry.rows)) {
+            hEntry.rows.forEach(r => {
+              const s = (r.contenido || '').trim();
+              if (s && !/^-+$/.test(s)) items.add(`[Rótulo ${r.num}] ${s}`);
+            });
+          }
 
           if (items.size === 0) {
             lines.push('  • Contenido general / Archivo de obra (Pendiente de procesar OCR)');
@@ -1521,14 +1721,15 @@
       if (!container) return;
 
       const fData = fieldPhotosMap[obraId] || { fotos: [] };
-      const fotos = fData.fotos || [];
+      const allFotos = fData.fotos || [];
+      const fotos = allFotos.filter(f => !isCajaNuevaPhoto(f));
       if (countBadge) countBadge.innerText = fotos.length;
 
       const ubicCompiled = compileUbicacionCajas(obraId);
       const breakdown = getDetailedAmbientesBreakdown(obraId);
       const ambMapContainer = document.getElementById('drawerAmbientesMapContainer');
       if (ubicText) {
-        ubicText.innerText = ubicCompiled || (fotos.length > 0 ? `${fotos.length} fotos registradas` : 'Aún sin censo físico en campo');
+        ubicText.innerText = ubicCompiled || (allFotos.length > 0 ? `${allFotos.length} fotos registradas` : 'Aún sin censo físico en campo');
       }
 
       if (ambMapContainer) {
@@ -1537,14 +1738,19 @@
           ambMapContainer.innerHTML = breakdown.ambientes.map(a => {
             const partsCount = [
               a.cajasCount > 0 ? `${a.cajasCount} ${a.cajasCount === 1 ? 'caja' : 'cajas'}` : '',
+              a.cajasNuevasCount > 0 ? `${a.cajasNuevasCount} ${a.cajasNuevasCount === 1 ? 'caja nueva' : 'cajas nuevas'}` : '',
               a.sueltosCount > 0 ? `${a.sueltosCount} ${a.sueltosCount === 1 ? 'suelto' : 'sueltos'}` : ''
             ].filter(Boolean).join(', ');
-            const itemsListHtml = a.items.map(it => `
-              <div class="amb-box-line">
-                <span class="amb-box-code">${it.isSuelto ? '📁' : '📦'} ${escapeHtmlAttr(it.codigo)}</span>:
-                <span>${escapeHtmlAttr(it.contenido || 'Sin descripción de rótulo aún')}</span>
-              </div>
-            `).join('');
+            const itemsListHtml = a.items.map(it => {
+              const icon = it.isCajaNueva ? '🆕' : (it.isSuelto ? '📁' : '📦');
+              const codeStyle = it.isCajaNueva ? 'color:#6D28D9;' : '';
+              return `
+                <div class="amb-box-line">
+                  <span class="amb-box-code" style="${codeStyle}">${icon} ${escapeHtmlAttr(it.codigo)}</span>:
+                  <span>${escapeHtmlAttr(it.contenido || 'Sin descripción aún')}</span>
+                </div>
+              `;
+            }).join('');
             return `
               <div class="drawer-amb-card">
                 <div class="amb-card-mini-hdr" style="font-size:0.82rem; margin-bottom:0.35rem;">
@@ -1562,17 +1768,21 @@
       }
 
       if (fotos.length === 0) {
-        if (boxAcervo) boxAcervo.style.display = 'none';
+        if (boxAcervo) boxAcervo.style.display = allFotos.length > 0 ? 'block' : 'none';
+        if (boxAcervo && allFotos.length > 0 && txtAcervo) {
+          txtAcervo.value = compileAcervoConsolidadoText(obraId);
+        }
         container.innerHTML = `
-          <div style="text-align: center; padding: 2.5rem 1rem; background: #F8FAFC; border: 1.5px dashed #CBD5E1; border-radius: 10px; color: var(--text-muted);">
-            <div style="font-size: 2.2rem; margin-bottom: 0.4rem;">📦</div>
-            <div style="font-weight: 700; color: #0F172A; font-size: 0.95rem;">Esta obra aún no tiene fotos ni cajas censadas</div>
-            <div style="font-size: 0.8rem; margin-top: 0.25rem; max-width: 380px; margin-left: auto; margin-right: auto;">
-              Usa el <strong>Módulo de Campo</strong> desde tu celular o tableta para fotografiar los rótulos físicos y clasificar su ambiente.
+          <div style="text-align: center; padding: 2.2rem 1rem; background: #F8FAFC; border: 1.5px dashed #CBD5E1; border-radius: 10px; color: var(--text-muted);">
+            <div style="font-size: 2rem; margin-bottom: 0.4rem;">📦</div>
+            <div style="font-weight: 700; color: #0F172A; font-size: 0.95rem;">Esta obra aún no tiene cajas ya rotuladas o sueltos censados</div>
+            <div style="font-size: 0.8rem; margin-top: 0.25rem; max-width: 400px; margin-left: auto; margin-right: auto;">
+              Usa <strong>Cajas Censadas</strong> en Campo, o revisa la pestaña <strong>🆕 Cajas Nuevas / Rótulos A4</strong> para crear cajas nuevas con sus archivadores.
             </div>
-            <a href="campo.html" target="_blank" style="margin-top: 1rem; display: inline-flex; align-items: center; gap: 0.4rem; background: #16A34A; color: white; text-decoration: none; font-weight: 700; font-size: 0.82rem; padding: 0.5rem 1rem; border-radius: 8px;">
-              📷 Abrir Módulo de Campo ➔
-            </a>
+            <div style="margin-top: 1rem; display:flex; gap:0.5rem; justify-content:center; flex-wrap:wrap;">
+              <button type="button" onclick="switchDrawerTab('CAJAS_NUEVAS')" style="background:#7C3AED; color:white; border:none; font-weight:700; font-size:0.8rem; padding:0.5rem 0.9rem; border-radius:8px; cursor:pointer;">🆕 Ver / Crear Caja Nueva</button>
+              <a href="campo.html" target="_blank" style="display: inline-flex; align-items: center; gap: 0.4rem; background: #16A34A; color: white; text-decoration: none; font-weight: 700; font-size: 0.8rem; padding: 0.5rem 0.9rem; border-radius: 8px;">📷 Abrir Módulo de Campo ➔</a>
+            </div>
           </div>
         `;
         return;
@@ -1583,12 +1793,12 @@
         boxAcervo.style.display = 'block';
         if (txtAcervo) txtAcervo.value = compileAcervoConsolidadoText(obraId);
         if (badgeAcervo) {
-          const uniqueUnits = new Set(fotos.map(f => f.codigo_caja || f.nota || 'Caja')).size;
+          const uniqueUnits = new Set(allFotos.map(f => f.codigo_caja || f.nota || 'Caja')).size;
           badgeAcervo.innerText = `${uniqueUnits} ${uniqueUnits === 1 ? 'unidad física' : 'unidades físicas'}`;
         }
       }
 
-      // Agrupar fotos por Código de Caja
+      // Agrupar fotos normales por Código de Caja (excluyendo Cajas Nuevas)
       const groups = {};
       fotos.forEach(f => {
         const cod = f.codigo_caja || f.nota || 'SIN_CODIGO';
@@ -1596,6 +1806,7 @@
         groups[cod].push(f);
       });
 
+      const hojasMap = getHojasRotuloA4Map();
       let html = '';
       Object.keys(groups).forEach(cod => {
         const cajaFotos = groups[cod];
@@ -1603,7 +1814,7 @@
         const amb = first.ubicacion || fData.ubicacion || 'Ambiente';
         const validBoxNotes = [];
         cajaFotos.forEach(cf => {
-          const n = (cf.nota || '').trim();
+          const n = cleanShortSummaryNote((cf.nota || '').trim(), obraId, cod);
           if (n && n !== cod && n !== 'Contenido no especificado' && !validBoxNotes.includes(n)) {
             validBoxNotes.push(n);
           }
@@ -1614,6 +1825,8 @@
         const isSuelto = cod.includes('SUELTO');
         const tagIcon = isSuelto ? '📁' : '🏷️';
         const tagStyle = isSuelto ? 'background: #0284C7;' : '';
+        const hojaInfo = hojasMap[`${obraId}::${cod}`];
+        const hasA4 = !!(hojaInfo && hojaInfo.rows && hojaInfo.rows.some(r => r.contenido));
 
         // Extraer acervo OCR detectado en este grupo
         const ocrItems = new Set();
@@ -1639,17 +1852,18 @@
               <div style="display:flex; align-items:center; gap:0.45rem; flex-wrap:wrap;">
                 <span class="caja-tag" style="${tagStyle}">${tagIcon} ${escapeHtmlAttr(cod)}</span>
                 <span class="caja-amb">📍 ${escapeHtmlAttr(amb)}</span>
+                ${hasA4 ? `<span class="badge badge-purple" style="font-size:0.65rem;">✅ Rótulo A4 guardado aparte</span>` : ''}
               </div>
-              <button type="button" class="btn-armar-rotulo-hdr" onclick="openArmadorRotuloModal(${obraId}, '${encodedCod}')" title="Ver fotos ítem por ítem y armar/imprimir su Hoja de Rótulo A4">🏷️ Armar / Imprimir Rótulo A4</button>
+              <button type="button" onclick="openArmadorRotuloModal(${obraId}, '${encodedCod}')" style="background:#F5F3FF; color:#5B21B6; border:1px solid #C4B5FD; padding:0.28rem 0.62rem; border-radius:7px; font-size:0.72rem; font-weight:800; cursor:pointer;" title="Abrir Hoja de Rótulo A4 aparte (sin modificar la descripción corta)">🖨️ Rótulo A4 (Aparte)</button>
             </div>
             <div class="caja-content-edit-box">
               <div class="caja-content-edit-hdr">
-                <label class="caja-content-edit-lbl">✏️ Contenido / Rótulo <span style="font-weight:600; color:#0D9488; font-size:0.72rem;">(Editable en Gabinete)</span>:</label>
-                <span style="font-size:0.68rem; color:#64748B;">Lee la foto ampliada o usa "Armar Rótulo A4" para estructurarlo</span>
+                <label class="caja-content-edit-lbl">✏️ Descripción Corta (Para Tabla y Resúmenes) <span style="font-weight:600; color:#0D9488; font-size:0.72rem;">(Editable en Gabinete)</span>:</label>
+                <span style="font-size:0.68rem; color:#64748B;">Texto conciso en columna Ubicación/Contenido (aparte del Rótulo A4)</span>
               </div>
               <div class="caja-content-edit-row">
-                <textarea class="caja-content-textarea" rows="2" placeholder="Describe en detalle lo que indica la fotografía del rótulo..." onkeydown="if(event.ctrlKey && event.key==='Enter'){ event.preventDefault(); this.nextElementSibling.click(); }">${escapeHtmlAttr(rawContenido)}</textarea>
-                <button type="button" class="btn-save-rotulo" onclick="guardarRotuloGabinete(${obraId}, '${encodedCod}', this)" title="Guardar texto en Visualización y Google Sheets (Ctrl+Enter)">💾 Guardar Rótulo</button>
+                <textarea class="caja-content-textarea" rows="2" placeholder="Ej: Valorizaciones 1 a 4 y Liquidación..." onkeydown="if(event.ctrlKey && event.key==='Enter'){ event.preventDefault(); this.nextElementSibling.click(); }">${escapeHtmlAttr(rawContenido)}</textarea>
+                <button type="button" class="btn-save-rotulo" onclick="guardarRotuloGabinete(${obraId}, '${encodedCod}', this)" title="Guardar descripción corta en Web y Google Sheets (Ctrl+Enter)">💾 Guardar Descripción</button>
               </div>
             </div>
             ${ocrHtml}
@@ -1677,6 +1891,284 @@
       });
 
       container.innerHTML = html;
+    }
+
+    let pendingCnUploadCtx = null;
+
+    function getAmbientePrefixDash(amb) {
+      const cleanAmb = String(amb || '').trim().toUpperCase();
+      if (!cleanAmb) return 'AMB';
+      if (cleanAmb === 'BAÑO1-PMO' || cleanAmb.startsWith('BAÑO1')) return 'B1';
+      if (cleanAmb === 'BAÑO2-PMO' || cleanAmb.startsWith('BAÑO2')) return 'B2';
+      if (cleanAmb === 'BAÑO3-PMO' || cleanAmb.startsWith('BAÑO3')) return 'B3';
+      if (cleanAmb === 'OFICINA1-PMO' || cleanAmb.startsWith('OFICINA1')) return 'O1';
+      if (cleanAmb === 'OFICINA2-PMO' || cleanAmb.startsWith('OFICINA2')) return 'O2';
+      if (cleanAmb === 'OFICINA3-PMO' || cleanAmb.startsWith('OFICINA3')) return 'O3';
+      if (cleanAmb.includes('PASADIZO') || cleanAmb.includes('ESCALERA')) return 'PAS';
+      if (cleanAmb.includes('SECRETAR')) return 'SEC';
+      if (cleanAmb.includes('ALMACEN') || cleanAmb.includes('TECHO')) return 'ALT';
+      if (cleanAmb.includes('ARMARIO')) return 'ARM1';
+      return cleanAmb.substring(0, 4);
+    }
+
+    function renderCajasNuevasEnDrawer(obraId) {
+      const container = document.getElementById('drawerCajasNuevasContainer');
+      const countBadge = document.getElementById('drawerCountCajasNuevas');
+      const fData = fieldPhotosMap[obraId] || { fotos: [] };
+      const cnFotos = (fData.fotos || []).filter(f => isCajaNuevaPhoto(f));
+      const hojasMap = getHojasRotuloA4Map();
+      const cnShellsMap = getCajasNuevasLocalMap();
+      const obraShells = cnShellsMap[obraId] || [];
+
+      const cnGroups = {};
+      obraShells.forEach(s => {
+        if (!s || !s.cod) return;
+        cnGroups[s.cod] = { amb: s.amb || 'Ambiente', fotos: [] };
+      });
+      cnFotos.forEach(f => {
+        const cod = (f.codigo_caja || 'CAJA-NUEVA').trim();
+        if (!cnGroups[cod]) {
+          cnGroups[cod] = { amb: f.ubicacion || fData.ubicacion || 'Ambiente', fotos: [] };
+        }
+        cnGroups[cod].fotos.push(f);
+      });
+
+      const codes = Object.keys(cnGroups);
+      if (countBadge) countBadge.innerText = codes.length;
+      if (!container) return;
+
+      if (codes.length === 0) {
+        container.innerHTML = `
+          <div style="text-align:center; padding:2.2rem 1rem; background:#F8FAFC; border:1.5px dashed #C4B5FD; border-radius:10px; color:var(--text-muted);">
+            <div style="font-size:2rem; margin-bottom:0.4rem;">🆕</div>
+            <div style="font-weight:700; color:#4C1D95; font-size:0.95rem;">Aún no hay Cajas Nuevas creadas para esta obra</div>
+            <div style="font-size:0.8rem; margin-top:0.25rem; max-width:410px; margin-left:auto; margin-right:auto;">
+              Usa la pestaña <strong>🆕 2. Caja Nueva</strong> en el celular para fotografiar archivador por archivador, o crea una Caja Nueva aquí arriba con el botón <strong>+ Crear Caja Nueva</strong>.
+            </div>
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = codes.map((cod, idx) => {
+        const grp = cnGroups[cod];
+        const hoja = hojasMap[`${obraId}::${cod}`] || null;
+        const validRowsCount = hoja && hoja.rows ? hoja.rows.filter(r => r.contenido && !/^[-_\s]+$/.test(r.contenido)).length : 0;
+        const shortResumen = (hoja && hoja.shortSummary) || '';
+        const encodedCod = encodeURIComponent(cod);
+
+        return `
+          <div class="caja-group-card" style="border-color:#DDD6FE;">
+            <div class="caja-group-header" style="background:#F5F3FF; border-bottom-color:#DDD6FE;">
+              <div style="display:flex; align-items:center; gap:0.45rem; flex-wrap:wrap;">
+                <span class="caja-tag" style="background:#7C3AED;">🆕 ${escapeHtmlAttr(cod)}</span>
+                <span class="caja-amb">📍 ${escapeHtmlAttr(grp.amb)}</span>
+                <span class="badge ${validRowsCount > 0 ? 'badge-green' : 'badge-yellow'}" style="font-size:0.66rem;">
+                  ${validRowsCount > 0 ? `✅ Rótulo A4 (${validRowsCount} filas)` : `⏳ Falta armar Rótulo A4 (${grp.fotos.length} fotos)`}
+                </span>
+              </div>
+              <div style="display:flex; gap:0.4rem; flex-wrap:wrap;">
+                <button type="button" onclick="triggerUploadFotoCajaNueva(${obraId}, '${encodedCod}', '${escapeHtmlAttr(grp.amb)}')" style="background:#FFFFFF; border:1px solid #8B5CF6; color:#5B21B6; padding:0.32rem 0.65rem; border-radius:7px; font-size:0.72rem; font-weight:800; cursor:pointer;">📷 + Fotos Archivadores</button>
+                <button type="button" class="btn-armar-rotulo-hdr" onclick="openArmadorRotuloModal(${obraId}, '${encodedCod}')">🏷️ Armar / Imprimir Rótulo A4</button>
+              </div>
+            </div>
+            <div class="caja-content-edit-box" style="background:#FAF5FF; border-bottom-color:#EDE9FE;">
+              <div class="caja-content-edit-hdr">
+                <label class="caja-content-edit-lbl" style="color:#5B21B6;">📝 Resumen Corto en Tabla Principal (Aparte del Rótulo A4):</label>
+                <span style="font-size:0.68rem; color:#64748B;">Opcional • Evita saturar la columna de ubicaciones</span>
+              </div>
+              <div class="caja-content-edit-row">
+                <input type="text" id="cnResumenInput_${idx}" class="armador-input" value="${escapeHtmlAttr(shortResumen)}" placeholder="Ej: Archivadores de Valorizaciones y Liquidación..." style="flex:1;">
+                <button type="button" class="btn-save-rotulo" style="background:#6D28D9;" onclick="guardarResumenCortoCajaNueva(${obraId}, '${encodedCod}', ${idx})">💾 Guardar Resumen</button>
+              </div>
+            </div>
+            ${grp.fotos.length > 0 ? `
+              <div class="caja-photos-grid">
+                ${grp.fotos.map(f => {
+                  const directUrl = resolveDirectImageUrl(f.dataUrl, f.file_id || f.drive_url);
+                  const driveLink = f.drive_url ? `<a href="${f.drive_url}" target="_blank" class="drive-link" onclick="event.stopPropagation()">🔗 Drive</a>` : '';
+                  const noteClean = (f.nota && f.nota !== cod) ? `<div style="font-size:0.68rem; color:#4C1D95; font-weight:700; padding:0.25rem 0.55rem; background:#F5F3FF; border-top:1px solid #EDE9FE; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">🗂️ ${escapeHtmlAttr(f.nota)}</div>` : '';
+                  return `
+                    <div class="caja-photo-card">
+                      <img src="${directUrl}" class="caja-photo-img" onclick="openDashboardLightbox('${directUrl}')" onerror="handleDriveImgError(this, '${f.file_id || f.drive_url || ''}')" title="Clic para ampliar a pantalla completa">
+                      <div class="caja-photo-label">
+                        <span style="overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">${escapeHtmlAttr(f.sub_codigo || f.tipo_foto || 'Ítem')}</span>
+                        ${driveLink}
+                      </div>
+                      ${noteClean}
+                    </div>
+                  `;
+                }).join('')}
+              </div>
+            ` : `
+              <div style="padding:1rem; text-align:center; font-size:0.78rem; color:#64748B;">
+                Caja Nueva creada sin fotos aún. Haz clic en <strong>📷 + Fotos Archivadores</strong> para cargar imágenes o ábrela en campo.
+              </div>
+            `}
+          </div>
+        `;
+      }).join('');
+    }
+
+    function crearCajaNuevaGabinete() {
+      if (!selectedProjectId) return;
+      const amb = (document.getElementById('cnNewAmbSelect')?.value || 'BAÑO1-PMO').trim();
+      const resumen = (document.getElementById('cnNewResumenInput')?.value || '').trim();
+      const pref = getAmbientePrefixDash(amb);
+      const obraStr = selectedProjectId === 999 ? 'MIX' : String(selectedProjectId).padStart(2, '0');
+
+      const fData = fieldPhotosMap[selectedProjectId] || { fotos: [] };
+      const shellsMap = getCajasNuevasLocalMap();
+      const existingShells = shellsMap[selectedProjectId] || [];
+      const usedSeqs = new Set();
+
+      (fData.fotos || []).forEach(f => {
+        if (!isCajaNuevaPhoto(f)) return;
+        const m = String(f.codigo_caja || '').match(/(?:^|-)CN[-_]?(\d+)(?:-|$)/i);
+        if (m) usedSeqs.add(parseInt(m[1], 10));
+      });
+      existingShells.forEach(s => {
+        const m = String(s.cod || '').match(/(?:^|-)CN[-_]?(\d+)(?:-|$)/i);
+        if (m) usedSeqs.add(parseInt(m[1], 10));
+      });
+
+      let seq = 1;
+      while (usedSeqs.has(seq)) seq++;
+      const cod = `${pref}-${obraStr}-CN${seq}`;
+
+      existingShells.push({ cod, amb, createdAt: new Date().toISOString() });
+      shellsMap[selectedProjectId] = existingShells;
+      saveCajasNuevasLocalMap(shellsMap);
+
+      if (resumen) {
+        const hojas = getHojasRotuloA4Map();
+        const key = `${selectedProjectId}::${cod}`;
+        const prev = hojas[key] || { projDesc: (projectsData.find(x => x.id === selectedProjectId) || {}).desc || '', amb, rows: [{ num: '01', contenido: '', caja: cod }] };
+        prev.shortSummary = resumen;
+        prev.amb = amb;
+        saveHojaRotuloA4ToLocal(selectedProjectId, cod, prev);
+      }
+
+      const resInp = document.getElementById('cnNewResumenInput');
+      if (resInp) resInp.value = '';
+      renderCajasNuevasEnDrawer(selectedProjectId);
+      showToast(`🆕 Caja Nueva "${cod}" creada`);
+    }
+
+    function guardarResumenCortoCajaNueva(obraId, encodedCod, idx) {
+      const cod = decodeURIComponent(encodedCod);
+      const inp = document.getElementById(`cnResumenInput_${idx}`);
+      if (!inp) return;
+      const val = inp.value.trim();
+      const hojas = getHojasRotuloA4Map();
+      const key = `${obraId}::${cod}`;
+      const p = (projectsData || []).find(x => x.id === obraId) || {};
+      const entry = hojas[key] || { projDesc: p.desc || '', amb: '', rows: [] };
+      entry.shortSummary = val;
+      entry.updatedAt = new Date().toISOString();
+      saveHojaRotuloA4ToLocal(obraId, cod, entry);
+      filterTable();
+      renderCajasEnDrawer(obraId);
+      showToast(`💾 Resumen corto guardado para ${cod}`);
+    }
+
+    function triggerUploadFotoCajaNueva(obraId, encodedCod, amb) {
+      pendingCnUploadCtx = { obraId, cod: decodeURIComponent(encodedCod), amb: amb || 'BAÑO1-PMO' };
+      const inp = document.getElementById('cnPhotoUploadInput');
+      if (inp) { inp.value = ''; inp.click(); }
+    }
+
+    async function handleUploadFotoCajaNuevaGabinete(fileInput) {
+      if (!pendingCnUploadCtx || !fileInput.files || fileInput.files.length === 0) return;
+      const { obraId, cod, amb } = pendingCnUploadCtx;
+      const p = (projectsData || []).find(x => x.id === obraId) || {};
+      if (!fieldPhotosMap[obraId]) fieldPhotosMap[obraId] = { id: obraId, fotos: [], ubicacion: amb };
+      if (!fieldPhotosMap[obraId].fotos) fieldPhotosMap[obraId].fotos = [];
+
+      const existingCount = fieldPhotosMap[obraId].fotos.filter(f => f.codigo_caja === cod && isCajaNuevaPhoto(f)).length;
+      const gasUrl = (localStorage.getItem('fdm_gas_url') || '').trim();
+      showToast(`⏳ Procesando ${fileInput.files.length} foto(s) para ${cod}...`);
+
+      let idx = 0;
+      for (const file of Array.from(fileInput.files)) {
+        idx++;
+        const itNum = existingCount + idx;
+        const itStr = String(itNum).padStart(2, '0');
+        const subCod = `${cod}-IT${itStr}`;
+        const tipoFoto = `Caja Nueva (${cod}) - Ítem ${itStr}`;
+        const dataUrl = await new Promise((resolve) => {
+          const reader = new FileReader();
+          reader.onload = (ev) => {
+            const img = new Image();
+            img.onload = () => {
+              let w = img.width, h = img.height, maxW = 1600;
+              if (w > maxW || h > maxW) {
+                if (w > h) { h = Math.round((h * maxW) / w); w = maxW; }
+                else { w = Math.round((w * maxW) / h); h = maxW; }
+              }
+              const c = document.createElement('canvas');
+              c.width = w; c.height = h;
+              c.getContext('2d').drawImage(img, 0, 0, w, h);
+              resolve(c.toDataURL('image/jpeg', 0.82));
+            };
+            img.onerror = () => resolve(ev.target.result);
+            img.src = ev.target.result;
+          };
+          reader.onerror = () => resolve(null);
+          reader.readAsDataURL(file);
+        });
+        if (!dataUrl) continue;
+
+        const photoObj = {
+          id: `foto_${Date.now()}_${itNum}`,
+          slot: 'item_rotulo',
+          codigo_caja: cod,
+          sub_codigo: subCod,
+          tipo_foto: tipoFoto,
+          dataUrl,
+          timestamp: new Date().toLocaleString(),
+          ubicacion: amb,
+          nota: `[IT${itStr}] Archivador / File ${itStr}`
+        };
+        fieldPhotosMap[obraId].fotos.push(photoObj);
+
+        if (gasUrl) {
+          try {
+            const res = await fetch(gasUrl, {
+              method: 'POST',
+              headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+              body: JSON.stringify({
+                action: 'save_box_photo',
+                obra_id: obraId,
+                desc: p.desc || '',
+                cui: p.cui || '',
+                codigo_caja: cod,
+                sub_codigo: subCod,
+                ambiente: amb,
+                contenido_caja: photoObj.nota,
+                tipo_foto: tipoFoto,
+                photo: {
+                  base64: dataUrl,
+                  filename: `OBRA_${String(obraId).padStart(2, '0')}_${cod}_IT${itStr}.jpg`,
+                  slot: 'item_rotulo'
+                }
+              })
+            });
+            const cloudRes = await res.json();
+            if (cloudRes && cloudRes.status === 'success') {
+              if (cloudRes.drive_url) photoObj.drive_url = cloudRes.drive_url;
+              if (cloudRes.file_id) photoObj.file_id = cloudRes.file_id;
+            }
+          } catch (e) {}
+        }
+      }
+
+      fileInput.value = '';
+      renderCajasNuevasEnDrawer(obraId);
+      renderCajasEnDrawer(obraId);
+      filterTable();
+      renderAnalyticsDashboard();
+      showToast(`🆕 Foto(s) agregadas a Caja Nueva "${cod}"`);
     }
 
     let lightboxZoomScale = 1;
@@ -2247,11 +2739,14 @@
           const ambCards = breakdown.ambientes.map(a => {
             const countTxt = [
               a.cajasCount > 0 ? `${a.cajasCount} ${a.cajasCount === 1 ? 'caja' : 'cajas'}` : '',
+              a.cajasNuevasCount > 0 ? `${a.cajasNuevasCount} ${a.cajasNuevasCount === 1 ? 'caja nueva' : 'cajas nuevas'}` : '',
               a.sueltosCount > 0 ? `${a.sueltosCount} ${a.sueltosCount === 1 ? 'suelto' : 'sueltos'}` : ''
             ].filter(Boolean).join(', ');
             const boxLines = a.items.map(it => {
-              const txt = it.contenido ? escapeHtmlAttr(it.contenido) : '<span style="color:#94A3B8;font-style:italic;">Foto sin rótulo escrito</span>';
-              return `<div class="amb-box-line"><span class="amb-box-code">${it.isSuelto ? '📁' : '📦'} ${escapeHtmlAttr(it.codigo)}</span>: ${txt}</div>`;
+              const icon = it.isCajaNueva ? '🆕' : (it.isSuelto ? '📁' : '📦');
+              const codeStyle = it.isCajaNueva ? 'color:#6D28D9;' : '';
+              const txt = it.contenido ? escapeHtmlAttr(it.contenido) : '<span style="color:#94A3B8;font-style:italic;">Foto sin descripción corta</span>';
+              return `<div class="amb-box-line"><span class="amb-box-code" style="${codeStyle}">${icon} ${escapeHtmlAttr(it.codigo)}</span>: ${txt}</div>`;
             }).join('');
             return `<div class="amb-card-mini"><div class="amb-card-mini-hdr"><span>📍 ${escapeHtmlAttr(a.ambiente)}</span><span style="font-size:0.66rem;background:#DCFCE7;padding:1px 5px;border-radius:4px;">${countTxt}</span></div>${boxLines}</div>`;
           }).join('');
@@ -2524,6 +3019,12 @@
         console.warn("Aviso al renderizar cajas en drawer:", errCaj);
       }
 
+      try {
+        renderCajasNuevasEnDrawer(id);
+      } catch (errCN) {
+        console.warn("Aviso al renderizar cajas nuevas:", errCN);
+      }
+
       switchDrawerTab('UBICACION');
       const mb = document.getElementById('modalBackdrop');
       if (mb) mb.classList.add('open');
@@ -2751,13 +3252,16 @@
     }
 
     function switchDrawerTab(tab) {
-      document.getElementById('tabNavHistorial')?.classList.toggle('active', tab === 'HISTORIAL');
       document.getElementById('tabNavUbicacion')?.classList.toggle('active', tab === 'UBICACION');
+      document.getElementById('tabNavCajasNuevas')?.classList.toggle('active', tab === 'CAJAS_NUEVAS');
+      document.getElementById('tabNavHistorial')?.classList.toggle('active', tab === 'HISTORIAL');
 
-      const elHist = document.getElementById('drawerTabContentHistorial');
       const elUbic = document.getElementById('drawerTabContentUbicacion');
-      if (elHist) elHist.style.display = tab === 'HISTORIAL' ? 'block' : 'none';
+      const elCN = document.getElementById('drawerTabContentCajasNuevas');
+      const elHist = document.getElementById('drawerTabContentHistorial');
       if (elUbic) elUbic.style.display = tab === 'UBICACION' ? 'block' : 'none';
+      if (elCN) elCN.style.display = tab === 'CAJAS_NUEVAS' ? 'block' : 'none';
+      if (elHist) elHist.style.display = tab === 'HISTORIAL' ? 'block' : 'none';
     }
 
     function closeDrawer() {
@@ -3549,48 +4053,47 @@
 
     let activeArmadorCtx = { obraId: null, cod: '', amb: '', projDesc: '', rows: [], activeRowIdx: 0 };
 
-    function parseRotuloToRows(cajaFotos, cod) {
-      const validNotes = [];
-      (cajaFotos || []).forEach(cf => {
-        const n = (cf.nota || '').trim();
-        if (n && n !== cod && n !== 'Contenido no especificado' && !validNotes.includes(n)) {
-          validNotes.push(n);
-        }
-      });
+    function parseRotuloToRows(obraId, cajaFotos, cod) {
+      const hojas = getHojasRotuloA4Map();
+      const saved = hojas[`${obraId}::${cod}`];
+      if (saved && Array.isArray(saved.rows) && saved.rows.length > 0) {
+        return saved.rows.map((r, idx) => ({
+          num: String(r.num || (idx + 1)).padStart(2, '0'),
+          contenido: String(r.contenido || '').trim(),
+          caja: String(r.caja || cod).trim()
+        }));
+      }
 
       const rows = [];
-      if (validNotes.length === 1 && /\b\d{1,2}\)\s*/.test(validNotes[0])) {
-        validNotes[0].split(/;\s*(?=\d{1,2}\))/).forEach((part, idx) => {
-          const m = part.match(/^(\d{1,2})\)\s*(.*)$/);
-          const num = m ? m[1].padStart(2, '0') : String(idx + 1).padStart(2, '0');
-          const txt = (m ? m[2] : part).trim();
-          if (txt) rows.push({ num, contenido: txt, caja: cod });
+      const itemPhotos = (cajaFotos || []).filter(f => isCajaNuevaPhoto(f));
+      if (itemPhotos.length > 0) {
+        itemPhotos.forEach((f, idx) => {
+          const ocrTxt = (f.ocr_acervo || '').replace(/\|/g, ', ').trim();
+          let noteTxt = (f.nota || '').replace(/^\[IT\d+\]\s*/i, '').trim();
+          if (/^Archivador \/ File \d+$/i.test(noteTxt) || noteTxt === cod) noteTxt = '';
+          rows.push({
+            num: String(idx + 1).padStart(2, '0'),
+            contenido: noteTxt || ocrTxt || '',
+            caja: cod
+          });
         });
-      } else if (validNotes.length > 0 && validNotes.some(n => /^\[IT\d+\]/i.test(n))) {
-        validNotes.forEach((n, idx) => {
-          const m = n.match(/^\[IT(\d+)\]\s*(.*)$/i);
-          const num = m ? m[1].padStart(2, '0') : String(idx + 1).padStart(2, '0');
-          const txt = (m ? m[2] : n).trim();
-          rows.push({ num, contenido: txt, caja: cod });
+      } else {
+        const validNotes = [];
+        (cajaFotos || []).forEach(cf => {
+          const n = cleanShortSummaryNote((cf.nota || '').trim(), obraId, cod);
+          if (n && n !== cod && n !== 'Contenido no especificado' && !validNotes.includes(n)) {
+            validNotes.push(n);
+          }
         });
-      } else if (validNotes.length > 0) {
-        const joined = validNotes.join('; ');
-        joined.split(/;\s*/).forEach((seg, idx) => {
-          const cleanSeg = seg.replace(/^\[IT\d+\]\s*/i, '').replace(/^\d{1,2}\)\s*/, '').trim();
-          if (cleanSeg) rows.push({ num: String(idx + 1).padStart(2, '0'), contenido: cleanSeg, caja: cod });
-        });
+        if (validNotes.length > 0) {
+          validNotes.forEach((n, idx) => {
+            rows.push({ num: String(idx + 1).padStart(2, '0'), contenido: n, caja: cod });
+          });
+        }
       }
 
       if (rows.length === 0) {
-        const itemPhotos = (cajaFotos || []).filter(f => (f.sub_codigo || '').includes('-IT') || (f.tipo_foto || '').includes('Armar Rótulo'));
-        if (itemPhotos.length > 0) {
-          itemPhotos.forEach((f, idx) => {
-            const ocrTxt = (f.ocr_acervo || '').replace(/\|/g, ', ').trim();
-            rows.push({ num: String(idx + 1).padStart(2, '0'), contenido: ocrTxt, caja: cod });
-          });
-        } else {
-          rows.push({ num: '01', contenido: '', caja: cod });
-        }
+        rows.push({ num: '01', contenido: '', caja: cod });
       }
       return rows;
     }
@@ -3600,14 +4103,21 @@
       const p = (projectsData || []).find(x => x.id === obraId) || {};
       const fData = fieldPhotosMap[obraId] || { fotos: [] };
       const cajaFotos = (fData.fotos || []).filter(f => (f.codigo_caja || f.nota || 'SIN_CODIGO') === cod);
-      const amb = (cajaFotos[0] && cajaFotos[0].ubicacion) || fData.ubicacion || 'Ambiente';
+      const shells = getCajasNuevasLocalMap()[obraId] || [];
+      const shell = shells.find(s => s.cod === cod);
+      const amb = (cajaFotos[0] && cajaFotos[0].ubicacion) || (shell && shell.amb) || fData.ubicacion || 'Ambiente';
+      const hojas = getHojasRotuloA4Map();
+      const savedHoja = hojas[`${obraId}::${cod}`] || {};
+      const isCN = /(?:^|-)CN\d+(?:-|$)/i.test(cod) || cajaFotos.some(f => isCajaNuevaPhoto(f));
 
       activeArmadorCtx = {
         obraId,
         cod,
         amb,
-        projDesc: p.desc || `OBRA N° ${obraId}`,
-        rows: parseRotuloToRows(cajaFotos, cod),
+        isCN,
+        projDesc: savedHoja.projDesc || p.desc || `OBRA N° ${obraId}`,
+        shortSummary: savedHoja.shortSummary || '',
+        rows: parseRotuloToRows(obraId, cajaFotos, cod),
         activeRowIdx: 0
       };
 
@@ -3615,12 +4125,16 @@
       if (titleInp) titleInp.value = activeArmadorCtx.projDesc;
       const codInp = document.getElementById('armadorCodInput');
       if (codInp) codInp.value = cod;
+      const resRow = document.getElementById('armadorResumenCortoRow');
+      const resInp = document.getElementById('armadorResumenCorto');
+      if (resRow) resRow.style.display = isCN ? 'block' : 'none';
+      if (resInp) resInp.value = activeArmadorCtx.shortSummary || '';
       const ambSpan = document.getElementById('armadorAmbSpan');
-      if (ambSpan) ambSpan.innerText = `📍 ${amb} (${cajaFotos.length} fotos)`;
+      if (ambSpan) ambSpan.innerText = `📍 ${amb} (${cajaFotos.length} fotos) • Hoja A4 independiente del resumen corto`;
 
       const photosPane = document.getElementById('armadorPhotosPane');
       if (photosPane) {
-        photosPane.innerHTML = cajaFotos.map((f, i) => {
+        photosPane.innerHTML = cajaFotos.length > 0 ? cajaFotos.map((f, i) => {
           const directUrl = resolveDirectImageUrl(f.dataUrl, f.file_id || f.drive_url);
           const cleanNote = (f.nota && f.nota !== cod && f.nota !== 'Contenido no especificado') ? f.nota.replace(/^\[IT\d+\]\s*/i, '').trim() : '';
           const ocrText = (f.ocr_acervo || '').replace(/\|/g, ', ').trim();
@@ -3639,7 +4153,7 @@
               </div>
             </div>
           `;
-        }).join('');
+        }).join('') : `<div style="padding:1.5rem; text-align:center; color:#64748B; font-size:0.82rem;">Aún no hay fotos cargadas en esta Caja Nueva. Puedes añadir filas manualmente en la derecha o subir fotos desde la pestaña Cajas Nuevas.</div>`;
       }
 
       const chipsBox = document.getElementById('armadorQuickChips');
@@ -3736,77 +4250,49 @@
       const cod = activeArmadorCtx.cod;
       if (!obraId || !cod) return;
 
-      const nonEmpty = activeArmadorCtx.rows
+      const cleanedRows = activeArmadorCtx.rows
         .map((r, i) => ({
           num: String(r.num || (i + 1)).trim().padStart(2, '0'),
-          contenido: String(r.contenido || '').replace(/^\d{1,2}\)\s*/, '').trim()
+          contenido: String(r.contenido || '').replace(/^\d{1,2}\)\s*/, '').trim(),
+          caja: String(r.caja || cod).trim()
         }))
-        .filter(r => r.contenido);
+        .filter(r => r.contenido && !/^[-_\s]+$/.test(r.contenido));
 
-      if (nonEmpty.length === 0) {
-        showToast("Escribe al menos una fila de contenido antes de guardar.");
+      if (cleanedRows.length === 0) {
+        showToast("Escribe al menos una fila válida antes de guardar la Hoja de Rótulo A4.");
         return;
       }
 
-      const serialized = nonEmpty.length === 1
-        ? nonEmpty[0].contenido
-        : nonEmpty.map(r => `${r.num}) ${r.contenido}`).join('; ');
+      const projTitle = (document.getElementById('armadorProyectoTitle')?.value || activeArmadorCtx.projDesc || '').trim();
+      const resumenInputVal = (document.getElementById('armadorResumenCorto')?.value || '').trim();
+      const hojas = getHojasRotuloA4Map();
+      const prevHoja = hojas[`${obraId}::${cod}`] || {};
+      const finalShortSummary = activeArmadorCtx.isCN
+        ? (resumenInputVal || prevHoja.shortSummary || '')
+        : (prevHoja.shortSummary || '');
 
-      const fData = fieldPhotosMap[obraId];
-      if (fData && fData.fotos) {
-        fData.fotos.forEach(f => {
-          const fCod = f.codigo_caja || f.nota || 'SIN_CODIGO';
-          if (fCod === cod) f.nota = serialized;
-        });
-      }
+      saveHojaRotuloA4ToLocal(obraId, cod, {
+        projDesc: projTitle,
+        amb: activeArmadorCtx.amb || '',
+        shortSummary: finalShortSummary,
+        rows: cleanedRows,
+        updatedAt: new Date().toISOString()
+      });
 
-      try {
-        const edits = getRotuloEditsMap();
-        edits[`${obraId}::${cod}`] = serialized;
-        localStorage.setItem('fdm_rotulo_edits', JSON.stringify(edits));
-      } catch (e) {}
-
-      try {
-        await new Promise((resolve) => {
-          const req = indexedDB.open('FDM_Field_Audit_DB', 1);
-          req.onsuccess = (e) => {
-            const dbInstance = e.target.result;
-            if (!dbInstance.objectStoreNames.contains('obras_campo')) { resolve(); return; }
-            const tx = dbInstance.transaction('obras_campo', 'readwrite');
-            if (fData) tx.objectStore('obras_campo').put(fData);
-            tx.oncomplete = () => resolve();
-            tx.onerror = () => resolve();
-          };
-          req.onerror = () => resolve();
-        });
-      } catch (e) {}
-
+      // IMPORTANTE: No tocar f.nota ni contenido_caja en CENSO_CAJAS_FOTOS, para mantener 100%
+      // separada la descripción corta en "Ubicación por Ambiente y Contenido" respecto a este Rótulo A4.
       renderCajasEnDrawer(obraId);
+      renderCajasNuevasEnDrawer(obraId);
       filterTable();
       renderAnalyticsDashboard();
 
       const btn = document.getElementById('btnSaveArmadorRotulo');
-      if (btn) { btn.disabled = true; btn.innerText = '⏳ Subiendo a Drive...'; }
-      const gasUrl = (localStorage.getItem('fdm_gas_url') || '').trim();
-      let synced = false;
-      if (gasUrl) {
-        try {
-          const res = await fetch(gasUrl, {
-            method: 'POST',
-            headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-            body: JSON.stringify({
-              action: 'update_box_content',
-              obra_id: obraId,
-              codigo_caja: cod,
-              contenido_caja: serialized
-            })
-          });
-          const data = await res.json();
-          synced = !!(data && data.status === 'success');
-        } catch (err) {}
+      if (btn) {
+        const orig = btn.innerText;
+        btn.innerText = '✓ Rótulo A4 Guardado';
+        setTimeout(() => { if (btn) btn.innerText = orig; }, 1600);
       }
-      if (btn) { btn.disabled = false; btn.innerText = '💾 Guardar Rótulo (Web + Drive)'; }
-      showToast(synced ? `☁️ Rótulo "${cod}" guardado y sincronizado en CENSO_CAJAS_FOTOS` : `💾 Rótulo "${cod}" guardado en Gabinete`);
+      showToast(`🏷️ Hoja de Rótulo A4 de "${cod}" guardada aparte (resumen corto intacto)`);
     }
 
     function imprimirHojaRotuloCaja() {
@@ -3915,6 +4401,11 @@
               </div>
             </div>
 
+            <div id="armadorResumenCortoRow" style="display:none; margin-bottom:0.5rem;">
+              <label style="font-size:0.7rem; font-weight:800; color:#5B21B6; text-transform:uppercase;">Resumen corto en Tabla Principal (Opcional • no satura el cuadro)</label>
+              <input type="text" id="armadorResumenCorto" class="armador-input" placeholder="Ej: Valorizaciones 1 a 4 y Liquidación..." oninput="activeArmadorCtx.shortSummary = this.value">
+            </div>
+
             <div style="font-size:0.72rem; font-weight:800; color:#4C1D95; margin-top:0.4rem;">⚡ Frases rápidas (Clic para insertar en fila activa):</div>
             <div class="armador-chips-wrap" id="armadorQuickChips"></div>
 
@@ -3931,7 +4422,7 @@
             </table>
             <div style="margin-top:0.65rem; display:flex; justify-content:space-between; align-items:center;">
               <button type="button" class="armador-chip" style="background:#EDE9FE; border-color:#8B5CF6; color:#5B21B6; font-weight:800; padding:0.4rem 0.85rem;" onclick="addArmadorRow()">+ Añadir Fila al Rótulo</button>
-              <span style="font-size:0.72rem; color:#64748B;">Se guarda en Web, Resumen por Ambientes y Google Sheets</span>
+              <span style="font-size:0.72rem; color:#64748B;">Se guarda aparte como Hoja de Rótulo A4 (sin alterar resúmenes cortos)</span>
             </div>
           </div>
         </div>
