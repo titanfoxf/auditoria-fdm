@@ -2467,27 +2467,34 @@
 
     function getProjectEndYear(p) {
       if (!p || p.id === 999 || p.es_multiproyecto) return '';
-      const raw = p.fecha_termino_verificada_ing || (p.fecha_culminacion_real && p.fecha_culminacion_real !== '-' ? p.fecha_culminacion_real : (p.fecha_termino_prog && p.fecha_termino_prog !== '-' ? p.fecha_termino_prog : ''));
+      if (!hasValidEnd(p)) return '';
+      const raw = p.fecha_termino_verificada_ing || (p.fecha_culminacion_real && p.fecha_culminacion_real !== '-' ? p.fecha_culminacion_real : '');
       const m = String(raw || '').match(/\b(20\d{2})\b/);
       return m ? m[1] : '';
     }
 
     function isProjectInTdr2022_2025(p) {
       if (!p || p.id === 999 || p.es_multiproyecto || p.es_obra_civil !== true) return false;
-      const est = (p.estatus || '').toUpperCase().trim();
-      const isEjecOrLiq = isProjectExecutedOrLiquidated(p);
-      const hasFieldBoxes = !isProjectMissingCensus(p);
-      if (!isEjecOrLiq && !(hasFieldBoxes && est !== 'POR EJECUTAR')) return false;
+      const hasIni = hasValidStart(p);
+      const hasFin = hasValidEnd(p);
+      // Criterio Estricto Puro: debe tener fecha comprobada
+      if (!hasIni && !hasFin) return false;
 
-      const iniY = parseInt(getProjectStartYear(p) || '0', 10);
-      const finY = parseInt(getProjectEndYear(p) || '0', 10);
-      if (finY >= 2022 && finY <= 2025) return true;
-      if (iniY >= 2022 && iniY <= 2025) return true;
-      if (iniY >= 2026) return false;
-      // Obras 2020-2021 culminadas/liquidadas en tomos 2022-2025 o ejecutadas sin fecha definida aún
-      if ((p.historial || []).some(h => /202[2345]/.test(String(h.fecha_sort || h.fecha || '')))) return true;
-      if (isEjecOrLiq && (finY === 0 || finY >= 2022)) return true;
-      return false;
+      const iniY = hasIni ? parseInt(getProjectStartYear(p) || '0', 10) : 0;
+      const finY = hasFin ? parseInt(getProjectEndYear(p) || '0', 10) : 0;
+
+      // 1. Si culminó antes de 2022 (2020 o 2021), queda fuera
+      if (finY > 0 && finY < 2022) return false;
+      // 2. Si inició antes de 2022 (2020 o 2021) y NO tiene fecha de término comprobada entre 2022 y 2025, queda fuera
+      if (iniY > 0 && iniY < 2022 && !(finY >= 2022 && finY <= 2025)) return false;
+      // 3. Si es de 2026 en adelante, queda fuera
+      if (iniY >= 2026 || finY >= 2026) return false;
+
+      // 4. Debe ser una obra ejecutada/culminada/liquidada (o con término real comprobado en 2022-2025)
+      const isCulminatedOrExec = isProjectExecutedOrLiquidated(p) || (finY >= 2022 && finY <= 2025);
+      if (!isCulminatedOrExec) return false;
+
+      return (iniY >= 2022 && iniY <= 2025) || (finY >= 2022 && finY <= 2025);
     }
 
     function getScopedProjects() {
@@ -2604,12 +2611,14 @@
     function getProjectStartYear(p) {
       if (!p || p.id === 999 || p.es_multiproyecto) return '';
       if (!hasValidStart(p)) return '';
-      if (p.fecha_inicio_sort && /^\d{4}/.test(p.fecha_inicio_sort)) {
-        return p.fecha_inicio_sort.slice(0, 4);
-      }
       const ini = String(p.fecha_inicio || '').trim();
-      const m = ini.match(/\b(20\d{2})\b/);
-      return m ? m[1] : '';
+      const m = ini.match(/\b(19\d{2}|20\d{2})\b/);
+      if (m) return m[1];
+      if (p.fecha_inicio_sort && /^\d{4}/.test(p.fecha_inicio_sort)) {
+        const ySort = p.fecha_inicio_sort.slice(0, 4);
+        if (ySort !== '9999' && ySort !== '0000') return ySort;
+      }
+      return '';
     }
 
     function setYearFilter(year, btn) {
