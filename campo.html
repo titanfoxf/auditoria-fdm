@@ -173,6 +173,13 @@
         <option value="SECRETARIA-PMO">📑 SECRETARIA-PMO</option>
         <option value="ALMACEN-TECHO">📦 ALMACEN-TECHO</option>
         <option value="ARMARIO-1ERPISO">🗄️ ARMARIO-1ERPISO</option>
+        <optgroup label="🗂️ Archivo Ordenado por Años (TDR)">
+          <option value="ARCHIVO-2021-CULM">🗂️ ARCHIVO-2021-CULM (2021 Culm. 22-23)</option>
+          <option value="ARCHIVO-2022">🗂️ ARCHIVO-2022</option>
+          <option value="ARCHIVO-2023">🗂️ ARCHIVO-2023</option>
+          <option value="ARCHIVO-2024">🗂️ ARCHIVO-2024</option>
+          <option value="ARCHIVO-2025">🗂️ ARCHIVO-2025</option>
+        </optgroup>
         <option value="OTROS">📍 OTROS</option>
         <option value="CUSTOM">➕ Agregar Sub-zona / Otro...</option>
       </select>
@@ -180,6 +187,11 @@
 
     <div class="chips-bar">
       <button class="chip active" onclick="setFilter('OBRA_CIVIL', this)" style="border-color: #2563EB; font-weight: 800;">🏗️ Obras Civiles (<span id="countCivil">72</span>)</button>
+      <button class="chip" onclick="setFilter('BLK_2021_CULM', this)" style="border-color:#8B5CF6; color:#5B21B6; background:#F5F3FF; font-weight:800;">🗂️ 2021-Culm. (<span id="countBlk2021">0</span>)</button>
+      <button class="chip" onclick="setFilter('BLK_2022', this)" style="border-color:#2563EB; color:#1D4ED8; background:#EFF6FF; font-weight:800;">🗂️ 2022 (<span id="countBlk2022">0</span>)</button>
+      <button class="chip" onclick="setFilter('BLK_2023', this)" style="border-color:#0D9488; color:#0F766E; background:#F0FDFA; font-weight:800;">🗂️ 2023 (<span id="countBlk2023">0</span>)</button>
+      <button class="chip" onclick="setFilter('BLK_2024', this)" style="border-color:#D97706; color:#B45309; background:#FFFBEB; font-weight:800;">🗂️ 2024 (<span id="countBlk2024">0</span>)</button>
+      <button class="chip" onclick="setFilter('BLK_2025', this)" style="border-color:#DC2626; color:#B91C1C; background:#FEF2F2; font-weight:800;">🗂️ 2025 (<span id="countBlk2025">0</span>)</button>
       <button class="chip alert" onclick="setFilter('PRIO_SIN_CENSAR', this)" style="border-color: #DC2626; color: #DC2626; font-weight: 800;">🚨 Ejecutadas Sin Censar (<span id="countPrioSinCensar">0</span>)</button>
       <button class="chip alert" onclick="setFilter('FALTA_FECHAS', this)">📅 Ejecutadas Sin Fechas (<span id="countSinFechas">0</span>)</button>
       <button class="chip green" onclick="setFilter('WITH_PHOTOS', this)">📸 Con Fotos (<span id="countWithPhotos">0</span>)</button>
@@ -289,6 +301,13 @@
               <option value="SECRETARIA-PMO">📑 SECRETARIA-PMO</option>
               <option value="ALMACEN-TECHO">📦 ALMACEN-TECHO</option>
               <option value="ARMARIO-1ERPISO">🗄️ ARMARIO-1ERPISO</option>
+              <optgroup label="🗂️ Archivo Ordenado por Años (TDR)">
+                <option value="ARCHIVO-2021-CULM">🗂️ ARCHIVO-2021-CULM (2021 Culm. 22-23)</option>
+                <option value="ARCHIVO-2022">🗂️ ARCHIVO-2022</option>
+                <option value="ARCHIVO-2023">🗂️ ARCHIVO-2023</option>
+                <option value="ARCHIVO-2024">🗂️ ARCHIVO-2024</option>
+                <option value="ARCHIVO-2025">🗂️ ARCHIVO-2025</option>
+              </optgroup>
               <option value="OTROS">📍 OTROS</option>
               <option value="CUSTOM">➕ Agregar Sub-zona / Otro...</option>
             </select>
@@ -462,6 +481,13 @@
               <option value="SECRETARIA-PMO">📑 SECRETARIA-PMO</option>
               <option value="ALMACEN-TECHO">📦 ALMACEN-TECHO</option>
               <option value="ARMARIO-1ERPISO">🗄️ ARMARIO-1ERPISO</option>
+              <optgroup label="🗂️ Archivo Ordenado por Años (TDR)">
+                <option value="ARCHIVO-2021-CULM">🗂️ ARCHIVO-2021-CULM (2021 Culm. 22-23)</option>
+                <option value="ARCHIVO-2022">🗂️ ARCHIVO-2022</option>
+                <option value="ARCHIVO-2023">🗂️ ARCHIVO-2023</option>
+                <option value="ARCHIVO-2024">🗂️ ARCHIVO-2024</option>
+                <option value="ARCHIVO-2025">🗂️ ARCHIVO-2025</option>
+              </optgroup>
               <option value="OTROS">📍 OTROS</option>
               <option value="CUSTOM">➕ Agregar Sub-zona / Otro...</option>
             </select>
@@ -567,6 +593,13 @@
               <option value="SECRETARIA-PMO">📑 SECRETARIA-PMO</option>
               <option value="ALMACEN-TECHO">📦 ALMACEN-TECHO</option>
               <option value="ARMARIO-1ERPISO">🗄️ ARMARIO-1ERPISO</option>
+              <optgroup label="🗂️ Archivo Ordenado por Años (TDR)">
+                <option value="ARCHIVO-2021-CULM">🗂️ ARCHIVO-2021-CULM (2021 Culm. 22-23)</option>
+                <option value="ARCHIVO-2022">🗂️ ARCHIVO-2022</option>
+                <option value="ARCHIVO-2023">🗂️ ARCHIVO-2023</option>
+                <option value="ARCHIVO-2024">🗂️ ARCHIVO-2024</option>
+                <option value="ARCHIVO-2025">🗂️ ARCHIVO-2025</option>
+              </optgroup>
               <option value="OTROS">📍 OTROS</option>
               <option value="CUSTOM">➕ Agregar Sub-zona / Otro...</option>
             </select>
@@ -1337,6 +1370,11 @@
       'SECRETARIA-PMO': 'SEC',
       'ALMACEN-TECHO': 'ALT',
       'ARMARIO-1ERPISO': 'ARM1',
+      'ARCHIVO-2021-CULM': 'A21',
+      'ARCHIVO-2022': 'A22',
+      'ARCHIVO-2023': 'A23',
+      'ARCHIVO-2024': 'A24',
+      'ARCHIVO-2025': 'A25',
       'OTROS': 'OTR'
     };
 
@@ -1348,6 +1386,11 @@
       if (AMBIENTE_PREFIXES[cleanAmb]) return AMBIENTE_PREFIXES[cleanAmb];
       
       // Coincidencias inteligentes
+      if (cleanAmb.includes('ARCHIVO-2021') || cleanAmb.includes('ARCHIVO 2021')) return 'A21';
+      if (cleanAmb.includes('ARCHIVO-2022') || cleanAmb.includes('ARCHIVO 2022')) return 'A22';
+      if (cleanAmb.includes('ARCHIVO-2023') || cleanAmb.includes('ARCHIVO 2023')) return 'A23';
+      if (cleanAmb.includes('ARCHIVO-2024') || cleanAmb.includes('ARCHIVO 2024')) return 'A24';
+      if (cleanAmb.includes('ARCHIVO-2025') || cleanAmb.includes('ARCHIVO 2025')) return 'A25';
       if (cleanAmb.includes('BAÑO 1') || cleanAmb.includes('BANO 1') || cleanAmb.includes('BAÑO1') || cleanAmb.includes('BANO1')) return 'B1';
       if (cleanAmb.includes('BAÑO 2') || cleanAmb.includes('BANO 2') || cleanAmb.includes('BAÑO2') || cleanAmb.includes('BANO2')) return 'B2';
       if (cleanAmb.includes('BAÑO 3') || cleanAmb.includes('BANO 3') || cleanAmb.includes('BAÑO3') || cleanAmb.includes('BANO3')) return 'B3';
@@ -2072,6 +2115,55 @@
       return Object.entries(ambCounts).map(([a, s]) => `${a} (${s.size || 1})`).join(' | ');
     }
 
+    const CAMPO_ARCHIVE_BLOCKS = {
+      '2021_CULM': { key: '2021_CULM', short: '2021-Culm.', label: '2021-Culm.', color: '#7C3AED', bg: '#F5F3FF' },
+      '2022': { key: '2022', short: '2022', label: '2022', color: '#2563EB', bg: '#EFF6FF' },
+      '2023': { key: '2023', short: '2023', label: '2023', color: '#0D9488', bg: '#F0FDFA' },
+      '2024': { key: '2024', short: '2024', label: '2024', color: '#D97706', bg: '#FFFBEB' },
+      '2025': { key: '2025', short: '2025', label: '2025', color: '#DC2626', bg: '#FEF2F2' }
+    };
+
+    function getCampoStartYear(p) {
+      if (!p || p.id === 999 || p.es_multiproyecto) return 0;
+      const d = (typeof fieldData !== 'undefined' && fieldData[p.id]) ? fieldData[p.id] : {};
+      const rawIni = (d.fecha_inicio || (p.tiene_fecha_inicio && p.fecha_inicio) || '').trim();
+      if (!rawIni || rawIni.toUpperCase().includes('SIN INICIO') || rawIni.toUpperCase().includes('POR UBICAR')) return 0;
+      const m = rawIni.match(/\b(19\d{2}|20\d{2})\b/);
+      if (m) return parseInt(m[1], 10);
+      if (p.fecha_inicio_sort && /^\d{4}/.test(p.fecha_inicio_sort)) {
+        const ySort = p.fecha_inicio_sort.slice(0, 4);
+        if (ySort !== '9999' && ySort !== '0000') return parseInt(ySort, 10);
+      }
+      return 0;
+    }
+
+    function getCampoEndYear(p) {
+      if (!p || p.id === 999 || p.es_multiproyecto) return 0;
+      const d = (typeof fieldData !== 'undefined' && fieldData[p.id]) ? fieldData[p.id] : {};
+      const rawFin = (d.fecha_culm || p.fecha_termino_verificada_ing || (p.fecha_culminacion_real && p.fecha_culminacion_real !== '-' ? p.fecha_culminacion_real : '') || '').trim();
+      const hasFin = !!p.tiene_fecha_termino || (!!rawFin && rawFin !== 'Culminada' && rawFin !== 'Sin dato' && rawFin !== 'Sin dato en PMO' && /\d/.test(rawFin));
+      if (!hasFin) return 0;
+      const m = rawFin.match(/\b(20\d{2})\b/);
+      return m ? parseInt(m[1], 10) : 0;
+    }
+
+    function getCampoArchiveBlockKey(p) {
+      if (!p || p.id === 999 || p.es_multiproyecto || p.es_obra_civil !== true) return '';
+      const iniY = getCampoStartYear(p);
+      const finY = getCampoEndYear(p);
+      if (!iniY && !finY) return '';
+      if (finY > 0 && finY < 2022) return '';
+      if (iniY > 0 && iniY < 2022 && !(finY >= 2022 && finY <= 2025)) return '';
+      if (iniY >= 2026 || finY >= 2026) return '';
+      const isCulm = isCampoExecutedOrLiq(p) || (finY >= 2022 && finY <= 2025);
+      if (!isCulm) return '';
+      if (!((iniY >= 2022 && iniY <= 2025) || (finY >= 2022 && finY <= 2025))) return '';
+      if (iniY > 0 && iniY < 2022 && finY >= 2022 && finY <= 2025) return '2021_CULM';
+      if (iniY >= 2022 && iniY <= 2025) return String(iniY);
+      if (finY >= 2022 && finY <= 2025) return String(finY);
+      return '';
+    }
+
     function updateGlobalCounters() {
       let countCivil = 0;
       let countPrioSinCensar = 0;
@@ -2084,11 +2176,16 @@
       let countMulti = 0;
       let countLiq = 0;
       let countEnLiqExec = 0;
+      const blkCounts = { '2021_CULM': 0, '2022': 0, '2023': 0, '2024': 0, '2025': 0 };
 
       projects.forEach(p => {
         const isMulti = p.id === 999 || p.es_multiproyecto;
         if (isMulti) countMulti++;
-        if (p.es_obra_civil) countCivil++;
+        if (p.es_obra_civil) {
+          countCivil++;
+          const blkKey = getCampoArchiveBlockKey(p);
+          if (blkKey && blkCounts[blkKey] !== undefined) blkCounts[blkKey]++;
+        }
 
         const d = fieldData[p.id] || {};
         const photosCount = (d.fotos || []).length;
@@ -2117,6 +2214,11 @@
       const setC = (id, v) => { const el = document.getElementById(id); if (el) el.innerText = v; };
       setC('countTotal', projects.length);
       setC('countCivil', countCivil);
+      setC('countBlk2021', blkCounts['2021_CULM']);
+      setC('countBlk2022', blkCounts['2022']);
+      setC('countBlk2023', blkCounts['2023']);
+      setC('countBlk2024', blkCounts['2024']);
+      setC('countBlk2025', blkCounts['2025']);
       setC('countPrioSinCensar', countPrioSinCensar);
       setC('countSinFechas', countSinFechas);
       setC('countLiq', countLiq);
@@ -2147,6 +2249,11 @@
         const hasFin = !!(d.fecha_culm || p.tiene_fecha_termino || (p.fecha_culminacion_real && p.fecha_culminacion_real !== '-' && /\d/.test(p.fecha_culminacion_real)));
 
         if (currentFilter === 'OBRA_CIVIL') return p.es_obra_civil === true;
+        if (currentFilter === 'BLK_2021_CULM') return getCampoArchiveBlockKey(p) === '2021_CULM';
+        if (currentFilter === 'BLK_2022') return getCampoArchiveBlockKey(p) === '2022';
+        if (currentFilter === 'BLK_2023') return getCampoArchiveBlockKey(p) === '2023';
+        if (currentFilter === 'BLK_2024') return getCampoArchiveBlockKey(p) === '2024';
+        if (currentFilter === 'BLK_2025') return getCampoArchiveBlockKey(p) === '2025';
         if (currentFilter === 'MULTI_OBRA') return isMulti;
         if (currentFilter === 'PRIO_SIN_CENSAR') return p.es_obra_civil === true && isCampoExecutedOrLiq(p) && !hasPhotos;
         if (currentFilter === 'FALTA_FECHAS') return p.es_obra_civil === true && isCampoExecutedOrLiq(p) && (!hasIni || !hasFin);
@@ -2228,6 +2335,11 @@
         const dateBadgeHtml = fechaIni || fechaFin
           ? `<span class="badge badge-blue">🚀 ${fechaIni ? fechaIni.substring(0, 10) : '⚠️ Sin Ini.'} → 🏁 ${fechaFin ? fechaFin.substring(0, 10) : '⚠️ Sin Fin'}</span>`
           : (isEjec ? `<span class="badge badge-red">📅 Sin Fechas Inicio/Fin</span>` : '');
+        const blkKey = !isMulti ? getCampoArchiveBlockKey(p) : '';
+        const blkMeta = blkKey ? CAMPO_ARCHIVE_BLOCKS[blkKey] : null;
+        const blkBadgeHtml = blkMeta
+          ? `<span class="badge" style="background:${blkMeta.bg}; color:${blkMeta.color}; border:1px solid ${blkMeta.color}; font-weight:800;">🗂️ Bloque ${blkMeta.short}</span>`
+          : '';
 
         return `
           <div class="${cardClass}" onclick="openDrawer(${p.id})">
@@ -2235,6 +2347,7 @@
               <span class="card-badge-id" style="${badgeIdStyle}">${badgeIdText}</span>
               <div class="card-badges">
                 ${!isMulti ? `<span class="badge" style="background: ${sInfo.bg}; color: ${sInfo.col}; font-weight: 800;"${sitTitleAttr}>${sInfo.label}</span>` : `<span class="badge" style="background: #F3E8FF; color: #7E22CE; font-weight: 800;">📦 CAJAS MIXTAS</span>`}
+                ${blkBadgeHtml}
                 ${sitChip}
                 ${p.cui && p.cui !== 'N/D' && p.cui !== 'S/N' ? `<span class="badge badge-gray">CUI: ${p.cui}</span>` : ''}
                 ${dateBadgeHtml}

@@ -343,6 +343,16 @@
     .year-btn.active { background: #0369A1; border-color: #0369A1; color: #FFFFFF; box-shadow: 0 2px 5px rgba(3,105,161,0.28); }
     .btn-batch-dates { margin-left: auto; background: #FEF3C7; border: 1.5px solid #F59E0B; color: #92400E; padding: 0.36rem 0.8rem; border-radius: 8px; font-size: 0.76rem; font-weight: 800; cursor: pointer; display: inline-flex; align-items: center; gap: 0.35rem; transition: all 0.15s; }
     .btn-batch-dates:hover { background: #FDE68A; transform: translateY(-1px); }
+    .btn-archive-plan { background: linear-gradient(135deg, #4F46E5, #7C3AED); border: 1.5px solid #4338CA; color: #FFFFFF; padding: 0.38rem 0.85rem; border-radius: 8px; font-size: 0.76rem; font-weight: 800; cursor: pointer; display: inline-flex; align-items: center; gap: 0.35rem; box-shadow: 0 2px 6px rgba(79,70,229,0.28); transition: all 0.15s; }
+    .btn-archive-plan:hover { background: linear-gradient(135deg, #4338CA, #6D28D9); transform: translateY(-1px); }
+    .archive-block-tabs { display: grid; grid-template-columns: repeat(auto-fit, minmax(165px, 1fr)); gap: 0.55rem; padding: 0.75rem 1.25rem; background: #F1F5F9; border-bottom: 1.5px solid #CBD5E1; }
+    .archive-block-card { background: #FFFFFF; border: 2px solid #CBD5E1; border-radius: 10px; padding: 0.55rem 0.7rem; cursor: pointer; text-align: left; transition: all 0.15s; display: flex; flex-direction: column; gap: 3px; }
+    .archive-block-card:hover { transform: translateY(-1px); box-shadow: 0 4px 10px rgba(15,23,42,0.08); }
+    .archive-block-card.active { border-color: #4338CA; box-shadow: 0 0 0 3px rgba(67,56,202,0.16); background: #EEF2FF; }
+    .archive-reloc-banner { display: flex; align-items: center; justify-content: space-between; gap: 0.35rem; flex-wrap: wrap; padding: 0.25rem 0.45rem; border-radius: 6px; font-size: 0.68rem; font-weight: 800; margin-bottom: 0.32rem; cursor: pointer; }
+    .archive-action-pill { display: inline-flex; align-items: center; gap: 4px; padding: 0.24rem 0.5rem; border-radius: 6px; font-size: 0.7rem; font-weight: 800; line-height: 1.25; }
+    .archive-dest-input { width: 100%; padding: 0.34rem 0.48rem; border: 1.5px solid #A5B4FC; border-radius: 6px; font-size: 0.75rem; font-weight: 700; background: #FFFFFF; box-sizing: border-box; }
+    .archive-dest-input:focus { outline: none; border-color: #4F46E5; box-shadow: 0 0 0 2px rgba(79,70,229,0.18); }
     .year-pill-mini { display: inline-block; background: #E0F2FE; color: #0369A1; border: 1px solid #7DD3FC; font-size: 0.63rem; font-weight: 800; padding: 1px 5px; border-radius: 4px; margin-bottom: 2px; }
 
     /* Botón Armar Rótulo en Drawer */
@@ -480,7 +490,7 @@
         <span style="font-size: 0.74rem; font-weight: 800; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.4px; margin-right: 0.2rem;">Año Inicio:</span>
         <button type="button" class="year-btn active" onclick="setYearFilter('ALL', this)">Todos (<span id="countYearAll">0</span>)</button>
         <button type="button" class="year-btn" onclick="setYearFilter('2020', this)">2020 (<span id="countYear2020">0</span>)</button>
-        <button type="button" class="year-btn" onclick="setYearFilter('2021', this)">2021 (<span id="countYear2021">0</span>)</button>
+        <button type="button" class="year-btn" onclick="setYearFilter('2021', this)"><span id="labelYear2021">2021</span> (<span id="countYear2021">0</span>)</button>
         <button type="button" class="year-btn" onclick="setYearFilter('2022', this)">2022 (<span id="countYear2022">0</span>)</button>
         <button type="button" class="year-btn" onclick="setYearFilter('2023', this)">2023 (<span id="countYear2023">0</span>)</button>
         <button type="button" class="year-btn" onclick="setYearFilter('2024', this)">2024 (<span id="countYear2024">0</span>)</button>
@@ -489,6 +499,9 @@
         <button type="button" class="year-btn" onclick="setYearFilter('SIN_ANIO', this)">⏳ Sin Año (<span id="countYearSin">0</span>)</button>
         <button type="button" class="btn-batch-dates" onclick="openBatchDatesModal()" title="Completar en lote las fechas de inicio y fin de proyectos faltantes (con pistas de PMO y resoluciones)">
           ⏱️ Completar Fechas Inicio/Fin (<span id="countBtnFaltaFechasBar">0</span>)
+        </button>
+        <button type="button" class="btn-archive-plan" onclick="openArchivePlannerModal()" title="Organizar físicamente el archivo por bloques 2021-Culm. → 2025, imprimir carteles y rótulos A4 en lote">
+          🗂️ Organizar Archivo por Años (<span id="countArchivePlanProgress">0/0</span>)
         </button>
       </div>
 
@@ -501,6 +514,7 @@
           <span class="sort-label">Ordenar:</span>
           <select id="sortSelect" class="sort-select" onchange="changeSort(this.value)">
             <option value="PRIORITY_AUDIT">🎯 Prioridad: Ejecutadas y Faltantes primero</option>
+            <option value="ARCHIVE_BLOCK_ASC">🗂️ Orden Archivo Físico (2021-Culm. ➔ 2025 + N° Obra)</option>
             <option value="ID_ASC">N° Proyecto (1 a N)</option>
             <option value="YEAR_ASC">📆 Año de Inicio (2020 ➔ 2026)</option>
             <option value="YEAR_DESC">📆 Año de Inicio (2026 ➔ 2020)</option>
@@ -769,6 +783,13 @@
                   <option value="SECRETARIA-PMO">SECRETARIA-PMO</option>
                   <option value="ALMACEN-TECHO">ALMACEN-TECHO</option>
                   <option value="ARMARIO-1ERPISO">ARMARIO-1ERPISO</option>
+                  <optgroup label="🗂️ Archivo Ordenado por Años (TDR)">
+                    <option value="ARCHIVO-2021-CULM">ARCHIVO-2021-CULM</option>
+                    <option value="ARCHIVO-2022">ARCHIVO-2022</option>
+                    <option value="ARCHIVO-2023">ARCHIVO-2023</option>
+                    <option value="ARCHIVO-2024">ARCHIVO-2024</option>
+                    <option value="ARCHIVO-2025">ARCHIVO-2025</option>
+                  </optgroup>
                   <option value="OTROS">OTROS</option>
                 </select>
               </div>
@@ -1089,6 +1110,20 @@
                   }
                   if (oData.notas_auditoria) {
                     p.alerta = String(oData.notas_auditoria).trim();
+                  }
+                  if (oData.ubicacion_ambientes) {
+                    const relMatch = String(oData.ubicacion_ambientes).match(/✅\s*\[([^\]]+)\]/);
+                    if (relMatch) {
+                      const existingReloc = getArchiveRelocationMap();
+                      if (!existingReloc[oId]) {
+                        const parts = relMatch[1].split('•').map(s => s.trim());
+                        saveArchiveRelocationEntry(oId, {
+                          relocated: true,
+                          destAmb: parts[0] || '',
+                          estante: parts.slice(1).join(' • ') || ''
+                        });
+                      }
+                    }
                   }
                 }
               });
@@ -1781,6 +1816,7 @@
         origen: gasUrl ? "Google Drive / Apps Script + Gabinete" : "Caché Local / Gabinete",
         total_obras_con_fotos: Object.keys(fieldPhotosMap).length,
         ediciones_gabinete: getRotuloEditsMap(),
+        archive_relocation: getArchiveRelocationMap(),
         datos_nube_sheets: cloudSnapshot,
         mapa_local_fotos: fieldPhotosMap
       };
@@ -2012,6 +2048,11 @@
       if (cleanAmb.includes('SECRETAR')) return 'SEC';
       if (cleanAmb.includes('ALMACEN') || cleanAmb.includes('TECHO')) return 'ALT';
       if (cleanAmb.includes('ARMARIO')) return 'ARM1';
+      if (cleanAmb.includes('ARCHIVO-2021') || cleanAmb.includes('ARCHIVO 2021')) return 'A21';
+      if (cleanAmb.includes('ARCHIVO-2022') || cleanAmb.includes('ARCHIVO 2022')) return 'A22';
+      if (cleanAmb.includes('ARCHIVO-2023') || cleanAmb.includes('ARCHIVO 2023')) return 'A23';
+      if (cleanAmb.includes('ARCHIVO-2024') || cleanAmb.includes('ARCHIVO 2024')) return 'A24';
+      if (cleanAmb.includes('ARCHIVO-2025') || cleanAmb.includes('ARCHIVO 2025')) return 'A25';
       return cleanAmb.substring(0, 4);
     }
 
@@ -2590,6 +2631,86 @@
       return (iniY >= 2022 && iniY <= 2025) || (finY >= 2022 && finY <= 2025);
     }
 
+    const ARCHIVE_BLOCK_ORDER = ['2021_CULM', '2022', '2023', '2024', '2025'];
+    const ARCHIVE_BLOCKS = {
+      '2021_CULM': { key: '2021_CULM', short: '2021-Culm.', label: 'BLOQUE 2021 (Culm. 2022–2023)', defaultAmb: 'ARCHIVO-2021-CULM', prefix: 'A21', order: 1, color: '#7C3AED', bg: '#F5F3FF', border: '#C4B5FD' },
+      '2022': { key: '2022', short: '2022', label: 'BLOQUE 2022', defaultAmb: 'ARCHIVO-2022', prefix: 'A22', order: 2, color: '#2563EB', bg: '#EFF6FF', border: '#93C5FD' },
+      '2023': { key: '2023', short: '2023', label: 'BLOQUE 2023', defaultAmb: 'ARCHIVO-2023', prefix: 'A23', order: 3, color: '#0D9488', bg: '#F0FDFA', border: '#99F6E4' },
+      '2024': { key: '2024', short: '2024', label: 'BLOQUE 2024', defaultAmb: 'ARCHIVO-2024', prefix: 'A24', order: 4, color: '#D97706', bg: '#FFFBEB', border: '#FDE68A' },
+      '2025': { key: '2025', short: '2025', label: 'BLOQUE 2025', defaultAmb: 'ARCHIVO-2025', prefix: 'A25', order: 5, color: '#DC2626', bg: '#FEF2F2', border: '#FECACA' }
+    };
+
+    function getProjectArchiveBlockKey(p) {
+      if (!p || p.id === 999 || p.es_multiproyecto || !isProjectInTdr2022_2025(p)) return '';
+      const iniY = hasValidStart(p) ? parseInt(getProjectStartYear(p) || '0', 10) : 0;
+      const finY = hasValidEnd(p) ? parseInt(getProjectEndYear(p) || '0', 10) : 0;
+      if (iniY > 0 && iniY < 2022 && finY >= 2022 && finY <= 2025) return '2021_CULM';
+      if (iniY >= 2022 && iniY <= 2025) return String(iniY);
+      if (finY >= 2022 && finY <= 2025) return String(finY);
+      return '';
+    }
+
+    function getProjectArchiveBlock(p) {
+      const k = getProjectArchiveBlockKey(p);
+      return k ? (ARCHIVE_BLOCKS[k] || null) : null;
+    }
+
+    function getArchiveRelocationMap() {
+      try {
+        return JSON.parse(localStorage.getItem('fdm_archive_relocation_v1') || '{}');
+      } catch (e) {
+        return {};
+      }
+    }
+
+    function saveArchiveRelocationEntry(obraId, patch) {
+      const map = getArchiveRelocationMap();
+      const prev = map[obraId] || {};
+      map[obraId] = {
+        ...prev,
+        ...patch,
+        updatedAt: new Date().toISOString()
+      };
+      try {
+        localStorage.setItem('fdm_archive_relocation_v1', JSON.stringify(map));
+      } catch (e) {}
+      return map[obraId];
+    }
+
+    function getProjectFinalArchiveLabel(p) {
+      if (!p) return '';
+      const entry = getArchiveRelocationMap()[p.id];
+      if (!entry || !entry.relocated) return '';
+      const blk = getProjectArchiveBlock(p);
+      const destAmb = (entry.destAmb || (blk ? blk.defaultAmb : '') || '').trim();
+      const estante = (entry.estante || '').trim();
+      if (!destAmb && !estante) return '';
+      return destAmb + (estante ? ` • ${estante}` : '');
+    }
+
+    function compareProjectsArchiveOrder(a, b) {
+      const blkA = getProjectArchiveBlock(a);
+      const blkB = getProjectArchiveBlock(b);
+      const ordA = blkA ? blkA.order : 99;
+      const ordB = blkB ? blkB.order : 99;
+      if (ordA !== ordB) return ordA - ordB;
+      const yA = parseInt(getProjectStartYear(a) || '9999', 10);
+      const yB = parseInt(getProjectStartYear(b) || '9999', 10);
+      return (yA - yB) || (a.id - b.id);
+    }
+
+    async function syncArchiveRelocationToCloud(p, relocated, destAmb, estante) {
+      if (!p) return false;
+      const baseUbic = compileUbicacionCajas(p.id) || '';
+      const finalLabel = relocated ? ((destAmb || '').trim() + (estante ? ` • ${estante.trim()}` : '')) : '';
+      const ubicStr = finalLabel
+        ? (`✅ [${finalLabel}]` + (baseUbic ? ` | Origen: ${baseUbic}` : ''))
+        : baseUbic;
+      const ini = hasValidStart(p) ? p.fecha_inicio : '';
+      const fin = hasValidEnd(p) ? (p.fecha_termino_verificada_ing || p.fecha_culminacion_real || '') : '';
+      return await pushProjectDatesToCloud(p, ini, fin, ubicStr);
+    }
+
     function getScopedProjects() {
       if (!projectsData) return [];
       if (currentScope === 'CIVIL') {
@@ -2689,6 +2810,7 @@
 
       setTxt('countYearAll', yearCounts.ALL);
       setTxt('countYear2020', yearCounts['2020']);
+      setTxt('labelYear2021', currentScope === 'TDR_2022_2025' ? '2021-Culm.' : '2021');
       setTxt('countYear2021', yearCounts['2021']);
       setTxt('countYear2022', yearCounts['2022']);
       setTxt('countYear2023', yearCounts['2023']);
@@ -2697,6 +2819,11 @@
       setTxt('countYear2026', yearCounts['2026']);
       setTxt('countYearSin', yearCounts.SIN_ANIO);
       setTxt('countBtnFaltaFechasBar', faltaFechas);
+
+      const tdrListAll = all.filter(p => isProjectInTdr2022_2025(p));
+      const relocMap = getArchiveRelocationMap();
+      const relocDoneCount = tdrListAll.filter(p => relocMap[p.id] && relocMap[p.id].relocated).length;
+      setTxt('countArchivePlanProgress', `${relocDoneCount}/${tdrListAll.length}`);
     }
 
     let currentYearFilter = 'ALL';
@@ -2821,6 +2948,9 @@
         if (currentSort === 'PRIORITY_AUDIT') {
           return getAuditPriorityScore(a) - getAuditPriorityScore(b) || (a.id - b.id);
         }
+        if (currentSort === 'ARCHIVE_BLOCK_ASC') {
+          return compareProjectsArchiveOrder(a, b);
+        }
         if (currentSort === 'ID_ASC') return a.id - b.id;
         if (currentSort === 'ID_DESC') return b.id - a.id;
         if (currentSort === 'YEAR_ASC') {
@@ -2914,6 +3044,15 @@
           ubicCellHtml = `<span class="badge badge-red" style="font-size:0.7rem; padding:0.25rem 0.55rem; white-space:normal; display:inline-block;" title="Obra EJECUTADA / LIQUIDADA aún sin ubicar en campo">🚨 FALTA CENSAR (PRIORIDAD)</span>`;
         } else {
           ubicCellHtml = `<span class="badge" style="background: #F8FAFC; color: #94A3B8; border: 1px dashed #CBD5E1; font-weight: 600; font-size: 0.68rem;">⏳ Por censar</span>`;
+        }
+
+        const archiveBlk = !isMulti ? getProjectArchiveBlock(p) : null;
+        if (archiveBlk) {
+          const finalArc = getProjectFinalArchiveLabel(p);
+          const bannerHtml = finalArc
+            ? `<div class="archive-reloc-banner" style="background:#ECFDF5; color:#065F46; border:1px solid #6EE7B7;" onclick="event.stopPropagation(); openArchivePlannerModal('${archiveBlk.key}')" title="Clic para abrir Bloque ${escapeHtmlAttr(archiveBlk.short)} en el Planificador de Archivo"><span>✅ ${escapeHtmlAttr(finalArc)}</span><span>🗂️ ${escapeHtmlAttr(archiveBlk.short)}</span></div>`
+            : `<div class="archive-reloc-banner" style="background:${archiveBlk.bg}; color:${archiveBlk.color}; border:1px solid ${archiveBlk.border};" onclick="event.stopPropagation(); openArchivePlannerModal('${archiveBlk.key}')" title="Clic para organizar en ${escapeHtmlAttr(archiveBlk.defaultAmb)}"><span>🗂️ ${escapeHtmlAttr(archiveBlk.label)}</span><span style="opacity:0.85;">Por ubicar ➔</span></div>`;
+          ubicCellHtml = bannerHtml + ubicCellHtml;
         }
 
         // Start & End Date Stack Badge
@@ -3808,16 +3947,34 @@
         return;
       }
       const all = projectsData || [];
-      const tdrObras = all.filter(p => isProjectInTdr2022_2025(p)).sort((a, b) => a.id - b.id);
+      const tdrObras = all.filter(p => isProjectInTdr2022_2025(p)).sort(compareProjectsArchiveOrder);
       const targetObras = tdrObras.length > 0 ? tdrObras : all.filter(p => p.es_obra_civil === true).sort((a, b) => a.id - b.id);
       const hojasMap = getHojasRotuloA4Map();
 
+      const getArchiveExcelFields = (p) => {
+        const blk = getProjectArchiveBlock(p);
+        const finalArc = getProjectFinalArchiveLabel(p);
+        const rawUbic = compileUbicacionCajas(p.id) || 'SIN CAJAS UBICADAS';
+        return {
+          blkLabel: blk ? blk.label : 'FUERA DE BLOQUE TDR',
+          finalUbic: finalArc || (blk ? `PENDIENTE REUBICAR (${blk.defaultAmb}) — Origen: ${rawUbic}` : rawUbic)
+        };
+      };
+
       // Hoja 1: 01_LISTADO_OBRAS_2022_2025 (TDR Punto 5.1 y Punto 7)
-      const sheet1Rows = targetObras.map(p => mapProjectToInformeRowObj(p));
+      const sheet1Rows = targetObras.map(p => {
+        const arc = getArchiveExcelFields(p);
+        return {
+          ...mapProjectToInformeRowObj(p),
+          'BLOQUE ARCHIVO (AÑO)': arc.blkLabel,
+          'UBICACIÓN ARCHIVO FINAL': arc.finalUbic
+        };
+      });
 
       // Hoja 2: 02_MATRIZ_TRAZABILIDAD_DOC (TDR Punto 5.2 y 5.3)
       const sheet2Rows = targetObras.map(p => {
         const tr = compileTdrTraceabilityForProject(p);
+        const arc = getArchiveExcelFields(p);
         const ini = hasValidStart(p) ? p.fecha_inicio : 'FALTA INICIO';
         const fin = hasValidEnd(p) ? (p.fecha_termino_verificada_ing || p.fecha_culminacion_real || '') : 'FALTA FIN';
         return {
@@ -3826,6 +3983,7 @@
           'PROVINCIA': p.provincia || '',
           'CONVENIO': p.convenio || '',
           'DESCRIPCIÓN DE OBRA CIVIL': p.desc || '',
+          'BLOQUE ARCHIVO (AÑO)': arc.blkLabel,
           'STATUS EXCEL': (p.estatus || '').toUpperCase(),
           'SITUACIÓN ACTUAL': (p.estado_situacional || '—').toUpperCase(),
           'FECHA INICIO': ini,
@@ -3836,6 +3994,7 @@
           'CUADERNO / CONTRATO (CAJA / AMBIENTE)': tr.cuad.join(' | ') || 'FALTA',
           'INF. FINAL / LIQUIDACIÓN (CAJA / AMBIENTE)': tr.liq.join(' | ') || 'FALTA',
           'AMBIENTES UBICADOS': compileUbicacionCajas(p.id) || 'SIN CAJAS UBICADAS',
+          'UBICACIÓN ARCHIVO FINAL': arc.finalUbic,
           'ESTADO DOCUMENTAL': tr.estadoDoc.label.replace(/^[^\w\s]+\s*/, ''),
           'DOCUMENTACIÓN FALTANTE / POR REGULARIZAR (TDR 5.4)': tr.faltantesText
         };
@@ -3889,11 +4048,14 @@
             ? hoja.rows.filter(r => r.contenido).map(r => `${r.num}) ${r.contenido}`).join('; ')
             : '';
 
+          const arc = getArchiveExcelFields(p);
           sheet3Rows.push({
             'N° OBRA': p.id === 999 ? 'MULTI' : p.id,
             'CUI': (p.cui && p.cui !== 'N/D') ? p.cui : 'S/N',
             'PROYECTO / OBRA': p.desc || '',
+            'BLOQUE ARCHIVO (AÑO)': arc.blkLabel,
             'AMBIENTE FÍSICO': amb,
+            'UBICACIÓN ARCHIVO FINAL': arc.finalUbic,
             'TIPO UNIDAD FÍSICA': tipoUnidad,
             'CÓDIGO DE CAJA': cod,
             'DESCRIPCIÓN CORTA DE CONTENIDO': (isCN && hoja && hoja.shortSummary) ? hoja.shortSummary : Array.from(notesSet).join('; '),
@@ -3925,15 +4087,15 @@
 
       const wb = XLSX.utils.book_new();
       const ws1 = XLSX.utils.json_to_sheet(sheet1Rows);
-      ws1['!cols'] = [{wch:8},{wch:12},{wch:12},{wch:10},{wch:18},{wch:20},{wch:18},{wch:50},{wch:13},{wch:13},{wch:20},{wch:14},{wch:14},{wch:14},{wch:14},{wch:26},{wch:48},{wch:18},{wch:26}];
+      ws1['!cols'] = [{wch:8},{wch:12},{wch:12},{wch:10},{wch:18},{wch:20},{wch:18},{wch:50},{wch:13},{wch:13},{wch:20},{wch:14},{wch:14},{wch:14},{wch:14},{wch:26},{wch:48},{wch:18},{wch:26},{wch:22},{wch:28}];
       XLSX.utils.book_append_sheet(wb, ws1, '01_LISTADO_OBRAS_2022_2025');
 
       const ws2 = XLSX.utils.json_to_sheet(sheet2Rows);
-      ws2['!cols'] = [{wch:8},{wch:10},{wch:11},{wch:11},{wch:46},{wch:16},{wch:18},{wch:12},{wch:12},{wch:24},{wch:24},{wch:24},{wch:24},{wch:24},{wch:26},{wch:22},{wch:46}];
+      ws2['!cols'] = [{wch:8},{wch:10},{wch:11},{wch:11},{wch:46},{wch:22},{wch:16},{wch:18},{wch:12},{wch:12},{wch:24},{wch:24},{wch:24},{wch:24},{wch:24},{wch:26},{wch:28},{wch:22},{wch:46}];
       XLSX.utils.book_append_sheet(wb, ws2, '02_MATRIZ_TRAZABILIDAD_DOC');
 
       const ws3 = XLSX.utils.json_to_sheet(sheet3Rows.length ? sheet3Rows : [{ 'AVISO': 'Sin cajas censadas aún' }]);
-      ws3['!cols'] = [{wch:8},{wch:10},{wch:44},{wch:18},{wch:22},{wch:16},{wch:40},{wch:46},{wch:8},{wch:48}];
+      ws3['!cols'] = [{wch:8},{wch:10},{wch:44},{wch:22},{wch:18},{wch:28},{wch:22},{wch:16},{wch:40},{wch:46},{wch:8},{wch:48}];
       XLSX.utils.book_append_sheet(wb, ws3, '03_INVENTARIO_FISICO_CAJAS');
 
       const ws4 = XLSX.utils.json_to_sheet(sheet4Rows.length ? sheet4Rows : [{ 'AVISO': 'Cero obras con faltantes pendientes' }]);
@@ -4358,9 +4520,12 @@
       } catch (e) {}
     }
 
-    async function pushProjectDatesToCloud(p, iniVal, finVal) {
+    async function pushProjectDatesToCloud(p, iniVal, finVal, overrideUbicAmb) {
       const gasUrl = (localStorage.getItem('fdm_gas_url') || '').trim();
       if (!gasUrl || !p) return false;
+      const relocLbl = getProjectFinalArchiveLabel(p);
+      const baseUbic = compileUbicacionCajas(p.id) || '';
+      const defaultUbic = relocLbl ? (`✅ [${relocLbl}]` + (baseUbic ? ` | Origen: ${baseUbic}` : '')) : baseUbic;
       try {
         const res = await fetch(gasUrl, {
           method: 'POST',
@@ -4377,7 +4542,7 @@
             estado_situacional: p.estado_situacional || '',
             prio: Number(p.prio || 0),
             costo_ejec: Number(p.costo_ejec || 0),
-            ubicacion_ambientes: compileUbicacionCajas(p.id) || '',
+            ubicacion_ambientes: overrideUbicAmb !== undefined ? overrideUbicAmb : defaultUbic,
             fecha_inicio: String(iniVal || '').trim() || (hasValidStart(p) ? p.fecha_inicio : ''),
             fecha_culm: String(finVal || '').trim() || (hasValidEnd(p) ? (p.fecha_termino_verificada_ing || p.fecha_culminacion_real || '') : ''),
             notas_auditoria: p.alerta || p.comentario_ing || ''
@@ -4809,10 +4974,101 @@
       showToast(`🏷️ Hoja de Rótulo A4 de "${cod}" guardada aparte (resumen corto intacto)`);
     }
 
-    function imprimirHojaRotuloCaja() {
-      const projTitle = (document.getElementById('armadorProyectoTitle')?.value || activeArmadorCtx.projDesc || '').trim();
-      const boxCod = (document.getElementById('armadorCodInput')?.value || activeArmadorCtx.cod || '').trim();
-      const rows = [...activeArmadorCtx.rows];
+    function getProjectPhysicalBoxesList(obraId, opts) {
+      const fData = fieldPhotosMap[obraId] || { fotos: [] };
+      const hojas = getHojasRotuloA4Map();
+      const cnShellsMap = getCajasNuevasLocalMap();
+      const obraShells = cnShellsMap[obraId] || [];
+      const includeSueltoFallback = !!(opts && opts.includeSueltoFallback);
+
+      const unitMap = {};
+      obraShells.forEach(s => {
+        if (!s || !s.cod) return;
+        unitMap[s.cod] = { cod: s.cod, amb: s.amb || 'Ambiente', isCN: true, isSuelto: false, fotos: [] };
+      });
+      (fData.fotos || []).forEach(f => {
+        const cod = (f.codigo_caja || f.nota || 'SIN_CODIGO').trim();
+        const isCN = isCajaNuevaPhoto(f);
+        const isSuelto = !isCN && (f.slot === 'suelto' || cod.includes('SUELTO'));
+        if (!unitMap[cod]) {
+          unitMap[cod] = { cod, amb: (f.ubicacion || fData.ubicacion || 'Ambiente').trim(), isCN, isSuelto, fotos: [] };
+        }
+        unitMap[cod].fotos.push(f);
+      });
+
+      const allUnits = Object.values(unitMap);
+      let boxes = allUnits.filter(u => !u.isSuelto);
+      const sueltos = allUnits.filter(u => u.isSuelto);
+
+      if (boxes.length === 0 && sueltos.length > 0 && includeSueltoFallback) {
+        const p = (projectsData || []).find(x => x.id === obraId) || {};
+        const blk = getProjectArchiveBlock(p);
+        const pref = blk ? blk.prefix : 'CN';
+        const cnCode = `${pref}-${String(obraId).padStart(2, '0')}-CN1`;
+        const combinedFotos = sueltos.reduce((acc, s) => acc.concat(s.fotos), []);
+        const ambSet = Array.from(new Set(sueltos.map(s => s.amb).filter(Boolean)));
+        boxes = [{
+          cod: cnCode,
+          amb: ambSet.join(', ') || fData.ubicacion || 'Ambiente',
+          isCN: true,
+          isSuelto: false,
+          isVirtualSueltoBox: true,
+          fotos: combinedFotos
+        }];
+      }
+
+      boxes.sort((a, b) => (a.isCN === b.isCN ? a.cod.localeCompare(b.cod) : (a.isCN ? 1 : -1)));
+      const total = boxes.length;
+      return boxes.map((u, idx) => {
+        const hoja = hojas[`${obraId}::${u.cod}`];
+        let rows;
+        if (u.isVirtualSueltoBox) {
+          rows = [];
+          sueltos.forEach((su, si) => {
+            const parsed = parseRotuloToRows(obraId, su.fotos, su.cod);
+            const txt = parsed.map(r => r.contenido).filter(Boolean).join(' • ') || su.cod;
+            rows.push({ num: String(si + 1).padStart(2, '0'), contenido: `[${su.cod}] ${txt}`, caja: u.cod });
+          });
+        } else {
+          rows = (hoja && Array.isArray(hoja.rows) && hoja.rows.length > 0)
+            ? hoja.rows.map((r, i) => ({ num: String(r.num || (i + 1)).padStart(2, '0'), contenido: String(r.contenido || '').trim(), caja: String(r.caja || u.cod).trim() }))
+            : parseRotuloToRows(obraId, u.fotos, u.cod);
+        }
+        return {
+          cod: u.cod,
+          amb: u.amb,
+          isCN: u.isCN,
+          isSuelto: false,
+          isVirtualSueltoBox: !!u.isVirtualSueltoBox,
+          seqIndex: idx + 1,
+          seqTotal: total,
+          boxSeqLabel: `CAJA ${idx + 1} DE ${total}`,
+          rows,
+          fotosCount: u.fotos.length
+        };
+      });
+    }
+
+    function buildSingleRotuloPageHtml(opts) {
+      const p = opts.project || {};
+      const obraId = opts.obraId;
+      const boxCod = (opts.boxCod || '').trim();
+      const projTitle = (opts.projTitle || p.desc || `OBRA N° ${obraId}`).trim();
+      const ambOrig = (opts.amb || 'Ambiente').trim();
+      const blk = opts.blk || getProjectArchiveBlock(p);
+      const finalArc = opts.finalArc || getProjectFinalArchiveLabel(p) || (blk ? blk.defaultAmb : '');
+      const boxSeqLabel = opts.boxSeqLabel || 'HOJA DE RÓTULO';
+      const rows = Array.isArray(opts.rows) ? opts.rows : [];
+
+      const iniTxt = hasValidStart(p) ? formatCompactDate(p.fecha_inicio) : '—';
+      const finRaw = p.fecha_termino_verificada_ing || (p.fecha_culminacion_real && p.fecha_culminacion_real !== '-' ? p.fecha_culminacion_real : '');
+      const finTxt = hasValidEnd(p) ? formatCompactDate(finRaw) : '—';
+      const cuiTxt = (p.cui && p.cui !== 'N/D' && p.cui !== 'S/N') ? `CUI ${p.cui}` : 'CUI S/N';
+      const blkText = blk ? blk.label : (p.id === 999 ? 'CAJAS MIXTAS / MULTI-PROYECTO' : 'ARCHIVO GENERAL FDM');
+      const blkBg = blk ? blk.bg : '#F1F5F9';
+      const blkCol = blk ? blk.color : '#1E293B';
+      const blkBorder = blk ? blk.border : '#64748B';
+
       const totalRows = Math.max(12, rows.length);
       let rowsHtml = '';
       for (let i = 0; i < totalRows; i++) {
@@ -4829,50 +5085,542 @@
         `;
       }
 
-      const win = window.open('', '_blank', 'width=900,height=1100');
+      return `
+        <div class="rotulo-page">
+          <div class="rot-top-strip">
+            <div class="rot-blk-badge" style="background:${blkBg}; color:${blkCol}; border:2px solid ${blkBorder};">${escapeHtmlAttr(blkText)}</div>
+            <div class="rot-seq-badge">${escapeHtmlAttr(boxSeqLabel)}</div>
+            <div class="rot-ref-code">REF. CENSO: ${escapeHtmlAttr(boxCod)}</div>
+          </div>
+          <div class="proj-box">
+            <div class="proj-id-line">OBRA N° ${obraId === 999 ? 'MULTI' : String(obraId).padStart(2, '0')} • ${escapeHtmlAttr(cuiTxt)} • ${escapeHtmlAttr((p.provincia || '').toUpperCase())} (${escapeHtmlAttr(p.convenio || 'FDM')}) • PERIODO: ${escapeHtmlAttr(iniTxt)} ➔ ${escapeHtmlAttr(finTxt)}</div>
+            <div class="proj-title-line">PROYECTO: "${escapeHtmlAttr(projTitle)}"</div>
+          </div>
+          <div class="meta-line">
+            <span>UBICACIÓN ARCHIVO: ${escapeHtmlAttr(finalArc || ambOrig)}</span>
+            <span>ORIGEN CENSO: ${escapeHtmlAttr(ambOrig)}</span>
+          </div>
+          <table>
+            <thead>
+              <tr>
+                <th style="width:52px;">N°</th>
+                <th>CONTENIDO DOCUMENTAL DE LA CAJA</th>
+                <th style="width:125px;">CÓDIGO / CAJA</th>
+              </tr>
+            </thead>
+            <tbody>${rowsHtml}</tbody>
+          </table>
+          <div class="foot">
+            <span>Fondo de Desarrollo de Moquegua (FDM) — Auditoría 2022–2025 (TDR Req. N° 000393)</span>
+            <span>${escapeHtmlAttr(boxCod)}</span>
+          </div>
+        </div>
+      `;
+    }
+
+    const ROTULO_PRINT_CSS = `
+      @page { size: A4 portrait; margin: 12mm; }
+      body { font-family: Arial, Helvetica, sans-serif; color: #000; margin: 0; padding: 6mm; background: #FFF; }
+      .rotulo-page { page-break-after: always; break-after: page; padding-bottom: 4mm; }
+      .rotulo-page:last-child { page-break-after: auto; break-after: auto; }
+      .rot-top-strip { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-bottom: 8px; }
+      .rot-blk-badge { font-size: 11pt; font-weight: 900; padding: 6px 12px; border-radius: 6px; letter-spacing: 0.4px; }
+      .rot-seq-badge { font-size: 14pt; font-weight: 900; border: 2px solid #000; padding: 5px 14px; background: #F8FAFC; letter-spacing: 0.6px; }
+      .rot-ref-code { font-size: 13pt; font-weight: 900; font-family: monospace; text-align: right; }
+      .proj-box { border: 2.5px solid #000; padding: 10px 14px; text-align: center; margin-bottom: 8px; }
+      .proj-id-line { font-size: 9pt; font-weight: 800; color: #1E293B; margin-bottom: 5px; letter-spacing: 0.3px; }
+      .proj-title-line { font-size: 11.5pt; font-weight: 900; line-height: 1.35; text-transform: uppercase; }
+      .meta-line { display: flex; justify-content: space-between; font-size: 9pt; color: #1E293B; margin-bottom: 8px; font-weight: 800; background: #F8FAFC; border: 1px solid #CBD5E1; padding: 5px 9px; }
+      table { width: 100%; border-collapse: collapse; table-layout: fixed; }
+      th { border: 2px solid #000; background: #E2E8F0; padding: 8px 6px; font-size: 10.5pt; font-weight: 900; text-align: center; text-transform: uppercase; }
+      td { border: 1.5px solid #000; height: 32px; padding: 5px 9px; font-size: 10pt; vertical-align: middle; }
+      .col-num { width: 52px; text-align: center; font-weight: 800; }
+      .col-cont { font-weight: 700; }
+      .col-caja { width: 125px; text-align: center; font-weight: 800; font-family: monospace; font-size: 9.5pt; }
+      .foot { margin-top: 10px; font-size: 8.5pt; color: #334155; display: flex; justify-content: space-between; font-weight: 700; }
+      @media print { .no-print { display: none; } body { padding: 0; -webkit-print-color-adjust: exact; print-color-adjust: exact; } }
+    `;
+
+    function imprimirHojaRotuloCaja() {
+      const projTitle = (document.getElementById('armadorProyectoTitle')?.value || activeArmadorCtx.projDesc || '').trim();
+      const boxCod = (document.getElementById('armadorCodInput')?.value || activeArmadorCtx.cod || '').trim();
+      const obraId = activeArmadorCtx.obraId;
+      const p = (projectsData || []).find(x => x.id === obraId) || {};
+      const boxes = getProjectPhysicalBoxesList(obraId);
+      const matchBox = boxes.find(b => b.cod === boxCod);
+      const boxSeqLabel = matchBox ? matchBox.boxSeqLabel : 'HOJA DE RÓTULO';
+
+      const pageHtml = buildSingleRotuloPageHtml({
+        project: p,
+        obraId,
+        boxCod,
+        projTitle,
+        amb: activeArmadorCtx.amb,
+        boxSeqLabel,
+        rows: [...activeArmadorCtx.rows]
+      });
+
+      const win = window.open('', '_blank', 'width=920,height=1100');
       if (!win) { alert("Permite ventanas emergentes para imprimir la Hoja de Rótulo A4."); return; }
       win.document.write(`<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><title>Rótulo ${escapeHtmlAttr(boxCod)}</title>
-        <style>
-          @page { size: A4 portrait; margin: 14mm; }
-          body { font-family: Arial, Helvetica, sans-serif; color: #000; margin: 0; padding: 8mm; }
-          .top-code { text-align: right; font-size: 16pt; font-weight: 900; font-family: monospace; margin-bottom: 6px; letter-spacing: 0.8px; }
-          .proj-box { border: 2px solid #000; padding: 12px 16px; text-align: center; font-size: 12pt; font-weight: 800; line-height: 1.4; margin-bottom: 10px; text-transform: uppercase; }
-          .meta-line { display: flex; justify-content: space-between; font-size: 9pt; color: #333; margin-bottom: 10px; font-weight: 700; }
-          table { width: 100%; border-collapse: collapse; table-layout: fixed; }
-          th { border: 2px solid #000; background: #F1F5F9; padding: 9px 6px; font-size: 11pt; font-weight: 900; text-align: center; text-transform: uppercase; }
-          td { border: 1.5px solid #000; height: 34px; padding: 6px 10px; font-size: 10.5pt; vertical-align: middle; }
-          .col-num { width: 52px; text-align: center; font-weight: 800; }
-          .col-cont { font-weight: 700; }
-          .col-caja { width: 115px; text-align: center; font-weight: 800; font-family: monospace; }
-          .foot { margin-top: 14px; font-size: 8.5pt; color: #555; display: flex; justify-content: space-between; }
-          @media print { .no-print { display: none; } body { padding: 0; -webkit-print-color-adjust: exact; print-color-adjust: exact; } }
-        </style></head><body>
+        <style>${ROTULO_PRINT_CSS}</style></head><body>
         <div class="no-print" style="margin-bottom:12px; text-align:right;">
           <button onclick="window.print()" style="background:#5B21B6;color:#FFF;border:none;padding:9px 16px;border-radius:6px;font-weight:bold;cursor:pointer;font-size:11pt;">🖨️ Imprimir Rótulo A4</button>
         </div>
-        <div class="top-code">${escapeHtmlAttr(boxCod)}</div>
-        <div class="proj-box">PROYECTO: "${escapeHtmlAttr(projTitle)}"</div>
-        <div class="meta-line">
-          <span>FONDO DE DESARROLLO DE MOQUEGUA (FDM) — INVENTARIO DE ARCHIVO</span>
-          <span>AMBIENTE: ${escapeHtmlAttr(activeArmadorCtx.amb)}</span>
+        ${pageHtml}
+      </body></html>`);
+      win.document.close();
+      setTimeout(() => win.print(), 300);
+    }
+
+    // =========================================================================
+    // ORGANIZADOR FÍSICO DEL ARCHIVO POR AÑOS (2021-Culm. → 2022 → 2023 → 2024 → 2025)
+    // =========================================================================
+    let currentArchivePlannerBlock = 'ALL';
+
+    function openArchivePlannerModal(blockKey) {
+      currentArchivePlannerBlock = blockKey || (currentScope === 'TDR_2022_2025' ? '2022' : 'ALL');
+      if (currentArchivePlannerBlock !== 'ALL' && !ARCHIVE_BLOCKS[currentArchivePlannerBlock]) {
+        currentArchivePlannerBlock = 'ALL';
+      }
+      const modal = document.getElementById('archivePlannerModal');
+      if (!modal) return;
+      modal.classList.add('open');
+      renderArchiveBlockTabs();
+      renderArchivePlannerTable();
+    }
+
+    function closeArchivePlannerModal() {
+      const modal = document.getElementById('archivePlannerModal');
+      if (modal) modal.classList.remove('open');
+    }
+
+    function setArchivePlannerBlock(blockKey) {
+      currentArchivePlannerBlock = blockKey;
+      renderArchiveBlockTabs();
+      renderArchivePlannerTable();
+    }
+
+    function getArchivePlannerBlockStats() {
+      const tdrAll = (projectsData || []).filter(p => isProjectInTdr2022_2025(p)).sort(compareProjectsArchiveOrder);
+      const relocMap = getArchiveRelocationMap();
+      const stats = {};
+      ARCHIVE_BLOCK_ORDER.forEach(k => {
+        stats[k] = { blk: ARCHIVE_BLOCKS[k], obras: [], cajas: 0, cajasNuevas: 0, sueltos: 0, sinCensar: 0, relocated: 0 };
+      });
+
+      tdrAll.forEach(p => {
+        const k = getProjectArchiveBlockKey(p);
+        if (!k || !stats[k]) return;
+        const st = stats[k];
+        st.obras.push(p);
+        const bd = getDetailedAmbientesBreakdown(p.id);
+        if (!bd.hasCenso) {
+          st.sinCensar++;
+        } else {
+          bd.ambientes.forEach(a => {
+            st.cajas += a.cajasCount;
+            st.cajasNuevas += a.cajasNuevasCount;
+            st.sueltos += a.sueltosCount;
+          });
+        }
+        if (relocMap[p.id] && relocMap[p.id].relocated) st.relocated++;
+      });
+      return { tdrAll, relocMap, stats };
+    }
+
+    function renderArchiveBlockTabs() {
+      const container = document.getElementById('archiveBlockTabsBar');
+      if (!container) return;
+      const { tdrAll, relocMap, stats } = getArchivePlannerBlockStats();
+      const totalReloc = tdrAll.filter(p => relocMap[p.id] && relocMap[p.id].relocated).length;
+
+      let html = `
+        <button type="button" class="archive-block-card ${currentArchivePlannerBlock === 'ALL' ? 'active' : ''}" onclick="setArchivePlannerBlock('ALL')">
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <span style="font-size:0.74rem; font-weight:900; color:#1E1B4B;">🎯 TODOS TDR 2022–2025</span>
+            <span style="font-size:0.7rem; font-weight:800; background:#E0E7FF; color:#3730A3; padding:1px 6px; border-radius:999px;">${tdrAll.length}</span>
+          </div>
+          <div style="font-size:0.7rem; color:#475569; font-weight:700;">Progreso: <strong>${totalReloc}/${tdrAll.length}</strong> ubicadas</div>
+        </button>
+      `;
+
+      ARCHIVE_BLOCK_ORDER.forEach((k, idx) => {
+        const st = stats[k];
+        const b = st.blk;
+        const activeCls = currentArchivePlannerBlock === k ? 'active' : '';
+        const boxSum = st.cajas + st.cajasNuevas;
+        html += `
+          <button type="button" class="archive-block-card ${activeCls}" style="border-top: 4px solid ${b.color};" onclick="setArchivePlannerBlock('${k}')">
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <span style="font-size:0.75rem; font-weight:900; color:${b.color};">${idx + 1}. ${escapeHtmlAttr(b.short)}</span>
+              <span style="font-size:0.7rem; font-weight:800; background:${b.bg}; color:${b.color}; padding:1px 6px; border-radius:999px; border:1px solid ${b.border};">${st.obras.length} obras</span>
+            </div>
+            <div style="font-size:0.68rem; color:#334155;">📦 ${boxSum} cajas • 📁 ${st.sueltos} sueltos</div>
+            <div style="font-size:0.69rem; font-weight:800; color:${st.relocated === st.obras.length && st.obras.length > 0 ? '#059669' : '#64748B'};">✅ ${st.relocated}/${st.obras.length} reubicadas</div>
+          </button>
+        `;
+      });
+
+      container.innerHTML = html;
+    }
+
+    function getArchivePlannerFilteredRows() {
+      const { tdrAll, relocMap } = getArchivePlannerBlockStats();
+      const q = (document.getElementById('archivePlannerSearch')?.value || '').toLowerCase().trim();
+      const onlyPend = !!document.getElementById('archivePlannerOnlyPending')?.checked;
+
+      return tdrAll.filter(p => {
+        if (currentArchivePlannerBlock !== 'ALL' && getProjectArchiveBlockKey(p) !== currentArchivePlannerBlock) return false;
+        const entry = relocMap[p.id] || {};
+        if (onlyPend && entry.relocated) return false;
+        if (!q) return true;
+        const origUbic = compileUbicacionCajas(p.id) || '';
+        const haystack = `${p.id} ${p.desc} ${p.cui} ${p.provincia} ${origUbic} ${entry.destAmb || ''} ${entry.estante || ''}`.toLowerCase();
+        return haystack.includes(q);
+      });
+    }
+
+    function renderArchivePlannerTable() {
+      const tbody = document.getElementById('archivePlannerTbody');
+      const summary = document.getElementById('archivePlannerSummary');
+      if (!tbody) return;
+
+      const list = getArchivePlannerFilteredRows();
+      const relocMap = getArchiveRelocationMap();
+
+      let sumCajas = 0, sumSueltos = 0, sumReloc = 0;
+      list.forEach(p => {
+        const bd = getDetailedAmbientesBreakdown(p.id);
+        bd.ambientes.forEach(a => { sumCajas += a.cajasCount + a.cajasNuevasCount; sumSueltos += a.sueltosCount; });
+        if (relocMap[p.id] && relocMap[p.id].relocated) sumReloc++;
+      });
+
+      if (summary) {
+        const blkTitle = currentArchivePlannerBlock === 'ALL' ? 'Todos los Bloques TDR (2021-Culm. → 2025)' : ARCHIVE_BLOCKS[currentArchivePlannerBlock].label;
+        summary.innerHTML = `
+          <span><strong>${blkTitle}</strong>: <b>${list.length}</b> obras</span>
+          <span style="color:#1D4ED8;">📦 <b>${sumCajas}</b> cajas por rotular/mover</span>
+          <span style="color:#B45309;">📁 <b>${sumSueltos}</b> sueltos por encajonar</span>
+          <span style="color:#059669;">✅ <b>${sumReloc}/${list.length}</b> ya reubicadas</span>
+        `;
+      }
+
+      if (list.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="6" style="text-align:center; padding:2rem; color:#64748B;">No hay obras pendientes con ese filtro en este bloque.</td></tr>`;
+        return;
+      }
+
+      tbody.innerHTML = list.map(p => {
+        const blk = getProjectArchiveBlock(p);
+        const bd = getDetailedAmbientesBreakdown(p.id);
+        const entry = relocMap[p.id] || {};
+        const isReloc = !!entry.relocated;
+        const destAmbVal = entry.destAmb || blk.defaultAmb;
+        const estanteVal = entry.estante || '';
+
+        let origCajas = 0, origCN = 0, origSueltos = 0;
+        let origenHtml = '';
+        if (!bd.hasCenso) {
+          origenHtml = `<span class="badge badge-red" style="font-size:0.68rem;">🚨 Sin cajas censadas aún</span>`;
+        } else {
+          origenHtml = bd.ambientes.map(a => {
+            origCajas += a.cajasCount;
+            origCN += a.cajasNuevasCount;
+            origSueltos += a.sueltosCount;
+            const codesTxt = a.items.map(it => `${it.isCajaNueva ? '🆕' : (it.isSuelto ? '📁' : '📦')}${escapeHtmlAttr(it.codigo)}`).join(', ');
+            return `<div style="margin-bottom:3px; line-height:1.3;"><strong style="color:#0F172A;">📍 ${escapeHtmlAttr(a.ambiente)}:</strong> <span style="font-family:monospace; font-size:0.7rem; color:#334155;">${codesTxt}</span></div>`;
+          }).join('');
+        }
+
+        let actionHtml = '';
+        const totBoxes = origCajas + origCN;
+        if (!bd.hasCenso) {
+          actionHtml = `<span class="archive-action-pill" style="background:#FEE2E2; color:#991B1B; border:1px solid #FCA5A5;">🔍 Ubicar expediente primero</span>`;
+        } else if (origSueltos > 0 && totBoxes > 0) {
+          actionHtml = `<span class="archive-action-pill" style="background:#FEF3C7; color:#92400E; border:1px solid #F59E0B;">📦 Conservar ${totBoxes} caja(s) + Rótulo A4<br>🆕 Encajonar ${origSueltos} suelto(s)</span>`;
+        } else if (origSueltos > 0 && totBoxes === 0) {
+          actionHtml = `<span class="archive-action-pill" style="background:#FFEDD5; color:#9A3412; border:1px solid #FB923C;">🆕 Armar Caja Nueva para ${origSueltos} suelto(s)</span>`;
+        } else {
+          actionHtml = `<span class="archive-action-pill" style="background:#DCFCE7; color:#166534; border:1px solid #86EFAC;">🏷️ Conservar ${totBoxes} caja(s) + Pegar Rótulo A4</span>`;
+        }
+
+        const iniStr = hasValidStart(p) ? formatCompactDate(p.fecha_inicio) : 'Sin Ini.';
+        const finRaw = p.fecha_termino_verificada_ing || (p.fecha_culminacion_real && p.fecha_culminacion_real !== '-' ? p.fecha_culminacion_real : '');
+        const finStr = hasValidEnd(p) ? formatCompactDate(finRaw) : 'Sin Fin';
+        const rowBg = isReloc ? 'background:#F0FDF4;' : '';
+        const printableBoxes = getProjectPhysicalBoxesList(p.id, { includeSueltoFallback: true });
+
+        return `
+          <tr style="${rowBg}">
+            <td style="text-align:center; vertical-align:middle;">
+              <div style="font-weight:900; font-size:0.95rem; color:#1E1B4B;">#${p.id}</div>
+              <span style="display:inline-block; margin-top:3px; padding:1px 6px; border-radius:999px; font-size:0.64rem; font-weight:800; background:${blk.bg}; color:${blk.color}; border:1px solid ${blk.border};">${escapeHtmlAttr(blk.short)}</span>
+            </td>
+            <td>
+              <div style="font-weight:700; color:#0F172A; line-height:1.3;">${escapeHtmlAttr(p.desc)}</div>
+              <div style="font-size:0.7rem; color:#475569; margin-top:3px;">CUI: <strong>${escapeHtmlAttr(p.cui || 'S/N')}</strong> • ${escapeHtmlAttr(p.provincia)} • 🚀 ${escapeHtmlAttr(iniStr)} → 🏁 ${escapeHtmlAttr(finStr)}</div>
+            </td>
+            <td style="font-size:0.73rem;">${origenHtml}</td>
+            <td>${actionHtml}</td>
+            <td>
+              <div style="display:flex; flex-direction:column; gap:4px;">
+                <input type="text" class="archive-dest-input" id="arcDest_${p.id}" value="${escapeHtmlAttr(destAmbVal)}" placeholder="Ej: ARCHIVO-2022" onchange="updateArchiveRelocationField(${p.id})">
+                <input type="text" class="archive-dest-input" id="arcEst_${p.id}" value="${escapeHtmlAttr(estanteVal)}" placeholder="Estante / Anaquel (opcional)" style="border-color:#CBD5E1; font-weight:600;" onchange="updateArchiveRelocationField(${p.id})">
+              </div>
+            </td>
+            <td style="text-align:center;">
+              <div style="display:flex; flex-direction:column; gap:5px; align-items:stretch;">
+                <button type="button" onclick="toggleArchiveRelocated(${p.id}, this)" style="border:1.5px solid ${isReloc ? '#10B981' : '#94A3B8'}; background:${isReloc ? '#059669' : '#F8FAFC'}; color:${isReloc ? '#FFFFFF' : '#334155'}; border-radius:7px; padding:0.35rem 0.5rem; font-size:0.72rem; font-weight:800; cursor:pointer;">${isReloc ? '✅ Ubicada' : '⬜ Marcar Ubicada'}</button>
+                <div style="display:flex; gap:4px;">
+                  <button type="button" onclick="imprimirRotulosObraLote(${p.id})" class="armador-chip" style="flex:1; background:#F5F3FF; border-color:#8B5CF6; color:#5B21B6;" title="Imprimir todos los Rótulos A4 de esta obra">🖨️ Rótulos (${printableBoxes.length})</button>
+                  <button type="button" onclick="closeArchivePlannerModal(); openDrawer(${p.id});" class="armador-chip" title="Abrir ficha de obra">📂</button>
+                </div>
+              </div>
+            </td>
+          </tr>
+        `;
+      }).join('');
+    }
+
+    function updateArchiveRelocationField(obraId) {
+      const dest = (document.getElementById(`arcDest_${obraId}`)?.value || '').trim();
+      const est = (document.getElementById(`arcEst_${obraId}`)?.value || '').trim();
+      const entry = saveArchiveRelocationEntry(obraId, { destAmb: dest, estante: est });
+      if (entry.relocated) {
+        const p = (projectsData || []).find(x => x.id === obraId);
+        if (p) syncArchiveRelocationToCloud(p, true, dest, est);
+        filterTable();
+        renderAnalyticsDashboard();
+      }
+    }
+
+    async function toggleArchiveRelocated(obraId, btnEl) {
+      const relocMap = getArchiveRelocationMap();
+      const cur = relocMap[obraId] || {};
+      const nextReloc = !cur.relocated;
+      const p = (projectsData || []).find(x => x.id === obraId);
+      const blk = p ? getProjectArchiveBlock(p) : null;
+      const dest = (document.getElementById(`arcDest_${obraId}`)?.value || cur.destAmb || (blk ? blk.defaultAmb : '')).trim();
+      const est = (document.getElementById(`arcEst_${obraId}`)?.value || cur.estante || '').trim();
+
+      saveArchiveRelocationEntry(obraId, { relocated: nextReloc, destAmb: dest, estante: est });
+      renderArchiveBlockTabs();
+      renderArchivePlannerTable();
+      filterTable();
+      renderAnalyticsDashboard();
+
+      if (p) {
+        const synced = await syncArchiveRelocationToCloud(p, nextReloc, dest, est);
+        showToast(nextReloc
+          ? (synced ? `✅ Obra #${obraId} marcada en ${dest} y sincronizada con Drive` : `✅ Obra #${obraId} marcada en ${dest} (local)`)
+          : `↩️ Obra #${obraId} vuelta a pendiente de reubicación`);
+      }
+    }
+
+    function imprimirRotulosObraLote(obraId) {
+      const p = (projectsData || []).find(x => x.id === obraId);
+      if (!p) return;
+      const boxes = getProjectPhysicalBoxesList(obraId, { includeSueltoFallback: true });
+      if (boxes.length === 0) {
+        showToast(`La Obra N° ${obraId} aún no tiene cajas ni archivos sueltos censados.`);
+        return;
+      }
+      const pagesHtml = boxes.map(b => buildSingleRotuloPageHtml({
+        project: p,
+        obraId,
+        boxCod: b.cod,
+        projTitle: p.desc,
+        amb: b.amb,
+        boxSeqLabel: b.isVirtualSueltoBox ? 'CAJA NUEVA 1 DE 1 (SUELTOS)' : b.boxSeqLabel,
+        rows: b.rows
+      })).join('');
+
+      const win = window.open('', '_blank', 'width=940,height=1100');
+      if (!win) { alert("Permite ventanas emergentes para imprimir el lote de Rótulos A4."); return; }
+      win.document.write(`<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><title>Rótulos Obra ${obraId} (${boxes.length} hojas)</title>
+        <style>${ROTULO_PRINT_CSS}</style></head><body>
+        <div class="no-print" style="margin-bottom:12px; display:flex; justify-content:space-between; align-items:center; background:#EEF2FF; padding:10px 14px; border-radius:8px;">
+          <strong>Obra N° ${obraId}: ${boxes.length} Rótulo(s) A4 listos para imprimir y pegar en cajas</strong>
+          <button onclick="window.print()" style="background:#4338CA;color:#FFF;border:none;padding:9px 16px;border-radius:6px;font-weight:bold;cursor:pointer;font-size:11pt;">🖨️ Imprimir ${boxes.length} Rótulo(s) A4</button>
         </div>
+        ${pagesHtml}
+      </body></html>`);
+      win.document.close();
+      setTimeout(() => win.print(), 350);
+    }
+
+    function imprimirRotulosBloqueLote() {
+      const list = getArchivePlannerFilteredRows();
+      const pages = [];
+      list.forEach(p => {
+        const boxes = getProjectPhysicalBoxesList(p.id, { includeSueltoFallback: true });
+        boxes.forEach(b => {
+          pages.push(buildSingleRotuloPageHtml({
+            project: p,
+            obraId: p.id,
+            boxCod: b.cod,
+            projTitle: p.desc,
+            amb: b.amb,
+            boxSeqLabel: b.isVirtualSueltoBox ? 'CAJA NUEVA 1 DE 1 (SUELTOS)' : b.boxSeqLabel,
+            rows: b.rows
+          }));
+        });
+      });
+      if (pages.length === 0) {
+        showToast("No hay cajas censadas en este bloque para generar Rótulos A4.");
+        return;
+      }
+      const blkName = currentArchivePlannerBlock === 'ALL' ? 'TODOS LOS BLOQUES TDR' : ARCHIVE_BLOCKS[currentArchivePlannerBlock].label;
+      const win = window.open('', '_blank', 'width=940,height=1100');
+      if (!win) { alert("Permite ventanas emergentes para imprimir el lote de Rótulos A4."); return; }
+      win.document.write(`<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><title>Rótulos ${escapeHtmlAttr(blkName)} (${pages.length} hojas)</title>
+        <style>${ROTULO_PRINT_CSS}</style></head><body>
+        <div class="no-print" style="margin-bottom:12px; display:flex; justify-content:space-between; align-items:center; background:#EEF2FF; padding:10px 14px; border-radius:8px;">
+          <strong>${escapeHtmlAttr(blkName)} • ${pages.length} Rótulos A4 de ${list.length} obras</strong>
+          <button onclick="window.print()" style="background:#4338CA;color:#FFF;border:none;padding:9px 16px;border-radius:6px;font-weight:bold;cursor:pointer;font-size:11pt;">🖨️ Imprimir Lote Completo (${pages.length} A4)</button>
+        </div>
+        ${pages.join('')}
+      </body></html>`);
+      win.document.close();
+      setTimeout(() => win.print(), 350);
+    }
+
+    function imprimirCartelesBloquesTdr() {
+      const { stats } = getArchivePlannerBlockStats();
+      const targetKeys = currentArchivePlannerBlock === 'ALL' ? ARCHIVE_BLOCK_ORDER : [currentArchivePlannerBlock];
+      const pagesHtml = targetKeys.map(k => {
+        const st = stats[k];
+        if (!st) return '';
+        const b = st.blk;
+        const rowsHtml = st.obras.length > 0 ? st.obras.map(p => {
+          const bd = getDetailedAmbientesBreakdown(p.id);
+          let cCount = 0, sCount = 0;
+          bd.ambientes.forEach(a => { cCount += a.cajasCount + a.cajasNuevasCount; sCount += a.sueltosCount; });
+          const ini = hasValidStart(p) ? formatCompactDate(p.fecha_inicio) : '—';
+          const finRaw = p.fecha_termino_verificada_ing || (p.fecha_culminacion_real && p.fecha_culminacion_real !== '-' ? p.fecha_culminacion_real : '');
+          const fin = hasValidEnd(p) ? formatCompactDate(finRaw) : '—';
+          return `
+            <tr>
+              <td style="text-align:center;font-weight:900;">${p.id}</td>
+              <td style="text-align:center;font-family:monospace;">${escapeHtmlAttr(p.cui || 'S/N')}</td>
+              <td style="font-weight:700;">${escapeHtmlAttr(p.desc)}</td>
+              <td style="text-align:center;">${escapeHtmlAttr(p.provincia)}</td>
+              <td style="text-align:center;white-space:nowrap;">${escapeHtmlAttr(ini)} ➔ ${escapeHtmlAttr(fin)}</td>
+              <td style="text-align:center;font-weight:800;">${cCount} Cajas / ${sCount} Sueltos</td>
+            </tr>
+          `;
+        }).join('') : `<tr><td colspan="6" style="text-align:center;padding:12px;">Sin obras asignadas a este bloque</td></tr>`;
+
+        return `
+          <div class="sign-page">
+            <div class="sign-hero" style="background:${b.bg}; border:3px solid ${b.color}; color:${b.color};">
+              <div style="font-size:11pt; font-weight:900; letter-spacing:1.2px;">FONDO DE DESARROLLO DE MOQUEGUA — AUDITORÍA OBRAS CIVILES 2022–2025</div>
+              <div style="font-size:28pt; font-weight:900; margin:4px 0;">${escapeHtmlAttr(b.label)}</div>
+              <div style="font-size:12pt; font-weight:800; color:#0F172A;">ZONA FÍSICA: ${escapeHtmlAttr(b.defaultAmb)} • ${st.obras.length} OBRA(S) • 📦 ${st.cajas + st.cajasNuevas} CAJA(S) • 📁 ${st.sueltos} SUELTO(S)</div>
+            </div>
+            <table>
+              <thead>
+                <tr>
+                  <th style="width:55px;">N°</th>
+                  <th style="width:85px;">CUI</th>
+                  <th>PROYECTO / OBRA CIVIL</th>
+                  <th style="width:80px;">PROV.</th>
+                  <th style="width:155px;">PERIODO EJECUCIÓN</th>
+                  <th style="width:130px;">UNIDADES FÍSICAS</th>
+                </tr>
+              </thead>
+              <tbody>${rowsHtml}</tbody>
+            </table>
+          </div>
+        `;
+      }).join('');
+
+      const win = window.open('', '_blank', 'width=1100,height=820');
+      if (!win) { alert("Permite ventanas emergentes para imprimir los Carteles de Bloque."); return; }
+      win.document.write(`<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><title>Carteles Señalizadores por Bloque A4</title>
+        <style>
+          @page { size: A4 landscape; margin: 12mm; }
+          body { font-family: Arial, Helvetica, sans-serif; color: #000; margin: 0; padding: 6mm; }
+          .sign-page { page-break-after: always; break-after: page; }
+          .sign-page:last-child { page-break-after: auto; break-after: auto; }
+          .sign-hero { padding: 14px 18px; border-radius: 10px; text-align: center; margin-bottom: 12px; }
+          table { width: 100%; border-collapse: collapse; font-size: 9.5pt; }
+          th { background: #1E293B; color: #FFF; padding: 7px 6px; border: 1.5px solid #0F172A; font-size: 9pt; }
+          td { border: 1px solid #475569; padding: 6px 8px; vertical-align: middle; }
+          @media print { .no-print { display: none; } body { padding: 0; -webkit-print-color-adjust: exact; print-color-adjust: exact; } }
+        </style></head><body>
+        <div class="no-print" style="margin-bottom:10px; text-align:right;">
+          <button onclick="window.print()" style="background:#4338CA;color:#FFF;border:none;padding:9px 16px;border-radius:6px;font-weight:bold;cursor:pointer;">🖨️ Imprimir Carteles de Señalización</button>
+        </div>
+        ${pagesHtml}
+      </body></html>`);
+      win.document.close();
+      setTimeout(() => win.print(), 350);
+    }
+
+    function imprimirHojaRutaBloque() {
+      const list = getArchivePlannerFilteredRows();
+      if (list.length === 0) { showToast("No hay obras para imprimir en la hoja de ruta."); return; }
+      const relocMap = getArchiveRelocationMap();
+      const blkName = currentArchivePlannerBlock === 'ALL' ? 'TODOS LOS BLOQUES TDR (2021-Culm. → 2025)' : ARCHIVE_BLOCKS[currentArchivePlannerBlock].label;
+      const rowsHtml = list.map(p => {
+        const blk = getProjectArchiveBlock(p);
+        const bd = getDetailedAmbientesBreakdown(p.id);
+        let cCount = 0, sCount = 0;
+        const origTxt = bd.hasCenso ? bd.ambientes.map(a => {
+          cCount += a.cajasCount + a.cajasNuevasCount;
+          sCount += a.sueltosCount;
+          return `${a.ambiente}: ` + a.items.map(it => it.codigo).join(', ');
+        }).join(' | ') : 'SIN CENSAR';
+        const acc = !bd.hasCenso ? 'Ubicar expediente' : (sCount > 0 ? `Mover ${cCount} caja(s) + Encajonar ${sCount} suelto(s)` : `Conservar ${cCount} caja(s) + Pegar Rótulo A4`);
+        const entry = relocMap[p.id] || {};
+        const dest = (entry.destAmb || blk.defaultAmb) + (entry.estante ? ` (${entry.estante})` : '');
+        return `
+          <tr>
+            <td style="text-align:center; font-size:13pt;">${entry.relocated ? '☑' : '☐'}</td>
+            <td style="text-align:center; font-weight:900;">${p.id}<br><span style="font-size:7.5pt;">${escapeHtmlAttr(blk.short)}</span></td>
+            <td><strong>${escapeHtmlAttr(p.desc)}</strong><br><span style="font-size:8pt;color:#475569;">CUI: ${escapeHtmlAttr(p.cui || 'S/N')}</span></td>
+            <td style="font-size:8pt;">${escapeHtmlAttr(origTxt)}</td>
+            <td style="font-weight:700; font-size:8.5pt;">${escapeHtmlAttr(acc)}</td>
+            <td style="font-weight:800; font-family:monospace; font-size:8.5pt;">${escapeHtmlAttr(dest)}</td>
+          </tr>
+        `;
+      }).join('');
+
+      const win = window.open('', '_blank', 'width=1100,height=820');
+      if (!win) { alert("Permite ventanas emergentes para imprimir la Hoja de Ruta."); return; }
+      win.document.write(`<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><title>Hoja de Ruta - ${escapeHtmlAttr(blkName)}</title>
+        <style>
+          @page { size: A4 landscape; margin: 10mm; }
+          body { font-family: Arial, Helvetica, sans-serif; color: #000; margin: 0; padding: 5mm; }
+          h2 { margin: 0 0 4px 0; font-size: 13pt; }
+          table { width: 100%; border-collapse: collapse; font-size: 8.5pt; margin-top: 8px; }
+          th { background: #1E1B4B; color: #FFF; padding: 6px; border: 1px solid #000; }
+          td { border: 1px solid #475569; padding: 5px 6px; vertical-align: middle; }
+          @media print { .no-print { display: none; } body { padding: 0; } }
+        </style></head><body>
+        <div class="no-print" style="margin-bottom:8px; text-align:right;">
+          <button onclick="window.print()" style="background:#4338CA;color:#FFF;border:none;padding:8px 14px;border-radius:6px;font-weight:bold;cursor:pointer;">🖨️ Imprimir Hoja de Ruta</button>
+        </div>
+        <h2>📋 HOJA DE RUTA FÍSICA — ${escapeHtmlAttr(blkName)}</h2>
+        <div style="font-size:9pt; color:#334155;">${list.length} obras • Marca el casillero cuando traslades las cajas y pegues el Rótulo A4 en su bloque correspondiente.</div>
         <table>
           <thead>
             <tr>
-              <th style="width:52px;">N°</th>
-              <th>CONTENIDO</th>
-              <th style="width:115px;">N° CAJA</th>
+              <th style="width:36px;">OK</th>
+              <th style="width:65px;">OBRA</th>
+              <th>PROYECTO / CUI</th>
+              <th style="width:240px;">ORIGEN ACTUAL (RECOGER)</th>
+              <th style="width:170px;">ACCIÓN 80/20</th>
+              <th style="width:140px;">DESTINO FINAL</th>
             </tr>
           </thead>
           <tbody>${rowsHtml}</tbody>
         </table>
-        <div class="foot">
-          <span>Obra N° ${activeArmadorCtx.obraId === 999 ? 'MULTI' : activeArmadorCtx.obraId}</span>
-          <span>Emitido desde Sistema Auditoría FDM</span>
-        </div>
       </body></html>`);
       win.document.close();
-      setTimeout(() => win.print(), 300);
+      setTimeout(() => win.print(), 350);
     }
 
     // Initialize
@@ -4979,6 +5727,53 @@
             </tr>
           </thead>
           <tbody id="batchDatesTbody"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Organizador de Archivo Físico por Años (2021-Culm. -> 2025) -->
+  <div class="armador-modal-backdrop" id="archivePlannerModal" onclick="if(event.target.id==='archivePlannerModal') closeArchivePlannerModal()">
+    <div class="armador-modal" style="max-width:1340px;">
+      <div class="armador-modal-header" style="background: linear-gradient(135deg, #1E1B4B, #4338CA); flex-wrap:wrap;">
+        <div>
+          <h2 style="font-size:1.12rem; font-weight:800; margin:0;">🗂️ Organizador de Archivo Físico por Años (2021-Culm. ➔ 2022 ➔ 2023 ➔ 2024 ➔ 2025)</h2>
+          <div style="font-size:0.77rem; color:#E0E7FF; margin-top:2px;">Estrategia 80/20 en 5 días: conserva cajas sanas con Rótulo A4 uniforme; encajona solo sueltos y cajas rotas.</div>
+        </div>
+        <div style="display:flex; gap:0.45rem; align-items:center; flex-wrap:wrap;">
+          <button type="button" class="btn" onclick="imprimirCartelesBloquesTdr()" style="background:#0EA5E9; color:#FFFFFF; font-size:0.76rem; padding:0.46rem 0.8rem; font-weight:800;">🪧 Imprimir Carteles Separadores A4</button>
+          <button type="button" class="btn" onclick="imprimirHojaRutaBloque()" style="background:#F59E0B; color:#0F172A; font-size:0.76rem; padding:0.46rem 0.8rem; font-weight:800;">📋 Hoja de Ruta Bloque</button>
+          <button type="button" class="btn" onclick="imprimirRotulosBloqueLote()" style="background:#16A34A; color:#FFFFFF; font-size:0.76rem; padding:0.46rem 0.85rem; font-weight:800;">🖨️ Rótulos A4 del Bloque</button>
+          <button type="button" class="close-btn" onclick="closeArchivePlannerModal()" style="position:static;">&times;</button>
+        </div>
+      </div>
+
+      <div class="archive-block-tabs" id="archiveBlockTabsBar"></div>
+
+      <div class="audit-modal-controls">
+        <div class="audit-summary-strip" id="archivePlannerSummary" style="padding:0; border:none; background:transparent;"></div>
+        <div style="display:flex; gap:0.65rem; align-items:center; flex-wrap:wrap;">
+          <label style="font-size:0.76rem; font-weight:700; color:#334155; display:inline-flex; align-items:center; gap:5px; cursor:pointer;">
+            <input type="checkbox" id="archivePlannerOnlyPending" onchange="renderArchivePlannerTable()">
+            Solo pendientes de reubicar
+          </label>
+          <input type="text" id="archivePlannerSearch" oninput="renderArchivePlannerTable()" placeholder="Buscar N°, obra, ambiente, caja..." style="padding:0.42rem 0.72rem; border:1px solid #CBD5E1; border-radius:8px; font-size:0.8rem; min-width:220px;">
+        </div>
+      </div>
+
+      <div class="audit-modal-body" style="padding:0.75rem 1.25rem;">
+        <table class="batch-dates-table">
+          <thead>
+            <tr>
+              <th style="width:78px; text-align:center;">OBRA / BLOQ.</th>
+              <th>OBRA CIVIL / CUI / PERIODO</th>
+              <th style="width:240px;">ORIGEN ACTUAL (DÓNDE RECOGER HOY)</th>
+              <th style="width:220px;">ACCIÓN 80/20 RECOMENDADA</th>
+              <th style="width:185px;">UBICACIÓN FINAL (ESTANTE / ZONA)</th>
+              <th style="width:145px; text-align:center;">ESTADO / RÓTULOS</th>
+            </tr>
+          </thead>
+          <tbody id="archivePlannerTbody"></tbody>
         </table>
       </div>
     </div>

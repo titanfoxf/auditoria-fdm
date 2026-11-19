@@ -78,6 +78,7 @@ function doGet(e) {
         convenio: isNewSchema ? (row[7] || "") : "",
         estatus: isNewSchema ? (row[8] || "") : "",
         estado_situacional: isNewSchema ? (row[9] || "") : "",
+        ubicacion_ambientes: isNewSchema ? (row[12] || "") : "",
         notas_auditoria: notas
       };
     }
