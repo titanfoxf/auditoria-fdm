@@ -970,6 +970,7 @@
             });
           }
 
+          reconcileCampoStatuses();
           updateGlobalCounters();
           renderList();
           if (activeObraId) {
@@ -1115,6 +1116,7 @@
       await initDB();
       await loadProjectsData();
       await loadAllFromDB();
+      reconcileCampoStatuses();
       updateGlobalCounters();
       renderList();
       updateCloudButtonState();
@@ -1985,6 +1987,59 @@
       }
     }
 
+    function normalizeCampoEvidenceText(str) {
+      return String(str || '')
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .toUpperCase();
+    }
+
+    function reconcileCampoStatuses() {
+      (projects || []).forEach(p => {
+        if (!p || p.id === 999 || p.es_multiproyecto) return;
+        const est = (p.estatus || '').toUpperCase().trim();
+        const sit = (p.estado_situacional || '').toUpperCase().trim();
+        if (est !== 'POR EJECUTAR' && est !== '' && est !== 'EN EJECUCION') return;
+
+        const d = fieldData[p.id] || {};
+        const fotos = Array.isArray(d.fotos) ? d.fotos : [];
+        const boxText = normalizeCampoEvidenceText(
+          fotos.map(f => [
+            f.nota || '',
+            f.ocr_acervo || '',
+            String(f.tipo_foto || '').replace(/Foto\s+Adicional/gi, '')
+          ].join(' ')).join(' ')
+        );
+
+        const hasLiqBox = /\bLIQUIDAC|\bINFORME FINAL\b|\bINF\.?\s*FINAL\b|\bRECEPCION DE OBRA\b|\bACTA DE RECEPCION\b|\bCONFORMIDAD DE OBRA\b/.test(boxText);
+        const hasExecBox = /\bVALORIZ|\bINFORME MENSUAL\b|\bINF\.?\s*MENSUAL\b|\bREPORTE SEMANAL\b|\bREPORTES SEMANALES\b|\bCUADERNO DE OBRA\b|\bADICIONAL\b|\bAMPLIACION DE PLAZO\b/.test(boxText);
+
+        const rawIni = (d.fecha_inicio || (p.tiene_fecha_inicio && p.fecha_inicio) || '').trim();
+        const isProgStart = rawIni.toUpperCase().includes('PROGRAMAD');
+        const validStart = !!rawIni && !rawIni.toUpperCase().includes('SIN INICIO') && !rawIni.toUpperCase().includes('POR UBICAR') && !isProgStart;
+        const rawFin = (d.fecha_culm || p.fecha_termino_verificada_ing || (p.fecha_culminacion_real && p.fecha_culminacion_real !== '-' ? p.fecha_culminacion_real : '') || '').trim();
+        const validEnd = !!p.tiene_fecha_termino || (!!rawFin && rawFin !== 'Culminada' && rawFin !== 'Sin dato' && rawFin !== 'Sin dato en PMO' && /\d/.test(rawFin));
+
+        const prevEst = est || 'SIN STATUS';
+        if (est === 'POR EJECUTAR' || est === '') {
+          if (hasLiqBox || validEnd || sit.includes('LIQUID') || sit.includes('FINALIZAD')) {
+            if (!p.estatus_excel_original) p.estatus_excel_original = prevEst;
+            p.estatus = 'EJECUTADO';
+            if (hasLiqBox && !p.estado_situacional) p.estado_situacional = 'EN LIQUIDACION';
+          } else if (hasExecBox || validStart) {
+            if (!p.estatus_excel_original) p.estatus_excel_original = prevEst;
+            p.estatus = 'EN EJECUCION';
+          }
+        } else if (est === 'EN EJECUCION') {
+          if (hasLiqBox || validEnd || sit.includes('LIQUID') || sit.includes('FINALIZAD')) {
+            if (!p.estatus_excel_original) p.estatus_excel_original = prevEst;
+            p.estatus = 'EJECUTADO';
+            if (hasLiqBox && !p.estado_situacional) p.estado_situacional = 'EN LIQUIDACION';
+          }
+        }
+      });
+    }
+
     function getCampoSitBadge(p) {
       const sit = (p.estado_situacional || '').toUpperCase().trim();
       const est = (p.estatus || '').toUpperCase().trim();
@@ -2152,6 +2207,11 @@
 
         const isAuditoria = !isMulti && (p.es_obra_civil === true || p.es_auditoria_2022_2025 === true || p.id <= 69);
         const sInfo = getCampoSitBadge(p);
+        const origEst = (p.estatus_excel_original || '').toUpperCase().trim();
+        const curEst = (p.estatus || '').toUpperCase().trim();
+        const sitTitleAttr = (origEst && origEst !== curEst)
+          ? ` title="Actualizado desde Excel: ${origEst.replace(/"/g, '&quot;')}"`
+          : '';
         const sitChip = (!isMulti && p.estado_situacional && p.estado_situacional !== p.estatus)
           ? `<span class="badge" style="background:#0F172A;color:#38BDF8;font-weight:800;">${p.estado_situacional}</span>`
           : '';
@@ -2174,7 +2234,7 @@
             <div class="card-top">
               <span class="card-badge-id" style="${badgeIdStyle}">${badgeIdText}</span>
               <div class="card-badges">
-                ${!isMulti ? `<span class="badge" style="background: ${sInfo.bg}; color: ${sInfo.col}; font-weight: 800;">${sInfo.label}</span>` : `<span class="badge" style="background: #F3E8FF; color: #7E22CE; font-weight: 800;">📦 CAJAS MIXTAS</span>`}
+                ${!isMulti ? `<span class="badge" style="background: ${sInfo.bg}; color: ${sInfo.col}; font-weight: 800;"${sitTitleAttr}>${sInfo.label}</span>` : `<span class="badge" style="background: #F3E8FF; color: #7E22CE; font-weight: 800;">📦 CAJAS MIXTAS</span>`}
                 ${sitChip}
                 ${p.cui && p.cui !== 'N/D' && p.cui !== 'S/N' ? `<span class="badge badge-gray">CUI: ${p.cui}</span>` : ''}
                 ${dateBadgeHtml}
@@ -2855,6 +2915,7 @@
       }
 
       await saveObraToDB(d);
+      reconcileCampoStatuses();
       updateGlobalCounters();
       renderList();
       uploadObraChecksToCloud(activeObraId);

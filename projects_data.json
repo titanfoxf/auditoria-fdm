@@ -4626,7 +4626,7 @@
       "desc": "CONSTRUCCION E IMPLEMENTACION DE CREMATORIO PARA LA SOCIEDAD DE BENEFICENCIA DE MOQUEGUA, DEL DEPARTAMENTO DE MOQUEGUA, PROVINCIA DE MARISCAL NIETO, DISTRITO DE MOQUEGUA (ETAPA I)”",
       "cui": "N/D",
       "tipologia": "OBRAS CIVILES",
-      "estatus": "EN EJECUCION",
+      "estatus": "EJECUTADO",
       "prio": 1785128.71,
       "costo_ejec": 2382663.18,
       "tiene_caja": "NO - ARCHIVADOR",
@@ -4768,7 +4768,9 @@
       "fecha_termino_verificada_ing": "18/07/2025",
       "fecha_termino_sort": "2025-07-18",
       "es_obra_civil": true,
-      "tiene_fecha_termino": true
+      "tiene_fecha_termino": true,
+      "estatus_excel_original": "EN EJECUCION",
+      "estatus_motivo_cambio": "Culminada el 18/07/2025 y en estado situacional EN LIQUIDACION."
     },
     {
       "id": 22,
@@ -5939,7 +5941,7 @@
       "desc": "MEJORAMIENTO Y AMPLIACIÓN DEL SERVICIO DE AGUA PARA RIEGO DE LOS SECTORES DE ARAPA, AQUINA Y AYSANA QUINRAY EN LA LOCALIDAD DE YUNGA - GENERAL SÁNCHEZ CERRO - MOQUEGUA.",
       "cui": "N/D",
       "tipologia": "OBRAS CIVILES",
-      "estatus": "EN EJECUCION",
+      "estatus": "EJECUTADO",
       "prio": 1434812.8,
       "costo_ejec": 1202137.68,
       "tiene_caja": "NO - ARCHIVADOR",
@@ -6333,7 +6335,9 @@
       "fecha_termino_verificada_ing": "13/01/2024",
       "fecha_termino_sort": "2024-01-13",
       "es_obra_civil": true,
-      "tiene_fecha_termino": true
+      "tiene_fecha_termino": true,
+      "estatus_excel_original": "EN EJECUCION",
+      "estatus_motivo_cambio": "Culminada el 13/01/2024 y en estado situacional LIQUIDADO."
     },
     {
       "id": 31,
@@ -6491,7 +6495,7 @@
       "desc": "CONSTRUCCIÓN DE LOS CANALES DE SAHUANAY DISTRITO LA CAPILLA PROVINCIA SÁNCHEZ CERRO REGIÓN MOQUEGUA.",
       "cui": "N/D",
       "tipologia": "OBRAS CIVILES",
-      "estatus": "EN EJECUCION",
+      "estatus": "EJECUTADO",
       "prio": 500000.0,
       "costo_ejec": 1823169.71,
       "tiene_caja": "NO - ARCHIVADOR",
@@ -6543,7 +6547,9 @@
       "fecha_termino_verificada_ing": "20/05/2025",
       "fecha_termino_sort": "2025-05-20",
       "es_obra_civil": true,
-      "tiene_fecha_termino": true
+      "tiene_fecha_termino": true,
+      "estatus_excel_original": "EN EJECUCION",
+      "estatus_motivo_cambio": "Culminada el 20/05/2025 y en estado situacional LIQUIDADO."
     },
     {
       "id": 33,
@@ -9797,7 +9803,7 @@
       "desc": "REPARACION DE COBERTURA CREACION DE LOS SERVICIOS DE EDUCACION INICIAL -II CICLO Y PRIMARIA EN EL PROMUVI X",
       "cui": "N/D",
       "tipologia": "OBRAS CIVILES",
-      "estatus": "EN EJECUCION",
+      "estatus": "EJECUTADO",
       "prio": 20000.0,
       "costo_ejec": 114077.55,
       "tiene_caja": "NO - ARCHIVADOR",
@@ -9819,7 +9825,7 @@
       "historial": [],
       "total_hitos": 0,
       "fecha_inicio": "15 de setiembre del 2024",
-      "fecha_inicio_sort": "9999-99-99",
+      "fecha_inicio_sort": "2024-09-15",
       "tiene_fecha_inicio": true,
       "fecha_inicio_doc": "Expediente Digital FDM 2025 / Actuados Mantenimiento",
       "fecha_termino_prog": "",
@@ -9845,7 +9851,9 @@
       "costo_total": 114077.55,
       "es_obra_civil": true,
       "tiene_fecha_termino": true,
-      "estado_situacional": ""
+      "estado_situacional": "",
+      "estatus_excel_original": "EN EJECUCION",
+      "estatus_motivo_cambio": "Culminada el 15/11/2024 con ejecución al 100% (S/ 114,077.55; saldo S/ 0.00)."
     },
     {
       "id": 50,
@@ -9948,7 +9956,7 @@
       "desc": "INTERVENCION CORRECTIVA DE LA COBERTURA DE LA CREACION DE LOS SERVICIOS DE EDUCACION INICIAL - II CICLO PRIMARIA PROMUVI X, DISTRITO Y PROVINCIA DE ILO",
       "cui": "N/D",
       "tipologia": "OBRAS CIVILES",
-      "estatus": "POR EJECUTAR",
+      "estatus": "EJECUTADO",
       "prio": 497326.5,
       "costo_ejec": 542711.05,
       "tiene_caja": "NO - ARCHIVADOR",
@@ -10001,7 +10009,9 @@
       "costo_total": 542711.05,
       "es_obra_civil": true,
       "tiene_fecha_termino": false,
-      "estado_situacional": ""
+      "estado_situacional": "",
+      "estatus_excel_original": "POR EJECUTAR",
+      "estatus_motivo_cambio": "Presupuesto ejecutado al 100% en Excel (S/ 542,711.05 de S/ 542,711.05; saldo S/ 0.00)."
     },
     {
       "id": 52,
@@ -11464,7 +11474,7 @@
       "tipologia": "OBRAS CIVILES",
       "estatus": "POR EJECUTAR",
       "prio": 20823.36,
-      "costo_ejec": 20823.36,
+      "costo_ejec": 0.0,
       "tiene_caja": "NO - ARCHIVADOR",
       "n_cajas": "-",
       "checks": {
@@ -11526,7 +11536,7 @@
       "tipologia": "OBRAS CIVILES",
       "estatus": "POR EJECUTAR",
       "prio": 11320558.27,
-      "costo_ejec": 11320558.27,
+      "costo_ejec": 0.0,
       "tiene_caja": "NO - ARCHIVADOR",
       "n_cajas": "-",
       "checks": {
@@ -11646,7 +11656,7 @@
       "tipologia": "OBRAS CIVILES",
       "estatus": "POR EJECUTAR",
       "prio": 7445963.67,
-      "costo_ejec": 7445963.67,
+      "costo_ejec": 0.0,
       "tiene_caja": "NO - ARCHIVADOR",
       "n_cajas": "-",
       "checks": {
@@ -11662,26 +11672,26 @@
         "res": true,
         "transf": true
       },
-      "alerta": "Trazabilidad completa con fechas comprobadas",
+      "alerta": "",
       "historial": [],
       "total_hitos": 0,
-      "fecha_inicio": "19 de junio del 2020 (Suscripción y habilitación contractual)",
+      "fecha_inicio": "",
       "fecha_inicio_sort": "9999-99-99",
-      "tiene_fecha_inicio": true,
-      "fecha_inicio_doc": "INFORME N° 060-2022-PMO-FDM (Tomo 2022 Folio 49)",
+      "tiene_fecha_inicio": false,
+      "fecha_inicio_doc": "",
       "fecha_termino_prog": "",
       "fecha_culminacion_real": "",
       "acta_recepcion": "",
-      "resolucion_liquidacion": "Certificado de Entrega Final y 3ra Valorización aprobada (Informe N° 060-2022-PMO-FDM, Tomo 2022 Folio 49)",
-      "estado_info": "COMPLETA",
-      "estado_info_label": "🟢 INFORMACIÓN COMPLETA",
-      "estado_info_desc": "Cuenta con documentos probatorios de inicio y culminación/liquidación en Tomos PMO",
+      "resolucion_liquidacion": "",
+      "estado_info": "NO_APLICA",
+      "estado_info_label": "⚪ POR EJECUTAR",
+      "estado_info_desc": "Obra aprobada por acuerdo del 31/03/2026; sin inicio de ejecución ni gasto ejecutado en Excel.",
       "detalles_faltantes": [],
       "confiabilidad": "ALTA",
       "total_relevantes": 0,
       "entrega_terreno": "",
-      "contrato": "N° 0002-2020-FDM (19/06/2020)",
-      "contratista": "Corporación Comercial Canadiense",
+      "contrato": "",
+      "contratista": "",
       "plazo": "",
       "es_auditoria_2022_2025": true,
       "fuentes_excel_ing": [
@@ -11701,7 +11711,7 @@
       "desc": "MEJORAMIENTO DEL CAMAL MUNICIPAL EN EL DISTRITO DE OMATE - PROVINCIA DE GENERAL SANCHEZ",
       "cui": "2525029",
       "tipologia": "OBRAS CIVILES",
-      "estatus": "POR EJECUTAR",
+      "estatus": "EN EJECUCION",
       "prio": 4131475.03,
       "costo_ejec": 2850956.21,
       "tiene_caja": "EN CAJA (Caja HO)",
@@ -11723,7 +11733,7 @@
       "historial": [],
       "total_hitos": 0,
       "fecha_inicio": "08 de setiembre del 2025",
-      "fecha_inicio_sort": "9999-99-99",
+      "fecha_inicio_sort": "2025-09-08",
       "tiene_fecha_inicio": true,
       "fecha_inicio_doc": "INFORME N° 023-2025, 024-2025, 059-2025 (Expediente Digital Word 2025)",
       "fecha_termino_prog": "04 de mayo del 2026",
@@ -11750,7 +11760,9 @@
       "costo_total": 4131475.03,
       "es_obra_civil": true,
       "tiene_fecha_termino": false,
-      "estado_situacional": ""
+      "estado_situacional": "",
+      "estatus_excel_original": "POR EJECUTAR",
+      "estatus_motivo_cambio": "Inició el 08/09/2025, avance financiero 69.0% (S/ 2,850,956.21) y 17+ cajas en campo con Valorizaciones, Informes Mensuales y Reportes Semanales."
     },
     {
       "id": 62,
@@ -11759,7 +11771,7 @@
       "desc": "CREACION DE LOS OPERATIVOS O MISIONALES INSTITUCIONALES EN EL ANEXO DE URINAY DISTRITO DE OMATE DE LA PROVINCIA DE GENERAL SANCHEZ CERRO DEL DEPARTAMENTO DE MOQUEGUA",
       "cui": "2668752",
       "tipologia": "OBRAS CIVILES",
-      "estatus": "POR EJECUTAR",
+      "estatus": "EJECUTADO",
       "prio": 1634909.68,
       "costo_ejec": 2048634.68,
       "tiene_caja": "NO - ARCHIVADOR",
@@ -11781,7 +11793,7 @@
       "historial": [],
       "total_hitos": 0,
       "fecha_inicio": "25 de agosto del 2025",
-      "fecha_inicio_sort": "9999-99-99",
+      "fecha_inicio_sort": "2025-08-25",
       "tiene_fecha_inicio": true,
       "fecha_inicio_doc": "INFORME N° 018-2025, 020-2025, 046-2025, 050-2025 (Expediente Digital Word 2025)",
       "fecha_termino_prog": "18 de abril del 2026",
@@ -11808,7 +11820,9 @@
       "costo_total": 2048634.68,
       "es_obra_civil": true,
       "tiene_fecha_termino": false,
-      "estado_situacional": ""
+      "estado_situacional": "EN LIQUIDACION",
+      "estatus_excel_original": "POR EJECUTAR",
+      "estatus_motivo_cambio": "Inició el 25/08/2025, presupuesto ejecutado al 100% (S/ 2,048,634.68) y en campo constan Liquidación de Obra (OF1-62-SUELTO2) y Cuaderno de Obra + Informe Final de Supervisión (OF1-62-SUELTO3)."
     },
     {
       "id": 63,
@@ -11817,7 +11831,7 @@
       "desc": "MEJORAMIENTON DEL SERVICIO DE AGUA PARA RIEGO EN LA SECCION DE RIEGO CONDORPATA, EN EL CENTRO POBLADO MENOR DE MAYCUNACA, DISTRITO DE ICHUÑA, PROV. GRAL SANCHEZ CERRO, DEPARTAMENTO DE MOQUEGYUA",
       "cui": "N/D",
       "tipologia": "OBRAS CIVILES",
-      "estatus": "POR EJECUTAR",
+      "estatus": "EN EJECUCION",
       "prio": 1815727.5,
       "costo_ejec": 1637131.3,
       "tiene_caja": "NO - ARCHIVADOR",
@@ -11870,7 +11884,9 @@
       "costo_total": 1815727.5,
       "es_obra_civil": true,
       "tiene_fecha_termino": false,
-      "estado_situacional": ""
+      "estado_situacional": "",
+      "estatus_excel_original": "POR EJECUTAR",
+      "estatus_motivo_cambio": "Ejecución presupuestal del 90.2% en Excel (S/ 1,637,131.30 de S/ 1,815,727.50)."
     },
     {
       "id": 64,
@@ -12381,7 +12397,7 @@
       "desc": "MEJORAMIENTO DEL SERV. TRANSITO PEATONAL INTERURBANO PUENTEPATA-CACAHUARA",
       "cui": "N/D",
       "tipologia": "OBRAS CIVILES",
-      "estatus": "EJECUTADO",
+      "estatus": "EN EJECUCION",
       "prio": 3850885.45,
       "costo_ejec": 6000.0,
       "tiene_caja": "NO - ARCHIVADOR",
@@ -12433,7 +12449,9 @@
       "costo_total": 3850885.45,
       "es_obra_civil": true,
       "tiene_fecha_termino": false,
-      "estado_situacional": ""
+      "estado_situacional": "",
+      "estatus_excel_original": "EJECUTADO",
+      "estatus_motivo_cambio": "En Excel original no tenía estatus y presenta solo 0.16% ejecutado (S/ 6,000.00 de S/ 3,850,885.45; obra en fase inicial/ejecución)."
     },
     {
       "id": 66,
@@ -16665,7 +16683,7 @@
       "tipologia": "OBRAS CIVILES",
       "estatus": "POR APROBARSE",
       "prio": 7196836.16,
-      "costo_ejec": 7196836.16,
+      "costo_ejec": 0.0,
       "tiene_caja": "POR VERIFICAR",
       "n_cajas": "-",
       "checks": {
@@ -17180,12 +17198,14 @@
       "fecha_termino_verificada_ing": "29/07/2024",
       "fecha_termino_sort": "2024-07-29",
       "acuerdo_fdm": "Sesión extraordinaria del 20/05/2019",
-      "estatus": "EN EJECUCION",
+      "estatus": "EJECUTADO",
       "ampliacion_presupuestal": 1750000.0,
       "costo_total": 23250000.0,
       "es_obra_civil": true,
       "tipologia": "OBRAS CIVILES",
-      "tiene_fecha_termino": true
+      "tiene_fecha_termino": true,
+      "estatus_excel_original": "EN EJECUCION",
+      "estatus_motivo_cambio": "Culminada el 29/07/2024 y en estado situacional EN PROCESO DE LIQUIDACION."
     },
     {
       "id": 157,

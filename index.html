@@ -1117,6 +1117,8 @@
 
       // Aplicar ediciones locales de gabinete en caso existan
       applyRotuloEditsToMap();
+      // Reconciliar estatus lógicamente usando evidencia física en Drive + fechas reales
+      reconcileStatusesFromFieldEvidence();
     }
 
     function normalizeCloudDateStr(val) {
@@ -1328,9 +1330,83 @@
       return !!fin && fin !== '-' && fin !== 'Culminada' && fin !== 'Sin dato' && fin !== 'Sin dato en PMO' && /\d/.test(fin);
     }
 
+    function normalizeEvidenceText(str) {
+      return String(str || '')
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .toUpperCase();
+    }
+
+    function reconcileProjectStatusFromEvidence(p) {
+      if (!p || p.id === 999 || p.es_multiproyecto) return false;
+      const est = (p.estatus || '').toUpperCase().trim();
+      const sit = (p.estado_situacional || '').toUpperCase().trim();
+      if (est !== 'POR EJECUTAR' && est !== '' && est !== 'EN EJECUCION') return false;
+
+      const fData = fieldPhotosMap[p.id];
+      const fotos = (fData && Array.isArray(fData.fotos)) ? fData.fotos : [];
+      const boxText = normalizeEvidenceText(
+        fotos.map(f => [
+          f.nota || '',
+          f.ocr_acervo || '',
+          String(f.tipo_foto || '').replace(/Foto\s+Adicional/gi, '')
+        ].join(' ')).join(' ')
+      );
+
+      const hasLiqBox = /\bLIQUIDAC|\bINFORME FINAL\b|\bINF\.?\s*FINAL\b|\bRECEPCION DE OBRA\b|\bACTA DE RECEPCION\b|\bCONFORMIDAD DE OBRA\b/.test(boxText);
+      const hasExecBox = /\bVALORIZ|\bINFORME MENSUAL\b|\bINF\.?\s*MENSUAL\b|\bREPORTE SEMANAL\b|\bREPORTES SEMANALES\b|\bCUADERNO DE OBRA\b|\bADICIONAL\b|\bAMPLIACION DE PLAZO\b/.test(boxText);
+
+      const isProgStart = (p.fecha_inicio || '').toUpperCase().includes('PROGRAMAD');
+      const validStart = hasValidStart(p) && !isProgStart;
+      const validEnd = hasValidEnd(p);
+
+      let changed = false;
+      const prevEst = est || 'SIN STATUS';
+
+      if (est === 'POR EJECUTAR' || est === '') {
+        if (hasLiqBox || validEnd || sit.includes('LIQUID') || sit.includes('FINALIZAD')) {
+          if (!p.estatus_excel_original) p.estatus_excel_original = prevEst;
+          p.estatus = 'EJECUTADO';
+          if (hasLiqBox && !p.estado_situacional) p.estado_situacional = 'EN LIQUIDACION';
+          p.estatus_motivo_cambio = p.estatus_motivo_cambio || (hasLiqBox
+            ? 'Actualizado automáticamente: evidencia de Liquidación/Informe Final en cajas censadas.'
+            : 'Actualizado automáticamente: cuenta con fecha real de término/liquidación.');
+          changed = true;
+        } else if (hasExecBox || validStart) {
+          if (!p.estatus_excel_original) p.estatus_excel_original = prevEst;
+          p.estatus = 'EN EJECUCION';
+          p.estatus_motivo_cambio = p.estatus_motivo_cambio || (hasExecBox
+            ? 'Actualizado automáticamente: evidencia de Valorizaciones/Reportes/Cuaderno en cajas censadas.'
+            : 'Actualizado automáticamente: cuenta con fecha de inicio de obra.');
+          changed = true;
+        }
+      } else if (est === 'EN EJECUCION') {
+        if (hasLiqBox || validEnd || sit.includes('LIQUID') || sit.includes('FINALIZAD')) {
+          if (!p.estatus_excel_original) p.estatus_excel_original = prevEst;
+          p.estatus = 'EJECUTADO';
+          if (hasLiqBox && !p.estado_situacional) p.estado_situacional = 'EN LIQUIDACION';
+          p.estatus_motivo_cambio = p.estatus_motivo_cambio || (hasLiqBox
+            ? 'Actualizado automáticamente: evidencia de Liquidación/Informe Final en cajas censadas.'
+            : 'Actualizado automáticamente: cuenta con fecha real de término o estado de liquidación.');
+          changed = true;
+        }
+      }
+      return changed;
+    }
+
+    function reconcileStatusesFromFieldEvidence() {
+      let updates = 0;
+      (projectsData || []).forEach(p => {
+        if (reconcileProjectStatusFromEvidence(p)) updates++;
+      });
+      return updates;
+    }
+
     function renderStatusStackHtml(p) {
       const est = (p.estatus || 'SIN STATUS').toUpperCase().trim();
       const sit = (p.estado_situacional || '').toUpperCase().trim();
+      const origExcel = (p.estatus_excel_original || '').toUpperCase().trim();
+      const wasAdjusted = !!origExcel && origExcel !== est;
 
       let estCls = 'st-porejec';
       let estLabel = est;
@@ -1374,7 +1450,14 @@
         sitHtml = `<span class="status-pill ${sitCls}" title="Estado Situacional Excel">${escapeHtmlAttr(sitLabel)}</span>`;
       }
 
-      return `<div class="status-stack"><span class="status-pill ${estCls}" title="Estatus Excel: ${escapeHtmlAttr(est)}">${escapeHtmlAttr(estLabel)}</span>${sitHtml}</div>`;
+      const mainTitle = wasAdjusted
+        ? `${p.estatus_motivo_cambio ? p.estatus_motivo_cambio + ' | ' : ''}Excel original: ${origExcel}`
+        : `Estatus Excel: ${est}`;
+      const auditNoteHtml = wasAdjusted
+        ? `<span style="font-size:0.65rem;color:#64748B;line-height:1.15;" title="${escapeHtmlAttr(mainTitle)}">🔄 Excel: ${escapeHtmlAttr(origExcel)}</span>`
+        : '';
+
+      return `<div class="status-stack"><span class="status-pill ${estCls}" title="${escapeHtmlAttr(mainTitle)}">${escapeHtmlAttr(estLabel)}</span>${sitHtml}${auditNoteHtml}</div>`;
     }
 
     function getSituationalInfo(p) {
@@ -1611,6 +1694,13 @@
       const txtAcervo = document.getElementById('txtAcervoConsolidado');
       if (txtAcervo) {
         txtAcervo.value = compileAcervoConsolidadoText(obraId);
+      }
+
+      // 4b. Reconciliar estatus si el rótulo editado aporta evidencia de Valorizaciones o Liquidación
+      const projObjRot = (projectsData || []).find(item => item.id === obraId);
+      if (projObjRot && reconcileProjectStatusFromEvidence(projObjRot)) {
+        filterTable();
+        renderAnalyticsDashboard();
       }
 
       // 5. Sincronizar cambio no destructivo a Google Sheets (solo columna 5: CONTENIDO_DE_ESTA_CAJA)
@@ -2180,6 +2270,7 @@
       fileInput.value = '';
       renderCajasNuevasEnDrawer(obraId);
       renderCajasEnDrawer(obraId);
+      reconcileStatusesFromFieldEvidence();
       filterTable();
       renderAnalyticsDashboard();
       showToast(`🆕 Foto(s) agregadas a Caja Nueva "${cod}"`);
@@ -2250,6 +2341,7 @@
 
       await loadFieldAuditData();
       applySavedChangesFromStorage();
+      reconcileStatusesFromFieldEvidence();
       renderTable();
       renderAnalyticsDashboard();
     }
@@ -2319,6 +2411,7 @@
 
       openDrawer(selectedProjectId);
       switchDrawerTab('UBICACION');
+      reconcileStatusesFromFieldEvidence();
       filterTable();
       renderAnalyticsDashboard();
 
@@ -4417,6 +4510,7 @@
       if (finInp) { finInp.classList.remove('dirty'); finInp.dataset.dirty = '0'; }
 
       const synced = await pushProjectDatesToCloud(p, iniVal, finVal);
+      reconcileStatusesFromFieldEvidence();
       filterTable();
       renderAnalyticsDashboard();
       if (selectedProjectId === obraId) openDrawer(obraId);
@@ -4452,6 +4546,7 @@
         if (await pushProjectDatesToCloud(p, iniVal, finVal)) cloudOk++;
       }
 
+      reconcileStatusesFromFieldEvidence();
       filterTable();
       renderAnalyticsDashboard();
       renderBatchDatesTable();
@@ -4701,6 +4796,7 @@
       // separada la descripción corta en "Ubicación por Ambiente y Contenido" respecto a este Rótulo A4.
       renderCajasEnDrawer(obraId);
       renderCajasNuevasEnDrawer(obraId);
+      reconcileStatusesFromFieldEvidence();
       filterTable();
       renderAnalyticsDashboard();
 
