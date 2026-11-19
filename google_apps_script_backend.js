@@ -243,6 +243,61 @@ function doPost(e) {
     }
 
     // ==============================================================
+    // CASO 2.B2: OBTENER IMAGEN EN BASE64 (EVITA BLOQUEOS CORS EN RECORTE OCR)
+    // ==============================================================
+    if (action === "get_image_base64") {
+      let fileId = String(payload.file_id || "").trim();
+      if (!fileId && payload.drive_url) {
+        const m = String(payload.drive_url).match(/[-\w]{25,}/);
+        if (m) fileId = m[0];
+      }
+      if (!fileId) {
+        return ContentService.createTextOutput(JSON.stringify({
+          status: "error",
+          action: "get_image_base64",
+          message: "Falta file_id"
+        })).setMimeType(ContentService.MimeType.JSON);
+      }
+      const file = DriveApp.getFileById(fileId);
+      const blob = file.getBlob();
+      const mime = blob.getContentType() || "image/jpeg";
+      const b64 = Utilities.base64Encode(blob.getBytes());
+      return ContentService.createTextOutput(JSON.stringify({
+        status: "success",
+        action: "get_image_base64",
+        file_id: fileId,
+        base64: "data:" + mime + ";base64," + b64
+      })).setMimeType(ContentService.MimeType.JSON);
+    }
+
+    // ==============================================================
+    // CASO 2.B3: OCR DE SECTOR RECORTADO DESDE EL ARMADOR DE RÓTULOS
+    // ==============================================================
+    if (action === "ocr_crop_base64") {
+      const b64Input = String(payload.base64 || "");
+      if (!b64Input) {
+        return ContentService.createTextOutput(JSON.stringify({
+          status: "error",
+          action: "ocr_crop_base64",
+          message: "Falta imagen base64 recortada"
+        })).setMimeType(ContentService.MimeType.JSON);
+      }
+      const cleanB64 = b64Input.replace(/^data:image\/\w+;base64,/, "");
+      const bytes = Utilities.base64Decode(cleanB64);
+      const blob = Utilities.newBlob(bytes, "image/jpeg", "TEMP_CROP_" + Date.now() + ".jpg");
+      const rootFolder = getOrCreateFolder(FOLDER_NAME);
+      const tempImg = rootFolder.createFile(blob);
+      const ocrRes = extraerTextoOcrDeArchivo(tempImg.getId());
+      try { tempImg.setTrashed(true); } catch (e) {}
+      return ContentService.createTextOutput(JSON.stringify({
+        status: "success",
+        action: "ocr_crop_base64",
+        limpio: ocrRes.limpio || "",
+        raw: ocrRes.raw || ""
+      })).setMimeType(ContentService.MimeType.JSON);
+    }
+
+    // ==============================================================
     // CASO 2.C: ACTUALIZAR CONTENIDO/RÓTULO EN GABINETE (NO DESTRUCTIVO)
     // ==============================================================
     if (action === "update_box_content") {

@@ -369,22 +369,30 @@
     @media (max-width: 960px) { .armador-split { grid-template-columns: 1fr; } }
     .armador-panel { background: #FFFFFF; border: 1.5px solid #E2E8F0; border-radius: 12px; padding: 0.9rem; box-shadow: 0 2px 6px rgba(0,0,0,0.03); }
     .armador-photos-list { display: flex; flex-direction: column; gap: 0.75rem; max-height: 64vh; overflow-y: auto; padding-right: 0.25rem; }
-    .armador-photo-item { border: 1.5px solid #CBD5E1; border-radius: 10px; overflow: hidden; background: #F8FAFC; }
+    .armador-photo-item { flex-shrink: 0; border: 1.5px solid #CBD5E1; border-radius: 10px; overflow: hidden; background: #F8FAFC; }
     .armador-photo-item img { width: 100%; max-height: 230px; object-fit: contain; background: #0F172A; cursor: zoom-in; display: block; }
-    .armador-modal-wide { max-width: 96vw; width: 96vw; max-height: 95vh; height: 95vh; }
-    .armador-split-wide { display: grid; grid-template-columns: 1.3fr 1fr; gap: 1rem; align-items: start; }
+    .armador-modal-wide { max-width: 1380px; width: 95vw; max-height: 92vh; height: 92vh; }
+    .armador-split-wide { display: grid; grid-template-columns: 1.15fr 1fr; gap: 1rem; align-items: start; }
     @media (max-width: 1024px) { .armador-split-wide { grid-template-columns: 1fr; } }
-    .armador-photos-list-wide { display: flex; flex-direction: column; gap: 0.85rem; max-height: calc(95vh - 165px); overflow-y: auto; padding-right: 0.25rem; }
-    .armador-photo-stage { position: relative; background: #0F172A; display: flex; justify-content: center; align-items: center; overflow: hidden; padding: 4px; }
-    .armador-photo-stage img { display: block; width: auto; height: auto; max-width: 100%; max-height: 520px; cursor: crosshair; user-select: none; background: transparent; }
-    .armador-photos-list-wide.compact-photos .armador-photo-stage img { max-height: 260px; }
-    .armador-loupe-toolbar { display: flex; flex-wrap: wrap; gap: 0.35rem; align-items: center; justify-content: space-between; background: #F5F3FF; border: 1px solid #DDD6FE; border-radius: 8px; padding: 0.4rem 0.6rem; margin-bottom: 0.55rem; font-size: 0.72rem; }
-    .loupe-btn { background: #FFFFFF; border: 1px solid #C4B5FD; color: #5B21B6; border-radius: 6px; padding: 0.18rem 0.48rem; font-size: 0.7rem; font-weight: 800; cursor: pointer; }
+    .armador-photos-list-wide { display: flex; flex-direction: column; gap: 0.85rem; max-height: calc(92vh - 185px); overflow-y: auto; padding-right: 0.25rem; }
+    .armador-photo-stage { position: relative; background: #0F172A; overflow: auto; max-height: 365px; min-height: 180px; display: flex; align-items: flex-start; justify-content: flex-start; padding: 6px; box-sizing: border-box; }
+    .armador-photo-stage.zoom-fit { overflow: hidden; align-items: center; justify-content: center; }
+    .armador-photo-stage.zoom-fit img { max-width: 100%; max-height: 345px; width: auto; height: auto; cursor: zoom-in; }
+    .armador-photo-stage img { display: block; margin: auto; user-select: none; -webkit-user-drag: none; transition: transform 0.12s ease; cursor: grab; background: transparent; }
+    .armador-photo-stage.ocr-selecting { cursor: crosshair !important; outline: 2.5px solid #7C3AED; }
+    .armador-photo-stage.ocr-selecting img { cursor: crosshair !important; }
+    .armador-loupe-toolbar { display: flex; flex-wrap: wrap; gap: 0.4rem; align-items: center; justify-content: space-between; background: #F5F3FF; border: 1px solid #DDD6FE; border-radius: 8px; padding: 0.42rem 0.6rem; margin-bottom: 0.55rem; font-size: 0.72rem; }
+    .loupe-btn { background: #FFFFFF; border: 1px solid #C4B5FD; color: #5B21B6; border-radius: 6px; padding: 0.22rem 0.52rem; font-size: 0.71rem; font-weight: 800; cursor: pointer; }
     .loupe-btn.active { background: #6D28D9; border-color: #5B21B6; color: #FFFFFF; }
-    .armador-loupe-box { position: fixed; pointer-events: none; z-index: 4200; width: 460px; height: 195px; overflow: hidden; border: 3px solid #7C3AED; border-radius: 12px; background: #0F172A; box-shadow: 0 18px 42px rgba(15,23,42,0.5); display: none; }
-    .armador-loupe-box img { position: absolute; left: 50%; top: 50%; max-width: none; max-height: none; pointer-events: none; transform-origin: center center; }
-    .armador-loupe-crosshair { position: absolute; left: 50%; top: 50%; width: 22px; height: 22px; margin-left: -11px; margin-top: -11px; border: 1.5px solid rgba(124,58,237,0.75); border-radius: 50%; pointer-events: none; box-shadow: 0 0 0 1px rgba(255,255,255,0.6); }
-    .armador-loupe-tag { position: absolute; right: 8px; bottom: 6px; background: rgba(15,23,42,0.84); color: #E9D5FF; font-size: 0.66rem; font-weight: 800; padding: 2px 7px; border-radius: 999px; pointer-events: none; }
+    .armador-crop-rect { position: absolute; border: 2.5px dashed #FACC15; background: rgba(124, 58, 237, 0.22); box-shadow: 0 0 0 1px rgba(0,0,0,0.6); pointer-events: none; z-index: 20; }
+    .armador-crop-dot { position: absolute; width: 12px; height: 12px; margin-left: -6px; margin-top: -6px; border-radius: 50%; background: #FACC15; border: 2px solid #4C1D95; pointer-events: none; z-index: 21; }
+    .armador-ocr-banner { display: none; background: #FEF3C7; border: 1.5px solid #F59E0B; color: #92400E; border-radius: 8px; padding: 0.45rem 0.65rem; margin-bottom: 0.55rem; font-size: 0.74rem; font-weight: 800; align-items: center; justify-content: space-between; gap: 0.5rem; flex-wrap: wrap; }
+    .armador-ocr-banner.active { display: flex; }
+    .armador-ocr-result-bar { display: none; background: #ECFDF5; border: 1.5px solid #34D399; color: #065F46; border-radius: 8px; padding: 0.45rem 0.65rem; margin-top: 0.45rem; font-size: 0.74rem; font-weight: 700; align-items: center; justify-content: space-between; gap: 0.45rem; flex-wrap: wrap; }
+    .armador-ocr-result-bar.active { display: flex; }
+    .orient-toggle-group { display: inline-flex; background: rgba(255,255,255,0.14); border: 1px solid rgba(255,255,255,0.28); border-radius: 7px; padding: 2px; gap: 2px; }
+    .orient-btn { background: transparent; border: none; color: #E2E8F0; font-size: 0.72rem; font-weight: 800; padding: 0.3rem 0.58rem; border-radius: 5px; cursor: pointer; }
+    .orient-btn.active { background: #FFFFFF; color: #1E1B4B; }
     .armador-photo-meta { padding: 0.55rem 0.7rem; font-size: 0.76rem; display: flex; flex-direction: column; gap: 0.35rem; }
     .armador-table { width: 100%; border-collapse: collapse; margin-top: 0.55rem; background: #FFFFFF; }
     .armador-table th { background: #1E293B; color: #FFFFFF; font-size: 0.72rem; padding: 0.45rem 0.5rem; text-align: left; border: 1px solid #334155; }
@@ -4828,29 +4836,26 @@
       if (photosPane) {
         photosPane.innerHTML = cajaFotos.length > 0 ? cajaFotos.map((f, i) => {
           const directUrl = resolveDirectImageUrl(f.dataUrl, f.file_id || f.drive_url);
-          const hdUrl = String(directUrl || '').replace(/sz=w\d+/, 'sz=w2000');
+          const hdUrl = String(directUrl || '').replace(/sz=w\d+/, 'sz=w1800');
           const cleanNote = (f.nota && f.nota !== cod && f.nota !== 'Contenido no especificado') ? f.nota.replace(/^\[IT\d+\]\s*/i, '').trim() : '';
           const ocrText = (f.ocr_acervo || '').replace(/\|/g, ', ').trim();
           const candidateText = ocrText || cleanNote || '';
           const subTag = f.sub_codigo && f.sub_codigo !== cod ? `${f.sub_codigo} • ` : '';
+          const fid = f.file_id || '';
           return `
             <div class="armador-photo-item">
-              <div class="armador-photo-stage">
+              <div class="armador-photo-stage zoom-fit" data-photo-idx="${i}" data-file-id="${escapeHtmlAttr(fid)}" data-drive-url="${escapeHtmlAttr(f.drive_url || '')}" data-ocr-raw="${escapeHtmlAttr(f.ocr_raw || '')}" onclick="handleArmadorStageClick(this, event)" onmousemove="handleArmadorStageMove(this, event)" ondblclick="if(!armadorOcrState.active) openDashboardLightbox('${hdUrl}')">
                 <img src="${directUrl}" data-rot="0" data-hd-src="${hdUrl}"
-                     onmouseenter="showArmadorLoupe(this, event)"
-                     onmousemove="moveArmadorLoupe(this, event)"
-                     onmouseleave="hideArmadorLoupe()"
-                     onwheel="wheelArmadorLoupe(this, event)"
-                     onclick="hideArmadorLoupe(); openDashboardLightbox('${hdUrl}')"
-                     onerror="handleDriveImgError(this, '${f.file_id || f.drive_url || ''}')"
-                     title="Pasa el cursor encima para activar la lupa • Rueda del mouse ajusta zoom • Clic para pantalla completa">
+                     onerror="handleDriveImgError(this, '${escapeHtmlAttr(fid || f.drive_url || '')}')"
+                     title="Usa los botones de zoom arriba, doble clic para pantalla completa, o ✂️ Reconocer Sector en 2 clics">
               </div>
               <div class="armador-photo-meta">
                 <div style="display:flex; justify-content:space-between; align-items:center; gap:6px; flex-wrap:wrap;">
                   <strong style="color:#4C1D95;">#${i + 1} ${escapeHtmlAttr(subTag + (f.tipo_foto || 'Foto'))}</strong>
                   <div style="display:flex; gap:4px; align-items:center; flex-wrap:wrap;">
+                    <button type="button" class="armador-chip" style="background:#FEF3C7; border-color:#F59E0B; color:#92400E;" onclick="startArmadorOcrOnPhoto(${i})" title="Marca 2 esquinas del texto en esta foto para llenar las filas">✂️ Reconocer Sector</button>
                     <button type="button" class="armador-chip" onclick="rotateArmadorPhoto(this)" title="Girar foto 90°">🔄 90°</button>
-                    <button type="button" class="armador-chip" onclick="hideArmadorLoupe(); openDashboardLightbox('${hdUrl}')" title="Abrir imagen a pantalla completa">🔍 Pantalla completa</button>
+                    <button type="button" class="armador-chip" onclick="openDashboardLightbox('${hdUrl}')" title="Abrir imagen a pantalla completa">🔍 Pantalla completa</button>
                     ${candidateText ? `<button type="button" class="armador-chip" onclick="usePhotoTextInArmador('${escapeHtmlAttr(candidateText)}')" title="Copiar este texto a una fila del rótulo">➕ Pasar a tabla</button>` : ''}
                   </div>
                 </div>
@@ -4869,28 +4874,42 @@
         ).join('');
       }
 
+      cancelArmadorOcrMode();
+      hideArmadorOcrResultBar();
+      setArmadorPhotoZoom(armadorPhotoZoomPct);
+      setRotuloPrintOrientation(rotuloPrintOrientation);
       renderArmadorRotuloTable();
       const modal = document.getElementById('armadorRotuloModal');
       if (modal) modal.classList.add('open');
     }
 
-    let armadorLoupeZoom = 2.8;
+    let armadorPhotoZoomPct = 100;
 
-    function setArmadorLoupeZoom(z) {
-      armadorLoupeZoom = Number(z) || 0;
-      document.querySelectorAll('.loupe-btn[data-loupe-z]').forEach(btn => {
-        btn.classList.toggle('active', Number(btn.dataset.loupeZ) === armadorLoupeZoom);
+    function setArmadorPhotoZoom(pct) {
+      armadorPhotoZoomPct = Number(pct) || 100;
+      document.querySelectorAll('.loupe-btn[data-zoom-pct]').forEach(btn => {
+        btn.classList.toggle('active', Number(btn.dataset.zoomPct) === armadorPhotoZoomPct);
       });
-      if (armadorLoupeZoom <= 0) hideArmadorLoupe();
-    }
-
-    function toggleArmadorPhotoSize(isCompact) {
-      const pane = document.getElementById('armadorPhotosPane');
-      if (pane) pane.classList.toggle('compact-photos', !!isCompact);
-      const btnLg = document.getElementById('btnArmadorSizeLg');
-      const btnSm = document.getElementById('btnArmadorSizeSm');
-      if (btnLg) btnLg.classList.toggle('active', !isCompact);
-      if (btnSm) btnSm.classList.toggle('active', !!isCompact);
+      document.querySelectorAll('#armadorPhotosPane .armador-photo-stage').forEach(stage => {
+        const imgEl = stage.querySelector('img');
+        if (!imgEl) return;
+        const deg = parseInt(imgEl.dataset.rot || '0', 10) || 0;
+        if (armadorPhotoZoomPct <= 100) {
+          stage.classList.add('zoom-fit');
+          imgEl.style.width = '';
+          imgEl.style.maxWidth = (deg % 180 !== 0) ? '290px' : '';
+          imgEl.style.maxHeight = (deg % 180 !== 0) ? '290px' : '';
+          imgEl.style.cursor = armadorOcrState.active ? 'crosshair' : 'default';
+          stage.scrollLeft = 0;
+          stage.scrollTop = 0;
+        } else {
+          stage.classList.remove('zoom-fit');
+          imgEl.style.width = `${armadorPhotoZoomPct}%`;
+          imgEl.style.maxWidth = 'none';
+          imgEl.style.maxHeight = 'none';
+          imgEl.style.cursor = armadorOcrState.active ? 'crosshair' : 'grab';
+        }
+      });
     }
 
     function rotateArmadorPhoto(btnEl) {
@@ -4901,87 +4920,507 @@
       const nextDeg = ((parseInt(imgEl.dataset.rot || '0', 10) || 0) + 90) % 360;
       imgEl.dataset.rot = String(nextDeg);
       imgEl.style.transform = nextDeg ? `rotate(${nextDeg}deg)` : '';
-      if (nextDeg % 180 !== 0) {
-        const w = imgEl.offsetWidth || 320;
-        stage.style.minHeight = `${Math.min(540, Math.round(w) + 16)}px`;
-        imgEl.style.maxWidth = `${Math.min(Math.max(240, stage.clientWidth - 16), 480)}px`;
-      } else {
-        stage.style.minHeight = '';
-        imgEl.style.maxWidth = '';
+      stage.style.minHeight = (nextDeg % 180 !== 0) ? '320px' : '';
+      setArmadorPhotoZoom(armadorPhotoZoomPct);
+    }
+
+    // =========================================================================
+    // RECONOCEDOR OCR POR SECTOR EN 2 CLICS (CROP EN VIVO + TESSERACT / GAS)
+    // =========================================================================
+    const armadorOcrState = {
+      active: false,
+      step: 0,
+      stageEl: null,
+      photoIdx: -1,
+      p1: null,
+      lastLines: [],
+      lastRaw: ''
+    };
+    let tesseractLoadPromise = null;
+
+    function clearArmadorCropOverlays(stageEl) {
+      const root = stageEl || document.getElementById('armadorPhotosPane');
+      if (!root) return;
+      root.querySelectorAll('.armador-crop-rect, .armador-crop-dot').forEach(el => el.remove());
+    }
+
+    function updateArmadorOcrBanner(msg, showCancel = true) {
+      const banner = document.getElementById('armadorOcrBanner');
+      const txt = document.getElementById('armadorOcrBannerText');
+      if (!banner || !txt) return;
+      if (!msg) {
+        banner.classList.remove('active');
+        return;
       }
-      hideArmadorLoupe();
+      txt.innerText = msg;
+      const cancelBtn = banner.querySelector('button');
+      if (cancelBtn) cancelBtn.style.display = showCancel ? 'inline-block' : 'none';
+      banner.classList.add('active');
     }
 
-    function showArmadorLoupe(imgEl, e) {
-      if (armadorLoupeZoom <= 0 || !imgEl) return;
-      moveArmadorLoupe(imgEl, e);
+    function hideArmadorOcrResultBar() {
+      const bar = document.getElementById('armadorOcrResultBar');
+      if (bar) bar.classList.remove('active');
     }
 
-    function moveArmadorLoupe(imgEl, e) {
-      const box = document.getElementById('armadorHoverLoupe');
-      const loupeImg = document.getElementById('armadorHoverLoupeImg');
-      const tag = document.getElementById('armadorHoverLoupeTag');
-      if (!box || !loupeImg || armadorLoupeZoom <= 0 || !imgEl || !imgEl.offsetWidth) {
-        if (box) box.style.display = 'none';
+    function toggleArmadorOcrMode() {
+      if (armadorOcrState.active) {
+        cancelArmadorOcrMode();
+      } else {
+        startArmadorOcrOnPhoto(-1);
+      }
+    }
+
+    function startArmadorOcrOnPhoto(photoIdx) {
+      const pane = document.getElementById('armadorPhotosPane');
+      if (!pane) return;
+      const stages = pane.querySelectorAll('.armador-photo-stage');
+      if (!stages.length) {
+        showToast("No hay fotos cargadas para reconocer.");
+        return;
+      }
+      clearArmadorCropOverlays();
+      armadorOcrState.active = true;
+      armadorOcrState.step = 1;
+      armadorOcrState.stageEl = (photoIdx >= 0 && stages[photoIdx]) ? stages[photoIdx] : null;
+      armadorOcrState.photoIdx = photoIdx;
+      armadorOcrState.p1 = null;
+
+      stages.forEach(s => {
+        s.classList.add('ocr-selecting');
+        const im = s.querySelector('img');
+        if (im) im.style.cursor = 'crosshair';
+      });
+      const mainBtn = document.getElementById('btnArmadorOcrSector');
+      if (mainBtn) {
+        mainBtn.classList.add('active');
+        mainBtn.innerText = '✂️ Marcando (2 clics)...';
+      }
+      if (armadorOcrState.stageEl) {
+        armadorOcrState.stageEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+      updateArmadorOcrBanner('🎯 Paso 1/2: Haz clic en la ESQUINA SUPERIOR IZQUIERDA del sector con texto (tabla o lomo).', true);
+    }
+
+    function cancelArmadorOcrMode() {
+      armadorOcrState.active = false;
+      armadorOcrState.step = 0;
+      armadorOcrState.p1 = null;
+      clearArmadorCropOverlays();
+      document.querySelectorAll('#armadorPhotosPane .armador-photo-stage').forEach(s => {
+        s.classList.remove('ocr-selecting');
+        const im = s.querySelector('img');
+        if (im) im.style.cursor = armadorPhotoZoomPct > 100 ? 'grab' : 'default';
+      });
+      const mainBtn = document.getElementById('btnArmadorOcrSector');
+      if (mainBtn) {
+        mainBtn.classList.remove('active');
+        mainBtn.innerText = '✂️ Reconocer Contenido (2 clics)';
+      }
+      updateArmadorOcrBanner('');
+    }
+
+    function getStageNormalizedCoords(stageEl, imgEl, clientX, clientY) {
+      const imgRect = imgEl.getBoundingClientRect();
+      const nx = Math.max(0, Math.min(1, (clientX - imgRect.left) / (imgRect.width || 1)));
+      const ny = Math.max(0, Math.min(1, (clientY - imgRect.top) / (imgRect.height || 1)));
+      const stageRect = stageEl.getBoundingClientRect();
+      const sx = (imgRect.left - stageRect.left) - stageEl.clientLeft + stageEl.scrollLeft + nx * imgRect.width;
+      const sy = (imgRect.top - stageRect.top) - stageEl.clientTop + stageEl.scrollTop + ny * imgRect.height;
+      return { nx, ny, sx, sy, imgRect };
+    }
+
+    function drawStageSelectionRect(stageEl, imgEl, p1, p2) {
+      const imgRect = imgEl.getBoundingClientRect();
+      const stageRect = stageEl.getBoundingClientRect();
+      const minNx = Math.min(p1.nx, p2.nx);
+      const maxNx = Math.max(p1.nx, p2.nx);
+      const minNy = Math.min(p1.ny, p2.ny);
+      const maxNy = Math.max(p1.ny, p2.ny);
+      const left = (imgRect.left - stageRect.left) - stageEl.clientLeft + stageEl.scrollLeft + minNx * imgRect.width;
+      const top = (imgRect.top - stageRect.top) - stageEl.clientTop + stageEl.scrollTop + minNy * imgRect.height;
+      const width = Math.max(2, (maxNx - minNx) * imgRect.width);
+      const height = Math.max(2, (maxNy - minNy) * imgRect.height);
+
+      let rectEl = stageEl.querySelector('.armador-crop-rect');
+      if (!rectEl) {
+        rectEl = document.createElement('div');
+        rectEl.className = 'armador-crop-rect';
+        stageEl.appendChild(rectEl);
+      }
+      rectEl.style.left = `${left}px`;
+      rectEl.style.top = `${top}px`;
+      rectEl.style.width = `${width}px`;
+      rectEl.style.height = `${height}px`;
+    }
+
+    function handleArmadorStageClick(stageEl, e) {
+      if (!armadorOcrState.active) return;
+      e.stopPropagation();
+      const imgEl = stageEl.querySelector('img');
+      if (!imgEl || !imgEl.offsetWidth) return;
+      const coords = getStageNormalizedCoords(stageEl, imgEl, e.clientX, e.clientY);
+
+      if (armadorOcrState.step === 1 || (armadorOcrState.stageEl && armadorOcrState.stageEl !== stageEl)) {
+        clearArmadorCropOverlays();
+        armadorOcrState.stageEl = stageEl;
+        armadorOcrState.photoIdx = parseInt(stageEl.dataset.photoIdx || '0', 10);
+        armadorOcrState.p1 = { nx: coords.nx, ny: coords.ny };
+        armadorOcrState.step = 2;
+
+        const dot = document.createElement('div');
+        dot.className = 'armador-crop-dot';
+        dot.style.left = `${coords.sx}px`;
+        dot.style.top = `${coords.sy}px`;
+        stageEl.appendChild(dot);
+        drawStageSelectionRect(stageEl, imgEl, armadorOcrState.p1, armadorOcrState.p1);
+        updateArmadorOcrBanner('🎯 Paso 2/2: Ahora haz clic en la ESQUINA INFERIOR DERECHA del sector para extraer las filas.', true);
         return;
       }
 
-      const hdSrc = imgEl.dataset.hdSrc || imgEl.src;
-      if (loupeImg.dataset.currentSrc !== hdSrc) {
-        loupeImg.dataset.currentSrc = hdSrc;
-        loupeImg.onerror = () => {
-          if (loupeImg.src !== imgEl.src) loupeImg.src = imgEl.src;
-        };
-        loupeImg.src = hdSrc;
+      if (armadorOcrState.step === 2 && armadorOcrState.p1) {
+        const minX = Math.min(armadorOcrState.p1.nx, coords.nx);
+        const maxX = Math.max(armadorOcrState.p1.nx, coords.nx);
+        const minY = Math.min(armadorOcrState.p1.ny, coords.ny);
+        const maxY = Math.max(armadorOcrState.p1.ny, coords.ny);
+        if ((maxX - minX) < 0.025 || (maxY - minY) < 0.025) {
+          showToast("El sector es demasiado pequeño. Haz clic en dos esquinas más separadas.");
+          return;
+        }
+        drawStageSelectionRect(stageEl, imgEl, armadorOcrState.p1, { nx: coords.nx, ny: coords.ny });
+        const box = { minX, minY, maxX, maxY };
+        armadorOcrState.active = false;
+        armadorOcrState.step = 0;
+        document.querySelectorAll('#armadorPhotosPane .armador-photo-stage').forEach(s => s.classList.remove('ocr-selecting'));
+        const mainBtn = document.getElementById('btnArmadorOcrSector');
+        if (mainBtn) {
+          mainBtn.classList.remove('active');
+          mainBtn.innerText = '✂️ Reconocer Contenido (2 clics)';
+        }
+        runOcrOnSelectedSector(stageEl, box);
+      }
+    }
+
+    function handleArmadorStageMove(stageEl, e) {
+      if (!armadorOcrState.active || armadorOcrState.step !== 2 || armadorOcrState.stageEl !== stageEl || !armadorOcrState.p1) return;
+      const imgEl = stageEl.querySelector('img');
+      if (!imgEl) return;
+      const coords = getStageNormalizedCoords(stageEl, imgEl, e.clientX, e.clientY);
+      drawStageSelectionRect(stageEl, imgEl, armadorOcrState.p1, { nx: coords.nx, ny: coords.ny });
+    }
+
+    function loadImageElementWithTimeout(src, useCors) {
+      return new Promise((resolve, reject) => {
+        const im = new Image();
+        if (useCors) im.crossOrigin = 'anonymous';
+        const timer = setTimeout(() => reject(new Error('timeout')), 10000);
+        im.onload = () => { clearTimeout(timer); resolve(im); };
+        im.onerror = () => { clearTimeout(timer); reject(new Error('load error')); };
+        im.src = src;
+      });
+    }
+
+    async function loadCorsSafeImageForStage(stageEl, imgEl) {
+      const curSrc = imgEl.src || '';
+      if (curSrc.startsWith('data:') || curSrc.startsWith('blob:')) {
+        return await loadImageElementWithTimeout(curSrc, false);
+      }
+      let fileId = (stageEl.dataset.fileId || '').trim();
+      if (!fileId) {
+        const dUrl = stageEl.dataset.driveUrl || curSrc;
+        const m = dUrl.match(/[-\w]{25,}/);
+        if (m) fileId = m[0];
+      }
+      const candidates = [];
+      if (fileId) {
+        candidates.push(`https://lh3.googleusercontent.com/d/${fileId}=w1800`);
+        candidates.push(`https://drive.google.com/thumbnail?id=${fileId}&sz=w1800`);
+      } else if (curSrc) {
+        candidates.push(curSrc);
       }
 
-      const rect = imgEl.getBoundingClientRect();
-      const cx = rect.left + rect.width / 2;
-      const cy = rect.top + rect.height / 2;
-      const dx = e.clientX - cx;
-      const dy = e.clientY - cy;
-      const zoom = armadorLoupeZoom;
-      const deg = parseInt(imgEl.dataset.rot || '0', 10) || 0;
-      const baseW = imgEl.offsetWidth;
-      const baseH = imgEl.offsetHeight;
+      for (const url of candidates) {
+        try {
+          return await loadImageElementWithTimeout(url, true);
+        } catch (e) {}
+      }
 
-      loupeImg.style.width = `${baseW * zoom}px`;
-      loupeImg.style.height = `${baseH * zoom}px`;
-      loupeImg.style.marginLeft = `${-(baseW * zoom) / 2}px`;
-      loupeImg.style.marginTop = `${-(baseH * zoom) / 2}px`;
-      loupeImg.style.transform = `translate(${-dx * zoom}px, ${-dy * zoom}px) rotate(${deg}deg)`;
-
-      const lensW = box.offsetWidth || 460;
-      const lensH = box.offsetHeight || 195;
-      const left = Math.max(12, Math.min(window.innerWidth - lensW - 12, e.clientX - lensW / 2));
-      const top = (e.clientY - lensH - 22 >= 10)
-        ? (e.clientY - lensH - 22)
-        : Math.min(window.innerHeight - lensH - 12, e.clientY + 24);
-
-      box.style.left = `${Math.round(left)}px`;
-      box.style.top = `${Math.round(top)}px`;
-      box.style.display = 'block';
-      if (tag) tag.innerText = `🔍 ${zoom.toFixed(1)}x • Rueda para zoom`;
+      const gasUrl = (localStorage.getItem('fdm_gas_url') || '').trim();
+      if (gasUrl && fileId) {
+        try {
+          const res = await fetch(gasUrl, {
+            method: 'POST',
+            headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+            body: JSON.stringify({ action: 'get_image_base64', file_id: fileId })
+          });
+          const json = await res.json().catch(() => null);
+          if (json && json.status === 'success' && json.base64) {
+            return await loadImageElementWithTimeout(json.base64, false);
+          }
+        } catch (e) {}
+      }
+      return null;
     }
 
-    function wheelArmadorLoupe(imgEl, e) {
-      if (armadorLoupeZoom <= 0) return;
-      e.preventDefault();
-      const delta = e.deltaY < 0 ? 0.35 : -0.35;
-      armadorLoupeZoom = Math.max(1.6, Math.min(5.0, Math.round((armadorLoupeZoom + delta) * 100) / 100));
-      document.querySelectorAll('.loupe-btn[data-loupe-z]').forEach(btn => {
-        btn.classList.toggle('active', Math.abs(Number(btn.dataset.loupeZ) - armadorLoupeZoom) < 0.05);
+    function cropStageRegionToCanvas(srcImg, deg, box) {
+      const natW = srcImg.naturalWidth || srcImg.width;
+      const natH = srcImg.naturalHeight || srcImg.height;
+      const rotSwap = (deg % 180 !== 0);
+      const fullW = rotSwap ? natH : natW;
+      const fullH = rotSwap ? natW : natH;
+
+      const rotCanvas = document.createElement('canvas');
+      rotCanvas.width = fullW;
+      rotCanvas.height = fullH;
+      const rCtx = rotCanvas.getContext('2d');
+      rCtx.translate(fullW / 2, fullH / 2);
+      if (deg) rCtx.rotate((deg * Math.PI) / 180);
+      rCtx.drawImage(srcImg, -natW / 2, -natH / 2, natW, natH);
+
+      const sx = Math.max(0, Math.floor(box.minX * fullW));
+      const sy = Math.max(0, Math.floor(box.minY * fullH));
+      const sw = Math.max(20, Math.ceil((box.maxX - box.minX) * fullW));
+      const sh = Math.max(20, Math.ceil((box.maxY - box.minY) * fullH));
+
+      const scale = sw < 900 ? Math.min(2.2, 1100 / sw) : 1;
+      const outW = Math.round(sw * scale);
+      const outH = Math.round(sh * scale);
+
+      const cropCanvas = document.createElement('canvas');
+      cropCanvas.width = outW;
+      cropCanvas.height = outH;
+      const cCtx = cropCanvas.getContext('2d');
+      cCtx.fillStyle = '#FFFFFF';
+      cCtx.fillRect(0, 0, outW, outH);
+      cCtx.filter = 'grayscale(100%) contrast(1.32) brightness(1.06)';
+      cCtx.drawImage(rotCanvas, sx, sy, sw, sh, 0, 0, outW, outH);
+      return cropCanvas;
+    }
+
+    function ensureTesseractLoaded() {
+      if (window.Tesseract && typeof window.Tesseract.recognize === 'function') {
+        return Promise.resolve(window.Tesseract);
+      }
+      if (!tesseractLoadPromise) {
+        tesseractLoadPromise = new Promise((resolve, reject) => {
+          const s = document.createElement('script');
+          s.src = 'https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js';
+          s.async = true;
+          s.onload = () => {
+            if (window.Tesseract) resolve(window.Tesseract);
+            else reject(new Error('Tesseract no se inicializó'));
+          };
+          s.onerror = () => reject(new Error('No se pudo cargar Tesseract OCR'));
+          document.head.appendChild(s);
+        }).catch(err => {
+          tesseractLoadPromise = null;
+          throw err;
+        });
+      }
+      return tesseractLoadPromise;
+    }
+
+    function parseOcrSectorToRotuloLines(rawText, boxCod) {
+      const codeNorm = String(boxCod || '').replace(/\s+/g, '').toUpperCase();
+      let lines = String(rawText || '').split(/\r?\n/);
+
+      // Si el sector incluye el encabezado de tabla (N° | CONTENIDO | N° CAJA), empezar justo después
+      const headerIdx = lines.findIndex(l => {
+        const up = l.replace(/[|¦\[\]{}_=+*~<>«»]+/g, ' ').replace(/\s+/g, ' ').trim().toUpperCase();
+        return /^(N[°ºO]?\s+)?CONTENIDO(\s+DOCUMENTAL(\s+DE\s+LA\s+CAJA)?)?(\s+(N[°ºO]?\s*CAJA|CODIGO))?$/.test(up)
+          || (/CONTENIDO/.test(up) && /CAJA/.test(up) && up.length < 48);
       });
-      moveArmadorLoupe(imgEl, e);
+      if (headerIdx !== -1 && headerIdx < lines.length - 1) {
+        lines = lines.slice(headerIdx + 1);
+      }
+
+      const out = [];
+      const seen = new Set();
+
+      for (let raw of lines) {
+        let s = String(raw || '').trim();
+        // Retirar columna final tipo "| 03" (N° CAJA corto) antes de colapsar espacios
+        s = s.replace(/[|¦]\s*\d{1,2}\s*$/, '');
+        s = s.replace(/[|¦\[\]{}_=+*~<>«»]+/g, ' ');
+        s = s.replace(/\s{2,}\d{1,2}$/, '');
+        s = s.replace(/\s{2,}/g, ' ').trim();
+        s = s.replace(/^[\-–—•·:\.,;]+/, '').replace(/[\-–—•·:\.,;]+$/, '').trim();
+        if (!s || s.length < 3) continue;
+
+        const up = s.toUpperCase();
+        if (/^PROYECTO\s*:/.test(up) || /CUI\s*N?[°º]?\s*\d{6,}/.test(up)) continue;
+        if (/^(N[°ºO]?|NRO\.?|ITEM|CONTENIDO(\s+DOCUMENTAL(\s+DE\s+LA\s+CAJA)?)?|N[°ºO]?\s*CAJA|CODIGO(\s*\/\s*CAJA)?|FONDO\s+DE\s+DESARROLLO|MOQUEGUA|FDM)\b/.test(up)) {
+          if (up.length < 48 && !/VALORIZ|EXPED|LIQUID|INFORME|CUADERNO|CONTRATO|TOMO|ACTA|PLANO|ADICIONAL/i.test(up)) continue;
+        }
+        if (/^(N[°ºO]?\s+)?CONTENIDO(\s+N[°ºO]?\s*CAJA)?$/i.test(up)) continue;
+        const sCompact = up.replace(/\s+/g, '');
+        if (codeNorm && (sCompact === codeNorm || (sCompact.startsWith(codeNorm + '-') && s.length <= codeNorm.length + 3))) continue;
+        if (/^\d{1,3}$/.test(s)) continue;
+
+        // Si trae código de caja al final del renglón, retirarlo
+        if (codeNorm) {
+          const idxCod = s.toUpperCase().lastIndexOf(codeNorm);
+          if (idxCod > 6 && idxCod >= s.length - codeNorm.length - 4) {
+            s = s.slice(0, idxCod).trim();
+          }
+        }
+        // Limpiar numeración inicial tipo "01 ", "02) ", "1.- "
+        const numMatch = s.match(/^0?(\d{1,2})\s*[\)\.\-:\|]?\s+(.+)$/);
+        if (numMatch) {
+          s = numMatch[2].trim();
+        }
+
+        if (!/[A-Za-zÁÉÍÓÚÑáéíóúñ]{3,}/.test(s) || s.length < 4) continue;
+        const key = s.toUpperCase().replace(/[^A-Z0-9ÁÉÍÓÚÑ]/g, '');
+        if (key && !seen.has(key)) {
+          seen.add(key);
+          out.push(s);
+        }
+      }
+      return out;
     }
 
-    function hideArmadorLoupe() {
-      const box = document.getElementById('armadorHoverLoupe');
-      if (box) box.style.display = 'none';
+    async function runOcrOnSelectedSector(stageEl, box) {
+      const imgEl = stageEl.querySelector('img');
+      if (!imgEl) return;
+      const boxCod = (document.getElementById('armadorCodInput')?.value || activeArmadorCtx.cod || '').trim();
+      const deg = parseInt(imgEl.dataset.rot || '0', 10) || 0;
+
+      updateArmadorOcrBanner('⏳ Preparando recorte del sector seleccionado...', false);
+      let cropCanvas = null;
+      try {
+        const corsImg = await loadCorsSafeImageForStage(stageEl, imgEl);
+        if (corsImg) {
+          cropCanvas = cropStageRegionToCanvas(corsImg, deg, box);
+        }
+      } catch (e) {
+        console.warn('Error cargando imagen para recorte:', e);
+      }
+
+      let rawText = '';
+      let sourceLabel = '';
+
+      if (cropCanvas) {
+        const gasUrl = (localStorage.getItem('fdm_gas_url') || '').trim();
+        if (gasUrl) {
+          updateArmadorOcrBanner('☁️ Leyendo texto del sector con Google Drive OCR...', false);
+          try {
+            const cropDataUrl = cropCanvas.toDataURL('image/jpeg', 0.92);
+            const res = await fetch(gasUrl, {
+              method: 'POST',
+              headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+              body: JSON.stringify({ action: 'ocr_crop_base64', base64: cropDataUrl })
+            });
+            const json = await res.json().catch(() => null);
+            if (json && json.status === 'success' && json.action === 'ocr_crop_base64' && json.raw) {
+              rawText = json.raw;
+              sourceLabel = 'Google Drive OCR';
+            }
+          } catch (e) {}
+        }
+
+        if (!rawText) {
+          updateArmadorOcrBanner('🔎 Cargando motor OCR en español (primera vez ~5s)...', false);
+          try {
+            const Tess = await ensureTesseractLoaded();
+            const res = await Tess.recognize(cropCanvas, 'spa', {
+              logger: m => {
+                if (m && m.status === 'recognizing text' && typeof m.progress === 'number') {
+                  updateArmadorOcrBanner(`🔎 Reconociendo texto del sector: ${Math.round(m.progress * 100)}%`, false);
+                }
+              }
+            });
+            rawText = (res && res.data && res.data.text) ? res.data.text : '';
+            sourceLabel = 'OCR Navegador (Tesseract spa)';
+          } catch (ocrErr) {
+            console.warn('Fallo OCR navegador:', ocrErr);
+          }
+        }
+      }
+
+      // Fallback a ocr_raw completo de Drive si el navegador bloqueó CORS y GAS aún no está actualizado
+      if (!rawText && stageEl.dataset.ocrRaw) {
+        rawText = stageEl.dataset.ocrRaw;
+        sourceLabel = 'OCR Completo en Nube (sin recorte CORS)';
+      }
+
+      updateArmadorOcrBanner('');
+
+      if (!rawText || !rawText.trim()) {
+        showToast(cropCanvas
+          ? "No se detectó texto legible en ese sector. Intenta acercar el zoom o marcar un área ligeramente más amplia."
+          : "El navegador bloqueó el acceso CORS a la imagen de Drive. Pega la nueva versión de google_apps_script_backend.js para habilitar recorte directo.");
+        return;
+      }
+
+      const lines = parseOcrSectorToRotuloLines(rawText, boxCod);
+      armadorOcrState.lastLines = lines;
+      armadorOcrState.lastRaw = rawText;
+
+      if (lines.length === 0) {
+        showToast("Se leyó el recorte pero no quedaron líneas válidas; revisa 'Ver texto OCR'.");
+        const bar = document.getElementById('armadorOcrResultBar');
+        const info = document.getElementById('armadorOcrResultInfo');
+        if (bar && info) {
+          info.innerText = `⚠️ ${sourceLabel}: texto detectado sin ítems claros`;
+          bar.classList.add('active');
+        }
+        return;
+      }
+
+      const onlyEmptyRow = activeArmadorCtx.rows.length <= 1 && !(activeArmadorCtx.rows[0]?.contenido || '').trim();
+      applyRecognizedLinesToArmador(lines, onlyEmptyRow ? 'replace' : 'append');
+
+      const bar = document.getElementById('armadorOcrResultBar');
+      const info = document.getElementById('armadorOcrResultInfo');
+      if (bar && info) {
+        info.innerText = `✅ ${lines.length} fila(s) ${onlyEmptyRow ? 'cargadas' : 'agregadas'} (${sourceLabel})`;
+        bar.classList.add('active');
+      }
+      showToast(`✂️ ¡${lines.length} fila(s) reconocidas del sector!`);
+    }
+
+    function applyRecognizedLinesToArmador(lines, mode) {
+      const boxCod = (document.getElementById('armadorCodInput')?.value || activeArmadorCtx.cod || '').trim();
+      const targetLines = (Array.isArray(lines) && lines.length) ? lines : armadorOcrState.lastLines;
+      if (!targetLines || !targetLines.length) return;
+
+      if (mode === 'replace') {
+        activeArmadorCtx.rows = targetLines.map((txt, idx) => ({
+          num: String(idx + 1).padStart(2, '0'),
+          contenido: txt,
+          caja: boxCod
+        }));
+      } else {
+        if (activeArmadorCtx.rows.length === 1 && !(activeArmadorCtx.rows[0].contenido || '').trim()) {
+          activeArmadorCtx.rows = [];
+        }
+        const existingSet = new Set(activeArmadorCtx.rows.map(r => (r.contenido || '').toUpperCase().trim()));
+        targetLines.forEach(txt => {
+          if (!existingSet.has(txt.toUpperCase().trim())) {
+            activeArmadorCtx.rows.push({
+              num: String(activeArmadorCtx.rows.length + 1).padStart(2, '0'),
+              contenido: txt,
+              caja: boxCod
+            });
+          }
+        });
+      }
+      activeArmadorCtx.rows.forEach((r, idx) => { r.num = String(idx + 1).padStart(2, '0'); });
+      activeArmadorCtx.activeRowIdx = Math.max(0, activeArmadorCtx.rows.length - 1);
+      renderArmadorRotuloTable();
+    }
+
+    function showLastArmadorOcrRaw() {
+      if (!armadorOcrState.lastRaw) {
+        showToast("Aún no hay texto OCR capturado.");
+        return;
+      }
+      alert("TEXTO OCR RECONOCIDO:\n\n" + armadorOcrState.lastRaw.trim());
     }
 
     function closeArmadorRotuloModal() {
-      hideArmadorLoupe();
+      cancelArmadorOcrMode();
       const modal = document.getElementById('armadorRotuloModal');
       if (modal) modal.classList.remove('open');
     }
@@ -5184,6 +5623,42 @@
       });
     }
 
+    let rotuloPrintOrientation = localStorage.getItem('fdm_rotulo_orientation') || 'landscape';
+
+    function setRotuloPrintOrientation(orient) {
+      rotuloPrintOrientation = (orient === 'portrait') ? 'portrait' : 'landscape';
+      try { localStorage.setItem('fdm_rotulo_orientation', rotuloPrintOrientation); } catch (e) {}
+      document.querySelectorAll('.orient-btn[data-rot-orient]').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.rotOrient === rotuloPrintOrientation);
+      });
+    }
+
+    function getRotuloPrintCss(orient) {
+      const isLand = (orient || rotuloPrintOrientation) === 'landscape';
+      return `
+      @page { size: A4 ${isLand ? 'landscape' : 'portrait'}; margin: ${isLand ? '9mm' : '12mm'}; }
+      body { font-family: Arial, Helvetica, sans-serif; color: #000; margin: 0; padding: ${isLand ? '4mm' : '6mm'}; background: #FFF; }
+      .rotulo-page { page-break-after: always; break-after: page; padding-bottom: 3mm; }
+      .rotulo-page:last-child { page-break-after: auto; break-after: auto; }
+      .rot-top-strip { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-bottom: ${isLand ? '6px' : '8px'}; }
+      .rot-blk-badge { font-size: ${isLand ? '10.5pt' : '11pt'}; font-weight: 900; padding: 5px 12px; border-radius: 6px; letter-spacing: 0.4px; }
+      .rot-seq-badge { font-size: ${isLand ? '13.5pt' : '14pt'}; font-weight: 900; border: 2px solid #000; padding: 4px 14px; background: #F8FAFC; letter-spacing: 0.6px; }
+      .rot-ref-code { font-size: ${isLand ? '12.5pt' : '13pt'}; font-weight: 900; font-family: monospace; text-align: right; }
+      .proj-box { border: 2.5px solid #000; padding: ${isLand ? '8px 12px' : '10px 14px'}; text-align: center; margin-bottom: ${isLand ? '6px' : '8px'}; }
+      .proj-id-line { font-size: 9pt; font-weight: 800; color: #1E293B; margin-bottom: 4px; letter-spacing: 0.3px; }
+      .proj-title-line { font-size: ${isLand ? '11pt' : '11.5pt'}; font-weight: 900; line-height: 1.3; text-transform: uppercase; }
+      .meta-line { display: flex; justify-content: space-between; font-size: 9pt; color: #1E293B; margin-bottom: ${isLand ? '6px' : '8px'}; font-weight: 800; background: #F8FAFC; border: 1px solid #CBD5E1; padding: 4px 9px; }
+      table { width: 100%; border-collapse: collapse; table-layout: fixed; }
+      th { border: 2px solid #000; background: #E2E8F0; padding: ${isLand ? '6px' : '8px 6px'}; font-size: ${isLand ? '10pt' : '10.5pt'}; font-weight: 900; text-align: center; text-transform: uppercase; }
+      td { border: 1.5px solid #000; height: ${isLand ? '24px' : '32px'}; padding: ${isLand ? '4px 9px' : '5px 9px'}; font-size: 10pt; vertical-align: middle; }
+      .col-num { width: 52px; text-align: center; font-weight: 800; }
+      .col-cont { font-weight: 700; }
+      .col-caja { width: 135px; text-align: center; font-weight: 800; font-family: monospace; font-size: 9.5pt; }
+      .foot { margin-top: ${isLand ? '7px' : '10px'}; font-size: 8.5pt; color: #334155; display: flex; justify-content: space-between; font-weight: 700; }
+      @media print { .no-print { display: none; } body { padding: 0; -webkit-print-color-adjust: exact; print-color-adjust: exact; } }
+    `;
+    }
+
     function buildSingleRotuloPageHtml(opts) {
       const p = opts.project || {};
       const obraId = opts.obraId;
@@ -5204,7 +5679,9 @@
       const blkCol = blk ? blk.color : '#1E293B';
       const blkBorder = blk ? blk.border : '#64748B';
 
-      const totalRows = Math.max(12, rows.length);
+      const orient = opts.orientation || (typeof rotuloPrintOrientation !== 'undefined' ? rotuloPrintOrientation : 'landscape') || 'landscape';
+      const minRows = orient === 'landscape' ? 10 : 12;
+      const totalRows = Math.max(minRows, rows.length);
       let rowsHtml = '';
       for (let i = 0; i < totalRows; i++) {
         const r = rows[i];
@@ -5253,29 +5730,6 @@
       `;
     }
 
-    const ROTULO_PRINT_CSS = `
-      @page { size: A4 portrait; margin: 12mm; }
-      body { font-family: Arial, Helvetica, sans-serif; color: #000; margin: 0; padding: 6mm; background: #FFF; }
-      .rotulo-page { page-break-after: always; break-after: page; padding-bottom: 4mm; }
-      .rotulo-page:last-child { page-break-after: auto; break-after: auto; }
-      .rot-top-strip { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-bottom: 8px; }
-      .rot-blk-badge { font-size: 11pt; font-weight: 900; padding: 6px 12px; border-radius: 6px; letter-spacing: 0.4px; }
-      .rot-seq-badge { font-size: 14pt; font-weight: 900; border: 2px solid #000; padding: 5px 14px; background: #F8FAFC; letter-spacing: 0.6px; }
-      .rot-ref-code { font-size: 13pt; font-weight: 900; font-family: monospace; text-align: right; }
-      .proj-box { border: 2.5px solid #000; padding: 10px 14px; text-align: center; margin-bottom: 8px; }
-      .proj-id-line { font-size: 9pt; font-weight: 800; color: #1E293B; margin-bottom: 5px; letter-spacing: 0.3px; }
-      .proj-title-line { font-size: 11.5pt; font-weight: 900; line-height: 1.35; text-transform: uppercase; }
-      .meta-line { display: flex; justify-content: space-between; font-size: 9pt; color: #1E293B; margin-bottom: 8px; font-weight: 800; background: #F8FAFC; border: 1px solid #CBD5E1; padding: 5px 9px; }
-      table { width: 100%; border-collapse: collapse; table-layout: fixed; }
-      th { border: 2px solid #000; background: #E2E8F0; padding: 8px 6px; font-size: 10.5pt; font-weight: 900; text-align: center; text-transform: uppercase; }
-      td { border: 1.5px solid #000; height: 32px; padding: 5px 9px; font-size: 10pt; vertical-align: middle; }
-      .col-num { width: 52px; text-align: center; font-weight: 800; }
-      .col-cont { font-weight: 700; }
-      .col-caja { width: 125px; text-align: center; font-weight: 800; font-family: monospace; font-size: 9.5pt; }
-      .foot { margin-top: 10px; font-size: 8.5pt; color: #334155; display: flex; justify-content: space-between; font-weight: 700; }
-      @media print { .no-print { display: none; } body { padding: 0; -webkit-print-color-adjust: exact; print-color-adjust: exact; } }
-    `;
-
     function imprimirHojaRotuloCaja() {
       const projTitle = (document.getElementById('armadorProyectoTitle')?.value || activeArmadorCtx.projDesc || '').trim();
       const boxCod = (document.getElementById('armadorCodInput')?.value || activeArmadorCtx.cod || '').trim();
@@ -5292,15 +5746,16 @@
         projTitle,
         amb: activeArmadorCtx.amb,
         boxSeqLabel,
-        rows: [...activeArmadorCtx.rows]
+        rows: [...activeArmadorCtx.rows],
+        orientation: rotuloPrintOrientation
       });
 
-      const win = window.open('', '_blank', 'width=920,height=1100');
+      const win = window.open('', '_blank', rotuloPrintOrientation === 'landscape' ? 'width=1120,height=820' : 'width=920,height=1100');
       if (!win) { alert("Permite ventanas emergentes para imprimir la Hoja de Rótulo A4."); return; }
       win.document.write(`<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><title>Rótulo ${escapeHtmlAttr(boxCod)}</title>
-        <style>${ROTULO_PRINT_CSS}</style></head><body>
+        <style>${getRotuloPrintCss(rotuloPrintOrientation)}</style></head><body>
         <div class="no-print" style="margin-bottom:12px; text-align:right;">
-          <button onclick="window.print()" style="background:#5B21B6;color:#FFF;border:none;padding:9px 16px;border-radius:6px;font-weight:bold;cursor:pointer;font-size:11pt;">🖨️ Imprimir Rótulo A4</button>
+          <button onclick="window.print()" style="background:#5B21B6;color:#FFF;border:none;padding:9px 16px;border-radius:6px;font-weight:bold;cursor:pointer;font-size:11pt;">🖨️ Imprimir Rótulo A4 (${rotuloPrintOrientation === 'landscape' ? 'Horizontal' : 'Vertical'})</button>
         </div>
         ${pageHtml}
       </body></html>`);
@@ -5318,6 +5773,7 @@
       if (currentArchivePlannerBlock !== 'ALL' && !ARCHIVE_BLOCKS[currentArchivePlannerBlock]) {
         currentArchivePlannerBlock = 'ALL';
       }
+      setRotuloPrintOrientation(rotuloPrintOrientation);
       const modal = document.getElementById('archivePlannerModal');
       if (!modal) return;
       modal.classList.add('open');
@@ -5568,15 +6024,16 @@
         projTitle: p.desc,
         amb: b.amb,
         boxSeqLabel: b.isVirtualSueltoBox ? 'CAJA NUEVA 1 DE 1 (SUELTOS)' : b.boxSeqLabel,
-        rows: b.rows
+        rows: b.rows,
+        orientation: rotuloPrintOrientation
       })).join('');
 
-      const win = window.open('', '_blank', 'width=940,height=1100');
+      const win = window.open('', '_blank', rotuloPrintOrientation === 'landscape' ? 'width=1120,height=820' : 'width=940,height=1100');
       if (!win) { alert("Permite ventanas emergentes para imprimir el lote de Rótulos A4."); return; }
       win.document.write(`<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><title>Rótulos Obra ${obraId} (${boxes.length} hojas)</title>
-        <style>${ROTULO_PRINT_CSS}</style></head><body>
+        <style>${getRotuloPrintCss(rotuloPrintOrientation)}</style></head><body>
         <div class="no-print" style="margin-bottom:12px; display:flex; justify-content:space-between; align-items:center; background:#EEF2FF; padding:10px 14px; border-radius:8px;">
-          <strong>Obra N° ${obraId}: ${boxes.length} Rótulo(s) A4 listos para imprimir y pegar en cajas</strong>
+          <strong>Obra N° ${obraId}: ${boxes.length} Rótulo(s) A4 listos (${rotuloPrintOrientation === 'landscape' ? 'Horizontal' : 'Vertical'})</strong>
           <button onclick="window.print()" style="background:#4338CA;color:#FFF;border:none;padding:9px 16px;border-radius:6px;font-weight:bold;cursor:pointer;font-size:11pt;">🖨️ Imprimir ${boxes.length} Rótulo(s) A4</button>
         </div>
         ${pagesHtml}
@@ -5598,7 +6055,8 @@
             projTitle: p.desc,
             amb: b.amb,
             boxSeqLabel: b.isVirtualSueltoBox ? 'CAJA NUEVA 1 DE 1 (SUELTOS)' : b.boxSeqLabel,
-            rows: b.rows
+            rows: b.rows,
+            orientation: rotuloPrintOrientation
           }));
         });
       });
@@ -5607,12 +6065,12 @@
         return;
       }
       const blkName = currentArchivePlannerBlock === 'ALL' ? 'TODOS LOS BLOQUES TDR' : ARCHIVE_BLOCKS[currentArchivePlannerBlock].label;
-      const win = window.open('', '_blank', 'width=940,height=1100');
+      const win = window.open('', '_blank', rotuloPrintOrientation === 'landscape' ? 'width=1120,height=820' : 'width=940,height=1100');
       if (!win) { alert("Permite ventanas emergentes para imprimir el lote de Rótulos A4."); return; }
       win.document.write(`<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><title>Rótulos ${escapeHtmlAttr(blkName)} (${pages.length} hojas)</title>
-        <style>${ROTULO_PRINT_CSS}</style></head><body>
+        <style>${getRotuloPrintCss(rotuloPrintOrientation)}</style></head><body>
         <div class="no-print" style="margin-bottom:12px; display:flex; justify-content:space-between; align-items:center; background:#EEF2FF; padding:10px 14px; border-radius:8px;">
-          <strong>${escapeHtmlAttr(blkName)} • ${pages.length} Rótulos A4 de ${list.length} obras</strong>
+          <strong>${escapeHtmlAttr(blkName)} • ${pages.length} Rótulos A4 (${rotuloPrintOrientation === 'landscape' ? 'Horizontal' : 'Vertical'})</strong>
           <button onclick="window.print()" style="background:#4338CA;color:#FFF;border:none;padding:9px 16px;border-radius:6px;font-weight:bold;cursor:pointer;font-size:11pt;">🖨️ Imprimir Lote Completo (${pages.length} A4)</button>
         </div>
         ${pages.join('')}
@@ -5771,6 +6229,10 @@
           <div id="armadorAmbSpan" style="font-size:0.78rem; color:#DDD6FE; margin-top:2px;">📍 Ambiente</div>
         </div>
         <div style="display:flex; gap:0.5rem; align-items:center; flex-wrap:wrap;">
+          <div class="orient-toggle-group" title="Orientación de la hoja A4 al imprimir rótulos">
+            <button type="button" class="orient-btn active" data-rot-orient="landscape" onclick="setRotuloPrintOrientation('landscape')">📄 Horizontal</button>
+            <button type="button" class="orient-btn" data-rot-orient="portrait" onclick="setRotuloPrintOrientation('portrait')">📄 Vertical</button>
+          </div>
           <button type="button" id="btnSaveArmadorRotulo" class="btn" onclick="guardarRotuloDesdeArmador()" style="background:#16A34A; color:white; font-size:0.78rem; padding:0.48rem 0.9rem;">💾 Guardar Rótulo (Web + Drive)</button>
           <button type="button" class="btn" onclick="imprimirHojaRotuloCaja()" style="background:#F59E0B; color:#0F172A; font-size:0.78rem; padding:0.48rem 0.9rem; font-weight:800;">🖨️ Imprimir Hoja de Rótulo A4</button>
           <button type="button" class="close-btn" onclick="closeArmadorRotuloModal()" style="position:static;">&times;</button>
@@ -5780,22 +6242,23 @@
         <div class="armador-split armador-split-wide">
           <div class="armador-panel">
             <div style="font-weight:800; color:#1E293B; font-size:0.86rem; margin-bottom:0.4rem; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:4px;">
-              <span>📸 Fotos Censadas — Pasa el cursor encima para activar la Lupa</span>
-              <span style="font-size:0.71rem; color:#64748B;">Rueda ajusta zoom • Clic pantalla completa</span>
+              <span>📸 Fotos Censadas — Elige el Zoom o Reconoce un Sector</span>
+              <span style="font-size:0.71rem; color:#64748B;">Desplaza o usa Pantalla completa</span>
             </div>
             <div class="armador-loupe-toolbar">
               <div style="display:flex; align-items:center; gap:4px; flex-wrap:wrap;">
-                <span style="font-weight:800; color:#4C1D95;">🔍 Lupa:</span>
-                <button type="button" class="loupe-btn" data-loupe-z="2" onclick="setArmadorLoupeZoom(2)">2x</button>
-                <button type="button" class="loupe-btn active" data-loupe-z="2.8" onclick="setArmadorLoupeZoom(2.8)">2.8x</button>
-                <button type="button" class="loupe-btn" data-loupe-z="4" onclick="setArmadorLoupeZoom(4)">4x</button>
-                <button type="button" class="loupe-btn" data-loupe-z="0" onclick="setArmadorLoupeZoom(0)">Apagar</button>
+                <span style="font-weight:800; color:#4C1D95;">🔍 Zoom:</span>
+                <button type="button" class="loupe-btn active" data-zoom-pct="100" onclick="setArmadorPhotoZoom(100)">Ajustar</button>
+                <button type="button" class="loupe-btn" data-zoom-pct="140" onclick="setArmadorPhotoZoom(140)">140%</button>
+                <button type="button" class="loupe-btn" data-zoom-pct="185" onclick="setArmadorPhotoZoom(185)">185%</button>
+                <button type="button" class="loupe-btn" data-zoom-pct="240" onclick="setArmadorPhotoZoom(240)">240%</button>
+                <button type="button" class="loupe-btn" data-zoom-pct="300" onclick="setArmadorPhotoZoom(300)">300%</button>
               </div>
-              <div style="display:flex; align-items:center; gap:4px;">
-                <span style="font-weight:800; color:#4C1D95;">🖼️ Vista:</span>
-                <button type="button" class="loupe-btn active" id="btnArmadorSizeLg" onclick="toggleArmadorPhotoSize(false)">Grande</button>
-                <button type="button" class="loupe-btn" id="btnArmadorSizeSm" onclick="toggleArmadorPhotoSize(true)">Compacta</button>
-              </div>
+              <button type="button" id="btnArmadorOcrSector" class="loupe-btn" style="background:#FEF3C7; border-color:#F59E0B; color:#92400E; padding:0.28rem 0.68rem;" onclick="toggleArmadorOcrMode()" title="Haz clic en 2 esquinas de un sector de la foto para leer el texto y llenar el rótulo automáticamente">✂️ Reconocer Contenido (2 clics)</button>
+            </div>
+            <div id="armadorOcrBanner" class="armador-ocr-banner">
+              <span id="armadorOcrBannerText">🎯 Paso 1/2...</span>
+              <button type="button" onclick="cancelArmadorOcrMode()" style="background:#FFFFFF; border:1px solid #D97706; color:#92400E; border-radius:5px; padding:2px 8px; font-size:0.7rem; font-weight:800; cursor:pointer;">✕ Cancelar</button>
             </div>
             <div class="armador-photos-list-wide" id="armadorPhotosPane"></div>
           </div>
@@ -5831,6 +6294,14 @@
               </thead>
               <tbody id="armadorRowsTbody"></tbody>
             </table>
+            <div id="armadorOcrResultBar" class="armador-ocr-result-bar">
+              <span id="armadorOcrResultInfo">✅ Filas reconocidas</span>
+              <div style="display:flex; gap:4px; align-items:center; flex-wrap:wrap;">
+                <button type="button" class="armador-chip" onclick="applyRecognizedLinesToArmador(null, 'replace')" title="Reemplazar toda la tabla con las filas reconocidas">♻️ Reemplazar tabla</button>
+                <button type="button" class="armador-chip" onclick="applyRecognizedLinesToArmador(null, 'append')" title="Añadir al final de la tabla actual">➕ Agregar</button>
+                <button type="button" class="armador-chip" onclick="showLastArmadorOcrRaw()" title="Ver texto bruto capturado por OCR">📋 Ver OCR</button>
+              </div>
+            </div>
             <div style="margin-top:0.65rem; display:flex; justify-content:space-between; align-items:center;">
               <button type="button" class="armador-chip" style="background:#EDE9FE; border-color:#8B5CF6; color:#5B21B6; font-weight:800; padding:0.4rem 0.85rem;" onclick="addArmadorRow()">+ Añadir Fila al Rótulo</button>
               <span style="font-size:0.72rem; color:#64748B;">Se guarda aparte como Hoja de Rótulo A4 (sin alterar resúmenes cortos)</span>
@@ -5890,6 +6361,10 @@
           <div style="font-size:0.77rem; color:#E0E7FF; margin-top:2px;">Estrategia 80/20 en 5 días: conserva cajas sanas con Rótulo A4 uniforme; encajona solo sueltos y cajas rotas.</div>
         </div>
         <div style="display:flex; gap:0.45rem; align-items:center; flex-wrap:wrap;">
+          <div class="orient-toggle-group" title="Orientación de impresión A4 para rótulos en lote">
+            <button type="button" class="orient-btn active" data-rot-orient="landscape" onclick="setRotuloPrintOrientation('landscape')">📄 Horizontal</button>
+            <button type="button" class="orient-btn" data-rot-orient="portrait" onclick="setRotuloPrintOrientation('portrait')">📄 Vertical</button>
+          </div>
           <button type="button" class="btn" onclick="imprimirCartelesBloquesTdr()" style="background:#0EA5E9; color:#FFFFFF; font-size:0.76rem; padding:0.46rem 0.8rem; font-weight:800;">🪧 Imprimir Carteles Separadores A4</button>
           <button type="button" class="btn" onclick="imprimirHojaRutaBloque()" style="background:#F59E0B; color:#0F172A; font-size:0.76rem; padding:0.46rem 0.8rem; font-weight:800;">📋 Hoja de Ruta Bloque</button>
           <button type="button" class="btn" onclick="imprimirRotulosBloqueLote()" style="background:#16A34A; color:#FFFFFF; font-size:0.76rem; padding:0.46rem 0.85rem; font-weight:800;">🖨️ Rótulos A4 del Bloque</button>
@@ -6005,13 +6480,6 @@
       <button type="button" class="lightbox-close-btn" onclick="closeDashboardLightbox()" title="Cerrar">✕</button>
     </div>
     <img id="dashboardLightboxImg" src="" onclick="toggleClickZoomLightbox(event)" title="Clic para acercar/alejar">
-  </div>
-
-  <!-- Lupa Instantánea para Armador de Rótulo -->
-  <div id="armadorHoverLoupe" class="armador-loupe-box">
-    <img id="armadorHoverLoupeImg" src="" alt="">
-    <div class="armador-loupe-crosshair"></div>
-    <div id="armadorHoverLoupeTag" class="armador-loupe-tag">🔍 2.8x • Rueda para zoom</div>
   </div>
 </body>
 </html>
