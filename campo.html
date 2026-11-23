@@ -694,7 +694,7 @@
         </div>
         <div id="panelTabFase2" style="display: none;">
           <div style="background: #ECFDF5; border: 1.5px solid #6EE7B7; border-radius: 10px; padding: 0.65rem 0.85rem; margin-bottom: 0.75rem; font-size: 0.76rem; color: #065F46; line-height: 1.4;">
-            <strong>🏛️ Archivo Final Ordenado (Fase 2 — Multi-Ambiente):</strong> Registra las cajas ya rearmadas con su nuevo código <code>F2X-XX-CX</code> y el ambiente físico real donde quedan guardadas (Techo, Baños u Oficinas), sin borrar tus fotos de Fase 1.
+            <strong>🏛️ Archivo Final Ordenado (Fase 2 — Multi-Ambiente):</strong> Registra cada caja armada (<code>F2X-XX-CX</code>) y toma fotos de <strong>cada elemento interno (archivador, file, cuaderno, libro...)</strong> para armar su rótulo completo en gabinete, sin borrar tus fotos de Fase 1.
           </div>
 
           <div class="field-group" style="border-color: #6EE7B7; background: #F0FDF4;">
@@ -719,22 +719,90 @@
                 <div id="fase2SeqChipsContainer" style="display: flex; gap: 0.35rem; overflow-x: auto; padding-bottom: 0.25rem;"></div>
               </div>
               <button type="button" onclick="pasarASiguienteCajaFase2()" style="background: #10B981; color: #022C22; border: none; border-radius: 8px; padding: 0.45rem 0.75rem; font-size: 0.78rem; font-weight: 900; cursor: pointer;">⏭️ Pasar a siguiente Caja Fase 2</button>
+
+              <!-- Stepper de Elementos / Ítems internos dentro de la Caja Fase 2 actual -->
+              <div style="margin-top: 0.35rem; border-top: 1px solid #047857; padding-top: 0.5rem;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.3rem;">
+                  <span style="font-size: 0.7rem; font-weight: 800; color: #A5F3FC;">🗂️ ELEMENTO INTERNO N° (Archivador / File / Libro):</span>
+                </div>
+                <div style="display: flex; align-items: center; gap: 0.4rem;">
+                  <button type="button" onclick="cambiarFase2ItemDelta(-1)" style="background: #065F46; border: 1px solid #38BDF8; color: white; width: 40px; height: 40px; border-radius: 8px; font-size: 1.2rem; font-weight: 900; cursor: pointer;">−</button>
+                  <div style="flex: 1; background: #022C22; border: 1.5px solid #38BDF8; color: #E0F2FE; font-size: 1.08rem; font-weight: 800; text-align: center; padding: 0.4rem; border-radius: 8px;">
+                    ÍTEM N° <span id="displayFase2ItemSeq">01</span>
+                  </div>
+                  <button type="button" onclick="cambiarFase2ItemDelta(1)" style="background: #0284C7; border: 1px solid #7DD3FC; color: white; width: 40px; height: 40px; border-radius: 8px; font-size: 1.2rem; font-weight: 900; cursor: pointer;">+</button>
+                </div>
+                <div id="fase2ItemChipsContainer" style="display: flex; gap: 0.3rem; overflow-x: auto; margin-top: 0.35rem; padding-bottom: 0.2rem;"></div>
+              </div>
             </div>
           </div>
 
           <div class="field-group">
-            <div class="field-title">
-              <span>📝 Contenido / Referencia Fase 2 (Estante o descripción)</span>
+            <div class="field-title" style="display: flex; justify-content: space-between; align-items: center; gap: 0.4rem;">
+              <span>✏️ Descripción breve del Elemento (Opcional)</span>
+              <div style="display: flex; gap: 0.3rem;">
+                <button type="button" onclick="borrarUltimaPalabraFase2Item()" style="background: #FEF3C7; border: 1px solid #FCD34D; color: #92400E; font-size: 0.68rem; font-weight: 700; padding: 0.2rem 0.5rem; border-radius: 6px; cursor: pointer;">⌫</button>
+                <button type="button" onclick="limpiarNotaFase2Item()" style="background: #FEE2E2; border: 1px solid #FCA5A5; color: #991B1B; font-size: 0.68rem; font-weight: 700; padding: 0.2rem 0.5rem; border-radius: 6px; cursor: pointer;">🗑️ Limpiar</button>
+              </div>
             </div>
-            <textarea id="inputNotasFase2" class="field-input" style="height: 58px; resize: none;" placeholder="Ej: Estante A • Valorizaciones 1-4 y Liquidación (de ALT-06-C1)..."></textarea>
+            <div class="preset-chips" style="margin-top: 0.25rem;">
+              <span class="preset-chip" onclick="appendNotaFase2Item('ARCHIVADOR')">🗂️ ARCHIVADOR</span>
+              <span class="preset-chip" onclick="appendNotaFase2Item('FILE / FÓLDER')">📂 FILE</span>
+              <span class="preset-chip" onclick="appendNotaFase2Item('CUADERNO DE OBRA')">📖 CUADERNO</span>
+              <span class="preset-chip" onclick="appendNotaFase2Item('LIBRO / TOMO')">📚 LIBRO</span>
+              <span class="preset-chip" onclick="appendNotaFase2Item('PLANOS')">📐 PLANOS</span>
+              <span class="preset-chip" onclick="appendNotaFase2Item('TOMO I')">📘 TOMO I</span>
+              <span class="preset-chip" onclick="appendNotaFase2Item('TOMO II')">📘 TOMO II</span>
+              <span class="preset-chip" onclick="appendNotaFase2Item('TOMO III')">📘 TOMO III</span>
+              <span class="preset-chip" onclick="appendNotaFase2Item('TOMO IV')">📘 TOMO IV</span>
+              <span class="preset-chip" onclick="appendNotaFase2Item('Exp. Técnico')">📁 Exp. Técnico</span>
+              <span class="preset-chip" onclick="appendNotaFase2Item('Valorizaciones')">📊 Valorizaciones</span>
+              <span class="preset-chip" onclick="appendNotaFase2Item('Informe Mensual')">📅 Inf. Mensual</span>
+              <span class="preset-chip" onclick="appendNotaFase2Item('Informe Final')">🏁 Inf. Final</span>
+              <span class="preset-chip" onclick="appendNotaFase2Item('Liquidación')">⚖️ Liquidación</span>
+              <span class="preset-chip" onclick="appendNotaFase2Item('Adicionales')">➕ Adicionales</span>
+              <span class="preset-chip" onclick="appendNotaFase2Item('de Obra')">de Obra</span>
+              <span class="preset-chip" onclick="appendNotaFase2Item('de Supervisión')">de Supervisión</span>
+              <span class="preset-chip" onclick="appendNotaFase2Item('Contrato')">Contrato</span>
+              <span class="preset-chip" onclick="appendNotaFase2Item('ORIGINAL')">ORIGINAL</span>
+              <span class="preset-chip" onclick="appendNotaFase2Item('COPIA')">COPIA</span>
+              <span class="preset-chip" onclick="appendNotaFase2Item('N°')">N°</span>
+              <span class="preset-chip" onclick="appendNotaFase2Item('1')">1</span>
+              <span class="preset-chip" onclick="appendNotaFase2Item('2')">2</span>
+              <span class="preset-chip" onclick="appendNotaFase2Item('3')">3</span>
+              <span class="preset-chip" onclick="appendNotaFase2Item('4')">4</span>
+              <span class="preset-chip" onclick="appendNotaFase2Item('5')">5</span>
+            </div>
+            <textarea id="inputNotaFase2Item" class="field-input" style="height: 52px; resize: none; margin-top: 0.45rem;" placeholder="Ej: ARCHIVADOR Valorizaciones 1 a 4 (o déjalo vacío y solo toma la foto para OCR)..."></textarea>
+          </div>
+
+          <div class="photo-slot" style="border: 2px dashed #4F46E5; background: #EEF2FF; margin-bottom: 0.75rem;">
+            <div class="slot-hdr">
+              <span style="font-size: 0.85rem; font-weight: 800; color: #3730A3;">🗂️ Elementos Internos (<span id="lblFase2ItemBoxCod">F22-01-C1</span>)</span>
+              <span id="slotCount_fase2_item" class="badge badge-gray">0</span>
+            </div>
+            <div class="slot-actions" style="flex-wrap: wrap;">
+              <button type="button" class="btn-camera" onclick="triggerCamera('fase2_item')" style="padding: 0.72rem; font-size: 0.88rem; font-weight: 800; background: #4F46E5; flex: 2;">📸 Foto de Elemento (Ítem <span id="btnFase2ItemNum">01</span>) +</button>
+              <button type="button" class="btn-camera" onclick="triggerCamera('fase2_item_batch')" style="padding: 0.72rem; font-size: 0.78rem; font-weight: 800; background: #0284C7; flex: 1;">🖼️ Galería lote</button>
+            </div>
+            <input type="file" accept="image/*" capture="environment" id="file_fase2_item" style="display:none;" onchange="handlePhotoUpload('fase2_item', this)">
+            <input type="file" accept="image/*" multiple id="file_fase2_item_batch" style="display:none;" onchange="handlePhotoUpload('fase2_item', this)">
+            <div class="thumb-grid" id="grid_fase2_item" style="margin-top: 0.6rem;"></div>
+          </div>
+
+          <div class="field-group">
+            <div class="field-title">
+              <span>📝 Referencia / Estante de la Caja Cerrada (Opcional)</span>
+            </div>
+            <textarea id="inputNotasFase2" class="field-input" style="height: 50px; resize: none;" placeholder="Ej: Estante A, Arriba • Caja armada con 8 archivadores..."></textarea>
           </div>
 
           <div class="photo-slot" style="border: 2px dashed #059669; background: #ECFDF5;">
             <div class="slot-hdr">
-              <span style="font-size: 0.85rem; font-weight: 800; color: #065F46;">📸 Foto de Caja Armada (Fase 2)</span>
+              <span style="font-size: 0.85rem; font-weight: 800; color: #065F46;">📦 Foto Exterior / Caja Cerrada (Fase 2)</span>
               <span id="slotCount_fase2" class="badge badge-gray">0</span>
             </div>
-            <button type="button" class="btn-camera" onclick="triggerCamera('fase2')" style="padding: 0.75rem; font-size: 0.9rem; font-weight: 800; background: #059669;">📸 Tomar Foto Fase 2 (+)</button>
+            <button type="button" class="btn-camera" onclick="triggerCamera('fase2')" style="padding: 0.72rem; font-size: 0.88rem; font-weight: 800; background: #059669;">📦 Foto Exterior / Caja Cerrada (+)</button>
             <input type="file" accept="image/*" capture="environment" id="file_fase2" style="display:none;" onchange="handlePhotoUpload('fase2', this)">
             <div class="thumb-grid" id="grid_fase2" style="margin-top: 0.6rem;"></div>
           </div>
@@ -990,20 +1058,28 @@
                 if (r.ambiente && !existing.ubicacion) existing.ubicacion = r.ambiente;
               } else {
                 const isF2 = isCampoFase2BoxCode(r.codigo_caja) || (r.tipo_foto && (r.tipo_foto.includes('Fase 2') || r.tipo_foto.includes('Archivo Final')));
+                const isF2Item = isF2 && (/(?:Ítem|Item)\s*\d+/i.test(r.tipo_foto || '') || /^\[IT\d+\]/i.test(r.contenido_caja || r.nota || '') || /-IT\d+/i.test(r.sub_codigo || ''));
+                const itMatch = isF2Item ? String(r.sub_codigo || r.tipo_foto || r.contenido_caja || r.nota || '').match(/(?:IT|[ÍI]TEM)\s*[-_ ]?(\d+)/i) : null;
                 const isItemRotulo = !isF2 && ((r.tipo_foto && (r.tipo_foto.includes('Caja Nueva') || r.tipo_foto.includes('Armar Rótulo'))) || (r.codigo_caja && /(?:^|-)CN\d+(?:-|$)/i.test(r.codigo_caja)) || (r.sub_codigo && r.sub_codigo.includes('-IT')));
                 const isSuelto = !isF2 && !isItemRotulo && ((r.codigo_caja && r.codigo_caja.includes('SUELTO')) || (r.tipo_foto && r.tipo_foto.includes('Suelto')));
                 const isRotulo = !isF2 && !isItemRotulo && (!r.tipo_foto || r.tipo_foto === 'Rótulo de Caja');
                 let slotName = 'otros';
-                if (isF2) slotName = 'fase2';
+                if (isF2) slotName = isF2Item ? 'fase2_item' : 'fase2';
                 else if (isItemRotulo) slotName = 'item_rotulo';
                 else if (isSuelto) slotName = 'suelto';
                 else if (isRotulo) slotName = 'rotulo';
+
+                const defaultSub = isRotulo
+                  ? r.codigo_caja
+                  : (isF2Item && itMatch
+                    ? `${r.codigo_caja}-IT${String(parseInt(itMatch[1], 10)).padStart(2, '0')}`
+                    : (isF2 ? `${r.codigo_caja}-F1` : `${r.codigo_caja}-ADIC`));
 
                 fieldData[obraId].fotos.push({
                   id: 'cloud_' + Date.now() + '_' + Math.random().toString(36).substring(2, 6),
                   slot: slotName,
                   codigo_caja: r.codigo_caja,
-                  sub_codigo: r.sub_codigo || (isRotulo ? r.codigo_caja : (isF2 ? `${r.codigo_caja}-F1` : `${r.codigo_caja}-ADIC`)),
+                  sub_codigo: r.sub_codigo || defaultSub,
                   tipo_foto: r.tipo_foto || (isF2 ? 'Archivo Final (Fase 2)' : (isSuelto ? 'Doc. Suelto / Archivador' : (isRotulo ? 'Rótulo de Caja' : 'Foto Adicional'))),
                   nombre: `DRIVE_${r.codigo_caja}.jpg`,
                   dataUrl: resolveDirectImageUrl(r.drive_url, r.file_id),
@@ -1479,6 +1555,8 @@
       'OTROS'
     ];
     let currentFase2Seq = 1;
+    let currentFase2ItemSeq = 1;
+    let fase2ItemChipHistory = [];
 
     function isCampoFase2BoxCode(cod) {
       const s = String(cod || '').trim().toUpperCase();
@@ -1487,10 +1565,26 @@
 
     function isCampoFase2Photo(f) {
       if (!f) return false;
-      if (f.slot === 'fase2') return true;
+      if (f.slot === 'fase2' || f.slot === 'fase2_item') return true;
       if (isCampoFase2BoxCode(f.codigo_caja)) return true;
       const tipo = String(f.tipo_foto || '').toLowerCase();
       return tipo.includes('fase 2') || tipo.includes('archivo final');
+    }
+
+    function isCampoFase2ItemPhoto(f) {
+      if (!f || !isCampoFase2Photo(f)) return false;
+      if (f.slot === 'fase2_item') return true;
+      const sub = String(f.sub_codigo || '');
+      const tipo = String(f.tipo_foto || '');
+      const nota = String(f.nota || '');
+      return /-IT\d+/i.test(sub) || /(?:Ítem|Item)\s*\d+/i.test(tipo) || /^\[IT\d+\]/i.test(nota);
+    }
+
+    function extractCampoFase2ItemNum(f) {
+      if (!f) return 0;
+      const cand = `${f.sub_codigo || ''} ${f.tipo_foto || ''} ${f.nota || ''}`;
+      const m = cand.match(/(?:IT|[ÍI]TEM)\s*[-_ ]?(\d+)/i);
+      return m ? parseInt(m[1], 10) : 0;
     }
 
     function getCampoObraBlockInfo(obraId) {
@@ -1596,6 +1690,11 @@
       currentFase2Seq = Math.max(1, seq);
       const input = document.getElementById('inputCodigoFase2');
       if (input) input.dataset.userEdited = "";
+      if (activeObraId) {
+        currentFase2ItemSeq = getNextAvailableFase2ItemSeq(activeObraId, autoGenerarCodigoFase2().code);
+      } else {
+        currentFase2ItemSeq = 1;
+      }
       updateFase2Display();
       showToast(`🏛️ Caja Fase 2 C${currentFase2Seq}`);
     }
@@ -1614,6 +1713,10 @@
         input.dataset.userEdited = "true";
         const disp = document.getElementById('displayCodigoFase2');
         if (disp) disp.innerText = input.value.trim().toUpperCase() || autoGenerarCodigoFase2().code;
+        if (activeObraId) {
+          currentFase2ItemSeq = getNextAvailableFase2ItemSeq(activeObraId, getActiveFase2BoxCode());
+        }
+        updateFase2ItemDisplay();
       }
     }
 
@@ -1626,6 +1729,7 @@
       const disp = document.getElementById('displayCodigoFase2');
       if (disp) disp.innerText = (input && input.value.trim()) ? input.value.trim().toUpperCase() : code;
       renderFase2SeqChips();
+      updateFase2ItemDisplay();
     }
 
     function renderFase2SeqChips() {
@@ -1665,12 +1769,112 @@
 
     function pasarASiguienteCajaFase2() {
       currentFase2Seq = activeObraId ? Math.max(currentFase2Seq + 1, getFirstAvailableFase2Seq(activeObraId)) : (currentFase2Seq + 1);
+      currentFase2ItemSeq = 1;
+      fase2ItemChipHistory = [];
       const input = document.getElementById('inputCodigoFase2');
       if (input) input.dataset.userEdited = "";
       const txt = document.getElementById('inputNotasFase2');
       if (txt) txt.value = '';
+      const txtIt = document.getElementById('inputNotaFase2Item');
+      if (txtIt) txtIt.value = '';
       updateFase2Display();
       showToast(`⏭️ Listo para Caja Fase 2: ${autoGenerarCodigoFase2().code}`);
+    }
+
+    function getActiveFase2BoxCode() {
+      const input = document.getElementById('inputCodigoFase2');
+      if (input && input.dataset.userEdited && input.value.trim()) {
+        return input.value.trim().toUpperCase();
+      }
+      return autoGenerarCodigoFase2().code;
+    }
+
+    function getUsedFase2ItemSeqs(obraId, boxCode) {
+      const d = fieldData[obraId];
+      if (!d || !d.fotos) return new Set();
+      const used = new Set();
+      d.fotos.forEach(f => {
+        if ((f.codigo_caja || '').trim() === boxCode && isCampoFase2ItemPhoto(f)) {
+          const n = extractCampoFase2ItemNum(f);
+          if (n > 0) used.add(n);
+        }
+      });
+      return used;
+    }
+
+    function getNextAvailableFase2ItemSeq(obraId, boxCode) {
+      const used = getUsedFase2ItemSeqs(obraId, boxCode);
+      let s = 1;
+      while (used.has(s)) s++;
+      return s;
+    }
+
+    function setFase2ItemSeq(seq) {
+      currentFase2ItemSeq = Math.max(1, seq);
+      updateFase2ItemDisplay();
+      showToast(`🗂️ Elemento ÍTEM ${String(currentFase2ItemSeq).padStart(2, '0')}`);
+    }
+
+    function cambiarFase2ItemDelta(delta) {
+      setFase2ItemSeq(Math.max(1, currentFase2ItemSeq + delta));
+    }
+
+    function updateFase2ItemDisplay() {
+      const boxCod = getActiveFase2BoxCode();
+      const itStr = String(currentFase2ItemSeq).padStart(2, '0');
+      const disp = document.getElementById('displayFase2ItemSeq');
+      if (disp) disp.innerText = itStr;
+      const btnNum = document.getElementById('btnFase2ItemNum');
+      if (btnNum) btnNum.innerText = itStr;
+      const lblCod = document.getElementById('lblFase2ItemBoxCod');
+      if (lblCod) lblCod.innerText = boxCod;
+      renderFase2ItemChips(boxCod);
+    }
+
+    function renderFase2ItemChips(boxCode) {
+      const cont = document.getElementById('fase2ItemChipsContainer');
+      if (!cont) return;
+      const cod = boxCode || getActiveFase2BoxCode();
+      const used = activeObraId ? getUsedFase2ItemSeqs(activeObraId, cod) : new Set();
+      const maxShown = Math.max(6, currentFase2ItemSeq + 2, ...(used.size ? Array.from(used) : [1]));
+      let html = '';
+      for (let i = 1; i <= maxShown; i++) {
+        const isUsed = used.has(i);
+        const isSel = (i === currentFase2ItemSeq);
+        let st = "padding: 3px 9px; border-radius: 6px; font-size: 0.72rem; font-weight: 700; cursor: pointer; white-space: nowrap;";
+        if (isSel) st += " background: #0284C7; color: white; border: 1.5px solid #7DD3FC;";
+        else if (isUsed) st += " background: #312E81; color: #C7D2FE; border: 1px solid #818CF8;";
+        else st += " background: #022C22; color: #94A3B8; border: 1px solid #1E293B;";
+        const lbl = isUsed ? `IT${String(i).padStart(2, '0')} ✓` : `IT${String(i).padStart(2, '0')}`;
+        html += `<button type="button" onclick="setFase2ItemSeq(${i})" style="${st}">${lbl}</button>`;
+      }
+      cont.innerHTML = html;
+    }
+
+    function appendNotaFase2Item(tag) {
+      const txt = document.getElementById('inputNotaFase2Item');
+      if (!txt) return;
+      fase2ItemChipHistory.push(txt.value);
+      const curr = txt.value.replace(/\s+$/, '');
+      txt.value = (tag === ',' ? `${curr}, ` : (curr ? `${curr} ${tag}` : tag));
+    }
+
+    function borrarUltimaPalabraFase2Item() {
+      const txt = document.getElementById('inputNotaFase2Item');
+      if (!txt) return;
+      if (fase2ItemChipHistory.length > 0) {
+        txt.value = fase2ItemChipHistory.pop();
+        return;
+      }
+      const parts = txt.value.trim().split(/\s+/);
+      parts.pop();
+      txt.value = parts.join(' ');
+    }
+
+    function limpiarNotaFase2Item() {
+      fase2ItemChipHistory = [];
+      const txt = document.getElementById('inputNotaFase2Item');
+      if (txt) txt.value = '';
     }
 
     function getFirstAvailableCajaSeq(obraId) {
@@ -2650,6 +2854,7 @@
       } else if (tabName === 'FASE2') {
         if (activeObraId) {
           currentFase2Seq = getFirstAvailableFase2Seq(activeObraId);
+          currentFase2ItemSeq = getNextAvailableFase2ItemSeq(activeObraId, autoGenerarCodigoFase2().code);
         }
         updateFase2Display();
         updateAcervoConsolidadoDisplay();
@@ -2848,6 +3053,8 @@
         currentFase2Seq = getFirstAvailableFase2Seq(id);
         const inpF2 = document.getElementById('inputCodigoFase2');
         if (inpF2) inpF2.dataset.userEdited = "";
+        currentFase2ItemSeq = getNextAvailableFase2ItemSeq(id, autoGenerarCodigoFase2().code);
+        fase2ItemChipHistory = [];
         updateFase2Display();
 
         renderMultiAmbientesSummary();
@@ -2959,14 +3166,6 @@
     async function handlePhotoUpload(slotKey, fileInput) {
       try {
         if (!fileInput.files || fileInput.files.length === 0) return;
-        const file = fileInput.files[0];
-        
-        showToast("Comprimiendo y guardando...");
-        const compressedDataUrl = await compressImage(file, 1600, 0.82);
-        if (!compressedDataUrl) {
-          alert("No se pudo leer la imagen capturada.");
-          return;
-        }
 
         if (!fieldData[activeObraId]) {
           fieldData[activeObraId] = { id: activeObraId, fotos: [] };
@@ -2976,6 +3175,68 @@
         }
 
         const currentAmb = getActiveAmbiente();
+
+        if (slotKey === 'fase2_item') {
+          const filesArr = Array.from(fileInput.files);
+          const photoAmb = (document.getElementById('drawerAmbienteSelectFase2')?.value || currentAmb).trim() || currentAmb;
+          const currentCodigo = getActiveFase2BoxCode();
+          const descIt = (document.getElementById('inputNotaFase2Item')?.value || '').trim();
+          let savedCount = 0;
+
+          for (const file of filesArr) {
+            showToast(filesArr.length > 1 ? `Procesando elemento ${savedCount + 1} de ${filesArr.length}...` : "Comprimiendo y guardando elemento...");
+            const compressedDataUrl = await compressImage(file, 1600, 0.82);
+            if (!compressedDataUrl) continue;
+
+            const itNumStr = String(currentFase2ItemSeq).padStart(2, '0');
+            const subCodigo = `${currentCodigo}-IT${itNumStr}`;
+            const tipoFoto = `Archivo Final (Fase 2) - Ítem ${itNumStr}`;
+            const currentContenido = descIt ? `[IT${itNumStr}] ${descIt}` : `[IT${itNumStr}] Elemento ${itNumStr}`;
+            const filename = `OBRA_${String(activeObraId).padStart(2, '0')}_${currentCodigo}_IT${itNumStr}.jpg`;
+
+            const photoObj = {
+              id: `foto_${Date.now()}_${savedCount + 1}`,
+              slot: 'fase2_item',
+              codigo_caja: currentCodigo,
+              sub_codigo: subCodigo,
+              tipo_foto: tipoFoto,
+              nombre: filename,
+              dataUrl: compressedDataUrl,
+              timestamp: new Date().toLocaleString(),
+              ubicacion: photoAmb,
+              nota: currentContenido
+            };
+
+            fieldData[activeObraId].fotos.push(photoObj);
+            currentFase2ItemSeq = getNextAvailableFase2ItemSeq(activeObraId, currentCodigo);
+            uploadBoxPhotoToCloud(activeObraId, photoObj);
+            savedCount++;
+          }
+
+          autoCompileUbicacion(activeObraId);
+          await saveObraToDB(fieldData[activeObraId]);
+          limpiarNotaFase2Item();
+          updateFase2Display();
+          fileInput.value = '';
+          renderDrawerPhotos();
+          updateGlobalCounters();
+          renderList();
+          renderMultiAmbientesSummary();
+          updateAcervoConsolidadoDisplay();
+          showToast(savedCount > 1
+            ? `🗂️ ${savedCount} elementos guardados en ${currentCodigo} • Listo Ítem ${String(currentFase2ItemSeq).padStart(2, '0')}`
+            : `🗂️ Elemento guardado (${currentCodigo}) • Siguiente: Ítem ${String(currentFase2ItemSeq).padStart(2, '0')}`);
+          return;
+        }
+
+        const file = fileInput.files[0];
+        showToast("Comprimiendo y guardando...");
+        const compressedDataUrl = await compressImage(file, 1600, 0.82);
+        if (!compressedDataUrl) {
+          alert("No se pudo leer la imagen capturada.");
+          return;
+        }
+
         const photoAmb = slotKey === 'fase2'
           ? ((document.getElementById('drawerAmbienteSelectFase2')?.value || currentAmb).trim() || currentAmb)
           : currentAmb;
@@ -2987,11 +3248,11 @@
 
         if (slotKey === 'fase2') {
           currentCodigo = (document.getElementById('inputCodigoFase2')?.value || '').trim().toUpperCase() || autoGenerarCodigoFase2().code;
-          const f2Count = fieldData[activeObraId].fotos.filter(f => isCampoFase2Photo(f) && f.codigo_caja === currentCodigo).length + 1;
-          subCodigo = `${currentCodigo}-F${f2Count}`;
-          tipoFoto = f2Count === 1 ? 'Archivo Final (Fase 2)' : `Archivo Final (Fase 2) #${f2Count}`;
+          const f2ExtCount = fieldData[activeObraId].fotos.filter(f => isCampoFase2Photo(f) && !isCampoFase2ItemPhoto(f) && f.codigo_caja === currentCodigo).length + 1;
+          subCodigo = `${currentCodigo}-F${f2ExtCount}`;
+          tipoFoto = f2ExtCount === 1 ? 'Archivo Final (Fase 2) - Exterior' : `Archivo Final (Fase 2) - Exterior #${f2ExtCount}`;
           currentContenido = (document.getElementById('inputNotasFase2')?.value || '').trim() || currentCodigo;
-          filename = `OBRA_${String(activeObraId).padStart(2, '0')}_${currentCodigo}_F${f2Count}.jpg`;
+          filename = `OBRA_${String(activeObraId).padStart(2, '0')}_${currentCodigo}_F${f2ExtCount}.jpg`;
         } else if (slotKey === 'suelto') {
           const { code } = autoGenerarCodigoSuelto();
           currentCodigo = code;
@@ -3142,7 +3403,7 @@
     }
 
     function renderDrawerPhotos() {
-      const slots = ['rotulo', 'item_rotulo', 'suelto', 'fase2', 'otros'];
+      const slots = ['rotulo', 'item_rotulo', 'suelto', 'fase2_item', 'fase2', 'otros'];
       const d = fieldData[activeObraId] || { fotos: [] };
       const fotos = d.fotos || [];
 
@@ -3164,15 +3425,26 @@
       const badgeTabSueltos = document.getElementById('tabBadgeSueltos');
       if (badgeTabSueltos) badgeTabSueltos.innerText = sueltosCount;
 
-      // Contador de fotos Fase 2
+      // Contador total de fotos Fase 2 (elementos internos + exteriores)
       const fase2Count = fotos.filter(f => isCampoFase2Photo(f)).length;
       const badgeTabFase2 = document.getElementById('tabBadgeFase2');
       if (badgeTabFase2) badgeTabFase2.innerText = fase2Count;
 
+      const activeF2Cod = typeof getActiveFase2BoxCode === 'function' ? getActiveFase2BoxCode() : '';
+
       slots.forEach(slotKey => {
         let slotFotos = [];
-        if (slotKey === 'fase2') {
-          slotFotos = fotos.filter(f => isCampoFase2Photo(f));
+        if (slotKey === 'fase2_item') {
+          slotFotos = fotos.filter(f => isCampoFase2ItemPhoto(f)).slice().sort((a, b) => {
+            const aAct = (a.codigo_caja || '') === activeF2Cod ? 0 : 1;
+            const bAct = (b.codigo_caja || '') === activeF2Cod ? 0 : 1;
+            if (aAct !== bAct) return aAct - bAct;
+            const cCmp = String(a.codigo_caja || '').localeCompare(String(b.codigo_caja || ''));
+            if (cCmp !== 0) return cCmp;
+            return (extractCampoFase2ItemNum(a) || 9999) - (extractCampoFase2ItemNum(b) || 9999);
+          });
+        } else if (slotKey === 'fase2') {
+          slotFotos = fotos.filter(f => isCampoFase2Photo(f) && !isCampoFase2ItemPhoto(f));
         } else if (slotKey === 'suelto') {
           slotFotos = fotos.filter(f => !isCampoFase2Photo(f) && !isCajaNuevaPhoto(f) && (f.slot === 'suelto' || f.codigo_caja?.includes('SUELTO')));
         } else if (slotKey === 'item_rotulo') {
@@ -3195,11 +3467,12 @@
         grid.innerHTML = slotFotos.map(f => {
           const directUrl = resolveDirectImageUrl(f.dataUrl, f.file_id || f.drive_url);
           const driveLink = f.drive_url ? `<a href="${f.drive_url}" target="_blank" style="font-size: 0.65rem; color: #2563EB; text-decoration: none; font-weight: 700; margin-left: 0.3rem;" onclick="event.stopPropagation()">🔗 Drive</a>` : '';
-          const isF2 = isCampoFase2Photo(f);
-          const isDocSuelto = !isF2 && (f.slot === 'suelto' || f.codigo_caja?.includes('SUELTO'));
-          const isItemRot = !isF2 && (f.slot === 'item_rotulo' || f.sub_codigo?.includes('-IT'));
-          const icon = isF2 ? '🏛️' : (isDocSuelto ? '📁' : (isItemRot ? '🗂️' : '🏷️'));
-          const codeColor = isF2 ? '#059669' : (isDocSuelto ? '#0284C7' : (isItemRot ? '#B45309' : '#2563EB'));
+          const isF2Item = isCampoFase2ItemPhoto(f);
+          const isF2 = !isF2Item && isCampoFase2Photo(f);
+          const isDocSuelto = !isF2 && !isF2Item && (f.slot === 'suelto' || f.codigo_caja?.includes('SUELTO'));
+          const isItemRot = !isF2 && !isF2Item && (f.slot === 'item_rotulo' || f.sub_codigo?.includes('-IT'));
+          const icon = isF2Item ? '🗂️' : (isF2 ? '📦' : (isDocSuelto ? '📁' : (isItemRot ? '🗂️' : '🏷️')));
+          const codeColor = isF2Item ? '#4F46E5' : (isF2 ? '#059669' : (isDocSuelto ? '#0284C7' : (isItemRot ? '#B45309' : '#2563EB')));
           const descPreview = (f.nota && f.nota !== f.codigo_caja) ? `<div style="font-size:0.65rem;color:#334155;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${f.nota}</div>` : '';
           return `
           <div class="thumb-card">

@@ -947,6 +947,7 @@
 
     function isCajaNuevaPhoto(f) {
       if (!f) return false;
+      if (typeof isFase2Photo === 'function' && isFase2Photo(f)) return false;
       const cod = String(f.codigo_caja || '');
       const sub = String(f.sub_codigo || '');
       const tipo = String(f.tipo_foto || '');
@@ -1131,12 +1132,14 @@
               } else if (r.drive_url) {
                 const directImg = resolveDirectImageUrl(r.drive_url, r.file_id);
                 const isF2 = isFase2BoxCode(r.codigo_caja) || (r.tipo_foto && (r.tipo_foto.includes('Fase 2') || r.tipo_foto.includes('Archivo Final')));
+                const isF2Item = isF2 && (/(?:Ítem|Item)\s*\d+/i.test(r.tipo_foto || '') || /^\[IT\d+\]/i.test(cleanCloudNota) || /-IT\d+/i.test(r.sub_codigo || ''));
+                const itMatch = isF2Item ? (r.sub_codigo || r.tipo_foto || cleanCloudNota || '').match(/(?:IT|[ÍI]TEM)\s*[-_ ]?(\d+)/i) : null;
                 const isCN = !isF2 && ((r.tipo_foto && (r.tipo_foto.includes('Caja Nueva') || r.tipo_foto.includes('Armar Rótulo'))) || (r.codigo_caja && /(?:^|-)CN\d+(?:-|$)/i.test(r.codigo_caja)) || (r.sub_codigo && r.sub_codigo.includes('-IT')));
                 fieldPhotosMap[oId].fotos.push({
                   id: 'cloud_' + (r.file_id || Date.now()),
-                  slot: isF2 ? 'fase2' : (isCN ? 'item_rotulo' : undefined),
+                  slot: isF2 ? (isF2Item ? 'fase2_item' : 'fase2') : (isCN ? 'item_rotulo' : undefined),
                   codigo_caja: r.codigo_caja,
-                  sub_codigo: r.sub_codigo || r.codigo_caja,
+                  sub_codigo: r.sub_codigo || (isF2Item && itMatch ? `${r.codigo_caja}-IT${String(parseInt(itMatch[1], 10)).padStart(2, '0')}` : r.codigo_caja),
                   tipo_foto: r.tipo_foto || (isF2 ? 'Archivo Final (Fase 2)' : 'Rótulo de Caja'),
                   dataUrl: directImg,
                   drive_url: r.drive_url,
@@ -2978,10 +2981,74 @@
 
     function isFase2Photo(f) {
       if (!f) return false;
-      if (f.slot === 'fase2') return true;
+      if (f.slot === 'fase2' || f.slot === 'fase2_item') return true;
       if (isFase2BoxCode(f.codigo_caja)) return true;
       const tf = String(f.tipo_foto || '').toLowerCase();
       return tf.includes('fase 2') || tf.includes('archivo final');
+    }
+
+    function isFase2ItemPhoto(f) {
+      if (!f || !isFase2Photo(f)) return false;
+      if (f.slot === 'fase2_item') return true;
+      const sub = String(f.sub_codigo || '');
+      const tipo = String(f.tipo_foto || '');
+      const nota = String(f.nota || '');
+      return /-IT\d+/i.test(sub) || /(?:Ítem|Item)\s*\d+/i.test(tipo) || /^\[IT\d+\]/i.test(nota);
+    }
+
+    function extractFase2ItemNum(f) {
+      if (!f) return 0;
+      const cand = `${f.sub_codigo || ''} ${f.tipo_foto || ''} ${f.nota || ''}`;
+      const m = cand.match(/(?:IT|[ÍI]TEM)\s*[-_ ]?(\d+)/i);
+      return m ? parseInt(m[1], 10) : 0;
+    }
+
+    function sortFase2BoxPhotos(fotos) {
+      return (fotos || []).slice().sort((a, b) => {
+        const aIt = isFase2ItemPhoto(a);
+        const bIt = isFase2ItemPhoto(b);
+        if (aIt !== bIt) return aIt ? -1 : 1;
+        if (aIt && bIt) {
+          const na = extractFase2ItemNum(a) || 9999;
+          const nb = extractFase2ItemNum(b) || 9999;
+          if (na !== nb) return na - nb;
+        }
+        return String(a.id || '').localeCompare(String(b.id || ''));
+      });
+    }
+
+    function cleanFase2ItemNote(rawNota, cod) {
+      let txt = String(rawNota || '').replace(/^\[IT\d+\]\s*/i, '').trim();
+      if (!txt || txt === cod || /^(?:Elemento|Archivador\s*\/\s*File)\s*\d+$/i.test(txt) || /^[-_\s]+$/.test(txt)) {
+        return '';
+      }
+      return txt;
+    }
+
+    function buildRowsFromFase2Items(cod, itemFotos) {
+      const sorted = sortFase2BoxPhotos((itemFotos || []).filter(f => isFase2ItemPhoto(f)));
+      return sorted.map((f, idx) => {
+        const n = extractFase2ItemNum(f) || (idx + 1);
+        const cleanNote = cleanFase2ItemNote(f.nota, cod);
+        const ocrTxt = (f.ocr_acervo || '').replace(/\|/g, ', ').trim();
+        return {
+          num: String(n).padStart(2, '0'),
+          contenido: cleanNote || ocrTxt || '',
+          caja: cod
+        };
+      });
+    }
+
+    function getNextFase2ItemSeqDash(obraId, cod) {
+      const fData = fieldPhotosMap[obraId];
+      if (!fData || !Array.isArray(fData.fotos)) return 1;
+      let maxSeq = 0;
+      fData.fotos.forEach(f => {
+        if ((f.codigo_caja || '').trim() !== cod || !isFase2ItemPhoto(f)) return;
+        const n = extractFase2ItemNum(f);
+        if (n > maxSeq) maxSeq = n;
+      });
+      return maxSeq + 1;
     }
 
     function getDefaultFase2Prefix(obraId) {
@@ -3100,7 +3167,9 @@
           if (!cod) return;
           const existing = boxes.find(b => b.codigo === cod);
           const photoAmb = String(f.ubicacion || '').trim();
-          const photoNota = (f.nota && f.nota !== cod && f.nota !== 'Contenido no especificado') ? String(f.nota).trim() : '';
+          const isIt = isFase2ItemPhoto(f);
+          const rawNota = (f.nota && f.nota !== cod && f.nota !== 'Contenido no especificado') ? String(f.nota).trim() : '';
+          const photoNota = isIt ? '' : rawNota;
           if (!existing) {
             boxes.push({
               codigo: cod,
@@ -3526,7 +3595,9 @@
         const validRowsCount = (h && h.rows) ? h.rows.filter(r => r.contenido && !/^[-_\s]+$/.test(r.contenido)).length : 0;
         const resumen = (b.resumen || (h && h.shortSummary) || '').trim();
         const proced = Array.isArray(b.procedencia) ? b.procedencia : [];
-        const boxFotos = f2Fotos.filter(f => (f.codigo_caja || '').trim() === cod);
+        const boxFotos = sortFase2BoxPhotos(f2Fotos.filter(f => (f.codigo_caja || '').trim() === cod));
+        const itemFotos = boxFotos.filter(f => isFase2ItemPhoto(f));
+        const extFotos = boxFotos.filter(f => !isFase2ItemPhoto(f));
 
         const ambOpts = FASE2_AMBIENTE_OPTIONS.slice();
         if (b.amb && !ambOpts.includes(b.amb)) ambOpts.unshift(b.amb);
@@ -3537,13 +3608,15 @@
               <div style="display:flex; align-items:center; gap:0.45rem; flex-wrap:wrap;">
                 <span class="caja-tag" style="background:#059669;">🏛️ ${escapeHtmlAttr(cod)}</span>
                 <span class="caja-amb">📍 ${escapeHtmlAttr(b.amb || 'OTROS')}${b.estante ? ' • ' + escapeHtmlAttr(b.estante) : ''}</span>
+                ${itemFotos.length > 0 ? `<span class="badge" style="background:#EEF2FF; color:#3730A3; border:1px solid #C7D2FE; font-size:0.65rem;">🗂️ ${itemFotos.length} ${itemFotos.length === 1 ? 'elemento' : 'elementos'} (IT)</span>` : ''}
                 <span class="badge ${validRowsCount > 0 ? 'badge-green' : 'badge-yellow'}" style="font-size:0.65rem;">
-                  ${validRowsCount > 0 ? `✅ Rótulo A4 (${validRowsCount} filas)` : '⏳ Sin filas A4'}
+                  ${validRowsCount > 0 ? `✅ Rótulo A4 (${validRowsCount} filas)` : (itemFotos.length > 0 ? '⚡ Listo p/ generar Rótulo A4' : '⏳ Sin filas A4')}
                 </span>
                 ${proced.length > 0 ? `<span class="badge" style="background:#FFFBEB; color:#92400E; border:1px solid #FDE68A; font-size:0.65rem;">🕰️ De Fase 1: ${escapeHtmlAttr(proced.join(', '))}</span>` : ''}
               </div>
               <div style="display:flex; gap:0.35rem; flex-wrap:wrap;">
-                <button type="button" onclick="triggerUploadFotoFase2(${obraId}, '${encodedCod}')" style="background:#FFFFFF; border:1px solid #10B981; color:#065F46; padding:0.3rem 0.62rem; border-radius:7px; font-size:0.72rem; font-weight:800; cursor:pointer;">📷 + Foto Final</button>
+                <button type="button" onclick="triggerUploadFotoFase2(${obraId}, '${encodedCod}', 'item')" style="background:#EEF2FF; border:1px solid #6366F1; color:#3730A3; padding:0.3rem 0.62rem; border-radius:7px; font-size:0.72rem; font-weight:800; cursor:pointer;" title="Subir fotos individuales de cada archivador/file/libro (IT01, IT02...) para armar el rótulo">🗂️ + Fotos de Elementos (IT..)</button>
+                <button type="button" onclick="triggerUploadFotoFase2(${obraId}, '${encodedCod}', 'exterior')" style="background:#FFFFFF; border:1px solid #10B981; color:#065F46; padding:0.3rem 0.58rem; border-radius:7px; font-size:0.72rem; font-weight:800; cursor:pointer;" title="Subir foto exterior de la caja armada/cerrada">📦 + Foto Exterior</button>
                 <button type="button" onclick="openArmadorRotuloModal(${obraId}, '${encodedCod}')" style="background:#059669; border:none; color:#FFFFFF; padding:0.32rem 0.68rem; border-radius:7px; font-size:0.72rem; font-weight:800; cursor:pointer;">🏷️ Armar / Imprimir Rótulo A4</button>
                 <button type="button" onclick="deleteFase2Box(${obraId}, '${encodedCod}')" style="background:#FEF2F2; border:1px solid #FECACA; color:#991B1B; padding:0.3rem 0.52rem; border-radius:7px; font-size:0.72rem; font-weight:800; cursor:pointer;" title="Quitar de Fase 2 (no borra Fase 1)">🗑️</button>
               </div>
@@ -3573,23 +3646,32 @@
 
             ${boxFotos.length > 0 ? `
               <div class="caja-photos-grid">
-                ${boxFotos.map(f => {
+                ${[...itemFotos, ...extFotos].map(f => {
                   const directUrl = resolveDirectImageUrl(f.dataUrl, f.file_id || f.drive_url);
                   const driveLink = f.drive_url ? `<a href="${f.drive_url}" target="_blank" class="drive-link" onclick="event.stopPropagation()">🔗 Drive</a>` : '';
+                  const isIt = isFase2ItemPhoto(f);
+                  const nIt = extractFase2ItemNum(f);
+                  const itCodeTag = isIt ? `🗂️ IT${nIt > 0 ? String(nIt).padStart(2, '0') : ''}` : '📦 Exterior';
+                  const cleanItNote = isIt ? cleanFase2ItemNote(f.nota, cod) : '';
+                  const ocrPrev = (f.ocr_acervo || '').replace(/\|/g, ', ').trim();
+                  const subNoteLine = cleanItNote
+                    ? `<div style="font-size:0.67rem; color:#312E81; font-weight:700; padding:0.24rem 0.55rem; background:#EEF2FF; border-top:1px solid #E0E7FF; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;" title="${escapeHtmlAttr(cleanItNote)}">${escapeHtmlAttr(cleanItNote)}</div>`
+                    : (ocrPrev ? `<div style="font-size:0.67rem; color:#0D9488; font-weight:700; padding:0.24rem 0.55rem; background:#F0FDFA; border-top:1px solid #CCFBF1; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;" title="${escapeHtmlAttr(ocrPrev)}">OCR: ${escapeHtmlAttr(ocrPrev)}</div>` : '');
                   return `
-                    <div class="caja-photo-card" style="border-color:#A7F3D0;">
+                    <div class="caja-photo-card" style="border-color:${isIt ? '#C7D2FE' : '#A7F3D0'};">
                       <img src="${directUrl}" class="caja-photo-img" onclick="openDashboardLightbox('${directUrl}')" onerror="handleDriveImgError(this, '${f.file_id || f.drive_url || ''}')" title="Clic para ampliar">
                       <div class="caja-photo-label">
-                        <span style="overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">📷 ${escapeHtmlAttr(f.tipo_foto || 'Archivo Final (Fase 2)')}</span>
+                        <span style="overflow:hidden; text-overflow:ellipsis; white-space:nowrap; font-weight:800; color:${isIt ? '#3730A3' : '#065F46'};">${escapeHtmlAttr(itCodeTag)}</span>
                         ${driveLink}
                       </div>
+                      ${subNoteLine}
                     </div>
                   `;
                 }).join('')}
               </div>
             ` : `
               <div style="padding:0.7rem 1rem; font-size:0.75rem; color:#047857; background:#FFFFFF;">
-                Rótulo listo para imprimir en A4. Puedes tomar la foto final después con <strong>📷 + Foto Final</strong> o desde el celular en <strong>🏛️ 4. Fase 2</strong>.
+                Sin fotos aún. Usa <strong>🗂️ + Fotos de Elementos (IT..)</strong> (o en celular <strong>🏛️ 4. Fase 2</strong>) para fotografiar cada archivador/file y generar su Rótulo A4.
               </div>
             `}
           </div>
@@ -3694,31 +3776,57 @@
       showToast(`🗑️ Caja "${cod}" quitada de Fase 2`);
     }
 
-    function triggerUploadFotoFase2(obraId, encodedCod) {
+    function triggerUploadFotoFase2(obraId, encodedCod, mode = 'item') {
       const cod = decodeURIComponent(encodedCod || '');
       const b = getFase2BoxesForObra(obraId).find(x => x.codigo === cod) || {};
-      pendingF2UploadCtx = { obraId, cod, amb: b.amb || getDefaultFase2Ambiente(obraId), resumen: b.resumen || '' };
+      pendingF2UploadCtx = {
+        obraId,
+        cod,
+        amb: b.amb || getDefaultFase2Ambiente(obraId),
+        resumen: b.resumen || '',
+        mode: mode === 'exterior' ? 'exterior' : 'item'
+      };
       const inp = document.getElementById('f2PhotoUploadInput');
       if (inp) { inp.value = ''; inp.click(); }
     }
 
     async function handleUploadFotoFase2Gabinete(fileInput) {
       if (!pendingF2UploadCtx || !fileInput.files || fileInput.files.length === 0) return;
-      const { obraId, cod, amb, resumen } = pendingF2UploadCtx;
+      const { obraId, cod, amb, resumen, mode } = pendingF2UploadCtx;
       const p = (projectsData || []).find(item => item.id === obraId) || {};
       if (!fieldPhotosMap[obraId]) fieldPhotosMap[obraId] = { id: obraId, fotos: [], ubicacion: amb };
       if (!fieldPhotosMap[obraId].fotos) fieldPhotosMap[obraId].fotos = [];
 
-      const existingCount = fieldPhotosMap[obraId].fotos.filter(f => f.codigo_caja === cod && isFase2Photo(f)).length;
+      const isItemMode = mode === 'item';
+      const existingExtCount = fieldPhotosMap[obraId].fotos.filter(f => f.codigo_caja === cod && isFase2Photo(f) && !isFase2ItemPhoto(f)).length;
+      let nextItemSeq = isItemMode ? getNextFase2ItemSeqDash(obraId, cod) : 0;
       const gasUrl = (localStorage.getItem('fdm_gas_url') || '').trim();
-      showToast(`⏳ Subiendo ${fileInput.files.length} foto(s) Fase 2 para ${cod}...`);
+      showToast(`⏳ Subiendo ${fileInput.files.length} foto(s) ${isItemMode ? 'de elementos ' : ''}Fase 2 para ${cod}...`);
 
       let idx = 0;
       for (const file of Array.from(fileInput.files)) {
         idx++;
-        const n = existingCount + idx;
-        const subCod = `${cod}-F${n}`;
-        const tipoFoto = n === 1 ? 'Archivo Final (Fase 2)' : `Archivo Final (Fase 2) #${n}`;
+        let subCod = '';
+        let tipoFoto = '';
+        let slotVal = isItemMode ? 'fase2_item' : 'fase2';
+        let notaVal = '';
+        let fileName = '';
+
+        if (isItemMode) {
+          const itNum = nextItemSeq++;
+          const itStr = String(itNum).padStart(2, '0');
+          subCod = `${cod}-IT${itStr}`;
+          tipoFoto = `Archivo Final (Fase 2) - Ítem ${itStr}`;
+          notaVal = `[IT${itStr}] Elemento ${itStr}`;
+          fileName = `OBRA_${String(obraId).padStart(2, '0')}_${cod}_IT${itStr}.jpg`;
+        } else {
+          const n = existingExtCount + idx;
+          subCod = `${cod}-F${n}`;
+          tipoFoto = n === 1 ? 'Archivo Final (Fase 2) - Exterior' : `Archivo Final (Fase 2) - Exterior #${n}`;
+          notaVal = resumen || cod;
+          fileName = `OBRA_${String(obraId).padStart(2, '0')}_${cod}_F${n}.jpg`;
+        }
+
         const dataUrl = await new Promise((resolve) => {
           const reader = new FileReader();
           reader.onload = (ev) => {
@@ -3743,15 +3851,16 @@
         if (!dataUrl) continue;
 
         const photoObj = {
-          id: `f2foto_${Date.now()}_${n}`,
-          slot: 'fase2',
+          id: `f2foto_${Date.now()}_${idx}_${Math.random().toString(36).slice(2, 5)}`,
+          slot: slotVal,
           codigo_caja: cod,
           sub_codigo: subCod,
           tipo_foto: tipoFoto,
           dataUrl,
           timestamp: new Date().toLocaleString(),
           ubicacion: amb,
-          nota: resumen || cod
+          nota: notaVal,
+          ocr_acervo: ''
         };
         fieldPhotosMap[obraId].fotos.push(photoObj);
 
@@ -3772,8 +3881,8 @@
                 tipo_foto: tipoFoto,
                 photo: {
                   base64: dataUrl,
-                  filename: `OBRA_${String(obraId).padStart(2, '0')}_${cod}_F${n}.jpg`,
-                  slot: 'fase2'
+                  filename: fileName,
+                  slot: slotVal
                 }
               })
             });
@@ -3781,6 +3890,7 @@
             if (cloudRes && cloudRes.status === 'success') {
               if (cloudRes.drive_url) photoObj.drive_url = cloudRes.drive_url;
               if (cloudRes.file_id) photoObj.file_id = cloudRes.file_id;
+              if (cloudRes.ocr_acervo) photoObj.ocr_acervo = cloudRes.ocr_acervo;
             }
           } catch (e) {}
         }
@@ -3788,7 +3898,7 @@
 
       fileInput.value = '';
       refreshAfterLayerChange(obraId);
-      showToast(`📸 Foto(s) Fase 2 guardadas en ${cod}`);
+      showToast(isItemMode ? `🗂️ ${idx} foto(s) de elementos agregadas a ${cod}` : `📸 Foto(s) exterior Fase 2 guardadas en ${cod}`);
     }
 
     function setLayerView(layer, btn) {
@@ -5977,6 +6087,20 @@
     function parseRotuloToRows(obraId, cajaFotos, cod) {
       const hojas = getHojasRotuloA4Map();
       const saved = hojas[`${obraId}::${cod}`];
+      const hasMeaningfulSaved = !!(saved && Array.isArray(saved.rows) && saved.rows.some(r => String(r.contenido || '').trim() && !/^[-_\s]+$/.test(r.contenido)));
+      if (hasMeaningfulSaved) {
+        return saved.rows.map((r, idx) => ({
+          num: String(r.num || (idx + 1)).padStart(2, '0'),
+          contenido: String(r.contenido || '').trim(),
+          caja: String(r.caja || cod).trim()
+        }));
+      }
+
+      const f2Items = sortFase2BoxPhotos((cajaFotos || []).filter(f => isFase2ItemPhoto(f)));
+      if (f2Items.length > 0) {
+        return buildRowsFromFase2Items(cod, f2Items);
+      }
+
       if (saved && Array.isArray(saved.rows) && saved.rows.length > 0) {
         return saved.rows.map((r, idx) => ({
           num: String(r.num || (idx + 1)).padStart(2, '0'),
@@ -6019,6 +6143,34 @@
       return rows;
     }
 
+    function generarFilasDesdeElementosFase2() {
+      const f2Items = Array.isArray(activeArmadorCtx.f2ItemFotos) ? activeArmadorCtx.f2ItemFotos : [];
+      if (f2Items.length === 0) {
+        showToast("Esta caja no tiene fotos de elementos individuales (IT01, IT02...) aún.");
+        return;
+      }
+      const newRows = buildRowsFromFase2Items(activeArmadorCtx.cod, f2Items);
+      const hasExisting = (activeArmadorCtx.rows || []).some(r => String(r.contenido || '').trim() && !/^[-_\s]+$/.test(r.contenido));
+      if (hasExisting) {
+        const replaceAll = confirm(
+          `Se detectaron ${newRows.length} elemento(s) fotografiado(s) en ${activeArmadorCtx.cod}.\n\n` +
+          `• ACEPTAR: Reemplazar las filas actuales del rótulo con los ${newRows.length} elementos.\n` +
+          `• CANCELAR: Agregarlos al final sin borrar lo ya escrito.`
+        );
+        if (replaceAll) {
+          activeArmadorCtx.rows = newRows;
+        } else {
+          const merged = (activeArmadorCtx.rows || []).filter(r => String(r.contenido || '').trim());
+          newRows.forEach(r => merged.push({ num: String(merged.length + 1).padStart(2, '0'), contenido: r.contenido, caja: activeArmadorCtx.cod }));
+          activeArmadorCtx.rows = merged;
+        }
+      } else {
+        activeArmadorCtx.rows = newRows;
+      }
+      renderArmadorRotuloTable();
+      showToast(`⚡ Rótulo actualizado con ${newRows.length} elemento(s) Fase 2`);
+    }
+
     function openArmadorRotuloModal(obraId, encodedCod) {
       const cod = decodeURIComponent(encodedCod);
       const p = (projectsData || []).find(x => x.id === obraId) || {};
@@ -6040,13 +6192,20 @@
       let displayFotos = cajaFotos;
       let provFotos = [];
       let f2OwnFotos = [];
+      let f2ItemFotos = [];
       if (isF2) {
-        f2OwnFotos = allFotos.filter(f => isFase2Photo(f) && (f.codigo_caja || '').trim() === cod);
+        f2OwnFotos = sortFase2BoxPhotos(allFotos.filter(f => isFase2Photo(f) && (f.codigo_caja || '').trim() === cod));
+        f2ItemFotos = f2OwnFotos.filter(f => isFase2ItemPhoto(f));
         provFotos = procedencia.length > 0
           ? allFotos.filter(f => !isFase2Photo(f) && procedencia.includes((f.codigo_caja || f.nota || 'SIN_CODIGO').trim()))
           : [];
         displayFotos = [
-          ...f2OwnFotos.map(f => Object.assign({}, f, { _srcTag: '📷 Fase 2' })),
+          ...f2OwnFotos.map(f => {
+            const isIt = isFase2ItemPhoto(f);
+            const nIt = extractFase2ItemNum(f);
+            const tag = isIt ? `🗂️ Elemento IT${nIt > 0 ? String(nIt).padStart(2, '0') : ''}` : '📦 Exterior Fase 2';
+            return Object.assign({}, f, { _srcTag: tag });
+          }),
           ...provFotos.map(f => Object.assign({}, f, { _srcTag: '🕰️ Procedencia F1: ' + (f.codigo_caja || f.nota || '') }))
         ];
       }
@@ -6065,11 +6224,22 @@
         procedencia,
         isCN,
         isF2,
+        f2ItemFotos,
         projDesc: savedHoja.projDesc || p.desc || `OBRA N° ${obraId}`,
         shortSummary: initialShort,
         rows: parseRotuloToRows(obraId, displayFotos, cod),
         activeRowIdx: 0
       };
+
+      const btnFillF2 = document.getElementById('btnArmadorFillFromF2Items');
+      if (btnFillF2) {
+        if (isF2 && f2ItemFotos.length > 0) {
+          btnFillF2.style.display = 'inline-flex';
+          btnFillF2.innerText = `⚡ Generar filas desde los ${f2ItemFotos.length} elementos`;
+        } else {
+          btnFillF2.style.display = 'none';
+        }
+      }
 
       const titleInp = document.getElementById('armadorProyectoTitle');
       if (titleInp) titleInp.value = activeArmadorCtx.projDesc;
@@ -6082,7 +6252,7 @@
       const ambSpan = document.getElementById('armadorAmbSpan');
       if (ambSpan) {
         ambSpan.innerText = isF2
-          ? `🏛️ FASE 2 • 📍 ${amb}${estante ? ' • ' + estante : ''} (${f2OwnFotos.length} foto(s) F2${provFotos.length ? ' + ' + provFotos.length + ' procedencia F1' : ''})`
+          ? `🏛️ FASE 2 • 📍 ${amb}${estante ? ' • ' + estante : ''} (${f2ItemFotos.length} elemento(s) IT + ${Math.max(0, f2OwnFotos.length - f2ItemFotos.length)} exterior${provFotos.length ? ' + ' + provFotos.length + ' procedencia F1' : ''})`
           : `📍 ${amb} (${cajaFotos.length} fotos) • Hoja A4 independiente del resumen corto`;
       }
 
@@ -6093,11 +6263,14 @@
           const hdUrl = String(directUrl || '').replace(/sz=w\d+/, 'sz=w1800');
           const cleanNote = (f.nota && f.nota !== cod && f.nota !== 'Contenido no especificado') ? f.nota.replace(/^\[IT\d+\]\s*/i, '').trim() : '';
           const ocrText = (f.ocr_acervo || '').replace(/\|/g, ', ').trim();
-          const candidateText = ocrText || cleanNote || '';
+          const candidateText = ocrText || (/^(?:Elemento|Archivador\s*\/\s*File)\s*\d+$/i.test(cleanNote) ? '' : cleanNote) || '';
           const subTag = f.sub_codigo && f.sub_codigo !== cod ? `${f.sub_codigo} • ` : '';
           const fid = f.file_id || '';
+          const srcBg = !f._srcTag ? '' : (f._srcTag.includes('Elemento') ? '#EEF2FF' : (f._srcTag.includes('Fase 2') ? '#DCFCE7' : '#FEF3C7'));
+          const srcCol = !f._srcTag ? '' : (f._srcTag.includes('Elemento') ? '#3730A3' : (f._srcTag.includes('Fase 2') ? '#065F46' : '#92400E'));
+          const srcBor = !f._srcTag ? '' : (f._srcTag.includes('Elemento') ? '#C7D2FE' : (f._srcTag.includes('Fase 2') ? '#86EFAC' : '#FDE68A'));
           const srcTagHtml = f._srcTag
-            ? `<span style="background:${f._srcTag.includes('Fase 2') ? '#DCFCE7' : '#FEF3C7'}; color:${f._srcTag.includes('Fase 2') ? '#065F46' : '#92400E'}; border:1px solid ${f._srcTag.includes('Fase 2') ? '#86EFAC' : '#FDE68A'}; padding:1px 6px; border-radius:999px; font-size:0.65rem; font-weight:800;">${escapeHtmlAttr(f._srcTag)}</span>`
+            ? `<span style="background:${srcBg}; color:${srcCol}; border:1px solid ${srcBor}; padding:1px 6px; border-radius:999px; font-size:0.65rem; font-weight:800;">${escapeHtmlAttr(f._srcTag)}</span>`
             : '';
           return `
             <div class="armador-photo-item">
@@ -7737,8 +7910,11 @@
                 <button type="button" class="armador-chip" onclick="showLastArmadorOcrRaw()" title="Ver texto bruto capturado por OCR">📋 Ver OCR</button>
               </div>
             </div>
-            <div style="margin-top:0.65rem; display:flex; justify-content:space-between; align-items:center;">
-              <button type="button" class="armador-chip" style="background:#EDE9FE; border-color:#8B5CF6; color:#5B21B6; font-weight:800; padding:0.4rem 0.85rem;" onclick="addArmadorRow()">+ Añadir Fila al Rótulo</button>
+            <div style="margin-top:0.65rem; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.4rem;">
+              <div style="display:flex; gap:0.4rem; flex-wrap:wrap; align-items:center;">
+                <button type="button" class="armador-chip" style="background:#EDE9FE; border-color:#8B5CF6; color:#5B21B6; font-weight:800; padding:0.4rem 0.85rem;" onclick="addArmadorRow()">+ Añadir Fila al Rótulo</button>
+                <button type="button" id="btnArmadorFillFromF2Items" class="armador-chip" style="display:none; background:#ECFDF5; border-color:#10B981; color:#065F46; font-weight:800; padding:0.4rem 0.82rem;" onclick="generarFilasDesdeElementosFase2()">⚡ Generar filas desde elementos</button>
+              </div>
               <span style="font-size:0.72rem; color:#64748B;">Se guarda aparte como Hoja de Rótulo A4 (sin alterar resúmenes cortos)</span>
             </div>
           </div>
