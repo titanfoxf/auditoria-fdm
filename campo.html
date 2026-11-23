@@ -1281,6 +1281,17 @@
       updateGlobalCounters();
       renderList();
       updateCloudButtonState();
+      try {
+        const params = new URLSearchParams(window.location.search);
+        const obraParam = parseInt(params.get('obra') || '', 10);
+        const tabParam = (params.get('tab') || '').toUpperCase().trim();
+        if (obraParam && projects.some(p => p.id === obraParam)) {
+          openDrawer(obraParam);
+          if (tabParam === 'FASE2' || tabParam === 'SUELTOS' || tabParam === 'ARMAR_ROTULO' || tabParam === 'DOCS' || tabParam === 'CAJAS') {
+            switchDrawerTab(tabParam);
+          }
+        }
+      } catch (e) {}
       syncFromCloud();
     });
 

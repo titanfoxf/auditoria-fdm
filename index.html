@@ -672,6 +672,7 @@
               </div>
             </div>
           </div>
+          <input type="file" id="f2PhotoCameraInput" accept="image/*" capture="environment" style="display:none;" onchange="handleUploadFotoFase2Gabinete(this)">
           <input type="file" id="f2PhotoUploadInput" accept="image/*" multiple style="display:none;" onchange="handleUploadFotoFase2Gabinete(this)">
           <div id="drawerFase2Container" class="cajas-grid-container"></div>
         </div>
@@ -3564,6 +3565,7 @@
               <div style="font-size:0.75rem; color:#047857; margin-top:4px;">🕰️ Diagnóstico Fase 1: ${escapeHtmlAttr(f1Text)}</div>
             </div>
             <div style="display:flex; gap:0.4rem; flex-wrap:wrap; align-items:center;">
+              <a href="campo.html?obra=${obraId}&tab=FASE2" target="_blank" style="background:#064E3B; color:#6EE7B7; border:1px solid #34D399; border-radius:7px; padding:0.35rem 0.7rem; font-size:0.72rem; font-weight:800; text-decoration:none;">📱 Modo Campo (Fase 2) ➔</a>
               ${closeBtn}
             </div>
           </div>
@@ -3598,6 +3600,7 @@
         const boxFotos = sortFase2BoxPhotos(f2Fotos.filter(f => (f.codigo_caja || '').trim() === cod));
         const itemFotos = boxFotos.filter(f => isFase2ItemPhoto(f));
         const extFotos = boxFotos.filter(f => !isFase2ItemPhoto(f));
+        const nextItStr = String(getNextFase2ItemSeqDash(obraId, cod)).padStart(2, '0');
 
         const ambOpts = FASE2_AMBIENTE_OPTIONS.slice();
         if (b.amb && !ambOpts.includes(b.amb)) ambOpts.unshift(b.amb);
@@ -3615,8 +3618,9 @@
                 ${proced.length > 0 ? `<span class="badge" style="background:#FFFBEB; color:#92400E; border:1px solid #FDE68A; font-size:0.65rem;">🕰️ De Fase 1: ${escapeHtmlAttr(proced.join(', '))}</span>` : ''}
               </div>
               <div style="display:flex; gap:0.35rem; flex-wrap:wrap;">
-                <button type="button" onclick="triggerUploadFotoFase2(${obraId}, '${encodedCod}', 'item')" style="background:#EEF2FF; border:1px solid #6366F1; color:#3730A3; padding:0.3rem 0.62rem; border-radius:7px; font-size:0.72rem; font-weight:800; cursor:pointer;" title="Subir fotos individuales de cada archivador/file/libro (IT01, IT02...) para armar el rótulo">🗂️ + Fotos de Elementos (IT..)</button>
-                <button type="button" onclick="triggerUploadFotoFase2(${obraId}, '${encodedCod}', 'exterior')" style="background:#FFFFFF; border:1px solid #10B981; color:#065F46; padding:0.3rem 0.58rem; border-radius:7px; font-size:0.72rem; font-weight:800; cursor:pointer;" title="Subir foto exterior de la caja armada/cerrada">📦 + Foto Exterior</button>
+                <button type="button" onclick="triggerUploadFotoFase2(${obraId}, '${encodedCod}', 'item', true)" style="background:#4F46E5; border:none; color:#FFFFFF; padding:0.32rem 0.65rem; border-radius:7px; font-size:0.72rem; font-weight:800; cursor:pointer;" title="Abrir cámara del celular para tomar foto directa del siguiente elemento (IT${nextItStr})">📸 Foto Elemento (IT${nextItStr})</button>
+                <button type="button" onclick="triggerUploadFotoFase2(${obraId}, '${encodedCod}', 'item', false)" style="background:#EEF2FF; border:1px solid #6366F1; color:#3730A3; padding:0.3rem 0.58rem; border-radius:7px; font-size:0.72rem; font-weight:800; cursor:pointer;" title="Subir varias fotos juntas desde galería o PC como IT01, IT02...">🖼️ Subir lote (IT..)</button>
+                <button type="button" onclick="triggerUploadFotoFase2(${obraId}, '${encodedCod}', 'exterior', true)" style="background:#FFFFFF; border:1px solid #10B981; color:#065F46; padding:0.3rem 0.58rem; border-radius:7px; font-size:0.72rem; font-weight:800; cursor:pointer;" title="Tomar o subir foto exterior de la caja armada/cerrada">📦 Foto Exterior</button>
                 <button type="button" onclick="openArmadorRotuloModal(${obraId}, '${encodedCod}')" style="background:#059669; border:none; color:#FFFFFF; padding:0.32rem 0.68rem; border-radius:7px; font-size:0.72rem; font-weight:800; cursor:pointer;">🏷️ Armar / Imprimir Rótulo A4</button>
                 <button type="button" onclick="deleteFase2Box(${obraId}, '${encodedCod}')" style="background:#FEF2F2; border:1px solid #FECACA; color:#991B1B; padding:0.3rem 0.52rem; border-radius:7px; font-size:0.72rem; font-weight:800; cursor:pointer;" title="Quitar de Fase 2 (no borra Fase 1)">🗑️</button>
               </div>
@@ -3776,7 +3780,7 @@
       showToast(`🗑️ Caja "${cod}" quitada de Fase 2`);
     }
 
-    function triggerUploadFotoFase2(obraId, encodedCod, mode = 'item') {
+    function triggerUploadFotoFase2(obraId, encodedCod, mode = 'item', useCamera = true) {
       const cod = decodeURIComponent(encodedCod || '');
       const b = getFase2BoxesForObra(obraId).find(x => x.codigo === cod) || {};
       pendingF2UploadCtx = {
@@ -3786,7 +3790,7 @@
         resumen: b.resumen || '',
         mode: mode === 'exterior' ? 'exterior' : 'item'
       };
-      const inp = document.getElementById('f2PhotoUploadInput');
+      const inp = document.getElementById(useCamera ? 'f2PhotoCameraInput' : 'f2PhotoUploadInput');
       if (inp) { inp.value = ''; inp.click(); }
     }
 
@@ -3801,9 +3805,10 @@
       const existingExtCount = fieldPhotosMap[obraId].fotos.filter(f => f.codigo_caja === cod && isFase2Photo(f) && !isFase2ItemPhoto(f)).length;
       let nextItemSeq = isItemMode ? getNextFase2ItemSeqDash(obraId, cod) : 0;
       const gasUrl = (localStorage.getItem('fdm_gas_url') || '').trim();
-      showToast(`⏳ Subiendo ${fileInput.files.length} foto(s) ${isItemMode ? 'de elementos ' : ''}Fase 2 para ${cod}...`);
+      showToast(`⏳ Procesando ${fileInput.files.length} foto(s) ${isItemMode ? 'de elementos ' : ''}Fase 2 para ${cod}...`);
 
       let idx = 0;
+      let cloudSaved = 0;
       for (const file of Array.from(fileInput.files)) {
         idx++;
         let subCod = '';
@@ -3891,6 +3896,7 @@
               if (cloudRes.drive_url) photoObj.drive_url = cloudRes.drive_url;
               if (cloudRes.file_id) photoObj.file_id = cloudRes.file_id;
               if (cloudRes.ocr_acervo) photoObj.ocr_acervo = cloudRes.ocr_acervo;
+              cloudSaved++;
             }
           } catch (e) {}
         }
@@ -3898,7 +3904,15 @@
 
       fileInput.value = '';
       refreshAfterLayerChange(obraId);
-      showToast(isItemMode ? `🗂️ ${idx} foto(s) de elementos agregadas a ${cod}` : `📸 Foto(s) exterior Fase 2 guardadas en ${cod}`);
+      if (gasUrl) {
+        showToast(cloudSaved > 0
+          ? `☁️ ${cloudSaved} foto(s) Fase 2 guardadas en Drive (${cod})`
+          : `⚠️ ${idx} foto(s) guardadas solo en sesión (revisa conexión Drive)`);
+      } else {
+        showToast(isItemMode
+          ? `🗂️ ${idx} foto(s) agregadas en ${cod} (Conecta ☁️ Nube Drive para subir a Google Drive)`
+          : `📸 Foto(s) exterior agregadas en ${cod} (Conecta ☁️ Nube Drive para subir)`);
+      }
     }
 
     function setLayerView(layer, btn) {
