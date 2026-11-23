@@ -117,6 +117,31 @@
     .thumb-amb { font-weight: 700; color: #1E293B; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; display: flex; align-items: center; justify-content: space-between; }
     .thumb-note { color: #2563EB; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-top: 2px; cursor: pointer; }
 
+    /* Selector y Modos de Visualización de Fotos en Campo */
+    .photo-view-bar { display: flex; align-items: center; justify-content: space-between; gap: 0.4rem; padding: 0.42rem 0.75rem; background: #1E293B; border-bottom: 1px solid #334155; flex-wrap: wrap; }
+    .photo-view-label { font-size: 0.68rem; font-weight: 800; color: #94A3B8; text-transform: uppercase; letter-spacing: 0.4px; }
+    .photo-view-group { display: inline-flex; background: #0F172A; padding: 2px; border-radius: 8px; border: 1px solid #334155; gap: 2px; }
+    .photo-view-btn { border: none; background: transparent; color: #94A3B8; font-size: 0.7rem; font-weight: 700; padding: 0.25rem 0.5rem; border-radius: 6px; cursor: pointer; white-space: nowrap; }
+    .photo-view-btn.active { background: #2563EB; color: #FFFFFF; box-shadow: 0 1px 3px rgba(0,0,0,0.3); }
+
+    .drawer.photo-view-list .thumb-grid { grid-template-columns: 1fr; gap: 0.35rem; }
+    .drawer.photo-view-list .thumb-card { flex-direction: row; align-items: center; }
+    .drawer.photo-view-list .thumb-wrap { width: 58px; height: 58px; flex-shrink: 0; }
+    .drawer.photo-view-list .thumb-del { width: 20px; height: 20px; font-size: 0.65rem; top: 2px; right: 2px; }
+    .drawer.photo-view-list .thumb-meta { flex: 1; min-width: 0; border-top: none; border-left: 1px solid #E2E8F0; padding: 5px 8px; }
+
+    .drawer.photo-view-mini .thumb-grid { grid-template-columns: repeat(auto-fill, minmax(84px, 1fr)); gap: 0.35rem; }
+    .drawer.photo-view-mini .thumb-wrap { height: 74px; }
+    .drawer.photo-view-mini .thumb-del { width: 20px; height: 20px; font-size: 0.65rem; top: 3px; right: 3px; }
+    .drawer.photo-view-mini .thumb-meta { padding: 3px 5px; font-size: 0.62rem; }
+
+    .drawer.photo-view-normal .thumb-grid { grid-template-columns: repeat(auto-fill, minmax(135px, 1fr)); gap: 0.6rem; }
+    .drawer.photo-view-normal .thumb-wrap { height: 125px; }
+
+    .drawer.photo-view-large .thumb-grid { grid-template-columns: 1fr; gap: 0.75rem; }
+    .drawer.photo-view-large .thumb-wrap { height: 230px; }
+    .drawer.photo-view-large .thumb-img { object-fit: contain; }
+
     /* Sticky Bottom Bar */
     .drawer-footer { padding: 0.75rem 1rem; background: white; border-top: 1px solid var(--border); display: flex; gap: 0.5rem; }
     .btn-save { background: var(--success); color: white; border: none; padding: 0.75rem 1.25rem; border-radius: 10px; font-size: 0.9rem; font-weight: 700; flex: 1; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 0.4rem; }
@@ -218,7 +243,7 @@
 
   <!-- Drawer Modal -->
   <div class="drawer-backdrop" id="drawerBackdrop" onclick="closeDrawerOutside(event)">
-    <div class="drawer" onclick="event.stopPropagation()">
+    <div class="drawer" id="campoDrawer" onclick="event.stopPropagation()">
       <div class="drawer-header">
         <div>
           <div style="display: flex; align-items: center; gap: 0.45rem; flex-wrap: wrap;">
@@ -249,6 +274,16 @@
         <button type="button" class="drawer-tab" id="tabBtnDocs" onclick="switchDrawerTab('DOCS')">
           📅 5. Fechas Ini/Fin
         </button>
+      </div>
+
+      <div class="photo-view-bar" id="campoPhotoViewBar">
+        <span class="photo-view-label">🖼️ Vista fotos:</span>
+        <div class="photo-view-group">
+          <button type="button" class="photo-view-btn" data-pview="list" onclick="setCampoPhotoViewMode('list')">📋 Lista</button>
+          <button type="button" class="photo-view-btn" data-pview="mini" onclick="setCampoPhotoViewMode('mini')">▪️ Mini</button>
+          <button type="button" class="photo-view-btn active" data-pview="normal" onclick="setCampoPhotoViewMode('normal')">▫️ Normal</button>
+          <button type="button" class="photo-view-btn" data-pview="large" onclick="setCampoPhotoViewMode('large')">🖼️ Grande</button>
+        </div>
       </div>
 
       <div class="drawer-body">
@@ -1274,9 +1309,33 @@
       }
     }
 
+    const CAMPO_PHOTO_VIEW_KEY = 'fdm_campo_photo_view_v1';
+    let currentCampoPhotoView = localStorage.getItem(CAMPO_PHOTO_VIEW_KEY) || (window.innerWidth <= 640 ? 'mini' : 'normal');
+
+    function setCampoPhotoViewMode(mode, silent = false) {
+      const valid = ['list', 'mini', 'normal', 'large'];
+      const target = valid.includes(mode) ? mode : 'normal';
+      currentCampoPhotoView = target;
+      try { localStorage.setItem(CAMPO_PHOTO_VIEW_KEY, target); } catch (e) {}
+
+      const drawerEl = document.getElementById('campoDrawer') || document.querySelector('#drawerBackdrop .drawer');
+      if (drawerEl) {
+        valid.forEach(m => drawerEl.classList.remove(`photo-view-${m}`));
+        drawerEl.classList.add(`photo-view-${target}`);
+      }
+      document.querySelectorAll('#campoPhotoViewBar .photo-view-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.pview === target);
+      });
+      if (!silent) {
+        const labels = { list: '📋 Lista', mini: '▪️ Miniaturas', normal: '▫️ Normal', large: '🖼️ Grande' };
+        showToast(`🖼️ Vista de fotos: ${labels[target]}`);
+      }
+    }
+
     // App Initialization
     window.addEventListener('DOMContentLoaded', async () => {
       initAmbienteSelector();
+      setCampoPhotoViewMode(currentCampoPhotoView, true);
       await initDB();
       await loadProjectsData();
       await loadAllFromDB();

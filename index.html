@@ -256,6 +256,27 @@
     .caja-photo-label { font-size: 0.8rem; font-weight: 700; color: #0F172A; padding: 0.5rem 0.75rem; background: white; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; border-top: 1px solid #F1F5F9; display: flex; justify-content: space-between; align-items: center; gap: 0.4rem; }
     .drive-link { font-size: 0.75rem; color: #1D4ED8; text-decoration: none; font-weight: 800; padding: 0.25rem 0.6rem; background: #EFF6FF; border-radius: 5px; border: 1px solid #BFDBFE; flex-shrink: 0; }
     .drive-link:hover { text-decoration: underline; background: #DBEAFE; }
+
+    /* Selector y Modos de Visualización de Fotos en Ficha (adaptable a móvil o PC) */
+    .drawer-photo-view-bar { display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; padding: 0.42rem 1.25rem; background: #F8FAFC; border-bottom: 1px solid var(--border); flex-wrap: wrap; }
+    .dpv-group { display: inline-flex; background: #E2E8F0; padding: 2px; border-radius: 8px; gap: 2px; }
+    .dpv-btn { border: none; background: transparent; color: #475569; font-size: 0.72rem; font-weight: 700; padding: 0.25rem 0.55rem; border-radius: 6px; cursor: pointer; white-space: nowrap; }
+    .dpv-btn.active { background: #1E3A8A; color: #FFFFFF; box-shadow: 0 1px 2px rgba(0,0,0,0.18); }
+
+    .drawer.photo-view-list .caja-photos-grid { grid-template-columns: 1fr; gap: 0.35rem; }
+    .drawer.photo-view-list .caja-photo-card { display: grid; grid-template-columns: 64px minmax(0, 1fr); text-align: left; align-items: stretch; padding-right: 32px; position: relative; }
+    .drawer.photo-view-list .caja-photo-img { grid-row: 1 / span 3; width: 64px; height: 100%; min-height: 54px; max-height: 76px; object-fit: cover; }
+    .drawer.photo-view-list .caja-photo-label { border-top: none; padding: 0.28rem 0.5rem; font-size: 0.74rem; }
+
+    .drawer.photo-view-mini .caja-photos-grid { grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); gap: 0.5rem; }
+    .drawer.photo-view-mini .caja-photo-img { height: 90px; object-fit: cover; }
+    .drawer.photo-view-mini .caja-photo-label { font-size: 0.68rem; padding: 0.3rem 0.45rem; }
+
+    .drawer.photo-view-normal .caja-photos-grid { grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 0.75rem; }
+    .drawer.photo-view-normal .caja-photo-img { height: 175px; }
+
+    .drawer.photo-view-large .caja-photos-grid { grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); gap: 1.15rem; }
+    .drawer.photo-view-large .caja-photo-img { height: 340px; object-fit: contain; }
     
     /* Lightbox Modal con Zoom */
     .lightbox-modal { position: fixed; inset: 0; background: rgba(15, 23, 42, 0.96); z-index: 4200; display: none; align-items: center; justify-content: center; padding: 1.5rem; overflow: auto; }
@@ -639,6 +660,16 @@
         </div>
         <div class="nav-tab" onclick="switchDrawerTab('HISTORIAL')" id="tabNavHistorial">
           📑 Historial PMO y Datos (<span id="drawerCountHitos">0</span>)
+        </div>
+      </div>
+
+      <div class="drawer-photo-view-bar" id="dashPhotoViewBar">
+        <span style="font-size:0.72rem; font-weight:800; color:#475569; text-transform:uppercase;">🖼️ Vista de fotos:</span>
+        <div class="dpv-group">
+          <button type="button" class="dpv-btn" data-pview="list" onclick="setDashPhotoViewMode('list')">📋 Lista</button>
+          <button type="button" class="dpv-btn" data-pview="mini" onclick="setDashPhotoViewMode('mini')">▪️ Mini</button>
+          <button type="button" class="dpv-btn" data-pview="normal" onclick="setDashPhotoViewMode('normal')">▫️ Normal</button>
+          <button type="button" class="dpv-btn active" data-pview="large" onclick="setDashPhotoViewMode('large')">🖼️ Grande</button>
         </div>
       </div>
 
@@ -4673,6 +4704,7 @@
         console.warn("Aviso al renderizar cajas nuevas:", errCN);
       }
 
+      setDashPhotoViewMode(currentDashPhotoView, true);
       switchDrawerTab(currentLayerView === 'FASE2' ? 'FASE2' : 'UBICACION');
       const mb = document.getElementById('modalBackdrop');
       if (mb) mb.classList.add('open');
@@ -4899,11 +4931,37 @@
       container.innerHTML = html;
     }
 
+    const DASH_PHOTO_VIEW_KEY = 'fdm_dash_photo_view_v1';
+    let currentDashPhotoView = localStorage.getItem(DASH_PHOTO_VIEW_KEY) || (window.innerWidth <= 768 ? 'mini' : 'large');
+
+    function setDashPhotoViewMode(mode, silent = false) {
+      const valid = ['list', 'mini', 'normal', 'large'];
+      const target = valid.includes(mode) ? mode : 'large';
+      currentDashPhotoView = target;
+      try { localStorage.setItem(DASH_PHOTO_VIEW_KEY, target); } catch (e) {}
+
+      const drawerEl = document.getElementById('projectDrawer');
+      if (drawerEl) {
+        valid.forEach(m => drawerEl.classList.remove(`photo-view-${m}`));
+        drawerEl.classList.add(`photo-view-${target}`);
+      }
+      document.querySelectorAll('#dashPhotoViewBar .dpv-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.pview === target);
+      });
+      if (!silent) {
+        const labels = { list: '📋 Lista', mini: '▪️ Miniaturas', normal: '▫️ Normal', large: '🖼️ Grande' };
+        showToast(`🖼️ Vista de fotos: ${labels[target]}`);
+      }
+    }
+
     function switchDrawerTab(tab) {
       document.getElementById('tabNavFase2')?.classList.toggle('active', tab === 'FASE2');
       document.getElementById('tabNavUbicacion')?.classList.toggle('active', tab === 'UBICACION');
       document.getElementById('tabNavCajasNuevas')?.classList.toggle('active', tab === 'CAJAS_NUEVAS');
       document.getElementById('tabNavHistorial')?.classList.toggle('active', tab === 'HISTORIAL');
+
+      const pvBar = document.getElementById('dashPhotoViewBar');
+      if (pvBar) pvBar.style.display = tab === 'HISTORIAL' ? 'none' : 'flex';
 
       const elF2 = document.getElementById('drawerTabContentFase2');
       const elUbic = document.getElementById('drawerTabContentUbicacion');
