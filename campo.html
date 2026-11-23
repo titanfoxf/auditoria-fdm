@@ -1245,13 +1245,16 @@
     async function deleteRecordFromCloud(obraId, photoObj) {
       const url = getGasUrl();
       if (!url || !photoObj) return;
+      const cloudUrl = photoObj.drive_url || (photoObj.isDriveLink ? photoObj.dataUrl : "");
+      const cloudFid = photoObj.file_id || "";
+      if (isCampoFase2Photo(photoObj) && !cloudUrl && !cloudFid) return;
 
       const payload = {
         action: "delete_record",
         obra_id: obraId,
         codigo_caja: photoObj.codigo_caja || photoObj.nota || "",
-        drive_url: photoObj.drive_url || (photoObj.isDriveLink ? photoObj.dataUrl : ""),
-        file_id: photoObj.file_id || ""
+        drive_url: cloudUrl,
+        file_id: cloudFid
       };
 
       try {
@@ -3548,11 +3551,16 @@
       
       // Mantener la visualización y chips de cajas actualizados
       updateCodigoDisplay();
+      if (photoToDelete && isCampoFase2Photo(photoToDelete)) {
+        currentFase2ItemSeq = getNextAvailableFase2ItemSeq(activeObraId, getActiveFase2BoxCode());
+        updateFase2Display();
+      }
       renderDrawerPhotos();
       updateGlobalCounters();
       renderList();
       renderCajaSeqChips();
       renderMultiAmbientesSummary();
+      updateAcervoConsolidadoDisplay();
       showToast("Foto eliminada localmente y en proceso de borrado en nube");
     }
 

@@ -3043,13 +3043,15 @@
     function getNextFase2ItemSeqDash(obraId, cod) {
       const fData = fieldPhotosMap[obraId];
       if (!fData || !Array.isArray(fData.fotos)) return 1;
-      let maxSeq = 0;
+      const used = new Set();
       fData.fotos.forEach(f => {
         if ((f.codigo_caja || '').trim() !== cod || !isFase2ItemPhoto(f)) return;
         const n = extractFase2ItemNum(f);
-        if (n > maxSeq) maxSeq = n;
+        if (n > 0) used.add(n);
       });
-      return maxSeq + 1;
+      let seq = 1;
+      while (used.has(seq)) seq++;
+      return seq;
     }
 
     function getDefaultFase2Prefix(obraId) {
@@ -3661,8 +3663,10 @@
                   const subNoteLine = cleanItNote
                     ? `<div style="font-size:0.67rem; color:#312E81; font-weight:700; padding:0.24rem 0.55rem; background:#EEF2FF; border-top:1px solid #E0E7FF; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;" title="${escapeHtmlAttr(cleanItNote)}">${escapeHtmlAttr(cleanItNote)}</div>`
                     : (ocrPrev ? `<div style="font-size:0.67rem; color:#0D9488; font-weight:700; padding:0.24rem 0.55rem; background:#F0FDFA; border-top:1px solid #CCFBF1; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;" title="${escapeHtmlAttr(ocrPrev)}">OCR: ${escapeHtmlAttr(ocrPrev)}</div>` : '');
+                  const encodedPid = encodeURIComponent(f.id || '');
                   return `
-                    <div class="caja-photo-card" style="border-color:${isIt ? '#C7D2FE' : '#A7F3D0'};">
+                    <div class="caja-photo-card" style="position:relative; border-color:${isIt ? '#C7D2FE' : '#A7F3D0'};">
+                      <button type="button" onclick="event.stopPropagation(); deleteFase2Photo(${obraId}, '${encodedPid}', '${encodedCod}')" title="Eliminar esta foto de Fase 2 (no borra Fase 1)" style="position:absolute; top:5px; right:5px; z-index:3; background:rgba(220,38,38,0.92); color:#FFFFFF; border:none; width:24px; height:24px; border-radius:50%; font-size:0.75rem; font-weight:900; cursor:pointer; display:flex; align-items:center; justify-content:center; box-shadow:0 2px 6px rgba(0,0,0,0.3);">✕</button>
                       <img src="${directUrl}" class="caja-photo-img" onclick="openDashboardLightbox('${directUrl}')" onerror="handleDriveImgError(this, '${f.file_id || f.drive_url || ''}')" title="Clic para ampliar">
                       <div class="caja-photo-label">
                         <span style="overflow:hidden; text-overflow:ellipsis; white-space:nowrap; font-weight:800; color:${isIt ? '#3730A3' : '#065F46'};">${escapeHtmlAttr(itCodeTag)}</span>
@@ -3778,6 +3782,82 @@
       saveFase2BoxesMap(f2Map);
       refreshAfterLayerChange(obraId);
       showToast(`🗑️ Caja "${cod}" quitada de Fase 2`);
+    }
+
+    async function deleteFase2Photo(obraId, encodedPhotoId, encodedCod) {
+      const pid = decodeURIComponent(encodedPhotoId || '');
+      const cod = decodeURIComponent(encodedCod || '');
+      const fData = fieldPhotosMap[obraId];
+      if (!fData || !Array.isArray(fData.fotos)) return false;
+
+      const photoObj = fData.fotos.find(f => String(f.id || '') === pid);
+      if (!photoObj || !isFase2Photo(photoObj)) return false;
+
+      const label = photoObj.sub_codigo || photoObj.tipo_foto || cod || 'foto';
+      if (typeof confirm === 'function' && !confirm(`¿Eliminar esta imagen (${label}) de la caja Fase 2 "${cod}"?\nSe quitará también de Google Drive / Sheets si estaba sincronizada (no afecta Fase 1).`)) {
+        return false;
+      }
+
+      fData.fotos = fData.fotos.filter(f => f !== photoObj);
+
+      if (typeof indexedDB !== 'undefined') {
+        try {
+          const req = indexedDB.open('FDM_Field_Audit_DB', 1);
+          req.onsuccess = (ev) => {
+            try {
+              const dbInst = ev.target.result;
+              if (!dbInst.objectStoreNames.contains('obras_campo')) return;
+              const tx = dbInst.transaction('obras_campo', 'readwrite');
+              const store = tx.objectStore('obras_campo');
+              const gReq = store.get(obraId);
+              gReq.onsuccess = () => {
+                const rec = gReq.result;
+                if (rec && Array.isArray(rec.fotos)) {
+                  rec.fotos = rec.fotos.filter(x =>
+                    String(x.id || '') !== pid &&
+                    !(photoObj.file_id && x.file_id === photoObj.file_id) &&
+                    !(photoObj.drive_url && x.drive_url === photoObj.drive_url)
+                  );
+                  store.put(rec);
+                }
+              };
+            } catch (e) {}
+          };
+        } catch (e) {}
+      }
+
+      const gasUrl = (localStorage.getItem('fdm_gas_url') || '').trim();
+      let cloudDeleted = false;
+      if (gasUrl && typeof fetch === 'function' && (photoObj.file_id || photoObj.drive_url)) {
+        try {
+          const res = await fetch(gasUrl, {
+            method: 'POST',
+            headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+            body: JSON.stringify({
+              action: 'delete_record',
+              obra_id: obraId,
+              codigo_caja: photoObj.codigo_caja || cod,
+              drive_url: photoObj.drive_url || '',
+              file_id: photoObj.file_id || ''
+            })
+          });
+          const data = await res.json().catch(() => null);
+          if (data && data.status === 'success') cloudDeleted = true;
+        } catch (e) {}
+      }
+
+      refreshAfterLayerChange(obraId);
+      if (typeof activeArmadorCtx !== 'undefined' && activeArmadorCtx && activeArmadorCtx.obraId === obraId && activeArmadorCtx.cod === cod) {
+        const modal = document.getElementById('armadorRotuloModal');
+        if (modal && modal.classList.contains('open')) {
+          openArmadorRotuloModal(obraId, encodeURIComponent(cod));
+        }
+      }
+
+      showToast(cloudDeleted
+        ? `🗑️ Imagen eliminada de Fase 2 y Google Drive (${label})`
+        : `🗑️ Imagen eliminada de Fase 2 (${label})`);
+      return true;
     }
 
     function triggerUploadFotoFase2(obraId, encodedCod, mode = 'item', useCamera = true) {
@@ -6304,6 +6384,7 @@
                     <button type="button" class="armador-chip" onclick="rotateArmadorPhoto(this)" title="Girar foto 90°">🔄 90°</button>
                     <button type="button" class="armador-chip" onclick="openDashboardLightbox('${hdUrl}')" title="Abrir imagen a pantalla completa">🔍 Pantalla completa</button>
                     ${candidateText ? `<button type="button" class="armador-chip" onclick="usePhotoTextInArmador('${escapeHtmlAttr(candidateText)}')" title="Copiar este texto a una fila del rótulo">➕ Pasar a tabla</button>` : ''}
+                    ${(isF2 && isFase2Photo(f) && !String(f._srcTag || '').includes('Procedencia F1')) ? `<button type="button" class="armador-chip" style="background:#FEE2E2; border-color:#FCA5A5; color:#991B1B;" onclick="deleteFase2Photo(${obraId}, '${encodeURIComponent(f.id || '')}', '${encodeURIComponent(cod)}')" title="Eliminar esta imagen de Fase 2 (no borra Fase 1)">🗑️ Eliminar</button>` : ''}
                   </div>
                 </div>
                 ${cleanNote ? `<div style="color:#334155;">📝 Nota campo: <b>${escapeHtmlAttr(cleanNote)}</b></div>` : ''}
