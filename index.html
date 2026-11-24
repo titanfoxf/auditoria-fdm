@@ -818,6 +818,14 @@
                 <button type="button" onclick="saveQuickDatesFromDrawer()" class="btn btn-primary" style="width:100%; padding:0.48rem 0.75rem; font-size:0.78rem; background:#1D4ED8;">💾 Guardar Fechas</button>
               </div>
             </div>
+            <div style="display:flex; gap:0.45rem; align-items:end; flex-wrap:wrap; margin-top:0.55rem; padding-top:0.55rem; border-top:1px dashed #BFDBFE;">
+              <div style="flex:1; min-width:220px;">
+                <label style="display:block; font-size:0.68rem; font-weight:800; color:#0F766E; margin-bottom:2px;">🏷️ Pseudónimo / Nombre Corto de Auditoría (para Rótulo A4 y Búsqueda)</label>
+                <input type="text" id="quickInputPseudonimo" class="quick-date-input" style="border-color:#5EEAD4; background:#F0FDFA; color:#0F766E; font-weight:800; text-transform:uppercase;" placeholder="Ej: LOCAL COMUNAL QUERALA" onchange="saveQuickPseudonymFromDrawer(true)">
+              </div>
+              <button type="button" onclick="suggestQuickPseudonymInDrawer()" class="btn" style="padding:0.48rem 0.7rem; font-size:0.75rem; background:#CCFBF1; color:#0F766E; border:1px solid #14B8A6; font-weight:800;">✨ Sugerir</button>
+              <button type="button" onclick="saveQuickPseudonymFromDrawer()" class="btn btn-primary" style="padding:0.48rem 0.75rem; font-size:0.76rem; background:#0F766E;">💾 Guardar Pseudónimo</button>
+            </div>
           </div>
 
           <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem; background: #F8FAFC; border: 1px solid #CBD5E1; padding: 0.65rem 0.85rem; border-radius: 8px; flex-wrap: wrap; gap: 0.5rem;">
@@ -2034,6 +2042,7 @@
         origen: gasUrl ? "Google Drive / Apps Script + Gabinete" : "Caché Local / Gabinete",
         total_obras_con_fotos: Object.keys(fieldPhotosMap).length,
         ediciones_gabinete: getRotuloEditsMap(),
+        pseudonimos_proyectos: getProjectPseudonymsMap(),
         archive_relocation: getArchiveRelocationMap(),
         fase2_boxes: getFase2BoxesMap(),
         fase1_status: getFase1StatusMap(),
@@ -2978,6 +2987,108 @@
       const ini = hasValidStart(p) ? p.fecha_inicio : '';
       const fin = hasValidEnd(p) ? (p.fecha_termino_verificada_ing || p.fecha_culminacion_real || '') : '';
       return await pushProjectDatesToCloud(p, ini, fin, ubicStr);
+    }
+
+    // =========================================================================
+    // PSEUDONIMOS / NOMBRES CORTOS DE AUDITORIA POR PROYECTO
+    // =========================================================================
+    const PROJECT_PSEUDONYMS_KEY = 'fdm_project_pseudonyms_v1';
+
+    function getProjectPseudonymsMap() {
+      try {
+        const raw = localStorage.getItem(PROJECT_PSEUDONYMS_KEY);
+        const parsed = raw ? JSON.parse(raw) : {};
+        return (parsed && typeof parsed === 'object') ? parsed : {};
+      } catch (e) {
+        return {};
+      }
+    }
+
+    function saveProjectPseudonymsMap(map) {
+      try {
+        localStorage.setItem(PROJECT_PSEUDONYMS_KEY, JSON.stringify(map || {}));
+      } catch (e) {}
+    }
+
+    function getProjectPseudonym(obraId) {
+      if (obraId === undefined || obraId === null) return '';
+      const map = getProjectPseudonymsMap();
+      return String(map[String(obraId)] || '').trim().toUpperCase();
+    }
+
+    function saveProjectPseudonym(obraId, val) {
+      if (obraId === undefined || obraId === null) return '';
+      const map = getProjectPseudonymsMap();
+      const clean = String(val || '').replace(/\s+/g, ' ').trim().toUpperCase();
+      if (!clean) {
+        delete map[String(obraId)];
+      } else {
+        map[String(obraId)] = clean;
+      }
+      saveProjectPseudonymsMap(map);
+      return clean;
+    }
+
+    function suggestProjectPseudonym(desc) {
+      let s = String(desc || '').replace(/[“”"']/g, '').replace(/\s+/g, ' ').trim().toUpperCase();
+      if (!s) return '';
+      const prefixes = [
+        /^CREACI[ÓO]N\s+DE\s+LOS\s+SERVICIOS\s+OPERATIVOS\s+O\s+MISIONALES\s+INSTITUCIONALES\s+EN\s+/,
+        /^MEJORAMIENTO\s+Y\s+AMPLIACI[ÓO]N\s+DE\s+LOS\s+SERVICIOS?\s+DE\s+/,
+        /^MEJORAMIENTO\s+DE\s+LOS\s+SERVICIOS?\s+DE\s+/,
+        /^MEJORAMIENTO\s+DEL\s+SERVICIO\s+DE\s+/,
+        /^MEJORAMIENTO\s+(?:DEL|DE\s+LA|DE\s+LOS|DE\s+LAS|DE)\s+/,
+        /^CONSTRUCCI[ÓO]N\s+(?:DEL|DE\s+LA|DE\s+LOS|DE\s+LAS|DE)\s+/,
+        /^CREACI[ÓO]N\s+(?:DEL|DE\s+LA|DE\s+LOS|DE\s+LAS|DE)\s+/,
+        /^INSTALACI[ÓO]N\s+(?:DEL|DE\s+LA|DE\s+LOS|DE\s+LAS|DE)\s+/,
+        /^REHABILITACI[ÓO]N\s+(?:DEL|DE\s+LA|DE\s+LOS|DE\s+LAS|DE)\s+/,
+        /^AMPLIACI[ÓO]N\s+(?:DEL|DE\s+LA|DE\s+LOS|DE\s+LAS|DE)\s+/,
+        /^ADQUISICI[ÓO]N\s+(?:DEL|DE\s+LA|DE\s+LOS|DE\s+LAS|DE)\s+/,
+        /^MANTENIMIENTO\s+(?:DEL|DE\s+LA|DE\s+LOS|DE\s+LAS|DE)\s+/
+      ];
+      for (const re of prefixes) {
+        if (re.test(s)) { s = s.replace(re, '').trim(); break; }
+      }
+      s = s.replace(/\s*[-–,]?\s*(?:EN\s+EL\s+|DEL\s+|DE\s+LA\s+)?(?:DISTRITO\s+DE|PROVINCIA\s+(?:DE\s+)?|DEPARTAMENTO\s+DE|REGI[ÓO]N\s+MOQUEGUA|CUI\s*N?[°º]?\s*\d+).*$/i, '').trim();
+      s = s
+        .replace(/\bDE\s+USOS\s+M[ÚU]LTIPLES\b/g, ' ')
+        .replace(/\bEN\s+EL\s+(?:ANEXO|SECTOR|CENTRO\s+POBLADO)\s+DE\b/g, ' ')
+        .replace(/\bEN\s+LA\s+(?:LOCALIDAD|COMUNIDAD)\s+DE\b/g, ' ')
+        .replace(/\bDEL\s+ANEXO\s+DE\b/g, ' ')
+        .replace(/\s*[-–,]+\s*$/, '')
+        .replace(/\s+/g, ' ')
+        .trim();
+      if (s.length > 42) {
+        const cut = s.slice(0, 42);
+        const lastSpace = cut.lastIndexOf(' ');
+        s = (lastSpace > 18 ? cut.slice(0, lastSpace) : cut).trim();
+      }
+      return s;
+    }
+
+    function saveQuickPseudonymFromDrawer(silent) {
+      if (!selectedProjectId) return;
+      const inp = document.getElementById('quickInputPseudonimo');
+      if (!inp) return;
+      const saved = saveProjectPseudonym(selectedProjectId, inp.value);
+      inp.value = saved;
+      filterTable();
+      if (!silent) {
+        showToast(saved ? `🏷️ Pseudónimo "${saved}" guardado para Obra #${selectedProjectId}` : `🏷️ Pseudónimo borrado de Obra #${selectedProjectId}`);
+      }
+    }
+
+    function suggestQuickPseudonymInDrawer() {
+      if (!selectedProjectId) return;
+      const p = (projectsData || []).find(item => item.id === selectedProjectId);
+      if (!p) return;
+      const sug = suggestProjectPseudonym(p.desc);
+      const inp = document.getElementById('quickInputPseudonimo');
+      if (inp && sug) {
+        inp.value = sug;
+        saveQuickPseudonymFromDrawer(true);
+        showToast(`✨ Pseudónimo sugerido y guardado: "${sug}"`);
+      }
     }
 
     // =========================================================================
@@ -4237,7 +4348,9 @@
         const h_text = (p.historial || []).map(h => `${h.documento} ${h.asunto_razon} ${h.fecha}`).join(' ').toLowerCase();
         const ubicField = compileUbicacionCajas(p.id) || '';
         const docTags = compileDocumentTagsForProject(p.id);
+        const pseudoMatch = (typeof getProjectPseudonym === 'function' ? getProjectPseudonym(p.id).toLowerCase() : '');
         return p.desc.toLowerCase().includes(q) ||
+               (pseudoMatch && pseudoMatch.includes(q)) ||
                (p.provincia || '').toLowerCase().includes(q) ||
                (p.convenio || '').toLowerCase().includes(q) ||
                (p.cui && p.cui.toLowerCase().includes(q)) ||
@@ -4464,6 +4577,10 @@
 
         const cuiStr = (p.cui && p.cui !== 'N/D' && p.cui !== 'S/N') ? `CUI: <strong>${p.cui}</strong>` : 'CUI: S/N';
         const tipoTag = p.tipologia || p.tipo_obra || '';
+        const pseudo = typeof getProjectPseudonym === 'function' ? getProjectPseudonym(p.id) : '';
+        const pseudoBadgeHtml = pseudo
+          ? `<div style="margin-bottom:3px;"><span style="display:inline-block; background:#CCFBF1; color:#0F766E; border:1px solid #5EEAD4; border-radius:5px; padding:1px 7px; font-size:0.72rem; font-weight:900; letter-spacing:0.4px;">🏷️ ${escapeHtmlAttr(pseudo)}</span></div>`
+          : '';
 
         return `
           <tr onclick="openDrawer(${p.id})">
@@ -4473,6 +4590,7 @@
               <div style="font-size: 0.68rem; color: var(--text-muted); margin-top: 2px;">${p.convenio}</div>
             </td>
             <td>
+              ${pseudoBadgeHtml}
               <div style="font-weight: 600; color: var(--text); line-height: 1.32;">${p.desc}</div>
               <div style="font-size: 0.7rem; color: var(--text-muted); margin-top: 0.22rem;">${cuiStr} • ${tipoTag}${p.es_obra_civil ? ' • <strong style="color:#1D4ED8;">Obra Civil Objetivo</strong>' : ''}</div>
             </td>
@@ -4672,6 +4790,8 @@
       if (qFin) qFin.value = hasValidEnd(p) ? (p.fecha_termino_verificada_ing || p.fecha_culminacion_real || '') : '';
       const qBadge = document.getElementById('drawerQuickStatusBadge');
       if (qBadge) qBadge.innerHTML = `${p.estatus || ''}${p.estado_situacional ? ' • ' + p.estado_situacional : ''}`;
+      const qPseudo = document.getElementById('quickInputPseudonimo');
+      if (qPseudo) qPseudo.value = typeof getProjectPseudonym === 'function' ? getProjectPseudonym(p.id) : '';
 
       const elUbic = document.getElementById('drawerUbicacion');
       if (elUbic) elUbic.value = p.n_cajas || '';
@@ -6397,6 +6517,8 @@
       if (titleInp) titleInp.value = activeArmadorCtx.projDesc;
       const codInp = document.getElementById('armadorCodInput');
       if (codInp) codInp.value = cod;
+      const pseudoInp = document.getElementById('armadorPseudonimoInput');
+      if (pseudoInp) pseudoInp.value = typeof getProjectPseudonym === 'function' ? getProjectPseudonym(obraId) : '';
       const resRow = document.getElementById('armadorResumenCortoRow');
       const resInp = document.getElementById('armadorResumenCorto');
       if (resRow) resRow.style.display = (isCN || isF2) ? 'block' : 'none';
@@ -7011,6 +7133,26 @@
       if (modal) modal.classList.remove('open');
     }
 
+    function onArmadorPseudonimoInput(val) {
+      if (!activeArmadorCtx || !activeArmadorCtx.obraId) return;
+      saveProjectPseudonym(activeArmadorCtx.obraId, val);
+    }
+
+    function applySuggestedArmadorPseudonym() {
+      const titleVal = (document.getElementById('armadorProyectoTitle')?.value || activeArmadorCtx?.projDesc || '').trim();
+      const p = (projectsData || []).find(x => x.id === activeArmadorCtx?.obraId);
+      const sug = suggestProjectPseudonym(titleVal || p?.desc || '');
+      const inp = document.getElementById('armadorPseudonimoInput');
+      if (inp && sug) {
+        inp.value = sug;
+        onArmadorPseudonimoInput(sug);
+        filterTable();
+        showToast(`✨ Pseudónimo sugerido: "${sug}"`);
+      } else if (!sug) {
+        showToast('No se pudo extraer sugerencia; escríbelo manualmente.');
+      }
+    }
+
     function renderArmadorRotuloTable() {
       const tbody = document.getElementById('armadorRowsTbody');
       if (!tbody) return;
@@ -7021,9 +7163,6 @@
           </td>
           <td>
             <input type="text" class="armador-input" id="armadorCont_${idx}" value="${escapeHtmlAttr(r.contenido)}" placeholder="Ej: Exp. Técnico / Valorizaciones N° 01 al 04..." onfocus="activeArmadorCtx.activeRowIdx = ${idx}" oninput="activeArmadorCtx.rows[${idx}].contenido = this.value">
-          </td>
-          <td style="width:110px;">
-            <input type="text" class="armador-input" style="text-align:center; font-family:monospace; font-weight:700;" value="${escapeHtmlAttr(r.caja || activeArmadorCtx.cod)}" oninput="activeArmadorCtx.rows[${idx}].caja = this.value">
           </td>
           <td style="width:36px; text-align:center;">
             <button type="button" onclick="removeArmadorRow(${idx})" style="border:none; background:#FEE2E2; color:#B91C1C; border-radius:6px; padding:0.25rem 0.45rem; cursor:pointer; font-weight:800;" title="Eliminar fila">✕</button>
@@ -7102,6 +7241,13 @@
       }
 
       const projTitle = (document.getElementById('armadorProyectoTitle')?.value || activeArmadorCtx.projDesc || '').trim();
+      const pseudoInp = document.getElementById('armadorPseudonimoInput');
+      if (pseudoInp && typeof saveProjectPseudonym === 'function') {
+        const savedPseudo = saveProjectPseudonym(obraId, pseudoInp.value);
+        pseudoInp.value = savedPseudo;
+        const qPseudo = document.getElementById('quickInputPseudonimo');
+        if (qPseudo && selectedProjectId === obraId) qPseudo.value = savedPseudo;
+      }
       const resumenInputVal = (document.getElementById('armadorResumenCorto')?.value || '').trim();
       const hojas = getHojasRotuloA4Map();
       const prevHoja = hojas[`${obraId}::${cod}`] || {};
@@ -7274,25 +7420,35 @@
     function getRotuloPrintCss(orient) {
       const isLand = (orient || rotuloPrintOrientation) === 'landscape';
       return `
-      @page { size: A4 ${isLand ? 'landscape' : 'portrait'}; margin: ${isLand ? '9mm' : '12mm'}; }
-      body { font-family: Arial, Helvetica, sans-serif; color: #000; margin: 0; padding: ${isLand ? '4mm' : '6mm'}; background: #FFF; }
-      .rotulo-page { page-break-after: always; break-after: page; padding-bottom: 3mm; }
+      @page { size: A4 ${isLand ? 'landscape' : 'portrait'}; margin: ${isLand ? '8mm' : '11mm'}; }
+      body { font-family: Arial, Helvetica, sans-serif; color: #000; margin: 0; padding: ${isLand ? '3mm' : '5mm'}; background: #FFF; }
+      .rotulo-page { page-break-after: always; break-after: page; padding-bottom: 2mm; }
       .rotulo-page:last-child { page-break-after: auto; break-after: auto; }
-      .rot-top-strip { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-bottom: ${isLand ? '6px' : '8px'}; }
-      .rot-blk-badge { font-size: ${isLand ? '10.5pt' : '11pt'}; font-weight: 900; padding: 5px 12px; border-radius: 6px; letter-spacing: 0.4px; }
-      .rot-seq-badge { font-size: ${isLand ? '13.5pt' : '14pt'}; font-weight: 900; border: 2px solid #000; padding: 4px 14px; background: #F8FAFC; letter-spacing: 0.6px; }
-      .rot-ref-code { font-size: ${isLand ? '12.5pt' : '13pt'}; font-weight: 900; font-family: monospace; text-align: right; }
-      .proj-box { border: 2.5px solid #000; padding: ${isLand ? '8px 12px' : '10px 14px'}; text-align: center; margin-bottom: ${isLand ? '6px' : '8px'}; }
+      .rot-top-strip { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-bottom: ${isLand ? '5px' : '7px'}; }
+      .rot-blk-badge { font-size: ${isLand ? '10pt' : '10.5pt'}; font-weight: 900; padding: 4px 11px; border-radius: 6px; letter-spacing: 0.4px; }
+      .rot-seq-badge { font-size: ${isLand ? '12.5pt' : '13pt'}; font-weight: 900; border: 2px solid #000; padding: 4px 12px; background: #F8FAFC; letter-spacing: 0.6px; }
+      .rot-ref-code { font-size: ${isLand ? '12pt' : '12.5pt'}; font-weight: 900; font-family: monospace; text-align: right; }
+      .proj-box { border: 2.5px solid #000; padding: ${isLand ? '7px 14px' : '9px 14px'}; text-align: center; margin-bottom: ${isLand ? '5px' : '7px'}; }
       .proj-id-line { font-size: 9pt; font-weight: 800; color: #1E293B; margin-bottom: 4px; letter-spacing: 0.3px; }
-      .proj-title-line { font-size: ${isLand ? '11pt' : '11.5pt'}; font-weight: 900; line-height: 1.3; text-transform: uppercase; }
-      .meta-line { display: flex; justify-content: space-between; font-size: 9pt; color: #1E293B; margin-bottom: ${isLand ? '6px' : '8px'}; font-weight: 800; background: #F8FAFC; border: 1px solid #CBD5E1; padding: 4px 9px; }
+      .proj-title-line { font-size: ${isLand ? '14.5pt' : '15.5pt'}; font-weight: 900; line-height: 1.2; text-transform: uppercase; }
+      .proj-title-line.proj-title-long { font-size: ${isLand ? '12.8pt' : '13.5pt'}; line-height: 1.18; }
+      .meta-line { display: flex; justify-content: space-between; font-size: 8.8pt; color: #1E293B; margin-bottom: ${isLand ? '5px' : '7px'}; font-weight: 800; background: #F8FAFC; border: 1px solid #CBD5E1; padding: 4px 9px; }
       table { width: 100%; border-collapse: collapse; table-layout: fixed; }
-      th { border: 2px solid #000; background: #E2E8F0; padding: ${isLand ? '6px' : '8px 6px'}; font-size: ${isLand ? '10pt' : '10.5pt'}; font-weight: 900; text-align: center; text-transform: uppercase; }
-      td { border: 1.5px solid #000; height: ${isLand ? '24px' : '32px'}; padding: ${isLand ? '4px 9px' : '5px 9px'}; font-size: 10pt; vertical-align: middle; }
-      .col-num { width: 52px; text-align: center; font-weight: 800; }
+      th { border: 2px solid #000; background: #E2E8F0; padding: ${isLand ? '5px 6px' : '7px 6px'}; font-size: ${isLand ? '10pt' : '10.5pt'}; font-weight: 900; text-align: center; text-transform: uppercase; }
+      td { border: 1.5px solid #000; height: ${isLand ? '21px' : '26px'}; padding: ${isLand ? '3px 9px' : '4px 9px'}; font-size: ${isLand ? '10pt' : '10.5pt'}; vertical-align: middle; }
+      .col-num { width: 48px; text-align: center; font-weight: 800; }
       .col-cont { font-weight: 700; }
-      .col-caja { width: 135px; text-align: center; font-weight: 800; font-family: monospace; font-size: 9.5pt; }
-      .foot { margin-top: ${isLand ? '7px' : '10px'}; font-size: 8.5pt; color: #334155; display: flex; justify-content: space-between; font-weight: 700; }
+      .col-caja-unique { width: ${isLand ? '210px' : '175px'}; text-align: center; vertical-align: middle; background: #F8FAFC; border: 2px solid #000; padding: 10px 8px; }
+      .caja-lbl-top { font-size: 7.5pt; font-weight: 800; letter-spacing: 1px; color: #334155; text-transform: uppercase; margin-bottom: 6px; }
+      .caja-code-big { font-family: monospace; font-size: ${isLand ? '23pt' : '20pt'}; font-weight: 900; line-height: 1.08; letter-spacing: 0.5px; color: #000; word-break: break-word; }
+      .caja-code-big.caja-code-long { font-size: ${isLand ? '18pt' : '16pt'}; }
+      .caja-seq-sub { margin-top: 8px; display: inline-block; border: 2px solid #000; background: #FFFFFF; padding: 3px 10px; font-size: ${isLand ? '10.5pt' : '10pt'}; font-weight: 900; letter-spacing: 0.6px; }
+      .rot-pseudo-banner { margin-top: ${isLand ? '8px' : '10px'}; border: 3.5px solid #000; background: #FFFFFF; padding: ${isLand ? '6px 14px' : '8px 14px'}; text-align: center; }
+      .rot-pseudo-kicker { font-size: 7.5pt; font-weight: 800; letter-spacing: 1.6px; color: #334155; text-transform: uppercase; margin-bottom: 2px; }
+      .rot-pseudo-text { font-size: ${isLand ? '30pt' : '27pt'}; font-weight: 900; line-height: 1.06; letter-spacing: 0.8px; text-transform: uppercase; color: #000; word-break: break-word; }
+      .rot-pseudo-text.pseudo-md { font-size: ${isLand ? '25pt' : '22pt'}; }
+      .rot-pseudo-text.pseudo-sm { font-size: ${isLand ? '20pt' : '18pt'}; }
+      .foot { margin-top: ${isLand ? '6px' : '8px'}; font-size: 8.5pt; color: #334155; display: flex; justify-content: space-between; font-weight: 700; }
       @media print { .no-print { display: none; } body { padding: 0; -webkit-print-color-adjust: exact; print-color-adjust: exact; } }
     `;
     }
@@ -7310,6 +7466,10 @@
       const procedencia = Array.isArray(opts.procedencia) ? opts.procedencia.filter(Boolean) : [];
       const boxSeqLabel = opts.boxSeqLabel || 'HOJA DE RÓTULO';
       const rows = Array.isArray(opts.rows) ? opts.rows : [];
+      const pseudoRaw = (opts.pseudonimo !== undefined && opts.pseudonimo !== null)
+        ? String(opts.pseudonimo)
+        : (typeof getProjectPseudonym === 'function' ? getProjectPseudonym(obraId) : '');
+      const pseudonimo = pseudoRaw.trim().toUpperCase();
 
       const iniTxt = hasValidStart(p) ? formatCompactDate(p.fecha_inicio) : '—';
       const finRaw = p.fecha_termino_verificada_ing || (p.fecha_culminacion_real && p.fecha_culminacion_real !== '-' ? p.fecha_culminacion_real : '');
@@ -7321,19 +7481,19 @@
       const blkBorder = blk ? blk.border : '#64748B';
 
       const orient = opts.orientation || (typeof rotuloPrintOrientation !== 'undefined' ? rotuloPrintOrientation : 'landscape') || 'landscape';
-      const minRows = orient === 'landscape' ? 10 : 12;
+      const minRows = orient === 'landscape' ? 8 : 10;
       const totalRows = Math.max(minRows, rows.length);
+      const uniqueBoxCellHtml = `<td class="col-caja-unique" rowspan="${totalRows}"><div class="caja-lbl-top">CÓDIGO ÚNICO DE CAJA</div><div class="caja-code-big${boxCod.length > 11 ? ' caja-code-long' : ''}">${escapeHtmlAttr(boxCod || 'S/C')}</div><div class="caja-seq-sub">${escapeHtmlAttr(boxSeqLabel)}</div></td>`;
       let rowsHtml = '';
       for (let i = 0; i < totalRows; i++) {
         const r = rows[i];
         const num = r ? String(r.num || (i + 1)).padStart(2, '0') : String(i + 1).padStart(2, '0');
         const cont = r ? escapeHtmlAttr((r.contenido || '').toUpperCase()) : '';
-        const caja = (r && r.contenido) ? escapeHtmlAttr(r.caja || boxCod) : '';
         rowsHtml += `
           <tr>
             <td class="col-num">${num}</td>
             <td class="col-cont">${cont}</td>
-            <td class="col-caja">${caja}</td>
+            ${i === 0 ? uniqueBoxCellHtml : ''}
           </tr>
         `;
       }
@@ -7345,6 +7505,11 @@
         ? `PROCEDENCIA FASE 1: ${procedencia.join(', ')}`
         : `ORIGEN CENSO: ${ambOrig}`;
       const codePrefix = isFase2 ? 'FASE 2:' : 'REF. CENSO:';
+      const titleClass = projTitle.length > 155 ? 'proj-title-line proj-title-long' : 'proj-title-line';
+      const pseudoSizeClass = pseudonimo.length > 38 ? 'pseudo-sm' : (pseudonimo.length > 26 ? 'pseudo-md' : '');
+      const pseudoBannerHtml = pseudonimo
+        ? `<div class="rot-pseudo-banner"><div class="rot-pseudo-kicker">IDENTIFICADOR RÁPIDO / PSEUDÓNIMO DE PROYECTO</div><div class="rot-pseudo-text ${pseudoSizeClass}">${escapeHtmlAttr(pseudonimo)}</div></div>`
+        : '';
 
       return `
         <div class="rotulo-page">
@@ -7355,7 +7520,7 @@
           </div>
           <div class="proj-box">
             <div class="proj-id-line">OBRA N° ${obraId === 999 ? 'MULTI' : String(obraId).padStart(2, '0')} • ${escapeHtmlAttr(cuiTxt)} • ${escapeHtmlAttr((p.provincia || '').toUpperCase())} (${escapeHtmlAttr(p.convenio || 'FDM')}) • PERIODO: ${escapeHtmlAttr(iniTxt)} ➔ ${escapeHtmlAttr(finTxt)}</div>
-            <div class="proj-title-line">PROYECTO: "${escapeHtmlAttr(projTitle)}"</div>
+            <div class="${titleClass}">PROYECTO: "${escapeHtmlAttr(projTitle)}"</div>
           </div>
           <div class="meta-line">
             <span>${escapeHtmlAttr(metaLeft)}</span>
@@ -7364,13 +7529,14 @@
           <table>
             <thead>
               <tr>
-                <th style="width:52px;">N°</th>
+                <th style="width:48px;">N°</th>
                 <th>CONTENIDO DOCUMENTAL DE LA CAJA</th>
-                <th style="width:125px;">CÓDIGO / CAJA</th>
+                <th style="width:${orient === 'landscape' ? '210px' : '175px'};">CÓDIGO DE CAJA</th>
               </tr>
             </thead>
             <tbody>${rowsHtml}</tbody>
           </table>
+          ${pseudoBannerHtml}
           <div class="foot">
             <span>Fondo de Desarrollo de Moquegua (FDM) — Auditoría 2022–2025 (TDR Req. N° 000393)</span>
             <span>${escapeHtmlAttr(boxCod)}</span>
@@ -7383,6 +7549,10 @@
       const projTitle = (document.getElementById('armadorProyectoTitle')?.value || activeArmadorCtx.projDesc || '').trim();
       const boxCod = (document.getElementById('armadorCodInput')?.value || activeArmadorCtx.cod || '').trim();
       const obraId = activeArmadorCtx.obraId;
+      const pseudoInp = document.getElementById('armadorPseudonimoInput');
+      const pseudonimo = pseudoInp
+        ? (typeof saveProjectPseudonym === 'function' ? saveProjectPseudonym(obraId, pseudoInp.value) : pseudoInp.value.trim().toUpperCase())
+        : (typeof getProjectPseudonym === 'function' ? getProjectPseudonym(obraId) : '');
       const p = (projectsData || []).find(x => x.id === obraId) || {};
       const boxes = getProjectPhysicalBoxesList(obraId);
       const matchBox = boxes.find(b => b.cod === boxCod);
@@ -7393,6 +7563,7 @@
         obraId,
         boxCod,
         projTitle,
+        pseudonimo,
         amb: (matchBox && matchBox.amb) || activeArmadorCtx.amb,
         estante: (matchBox && matchBox.estante) || activeArmadorCtx.estante || '',
         procedencia: (matchBox && matchBox.procedencia) || activeArmadorCtx.procedencia || [],
@@ -7607,6 +7778,7 @@
         const finStr = hasValidEnd(p) ? formatCompactDate(finRaw) : 'Sin Fin';
         const rowBg = (layer.phaseState === 'CONSOLIDATED' || isReloc) ? 'background:#F0FDF4;' : '';
         const printableBoxes = getProjectPhysicalBoxesList(p.id, { includeSueltoFallback: true });
+        const pseudoVal = typeof getProjectPseudonym === 'function' ? getProjectPseudonym(p.id) : '';
 
         return `
           <tr style="${rowBg}">
@@ -7617,6 +7789,10 @@
             <td>
               <div style="font-weight:700; color:#0F172A; line-height:1.3;">${escapeHtmlAttr(p.desc)}</div>
               <div style="font-size:0.7rem; color:#475569; margin-top:3px;">CUI: <strong>${escapeHtmlAttr(p.cui || 'S/N')}</strong> • ${escapeHtmlAttr(p.provincia)} • 🚀 ${escapeHtmlAttr(iniStr)} → 🏁 ${escapeHtmlAttr(finStr)}</div>
+              <div style="display:flex; gap:4px; align-items:center; margin-top:5px;">
+                <input type="text" class="archive-dest-input" id="arcPseudo_${p.id}" value="${escapeHtmlAttr(pseudoVal)}" placeholder="🏷️ Pseudónimo para rótulo (ej: LOCAL COMUNAL QUERALA)" style="flex:1; border-color:#5EEAD4; background:#F0FDFA; color:#0F766E; font-weight:800; text-transform:uppercase; font-size:0.72rem;" onchange="updateArchivePseudonym(${p.id}, this.value)">
+                <button type="button" class="armador-chip" style="padding:2px 6px; font-size:0.68rem; background:#CCFBF1; border-color:#14B8A6; color:#0F766E;" onclick="suggestArchivePseudonym(${p.id})" title="Sugerir pseudónimo automático">✨</button>
+              </div>
             </td>
             <td style="font-size:0.73rem;">${origenHtml}</td>
             <td>${layerPillHtml}${actionHtml}</td>
@@ -7639,6 +7815,25 @@
           </tr>
         `;
       }).join('');
+    }
+
+    function updateArchivePseudonym(obraId, val) {
+      const saved = saveProjectPseudonym(obraId, val);
+      const inp = document.getElementById(`arcPseudo_${obraId}`);
+      if (inp) inp.value = saved;
+      filterTable();
+      showToast(saved ? `🏷️ Pseudónimo "${saved}" guardado para Obra #${obraId}` : `🏷️ Pseudónimo eliminado de Obra #${obraId}`);
+    }
+
+    function suggestArchivePseudonym(obraId) {
+      const p = (projectsData || []).find(x => x.id === obraId);
+      if (!p) return;
+      const sug = suggestProjectPseudonym(p.desc);
+      if (!sug) {
+        showToast('No se pudo generar sugerencia automática.');
+        return;
+      }
+      updateArchivePseudonym(obraId, sug);
     }
 
     function updateArchiveRelocationField(obraId) {
@@ -8025,15 +8220,23 @@
           </div>
 
           <div class="armador-panel">
-            <div style="display:grid; grid-template-columns: 1fr 140px; gap:0.5rem; margin-bottom:0.5rem;">
+            <div style="display:grid; grid-template-columns: 1fr 150px; gap:0.5rem; margin-bottom:0.5rem;">
               <div>
                 <label style="font-size:0.7rem; font-weight:800; color:#475569; text-transform:uppercase;">Título de Proyecto en Rótulo</label>
                 <input type="text" id="armadorProyectoTitle" class="armador-input" oninput="activeArmadorCtx.projDesc = this.value">
               </div>
               <div>
-                <label style="font-size:0.7rem; font-weight:800; color:#475569; text-transform:uppercase;">Código de Caja</label>
-                <input type="text" id="armadorCodInput" class="armador-input" style="font-family:monospace; font-weight:800;" readonly>
+                <label style="font-size:0.7rem; font-weight:800; color:#475569; text-transform:uppercase;">Código Único de Caja</label>
+                <input type="text" id="armadorCodInput" class="armador-input" style="font-family:monospace; font-weight:900; font-size:0.98rem; color:#1E1B4B; background:#F5F3FF; border-color:#8B5CF6;" readonly>
               </div>
+            </div>
+
+            <div style="display:grid; grid-template-columns: 1fr auto; gap:0.45rem; align-items:end; margin-bottom:0.5rem;">
+              <div>
+                <label style="font-size:0.7rem; font-weight:800; color:#0F766E; text-transform:uppercase;">🏷️ Pseudónimo / Nombre Corto de Auditoría (se imprime GRANDE abajo • aplica a toda la obra)</label>
+                <input type="text" id="armadorPseudonimoInput" class="armador-input" style="font-weight:800; text-transform:uppercase; border-color:#5EEAD4; background:#F0FDFA; color:#0F766E;" placeholder="Ej: LOCAL COMUNAL QUERALA" oninput="onArmadorPseudonimoInput(this.value)">
+              </div>
+              <button type="button" class="armador-chip" style="height:34px; background:#CCFBF1; border-color:#14B8A6; color:#0F766E; font-weight:800;" onclick="applySuggestedArmadorPseudonym()" title="Generar sugerencia automática desde el nombre oficial del proyecto">✨ Sugerir</button>
             </div>
 
             <div id="armadorResumenCortoRow" style="display:none; margin-bottom:0.5rem;">
@@ -8049,7 +8252,6 @@
                 <tr>
                   <th style="width:54px; text-align:center;">N°</th>
                   <th>CONTENIDO DEL ARCHIVADOR / FILE</th>
-                  <th style="width:110px; text-align:center;">N° CAJA</th>
                   <th style="width:36px;"></th>
                 </tr>
               </thead>
