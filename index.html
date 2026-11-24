@@ -645,7 +645,10 @@
           </div>
           <div id="drawerContractInfo" style="font-size: 0.78rem; opacity: 0.95; margin-top: 3px; color: #E0E7FF; display: none;"></div>
         </div>
-        <button class="close-btn" onclick="closeDrawer()">&times;</button>
+        <div style="display:flex; align-items:center; gap:0.5rem; flex-shrink:0;">
+          <button type="button" onclick="imprimirFichaAuditoriaObra(selectedProjectId)" style="background:#F59E0B; color:#0F172A; border:none; border-radius:8px; padding:0.42rem 0.78rem; font-size:0.75rem; font-weight:800; cursor:pointer; white-space:nowrap;" title="Imprimir o guardar en PDF la Ficha Técnica / Hoja de Auditoría PMO-F02 de esta obra">📄 Ficha Auditoría (PMO-F02)</button>
+          <button class="close-btn" onclick="closeDrawer()" style="position:static;">&times;</button>
+        </div>
       </div>
 
       <div class="drawer-nav">
@@ -7807,6 +7810,7 @@
                 <button type="button" onclick="toggleArchiveRelocated(${p.id}, this)" style="border:1.5px solid ${isReloc ? '#10B981' : '#94A3B8'}; background:${isReloc ? '#059669' : '#F8FAFC'}; color:${isReloc ? '#FFFFFF' : '#334155'}; border-radius:7px; padding:0.35rem 0.5rem; font-size:0.72rem; font-weight:800; cursor:pointer;">${isReloc ? '✅ Ubicada' : '⬜ Marcar Ubicada'}</button>
                 <div style="display:flex; gap:4px;">
                   <button type="button" onclick="imprimirRotulosObraLote(${p.id})" class="armador-chip" style="flex:1; background:#F5F3FF; border-color:#8B5CF6; color:#5B21B6;" title="Imprimir todos los Rótulos A4 de esta obra">🖨️ (${printableBoxes.length})</button>
+                  <button type="button" onclick="imprimirFichaAuditoriaObra(${p.id})" class="armador-chip" style="background:#F0FDFA; border-color:#14B8A6; color:#0F766E; font-weight:800;" title="Imprimir Ficha Técnica PMO-F02 de esta obra">📄</button>
                   <button type="button" onclick="closeArchivePlannerModal(); openDrawer(${p.id}); switchDrawerTab('FASE2');" class="armador-chip" style="background:#ECFDF5; border-color:#34D399; color:#065F46; font-weight:800;" title="Abrir capa Fase 2 de esta obra">🏛️ F2</button>
                   <button type="button" onclick="closeArchivePlannerModal(); openDrawer(${p.id});" class="armador-chip" title="Abrir ficha completa de obra">📂</button>
                 </div>
@@ -8172,6 +8176,400 @@
       setTimeout(() => win.print(), 400);
     }
 
+    // =========================================================================
+    // FICHA TÉCNICA INDIVIDUAL IMPRIMIBLE POR OBRA (PMO-F02 EJECUTIVO / O/S I11-00014)
+    // =========================================================================
+    function formatPmoCode(p) {
+      if (!p) return 'FDM-OB-S_A-000';
+      if (p.id === 999 || p.es_multiproyecto) return 'FDM-OB-MIX-999';
+      const yr = typeof getProjectStartYear === 'function' ? getProjectStartYear(p) : '';
+      return `FDM-OB-${yr || 'S_A'}-${String(p.id || 0).padStart(3, '0')}`;
+    }
+
+    function formatFichaSolesOrPending(val, fallbackLabel) {
+      const pendingTxt = fallbackLabel || 'Por determinar';
+      if (val === undefined || val === null || val === '') {
+        return `<span class="val-pending">${escapeHtmlAttr(pendingTxt)}</span>`;
+      }
+      if (typeof val === 'number') {
+        if (!Number.isFinite(val) || val <= 0) {
+          return `<span class="val-pending">${escapeHtmlAttr(pendingTxt)}</span>`;
+        }
+        return `<strong>S/ ${val.toLocaleString('es-PE', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</strong>`;
+      }
+      const s = String(val).trim();
+      if (!s || s === '-' || s === '0' || /^s\/\s*0+(?:\.0+)?$/i.test(s)) {
+        return `<span class="val-pending">${escapeHtmlAttr(pendingTxt)}</span>`;
+      }
+      if (/^s\//i.test(s)) return `<strong>${escapeHtmlAttr(s)}</strong>`;
+      const num = Number(s.replace(/,/g, ''));
+      if (Number.isFinite(num) && num > 0) {
+        return `<strong>S/ ${num.toLocaleString('es-PE', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</strong>`;
+      }
+      return `<strong>${escapeHtmlAttr(s)}</strong>`;
+    }
+
+    function getFichaAuditoriaPmoCss() {
+      return `
+      @page { size: A4 portrait; margin: 9mm 10mm; }
+      * { box-sizing: border-box; }
+      body { font-family: Arial, Helvetica, sans-serif; color: #0F172A; margin: 0; padding: 5mm; background: #FFF; font-size: 8pt; line-height: 1.28; }
+      .ficha-page { page-break-after: always; break-after: page; }
+      .ficha-page:last-child { page-break-after: auto; break-after: auto; }
+      .ficha-hdr { display: flex; justify-content: space-between; align-items: stretch; border-bottom: 2.5px solid #0F2942; padding-bottom: 5px; margin-bottom: 6px; gap: 8px; }
+      .ficha-hdr-left { flex: 1; }
+      .ficha-kicker { font-size: 7pt; font-weight: 800; color: #1E3A8A; letter-spacing: 0.6px; text-transform: uppercase; }
+      .ficha-main-title { font-size: 11.5pt; font-weight: 900; color: #0F2942; margin: 2px 0; letter-spacing: 0.2px; }
+      .ficha-sub { font-size: 7pt; color: #475569; font-weight: 700; }
+      .ficha-code-box { border: 1.8px solid #0F2942; background: #F8FAFC; padding: 4px 8px; text-align: right; border-radius: 4px; min-width: 175px; }
+      .ficha-code-box .cod-main { font-family: monospace; font-size: 9.5pt; font-weight: 900; color: #0F2942; }
+      .ficha-code-box .cod-meta { font-size: 6.8pt; color: #334155; font-weight: 700; margin-top: 2px; }
+      .ficha-title-card { border: 1.5px solid #0F2942; background: #F8FAFC; padding: 6px 9px; border-radius: 5px; margin-bottom: 6px; }
+      .ficha-title-top { display: flex; justify-content: space-between; align-items: center; gap: 6px; flex-wrap: wrap; margin-bottom: 3px; }
+      .ficha-pseudo-pill { display: inline-block; background: #CCFBF1; color: #0F766E; border: 1px solid #14B8A6; border-radius: 4px; padding: 1px 7px; font-size: 7.5pt; font-weight: 900; text-transform: uppercase; letter-spacing: 0.3px; }
+      .ficha-blk-pill { display: inline-block; border-radius: 4px; padding: 1px 7px; font-size: 7pt; font-weight: 800; }
+      .ficha-proj-desc { font-size: 8.6pt; font-weight: 900; color: #0F172A; text-transform: uppercase; line-height: 1.24; }
+      .ficha-sec-hdr { background: #0F2942; color: #FFFFFF; font-size: 7.5pt; font-weight: 900; padding: 3px 7px; text-transform: uppercase; letter-spacing: 0.4px; margin-top: 5px; border-radius: 3px 3px 0 0; }
+      .ficha-table { width: 100%; border-collapse: collapse; margin-bottom: 4px; font-size: 7.5pt; }
+      .ficha-table th, .ficha-table td { border: 1px solid #CBD5E1; padding: 3px 5px; vertical-align: top; }
+      .ficha-table th { background: #E2E8F0; color: #0F172A; font-weight: 800; text-align: left; }
+      .ficha-table .lbl { background: #F1F5F9; font-weight: 800; color: #1E293B; width: 19%; }
+      .ficha-table .val { width: 31%; color: #0F172A; }
+      .val-pending { color: #64748B; font-style: italic; font-weight: 600; }
+      .ficha-status-strip { display: grid; grid-template-columns: repeat(5, 1fr); gap: 4px; margin: 4px 0 5px 0; }
+      .ficha-status-box { border: 1px solid #CBD5E1; border-radius: 4px; padding: 3px 5px; background: #F8FAFC; }
+      .ficha-status-box .st-k { font-size: 6.3pt; font-weight: 800; color: #475569; text-transform: uppercase; }
+      .ficha-status-box .st-v { font-size: 7.2pt; font-weight: 900; color: #0F172A; margin-top: 1px; }
+      .ficha-chk-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 3px; border: 1px solid #CBD5E1; border-top: none; padding: 4px 5px; background: #FFF; margin-bottom: 4px; }
+      .ficha-chk-item { font-size: 7pt; padding: 2px 4px; border-radius: 3px; background: #F8FAFC; border: 1px solid #E2E8F0; display: flex; justify-content: space-between; align-items: center; gap: 3px; }
+      .ficha-chk-item.ok { background: #ECFDF5; border-color: #A7F3D0; color: #065F46; font-weight: 800; }
+      .ficha-chk-item.miss { background: #FFFBEB; border-color: #FDE68A; color: #92400E; font-weight: 700; }
+      .ficha-missing-box { border: 1px solid #FCA5A5; background: #FEF2F2; color: #991B1B; padding: 4px 7px; border-radius: 4px; font-size: 7.2pt; margin-bottom: 4px; }
+      .ficha-ok-box { border: 1px solid #6EE7B7; background: #ECFDF5; color: #065F46; padding: 4px 7px; border-radius: 4px; font-size: 7.2pt; margin-bottom: 4px; font-weight: 700; }
+      .ficha-note-legal { border: 1px solid #CBD5E1; background: #F8FAFC; padding: 4px 7px; font-size: 6.8pt; color: #334155; border-radius: 4px; margin-top: 5px; }
+      .ficha-sign-row { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 14px; }
+      .ficha-sign-box { border-top: 1px solid #334155; padding-top: 3px; text-align: center; font-size: 7pt; color: #1E293B; font-weight: 700; }
+      @media print { .no-print { display: none; } body { padding: 0; -webkit-print-color-adjust: exact; print-color-adjust: exact; } }
+    `;
+    }
+
+    function buildSingleFichaAuditoriaPmoHtml(p, opts) {
+      if (!p) return '';
+      const options = opts || {};
+      const fechaCorte = options.fechaCorte || new Date().toLocaleDateString('es-PE');
+      const pmoCode = formatPmoCode(p);
+      const pseudo = typeof getProjectPseudonym === 'function' ? getProjectPseudonym(p.id) : '';
+      const blk = typeof getProjectArchiveBlock === 'function' ? getProjectArchiveBlock(p) : null;
+      const layer = typeof getObraLayerSummary === 'function' ? getObraLayerSummary(p.id) : null;
+      const boxes = typeof getProjectPhysicalBoxesList === 'function' ? getProjectPhysicalBoxesList(p.id, { includeSueltoFallback: true }) : [];
+      const docTags = typeof compileDocumentTagsForProject === 'function' ? compileDocumentTagsForProject(p.id) : { tags: [] };
+      const sitInfo = typeof getSituationalInfo === 'function' ? getSituationalInfo(p) : { label: p.estado_situacional || p.estatus || 'Por determinar' };
+
+      const cuiTxt = (p.cui && p.cui !== 'N/D' && p.cui !== 'S/N') ? escapeHtmlAttr(p.cui) : '<span class="val-pending">S/N / Por determinar</span>';
+      const hasIni = typeof hasValidStart === 'function' ? hasValidStart(p) : !!p.fecha_inicio;
+      const iniTxt = hasIni ? `<strong>${escapeHtmlAttr(p.fecha_inicio)}</strong>` : '<span class="val-pending">Por determinar</span>';
+      const finRaw = p.fecha_termino_verificada_ing || (p.fecha_culminacion_real && p.fecha_culminacion_real !== '-' ? p.fecha_culminacion_real : '');
+      const hasFin = typeof hasValidEnd === 'function' ? hasValidEnd(p) : !!finRaw;
+      const finTxt = hasFin ? `<strong>${escapeHtmlAttr(finRaw)}</strong>` : '<span class="val-pending">Por determinar</span>';
+      const termProgTxt = (p.fecha_termino_prog && p.fecha_termino_prog !== '-' && !/sin dato/i.test(p.fecha_termino_prog))
+        ? escapeHtmlAttr(p.fecha_termino_prog)
+        : '<span class="val-pending">Por determinar</span>';
+
+      const strOrPending = (v, suffix) => {
+        const s = String(v || '').trim();
+        if (!s || s === '-' || /^n\/d$/i.test(s) || /^sin dato/i.test(s)) {
+          return `<span class="val-pending">${escapeHtmlAttr(suffix || 'Por determinar')}</span>`;
+        }
+        return escapeHtmlAttr(s);
+      };
+
+      const agreements = [p.acuerdo_fdm ? `FDM: ${p.acuerdo_fdm}` : '', p.acuerdo_municipal ? `Mun.: ${p.acuerdo_municipal}` : ''].filter(Boolean).join(' • ');
+
+      // 5 estados independientes
+      const ch = p.checks || {};
+      const stEjec = escapeHtmlAttr(p.estatus || 'Por determinar');
+      const stRecep = p.acta_recepcion ? 'Con Acta PMO' : (ch.rec ? 'Registrada PMO' : 'Por determinar');
+      const stLiq = p.estado_situacional ? escapeHtmlAttr(p.estado_situacional) : (p.resolucion_liquidacion ? 'Con sustento PMO' : (ch.liq ? 'Registrada PMO' : 'Por determinar'));
+      const stTransf = ch.transf ? 'Registrada PMO' : 'Por determinar';
+      const stOper = 'Por determinar (Campo)';
+
+      // 11 checks documentales PMO
+      const chkDefs = [
+        ['exp', 'Exp. Técnico'],
+        ['cont', 'Contrato'],
+        ['acta_ent', 'Entrega Terreno'],
+        ['cuad', 'Cuaderno Obra'],
+        ['val', 'Valorizaciones'],
+        ['adic', 'Adicionales/Ded.'],
+        ['sup', 'Supervisión'],
+        ['rec', 'Recepción'],
+        ['liq', 'Liquidación'],
+        ['res', 'Resoluc./Aprob.'],
+        ['transf', 'Transferencia']
+      ];
+      let chkOkCount = 0;
+      const chkGridHtml = chkDefs.map(([key, label]) => {
+        const ok = !!ch[key];
+        if (ok) chkOkCount++;
+        return `<div class="ficha-chk-item ${ok ? 'ok' : 'miss'}"><span>${escapeHtmlAttr(label)}</span><span>${ok ? '✓ PMO' : '○ Pend.'}</span></div>`;
+      }).join('');
+      const integridadPct = Math.round((chkOkCount / chkDefs.length) * 100);
+      const detectedTagsTxt = (docTags.tags && docTags.tags.length > 0)
+        ? docTags.tags.map(t => escapeHtmlAttr(t.label)).join(' • ')
+        : 'Sin micro-etiquetas OCR/cajas todavía';
+
+      const faltantes = Array.isArray(p.detalles_faltantes) ? p.detalles_faltantes.filter(Boolean) : [];
+      const obsNotes = [
+        p.resolucion_liquidacion ? `Sustento cierre/liq.: ${p.resolucion_liquidacion}` : '',
+        p.comentario_ing ? `Nota Ing. FDM: ${p.comentario_ing}` : '',
+        p.alerta ? `Observación PMO: ${p.alerta}` : ''
+      ].filter(Boolean);
+
+      const missingHtml = faltantes.length > 0
+        ? `<div class="ficha-missing-box"><strong>⚠️ Documentación faltante / pendiente de regularización (${faltantes.length}):</strong> ${faltantes.map(x => escapeHtmlAttr(x)).join(' • ')}${obsNotes.length ? `<br><strong>Notas PMO:</strong> ${obsNotes.map(x => escapeHtmlAttr(x)).join(' | ')}` : ''}</div>`
+        : `<div class="ficha-ok-box">✅ Sin brechas críticas registradas en Matriz PMO.${obsNotes.length ? ` <span style="color:#0F172A; font-weight:600;">Notas: ${obsNotes.map(x => escapeHtmlAttr(x)).join(' | ')}</span>` : ''}</div>`;
+
+      // Inventario físico de cajas
+      let cajasHtml = '';
+      if (boxes.length > 0) {
+        const boxRowsHtml = boxes.map(b => {
+          const capaTxt = b.isFase2 ? '<strong style="color:#065F46;">FASE 2</strong>' : '<span style="color:#475569;">FASE 1</span>';
+          const ubicTxt = escapeHtmlAttr(`${b.amb || 'Sin ambiente'}${b.estante ? ' • ' + b.estante : ''}`);
+          const contItems = (Array.isArray(b.rows) ? b.rows : []).map(r => r.contenido).filter(Boolean);
+          let contTxt = contItems.join(' | ');
+          if (contTxt.length > 220) contTxt = contTxt.slice(0, 217) + '...';
+          const procTxt = (Array.isArray(b.procedencia) && b.procedencia.length > 0) ? ` <span style="color:#047857;">[Viene de: ${escapeHtmlAttr(b.procedencia.join(', '))}]</span>` : '';
+          return `
+            <tr>
+              <td style="font-family:monospace; font-weight:800; white-space:nowrap;">${escapeHtmlAttr(b.cod)}</td>
+              <td style="text-align:center; white-space:nowrap;">${capaTxt}</td>
+              <td>${ubicTxt}${procTxt}</td>
+              <td>${contTxt ? escapeHtmlAttr(contTxt) : '<span class="val-pending">Pendiente detallar contenido</span>'}</td>
+              <td style="text-align:center;">${Number(b.fotosCount || 0)}</td>
+            </tr>
+          `;
+        }).join('');
+        const traceNote = (layer && layer.f2Count > 0 && layer.f1TotalCount > 0)
+          ? `<div style="font-size:6.9pt; color:#065F46; margin-bottom:3px;">🕰️ Trazabilidad histórica Fase 1 preservada: ${layer.f1TotalCount} unidad(es) censadas originalmente; ${layer.f2Count} caja(s) final(es) Fase 2 activas.</div>`
+          : '';
+        cajasHtml = `
+          ${traceNote}
+          <table class="ficha-table">
+            <thead>
+              <tr>
+                <th style="width:88px;">CÓDIGO CAJA</th>
+                <th style="width:52px; text-align:center;">CAPA</th>
+                <th style="width:155px;">UBICACIÓN / ESTANTE</th>
+                <th>CONTENIDO DOCUMENTAL VERIFICADO</th>
+                <th style="width:38px; text-align:center;">FOT.</th>
+              </tr>
+            </thead>
+            <tbody>${boxRowsHtml}</tbody>
+          </table>
+        `;
+      } else {
+        cajasHtml = `<div class="ficha-missing-box">🔍 <strong>EXPEDIENTE FÍSICO NO LOCALIZADO EN CENSO ACTUAL:</strong> Sin cajas ni archivadores censados aún en almacén u oficinas PMO. Pendiente de ubicación física o consulta en Archivo Central.</div>`;
+      }
+
+      // Hitos PMO (máximo 4 para mantener 1 página limpia)
+      const hist = Array.isArray(p.historial) ? p.historial : [];
+      let hitosHtml = '';
+      if (hist.length > 0) {
+        const topHist = hist.slice(0, 4);
+        const hRows = topHist.map(h => `
+          <tr>
+            <td style="white-space:nowrap;">${escapeHtmlAttr(h.fecha || '—')}</td>
+            <td style="font-weight:800;">${escapeHtmlAttr(h.documento || '—')}</td>
+            <td>${escapeHtmlAttr(h.tipo || h.fase || '—')}</td>
+            <td>${escapeHtmlAttr(h.fuente || 'Tomo PMO')}</td>
+          </tr>
+        `).join('');
+        const extraTxt = hist.length > 4 ? `<tr><td colspan="4" style="text-align:center; font-style:italic; color:#475569;">... y ${hist.length - 4} actuado(s) adicional(es) en historial digital del aplicativo.</td></tr>` : '';
+        hitosHtml = `
+          <table class="ficha-table">
+            <thead>
+              <tr>
+                <th style="width:105px;">FECHA DOC.</th>
+                <th style="width:155px;">DOCUMENTO</th>
+                <th>TIPO / FASE PMO</th>
+                <th style="width:155px;">FUENTE / TOMO</th>
+              </tr>
+            </thead>
+            <tbody>${hRows}${extraTxt}</tbody>
+          </table>
+        `;
+      } else {
+        hitosHtml = `<div style="border:1px solid #CBD5E1; border-top:none; padding:4px 7px; font-size:7.2pt; color:#64748B; font-style:italic;">Sin actuados extraídos en Tomos PMO 2022–2024 (sustento sujeto a archivo físico y áreas remitentes).</div>`;
+      }
+
+      const pseudoPill = pseudo ? `<span class="ficha-pseudo-pill">🏷️ ${escapeHtmlAttr(pseudo)}</span>` : '';
+      const blkPill = blk
+        ? `<span class="ficha-blk-pill" style="background:${blk.bg}; color:${blk.color}; border:1px solid ${blk.border};">🗂️ ${escapeHtmlAttr(blk.label)}</span>`
+        : `<span class="ficha-blk-pill" style="background:#F1F5F9; color:#334155; border:1px solid #94A3B8;">📁 ARCHIVO PMO</span>`;
+
+      return `
+        <div class="ficha-page">
+          <div class="ficha-hdr">
+            <div class="ficha-hdr-left">
+              <div class="ficha-kicker">FONDO DE DESARROLLO DE MOQUEGUA (FDM) • GERENCIA DE GESTIÓN DE PROYECTOS (PMO)</div>
+              <div class="ficha-main-title">FICHA TÉCNICA Y ESTADO SITUACIONAL DE OBRA (PMO-F02 EJECUTIVO)</div>
+              <div class="ficha-sub">Entregable O/S N° I11-00014 • Recopilación, Organización y Ubicación Documental Periodo 2022–2025</div>
+            </div>
+            <div class="ficha-code-box">
+              <div class="cod-main">${escapeHtmlAttr(pmoCode)}</div>
+              <div class="cod-meta">OBRA N° ${p.id === 999 ? 'MULTI' : String(p.id).padStart(2, '0')} • Corte: ${escapeHtmlAttr(fechaCorte)}</div>
+              <div class="cod-meta">Situación: ${escapeHtmlAttr(sitInfo.label || 'Por determinar')}</div>
+            </div>
+          </div>
+
+          <div class="ficha-title-card">
+            <div class="ficha-title-top">
+              ${pseudoPill}
+              ${blkPill}
+            </div>
+            <div class="ficha-proj-desc">${escapeHtmlAttr(p.desc || `OBRA N° ${p.id}`)}</div>
+          </div>
+
+          <div class="ficha-sec-hdr">I. Datos Generales y Contractuales (Fuente: Acervo y Matriz PMO)</div>
+          <table class="ficha-table">
+            <tbody>
+              <tr>
+                <td class="lbl">CUI / Código:</td>
+                <td class="val">${cuiTxt}</td>
+                <td class="lbl">Provincia / Convenio:</td>
+                <td class="val"><strong>${escapeHtmlAttr(p.provincia || '—')}</strong> (${escapeHtmlAttr(p.convenio || 'FDM')})</td>
+              </tr>
+              <tr>
+                <td class="lbl">Tipología / Rubro:</td>
+                <td class="val">${strOrPending(p.tipologia || p.tipo_obra)}</td>
+                <td class="lbl">Modalidad Ejecución:</td>
+                <td class="val">${strOrPending(p.modalidad, 'Por determinar (Logística)')}</td>
+              </tr>
+              <tr>
+                <td class="lbl">Contratista / Ejecutor:</td>
+                <td class="val">${strOrPending(p.contratista, 'Por determinar (Logística)')}</td>
+                <td class="lbl">N° y Fecha Contrato:</td>
+                <td class="val">${strOrPending(p.contrato, 'Por determinar (Logística)')}</td>
+              </tr>
+              <tr>
+                <td class="lbl">Supervisión / Insp.:</td>
+                <td class="val"><span class="val-pending">Por determinar (Logística / PMO)</span></td>
+                <td class="lbl">Plazo / Ent. Terreno:</td>
+                <td class="val">${strOrPending(p.plazo)} • Terr.: ${strOrPending(p.entrega_terreno)}</td>
+              </tr>
+              <tr>
+                <td class="lbl">Fecha de Inicio:</td>
+                <td class="val">${iniTxt}</td>
+                <td class="lbl">Término Prog. / Real:</td>
+                <td class="val">Prog.: ${termProgTxt} • Real: ${finTxt}</td>
+              </tr>
+              <tr>
+                <td class="lbl">Acuerdos FDM / Mun.:</td>
+                <td class="val" colspan="3">${agreements ? escapeHtmlAttr(agreements) : '<span class="val-pending">Por determinar (Dirección Ejecutiva / Actas)</span>'}</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="ficha-sec-hdr">II. Situación Económica Referencial (PMO) y Estados Independientes</div>
+          <table class="ficha-table">
+            <tbody>
+              <tr>
+                <td class="lbl">Presup. Priorizado:</td>
+                <td class="val">${formatFichaSolesOrPending(p.prio)}</td>
+                <td class="lbl">Ampliación Presup.:</td>
+                <td class="val">${formatFichaSolesOrPending(p.ampliacion_presupuestal, 'S/ 0.00 / Por determinar')}</td>
+              </tr>
+              <tr>
+                <td class="lbl">Costo Total Matriz:</td>
+                <td class="val">${formatFichaSolesOrPending(p.costo_total)}</td>
+                <td class="lbl">Monto Contratado:</td>
+                <td class="val">${formatFichaSolesOrPending(p.monto_contratado, 'Por determinar (Logística)')}</td>
+              </tr>
+              <tr>
+                <td class="lbl">Costo Ejecutado PMO:</td>
+                <td class="val">${formatFichaSolesOrPending(p.costo_ejec)}</td>
+                <td class="lbl">Pagos / Saldos Contab.:</td>
+                <td class="val"><span class="val-pending">Por determinar (requiere conciliación Contabilidad)</span></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="ficha-status-strip">
+            <div class="ficha-status-box"><div class="st-k">Ejecución</div><div class="st-v">${stEjec}</div></div>
+            <div class="ficha-status-box"><div class="st-k">Recepción</div><div class="st-v">${escapeHtmlAttr(stRecep)}</div></div>
+            <div class="ficha-status-box"><div class="st-k">Liquidación</div><div class="st-v">${stLiq}</div></div>
+            <div class="ficha-status-box"><div class="st-k">Transferencia</div><div class="st-v">${escapeHtmlAttr(stTransf)}</div></div>
+            <div class="ficha-status-box"><div class="st-k">Operatividad</div><div class="st-v val-pending">${escapeHtmlAttr(stOper)}</div></div>
+          </div>
+
+          <div class="ficha-sec-hdr">III. Control Documental y Brechas Identificadas (Integridad Ref. PMO: ${integridadPct}% • ${chkOkCount}/${chkDefs.length} ítems)</div>
+          <div class="ficha-chk-grid">${chkGridHtml}</div>
+          <div style="font-size:7pt; color:#334155; margin-bottom:4px;"><strong>Evidencia física / OCR detectada:</strong> ${detectedTagsTxt}</div>
+          ${missingHtml}
+
+          <div class="ficha-sec-hdr">IV. Inventario Físico de Archivo (Cajas, Ubicación y Contenido Censado)</div>
+          ${cajasHtml}
+
+          <div class="ficha-sec-hdr">V. Hitos Documentales Registrados en Tomos PMO (${hist.length} registro(s))</div>
+          ${hitosHtml}
+
+          <div class="ficha-note-legal">
+            <strong>Alcance y Validación (O/S N° I11-00014):</strong> Ficha generada automáticamente con la información recopilada en Gerencia PMO al ${escapeHtmlAttr(fechaCorte)}. Los campos indicados como <em>"Por determinar"</em> corresponden a información cuya validación, conciliación financiera o verificación física compete a Contabilidad, Administración/Logística, Asesoría Legal o verificación en campo, conforme a la regla de registro del borrador PMO-MAN-01 V.02.
+          </div>
+
+          <div class="ficha-sign-row">
+            <div class="ficha-sign-box">Elaborado por: Ing. Fernando Huancapaza Zea<br>Servicio de Recopilación y Organización Documental — O/S N° I11-00014</div>
+            <div class="ficha-sign-box">Conformidad / V°B° Gerencia PMO — FDM<br>Revisión de Acervo Técnico 2022–2025</div>
+          </div>
+        </div>
+      `;
+    }
+
+    function openFichasAuditoriaPrintWindow(projectsList, titleLabel) {
+      const list = (Array.isArray(projectsList) ? projectsList : []).filter(Boolean);
+      if (list.length === 0) {
+        showToast('No hay obras en la selección actual para generar Fichas PMO-F02.');
+        return;
+      }
+      const fechaCorte = new Date().toLocaleDateString('es-PE');
+      const pagesHtml = list.map(p => buildSingleFichaAuditoriaPmoHtml(p, { fechaCorte })).join('');
+      const win = window.open('', '_blank', 'width=960,height=1100');
+      if (!win) { alert("Permite ventanas emergentes para imprimir o guardar en PDF las Fichas de Auditoría PMO-F02."); return; }
+      win.document.write(`<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><title>${escapeHtmlAttr(titleLabel || 'Fichas Auditoría PMO-F02')}</title>
+        <style>${getFichaAuditoriaPmoCss()}</style></head><body>
+        <div class="no-print" style="margin-bottom:12px; display:flex; justify-content:space-between; align-items:center; background:#F0FDFA; border:1.5px solid #5EEAD4; padding:10px 14px; border-radius:8px; gap:10px; flex-wrap:wrap;">
+          <div>
+            <strong style="color:#0F766E; font-size:10.5pt;">📄 ${escapeHtmlAttr(titleLabel || 'Fichas Técnicas Individuales PMO-F02')} (${list.length} ficha(s) A4)</strong>
+            <div style="font-size:8.5pt; color:#334155;">Consejo: en la ventana de impresión elige <strong>"Guardar como PDF"</strong> para generar el Anexo 02 consolidado.</div>
+          </div>
+          <button onclick="window.print()" style="background:#0F766E;color:#FFF;border:none;padding:9px 16px;border-radius:6px;font-weight:bold;cursor:pointer;font-size:10.5pt;">🖨️ Imprimir / Guardar PDF (${list.length})</button>
+        </div>
+        ${pagesHtml}
+      </body></html>`);
+      win.document.close();
+      setTimeout(() => win.print(), 350);
+    }
+
+    function imprimirFichaAuditoriaObra(obraId) {
+      const id = obraId || selectedProjectId;
+      const p = (projectsData || []).find(x => x.id === id);
+      if (!p) {
+        showToast('Selecciona una obra válida primero.');
+        return;
+      }
+      openFichasAuditoriaPrintWindow([p], `Ficha Auditoría PMO-F02 — Obra #${p.id}`);
+    }
+
+    function imprimirFichasAuditoriaBloqueLote() {
+      const list = getArchivePlannerFilteredRows();
+      const blkName = currentArchivePlannerBlock === 'ALL' ? 'TODOS TDR 2022–2025' : (ARCHIVE_BLOCKS[currentArchivePlannerBlock]?.label || currentArchivePlannerBlock);
+      openFichasAuditoriaPrintWindow(list, `Fichas Auditoría PMO-F02 — ${blkName}`);
+    }
+
+    function imprimirFichasAuditoriaEntregableModal() {
+      const list = buildInformeSituacionalPayloadList();
+      openFichasAuditoriaPrintWindow(list, 'Fichas Auditoría PMO-F02 — Entregable TDR 2022–2025');
+    }
+
     // Initialize
     window.addEventListener('DOMContentLoaded', loadProjects);
   </script>
@@ -8335,6 +8733,7 @@
           <button type="button" class="btn" onclick="imprimirHojaRutaBloque()" style="background:#F59E0B; color:#0F172A; font-size:0.76rem; padding:0.46rem 0.8rem; font-weight:800;">📋 Hoja de Ruta Bloque</button>
           <button type="button" class="btn" onclick="imprimirPanelAntesDespues()" style="background:#10B981; color:#FFFFFF; font-size:0.76rem; padding:0.46rem 0.8rem; font-weight:800;">📸 Panel Antes / Después</button>
           <button type="button" class="btn" onclick="imprimirRotulosBloqueLote()" style="background:#16A34A; color:#FFFFFF; font-size:0.76rem; padding:0.46rem 0.85rem; font-weight:800;">🖨️ Rótulos A4 del Bloque</button>
+          <button type="button" class="btn" onclick="imprimirFichasAuditoriaBloqueLote()" style="background:#0F766E; color:#FFFFFF; font-size:0.76rem; padding:0.46rem 0.85rem; font-weight:800; border:1px solid #5EEAD4;" title="Imprimir o guardar en PDF las Fichas Técnicas PMO-F02 de todas las obras de este bloque">📄 Fichas PMO-F02 Bloque</button>
           <button type="button" class="close-btn" onclick="closeArchivePlannerModal()" style="position:static;">&times;</button>
         </div>
       </div>
@@ -8384,6 +8783,7 @@
           <button type="button" class="btn" onclick="exportEntregableTdrExcel()" style="background:#16A34A; color:white; font-size:0.78rem; padding:0.5rem 0.85rem; font-weight:800;" title="Descarga Excel de Entrega TDR con 6 Hojas Exactas (incluye Historial Diagnóstico Fase 1)">📥 Excel Entregable TDR (6 Hojas)</button>
           <button type="button" class="btn" onclick="exportInformeSituacionalMultiSheetExcel()" style="background:#334155; color:white; font-size:0.75rem; padding:0.5rem 0.75rem;" title="Descarga respaldo Excel por Convenios (7 Hojas)">📥 7 Hojas Conv.</button>
           <button type="button" class="btn" onclick="printInformeSituacional()" style="background:#D97706; color:white; font-size:0.78rem; padding:0.5rem 0.85rem;">🖨️ Imprimir / PDF</button>
+          <button type="button" class="btn" onclick="imprimirFichasAuditoriaEntregableModal()" style="background:#0F766E; color:white; font-size:0.78rem; padding:0.5rem 0.85rem; font-weight:800; border:1px solid #5EEAD4;" title="Generar PDF / Impresión en lote de las Fichas Técnicas Individuales PMO-F02 para las obras filtradas">📄 Fichas PMO-F02 (Lote)</button>
           <button type="button" class="close-btn" onclick="closeAuditMasterModal()" style="position:static;">&times;</button>
         </div>
       </div>
