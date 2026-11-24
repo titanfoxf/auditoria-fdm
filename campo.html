@@ -142,6 +142,12 @@
     .drawer.photo-view-large .thumb-wrap { height: 230px; }
     .drawer.photo-view-large .thumb-img { object-fit: contain; }
 
+    /* Checklist táctil Ficha Campo (PMO-F02) */
+    .ficha-campo-chk-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.4rem; margin-top: 0.4rem; }
+    .ficha-campo-chk-btn { display: flex; justify-content: space-between; align-items: center; gap: 4px; padding: 0.48rem 0.55rem; border-radius: 8px; border: 1.5px solid #CBD5E1; background: #FFFFFF; color: #334155; font-size: 0.75rem; font-weight: 700; cursor: pointer; text-align: left; }
+    .ficha-campo-chk-btn.ok { background: #ECFDF5; border-color: #10B981; color: #065F46; font-weight: 800; }
+    .ficha-campo-chk-btn.miss { background: #FEF2F2; border-color: #EF4444; color: #991B1B; font-weight: 800; }
+
     /* Sticky Bottom Bar */
     .drawer-footer { padding: 0.75rem 1rem; background: white; border-top: 1px solid var(--border); display: flex; gap: 0.5rem; }
     .btn-save { background: var(--success); color: white; border: none; padding: 0.75rem 1.25rem; border-radius: 10px; font-size: 0.9rem; font-weight: 700; flex: 1; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 0.4rem; }
@@ -272,7 +278,7 @@
           🏛️ 4. Fase 2 <span id="tabBadgeFase2" class="badge badge-gray" style="font-size: 0.65rem; margin-left: 0.25rem;">0</span>
         </button>
         <button type="button" class="drawer-tab" id="tabBtnDocs" onclick="switchDrawerTab('DOCS')">
-          📅 5. Fechas Ini/Fin
+          📋 5. Ficha Campo (F02)
         </button>
       </div>
 
@@ -843,14 +849,27 @@
           </div>
         </div>
         <div id="panelTabDocs" style="display: none;">
-          
-          <!-- Fechas Contractuales Comprobadas (Único control manual en esta pestaña) -->
-          <div class="field-group">
+
+          <div style="background:#ECFDF5; border:1.5px solid #6EE7B7; border-radius:10px; padding:0.65rem 0.8rem; margin-bottom:0.75rem; font-size:0.74rem; color:#065F46; line-height:1.35;">
+            <strong>📋 Ficha de Campo (Solo Alcance O/S N° I11-00014):</strong> Aquí solo llenas la información documental y de plazos que te corresponde verificar en PMO/Cajas. Los rubros de <b>Contabilidad, Logística, Legal y Operatividad</b> salen automáticamente en <b>negrita</b> como <b>"NO CORRESPONDE A O/S"</b> al imprimir la Ficha PMO-F02.
+          </div>
+
+          <!-- A. Pseudónimo / Nombre Corto de Auditoría -->
+          <div class="field-group" style="border-color:#5EEAD4; background:#F0FDFA;">
+            <div class="field-title" style="color:#0F766E;">
+              <span>🏷️ Pseudónimo / Nombre Corto de Proyecto</span>
+              <button type="button" onclick="sugerirPseudonimoCampo()" style="background:#CCFBF1; border:1px solid #14B8A6; color:#0F766E; font-size:0.7rem; font-weight:800; padding:0.2rem 0.55rem; border-radius:6px; cursor:pointer;">✨ Sugerir</button>
+            </div>
+            <input type="text" id="inputPseudonimoCampo" class="field-input" style="font-weight:800; text-transform:uppercase; border-color:#5EEAD4; color:#0F766E;" placeholder="Ej: LOCAL COMUNAL QUERALA">
+          </div>
+
+          <!-- B. Fechas, Plazo y Entrega de Terreno verificados en Expediente -->
+          <div class="field-group" style="margin-top:0.65rem;">
             <div class="field-title">
               <span>🚀 Fecha de Inicio Real</span>
               <span id="statusInicioBadge" class="badge badge-yellow">Verificar</span>
             </div>
-            <input type="text" id="inputFechaInicio" class="field-input" placeholder="Ej: 14/01/2022 o 14 de enero del 2022">
+            <input type="text" id="inputFechaInicio" class="field-input" placeholder="Ej: 14/01/2022 o Acta de Inicio">
             <div class="preset-chips">
               <span class="preset-chip" onclick="setPresetDate('inputFechaInicio', '01/06/2021')">01/06/2021</span>
               <span class="preset-chip" onclick="setPresetDate('inputFechaInicio', '15/01/2022')">15/01/2022</span>
@@ -859,24 +878,101 @@
             </div>
           </div>
 
-          <div class="field-group">
+          <div class="field-group" style="margin-top:0.65rem;">
             <div class="field-title">
               <span>🏁 Fecha de Culminación / Término Real</span>
             </div>
             <input type="text" id="inputFechaCulm" class="field-input" placeholder="Ej: 11/09/2022 o Acta del 23/12/2022">
           </div>
 
-          <!-- Observaciones de Auditoría de la Obra -->
-          <div class="field-group" style="margin-top: 0.75rem;">
-            <div class="field-title">
-              <span>📝 Notas / Observaciones de la Obra</span>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.5rem; margin-top:0.65rem;">
+            <div class="field-group" style="margin:0;">
+              <div class="field-title"><span>⏱️ Plazo Contractual</span></div>
+              <input type="text" id="inputPlazoCampo" class="field-input" placeholder="Ej: 90 días cal.">
             </div>
-            <textarea id="inputNotasAuditoria" class="field-input" style="height: 85px; resize: vertical;" placeholder="Observaciones encontradas en el expediente físico, falta de tomos o aclaración de fechas..."></textarea>
+            <div class="field-group" style="margin:0;">
+              <div class="field-title"><span>📐 Entrega Terreno</span></div>
+              <input type="text" id="inputEntregaTerrenoCampo" class="field-input" placeholder="Ej: 20/02/2023">
+            </div>
           </div>
 
-          <div style="font-size: 0.75rem; color: #64748B; background: #F8FAFC; border: 1px solid #CBD5E1; border-radius: 8px; padding: 0.65rem 0.8rem; margin-top: 0.5rem;">
-            ℹ️ Los checklist manuales fueron retirados; el respaldo documental se comprueba con las <b>fotos y descripciones</b> registradas en <b>1. Censo de Cajas</b> y <b>2. Doc. Sueltos</b>, junto con las fechas de Inicio y Término de esta pestaña (sincronizadas con <b>MATRIZ_69_OBRAS</b> en Google Drive).
+          <!-- C. Estado Documental del Expediente (Observado en Cajas) -->
+          <div class="field-group" style="margin-top:0.65rem;">
+            <div class="field-title"><span>📂 Situación Documental Verificada en Cajas</span></div>
+            <div style="display:flex; flex-direction:column; gap:0.45rem; margin-top:0.25rem;">
+              <div>
+                <label style="font-size:0.7rem; font-weight:700; color:#475569;">Recepción de Obra:</label>
+                <select id="selRecepCampo" class="field-input" style="margin-top:2px;">
+                  <option value="">Por determinar (según Matriz PMO)</option>
+                  <option value="Con Acta en Caja">Con Acta en Caja</option>
+                  <option value="Observada en Caja">Observada en Caja</option>
+                  <option value="No localizada en Caja">No localizada en Caja</option>
+                  <option value="No aplica">No aplica</option>
+                </select>
+              </div>
+              <div>
+                <label style="font-size:0.7rem; font-weight:700; color:#475569;">Liquidación Técnica/Financiera:</label>
+                <select id="selLiqCampo" class="field-input" style="margin-top:2px;">
+                  <option value="">Por determinar (según Matriz PMO)</option>
+                  <option value="Aprobada / en Caja">Aprobada / en Caja</option>
+                  <option value="En trámite en Caja">En trámite en Caja</option>
+                  <option value="Observada">Observada</option>
+                  <option value="No localizada en Caja">No localizada en Caja</option>
+                  <option value="No aplica">No aplica</option>
+                </select>
+              </div>
+              <div>
+                <label style="font-size:0.7rem; font-weight:700; color:#475569;">Transferencia a Entidad:</label>
+                <select id="selTransfCampo" class="field-input" style="margin-top:2px;">
+                  <option value="">Por determinar (según Matriz PMO)</option>
+                  <option value="Con Acta en Caja">Con Acta en Caja</option>
+                  <option value="En trámite">En trámite</option>
+                  <option value="No localizada en Caja">No localizada en Caja</option>
+                  <option value="No aplica">No aplica</option>
+                </select>
+              </div>
+            </div>
           </div>
+
+          <!-- D. Checklist Táctil de Documentos Verificados en Caja (11 botones) -->
+          <div class="field-group" style="margin-top:0.65rem;">
+            <div class="field-title">
+              <span>✅ Documentos Hallados en Cajas</span>
+              <span id="fichaCampoChkSummary" class="badge badge-blue" style="font-size:0.68rem;">0/11</span>
+            </div>
+            <div style="font-size:0.68rem; color:#64748B; margin-bottom:0.25rem;">Toca cada documento para alternar entre <b>✓ En Caja</b> y <b>⚠️ Faltante</b>:</div>
+            <div id="fichaCampoChecklistGrid" class="ficha-campo-chk-grid"></div>
+          </div>
+
+          <!-- E. Documentación Faltante / Pendiente de Regularización -->
+          <div class="field-group" style="margin-top:0.65rem;">
+            <div class="field-title">
+              <span>⚠️ Documentación Faltante (TDR 5.4)</span>
+              <button type="button" onclick="limpiarDocFaltanteCampo()" style="background:#FEE2E2; border:1px solid #FCA5A5; color:#991B1B; font-size:0.68rem; font-weight:700; padding:0.18rem 0.5rem; border-radius:6px; cursor:pointer;">🗑️ Limpiar</button>
+            </div>
+            <div class="preset-chips">
+              <span class="preset-chip" onclick="appendDocFaltanteCampo('Exp. Técnico')">+ Exp. Técnico</span>
+              <span class="preset-chip" onclick="appendDocFaltanteCampo('Contrato')">+ Contrato</span>
+              <span class="preset-chip" onclick="appendDocFaltanteCampo('Acta Entrega Terreno / Inicio')">+ Acta Inicio</span>
+              <span class="preset-chip" onclick="appendDocFaltanteCampo('Cuaderno de Obra')">+ Cuaderno Obra</span>
+              <span class="preset-chip" onclick="appendDocFaltanteCampo('Valorizaciones')">+ Valorizaciones</span>
+              <span class="preset-chip" onclick="appendDocFaltanteCampo('Informe Final / Supervisión')">+ Inf. Final</span>
+              <span class="preset-chip" onclick="appendDocFaltanteCampo('Acta de Recepción')">+ Acta Recepción</span>
+              <span class="preset-chip" onclick="appendDocFaltanteCampo('Liquidación')">+ Liquidación</span>
+              <span class="preset-chip" onclick="appendDocFaltanteCampo('Acta de Transferencia')">+ Transferencia</span>
+            </div>
+            <textarea id="inputDocFaltanteCampo" class="field-input" style="height: 60px; resize: vertical; margin-top: 0.45rem;" placeholder="Ej: Falta Cuaderno de Obra Tomo II y Acta de Recepción..."></textarea>
+          </div>
+
+          <!-- F. Observaciones de Auditoría de la Obra -->
+          <div class="field-group" style="margin-top: 0.65rem;">
+            <div class="field-title">
+              <span>📝 Notas / Observaciones del Expediente Físico</span>
+            </div>
+            <textarea id="inputNotasAuditoria" class="field-input" style="height: 75px; resize: vertical;" placeholder="Observaciones encontradas en el expediente físico, aclaración de cajas o ubicación..."></textarea>
+          </div>
+
+          <button type="button" onclick="saveCurrentObra(true)" style="width:100%; margin-top:0.75rem; background:linear-gradient(135deg,#059669,#047857); color:#FFF; border:none; border-radius:10px; padding:0.78rem; font-size:0.88rem; font-weight:800; cursor:pointer;">💾 Guardar Ficha Campo (Web + Drive)</button>
 
         </div>
 
@@ -997,6 +1093,191 @@
 
     function getGasUrl() {
       return localStorage.getItem(GAS_URL_KEY) || "";
+    }
+
+    // ==========================================
+    // FICHA DE CAMPO (PMO-F02 ALCANCE O/S) Y PSEUDÓNIMOS COMPARTIDOS
+    // ==========================================
+    const PROJECT_PSEUDONYMS_KEY = 'fdm_project_pseudonyms_v1';
+    const FICHA_CAMPO_STORAGE_KEY = 'fdm_ficha_campo_v1';
+    const FICHA_CAMPO_DOC_DEFS = [
+      ['exp', 'Exp. Técnico'],
+      ['cont', 'Contrato'],
+      ['acta_ent', 'Entrega Terreno'],
+      ['cuad', 'Cuaderno Obra'],
+      ['val', 'Valorizaciones'],
+      ['adic', 'Adicionales/Ded.'],
+      ['sup', 'Supervisión'],
+      ['rec', 'Recepción'],
+      ['liq', 'Liquidación'],
+      ['res', 'Resoluc./Aprob.'],
+      ['transf', 'Transferencia']
+    ];
+    let activeFichaCampoChkState = {};
+
+    function getProjectPseudonymsMap() {
+      try {
+        const raw = localStorage.getItem(PROJECT_PSEUDONYMS_KEY);
+        const parsed = raw ? JSON.parse(raw) : {};
+        return (parsed && typeof parsed === 'object') ? parsed : {};
+      } catch (e) { return {}; }
+    }
+
+    function saveProjectPseudonymsMap(map) {
+      try { localStorage.setItem(PROJECT_PSEUDONYMS_KEY, JSON.stringify(map || {})); } catch (e) {}
+    }
+
+    function getProjectPseudonym(obraId) {
+      if (obraId === undefined || obraId === null) return '';
+      const map = getProjectPseudonymsMap();
+      return String(map[String(obraId)] || '').trim().toUpperCase();
+    }
+
+    function saveProjectPseudonym(obraId, val) {
+      if (obraId === undefined || obraId === null) return '';
+      const map = getProjectPseudonymsMap();
+      const clean = String(val || '').replace(/\s+/g, ' ').trim().toUpperCase();
+      if (!clean) delete map[String(obraId)];
+      else map[String(obraId)] = clean;
+      saveProjectPseudonymsMap(map);
+      return clean;
+    }
+
+    function suggestProjectPseudonym(desc) {
+      let s = String(desc || '').replace(/[“”"']/g, '').replace(/\s+/g, ' ').trim().toUpperCase();
+      if (!s) return '';
+      const prefixes = [
+        /^CREACI[ÓO]N\s+DE\s+LOS\s+SERVICIOS\s+OPERATIVOS\s+O\s+MISIONALES\s+INSTITUCIONALES\s+EN\s+/,
+        /^MEJORAMIENTO\s+Y\s+AMPLIACI[ÓO]N\s+DE\s+LOS\s+SERVICIOS?\s+DE\s+/,
+        /^MEJORAMIENTO\s+DE\s+LOS\s+SERVICIOS?\s+DE\s+/,
+        /^MEJORAMIENTO\s+DEL\s+SERVICIO\s+DE\s+/,
+        /^MEJORAMIENTO\s+(?:DEL|DE\s+LA|DE\s+LOS|DE\s+LAS|DE)\s+/,
+        /^CONSTRUCCI[ÓO]N\s+(?:DEL|DE\s+LA|DE\s+LOS|DE\s+LAS|DE)\s+/,
+        /^CREACI[ÓO]N\s+(?:DEL|DE\s+LA|DE\s+LOS|DE\s+LAS|DE)\s+/,
+        /^INSTALACI[ÓO]N\s+(?:DEL|DE\s+LA|DE\s+LOS|DE\s+LAS|DE)\s+/,
+        /^REHABILITACI[ÓO]N\s+(?:DEL|DE\s+LA|DE\s+LOS|DE\s+LAS|DE)\s+/,
+        /^AMPLIACI[ÓO]N\s+(?:DEL|DE\s+LA|DE\s+LOS|DE\s+LAS|DE)\s+/,
+        /^ADQUISICI[ÓO]N\s+(?:DEL|DE\s+LA|DE\s+LOS|DE\s+LAS|DE)\s+/,
+        /^MANTENIMIENTO\s+(?:DEL|DE\s+LA|DE\s+LOS|DE\s+LAS|DE)\s+/
+      ];
+      for (const re of prefixes) {
+        if (re.test(s)) { s = s.replace(re, '').trim(); break; }
+      }
+      s = s.replace(/\s*[-–,]?\s*(?:EN\s+EL\s+|DEL\s+|DE\s+LA\s+)?(?:DISTRITO\s+DE|PROVINCIA\s+(?:DE\s+)?|DEPARTAMENTO\s+DE|REGI[ÓO]N\s+MOQUEGUA|CUI\s*N?[°º]?\s*\d+).*$/i, '').trim();
+      s = s
+        .replace(/\bDE\s+USOS\s+M[ÚU]LTIPLES\b/g, ' ')
+        .replace(/\bEN\s+EL\s+(?:ANEXO|SECTOR|CENTRO\s+POBLADO)\s+DE\b/g, ' ')
+        .replace(/\bEN\s+LA\s+(?:LOCALIDAD|COMUNIDAD)\s+DE\b/g, ' ')
+        .replace(/\bDEL\s+ANEXO\s+DE\b/g, ' ')
+        .replace(/\s*[-–,]+\s*$/, '')
+        .replace(/\s+/g, ' ')
+        .trim();
+      if (s.length > 42) {
+        const cut = s.slice(0, 42);
+        const lastSpace = cut.lastIndexOf(' ');
+        s = (lastSpace > 18 ? cut.slice(0, lastSpace) : cut).trim();
+      }
+      return s;
+    }
+
+    function getFichaCampoMap() {
+      try {
+        const raw = localStorage.getItem(FICHA_CAMPO_STORAGE_KEY);
+        const parsed = raw ? JSON.parse(raw) : {};
+        return (parsed && typeof parsed === 'object') ? parsed : {};
+      } catch (e) { return {}; }
+    }
+
+    function saveFichaCampoMap(map) {
+      try { localStorage.setItem(FICHA_CAMPO_STORAGE_KEY, JSON.stringify(map || {})); } catch (e) {}
+    }
+
+    function getFichaCampoEntry(obraId) {
+      if (obraId === undefined || obraId === null) return null;
+      const map = getFichaCampoMap();
+      return map[String(obraId)] || null;
+    }
+
+    function saveFichaCampoEntry(obraId, patch) {
+      if (obraId === undefined || obraId === null) return null;
+      const map = getFichaCampoMap();
+      const prev = map[String(obraId)] || {};
+      const next = { ...prev, ...(patch || {}) };
+      map[String(obraId)] = next;
+      saveFichaCampoMap(map);
+      return next;
+    }
+
+    function parseFichaCampoFromNotas(rawNotas) {
+      const s = String(rawNotas || '').trim();
+      if (!s) return { plainNotas: '', ficha: null };
+      const m = s.match(/\[F02:(\{[\s\S]*\})\]\s*$/);
+      if (!m) return { plainNotas: s, ficha: null };
+      let ficha = null;
+      try { ficha = JSON.parse(m[1]); } catch (e) { ficha = null; }
+      const plainNotas = s.slice(0, m.index).trim();
+      return { plainNotas, ficha };
+    }
+
+    function encodeNotasWithFichaCampo(plainNotas, fichaObj) {
+      const cleaned = parseFichaCampoFromNotas(plainNotas).plainNotas;
+      if (!fichaObj || typeof fichaObj !== 'object') return cleaned;
+      const compact = {};
+      if (fichaObj.ps) compact.ps = String(fichaObj.ps).trim().toUpperCase();
+      if (fichaObj.plz) compact.plz = String(fichaObj.plz).trim();
+      if (fichaObj.ent) compact.ent = String(fichaObj.ent).trim();
+      if (fichaObj.rec) compact.rec = String(fichaObj.rec).trim();
+      if (fichaObj.liq) compact.liq = String(fichaObj.liq).trim();
+      if (fichaObj.trf) compact.trf = String(fichaObj.trf).trim();
+      if (fichaObj.fal) compact.fal = String(fichaObj.fal).trim();
+      if (fichaObj.chk && typeof fichaObj.chk === 'object' && Object.keys(fichaObj.chk).length > 0) {
+        compact.chk = fichaObj.chk;
+      }
+      if (Object.keys(compact).length === 0) return cleaned;
+      return `${cleaned ? cleaned + ' ' : ''}[F02:${JSON.stringify(compact)}]`;
+    }
+
+    function renderFichaCampoChecklistCampo() {
+      const grid = document.getElementById('fichaCampoChecklistGrid');
+      const sumEl = document.getElementById('fichaCampoChkSummary');
+      if (!grid) return;
+      let okCount = 0;
+      grid.innerHTML = FICHA_CAMPO_DOC_DEFS.map(([key, label]) => {
+        const isOk = !!activeFichaCampoChkState[key];
+        if (isOk) okCount++;
+        return `<button type="button" class="ficha-campo-chk-btn ${isOk ? 'ok' : 'miss'}" onclick="toggleFichaCampoDocCheck('${key}')"><span>${label}</span><span>${isOk ? '✓ Caja' : '⚠️ Falta'}</span></button>`;
+      }).join('');
+      if (sumEl) sumEl.innerText = `${okCount}/${FICHA_CAMPO_DOC_DEFS.length}`;
+    }
+
+    function toggleFichaCampoDocCheck(key) {
+      activeFichaCampoChkState[key] = !activeFichaCampoChkState[key];
+      renderFichaCampoChecklistCampo();
+    }
+
+    function sugerirPseudonimoCampo() {
+      if (!activeObraId) return;
+      const p = projects.find(x => x.id === activeObraId);
+      if (!p) return;
+      const sug = suggestProjectPseudonym(p.desc);
+      const inp = document.getElementById('inputPseudonimoCampo');
+      if (inp && sug) {
+        inp.value = sug;
+        showToast(`✨ Sugerido: "${sug}"`);
+      }
+    }
+
+    function appendDocFaltanteCampo(txt) {
+      const ta = document.getElementById('inputDocFaltanteCampo');
+      if (!ta) return;
+      const cur = ta.value.trim();
+      if (cur.toLowerCase().includes(txt.toLowerCase())) return;
+      ta.value = cur ? `${cur}; ${txt}` : txt;
+    }
+
+    function limpiarDocFaltanteCampo() {
+      const ta = document.getElementById('inputDocFaltanteCampo');
+      if (ta) ta.value = '';
     }
 
     function toggleCloudConfig() {
@@ -1147,7 +1428,17 @@
 
               if (iniCloud) fieldData[oId].fecha_inicio = iniCloud;
               if (finCloud) fieldData[oId].fecha_culm = finCloud;
-              if (oData.notas_auditoria) fieldData[oId].notas_auditoria = String(oData.notas_auditoria).trim();
+              if (oData.notas_auditoria) {
+                const parsedF02 = parseFichaCampoFromNotas(oData.notas_auditoria);
+                fieldData[oId].notas_auditoria = parsedF02.plainNotas;
+                if (parsedF02.ficha) {
+                  fieldData[oId].ficha_campo = { ...(fieldData[oId].ficha_campo || {}), ...parsedF02.ficha };
+                  saveFichaCampoEntry(oId, parsedF02.ficha);
+                  if (parsedF02.ficha.ps && !getProjectPseudonym(oId)) {
+                    saveProjectPseudonym(oId, parsedF02.ficha.ps);
+                  }
+                }
+              }
               saveObraToDB(fieldData[oId]);
 
               const projObj = projects.find(x => x.id === oId);
@@ -1257,7 +1548,10 @@
         ubicacion_ambientes: compileAllAmbientesCampo(d) || d.ubicacion || '',
         fecha_inicio: d.fecha_inicio || '',
         fecha_culm: d.fecha_culm || '',
-        notas_auditoria: (document.getElementById('inputNotasAuditoria')?.value || d.notas_auditoria || '').trim()
+        notas_auditoria: encodeNotasWithFichaCampo(
+          (document.getElementById('inputNotasAuditoria')?.value || d.notas_auditoria || '').trim(),
+          d.ficha_campo || getFichaCampoEntry(obraId)
+        )
       };
 
       try {
@@ -2782,7 +3076,8 @@
         if (!q) return true;
         const d = fieldData[p.id] || {};
         const ambs = compileAllAmbientesCampo(d);
-        const text = `${p.id} ${p.desc} ${p.cui} ${p.provincia} ${p.estatus || ''} ${p.estado_situacional || ''} ${ambs} ${d.ubicacion || ''} ${d.notas || ''}`.toLowerCase();
+        const pseudo = getProjectPseudonym(p.id);
+        const text = `${p.id} ${pseudo} ${p.desc} ${p.cui} ${p.provincia} ${p.estatus || ''} ${p.estado_situacional || ''} ${ambs} ${d.ubicacion || ''} ${d.notas || ''}`.toLowerCase();
         return text.includes(q);
       });
 
@@ -3093,8 +3388,33 @@
         if (elCulm) elCulm.value = d.fecha_culm || (p.fecha_culminacion_real && p.fecha_culminacion_real !== '-' ? p.fecha_culminacion_real : '');
         const elNotas = document.getElementById('inputNotas');
         if (elNotas) elNotas.value = d.notas || '';
+        const parsedLocalF02 = parseFichaCampoFromNotas(d.notas_auditoria || '');
         const elNotasAud = document.getElementById('inputNotasAuditoria');
-        if (elNotasAud) elNotasAud.value = d.notas_auditoria || '';
+        if (elNotasAud) elNotasAud.value = parsedLocalF02.plainNotas;
+
+        const fc = d.ficha_campo || getFichaCampoEntry(id) || parsedLocalF02.ficha || {};
+        const elPseudoCampo = document.getElementById('inputPseudonimoCampo');
+        if (elPseudoCampo) elPseudoCampo.value = getProjectPseudonym(id) || fc.ps || '';
+        const elPlz = document.getElementById('inputPlazoCampo');
+        if (elPlz) elPlz.value = fc.plz || p.plazo || '';
+        const elEnt = document.getElementById('inputEntregaTerrenoCampo');
+        if (elEnt) elEnt.value = fc.ent || p.entrega_terreno || '';
+        const elRec = document.getElementById('selRecepCampo');
+        if (elRec) elRec.value = fc.rec || '';
+        const elLiq = document.getElementById('selLiqCampo');
+        if (elLiq) elLiq.value = fc.liq || '';
+        const elTrf = document.getElementById('selTransfCampo');
+        if (elTrf) elTrf.value = fc.trf || '';
+        const elFal = document.getElementById('inputDocFaltanteCampo');
+        if (elFal) elFal.value = fc.fal || '';
+
+        activeFichaCampoChkState = {};
+        const baseChks = p.checks || {};
+        const fcChks = (fc.chk && typeof fc.chk === 'object') ? fc.chk : {};
+        FICHA_CAMPO_DOC_DEFS.forEach(([k]) => {
+          activeFichaCampoChkState[k] = Object.prototype.hasOwnProperty.call(fcChks, k) ? !!fcChks[k] : !!baseChks[k];
+        });
+        renderFichaCampoChecklistCampo();
 
         // Configurar Ambiente y N° de Caja en el Drawer
         syncAmbienteDropdowns();
@@ -3640,7 +3960,22 @@
         if (elU) d.ubicacion = elU.value.trim();
       }
       d.notas = document.getElementById('inputNotas') ? document.getElementById('inputNotas').value.trim() : '';
-      d.notas_auditoria = document.getElementById('inputNotasAuditoria') ? document.getElementById('inputNotasAuditoria').value.trim() : '';
+      const plainNotasAud = parseFichaCampoFromNotas(document.getElementById('inputNotasAuditoria') ? document.getElementById('inputNotasAuditoria').value.trim() : '').plainNotas;
+      d.notas_auditoria = plainNotasAud;
+      const pseudoVal = saveProjectPseudonym(activeObraId, document.getElementById('inputPseudonimoCampo')?.value || '');
+      const fichaObj = {
+        ps: pseudoVal,
+        plz: (document.getElementById('inputPlazoCampo')?.value || '').trim(),
+        ent: (document.getElementById('inputEntregaTerrenoCampo')?.value || '').trim(),
+        rec: (document.getElementById('selRecepCampo')?.value || '').trim(),
+        liq: (document.getElementById('selLiqCampo')?.value || '').trim(),
+        trf: (document.getElementById('selTransfCampo')?.value || '').trim(),
+        fal: (document.getElementById('inputDocFaltanteCampo')?.value || '').trim(),
+        chk: { ...activeFichaCampoChkState },
+        updatedAt: new Date().toISOString()
+      };
+      d.ficha_campo = fichaObj;
+      saveFichaCampoEntry(activeObraId, fichaObj);
       d.updated_at = new Date().toISOString();
 
       // Reflejar inmediatamente las fechas guardadas en el listado de proyectos activo

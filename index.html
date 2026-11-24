@@ -645,7 +645,8 @@
           </div>
           <div id="drawerContractInfo" style="font-size: 0.78rem; opacity: 0.95; margin-top: 3px; color: #E0E7FF; display: none;"></div>
         </div>
-        <div style="display:flex; align-items:center; gap:0.5rem; flex-shrink:0;">
+        <div style="display:flex; align-items:center; gap:0.45rem; flex-shrink:0; flex-wrap:wrap;">
+          <button type="button" onclick="abrirFichaCampoDeObra(selectedProjectId)" style="background:#0F766E; color:#FFFFFF; border:1px solid #5EEAD4; border-radius:8px; padding:0.42rem 0.72rem; font-size:0.74rem; font-weight:800; cursor:pointer; white-space:nowrap;" title="Abrir el formulario móvil/gabinete solo con los campos de tu O/S para llenar en campo">📝 Llenar Ficha Campo</button>
           <button type="button" onclick="imprimirFichaAuditoriaObra(selectedProjectId)" style="background:#F59E0B; color:#0F172A; border:none; border-radius:8px; padding:0.42rem 0.78rem; font-size:0.75rem; font-weight:800; cursor:pointer; white-space:nowrap;" title="Imprimir o guardar en PDF la Ficha Técnica / Hoja de Auditoría PMO-F02 de esta obra">📄 Ficha Auditoría (PMO-F02)</button>
           <button class="close-btn" onclick="closeDrawer()" style="position:static;">&times;</button>
         </div>
@@ -1212,7 +1213,16 @@
 
                 if (iniCloud) fieldPhotosMap[oId].fecha_inicio = iniCloud;
                 if (finCloud) fieldPhotosMap[oId].fecha_culm = finCloud;
-                if (oData.notas_auditoria) fieldPhotosMap[oId].notas_auditoria = String(oData.notas_auditoria).trim();
+                const parsedF02 = (oData.notas_auditoria && typeof parseFichaCampoFromNotas === 'function')
+                  ? parseFichaCampoFromNotas(oData.notas_auditoria)
+                  : { plainNotas: String(oData.notas_auditoria || '').trim(), ficha: null };
+                if (parsedF02.plainNotas) fieldPhotosMap[oId].notas_auditoria = parsedF02.plainNotas;
+                if (parsedF02.ficha && typeof saveFichaCampoEntry === 'function') {
+                  saveFichaCampoEntry(oId, parsedF02.ficha);
+                  if (parsedF02.ficha.ps && typeof getProjectPseudonym === 'function' && !getProjectPseudonym(oId)) {
+                    saveProjectPseudonym(oId, parsedF02.ficha.ps);
+                  }
+                }
 
                 const p = (projectsData || []).find(item => item.id === oId);
                 if (p) {
@@ -1231,8 +1241,8 @@
                     p.fecha_culm_from_drive = true;
                     p.tiene_fecha_termino = /\d/.test(finCloud);
                   }
-                  if (oData.notas_auditoria) {
-                    p.alerta = String(oData.notas_auditoria).trim();
+                  if (parsedF02.plainNotas) {
+                    p.alerta = parsedF02.plainNotas;
                   }
                   if (oData.ubicacion_ambientes) {
                     const relMatch = String(oData.ubicacion_ambientes).match(/✅\s*\[([^\]]+)\]/);
@@ -2046,6 +2056,7 @@
         total_obras_con_fotos: Object.keys(fieldPhotosMap).length,
         ediciones_gabinete: getRotuloEditsMap(),
         pseudonimos_proyectos: getProjectPseudonymsMap(),
+        ficha_campo: typeof getFichaCampoMap === 'function' ? getFichaCampoMap() : {},
         archive_relocation: getArchiveRelocationMap(),
         fase2_boxes: getFase2BoxesMap(),
         fase1_status: getFase1StatusMap(),
@@ -2760,7 +2771,9 @@
               ubicacion_ambientes: compileUbicacionCajas(p.id) || '',
               fecha_inicio: iniVal || (hasValidStart(p) ? p.fecha_inicio : ''),
               fecha_culm: finVal || (hasValidEnd(p) ? (p.fecha_termino_verificada_ing || p.fecha_culminacion_real || '') : ''),
-              notas_auditoria: p.alerta || p.comentario_ing || ''
+              notas_auditoria: typeof encodeNotasWithFichaCampo === 'function'
+                ? encodeNotasWithFichaCampo(p.alerta || p.comentario_ing || '', getFichaCampoEntry(p.id))
+                : (p.alerta || p.comentario_ing || '')
             })
           });
           const data = await res.json();
@@ -2833,7 +2846,7 @@
             ubicacion_ambientes: compileUbicacionCajas(p.id) || '',
             fecha_inicio: iniDr || iniWeb,
             fecha_culm: finDr || finWeb,
-            notas_auditoria: (dr.notas_auditoria || p.alerta || p.comentario_ing || '').trim()
+            notas_auditoria: (dr.notas_auditoria || (typeof encodeNotasWithFichaCampo === 'function' ? encodeNotasWithFichaCampo(p.alerta || p.comentario_ing || '', getFichaCampoEntry(p.id)) : (p.alerta || p.comentario_ing || ''))).trim()
           };
         });
 
@@ -2993,9 +3006,90 @@
     }
 
     // =========================================================================
-    // PSEUDONIMOS / NOMBRES CORTOS DE AUDITORIA POR PROYECTO
+    // PSEUDONIMOS / NOMBRES CORTOS DE AUDITORIA Y FICHA DE CAMPO (PMO-F02)
     // =========================================================================
     const PROJECT_PSEUDONYMS_KEY = 'fdm_project_pseudonyms_v1';
+    const FICHA_CAMPO_STORAGE_KEY = 'fdm_ficha_campo_v1';
+    const FICHA_CAMPO_DOC_DEFS = [
+      ['exp', 'Exp. Técnico'],
+      ['cont', 'Contrato'],
+      ['acta_ent', 'Entrega Terreno'],
+      ['cuad', 'Cuaderno Obra'],
+      ['val', 'Valorizaciones'],
+      ['adic', 'Adicionales/Ded.'],
+      ['sup', 'Supervisión'],
+      ['rec', 'Recepción'],
+      ['liq', 'Liquidación'],
+      ['res', 'Resoluc./Aprob.'],
+      ['transf', 'Transferencia']
+    ];
+
+    function getFichaCampoMap() {
+      try {
+        const raw = localStorage.getItem(FICHA_CAMPO_STORAGE_KEY);
+        const parsed = raw ? JSON.parse(raw) : {};
+        return (parsed && typeof parsed === 'object') ? parsed : {};
+      } catch (e) {
+        return {};
+      }
+    }
+
+    function saveFichaCampoMap(map) {
+      try {
+        localStorage.setItem(FICHA_CAMPO_STORAGE_KEY, JSON.stringify(map || {}));
+      } catch (e) {}
+    }
+
+    function getFichaCampoEntry(obraId) {
+      if (obraId === undefined || obraId === null) return null;
+      const map = getFichaCampoMap();
+      return map[String(obraId)] || null;
+    }
+
+    function saveFichaCampoEntry(obraId, patch) {
+      if (obraId === undefined || obraId === null) return null;
+      const map = getFichaCampoMap();
+      const prev = map[String(obraId)] || {};
+      const next = { ...prev, ...(patch || {}) };
+      map[String(obraId)] = next;
+      saveFichaCampoMap(map);
+      return next;
+    }
+
+    function parseFichaCampoFromNotas(rawNotas) {
+      const s = String(rawNotas || '').trim();
+      if (!s) return { plainNotas: '', ficha: null };
+      const m = s.match(/\[F02:(\{[\s\S]*\})\]\s*$/);
+      if (!m) return { plainNotas: s, ficha: null };
+      let ficha = null;
+      try { ficha = JSON.parse(m[1]); } catch (e) { ficha = null; }
+      const plainNotas = s.slice(0, m.index).trim();
+      return { plainNotas, ficha };
+    }
+
+    function encodeNotasWithFichaCampo(plainNotas, fichaObj) {
+      const cleaned = parseFichaCampoFromNotas(plainNotas).plainNotas;
+      if (!fichaObj || typeof fichaObj !== 'object') return cleaned;
+      const compact = {};
+      if (fichaObj.ps) compact.ps = String(fichaObj.ps).trim().toUpperCase();
+      if (fichaObj.plz) compact.plz = String(fichaObj.plz).trim();
+      if (fichaObj.ent) compact.ent = String(fichaObj.ent).trim();
+      if (fichaObj.rec) compact.rec = String(fichaObj.rec).trim();
+      if (fichaObj.liq) compact.liq = String(fichaObj.liq).trim();
+      if (fichaObj.trf) compact.trf = String(fichaObj.trf).trim();
+      if (fichaObj.fal) compact.fal = String(fichaObj.fal).trim();
+      if (fichaObj.chk && typeof fichaObj.chk === 'object' && Object.keys(fichaObj.chk).length > 0) {
+        compact.chk = fichaObj.chk;
+      }
+      if (Object.keys(compact).length === 0) return cleaned;
+      return `${cleaned ? cleaned + ' ' : ''}[F02:${JSON.stringify(compact)}]`;
+    }
+
+    function abrirFichaCampoDeObra(obraId) {
+      const id = obraId || selectedProjectId;
+      if (!id) return;
+      window.open(`campo.html?obra=${encodeURIComponent(id)}&tab=DOCS`, '_blank');
+    }
 
     function getProjectPseudonymsMap() {
       try {
@@ -6173,7 +6267,9 @@
             ubicacion_ambientes: overrideUbicAmb !== undefined ? overrideUbicAmb : defaultUbic,
             fecha_inicio: String(iniVal || '').trim() || (hasValidStart(p) ? p.fecha_inicio : ''),
             fecha_culm: String(finVal || '').trim() || (hasValidEnd(p) ? (p.fecha_termino_verificada_ing || p.fecha_culminacion_real || '') : ''),
-            notas_auditoria: p.alerta || p.comentario_ing || ''
+            notas_auditoria: typeof encodeNotasWithFichaCampo === 'function'
+              ? encodeNotasWithFichaCampo(p.alerta || p.comentario_ing || '', getFichaCampoEntry(p.id))
+              : (p.alerta || p.comentario_ing || '')
           })
         });
         const data = await res.json();
@@ -8186,20 +8282,21 @@
       return `FDM-OB-${yr || 'S_A'}-${String(p.id || 0).padStart(3, '0')}`;
     }
 
-    function formatFichaSolesOrPending(val, fallbackLabel) {
+    function formatFichaSolesOrPending(val, fallbackLabel, outOfScope) {
       const pendingTxt = fallbackLabel || 'Por determinar';
+      const pendingCls = outOfScope ? 'val-out-of-scope' : 'val-pending';
       if (val === undefined || val === null || val === '') {
-        return `<span class="val-pending">${escapeHtmlAttr(pendingTxt)}</span>`;
+        return `<span class="${pendingCls}">${escapeHtmlAttr(pendingTxt)}</span>`;
       }
       if (typeof val === 'number') {
         if (!Number.isFinite(val) || val <= 0) {
-          return `<span class="val-pending">${escapeHtmlAttr(pendingTxt)}</span>`;
+          return `<span class="${pendingCls}">${escapeHtmlAttr(pendingTxt)}</span>`;
         }
         return `<strong>S/ ${val.toLocaleString('es-PE', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</strong>`;
       }
       const s = String(val).trim();
       if (!s || s === '-' || s === '0' || /^s\/\s*0+(?:\.0+)?$/i.test(s)) {
-        return `<span class="val-pending">${escapeHtmlAttr(pendingTxt)}</span>`;
+        return `<span class="${pendingCls}">${escapeHtmlAttr(pendingTxt)}</span>`;
       }
       if (/^s\//i.test(s)) return `<strong>${escapeHtmlAttr(s)}</strong>`;
       const num = Number(s.replace(/,/g, ''));
@@ -8235,7 +8332,8 @@
       .ficha-table th { background: #E2E8F0; color: #0F172A; font-weight: 800; text-align: left; }
       .ficha-table .lbl { background: #F1F5F9; font-weight: 800; color: #1E293B; width: 19%; }
       .ficha-table .val { width: 31%; color: #0F172A; }
-      .val-pending { color: #64748B; font-style: italic; font-weight: 600; }
+      .val-pending { color: #475569; font-style: italic; font-weight: 700; }
+      .val-out-of-scope { color: #000000; font-weight: 900; font-style: normal; }
       .ficha-status-strip { display: grid; grid-template-columns: repeat(5, 1fr); gap: 4px; margin: 4px 0 5px 0; }
       .ficha-status-box { border: 1px solid #CBD5E1; border-radius: 4px; padding: 3px 5px; background: #F8FAFC; }
       .ficha-status-box .st-k { font-size: 6.3pt; font-weight: 800; color: #475569; text-transform: uppercase; }
@@ -8243,10 +8341,10 @@
       .ficha-chk-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 3px; border: 1px solid #CBD5E1; border-top: none; padding: 4px 5px; background: #FFF; margin-bottom: 4px; }
       .ficha-chk-item { font-size: 7pt; padding: 2px 4px; border-radius: 3px; background: #F8FAFC; border: 1px solid #E2E8F0; display: flex; justify-content: space-between; align-items: center; gap: 3px; }
       .ficha-chk-item.ok { background: #ECFDF5; border-color: #A7F3D0; color: #065F46; font-weight: 800; }
-      .ficha-chk-item.miss { background: #FFFBEB; border-color: #FDE68A; color: #92400E; font-weight: 700; }
+      .ficha-chk-item.miss { background: #FEF2F2; border-color: #FECACA; color: #991B1B; font-weight: 800; }
       .ficha-missing-box { border: 1px solid #FCA5A5; background: #FEF2F2; color: #991B1B; padding: 4px 7px; border-radius: 4px; font-size: 7.2pt; margin-bottom: 4px; }
       .ficha-ok-box { border: 1px solid #6EE7B7; background: #ECFDF5; color: #065F46; padding: 4px 7px; border-radius: 4px; font-size: 7.2pt; margin-bottom: 4px; font-weight: 700; }
-      .ficha-note-legal { border: 1px solid #CBD5E1; background: #F8FAFC; padding: 4px 7px; font-size: 6.8pt; color: #334155; border-radius: 4px; margin-top: 5px; }
+      .ficha-note-legal { border: 1.5px solid #0F172A; background: #F8FAFC; padding: 4px 7px; font-size: 6.9pt; color: #0F172A; border-radius: 4px; margin-top: 5px; }
       .ficha-sign-row { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 14px; }
       .ficha-sign-box { border-top: 1px solid #334155; padding-top: 3px; text-align: center; font-size: 7pt; color: #1E293B; font-weight: 700; }
       @media print { .no-print { display: none; } body { padding: 0; -webkit-print-color-adjust: exact; print-color-adjust: exact; } }
@@ -8258,75 +8356,82 @@
       const options = opts || {};
       const fechaCorte = options.fechaCorte || new Date().toLocaleDateString('es-PE');
       const pmoCode = formatPmoCode(p);
-      const pseudo = typeof getProjectPseudonym === 'function' ? getProjectPseudonym(p.id) : '';
+      const fc = (typeof getFichaCampoEntry === 'function' ? getFichaCampoEntry(p.id) : null) || {};
+      const pseudo = (typeof getProjectPseudonym === 'function' ? getProjectPseudonym(p.id) : '') || (fc.ps || '');
       const blk = typeof getProjectArchiveBlock === 'function' ? getProjectArchiveBlock(p) : null;
       const layer = typeof getObraLayerSummary === 'function' ? getObraLayerSummary(p.id) : null;
       const boxes = typeof getProjectPhysicalBoxesList === 'function' ? getProjectPhysicalBoxesList(p.id, { includeSueltoFallback: true }) : [];
       const docTags = typeof compileDocumentTagsForProject === 'function' ? compileDocumentTagsForProject(p.id) : { tags: [] };
       const sitInfo = typeof getSituationalInfo === 'function' ? getSituationalInfo(p) : { label: p.estado_situacional || p.estatus || 'Por determinar' };
 
-      const cuiTxt = (p.cui && p.cui !== 'N/D' && p.cui !== 'S/N') ? escapeHtmlAttr(p.cui) : '<span class="val-pending">S/N / Por determinar</span>';
+      const cuiTxt = (p.cui && p.cui !== 'N/D' && p.cui !== 'S/N') ? escapeHtmlAttr(p.cui) : '<span class="val-pending">S/N (Por determinar en campo)</span>';
       const hasIni = typeof hasValidStart === 'function' ? hasValidStart(p) : !!p.fecha_inicio;
-      const iniTxt = hasIni ? `<strong>${escapeHtmlAttr(p.fecha_inicio)}</strong>` : '<span class="val-pending">Por determinar</span>';
+      const iniTxt = hasIni ? `<strong>${escapeHtmlAttr(p.fecha_inicio)}</strong>` : '<span class="val-pending">Por determinar (Ficha Campo)</span>';
       const finRaw = p.fecha_termino_verificada_ing || (p.fecha_culminacion_real && p.fecha_culminacion_real !== '-' ? p.fecha_culminacion_real : '');
       const hasFin = typeof hasValidEnd === 'function' ? hasValidEnd(p) : !!finRaw;
-      const finTxt = hasFin ? `<strong>${escapeHtmlAttr(finRaw)}</strong>` : '<span class="val-pending">Por determinar</span>';
+      const finTxt = hasFin ? `<strong>${escapeHtmlAttr(finRaw)}</strong>` : '<span class="val-pending">Por determinar (Ficha Campo)</span>';
       const termProgTxt = (p.fecha_termino_prog && p.fecha_termino_prog !== '-' && !/sin dato/i.test(p.fecha_termino_prog))
         ? escapeHtmlAttr(p.fecha_termino_prog)
-        : '<span class="val-pending">Por determinar</span>';
+        : '<span class="val-pending">Por determinar (Expediente)</span>';
 
-      const strOrPending = (v, suffix) => {
+      const strOrPending = (v, suffix, outOfScope) => {
         const s = String(v || '').trim();
         if (!s || s === '-' || /^n\/d$/i.test(s) || /^sin dato/i.test(s)) {
-          return `<span class="val-pending">${escapeHtmlAttr(suffix || 'Por determinar')}</span>`;
+          return `<span class="${outOfScope ? 'val-out-of-scope' : 'val-pending'}">${escapeHtmlAttr(suffix || 'Por determinar')}</span>`;
         }
-        return escapeHtmlAttr(s);
+        return `<strong>${escapeHtmlAttr(s)}</strong>`;
       };
 
       const agreements = [p.acuerdo_fdm ? `FDM: ${p.acuerdo_fdm}` : '', p.acuerdo_municipal ? `Mun.: ${p.acuerdo_municipal}` : ''].filter(Boolean).join(' • ');
+      const mergedPlazo = (fc.plz || p.plazo || '').trim();
+      const mergedEnt = (fc.ent || p.entrega_terreno || '').trim();
 
-      // 5 estados independientes
-      const ch = p.checks || {};
-      const stEjec = escapeHtmlAttr(p.estatus || 'Por determinar');
-      const stRecep = p.acta_recepcion ? 'Con Acta PMO' : (ch.rec ? 'Registrada PMO' : 'Por determinar');
-      const stLiq = p.estado_situacional ? escapeHtmlAttr(p.estado_situacional) : (p.resolucion_liquidacion ? 'Con sustento PMO' : (ch.liq ? 'Registrada PMO' : 'Por determinar'));
-      const stTransf = ch.transf ? 'Registrada PMO' : 'Por determinar';
-      const stOper = 'Por determinar (Campo)';
+      // 5 estados independientes (campos fuera de O/S van en .val-out-of-scope negrita)
+      const baseCh = p.checks || {};
+      const campoChk = (fc.chk && typeof fc.chk === 'object') ? fc.chk : {};
+      const getMergedChk = (k) => (Object.prototype.hasOwnProperty.call(campoChk, k) ? !!campoChk[k] : !!baseCh[k]);
 
-      // 11 checks documentales PMO
-      const chkDefs = [
-        ['exp', 'Exp. Técnico'],
-        ['cont', 'Contrato'],
-        ['acta_ent', 'Entrega Terreno'],
-        ['cuad', 'Cuaderno Obra'],
-        ['val', 'Valorizaciones'],
-        ['adic', 'Adicionales/Ded.'],
-        ['sup', 'Supervisión'],
-        ['rec', 'Recepción'],
-        ['liq', 'Liquidación'],
-        ['res', 'Resoluc./Aprob.'],
-        ['transf', 'Transferencia']
-      ];
+      const stEjec = p.estatus ? `<strong>${escapeHtmlAttr(p.estatus)}</strong>` : '<span class="val-pending">Por determinar</span>';
+      const stRecep = fc.rec
+        ? `<strong>${escapeHtmlAttr(fc.rec)}</strong>`
+        : (p.acta_recepcion ? '<strong>Con Acta PMO</strong>' : (getMergedChk('rec') ? '<strong>Verif. PMO / Caja</strong>' : '<span class="val-pending">Por determinar (Ficha Campo)</span>'));
+      const stLiq = fc.liq
+        ? `<strong>${escapeHtmlAttr(fc.liq)}</strong>`
+        : (p.estado_situacional ? `<strong>${escapeHtmlAttr(p.estado_situacional)}</strong>` : (p.resolucion_liquidacion ? '<strong>Con sustento PMO</strong>' : (getMergedChk('liq') ? '<strong>Verif. PMO / Caja</strong>' : '<span class="val-pending">Por determinar (Ficha Campo)</span>')));
+      const stTransf = fc.trf
+        ? `<strong>${escapeHtmlAttr(fc.trf)}</strong>`
+        : (getMergedChk('transf') ? '<strong>Verif. PMO / Caja</strong>' : '<span class="val-pending">Por determinar (Ficha Campo)</span>');
+      const stOper = '<span class="val-out-of-scope">NO CORRESPONDE A O/S — Verif. Campo</span>';
+
+      // 11 checks documentales PMO + Ficha Campo
+      const chkDefs = typeof FICHA_CAMPO_DOC_DEFS !== 'undefined'
+        ? FICHA_CAMPO_DOC_DEFS
+        : [['exp','Exp. Técnico'],['cont','Contrato'],['acta_ent','Entrega Terreno'],['cuad','Cuaderno Obra'],['val','Valorizaciones'],['adic','Adicionales/Ded.'],['sup','Supervisión'],['rec','Recepción'],['liq','Liquidación'],['res','Resoluc./Aprob.'],['transf','Transferencia']];
       let chkOkCount = 0;
       const chkGridHtml = chkDefs.map(([key, label]) => {
-        const ok = !!ch[key];
+        const hasOverride = Object.prototype.hasOwnProperty.call(campoChk, key);
+        const ok = hasOverride ? !!campoChk[key] : !!baseCh[key];
         if (ok) chkOkCount++;
-        return `<div class="ficha-chk-item ${ok ? 'ok' : 'miss'}"><span>${escapeHtmlAttr(label)}</span><span>${ok ? '✓ PMO' : '○ Pend.'}</span></div>`;
+        const stateTag = ok ? (hasOverride ? '✓ Caja' : '✓ PMO') : (hasOverride ? '⚠️ Falta' : '○ Pend.');
+        return `<div class="ficha-chk-item ${ok ? 'ok' : 'miss'}"><span>${escapeHtmlAttr(label)}</span><span>${stateTag}</span></div>`;
       }).join('');
       const integridadPct = Math.round((chkOkCount / chkDefs.length) * 100);
       const detectedTagsTxt = (docTags.tags && docTags.tags.length > 0)
         ? docTags.tags.map(t => escapeHtmlAttr(t.label)).join(' • ')
         : 'Sin micro-etiquetas OCR/cajas todavía';
 
-      const faltantes = Array.isArray(p.detalles_faltantes) ? p.detalles_faltantes.filter(Boolean) : [];
+      const baseFaltantes = Array.isArray(p.detalles_faltantes) ? p.detalles_faltantes.filter(Boolean) : [];
+      const campoFaltantes = fc.fal ? String(fc.fal).split(/[;\n•]+/).map(x => x.trim()).filter(Boolean) : [];
+      const faltantes = Array.from(new Set([...baseFaltantes, ...campoFaltantes]));
+      const cleanAlerta = (typeof parseFichaCampoFromNotas === 'function' ? parseFichaCampoFromNotas(p.alerta).plainNotas : String(p.alerta || '')).trim();
       const obsNotes = [
         p.resolucion_liquidacion ? `Sustento cierre/liq.: ${p.resolucion_liquidacion}` : '',
         p.comentario_ing ? `Nota Ing. FDM: ${p.comentario_ing}` : '',
-        p.alerta ? `Observación PMO: ${p.alerta}` : ''
+        cleanAlerta ? `Observación Campo/PMO: ${cleanAlerta}` : ''
       ].filter(Boolean);
 
       const missingHtml = faltantes.length > 0
-        ? `<div class="ficha-missing-box"><strong>⚠️ Documentación faltante / pendiente de regularización (${faltantes.length}):</strong> ${faltantes.map(x => escapeHtmlAttr(x)).join(' • ')}${obsNotes.length ? `<br><strong>Notas PMO:</strong> ${obsNotes.map(x => escapeHtmlAttr(x)).join(' | ')}` : ''}</div>`
+        ? `<div class="ficha-missing-box"><strong>⚠️ Documentación faltante / pendiente de regularización (${faltantes.length}):</strong> ${faltantes.map(x => escapeHtmlAttr(x)).join(' • ')}${obsNotes.length ? `<br><strong>Notas PMO / Campo:</strong> ${obsNotes.map(x => escapeHtmlAttr(x)).join(' | ')}` : ''}</div>`
         : `<div class="ficha-ok-box">✅ Sin brechas críticas registradas en Matriz PMO.${obsNotes.length ? ` <span style="color:#0F172A; font-weight:600;">Notas: ${obsNotes.map(x => escapeHtmlAttr(x)).join(' | ')}</span>` : ''}</div>`;
 
       // Inventario físico de cajas
@@ -8399,7 +8504,7 @@
           </table>
         `;
       } else {
-        hitosHtml = `<div style="border:1px solid #CBD5E1; border-top:none; padding:4px 7px; font-size:7.2pt; color:#64748B; font-style:italic;">Sin actuados extraídos en Tomos PMO 2022–2024 (sustento sujeto a archivo físico y áreas remitentes).</div>`;
+        hitosHtml = `<div style="border:1px solid #CBD5E1; border-top:none; padding:4px 7px; font-size:7.2pt; color:#475569; font-style:italic;">Sin actuados extraídos en Tomos PMO 2022–2024 (sustento sujeto a archivo físico y áreas remitentes).</div>`;
       }
 
       const pseudoPill = pseudo ? `<span class="ficha-pseudo-pill">🏷️ ${escapeHtmlAttr(pseudo)}</span>` : '';
@@ -8443,19 +8548,19 @@
                 <td class="lbl">Tipología / Rubro:</td>
                 <td class="val">${strOrPending(p.tipologia || p.tipo_obra)}</td>
                 <td class="lbl">Modalidad Ejecución:</td>
-                <td class="val">${strOrPending(p.modalidad, 'Por determinar (Logística)')}</td>
+                <td class="val">${strOrPending(p.modalidad, 'NO CORRESPONDE A O/S — Logística / PMO', true)}</td>
               </tr>
               <tr>
                 <td class="lbl">Contratista / Ejecutor:</td>
-                <td class="val">${strOrPending(p.contratista, 'Por determinar (Logística)')}</td>
+                <td class="val">${strOrPending(p.contratista, 'NO CORRESPONDE A O/S — Logística / Contratos', true)}</td>
                 <td class="lbl">N° y Fecha Contrato:</td>
-                <td class="val">${strOrPending(p.contrato, 'Por determinar (Logística)')}</td>
+                <td class="val">${strOrPending(p.contrato, 'NO CORRESPONDE A O/S — Logística / Contratos', true)}</td>
               </tr>
               <tr>
                 <td class="lbl">Supervisión / Insp.:</td>
-                <td class="val"><span class="val-pending">Por determinar (Logística / PMO)</span></td>
+                <td class="val"><span class="val-out-of-scope">NO CORRESPONDE A O/S — Logística / PMO</span></td>
                 <td class="lbl">Plazo / Ent. Terreno:</td>
-                <td class="val">${strOrPending(p.plazo)} • Terr.: ${strOrPending(p.entrega_terreno)}</td>
+                <td class="val">${strOrPending(mergedPlazo, 'Por determinar (Campo)')} • Terr.: ${strOrPending(mergedEnt, 'Por determinar (Campo)')}</td>
               </tr>
               <tr>
                 <td class="lbl">Fecha de Inicio:</td>
@@ -8465,7 +8570,7 @@
               </tr>
               <tr>
                 <td class="lbl">Acuerdos FDM / Mun.:</td>
-                <td class="val" colspan="3">${agreements ? escapeHtmlAttr(agreements) : '<span class="val-pending">Por determinar (Dirección Ejecutiva / Actas)</span>'}</td>
+                <td class="val" colspan="3">${agreements ? `<strong>${escapeHtmlAttr(agreements)}</strong>` : '<span class="val-out-of-scope">NO CORRESPONDE A O/S — Dirección Ejecutiva / Actas</span>'}</td>
               </tr>
             </tbody>
           </table>
@@ -8475,30 +8580,30 @@
             <tbody>
               <tr>
                 <td class="lbl">Presup. Priorizado:</td>
-                <td class="val">${formatFichaSolesOrPending(p.prio)}</td>
+                <td class="val">${formatFichaSolesOrPending(p.prio, 'NO CORRESPONDE A O/S — Contabilidad', true)}</td>
                 <td class="lbl">Ampliación Presup.:</td>
-                <td class="val">${formatFichaSolesOrPending(p.ampliacion_presupuestal, 'S/ 0.00 / Por determinar')}</td>
+                <td class="val">${formatFichaSolesOrPending(p.ampliacion_presupuestal, 'NO CORRESPONDE A O/S — Contabilidad / Presup.', true)}</td>
               </tr>
               <tr>
                 <td class="lbl">Costo Total Matriz:</td>
-                <td class="val">${formatFichaSolesOrPending(p.costo_total)}</td>
+                <td class="val">${formatFichaSolesOrPending(p.costo_total, 'NO CORRESPONDE A O/S — Contabilidad / Finanzas', true)}</td>
                 <td class="lbl">Monto Contratado:</td>
-                <td class="val">${formatFichaSolesOrPending(p.monto_contratado, 'Por determinar (Logística)')}</td>
+                <td class="val">${formatFichaSolesOrPending(p.monto_contratado, 'NO CORRESPONDE A O/S — Logística / Contratos', true)}</td>
               </tr>
               <tr>
                 <td class="lbl">Costo Ejecutado PMO:</td>
-                <td class="val">${formatFichaSolesOrPending(p.costo_ejec)}</td>
+                <td class="val">${formatFichaSolesOrPending(p.costo_ejec, 'NO CORRESPONDE A O/S — Contabilidad / Finanzas', true)}</td>
                 <td class="lbl">Pagos / Saldos Contab.:</td>
-                <td class="val"><span class="val-pending">Por determinar (requiere conciliación Contabilidad)</span></td>
+                <td class="val"><span class="val-out-of-scope">NO CORRESPONDE A O/S — Conciliación Contabilidad / Finanzas</span></td>
               </tr>
             </tbody>
           </table>
           <div class="ficha-status-strip">
             <div class="ficha-status-box"><div class="st-k">Ejecución</div><div class="st-v">${stEjec}</div></div>
-            <div class="ficha-status-box"><div class="st-k">Recepción</div><div class="st-v">${escapeHtmlAttr(stRecep)}</div></div>
+            <div class="ficha-status-box"><div class="st-k">Recepción</div><div class="st-v">${stRecep}</div></div>
             <div class="ficha-status-box"><div class="st-k">Liquidación</div><div class="st-v">${stLiq}</div></div>
-            <div class="ficha-status-box"><div class="st-k">Transferencia</div><div class="st-v">${escapeHtmlAttr(stTransf)}</div></div>
-            <div class="ficha-status-box"><div class="st-k">Operatividad</div><div class="st-v val-pending">${escapeHtmlAttr(stOper)}</div></div>
+            <div class="ficha-status-box"><div class="st-k">Transferencia</div><div class="st-v">${stTransf}</div></div>
+            <div class="ficha-status-box"><div class="st-k">Operatividad</div><div class="st-v">${stOper}</div></div>
           </div>
 
           <div class="ficha-sec-hdr">III. Control Documental y Brechas Identificadas (Integridad Ref. PMO: ${integridadPct}% • ${chkOkCount}/${chkDefs.length} ítems)</div>
@@ -8513,7 +8618,7 @@
           ${hitosHtml}
 
           <div class="ficha-note-legal">
-            <strong>Alcance y Validación (O/S N° I11-00014):</strong> Ficha generada automáticamente con la información recopilada en Gerencia PMO al ${escapeHtmlAttr(fechaCorte)}. Los campos indicados como <em>"Por determinar"</em> corresponden a información cuya validación, conciliación financiera o verificación física compete a Contabilidad, Administración/Logística, Asesoría Legal o verificación en campo, conforme a la regla de registro del borrador PMO-MAN-01 V.02.
+            <strong>Alcance y Deslinde Contractual (O/S N° I11-00014):</strong> Los campos resaltados en <strong>NEGRITA ("NO CORRESPONDE A O/S")</strong> exceden el alcance del servicio de recopilación, organización y ubicación documental (corresponden a Contabilidad/Finanzas, Administración/Logística, Dirección Ejecutiva, Asesoría Legal o verificación de operatividad en campo, conforme a los págs. 8, 9 y 16 del borrador PMO-MAN-01 V.02). Los campos marcados como <em>"Por determinar"</em> corresponden a información documental verificable desde la Ficha de Campo.
           </div>
 
           <div class="ficha-sign-row">
