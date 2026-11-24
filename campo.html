@@ -23,75 +23,76 @@
     body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background: var(--bg); color: var(--text); padding-bottom: 85px; }
 
     /* Sticky Header */
-    .top-header { position: sticky; top: 0; z-index: 40; background: #0F172A; color: white; padding: 0.75rem 1rem; box-shadow: 0 2px 8px rgba(0,0,0,0.15); }
-    .header-top { display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; }
-    .header-title { font-size: 0.95rem; font-weight: 700; display: flex; align-items: center; gap: 0.4rem; }
-    .header-sub { font-size: 0.7rem; color: #94A3B8; margin-top: 2px; }
-    .header-actions { display: flex; gap: 0.4rem; }
-    .btn-action { background: #1E293B; border: 1px solid #334155; color: white; padding: 0.35rem 0.65rem; border-radius: 8px; font-size: 0.75rem; font-weight: 600; text-decoration: none; display: inline-flex; align-items: center; gap: 0.3rem; cursor: pointer; }
+    .top-header { position: sticky; top: 0; z-index: 40; background: #0F172A; color: white; padding: 0.5rem 0.8rem; box-shadow: 0 2px 8px rgba(0,0,0,0.15); }
+    .header-top { display: flex; align-items: center; justify-content: space-between; gap: 0.45rem; }
+    .header-title { font-size: 0.9rem; font-weight: 700; display: flex; align-items: center; gap: 0.35rem; }
+    .header-sub { font-size: 0.66rem; color: #94A3B8; margin-top: 1px; }
+    .header-actions { display: flex; gap: 0.35rem; }
+    .btn-action { background: #1E293B; border: 1px solid #334155; color: white; padding: 0.32rem 0.58rem; border-radius: 8px; font-size: 0.72rem; font-weight: 600; text-decoration: none; display: inline-flex; align-items: center; gap: 0.28rem; cursor: pointer; }
     .btn-action.green { background: #16A34A; border-color: #15803D; }
 
     /* Search & Filter Bar */
-    .search-box { padding: 0.75rem 1rem; background: white; border-bottom: 1px solid var(--border); position: sticky; top: 56px; z-index: 30; }
+    .search-box { padding: 0.5rem 0.75rem; background: white; border-bottom: 1px solid var(--border); position: sticky; top: 48px; z-index: 30; }
     .search-input-wrap { position: relative; }
-    .search-input { width: 100%; padding: 0.65rem 0.85rem 0.65rem 2.2rem; border-radius: 10px; border: 1px solid var(--border); font-size: 0.9rem; outline: none; background: #F1F5F9; }
+    .search-input { width: 100%; padding: 0.52rem 2.1rem 0.52rem 2.1rem; border-radius: 10px; border: 1px solid var(--border); font-size: 0.86rem; outline: none; background: #F1F5F9; }
     .search-input:focus { background: white; border-color: var(--primary-accent); }
-    .search-icon { position: absolute; left: 0.75rem; top: 50%; transform: translateY(-50%); color: var(--text-muted); font-size: 0.9rem; }
-    
+    .search-icon { position: absolute; left: 0.7rem; top: 50%; transform: translateY(-50%); color: var(--text-muted); font-size: 0.85rem; }
+    .search-clear-btn-campo { position: absolute; right: 0.45rem; top: 50%; transform: translateY(-50%); border: none; background: #CBD5E1; color: #1E293B; width: 22px; height: 22px; border-radius: 50%; font-size: 0.72rem; font-weight: 800; cursor: pointer; display: none; align-items: center; justify-content: center; }
+
     /* Chips */
-    .chips-bar { display: flex; gap: 0.4rem; overflow-x: auto; padding: 0.5rem 0 0.2rem 0; scrollbar-width: none; }
+    .chips-bar { display: flex; gap: 0.35rem; overflow-x: auto; padding: 0.42rem 0 0.15rem 0; scrollbar-width: none; }
     .chips-bar::-webkit-scrollbar { display: none; }
-    .chip { padding: 0.3rem 0.65rem; border-radius: 9999px; font-size: 0.73rem; font-weight: 600; white-space: nowrap; background: #E2E8F0; color: #475569; border: none; cursor: pointer; }
+    .chip { padding: 0.28rem 0.6rem; border-radius: 9999px; font-size: 0.71rem; font-weight: 600; white-space: nowrap; background: #E2E8F0; color: #475569; border: none; cursor: pointer; }
     .chip.active { background: #0F172A; color: white; }
     .chip.alert.active { background: #CA8A04; }
     .chip.green.active { background: #16A34A; }
 
     /* Counter bar */
-    .count-bar { padding: 0.4rem 1rem; font-size: 0.75rem; color: var(--text-muted); display: flex; justify-content: space-between; align-items: center; }
+    .count-bar { padding: 0.35rem 0.8rem; font-size: 0.73rem; color: var(--text-muted); display: flex; justify-content: space-between; align-items: center; }
 
     /* Project Cards List */
-    .project-list { padding: 0.5rem 1rem; display: flex; flex-direction: column; gap: 0.65rem; }
-    .card { background: var(--card-bg); border-radius: 12px; border: 1px solid var(--border); padding: 0.85rem; box-shadow: 0 1px 3px rgba(0,0,0,0.03); cursor: pointer; transition: transform 0.1s, border-color 0.15s; }
+    .project-list { padding: 0.45rem 0.75rem; display: flex; flex-direction: column; gap: 0.5rem; }
+    .card { background: var(--card-bg); border-radius: 11px; border: 1px solid var(--border); padding: 0.72rem; box-shadow: 0 1px 3px rgba(0,0,0,0.03); cursor: pointer; transition: transform 0.1s, border-color 0.15s; }
     .card:active { transform: scale(0.99); }
     .card.has-data { border-left: 4px solid var(--primary-accent); }
     .card.has-photos { border-left: 4px solid var(--success); }
     .card.missing-start { border-left: 4px solid var(--danger); }
-    
-    .card-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 0.5rem; margin-bottom: 0.35rem; }
-    .card-badge-id { background: #0F172A; color: white; font-size: 0.72rem; font-weight: 800; padding: 0.15rem 0.45rem; border-radius: 6px; }
-    .card-badges { display: flex; gap: 0.3rem; flex-wrap: wrap; }
-    .badge { font-size: 0.68rem; font-weight: 600; padding: 0.15rem 0.45rem; border-radius: 9999px; }
+
+    .card-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 0.45rem; margin-bottom: 0.3rem; }
+    .card-badge-id { background: #0F172A; color: white; font-size: 0.7rem; font-weight: 800; padding: 0.15rem 0.45rem; border-radius: 6px; white-space: nowrap; }
+    .card-badges { display: flex; gap: 0.28rem; flex-wrap: wrap; }
+    .badge { font-size: 0.67rem; font-weight: 600; padding: 0.14rem 0.42rem; border-radius: 9999px; }
     .badge-blue { background: #DBEAFE; color: #1E40AF; }
     .badge-yellow { background: #FEF9C3; color: #854D0E; }
     .badge-green { background: #DCFCE7; color: #166534; }
     .badge-red { background: #FEE2E2; color: #991B1B; }
     .badge-gray { background: #F1F5F9; color: #475569; }
 
-    .card-title { font-size: 0.86rem; font-weight: 700; color: var(--text); line-height: 1.35; margin-bottom: 0.4rem; }
-    .card-meta { display: grid; grid-template-columns: 1fr 1fr; gap: 0.3rem; font-size: 0.72rem; color: var(--text-muted); background: #F8FAFC; padding: 0.45rem 0.6rem; border-radius: 8px; margin-top: 0.4rem; }
+    .card-title { font-size: 0.84rem; font-weight: 700; color: var(--text); line-height: 1.32; margin-bottom: 0.35rem; }
+    .card-meta { display: grid; grid-template-columns: 1fr 1fr; gap: 0.3rem; font-size: 0.71rem; color: var(--text-muted); background: #F8FAFC; padding: 0.4rem 0.55rem; border-radius: 8px; margin-top: 0.35rem; }
     .card-photos-count { display: inline-flex; align-items: center; gap: 0.25rem; font-size: 0.72rem; font-weight: 700; color: var(--success); }
 
     /* Modal / Drawer */
     .drawer-backdrop { position: fixed; inset: 0; background: rgba(15, 23, 42, 0.75); backdrop-filter: blur(4px); z-index: 50; display: none; align-items: flex-end; justify-content: center; }
     .drawer-backdrop.open { display: flex; }
-    .drawer { background: white; width: 100%; max-width: 600px; height: 92vh; border-radius: 20px 20px 0 0; display: flex; flex-direction: column; overflow: hidden; animation: slideUp 0.25s ease-out; }
+    .drawer { background: white; width: 100%; max-width: 600px; height: 95vh; border-radius: 16px 16px 0 0; display: flex; flex-direction: column; overflow: hidden; animation: slideUp 0.25s ease-out; }
     @keyframes slideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
 
-    .drawer-header { padding: 1rem; background: #0F172A; color: white; display: flex; justify-content: space-between; align-items: center; }
-    .drawer-header h3 { font-size: 0.95rem; font-weight: 700; }
-    .drawer-close { background: #1E293B; border: none; color: white; width: 32px; height: 32px; border-radius: 50%; font-size: 1rem; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+    .drawer-header { padding: 0.7rem 0.9rem; background: #0F172A; color: white; display: flex; justify-content: space-between; align-items: center; flex-shrink: 0; }
+    .drawer-header h3 { font-size: 0.9rem; font-weight: 700; }
+    .drawer-close { background: #1E293B; border: none; color: white; width: 32px; height: 32px; border-radius: 50%; font-size: 1rem; cursor: pointer; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
 
-    .drawer-tabs { display: flex; background: #0F172A; border-bottom: 2px solid #334155; padding: 0 0.5rem; gap: 0.35rem; overflow-x: auto; -webkit-overflow-scrolling: touch; flex-wrap: nowrap; scrollbar-width: thin; }
-    .drawer-tab { flex: 0 0 auto; white-space: nowrap; padding: 0.65rem 0.65rem; font-size: 0.8rem; font-weight: 700; color: #94A3B8; border: none; background: transparent; cursor: pointer; border-bottom: 3px solid transparent; transition: all 0.15s; text-align: center; }
+    .drawer-tabs { display: flex; background: #0F172A; border-bottom: 2px solid #334155; padding: 0 0.4rem; gap: 0.25rem; overflow-x: auto; -webkit-overflow-scrolling: touch; flex-wrap: nowrap; scrollbar-width: thin; flex-shrink: 0; }
+    .drawer-tab { flex: 0 0 auto; white-space: nowrap; padding: 0.58rem 0.6rem; font-size: 0.78rem; font-weight: 700; color: #94A3B8; border: none; background: transparent; cursor: pointer; border-bottom: 3px solid transparent; transition: all 0.15s; text-align: center; }
     .drawer-tab.active { color: #38BDF8; border-bottom-color: #38BDF8; }
 
     .check-list-grid { display: grid; grid-template-columns: 1fr; gap: 0.45rem; margin-top: 0.5rem; }
     .check-item-box { display: flex; align-items: center; gap: 0.6rem; background: white; border: 1px solid #CBD5E1; padding: 0.5rem 0.75rem; border-radius: 8px; font-size: 0.8rem; font-weight: 600; color: #1E293B; cursor: pointer; }
     .check-item-box input[type="checkbox"] { width: 18px; height: 18px; accent-color: #2563EB; cursor: pointer; }
 
-    .drawer-body { padding: 1rem; overflow-y: auto; flex: 1; display: flex; flex-direction: column; gap: 1rem; }
-    
-    .field-group { background: #F8FAFC; border: 1px solid var(--border); border-radius: 12px; padding: 0.85rem; }
+    .drawer-body { padding: 0.75rem; overflow-y: auto; flex: 1; display: flex; flex-direction: column; gap: 0.65rem; }
+
+    .field-group { background: #F8FAFC; border: 1px solid var(--border); border-radius: 11px; padding: 0.72rem; }
     .field-title { font-size: 0.78rem; font-weight: 700; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.4rem; display: flex; align-items: center; justify-content: space-between; }
     .field-input { width: 100%; padding: 0.6rem; border-radius: 8px; border: 1px solid var(--border); font-size: 0.88rem; outline: none; background: white; margin-top: 0.25rem; }
     .field-input:focus { border-color: var(--primary-accent); }
@@ -187,7 +188,8 @@
   <div class="search-box">
     <div class="search-input-wrap">
       <span class="search-icon">🔍</span>
-      <input type="text" id="searchInput" class="search-input" placeholder="Buscar por N°, nombre, CUI o lugar..." oninput="filterList()">
+      <input type="text" id="searchInput" class="search-input" placeholder="Buscar N°, pseudónimo, nombre, CUI o lugar..." oninput="document.getElementById('btnClearSearchCampo').style.display=this.value?'inline-flex':'none'; filterList();">
+      <button type="button" id="btnClearSearchCampo" class="search-clear-btn-campo" onclick="clearCampoSearch()" title="Limpiar búsqueda">✕</button>
     </div>
     
     <!-- Selector de Ambiente de Trabajo Activo -->
@@ -217,12 +219,14 @@
     </div>
 
     <div class="chips-bar">
+      <button class="chip" onclick="setFilter('TDR_2022_2025', this)" style="border:1px solid #D97706; background:#FFFBEB; color:#92400E; font-weight:800;">🎯 TDR 2022–2025 (<span id="countTdr">0</span>)</button>
       <button class="chip active" onclick="setFilter('OBRA_CIVIL', this)" style="border-color: #2563EB; font-weight: 800;">🏗️ Obras Civiles (<span id="countCivil">72</span>)</button>
       <button class="chip" onclick="setFilter('BLK_2021_CULM', this)" style="border-color:#8B5CF6; color:#5B21B6; background:#F5F3FF; font-weight:800;">🗂️ 2021-Culm. (<span id="countBlk2021">0</span>)</button>
       <button class="chip" onclick="setFilter('BLK_2022', this)" style="border-color:#2563EB; color:#1D4ED8; background:#EFF6FF; font-weight:800;">🗂️ 2022 (<span id="countBlk2022">0</span>)</button>
       <button class="chip" onclick="setFilter('BLK_2023', this)" style="border-color:#0D9488; color:#0F766E; background:#F0FDFA; font-weight:800;">🗂️ 2023 (<span id="countBlk2023">0</span>)</button>
       <button class="chip" onclick="setFilter('BLK_2024', this)" style="border-color:#D97706; color:#B45309; background:#FFFBEB; font-weight:800;">🗂️ 2024 (<span id="countBlk2024">0</span>)</button>
       <button class="chip" onclick="setFilter('BLK_2025', this)" style="border-color:#DC2626; color:#B91C1C; background:#FEF2F2; font-weight:800;">🗂️ 2025 (<span id="countBlk2025">0</span>)</button>
+      <button class="chip" onclick="setFilter('FALTA_F02', this)" style="border:1px solid #0D9488; background:#F0FDFA; color:#0F766E; font-weight:800;">📋 Faltan Datos F02 (<span id="countFaltaF02">0</span>)</button>
       <button class="chip alert" onclick="setFilter('PRIO_SIN_CENSAR', this)" style="border-color: #DC2626; color: #DC2626; font-weight: 800;">🚨 Ejecutadas Sin Censar (<span id="countPrioSinCensar">0</span>)</button>
       <button class="chip alert" onclick="setFilter('FALTA_FECHAS', this)">📅 Ejecutadas Sin Fechas (<span id="countSinFechas">0</span>)</button>
       <button class="chip green" onclick="setFilter('WITH_PHOTOS', this)">📸 Con Fotos (<span id="countWithPhotos">0</span>)</button>
@@ -263,22 +267,22 @@
         <button class="drawer-close" onclick="closeDrawer()">✕</button>
       </div>
 
-      <!-- Pestañas Modulares de Trabajo -->
+      <!-- Pestañas Modulares de Trabajo (prioriza Fase 2 y Ficha F02) -->
       <div class="drawer-tabs">
-        <button type="button" class="drawer-tab active" id="tabBtnCajas" onclick="switchDrawerTab('CAJAS')">
-          📦 1. Cajas c/Rótulo <span id="tabBadgeCajas" class="badge badge-gray" style="font-size: 0.65rem; margin-left: 0.25rem;">0</span>
+        <button type="button" class="drawer-tab active" id="tabBtnFase2" onclick="switchDrawerTab('FASE2')" style="color:#6EE7B7;">
+          🏛️ Fase 2 <span id="tabBadgeFase2" class="badge badge-gray" style="font-size: 0.65rem; margin-left: 0.25rem;">0</span>
+        </button>
+        <button type="button" class="drawer-tab" id="tabBtnDocs" onclick="switchDrawerTab('DOCS')" style="color:#5EEAD4;">
+          📋 Ficha F02
+        </button>
+        <button type="button" class="drawer-tab" id="tabBtnCajas" onclick="switchDrawerTab('CAJAS')">
+          📦 F1 Cajas <span id="tabBadgeCajas" class="badge badge-gray" style="font-size: 0.65rem; margin-left: 0.25rem;">0</span>
         </button>
         <button type="button" class="drawer-tab" id="tabBtnArmarRotulo" onclick="switchDrawerTab('ARMAR_ROTULO')">
-          🆕 2. Caja Nueva <span id="tabBadgeItems" class="badge badge-gray" style="font-size: 0.65rem; margin-left: 0.25rem;">0</span>
+          🆕 Caja Nueva <span id="tabBadgeItems" class="badge badge-gray" style="font-size: 0.65rem; margin-left: 0.25rem;">0</span>
         </button>
         <button type="button" class="drawer-tab" id="tabBtnSueltos" onclick="switchDrawerTab('SUELTOS')">
-          📁 3. Doc. Sueltos <span id="tabBadgeSueltos" class="badge badge-gray" style="font-size: 0.65rem; margin-left: 0.25rem;">0</span>
-        </button>
-        <button type="button" class="drawer-tab" id="tabBtnFase2" onclick="switchDrawerTab('FASE2')" style="color:#6EE7B7;">
-          🏛️ 4. Fase 2 <span id="tabBadgeFase2" class="badge badge-gray" style="font-size: 0.65rem; margin-left: 0.25rem;">0</span>
-        </button>
-        <button type="button" class="drawer-tab" id="tabBtnDocs" onclick="switchDrawerTab('DOCS')">
-          📋 5. Ficha Campo (F02)
+          📁 Sueltos <span id="tabBadgeSueltos" class="badge badge-gray" style="font-size: 0.65rem; margin-left: 0.25rem;">0</span>
         </button>
       </div>
 
@@ -2984,15 +2988,20 @@
       let countMulti = 0;
       let countLiq = 0;
       let countEnLiqExec = 0;
+      let countTdr = 0;
+      let countFaltaF02 = 0;
       const blkCounts = { '2021_CULM': 0, '2022': 0, '2023': 0, '2024': 0, '2025': 0 };
 
       projects.forEach(p => {
         const isMulti = p.id === 999 || p.es_multiproyecto;
         if (isMulti) countMulti++;
+        const blkKey = p.es_obra_civil ? getCampoArchiveBlockKey(p) : '';
         if (p.es_obra_civil) {
           countCivil++;
-          const blkKey = getCampoArchiveBlockKey(p);
-          if (blkKey && blkCounts[blkKey] !== undefined) blkCounts[blkKey]++;
+          if (blkKey && blkCounts[blkKey] !== undefined) {
+            blkCounts[blkKey]++;
+            countTdr++;
+          }
         }
 
         const d = fieldData[p.id] || {};
@@ -3011,6 +3020,9 @@
           const hasIni = !!(d.fecha_inicio || (p.tiene_fecha_inicio && p.fecha_inicio && !p.fecha_inicio.toUpperCase().includes('SIN INICIO')));
           const hasFin = !!(d.fecha_culm || p.tiene_fecha_termino || (p.fecha_culminacion_real && p.fecha_culminacion_real !== '-' && /\d/.test(p.fecha_culminacion_real)));
           if (isEjec && (!hasIni || !hasFin)) countSinFechas++;
+          const fcLocal = d.ficha_campo || getFichaCampoEntry(p.id);
+          const hasF02 = !!(fcLocal && (fcLocal.plz || fcLocal.ent || fcLocal.rec || fcLocal.liq || fcLocal.trf || fcLocal.fal || (fcLocal.chk && Object.keys(fcLocal.chk).length > 0)));
+          if (isEjec && !hasF02) countFaltaF02++;
         }
 
         const prov = (p.provincia || '').toUpperCase();
@@ -3021,12 +3033,14 @@
 
       const setC = (id, v) => { const el = document.getElementById(id); if (el) el.innerText = v; };
       setC('countTotal', projects.length);
+      setC('countTdr', countTdr);
       setC('countCivil', countCivil);
       setC('countBlk2021', blkCounts['2021_CULM']);
       setC('countBlk2022', blkCounts['2022']);
       setC('countBlk2023', blkCounts['2023']);
       setC('countBlk2024', blkCounts['2024']);
       setC('countBlk2025', blkCounts['2025']);
+      setC('countFaltaF02', countFaltaF02);
       setC('countPrioSinCensar', countPrioSinCensar);
       setC('countSinFechas', countSinFechas);
       setC('countLiq', countLiq);
@@ -3037,6 +3051,14 @@
       setC('countMN', countMN);
       setC('countGSC', countGSC);
       if (document.getElementById('labelPhotosSaved')) document.getElementById('labelPhotosSaved').innerText = `📸 ${totalPhotos} fotos guardadas`;
+    }
+
+    function clearCampoSearch() {
+      const inp = document.getElementById('searchInput');
+      const btn = document.getElementById('btnClearSearchCampo');
+      if (inp) { inp.value = ''; inp.focus(); }
+      if (btn) btn.style.display = 'none';
+      filterList();
     }
 
     function setFilter(filter, btn) {
@@ -3056,12 +3078,18 @@
         const hasIni = !!(d.fecha_inicio || (p.tiene_fecha_inicio && p.fecha_inicio && !p.fecha_inicio.toUpperCase().includes('SIN INICIO')));
         const hasFin = !!(d.fecha_culm || p.tiene_fecha_termino || (p.fecha_culminacion_real && p.fecha_culminacion_real !== '-' && /\d/.test(p.fecha_culminacion_real)));
 
+        if (currentFilter === 'TDR_2022_2025') return p.es_obra_civil === true && !!getCampoArchiveBlockKey(p);
         if (currentFilter === 'OBRA_CIVIL') return p.es_obra_civil === true;
         if (currentFilter === 'BLK_2021_CULM') return getCampoArchiveBlockKey(p) === '2021_CULM';
         if (currentFilter === 'BLK_2022') return getCampoArchiveBlockKey(p) === '2022';
         if (currentFilter === 'BLK_2023') return getCampoArchiveBlockKey(p) === '2023';
         if (currentFilter === 'BLK_2024') return getCampoArchiveBlockKey(p) === '2024';
         if (currentFilter === 'BLK_2025') return getCampoArchiveBlockKey(p) === '2025';
+        if (currentFilter === 'FALTA_F02') {
+          const fcLocal = d.ficha_campo || getFichaCampoEntry(p.id);
+          const hasF02 = !!(fcLocal && (fcLocal.plz || fcLocal.ent || fcLocal.rec || fcLocal.liq || fcLocal.trf || fcLocal.fal || (fcLocal.chk && Object.keys(fcLocal.chk).length > 0)));
+          return p.es_obra_civil === true && isCampoExecutedOrLiq(p) && !hasF02;
+        }
         if (currentFilter === 'MULTI_OBRA') return isMulti;
         if (currentFilter === 'PRIO_SIN_CENSAR') return p.es_obra_civil === true && isCampoExecutedOrLiq(p) && !hasPhotos;
         if (currentFilter === 'FALTA_FECHAS') return p.es_obra_civil === true && isCampoExecutedOrLiq(p) && (!hasIni || !hasFin);
@@ -3149,6 +3177,13 @@
         const blkBadgeHtml = blkMeta
           ? `<span class="badge" style="background:${blkMeta.bg}; color:${blkMeta.color}; border:1px solid ${blkMeta.color}; font-weight:800;">🗂️ Bloque ${blkMeta.short}</span>`
           : '';
+        const pseudo = getProjectPseudonym(p.id);
+        const pseudoBadgeHtml = pseudo
+          ? `<div style="margin-bottom:4px;"><span style="display:inline-block; background:#CCFBF1; color:#0F766E; border:1px solid #5EEAD4; border-radius:5px; padding:1px 7px; font-size:0.7rem; font-weight:900;">🏷️ ${pseudo.replace(/&/g,'&amp;').replace(/</g,'&lt;')}</span></div>`
+          : '';
+        const f2PhotosCount = (d.fotos || []).filter(f => isCampoFase2Photo(f)).length;
+        const fcLocal = d.ficha_campo || getFichaCampoEntry(p.id);
+        const hasF02 = !!(fcLocal && (fcLocal.plz || fcLocal.ent || fcLocal.rec || fcLocal.liq || fcLocal.trf || fcLocal.fal || (fcLocal.chk && Object.keys(fcLocal.chk).length > 0)));
 
         return `
           <div class="${cardClass}" onclick="openDrawer(${p.id})">
@@ -3158,11 +3193,14 @@
                 ${!isMulti ? `<span class="badge" style="background: ${sInfo.bg}; color: ${sInfo.col}; font-weight: 800;"${sitTitleAttr}>${sInfo.label}</span>` : `<span class="badge" style="background: #F3E8FF; color: #7E22CE; font-weight: 800;">📦 CAJAS MIXTAS</span>`}
                 ${blkBadgeHtml}
                 ${sitChip}
+                ${f2PhotosCount > 0 ? `<span class="badge" style="background:#ECFDF5; color:#065F46; border:1px solid #6EE7B7; font-weight:800;">🏛️ F2 (${f2PhotosCount})</span>` : ''}
+                ${hasF02 ? `<span class="badge" style="background:#F0FDFA; color:#0F766E; border:1px solid #5EEAD4; font-weight:800;">📋 F02 ✓</span>` : ''}
                 ${p.cui && p.cui !== 'N/D' && p.cui !== 'S/N' ? `<span class="badge badge-gray">CUI: ${p.cui}</span>` : ''}
                 ${dateBadgeHtml}
                 ${photosCount > 0 ? `<span class="badge badge-green">📸 ${photosCount}</span>` : ''}
               </div>
             </div>
+            ${pseudoBadgeHtml}
             <div class="card-title">${p.desc}</div>
             <div class="card-meta">
               <div style="${!ambs && isEjec ? 'color:#DC2626;' : ''}">📍 <strong>${ubicacion}</strong></div>
@@ -3203,6 +3241,10 @@
       if (btnSueltos) btnSueltos.classList.toggle('active', tabName === 'SUELTOS');
       if (btnFase2) btnFase2.classList.toggle('active', tabName === 'FASE2');
       if (btnDocs) btnDocs.classList.toggle('active', tabName === 'DOCS');
+
+      const pvBar = document.getElementById('campoPhotoViewBar');
+      if (pvBar) pvBar.style.display = (tabName === 'DOCS') ? 'none' : 'flex';
+      try { localStorage.setItem('fdm_campo_last_tab', tabName); } catch (e) {}
 
       if (tabName === 'SUELTOS') {
         updateSueltoDisplay();
@@ -3464,8 +3506,15 @@
           }
         }
 
-        // Por defecto siempre aterrizar en la Pestaña 1: Censo de Cajas
-        switchDrawerTab('CAJAS');
+        // Recordar última pestaña usada (por defecto Fase 2 al iniciar)
+        let lastTab = 'FASE2';
+        try {
+          const savedTab = localStorage.getItem('fdm_campo_last_tab');
+          if (savedTab === 'FASE2' || savedTab === 'DOCS' || savedTab === 'CAJAS' || savedTab === 'ARMAR_ROTULO' || savedTab === 'SUELTOS') {
+            lastTab = savedTab;
+          }
+        } catch (e) {}
+        switchDrawerTab(lastTab);
 
         renderDrawerPhotos();
         
