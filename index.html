@@ -8743,6 +8743,204 @@
       filterTable();
     }
 
+    function exportListadoPreliminarAuditoriaExcel() {
+      if (typeof XLSX === 'undefined') {
+        alert("La librería Excel aún está cargando. Intenta de nuevo en unos segundos.");
+        return;
+      }
+      const civilProjects = (projectsData || []).filter(p => p && p.es_obra_civil === true && p.id !== 999);
+      const tdrList = [];
+      const validarList = [];
+      const restList = [];
+
+      const getStartYrNum = (p) => (hasValidStart(p) ? parseInt(getProjectStartYear(p) || '0', 10) : 0);
+      const getEndYrNum = (p) => (hasValidEnd(p) ? parseInt(getProjectEndYear(p) || '0', 10) : 0);
+
+      civilProjects.forEach(p => {
+        const est = String(p.estatus || '').toUpperCase().trim();
+        const sit = String(p.estado_situacional || '').toUpperCase().trim();
+        const iy = getStartYrNum(p);
+        const fy = getEndYrNum(p);
+        const iniStr = hasValidStart(p) ? p.fecha_inicio : 'Por validar PMO';
+        const finRaw = p.fecha_termino_verificada_ing || (p.fecha_culminacion_real && p.fecha_culminacion_real !== '-' ? p.fecha_culminacion_real : '');
+        const finStr = hasValidEnd(p) ? finRaw : 'Por validar PMO';
+        const isEj = isProjectExecutedOrLiquidated(p) || (fy >= 2022 && fy <= 2025);
+        const ubic = compileUbicacionFase2(p.id) || compileUbicacionCajas(p.id) || 'Por ubicar / en reencajonamiento';
+        const cleanAlerta = typeof parseFichaCampoFromNotas === 'function' ? parseFichaCampoFromNotas(p.alerta).plainNotas : String(p.alerta || '');
+        const obs = [p.resolucion_liquidacion, p.comentario_ing, cleanAlerta].filter(Boolean).join(' | ') || '—';
+        const pseudo = typeof getProjectPseudonym === 'function' ? getProjectPseudonym(p.id) : '';
+        const baseObj = {
+          p,
+          pmoCode: formatPmoCode(p),
+          pseudo,
+          convenio: p.convenio || '',
+          provincia: p.provincia || '',
+          cui: (p.cui && p.cui !== 'N/D') ? p.cui : 'S/N',
+          desc: p.desc || '',
+          estatus: p.estatus || '',
+          sit: p.estado_situacional || (est === 'EJECUTADO' ? 'Finalizado / Ejecutado' : '—'),
+          ini: iniStr,
+          fin: finStr,
+          iy,
+          fy,
+          prio: Number(p.prio || 0),
+          ejec: Number(p.costo_ejec || 0),
+          ubic,
+          obs
+        };
+
+        if (isProjectInTdr2022_2025(p)) {
+          const blk = getProjectArchiveBlock(p);
+          baseObj.blk = blk ? blk.key : '2022';
+          baseObj.blkLabel = blk ? blk.label : 'PERIODO 2022–2025';
+          tdrList.push(baseObj);
+        } else if (isEj && iy === 0 && fy === 0) {
+          baseObj.motivo = 'Obra ejecutada sin fecha acreditada en matriz PMO (validar si culminó en 2022–2025)';
+          validarList.push(baseObj);
+        } else if ((fy > 0 && fy < 2022) || (iy > 0 && iy < 2022 && !(fy >= 2022 && fy <= 2025))) {
+          baseObj.cat = 'PRE_2022';
+          baseObj.motivo = `Periodo anterior a 2022 (${iy || fy})`;
+          restList.push(baseObj);
+        } else if (iy >= 2026 || fy >= 2026) {
+          baseObj.cat = 'POST_2025';
+          baseObj.motivo = 'Periodo 2026 (posterior al corte 2022–2025)';
+          restList.push(baseObj);
+        } else if (est.includes('EN EJECUCION')) {
+          baseObj.cat = 'EN_EJECUCION';
+          baseObj.motivo = 'En ejecución vigente (aún no culminada según matriz PMO)';
+          restList.push(baseObj);
+        } else {
+          baseObj.cat = 'OTROS_NO_EJEC';
+          baseObj.motivo = `No ejecutada / Por ejecutar / Expediente observado (${p.estatus || 'Sin estatus'})`;
+          restList.push(baseObj);
+        }
+      });
+
+      tdrList.sort((a, b) => compareProjectsArchiveOrder(a.p, b.p));
+      validarList.sort((a, b) => a.p.id - b.p.id);
+      restList.sort((a, b) => a.p.id - b.p.id);
+
+      const fechaStr = new Date().toLocaleDateString('es-PE');
+      const resumenRows = ARCHIVE_BLOCK_ORDER.map(k => {
+        const sub = tdrList.filter(r => r.blk === k);
+        return {
+          'CATEGORÍA / BLOQUE': `Obras 2022–2025 Confirmadas — ${ARCHIVE_BLOCKS[k].label}`,
+          'HOJA DETALLE': '1_OBRAS_2022_2025',
+          'CANT. OBRAS': sub.length,
+          'PRESUP. PRIORIZADO (S/)': Number(sub.reduce((s, x) => s + x.prio, 0).toFixed(2)),
+          'COSTO EJECUTADO REF. PMO (S/)': Number(sub.reduce((s, x) => s + x.ejec, 0).toFixed(2))
+        };
+      });
+      resumenRows.push(
+        {
+          'CATEGORÍA / BLOQUE': 'SUBTOTAL OBRAS 2022–2025 CONFIRMADAS',
+          'HOJA DETALLE': '1_OBRAS_2022_2025',
+          'CANT. OBRAS': tdrList.length,
+          'PRESUP. PRIORIZADO (S/)': Number(tdrList.reduce((s, x) => s + x.prio, 0).toFixed(2)),
+          'COSTO EJECUTADO REF. PMO (S/)': Number(tdrList.reduce((s, x) => s + x.ejec, 0).toFixed(2))
+        },
+        {
+          'CATEGORÍA / BLOQUE': 'Obras EJECUTADAS sin fecha acreditada (por validar Gerencia PMO)',
+          'HOJA DETALLE': '2_EJECUTADAS_POR_VALIDAR',
+          'CANT. OBRAS': validarList.length,
+          'PRESUP. PRIORIZADO (S/)': Number(validarList.reduce((s, x) => s + x.prio, 0).toFixed(2)),
+          'COSTO EJECUTADO REF. PMO (S/)': Number(validarList.reduce((s, x) => s + x.ejec, 0).toFixed(2))
+        },
+        {
+          'CATEGORÍA / BLOQUE': 'Resto de Cartera Civil (En ejecución, Pre-2022, 2026, Por ejecutar/Obs.)',
+          'HOJA DETALLE': '3_CARTERA_RESTANTE_72',
+          'CANT. OBRAS': restList.length,
+          'PRESUP. PRIORIZADO (S/)': Number(restList.reduce((s, x) => s + x.prio, 0).toFixed(2)),
+          'COSTO EJECUTADO REF. PMO (S/)': Number(restList.reduce((s, x) => s + x.ejec, 0).toFixed(2))
+        },
+        {
+          'CATEGORÍA / BLOQUE': `TOTAL OBRAS CIVILES OBJETIVO (Corte ${fechaStr} • Avance Preliminar O/S I11-00014)`,
+          'HOJA DETALLE': 'Hojas 1 + 2 + 3',
+          'CANT. OBRAS': civilProjects.length,
+          'PRESUP. PRIORIZADO (S/)': Number(civilProjects.reduce((s, x) => s + Number(x.prio || 0), 0).toFixed(2)),
+          'COSTO EJECUTADO REF. PMO (S/)': Number(civilProjects.reduce((s, x) => s + Number(x.costo_ejec || 0), 0).toFixed(2))
+        }
+      );
+
+      const s1Rows = tdrList.map((r, i) => ({
+        'ÍTEM': i + 1,
+        'N° OBRA': r.p.id,
+        'CÓDIGO REF. PMO': r.pmoCode,
+        'BLOQUE / PERIODO': r.blkLabel,
+        'PSEUDÓNIMO': r.pseudo || '—',
+        'CONVENIO': r.convenio,
+        'PROVINCIA': r.provincia,
+        'CUI': r.cui,
+        'DENOMINACIÓN DEL PROYECTO': r.desc,
+        'ESTATUS MATRIZ PMO': r.estatus,
+        'ESTADO SITUACIONAL': r.sit,
+        'FECHA INICIO': r.ini,
+        'FECHA TÉRMINO / CULM.': r.fin,
+        'PRESUP. PRIORIZADO (S/)': r.prio,
+        'COSTO EJECUTADO REF. PMO (S/)': r.ejec,
+        'UBICACIÓN FÍSICA CENSADA (PMO)': r.ubic,
+        'OBSERVACIÓN / SUSTENTO PMO': r.obs
+      }));
+
+      const s2Rows = validarList.map((r, i) => ({
+        'ÍTEM': i + 1,
+        'N° OBRA': r.p.id,
+        'CÓDIGO REF. PMO': r.pmoCode,
+        'CONVENIO': r.convenio,
+        'PROVINCIA': r.provincia,
+        'CUI': r.cui,
+        'DENOMINACIÓN DEL PROYECTO': r.desc,
+        'ESTATUS MATRIZ PMO': r.estatus,
+        'ESTADO SITUACIONAL': r.sit,
+        'PRESUP. PRIORIZADO (S/)': r.prio,
+        'COSTO EJECUTADO REF. PMO (S/)': r.ejec,
+        'UBICACIÓN FÍSICA CENSADA (PMO)': r.ubic,
+        'OBSERVACIÓN PMO': r.obs,
+        '¿PERTENECE A 2022–2025? (VALIDAR PMO)': 'PENDIENTE VALIDACIÓN PMO',
+        'FECHA INICIO / TÉRMINO REAL (CONFIRMAR PMO)': 'Por confirmar (PMO)'
+      }));
+
+      const s3Rows = restList.map((r, i) => ({
+        'ÍTEM': i + 1,
+        'N° OBRA': r.p.id,
+        'CÓDIGO REF. PMO': r.pmoCode,
+        'CLASIFICACIÓN': r.cat,
+        'MOTIVO DE EXCLUSIÓN (2022–2025)': r.motivo,
+        'CONVENIO': r.convenio,
+        'PROVINCIA': r.provincia,
+        'CUI': r.cui,
+        'DENOMINACIÓN DEL PROYECTO': r.desc,
+        'ESTATUS MATRIZ PMO': r.estatus,
+        'ESTADO SITUACIONAL': r.sit,
+        'FECHA INICIO': r.ini,
+        'FECHA TÉRMINO / CULM.': r.fin,
+        'PRESUP. PRIORIZADO (S/)': r.prio,
+        'COSTO EJECUTADO REF. PMO (S/)': r.ejec,
+        'UBICACIÓN FÍSICA CENSADA (PMO)': r.ubic
+      }));
+
+      const wb = XLSX.utils.book_new();
+      const ws0 = XLSX.utils.json_to_sheet(resumenRows);
+      ws0['!cols'] = [{ wch: 56 }, { wch: 26 }, { wch: 14 }, { wch: 24 }, { wch: 26 }];
+      XLSX.utils.book_append_sheet(wb, ws0, 'RESUMEN_EJECUTIVO');
+
+      const ws1 = XLSX.utils.json_to_sheet(s1Rows);
+      ws1['!cols'] = [{ wch: 6 }, { wch: 8 }, { wch: 17 }, { wch: 24 }, { wch: 22 }, { wch: 11 }, { wch: 16 }, { wch: 11 }, { wch: 48 }, { wch: 14 }, { wch: 20 }, { wch: 14 }, { wch: 18 }, { wch: 17 }, { wch: 17 }, { wch: 36 }, { wch: 38 }];
+      XLSX.utils.book_append_sheet(wb, ws1, '1_OBRAS_2022_2025');
+
+      const ws2 = XLSX.utils.json_to_sheet(s2Rows.length ? s2Rows : [{ 'NOTA': 'Todas las obras ejecutadas ya tienen fechas validadas.' }]);
+      ws2['!cols'] = [{ wch: 6 }, { wch: 8 }, { wch: 17 }, { wch: 11 }, { wch: 16 }, { wch: 11 }, { wch: 48 }, { wch: 14 }, { wch: 18 }, { wch: 17 }, { wch: 17 }, { wch: 34 }, { wch: 34 }, { wch: 24 }, { wch: 28 }];
+      XLSX.utils.book_append_sheet(wb, ws2, '2_EJECUTADAS_POR_VALIDAR');
+
+      const ws3 = XLSX.utils.json_to_sheet(s3Rows);
+      ws3['!cols'] = [{ wch: 6 }, { wch: 8 }, { wch: 17 }, { wch: 18 }, { wch: 36 }, { wch: 11 }, { wch: 16 }, { wch: 11 }, { wch: 46 }, { wch: 16 }, { wch: 18 }, { wch: 14 }, { wch: 16 }, { wch: 17 }, { wch: 17 }, { wch: 32 }];
+      XLSX.utils.book_append_sheet(wb, ws3, '3_CARTERA_RESTANTE_72');
+
+      const stamp = new Date().toISOString().slice(0, 10);
+      XLSX.writeFile(wb, `LISTADO_CONSOLIDADO_PRELIMINAR_OBRAS_2022_2025_FDM_${stamp}.xlsx`);
+      showToast(`📋 Listado Preliminar generado: ${tdrList.length} obras 2022–2025 + ${validarList.length} por validar PMO`);
+    }
+
     // Initialize
     window.addEventListener('DOMContentLoaded', loadProjects);
   </script>
@@ -8954,6 +9152,7 @@
           <button type="button" id="btnSyncGoogleSheet" class="btn" onclick="syncInformeSituacionalToGoogleSheet()" style="background:#0F766E; color:white; font-size:0.78rem; padding:0.5rem 0.85rem; border:1px solid #14B8A6;" title="Crea la pestaña INFORME_SITUACIONAL_OBRAS directamente en tu Google Sheet conectado">☁️ Crear en Google Sheet</button>
           <button type="button" class="btn" onclick="copyRichTableForGoogleSheets()" style="background:#0284C7; color:white; font-size:0.78rem; padding:0.5rem 0.85rem;" title="Copia la tabla con colores y bordes para pegarla (Ctrl+V) en sheets.new">📊 Copiar Tabla</button>
           <button type="button" class="btn" onclick="exportEntregableTdrExcel()" style="background:#16A34A; color:white; font-size:0.78rem; padding:0.5rem 0.85rem; font-weight:800;" title="Descarga Excel de Entrega TDR con 6 Hojas Exactas (incluye Historial Diagnóstico Fase 1)">📥 Excel Entregable TDR (6 Hojas)</button>
+          <button type="button" class="btn" onclick="exportListadoPreliminarAuditoriaExcel()" style="background:#2563EB; color:white; font-size:0.78rem; padding:0.5rem 0.85rem; font-weight:800;" title="Descarga Avance Preliminar 2022–2025 + Obras Ejecutadas por validar por Gerencia PMO para remisión oficial a Auditoría">📋 Listado Preliminar Auditoría</button>
           <button type="button" class="btn" onclick="exportInformeSituacionalMultiSheetExcel()" style="background:#334155; color:white; font-size:0.75rem; padding:0.5rem 0.75rem;" title="Descarga respaldo Excel por Convenios (7 Hojas)">📥 7 Hojas Conv.</button>
           <button type="button" class="btn" onclick="printInformeSituacional()" style="background:#D97706; color:white; font-size:0.78rem; padding:0.5rem 0.85rem;">🖨️ Imprimir / PDF</button>
           <button type="button" class="btn" onclick="imprimirFichasAuditoriaEntregableModal()" style="background:#0F766E; color:white; font-size:0.78rem; padding:0.5rem 0.85rem; font-weight:800; border:1px solid #5EEAD4;" title="Generar PDF / Impresión en lote de las Fichas Técnicas Individuales PMO-F02 para las obras filtradas">📄 Fichas PMO-F02 (Lote)</button>
