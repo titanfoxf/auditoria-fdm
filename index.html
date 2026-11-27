@@ -3412,8 +3412,10 @@
         const m = String(b.codigo || '').match(/-C(\d+)$/i);
         if (m) usedSeqs.add(parseInt(m[1], 10));
       });
+      const f2Entry = getFase2BoxesMap()[obraId];
+      const hasManagedEntry = !!(f2Entry && Array.isArray(f2Entry.boxes));
       const fData = fieldPhotosMap[obraId];
-      if (fData && fData.fotos) {
+      if (!hasManagedEntry && fData && fData.fotos) {
         fData.fotos.filter(f => isFase2Photo(f)).forEach(f => {
           const m = String(f.codigo_caja || '').match(/-C(\d+)$/i);
           if (m) usedSeqs.add(parseInt(m[1], 10));
@@ -3432,6 +3434,11 @@
         const obraId = parseInt(oKey, 10) || oKey;
         const fData = fieldPhotosMap[oKey];
         if (!fData || !Array.isArray(fData.fotos)) return;
+        const deletedCodesArr = Array.isArray(f2Map[obraId]?.deletedCodes) ? f2Map[obraId].deletedCodes : [];
+        const deletedSet = new Set(deletedCodesArr.map(c => String(c || '').trim()).filter(Boolean));
+        if (deletedSet.size > 0) {
+          fData.fotos = fData.fotos.filter(f => !(isFase2Photo(f) && deletedSet.has(String(f.codigo_caja || '').trim())));
+        }
         const f2Photos = fData.fotos.filter(f => isFase2Photo(f));
         if (f2Photos.length === 0) return;
 
@@ -3447,7 +3454,7 @@
 
         f2Photos.forEach(f => {
           const cod = String(f.codigo_caja || '').trim();
-          if (!cod) return;
+          if (!cod || deletedSet.has(cod)) return;
           const existing = boxes.find(b => b.codigo === cod);
           const photoAmb = String(f.ubicacion || '').trim();
           const isIt = isFase2ItemPhoto(f);
@@ -3735,6 +3742,9 @@
       if (options.copyAddPhotosAsExterior) {
         copiedCount = attachFase1AdditionalPhotosToFase2Box(obraId, boxEntry, [origCod]);
       }
+      if (Array.isArray(f2Map[obraId].deletedCodes)) {
+        f2Map[obraId].deletedCodes = f2Map[obraId].deletedCodes.filter(c => c !== newCod);
+      }
       f2Map[obraId].boxes.push(boxEntry);
       saveFase2BoxesMap(f2Map);
 
@@ -3823,6 +3833,9 @@
           procedencia: [origCod],
           createdAt: new Date().toISOString()
         };
+        if (Array.isArray(f2Map[obraId].deletedCodes)) {
+          f2Map[obraId].deletedCodes = f2Map[obraId].deletedCodes.filter(c => c !== newCod);
+        }
         f2Map[obraId].boxes.push(boxEntry);
         saveFase2BoxesMap(f2Map);
 
@@ -3899,6 +3912,9 @@
         procedencia: selectedCods.slice(),
         createdAt: new Date().toISOString()
       };
+      if (Array.isArray(f2Map[obraId].deletedCodes)) {
+        f2Map[obraId].deletedCodes = f2Map[obraId].deletedCodes.filter(c => c !== newCod);
+      }
       f2Map[obraId].boxes.push(boxEntry);
       saveFase2BoxesMap(f2Map);
 
@@ -4124,6 +4140,9 @@
         procedencia: [],
         createdAt: new Date().toISOString()
       };
+      if (Array.isArray(f2Map[selectedProjectId].deletedCodes)) {
+        f2Map[selectedProjectId].deletedCodes = f2Map[selectedProjectId].deletedCodes.filter(c => c !== newCod);
+      }
       f2Map[selectedProjectId].boxes.push(boxEntry);
       saveFase2BoxesMap(f2Map);
 
@@ -4189,11 +4208,42 @@
 
     function deleteFase2Box(obraId, encodedCod) {
       const cod = decodeURIComponent(encodedCod || '');
-      if (!confirm(`¿Quitar la caja "${cod}" de la capa Fase 2?\n(No borra fotos ni historial de Fase 1).`)) return;
+      if (typeof confirm === 'function' && !confirm(`¿Quitar la caja "${cod}" de la capa Fase 2?\n(No borra fotos ni historial de Fase 1).`)) return;
       const f2Map = getFase2BoxesMap();
       const entry = f2Map[obraId];
       if (!entry || !Array.isArray(entry.boxes)) return;
+      const removedBox = entry.boxes.find(b => b.codigo === cod);
       entry.boxes = entry.boxes.filter(b => b.codigo !== cod);
+      if (!Array.isArray(entry.deletedCodes)) entry.deletedCodes = [];
+      if (cod && !entry.deletedCodes.includes(cod)) entry.deletedCodes.push(cod);
+
+      const fData = fieldPhotosMap[obraId];
+      if (fData && Array.isArray(fData.fotos)) {
+        fData.fotos = fData.fotos.filter(f => !(isFase2Photo(f) && String(f.codigo_caja || '').trim() === cod));
+      }
+
+      try {
+        const hojas = getHojasRotuloA4Map();
+        const hojaKey = `${obraId}::${cod}`;
+        if (Object.prototype.hasOwnProperty.call(hojas, hojaKey)) {
+          delete hojas[hojaKey];
+          localStorage.setItem('fdm_hojas_rotulo_a4_v1', JSON.stringify(hojas));
+        }
+      } catch (e) {}
+
+      if (removedBox && Array.isArray(removedBox.procedencia) && removedBox.procedencia.length > 0) {
+        const f1Status = getFase1StatusMap();
+        let f1Changed = false;
+        removedBox.procedencia.forEach(srcCod => {
+          const stillUsed = entry.boxes.some(b => Array.isArray(b.procedencia) && b.procedencia.includes(srcCod));
+          if (!stillUsed && f1Status[`${obraId}::${srcCod}`] !== 'pending') {
+            f1Status[`${obraId}::${srcCod}`] = 'pending';
+            f1Changed = true;
+          }
+        });
+        if (f1Changed) saveFase1StatusMap(f1Status);
+      }
+
       saveFase2BoxesMap(f2Map);
       refreshAfterLayerChange(obraId);
       showToast(`🗑️ Caja "${cod}" quitada de Fase 2`);
