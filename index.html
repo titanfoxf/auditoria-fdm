@@ -2323,6 +2323,7 @@
               <div style="display:flex; align-items:center; gap:0.3rem; flex-wrap:wrap;">
                 <button type="button" onclick="openArmadorRotuloModal(${obraId}, '${encodedCod}')" style="background:#F5F3FF; color:#5B21B6; border:1px solid #C4B5FD; padding:0.26rem 0.55rem; border-radius:7px; font-size:0.7rem; font-weight:800; cursor:pointer;" title="Abrir Hoja de Rótulo A4 aparte (sin modificar la descripción corta)">🖨️ Rótulo A4</button>
                 <button type="button" onclick="pasarCajaFase1AFase2(${obraId}, '${encodedCod}')" style="background:#ECFDF5; color:#065F46; border:1px solid #34D399; padding:0.26rem 0.55rem; border-radius:7px; font-size:0.7rem; font-weight:800; cursor:pointer;" title="Pasar contenido y rótulo A4 a 1 Caja Final Fase 2 (1➔1)">➡️ Pasar (1➔1)</button>
+                ${findFase1AdditionalPhotos(obraId, cod).length > 0 ? `<button type="button" onclick="pasarCajaFase1AFase2(${obraId}, '${encodedCod}', { copyAddPhotosAsExterior: true })" style="background:#F0FDFA; color:#0F766E; border:1px solid #14B8A6; padding:0.26rem 0.55rem; border-radius:7px; font-size:0.7rem; font-weight:800; cursor:pointer;" title="Pasar a Fase 2 (1➔1) y copiar la Foto Adicional de esta caja como Foto Exterior de Fase 2">📦+📸 Pasar + Foto Ext.</button>` : ''}
                 <button type="button" onclick="promptDividirCajaFase1(${obraId}, '${encodedCod}')" style="background:#FFFBEB; color:#92400E; border:1px solid #FCD34D; padding:0.26rem 0.55rem; border-radius:7px; font-size:0.7rem; font-weight:800; cursor:pointer;" title="Dividir esta caja grande en N cajas pequeñas Fase 2 (1➔N)">✂️ Dividir (1➔N)</button>
                 <button type="button" onclick="toggleFase1SourceDone(${obraId}, '${encodedCod}')" style="background:#F8FAFC; color:#334155; border:1px solid #CBD5E1; padding:0.26rem 0.5rem; border-radius:7px; font-size:0.7rem; font-weight:700; cursor:pointer;" title="Cambiar estado de migración sin borrar fotos">${toggleLabel}</button>
               </div>
@@ -3313,7 +3314,7 @@
         const ocrTxt = (f.ocr_acervo || '').replace(/\|/g, ', ').trim();
         return {
           num: String(n).padStart(2, '0'),
-          contenido: cleanNote || ocrTxt || '',
+          contenido: String(cleanNote || ocrTxt || '').toUpperCase(),
           caja: cod
         };
       });
@@ -3468,6 +3469,37 @@
           }
         });
       });
+
+      // Re-hidratar referencias de Foto Adicional de Fase 1 copiadas como Exterior en Fase 2
+      Object.keys(f2Map).forEach(oidKey => {
+        const oid = parseInt(oidKey, 10);
+        const entry = f2Map[oidKey];
+        if (!oid || !entry || !Array.isArray(entry.boxes)) return;
+        entry.boxes.forEach(box => {
+          if (!box || !Array.isArray(box.copiedExtFotos) || box.copiedExtFotos.length === 0) return;
+          if (!fieldPhotosMap[oid]) fieldPhotosMap[oid] = { id: oid, fotos: [], ubicacion: '' };
+          if (!Array.isArray(fieldPhotosMap[oid].fotos)) fieldPhotosMap[oid].fotos = [];
+          const fotosArr = fieldPhotosMap[oid].fotos;
+          box.copiedExtFotos.forEach(ref => {
+            if (!ref || !ref.id) return;
+            const exists = fotosArr.some(x =>
+              String(x.id || '') === String(ref.id) ||
+              (isFase2Photo(x) && (x.codigo_caja || '').trim() === box.codigo && !isFase2ItemPhoto(x) &&
+                ((ref.file_id && x.file_id === ref.file_id) || (ref.drive_url && x.drive_url === ref.drive_url) || (ref.src_photo_id && x.src_photo_id === ref.src_photo_id)))
+            );
+            if (!exists) {
+              fotosArr.push({
+                ...ref,
+                slot: 'fase2',
+                codigo_caja: box.codigo,
+                ubicacion: box.amb || ref.ubicacion || '',
+                copied_from_f1: true
+              });
+            }
+          });
+        });
+      });
+
       if (changed) saveFase2BoxesMap(f2Map);
       return f2Map;
     }
@@ -3581,9 +3613,102 @@
       };
     }
 
-    function pasarCajaFase1AFase2(obraId, encodedCod) {
+    function findFase1AdditionalPhotos(obraId, origCod) {
+      const targetCod = String(origCod || '').trim();
+      if (!obraId || !targetCod) return [];
+      const fData = fieldPhotosMap[obraId];
+      if (!fData || !Array.isArray(fData.fotos)) return [];
+      return fData.fotos.filter(f => {
+        if (!f || isFase2Photo(f)) return false;
+        const c = (f.codigo_caja || f.nota || 'SIN_CODIGO').trim();
+        if (c !== targetCod) return false;
+        if (f.slot === 'otros') return true;
+        const tf = String(f.tipo_foto || '').toLowerCase();
+        return f.slot !== 'rotulo' && !tf.includes('rótulo') && !tf.includes('rotulo');
+      });
+    }
+
+    function attachFase1AdditionalPhotosToFase2Box(obraId, f2BoxEntry, srcCodes) {
+      if (!obraId || !f2BoxEntry || !f2BoxEntry.codigo) return 0;
+      const sources = Array.isArray(srcCodes) && srcCodes.length > 0
+        ? srcCodes
+        : (Array.isArray(f2BoxEntry.procedencia) ? f2BoxEntry.procedencia : []);
+      if (sources.length === 0) return 0;
+
+      if (!fieldPhotosMap[obraId]) fieldPhotosMap[obraId] = { id: obraId, fotos: [], ubicacion: '' };
+      if (!Array.isArray(fieldPhotosMap[obraId].fotos)) fieldPhotosMap[obraId].fotos = [];
+      if (!Array.isArray(f2BoxEntry.copiedExtFotos)) f2BoxEntry.copiedExtFotos = [];
+
+      const fotosArr = fieldPhotosMap[obraId].fotos;
+      let attached = 0;
+
+      sources.forEach(srcCod => {
+        const addFotos = findFase1AdditionalPhotos(obraId, srcCod);
+        addFotos.forEach((srcF, idx) => {
+          const dupInCopied = f2BoxEntry.copiedExtFotos.some(x =>
+            (srcF.file_id && x.file_id === srcF.file_id) ||
+            (srcF.drive_url && x.drive_url === srcF.drive_url) ||
+            (srcF.id && x.src_photo_id && String(x.src_photo_id) === String(srcF.id)) ||
+            (srcF.dataUrl && !srcF.file_id && !srcF.drive_url && x.dataUrl === srcF.dataUrl)
+          );
+          const dupInBox = fotosArr.some(x =>
+            isFase2Photo(x) && (x.codigo_caja || '').trim() === f2BoxEntry.codigo && !isFase2ItemPhoto(x) && (
+              (srcF.file_id && x.file_id === srcF.file_id) ||
+              (srcF.drive_url && x.drive_url === srcF.drive_url) ||
+              (srcF.id && x.src_photo_id && String(x.src_photo_id) === String(srcF.id))
+            )
+          );
+          if (dupInCopied || dupInBox) return;
+
+          const refObj = {
+            id: `f2ext_from_f1_${f2BoxEntry.codigo}_${String(srcCod).replace(/[^a-zA-Z0-9_-]/g, '')}_${idx}_${Date.now()}`,
+            src_photo_id: String(srcF.id || ''),
+            src_cod: String(srcCod || ''),
+            slot: 'fase2',
+            codigo_caja: f2BoxEntry.codigo,
+            ubicacion: f2BoxEntry.amb || getDefaultFase2Ambiente(obraId),
+            tipo_foto: `Archivo Final (Fase 2) - Exterior (Foto Adic. ${srcCod})`,
+            nota: `Exterior conservada de ${srcCod}`,
+            dataUrl: srcF.dataUrl || '',
+            drive_url: srcF.drive_url || '',
+            file_id: srcF.file_id || '',
+            isDriveLink: !!srcF.isDriveLink,
+            copied_from_f1: true,
+            timestamp: srcF.timestamp || new Date().toISOString()
+          };
+          f2BoxEntry.copiedExtFotos.push(refObj);
+          fotosArr.push(refObj);
+          attached++;
+        });
+      });
+
+      return attached;
+    }
+
+    function copiarFotoAdicionalF1AFase2(obraId, encodedF2Cod) {
+      const f2Cod = decodeURIComponent(encodedF2Cod || '');
+      if (!obraId || !f2Cod) return 0;
+      const f2Map = getFase2BoxesMap();
+      const entry = f2Map[obraId];
+      if (!entry || !Array.isArray(entry.boxes)) return 0;
+      const box = entry.boxes.find(b => b.codigo === f2Cod);
+      if (!box) return 0;
+
+      const attached = attachFase1AdditionalPhotosToFase2Box(obraId, box, box.procedencia || []);
+      if (attached > 0) {
+        saveFase2BoxesMap(f2Map);
+        refreshAfterLayerChange(obraId);
+        showToast(`✅ ${attached} foto(s) adicional(es) de Fase 1 copiada(s) como Exterior en ${f2Cod}.`);
+      } else {
+        showToast(`ℹ️ No hay fotos adicionales nuevas de Fase 1 para copiar en ${f2Cod}.`);
+      }
+      return attached;
+    }
+
+    function pasarCajaFase1AFase2(obraId, encodedCod, opts) {
       const origCod = decodeURIComponent(encodedCod || '');
       if (!obraId || !origCod) return null;
+      const options = opts || {};
 
       const p = (projectsData || []).find(item => item.id === obraId) || {};
       const destAmb = getDefaultFase2Ambiente(obraId);
@@ -3591,8 +3716,8 @@
       const eff = getEffectiveRowsForSource(obraId, origCod);
 
       const newRows = eff.rows.length > 0
-        ? eff.rows.map((r, idx) => ({ num: String(idx + 1).padStart(2, '0'), contenido: r.contenido, caja: newCod }))
-        : [{ num: '01', contenido: eff.shortSummary || `Contenido rearmado desde ${origCod}`, caja: newCod }];
+        ? eff.rows.map((r, idx) => ({ num: String(idx + 1).padStart(2, '0'), contenido: String(r.contenido || '').toUpperCase(), caja: newCod }))
+        : [{ num: '01', contenido: String(eff.shortSummary || `Contenido rearmado desde ${origCod}`).toUpperCase(), caja: newCod }];
 
       const f2Map = getFase2BoxesMap();
       if (!f2Map[obraId] || typeof f2Map[obraId] !== 'object') f2Map[obraId] = { closedObra: false, boxes: [] };
@@ -3606,6 +3731,10 @@
         procedencia: [origCod],
         createdAt: new Date().toISOString()
       };
+      let copiedCount = 0;
+      if (options.copyAddPhotosAsExterior) {
+        copiedCount = attachFase1AdditionalPhotosToFase2Box(obraId, boxEntry, [origCod]);
+      }
       f2Map[obraId].boxes.push(boxEntry);
       saveFase2BoxesMap(f2Map);
 
@@ -3624,7 +3753,13 @@
       saveFase1StatusMap(f1Status);
 
       refreshAfterLayerChange(obraId);
-      showToast(`✅ ${origCod} pasó a Fase 2 como ${newCod} (${destAmb}). Historial Fase 1 intacto.`);
+      if (options.copyAddPhotosAsExterior) {
+        showToast(copiedCount > 0
+          ? `✅ ${origCod} pasó a Fase 2 como ${newCod} con ${copiedCount} foto(s) adicional(es) como Exterior.`
+          : `✅ ${origCod} pasó a Fase 2 como ${newCod} (sin foto adicional en Fase 1 para copiar).`);
+      } else {
+        showToast(`✅ ${origCod} pasó a Fase 2 como ${newCod} (${destAmb}). Historial Fase 1 intacto.`);
+      }
       return boxEntry;
     }
 
@@ -3667,14 +3802,14 @@
         let partRows = [];
         if (canSplitEvenly) {
           const slice = srcRows.slice(i * chunkSize, (i + 1) * chunkSize);
-          partRows = slice.map((r, j) => ({ num: String(j + 1).padStart(2, '0'), contenido: r.contenido, caja: newCod }));
+          partRows = slice.map((r, j) => ({ num: String(j + 1).padStart(2, '0'), contenido: String(r.contenido || '').toUpperCase(), caja: newCod }));
         } else if (srcRows.length > 0) {
-          partRows = srcRows.map((r, j) => ({ num: String(j + 1).padStart(2, '0'), contenido: `${r.contenido} (Parte ${i + 1}/${n})`, caja: newCod }));
+          partRows = srcRows.map((r, j) => ({ num: String(j + 1).padStart(2, '0'), contenido: `${String(r.contenido || '').toUpperCase()} (PARTE ${i + 1}/${n})`, caja: newCod }));
         }
         if (partRows.length === 0) {
           partRows = [{
             num: '01',
-            contenido: `${eff.shortSummary || 'Contenido rearmado de ' + origCod} (Parte ${i + 1}/${n})`,
+            contenido: `${String(eff.shortSummary || 'Contenido rearmado de ' + origCod).toUpperCase()} (PARTE ${i + 1}/${n})`,
             caja: newCod
           }];
         }
@@ -3738,14 +3873,14 @@
           eff.rows.forEach(r => {
             mergedRows.push({
               num: String(mergedRows.length + 1).padStart(2, '0'),
-              contenido: r.contenido,
+              contenido: String(r.contenido || '').toUpperCase(),
               caja: newCod
             });
           });
         } else {
           mergedRows.push({
             num: String(mergedRows.length + 1).padStart(2, '0'),
-            contenido: `Contenido consolidado de ${srcCod}`,
+            contenido: `CONTENIDO CONSOLIDADO DE ${String(srcCod || '').toUpperCase()}`,
             caja: newCod
           });
         }
@@ -3902,6 +4037,7 @@
                 <button type="button" onclick="triggerUploadFotoFase2(${obraId}, '${encodedCod}', 'item', true)" style="background:#4F46E5; border:none; color:#FFFFFF; padding:0.32rem 0.65rem; border-radius:7px; font-size:0.72rem; font-weight:800; cursor:pointer;" title="Abrir cámara del celular para tomar foto directa del siguiente elemento (IT${nextItStr})">📸 Foto Elemento (IT${nextItStr})</button>
                 <button type="button" onclick="triggerUploadFotoFase2(${obraId}, '${encodedCod}', 'item', false)" style="background:#EEF2FF; border:1px solid #6366F1; color:#3730A3; padding:0.3rem 0.58rem; border-radius:7px; font-size:0.72rem; font-weight:800; cursor:pointer;" title="Subir varias fotos juntas desde galería o PC como IT01, IT02...">🖼️ Subir lote (IT..)</button>
                 <button type="button" onclick="triggerUploadFotoFase2(${obraId}, '${encodedCod}', 'exterior', true)" style="background:#FFFFFF; border:1px solid #10B981; color:#065F46; padding:0.3rem 0.58rem; border-radius:7px; font-size:0.72rem; font-weight:800; cursor:pointer;" title="Tomar o subir foto exterior de la caja armada/cerrada">📦 Foto Exterior</button>
+                ${proced.length > 0 ? `<button type="button" onclick="copiarFotoAdicionalF1AFase2(${obraId}, '${encodedCod}')" style="background:#F0FDFA; border:1px solid #14B8A6; color:#0F766E; padding:0.3rem 0.58rem; border-radius:7px; font-size:0.72rem; font-weight:800; cursor:pointer;" title="Copiar la(s) Foto(s) Adicional(es) de la caja Fase 1 de procedencia como Exterior">📥 Foto Adic. F1</button>` : ''}
                 <button type="button" onclick="openArmadorRotuloModal(${obraId}, '${encodedCod}')" style="background:#059669; border:none; color:#FFFFFF; padding:0.32rem 0.68rem; border-radius:7px; font-size:0.72rem; font-weight:800; cursor:pointer;">🏷️ Armar / Imprimir Rótulo A4</button>
                 <button type="button" onclick="deleteFase2Box(${obraId}, '${encodedCod}')" style="background:#FEF2F2; border:1px solid #FECACA; color:#991B1B; padding:0.3rem 0.52rem; border-radius:7px; font-size:0.72rem; font-weight:800; cursor:pointer;" title="Quitar de Fase 2 (no borra Fase 1)">🗑️</button>
               </div>
@@ -4071,6 +4207,29 @@
 
       const photoObj = fData.fotos.find(f => String(f.id || '') === pid);
       if (!photoObj || !isFase2Photo(photoObj)) return false;
+
+      if (photoObj.copied_from_f1) {
+        if (typeof confirm === 'function' && !confirm(`¿Quitar esta referencia de Foto Exterior copiada desde Fase 1 en "${cod}"?\n(La foto original en Fase 1 y Google Drive permanece 100% intacta)`)) {
+          return false;
+        }
+        fData.fotos = fData.fotos.filter(f => f !== photoObj);
+        const f2Map = getFase2BoxesMap();
+        const entry = f2Map[obraId];
+        if (entry && Array.isArray(entry.boxes)) {
+          const box = entry.boxes.find(b => b.codigo === cod);
+          if (box && Array.isArray(box.copiedExtFotos)) {
+            box.copiedExtFotos = box.copiedExtFotos.filter(x => String(x.id || '') !== pid);
+            saveFase2BoxesMap(f2Map);
+          }
+        }
+        refreshAfterLayerChange(obraId);
+        if (typeof activeArmadorCtx !== 'undefined' && activeArmadorCtx && activeArmadorCtx.obraId === obraId && activeArmadorCtx.cod === cod) {
+          const modal = document.getElementById('armadorRotuloModal');
+          if (modal && modal.classList.contains('open')) openArmadorRotuloModal(obraId, encodeURIComponent(cod));
+        }
+        showToast(`🗑️ Referencia exterior quitada de Fase 2 (original Fase 1 intacto).`);
+        return true;
+      }
 
       const label = photoObj.sub_codigo || photoObj.tipo_foto || cod || 'foto';
       if (typeof confirm === 'function' && !confirm(`¿Eliminar esta imagen (${label}) de la caja Fase 2 "${cod}"?\nSe quitará también de Google Drive / Sheets si estaba sincronizada (no afecta Fase 1).`)) {
@@ -6648,7 +6807,11 @@
         f2ItemFotos,
         projDesc: savedHoja.projDesc || p.desc || `OBRA N° ${obraId}`,
         shortSummary: initialShort,
-        rows: parseRotuloToRows(obraId, displayFotos, cod),
+        rows: parseRotuloToRows(obraId, displayFotos, cod).map((r, i) => ({
+          num: String(r.num || (i + 1)).padStart(2, '0'),
+          contenido: String(r.contenido || '').toUpperCase(),
+          caja: String(r.caja || cod).trim()
+        })),
         activeRowIdx: 0
       };
 
@@ -7245,7 +7408,7 @@
       if (mode === 'replace') {
         activeArmadorCtx.rows = targetLines.map((txt, idx) => ({
           num: String(idx + 1).padStart(2, '0'),
-          contenido: txt,
+          contenido: String(txt || '').toUpperCase(),
           caja: boxCod
         }));
       } else {
@@ -7254,10 +7417,11 @@
         }
         const existingSet = new Set(activeArmadorCtx.rows.map(r => (r.contenido || '').toUpperCase().trim()));
         targetLines.forEach(txt => {
-          if (!existingSet.has(txt.toUpperCase().trim())) {
+          const upTxt = String(txt || '').toUpperCase().trim();
+          if (upTxt && !existingSet.has(upTxt)) {
             activeArmadorCtx.rows.push({
               num: String(activeArmadorCtx.rows.length + 1).padStart(2, '0'),
-              contenido: txt,
+              contenido: upTxt,
               caja: boxCod
             });
           }
@@ -7311,7 +7475,7 @@
             <input type="text" class="armador-input" style="text-align:center; font-weight:800; font-family:monospace;" value="${escapeHtmlAttr(r.num)}" oninput="activeArmadorCtx.rows[${idx}].num = this.value">
           </td>
           <td>
-            <input type="text" class="armador-input" id="armadorCont_${idx}" value="${escapeHtmlAttr(r.contenido)}" placeholder="Ej: Exp. Técnico / Valorizaciones N° 01 al 04..." onfocus="activeArmadorCtx.activeRowIdx = ${idx}" oninput="activeArmadorCtx.rows[${idx}].contenido = this.value">
+            <input type="text" class="armador-input" id="armadorCont_${idx}" style="text-transform:uppercase; font-weight:700;" value="${escapeHtmlAttr(String(r.contenido || '').toUpperCase())}" placeholder="EJ: EXP. TÉCNICO / VALORIZACIONES N° 01 AL 04..." onfocus="activeArmadorCtx.activeRowIdx = ${idx}" oninput="const up = this.value.toUpperCase(); if (this.value !== up) this.value = up; activeArmadorCtx.rows[${idx}].contenido = up;">
           </td>
           <td style="width:36px; text-align:center;">
             <button type="button" onclick="removeArmadorRow(${idx})" style="border:none; background:#FEE2E2; color:#B91C1C; border-radius:6px; padding:0.25rem 0.45rem; cursor:pointer; font-weight:800;" title="Eliminar fila">✕</button>
@@ -7324,7 +7488,7 @@
       const nextNum = String(activeArmadorCtx.rows.length + 1).padStart(2, '0');
       activeArmadorCtx.rows.push({
         num: nextNum,
-        contenido: (initialText || '').trim(),
+        contenido: String(initialText || '').trim().toUpperCase(),
         caja: (document.getElementById('armadorCodInput')?.value || activeArmadorCtx.cod || '').trim()
       });
       activeArmadorCtx.activeRowIdx = activeArmadorCtx.rows.length - 1;
@@ -7347,7 +7511,7 @@
     }
 
     function usePhotoTextInArmador(text) {
-      const clean = String(text || '').trim();
+      const clean = String(text || '').trim().toUpperCase();
       if (!clean) return;
       const curRow = activeArmadorCtx.rows[activeArmadorCtx.activeRowIdx];
       if (curRow && !curRow.contenido.trim()) {
@@ -7363,7 +7527,7 @@
       const idx = Math.min(activeArmadorCtx.activeRowIdx, activeArmadorCtx.rows.length - 1);
       const row = activeArmadorCtx.rows[idx];
       const cur = (row.contenido || '').trim();
-      row.contenido = cur ? `${cur} ${tag}` : tag;
+      row.contenido = String(cur ? `${cur} ${tag}` : tag).toUpperCase();
       const inp = document.getElementById(`armadorCont_${idx}`);
       if (inp) {
         inp.value = row.contenido;
@@ -7379,7 +7543,7 @@
       const cleanedRows = activeArmadorCtx.rows
         .map((r, i) => ({
           num: String(r.num || (i + 1)).trim().padStart(2, '0'),
-          contenido: String(r.contenido || '').replace(/^\d{1,2}\)\s*/, '').trim(),
+          contenido: String(r.contenido || '').replace(/^\d{1,2}\)\s*/, '').trim().toUpperCase(),
           caja: String(r.caja || cod).trim()
         }))
         .filter(r => r.contenido && !/^[-_\s]+$/.test(r.contenido));
