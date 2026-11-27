@@ -7784,35 +7784,40 @@
       const isLand = (orient || rotuloPrintOrientation) === 'landscape';
       return `
       @page { size: A4 ${isLand ? 'landscape' : 'portrait'}; margin: ${isLand ? '8mm' : '11mm'}; }
-      body { font-family: Arial, Helvetica, sans-serif; color: #000; margin: 0; padding: ${isLand ? '3mm' : '5mm'}; background: #FFF; }
-      .rotulo-page { page-break-after: always; break-after: page; padding-bottom: 2mm; }
+      html, body { margin: 0; padding: 0; background: #FFF; }
+      body { font-family: Arial, Helvetica, sans-serif; color: #000; padding: ${isLand ? '3mm' : '5mm'}; }
+      .rotulo-page { box-sizing: border-box; width: 100%; height: ${isLand ? '186mm' : '270mm'}; display: flex; flex-direction: column; page-break-after: always; break-after: page; padding: 0; }
+      .rotulo-page.rotulo-page-overflow { height: auto; min-height: ${isLand ? '186mm' : '270mm'}; }
       .rotulo-page:last-child { page-break-after: auto; break-after: auto; }
-      .rot-top-strip { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-bottom: ${isLand ? '5px' : '7px'}; }
-      .rot-blk-badge { font-size: ${isLand ? '10pt' : '10.5pt'}; font-weight: 900; padding: 4px 11px; border-radius: 6px; letter-spacing: 0.4px; }
-      .rot-seq-badge { font-size: ${isLand ? '12.5pt' : '13pt'}; font-weight: 900; border: 2px solid #000; padding: 4px 12px; background: #F8FAFC; letter-spacing: 0.6px; }
-      .rot-ref-code { font-size: ${isLand ? '12pt' : '12.5pt'}; font-weight: 900; font-family: monospace; text-align: right; }
-      .proj-box { border: 2.5px solid #000; padding: ${isLand ? '7px 14px' : '9px 14px'}; text-align: center; margin-bottom: ${isLand ? '5px' : '7px'}; }
-      .proj-id-line { font-size: 9pt; font-weight: 800; color: #1E293B; margin-bottom: 4px; letter-spacing: 0.3px; }
-      .proj-title-line { font-size: ${isLand ? '14.5pt' : '15.5pt'}; font-weight: 900; line-height: 1.2; text-transform: uppercase; }
-      .proj-title-line.proj-title-long { font-size: ${isLand ? '12.8pt' : '13.5pt'}; line-height: 1.18; }
-      .meta-line { display: flex; justify-content: space-between; font-size: 8.8pt; color: #1E293B; margin-bottom: ${isLand ? '5px' : '7px'}; font-weight: 800; background: #F8FAFC; border: 1px solid #CBD5E1; padding: 4px 9px; }
-      table { width: 100%; border-collapse: collapse; table-layout: fixed; }
-      th { border: 2px solid #000; background: #E2E8F0; padding: ${isLand ? '5px 6px' : '7px 6px'}; font-size: ${isLand ? '10pt' : '10.5pt'}; font-weight: 900; text-align: center; text-transform: uppercase; }
-      td { border: 1.5px solid #000; height: ${isLand ? '21px' : '26px'}; padding: ${isLand ? '3px 9px' : '4px 9px'}; font-size: ${isLand ? '10pt' : '10.5pt'}; vertical-align: middle; }
-      .col-num { width: 48px; text-align: center; font-weight: 800; }
-      .col-cont { font-weight: 700; }
-      .col-caja-unique { width: ${isLand ? '210px' : '175px'}; text-align: center; vertical-align: middle; background: #F8FAFC; border: 2px solid #000; padding: 10px 8px; }
-      .caja-lbl-top { font-size: 7.5pt; font-weight: 800; letter-spacing: 1px; color: #334155; text-transform: uppercase; margin-bottom: 6px; }
-      .caja-code-big { font-family: monospace; font-size: ${isLand ? '23pt' : '20pt'}; font-weight: 900; line-height: 1.08; letter-spacing: 0.5px; color: #000; word-break: break-word; }
-      .caja-code-big.caja-code-long { font-size: ${isLand ? '18pt' : '16pt'}; }
-      .caja-seq-sub { margin-top: 8px; display: inline-block; border: 2px solid #000; background: #FFFFFF; padding: 3px 10px; font-size: ${isLand ? '10.5pt' : '10pt'}; font-weight: 900; letter-spacing: 0.6px; }
-      .rot-pseudo-banner { margin-top: ${isLand ? '8px' : '10px'}; border: 3.5px solid #000; background: #FFFFFF; padding: ${isLand ? '6px 14px' : '8px 14px'}; text-align: center; }
-      .rot-pseudo-kicker { font-size: 7.5pt; font-weight: 800; letter-spacing: 1.6px; color: #334155; text-transform: uppercase; margin-bottom: 2px; }
-      .rot-pseudo-text { font-size: ${isLand ? '30pt' : '27pt'}; font-weight: 900; line-height: 1.06; letter-spacing: 0.8px; text-transform: uppercase; color: #000; word-break: break-word; }
-      .rot-pseudo-text.pseudo-md { font-size: ${isLand ? '25pt' : '22pt'}; }
-      .rot-pseudo-text.pseudo-sm { font-size: ${isLand ? '20pt' : '18pt'}; }
-      .foot { margin-top: ${isLand ? '6px' : '8px'}; font-size: 8.5pt; color: #334155; display: flex; justify-content: space-between; font-weight: 700; }
-      @media print { .no-print { display: none; } body { padding: 0; -webkit-print-color-adjust: exact; print-color-adjust: exact; } }
+      .rot-top-strip { flex: 0 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: ${isLand ? '6px' : '8px'}; }
+      .rot-blk-badge { font-size: ${isLand ? '13pt' : '13pt'}; font-weight: 900; padding: 5px 14px; border-radius: 6px; letter-spacing: 0.5px; }
+      .rot-seq-badge { font-size: ${isLand ? '15.5pt' : '15pt'}; font-weight: 900; border: 2.5px solid #000; padding: 4px 16px; background: #F8FAFC; letter-spacing: 0.7px; }
+      .rot-ref-code { font-size: ${isLand ? '16pt' : '15pt'}; font-weight: 900; font-family: monospace; text-align: right; letter-spacing: 0.5px; }
+      .proj-box { flex: 0 0 auto; border: 3px solid #000; padding: ${isLand ? '8px 16px' : '10px 16px'}; text-align: center; margin-bottom: ${isLand ? '6px' : '8px'}; }
+      .proj-id-line { font-size: ${isLand ? '11pt' : '10.5pt'}; font-weight: 800; color: #1E293B; margin-bottom: 4px; letter-spacing: 0.3px; }
+      .proj-title-line { font-size: ${isLand ? '17pt' : '16.5pt'}; font-weight: 900; line-height: 1.18; text-transform: uppercase; }
+      .proj-title-line.proj-title-long { font-size: ${isLand ? '14.5pt' : '14pt'}; line-height: 1.16; }
+      .meta-line { flex: 0 0 auto; display: flex; justify-content: space-between; align-items: center; font-size: ${isLand ? '11pt' : '10.5pt'}; color: #0F172A; margin-bottom: ${isLand ? '6px' : '8px'}; font-weight: 900; background: #F8FAFC; border: 1.5px solid #94A3B8; padding: 5px 12px; text-transform: uppercase; }
+      .rot-table-wrap { flex: 1 1 0; display: flex; flex-direction: column; min-height: 0; }
+      .rot-table { width: 100%; height: 100%; border-collapse: collapse; table-layout: fixed; }
+      .rot-table thead th { border: 2.5px solid #000; background: #E2E8F0; height: ${isLand ? '30px' : '32px'}; padding: ${isLand ? '5px 8px' : '6px 8px'}; font-size: ${isLand ? '12pt' : '12pt'}; font-weight: 900; text-align: center; text-transform: uppercase; }
+      .rot-table tbody td { border: 2px solid #000; padding: ${isLand ? '5px 12px' : '6px 11px'}; font-size: ${isLand ? '15pt' : '14.5pt'}; line-height: 1.15; vertical-align: middle; }
+      .rot-table.rot-density-md tbody td { font-size: ${isLand ? '12.5pt' : '12pt'}; line-height: 1.12; padding: ${isLand ? '3.5px 10px' : '4px 10px'}; }
+      .rot-table.rot-density-sm tbody td { font-size: ${isLand ? '10.5pt' : '10.5pt'}; line-height: 1.08; padding: ${isLand ? '2.5px 9px' : '3px 9px'}; }
+      .rot-table.rot-density-xs tbody td { font-size: 9pt; line-height: 1.05; padding: 2px 8px; }
+      .col-num { width: 56px; text-align: center; font-weight: 900; }
+      .col-cont { font-weight: 800; word-break: break-word; }
+      .col-caja-unique { width: ${isLand ? '245px' : '195px'}; text-align: center; vertical-align: middle; background: #F8FAFC; border: 2.5px solid #000; padding: 12px 10px; }
+      .caja-lbl-top { font-size: 9.5pt; font-weight: 900; letter-spacing: 1px; color: #334155; text-transform: uppercase; margin-bottom: 8px; }
+      .caja-code-big { font-family: monospace; font-size: ${isLand ? '29pt' : '24pt'}; font-weight: 900; line-height: 1.08; letter-spacing: 0.6px; color: #000; word-break: break-word; }
+      .caja-code-big.caja-code-long { font-size: ${isLand ? '22pt' : '19pt'}; }
+      .caja-seq-sub { margin-top: 10px; display: inline-block; border: 2.5px solid #000; background: #FFFFFF; padding: 4px 14px; font-size: ${isLand ? '13.5pt' : '12pt'}; font-weight: 900; letter-spacing: 0.6px; }
+      .rot-pseudo-banner { flex: 0 0 auto; margin-top: ${isLand ? '8px' : '10px'}; border: 4px solid #000; background: #FFFFFF; padding: ${isLand ? '8px 16px' : '10px 16px'}; text-align: center; }
+      .rot-pseudo-kicker { font-size: 9pt; font-weight: 900; letter-spacing: 1.6px; color: #334155; text-transform: uppercase; margin-bottom: 3px; }
+      .rot-pseudo-text { font-size: ${isLand ? '38pt' : '32pt'}; font-weight: 900; line-height: 1.04; letter-spacing: 0.8px; text-transform: uppercase; color: #000; word-break: break-word; }
+      .rot-pseudo-text.pseudo-md { font-size: ${isLand ? '31pt' : '26pt'}; }
+      .rot-pseudo-text.pseudo-sm { font-size: ${isLand ? '24pt' : '21pt'}; }
+      @media print { .no-print { display: none !important; } body { padding: 0; -webkit-print-color-adjust: exact; print-color-adjust: exact; } }
     `;
     }
 
@@ -7821,12 +7826,12 @@
       const obraId = opts.obraId;
       const boxCod = (opts.boxCod || '').trim();
       const projTitle = (opts.projTitle || p.desc || `OBRA N° ${obraId}`).trim();
+      const cleanProjTitle = projTitle.replace(/^["“”']+/, '').replace(/["“”']+$/, '').trim();
       const ambOrig = (opts.amb || 'Ambiente').trim();
       const blk = opts.blk || getProjectArchiveBlock(p);
       const finalArc = opts.finalArc || getProjectFinalArchiveLabel(p) || (blk ? blk.defaultAmb : '');
       const isFase2 = !!(opts.isFase2 || (typeof isFase2BoxCode === 'function' && isFase2BoxCode(boxCod)));
       const estante = (opts.estante || '').trim();
-      const procedencia = Array.isArray(opts.procedencia) ? opts.procedencia.filter(Boolean) : [];
       const boxSeqLabel = opts.boxSeqLabel || 'HOJA DE RÓTULO';
       const rows = Array.isArray(opts.rows) ? opts.rows : [];
       const pseudoRaw = (opts.pseudonimo !== undefined && opts.pseudonimo !== null)
@@ -7846,6 +7851,19 @@
       const orient = opts.orientation || (typeof rotuloPrintOrientation !== 'undefined' ? rotuloPrintOrientation : 'landscape') || 'landscape';
       const minRows = orient === 'landscape' ? 8 : 10;
       const totalRows = Math.max(minRows, rows.length);
+      const nonEmptyRows = rows.filter(r => r && String(r.contenido || '').trim());
+      const maxRowLen = nonEmptyRows.reduce((mx, r) => Math.max(mx, String(r.contenido || '').trim().length), 0);
+      const totalRowChars = nonEmptyRows.reduce((sum, r) => sum + String(r.contenido || '').trim().length, 0);
+      let tableDensityClass = '';
+      if (totalRows >= 16 || totalRowChars > 820) {
+        tableDensityClass = 'rot-density-xs';
+      } else if (totalRows >= 12 || maxRowLen > 125 || totalRowChars > 560) {
+        tableDensityClass = 'rot-density-sm';
+      } else if (totalRows >= 9 || maxRowLen > 85 || totalRowChars > 360) {
+        tableDensityClass = 'rot-density-md';
+      }
+      const pageOverflowClass = totalRows >= 16 ? ' rotulo-page-overflow' : '';
+
       const uniqueBoxCellHtml = `<td class="col-caja-unique" rowspan="${totalRows}"><div class="caja-lbl-top">CÓDIGO ÚNICO DE CAJA</div><div class="caja-code-big${boxCod.length > 11 ? ' caja-code-long' : ''}">${escapeHtmlAttr(boxCod || 'S/C')}</div><div class="caja-seq-sub">${escapeHtmlAttr(boxSeqLabel)}</div></td>`;
       let rowsHtml = '';
       for (let i = 0; i < totalRows; i++) {
@@ -7864,46 +7882,40 @@
       const metaLeft = isFase2
         ? `UBICACIÓN FÍSICA: ${ambOrig}${estante ? ' • ' + estante : ''}`
         : `UBICACIÓN ARCHIVO: ${finalArc || ambOrig}`;
-      const metaRight = procedencia.length > 0
-        ? `PROCEDENCIA FASE 1: ${procedencia.join(', ')}`
-        : `ORIGEN CENSO: ${ambOrig}`;
-      const codePrefix = isFase2 ? 'FASE 2:' : 'REF. CENSO:';
-      const titleClass = projTitle.length > 155 ? 'proj-title-line proj-title-long' : 'proj-title-line';
+      const topRightCode = isFase2 ? boxCod : `REF. CENSO: ${boxCod}`;
+      const titleClass = cleanProjTitle.length > 155 ? 'proj-title-line proj-title-long' : 'proj-title-line';
       const pseudoSizeClass = pseudonimo.length > 38 ? 'pseudo-sm' : (pseudonimo.length > 26 ? 'pseudo-md' : '');
       const pseudoBannerHtml = pseudonimo
         ? `<div class="rot-pseudo-banner"><div class="rot-pseudo-kicker">IDENTIFICADOR RÁPIDO / PSEUDÓNIMO DE PROYECTO</div><div class="rot-pseudo-text ${pseudoSizeClass}">${escapeHtmlAttr(pseudonimo)}</div></div>`
         : '';
 
       return `
-        <div class="rotulo-page">
+        <div class="rotulo-page${pageOverflowClass}">
           <div class="rot-top-strip">
             <div class="rot-blk-badge" style="background:${blkBg}; color:${blkCol}; border:2px solid ${blkBorder};">${escapeHtmlAttr(blkText)}</div>
             <div class="rot-seq-badge">${escapeHtmlAttr(boxSeqLabel)}</div>
-            <div class="rot-ref-code">${codePrefix} ${escapeHtmlAttr(boxCod)}</div>
+            <div class="rot-ref-code">${escapeHtmlAttr(topRightCode)}</div>
           </div>
           <div class="proj-box">
             <div class="proj-id-line">OBRA N° ${obraId === 999 ? 'MULTI' : String(obraId).padStart(2, '0')} • ${escapeHtmlAttr(cuiTxt)} • ${escapeHtmlAttr((p.provincia || '').toUpperCase())} (${escapeHtmlAttr(p.convenio || 'FDM')}) • PERIODO: ${escapeHtmlAttr(iniTxt)} ➔ ${escapeHtmlAttr(finTxt)}</div>
-            <div class="${titleClass}">PROYECTO: "${escapeHtmlAttr(projTitle)}"</div>
+            <div class="${titleClass}">PROYECTO: "${escapeHtmlAttr(cleanProjTitle)}"</div>
           </div>
           <div class="meta-line">
             <span>${escapeHtmlAttr(metaLeft)}</span>
-            <span>${escapeHtmlAttr(metaRight)}</span>
           </div>
-          <table>
-            <thead>
-              <tr>
-                <th style="width:48px;">N°</th>
-                <th>CONTENIDO DOCUMENTAL DE LA CAJA</th>
-                <th style="width:${orient === 'landscape' ? '210px' : '175px'};">CÓDIGO DE CAJA</th>
-              </tr>
-            </thead>
-            <tbody>${rowsHtml}</tbody>
-          </table>
+          <div class="rot-table-wrap">
+            <table class="rot-table ${tableDensityClass}">
+              <thead>
+                <tr>
+                  <th style="width:56px;">N°</th>
+                  <th>CONTENIDO DOCUMENTAL DE LA CAJA</th>
+                  <th style="width:${orient === 'landscape' ? '245px' : '195px'};">CÓDIGO DE CAJA</th>
+                </tr>
+              </thead>
+              <tbody>${rowsHtml}</tbody>
+            </table>
+          </div>
           ${pseudoBannerHtml}
-          <div class="foot">
-            <span>Fondo de Desarrollo de Moquegua (FDM) — Auditoría 2022–2025 (TDR Req. N° 000393)</span>
-            <span>${escapeHtmlAttr(boxCod)}</span>
-          </div>
         </div>
       `;
     }
